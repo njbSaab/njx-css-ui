@@ -1,6 +1,6 @@
 /.claude
 /.superpowers
-/.docs
+/docs
 
 # macOS
 .DS_Store
