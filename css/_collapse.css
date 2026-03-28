@@ -1,0 +1,251 @@
+/* ─────────────────────────────────────────────
+   _collapse.css — Collapse & Accordion
+   ─────────────────────────────────────────────
+   API:
+     <div class="collapse">
+       <div class="collapse-header" onclick="collapseToggle(this)">Title <span class="collapse-icon"></span></div>
+       <div class="collapse-body">Content</div>
+     </div>
+
+     <details class="collapse">
+       <summary class="collapse-header">Title <span class="collapse-icon"></span></summary>
+       <div class="collapse-body">Content</div>
+     </details>
+
+   Modifiers: .collapse-plus  .collapse-ghost  .collapse-primary
+   Wrappers:  .accordion  .accordion-flush
+───────────────────────────────────────────── */
+
+/* ═══════════════════════════════
+   BASE
+═══════════════════════════════ */
+.collapse {
+  border: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+  border-radius: var(--radius-lg, 12px);
+  overflow: hidden;
+  transition: border-color 0.22s;
+  background: var(--bg-secondary);
+}
+
+.collapse + .collapse {
+  margin-top: 8px;
+}
+
+/* ═══════════════════════════════
+   HEADER
+═══════════════════════════════ */
+.collapse-header,
+details.collapse > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  list-style: none;
+  transition: background 0.2s, color 0.2s;
+  user-select: none;
+}
+
+/* Remove native arrow */
+.collapse-header::-webkit-details-marker,
+details.collapse > summary::-webkit-details-marker {
+  display: none;
+}
+
+.collapse-header:hover,
+details.collapse > summary:hover {
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 5%, transparent);
+}
+
+/* ═══════════════════════════════
+   CHEVRON ICON
+═══════════════════════════════ */
+.collapse-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.7;
+}
+
+.collapse-icon::before,
+.collapse-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.collapse-icon::before { left: 2px;  transform: translateY(-50%) rotate(45deg); }
+.collapse-icon::after  { right: 2px; transform: translateY(-50%) rotate(-45deg); }
+
+.collapse.is-open .collapse-icon,
+details.collapse[open] .collapse-icon {
+  transform: rotate(180deg);
+}
+
+/* ═══════════════════════════════
+   PLUS/MINUS ICON
+═══════════════════════════════ */
+.collapse-plus .collapse-icon::before {
+  width: 12px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.collapse-plus .collapse-icon::after {
+  width: 1.5px;
+  height: 12px;
+  right: auto;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.collapse-plus.is-open .collapse-icon::before,
+details.collapse-plus[open] .collapse-icon::before {
+  transform: translate(-50%, -50%);
+}
+
+.collapse-plus.is-open .collapse-icon::after,
+details.collapse-plus[open] .collapse-icon::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* ═══════════════════════════════
+   BODY
+═══════════════════════════════ */
+.collapse-body {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 18px;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  border-top: 1px solid transparent;
+  transition:
+    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    padding    0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.22s;
+}
+
+/* JS toggle */
+.collapse.is-open > .collapse-body {
+  max-height: 600px;
+  padding: 16px 18px;
+  border-top-color: color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+}
+
+/* Native details */
+details.collapse .collapse-body {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 18px;
+  transition:
+    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    padding    0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+details.collapse[open] .collapse-body {
+  max-height: 600px;
+  padding: 16px 18px;
+  border-top: 1px solid color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+}
+
+/* ═══════════════════════════════
+   OPEN STATE
+═══════════════════════════════ */
+.collapse.is-open,
+details.collapse[open] {
+  border-color: color-mix(in srgb, var(--color-primary) 28%, transparent);
+}
+
+.collapse.is-open > .collapse-header,
+details.collapse[open] > summary {
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 7%, transparent);
+}
+
+/* ═══════════════════════════════
+   VARIANT: GHOST
+═══════════════════════════════ */
+.collapse-ghost {
+  border-color: transparent;
+  background: transparent;
+}
+
+.collapse-ghost.is-open,
+details.collapse-ghost[open] {
+  border-color: transparent;
+  background: transparent;
+}
+
+.collapse-ghost.is-open > .collapse-body {
+  border-top-color: color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+}
+
+/* ═══════════════════════════════
+   VARIANT: PRIMARY
+═══════════════════════════════ */
+.collapse-primary {
+  border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 4%, var(--bg-secondary));
+}
+
+.collapse-primary > .collapse-header,
+details.collapse-primary > summary {
+  color: var(--color-primary);
+}
+
+.collapse-primary.is-open > .collapse-header,
+details.collapse-primary[open] > summary {
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
+.collapse-primary.is-open > .collapse-body {
+  border-top-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+/* ═══════════════════════════════
+   ACCORDION WRAPPER
+═══════════════════════════════ */
+.accordion > .collapse + .collapse {
+  margin-top: 6px;
+}
+
+/* ─── Flush (connected) ─── */
+.accordion-flush {
+  border: 1px solid color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+  border-radius: var(--radius-lg, 12px);
+  overflow: hidden;
+}
+
+.accordion-flush > .collapse {
+  border: none;
+  border-radius: 0;
+  margin-top: 0;
+}
+
+.accordion-flush > .collapse + .collapse {
+  border-top: 1px solid color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+}
+
+.accordion-flush > .collapse.is-open,
+.accordion-flush > details.collapse[open] {
+  border-color: transparent;
+  background: color-mix(in srgb, var(--color-primary) 5%, var(--bg-secondary));
+}

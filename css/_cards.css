@@ -1,0 +1,388 @@
+/* ============================================================
+   _cards.css — Карточки
+   .card .card-glass .card-dark .card-bordered .card-primary
+   + Bulma: .card .card-header .card-content .card-footer
+   ============================================================ */
+
+/* ── Базовая карточка ── */
+.card {
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  padding: var(--space-5);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--ease);
+}
+
+/* ── Варианты ── */
+.card-glass {
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: var(--space-5);
+  transition: all var(--ease);
+}
+.card-glass:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-glow);
+}
+
+.card-dark {
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-neutral-700);
+  padding: var(--space-5);
+}
+
+.card-bordered {
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid var(--color-neutral-600);
+  padding: var(--space-5);
+}
+.card-bordered-primary {
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  padding: var(--space-5);
+  box-shadow: 0 0 20px var(--color-shadow);
+}
+.card-bordered-accent {
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-accent);
+}
+
+.card-primary {
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(0,0,0,0.38) -17.54%, rgba(0,0,0,0.38) 114.47%);
+  border: 1px solid rgba(255, 255, 255, 0.735);
+  padding: var(--space-5) var(--space-8);
+  box-shadow: 0 0 20px rgba(255,255,255,0.3), 0 0 40px var(--color-shadow);
+  backdrop-filter: blur(3px);
+  max-width: 600px;
+  width: 100%;
+  margin: var(--space-8) auto;
+}
+
+.card-gradient {
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--color-primary) -17.54%, rgba(20,161,255,0.56) 114.47%);
+  padding: var(--space-5);
+  width: 100%;
+}
+
+.card-glow {
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-primary);
+  padding: var(--space-5);
+  box-shadow: 0 0 15px var(--color-shadow), 0 0 30px rgba(20,160,255,0.1);
+  transition: all var(--ease);
+}
+.card-glow:hover {
+  box-shadow: 0 0 25px var(--color-shadow), 0 0 50px rgba(20,160,255,0.2);
+  transform: translateY(-3px);
+}
+
+/* ── Bulma-style card ── */
+.card-bulma {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+.card-bulma .card-header {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--color-neutral-700);
+  padding: var(--space-4);
+}
+.card-bulma .card-header-title {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  flex: 1;
+}
+.card-bulma .card-header-icon {
+  cursor: pointer;
+  padding: var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-bulma .card-image img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+.card-bulma .card-content {
+  padding: var(--space-5);
+}
+.card-bulma .card-footer {
+  display: flex;
+  border-top: 1px solid var(--color-neutral-700);
+}
+.card-bulma .card-footer-item {
+  flex: 1;
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--color-neutral-700);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: background var(--ease);
+}
+.card-bulma .card-footer-item:last-child { border-right: none; }
+.card-bulma .card-footer-item:hover { background: rgba(255,255,255,0.04); }
+
+/* ── Box (Bulma) ── */
+.box {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-md);
+}
+.box-glass {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ── Card list (список карточек) ── */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-5);
+}
+
+/* ── Текстовые стили внутри карточек ── */
+.card-title {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--text-main);
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+.card-subtitle {
+  font-size: var(--fs-base);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.card-text {
+  font-size: var(--fs-base);
+  font-weight: 500;
+  color: var(--text-main);
+  text-transform: uppercase;
+}
+
+/* ── Image-on-top card ── */
+.card-media {
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+  display: flex;
+  flex-direction: column;
+}
+.card-media-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+.card-media-body {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.card-media-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--space-1);
+}
+.card-media-title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: var(--space-2);
+  line-height: 1.3;
+}
+.card-media-text {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  flex: 1;
+  margin-bottom: var(--space-4);
+}
+
+/* ── Cover card — image fills entire card, content overlays bottom ── */
+.card-cover {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  min-height: 220px;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+}
+.card-cover-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s ease;
+}
+.card-cover:hover .card-cover-bg { transform: scale(1.05); }
+.card-cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.18) 55%, transparent 100%);
+  z-index: 1;
+}
+.card-cover-body {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-5);
+  width: 100%;
+}
+.card-cover-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: var(--space-1);
+}
+.card-cover-title {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: var(--space-1);
+}
+.card-cover-text {
+  font-size: var(--fs-sm);
+  color: rgba(255,255,255,0.75);
+}
+
+/* ── Gradient card variants ── */
+.card-gradient-purple  { border-radius: var(--radius-lg); background: linear-gradient(135deg,#667eea,#764ba2); padding: var(--space-5); color: #fff; }
+.card-gradient-sunset  { border-radius: var(--radius-lg); background: linear-gradient(135deg,#f093fb,#f5576c); padding: var(--space-5); color: #fff; }
+.card-gradient-ocean   { border-radius: var(--radius-lg); background: linear-gradient(135deg,#4facfe,#00f2fe); padding: var(--space-5); color: #fff; }
+.card-gradient-emerald { border-radius: var(--radius-lg); background: linear-gradient(135deg,#43e97b,#38f9d7); padding: var(--space-5); color: #fff; }
+.card-gradient-fire    { border-radius: var(--radius-lg); background: linear-gradient(135deg,#f7971e,#ffd200); padding: var(--space-5); color: #fff; }
+.card-gradient-purple .card-title,
+.card-gradient-sunset .card-title,
+.card-gradient-ocean .card-title,
+.card-gradient-emerald .card-title,
+.card-gradient-fire .card-title { color: #fff; }
+
+/* ── Shadow variants ── */
+.card-shadow-sm  { border-radius: var(--radius-md); background: var(--bg-card); padding: var(--space-5); box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+.card-shadow-md  { border-radius: var(--radius-md); background: var(--bg-card); padding: var(--space-5); box-shadow: 0 4px 16px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.2); }
+.card-shadow-lg  { border-radius: var(--radius-md); background: var(--bg-card); padding: var(--space-5); box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3); }
+.card-shadow-primary { border-radius: var(--radius-md); background: var(--bg-card); padding: var(--space-5); box-shadow: 0 6px 28px color-mix(in srgb,var(--color-primary) 40%,transparent); border: 1px solid color-mix(in srgb,var(--color-primary) 25%,transparent); }
+.card-shadow-accent  { border-radius: var(--radius-md); background: var(--bg-card); padding: var(--space-5); box-shadow: 0 6px 28px color-mix(in srgb,var(--color-accent) 40%,transparent); border: 1px solid color-mix(in srgb,var(--color-accent) 25%,transparent); }
+
+/* ── Horizontal card ── */
+.card-horizontal {
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+  overflow: hidden;
+  display: flex;
+}
+.card-h-img {
+  width: 110px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  background: var(--bg-secondary);
+}
+.card-h-body {
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-1);
+}
+.card-h-title {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--text-main);
+}
+.card-h-text { font-size: var(--fs-sm); color: var(--text-muted); }
+
+/* ── Stat / Metric card ── */
+.card-stat {
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  padding: var(--space-5);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+}
+.card-stat-icon {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-3);
+}
+.card-stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+.card-stat-label {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.card-stat-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: var(--space-2);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+.card-stat-trend.up   { color: var(--color-success); background: color-mix(in srgb,var(--color-success) 12%,transparent); }
+.card-stat-trend.down { color: var(--color-error);   background: color-mix(in srgb,var(--color-error)   12%,transparent); }
+
+/* Обратная совместимость */
+.card-regular-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  padding: var(--space-5);
+}
+.card-regular {
+  background: linear-gradient(180deg, var(--color-primary) -17.54%, rgba(20,161,255,0.56) 114.47%);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  padding: var(--space-5);
+}

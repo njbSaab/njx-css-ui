@@ -1,0 +1,413 @@
+      <section class="lib-section" id="cards">
+        <div class="lib-section-title">🃏 Cards</div>
+        <div class="lib-section-desc">Variants from <code>_cards.css</code>.</div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">Variants</div>
+          <div class="lib-preview grid" style="align-items:start">
+            <div class="card">
+              <div class="card-title">card</div>
+              <p class="text-sm text-muted mt-2">Basic card</p>
+            </div>
+            <div class="card-glass">
+              <div class="card-title">card-glass</div>
+              <p class="text-sm text-muted mt-2">Glassmorphism</p>
+            </div>
+            <div class="card-dark">
+              <div class="card-title">card-dark</div>
+              <p class="text-sm text-muted mt-2">Dark</p>
+            </div>
+            <div class="card-bordered">
+              <div class="card-title">card-bordered</div>
+              <p class="text-sm text-muted mt-2">With border</p>
+            </div>
+            <div class="card-bordered-primary">
+              <div class="card-title text-primary">card-bordered-primary</div>
+              <p class="text-sm text-muted mt-2">With primary border</p>
+            </div>
+            <div class="card-glow">
+              <div class="card-title text-primary">card-glow</div>
+              <p class="text-sm text-muted mt-2">Glow effect</p>
+            </div>
+            <div class="card-gradient">
+              <div class="card-title">card-gradient</div>
+              <p class="text-sm text-muted mt-2">Gradient</p>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code"
+                data-raw="&lt;!-- _cards.css --&gt;&#10;&lt;div class=&quot;card&quot;&gt;Basic card&lt;/div&gt;&#10;&lt;div class=&quot;card-glass&quot;&gt;Glassmorphism&lt;/div&gt;&#10;&lt;div class=&quot;card-dark&quot;&gt;Dark&lt;/div&gt;&#10;&lt;div class=&quot;card-bordered&quot;&gt;With border&lt;/div&gt;&#10;&lt;div class=&quot;card-bordered-primary&quot;&gt;Primary border&lt;/div&gt;&#10;&lt;div class=&quot;card-glow&quot;&gt;Glow effect&lt;/div&gt;&#10;&lt;div class=&quot;card-gradient&quot;&gt;Gradient&lt;/div&gt;">
+                <span class="c">/* _cards.css */</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card"</span><span
+                  class="k">&gt;</span>Basic card<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-glass"</span><span
+                  class="k">&gt;</span>Glassmorphism<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-dark"</span><span
+                  class="k">&gt;</span>Dark<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-bordered"</span><span
+                  class="k">&gt;</span>With border<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"card-bordered-primary"</span><span class="k">&gt;</span>Primary border<span
+                  class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-glow"</span><span
+                  class="k">&gt;</span>Glow effect<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient"</span><span
+                  class="k">&gt;</span>Gradient<span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image on top -->
+        <div class="lib-component">
+          <div class="lib-component-label">🖼 Card with image on top (card-media)</div>
+          <div class="lib-preview" style="align-items:stretch;gap:20px">
+            <!-- Blog post card -->
+            <div class="card-media" style="width:240px;flex-shrink:0">
+              <div class="card-media-img" style="background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-size:3rem">🌌</div>
+              <div class="card-media-body">
+                <div class="card-media-label">Design</div>
+                <div class="card-media-title">Beautiful UI Patterns</div>
+                <div class="card-media-text">Explore modern interface design patterns used in top products today.</div>
+                <a href="#" class="btn btn-primary btn-sm">Read more</a>
+              </div>
+            </div>
+            <!-- Product card -->
+            <div class="card-media" style="width:240px;flex-shrink:0">
+              <div class="card-media-img" style="background:linear-gradient(135deg,#f093fb,#f5576c);display:flex;align-items:center;justify-content:center;font-size:3rem">🎧</div>
+              <div class="card-media-body">
+                <div class="card-media-label">Product</div>
+                <div class="card-media-title">Pro Headphones X1</div>
+                <div class="card-media-text">Studio-quality sound with active noise cancellation.</div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto">
+                  <span style="font-size:1.2rem;font-weight:800;color:var(--text-main)">$249</span>
+                  <button class="btn btn-ghost btn-sm">Add to cart</button>
+                </div>
+              </div>
+            </div>
+            <!-- Team card -->
+            <div class="card-media" style="width:240px;flex-shrink:0">
+              <div class="card-media-img" style="background:linear-gradient(135deg,#43e97b,#38f9d7);display:flex;align-items:center;justify-content:center;font-size:3rem">👤</div>
+              <div class="card-media-body">
+                <div class="card-media-label">Team</div>
+                <div class="card-media-title">Alex Johnson</div>
+                <div class="card-media-text">Senior Product Designer with 8 years of experience.</div>
+                <div style="display:flex;gap:8px">
+                  <span class="badge badge-primary">Design</span>
+                  <span class="badge badge-ghost">UX</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="card-media">
+  <!-- image or colored div -->
+  <img class="card-media-img" src="photo.jpg" alt="">
+  <div class="card-media-body">
+    <div class="card-media-label">Category</div>
+    <div class="card-media-title">Card Title</div>
+    <div class="card-media-text">Description text goes here.</div>
+    <a class="btn btn-primary btn-sm">Action</a>
+  </div>
+</div>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-media"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;img</span> <span class="s">class</span>=<span class="cn">"card-media-img"</span> <span class="s">src</span>=<span class="cn">"photo.jpg"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-media-body"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-media-label"</span><span class="k">&gt;</span>Category<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-media-title"</span><span class="k">&gt;</span>Title<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-media-text"</span><span class="k">&gt;</span>Text<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Full cover image -->
+        <div class="lib-component">
+          <div class="lib-component-label">🌄 Full cover image card (card-cover)</div>
+          <div class="lib-preview" style="align-items:stretch;gap:20px">
+            <div class="card-cover" style="width:240px;flex-shrink:0;min-height:200px">
+              <div class="card-cover-bg" style="background:linear-gradient(135deg,#667eea,#764ba2)"></div>
+              <div class="card-cover-body">
+                <div class="card-cover-label">Travel</div>
+                <div class="card-cover-title">Mountain Peak</div>
+                <div class="card-cover-text">Hover to zoom the background image</div>
+              </div>
+            </div>
+            <div class="card-cover" style="width:240px;flex-shrink:0;min-height:200px">
+              <div class="card-cover-bg" style="background:linear-gradient(135deg,#f093fb,#f5576c)"></div>
+              <div class="card-cover-body">
+                <div class="card-cover-label">Lifestyle</div>
+                <div class="card-cover-title">City Nights</div>
+                <div class="card-cover-text">Gradient overlay with content at bottom</div>
+              </div>
+            </div>
+            <div class="card-cover" style="width:240px;flex-shrink:0;min-height:200px">
+              <div class="card-cover-bg" style="background:linear-gradient(135deg,#4facfe,#00f2fe)"></div>
+              <div class="card-cover-body">
+                <div class="card-cover-label">Nature</div>
+                <div class="card-cover-title">Ocean Depths</div>
+                <div class="card-cover-text">Use any image as background</div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="card-cover">
+  <!-- background image via inline style or background-image -->
+  <div class="card-cover-bg" style="background-image:url(photo.jpg)"></div>
+  <div class="card-cover-body">
+    <div class="card-cover-label">Category</div>
+    <div class="card-cover-title">Title</div>
+    <div class="card-cover-text">Text</div>
+  </div>
+</div>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-cover"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-cover-bg"</span> <span class="s">style</span>=<span class="cn">"background-image:url(photo.jpg)"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-cover-body"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-cover-label"</span><span class="k">&gt;</span>Category<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-cover-title"</span><span class="k">&gt;</span>Title<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gradient cards -->
+        <div class="lib-component">
+          <div class="lib-component-label">🌈 Gradient cards</div>
+          <div class="lib-preview" style="align-items:stretch;gap:16px;flex-wrap:wrap">
+            <div class="card-gradient-purple" style="min-width:160px;flex:1">
+              <div style="font-size:1.6rem;margin-bottom:8px">🔮</div>
+              <div style="font-weight:700;font-size:15px;color:#fff;margin-bottom:4px">Purple</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.75)">card-gradient-purple</div>
+            </div>
+            <div class="card-gradient-sunset" style="min-width:160px;flex:1">
+              <div style="font-size:1.6rem;margin-bottom:8px">🌸</div>
+              <div style="font-weight:700;font-size:15px;color:#fff;margin-bottom:4px">Sunset</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.75)">card-gradient-sunset</div>
+            </div>
+            <div class="card-gradient-ocean" style="min-width:160px;flex:1">
+              <div style="font-size:1.6rem;margin-bottom:8px">🌊</div>
+              <div style="font-weight:700;font-size:15px;color:#fff;margin-bottom:4px">Ocean</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.75)">card-gradient-ocean</div>
+            </div>
+            <div class="card-gradient-emerald" style="min-width:160px;flex:1">
+              <div style="font-size:1.6rem;margin-bottom:8px">🍀</div>
+              <div style="font-weight:700;font-size:15px;color:#fff;margin-bottom:4px">Emerald</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.75)">card-gradient-emerald</div>
+            </div>
+            <div class="card-gradient-fire" style="min-width:160px;flex:1">
+              <div style="font-size:1.6rem;margin-bottom:8px">🔥</div>
+              <div style="font-weight:700;font-size:15px;color:#fff;margin-bottom:4px">Fire</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.75)">card-gradient-fire</div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="card-gradient-purple">Purple gradient</div>
+<div class="card-gradient-sunset">Sunset</div>
+<div class="card-gradient-ocean">Ocean</div>
+<div class="card-gradient-emerald">Emerald</div>
+<div class="card-gradient-fire">Fire</div>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-purple"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-sunset"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-ocean"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-emerald"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-fire"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shadow variants -->
+        <div class="lib-component">
+          <div class="lib-component-label">🌑 Shadow variants</div>
+          <div class="lib-preview" style="align-items:stretch;gap:16px;flex-wrap:wrap">
+            <div class="card-shadow-sm" style="min-width:150px;flex:1">
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">card-shadow-sm</div>
+              <div style="font-weight:600;color:var(--text-main)">Subtle shadow</div>
+            </div>
+            <div class="card-shadow-md" style="min-width:150px;flex:1">
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">card-shadow-md</div>
+              <div style="font-weight:600;color:var(--text-main)">Medium shadow</div>
+            </div>
+            <div class="card-shadow-lg" style="min-width:150px;flex:1">
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">card-shadow-lg</div>
+              <div style="font-weight:600;color:var(--text-main)">Large shadow</div>
+            </div>
+            <div class="card-shadow-primary" style="min-width:150px;flex:1">
+              <div style="font-size:11px;font-weight:700;color:var(--color-primary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">card-shadow-primary</div>
+              <div style="font-weight:600;color:var(--text-main)">Primary glow</div>
+            </div>
+            <div class="card-shadow-accent" style="min-width:150px;flex:1">
+              <div style="font-size:11px;font-weight:700;color:var(--color-accent);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">card-shadow-accent</div>
+              <div style="font-weight:600;color:var(--text-main)">Accent glow</div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="card-shadow-sm">Subtle</div>
+<div class="card-shadow-md">Medium</div>
+<div class="card-shadow-lg">Large</div>
+<div class="card-shadow-primary">Primary glow</div>
+<div class="card-shadow-accent">Accent glow</div>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shadow-sm"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shadow-md"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shadow-lg"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shadow-primary"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shadow-accent"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Horizontal card -->
+        <div class="lib-component">
+          <div class="lib-component-label">↔️ Horizontal card (card-horizontal)</div>
+          <div class="lib-preview" style="flex-direction:column;align-items:stretch;gap:12px">
+            <div class="card-horizontal">
+              <div class="card-h-img" style="background:linear-gradient(135deg,color-mix(in srgb,var(--color-primary) 20%,var(--bg-secondary)),var(--bg-secondary))">🚀</div>
+              <div class="card-h-body">
+                <div class="card-h-title">Launch your project</div>
+                <div class="card-h-text">Deploy in seconds with our one-click pipeline and automated CI/CD workflow.</div>
+              </div>
+            </div>
+            <div class="card-horizontal">
+              <div class="card-h-img" style="background:linear-gradient(135deg,color-mix(in srgb,var(--color-accent) 20%,var(--bg-secondary)),var(--bg-secondary))">🔒</div>
+              <div class="card-h-body">
+                <div class="card-h-title">Enterprise security</div>
+                <div class="card-h-text">SOC2 certified with end-to-end encryption and advanced access controls.</div>
+              </div>
+            </div>
+            <div class="card-horizontal">
+              <div class="card-h-img" style="background:linear-gradient(135deg,color-mix(in srgb,#22c55e 20%,var(--bg-secondary)),var(--bg-secondary))">📊</div>
+              <div class="card-h-body">
+                <div class="card-h-title">Real-time analytics</div>
+                <div class="card-h-text">Monitor your KPIs with live dashboards and customizable reports.</div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="card-horizontal">
+  <div class="card-h-img">🚀</div>
+  <div class="card-h-body">
+    <div class="card-h-title">Title</div>
+    <div class="card-h-text">Description text here.</div>
+  </div>
+</div>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-horizontal"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-h-img"</span><span class="k">&gt;</span>🚀<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-h-body"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-h-title"</span><span class="k">&gt;</span>Title<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-h-text"</span><span class="k">&gt;</span>Text<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stat cards -->
+        <div class="lib-component">
+          <div class="lib-component-label">📈 Stat / Metric cards (card-stat)</div>
+          <div class="lib-preview" style="align-items:stretch;gap:16px;flex-wrap:wrap">
+            <div class="card-stat" style="min-width:150px;flex:1">
+              <div class="card-stat-icon">📦</div>
+              <div class="card-stat-value">12,480</div>
+              <div class="card-stat-label">Total orders</div>
+              <div class="card-stat-trend up">▲ 14.2% this week</div>
+            </div>
+            <div class="card-stat" style="min-width:150px;flex:1">
+              <div class="card-stat-icon">💰</div>
+              <div class="card-stat-value">$84.2k</div>
+              <div class="card-stat-label">Revenue</div>
+              <div class="card-stat-trend up">▲ 8.5% vs last month</div>
+            </div>
+            <div class="card-stat" style="min-width:150px;flex:1">
+              <div class="card-stat-icon">👥</div>
+              <div class="card-stat-value">3,291</div>
+              <div class="card-stat-label">Active users</div>
+              <div class="card-stat-trend down">▼ 2.1% this week</div>
+            </div>
+            <div class="card-stat" style="min-width:150px;flex:1">
+              <div class="card-stat-icon">⭐</div>
+              <div class="card-stat-value">4.87</div>
+              <div class="card-stat-label">Avg. rating</div>
+              <div class="card-stat-trend up">▲ 0.3 vs last quarter</div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="card-stat">
+  <div class="card-stat-icon">📦</div>
+  <div class="card-stat-value">12,480</div>
+  <div class="card-stat-label">Total orders</div>
+  <div class="card-stat-trend up">▲ 14.2% this week</div>
+</div>
+<!-- trend classes: .up (green) / .down (red) -->'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-stat"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-stat-icon"</span><span class="k">&gt;</span>📦<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-stat-value"</span><span class="k">&gt;</span>12,480<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-stat-label"</span><span class="k">&gt;</span>Total orders<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-stat-trend up"</span><span class="k">&gt;</span>▲ 14.2%<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">Bulma card</div>
+          <div class="lib-preview">
+            <div class="card-bulma" style="max-width:300px;width:100%">
+              <div class="card-header">
+                <div class="card-header-title">Card title</div>
+              </div>
+              <div class="card-content">
+                <p class="text-sm text-muted">Card content. Description text.</p>
+              </div>
+              <div class="card-footer">
+                <a class="card-footer-item">Save</a>
+                <a class="card-footer-item">Edit</a>
+                <a class="card-footer-item text-error">Delete</a>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code"
+                data-raw="&lt;div class=&quot;card-bulma&quot;&gt;&#10;  &lt;div class=&quot;card-header&quot;&gt;&#10;    &lt;div class=&quot;card-header-title&quot;&gt;Title&lt;/div&gt;&#10;  &lt;/div&gt;&#10;  &lt;div class=&quot;card-content&quot;&gt;&#10;    &lt;p&gt;Card content&lt;/p&gt;&#10;  &lt;/div&gt;&#10;  &lt;div class=&quot;card-footer&quot;&gt;&#10;    &lt;a class=&quot;card-footer-item&quot;&gt;Save&lt;/a&gt;&#10;    &lt;a class=&quot;card-footer-item text-error&quot;&gt;Delete&lt;/a&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;">
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-bulma"</span><span
+                  class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"card-header"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"card-header-title"</span><span class="k">&gt;</span>Title<span
+                  class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"card-content"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;p&gt;</span>Card content<span
+                  class="k">&lt;/p&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"card-footer"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;a</span> <span class="s">class</span>=<span
+                  class="cn">"card-footer-item"</span><span class="k">&gt;</span>Save<span
+                  class="k">&lt;/a&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;a</span> <span class="s">class</span>=<span
+                  class="cn">"card-footer-item text-error"</span><span class="k">&gt;</span>Delete<span
+                  class="k">&lt;/a&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>

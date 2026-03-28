@@ -1,0 +1,145 @@
+/* ============================================================
+   _typography.css — система заголовков и текста
+   Нейминг: DaisyUI/Bootstrap style
+   .title-hero .title-xl .title-lg .title-md .title-sm .title-xs
+   .text-lead .text-body .text-sm .text-xs .text-caption .text-label
+   Модификатор .fluid — переключает на vw-размер (clamp)
+   ============================================================ */
+
+/* ── Заголовки ── */
+
+.title-hero {
+  font-size: var(--fs-hero);
+  font-weight: 900;
+  line-height: var(--lh-tight);
+  font-family: var(--font-sans);
+}
+.title-hero.fluid { font-size: var(--fs-f-hero); }
+
+.title-xl {
+  font-size: var(--fs-7xl);
+  font-weight: 900;
+  line-height: var(--lh-tight);
+}
+.title-xl.fluid { font-size: var(--fs-f-7xl); }
+
+.title-lg {
+  font-size: var(--fs-6xl);
+  font-weight: 900;
+  line-height: var(--lh-snug);
+}
+.title-lg.fluid { font-size: var(--fs-f-6xl); }
+
+.title-md {
+  font-size: var(--fs-5xl);
+  font-weight: 900;
+  line-height: var(--lh-snug);
+}
+.title-md.fluid { font-size: var(--fs-f-5xl); }
+
+.title-sm {
+  font-size: var(--fs-4xl);
+  font-weight: 800;
+  line-height: var(--lh-snug);
+}
+.title-sm.fluid { font-size: var(--fs-f-4xl); }
+
+.title-xs {
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  line-height: var(--lh-normal);
+}
+.title-xs.fluid { font-size: var(--fs-f-3xl); }
+
+/* ── Текст ── */
+
+.text-lead {
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  line-height: var(--lh-relaxed);
+}
+
+.text-body {
+  font-size: var(--fs-base);
+  font-weight: 400;
+  line-height: var(--lh-normal);
+}
+
+.text-sm {
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  line-height: var(--lh-normal);
+}
+
+.text-xs {
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  line-height: var(--lh-normal);
+}
+
+.text-caption {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.text-label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  letter-spacing: 0.04em;
+}
+
+/* ── Цветовые модификаторы ── */
+.text-primary   { color: var(--color-primary) !important; }
+.text-accent    { color: var(--color-accent) !important; }
+.text-success   { color: var(--color-success) !important; }
+.text-error     { color: var(--color-error) !important; }
+.text-warning   { color: var(--color-warning) !important; }
+.text-muted     { color: var(--text-muted) !important; }
+.text-light     { color: var(--text-light) !important; }
+.text-white     { color: #ffffff !important; }
+.text-black     { color: #000000 !important; }
+
+/* ── Трансформации ── */
+.text-upper   { text-transform: uppercase !important; }
+.text-lower   { text-transform: lowercase !important; }
+.text-cap     { text-transform: capitalize !important; }
+.text-normal  { text-transform: none !important; }
+
+/* ── Выравнивание ── */
+.text-center  { text-align: center !important; }
+.text-left    { text-align: left !important; }
+.text-right   { text-align: right !important; }
+.text-justify { text-align: justify !important; }
+
+/* ── Вес ── */
+.font-thin    { font-weight: 100 !important; }
+.font-light   { font-weight: 300 !important; }
+.font-normal  { font-weight: 400 !important; }
+.font-medium  { font-weight: 500 !important; }
+.font-semi    { font-weight: 600 !important; }
+.font-bold    { font-weight: 700 !important; }
+.font-extra   { font-weight: 800 !important; }
+.font-black   { font-weight: 900 !important; }
+
+/* ── Wrapping ── */
+.text-nowrap  { white-space: nowrap !important; }
+.text-balance { text-wrap: balance !important; }
+.text-pretty  { text-wrap: pretty !important; }
+
+/* ── Декорации ── */
+.text-underline    { text-decoration: underline !important; }
+.text-line-through { text-decoration: line-through !important; }
+.text-no-underline { text-decoration: none !important; }
+
+/* ── Обратная совместимость (старые классы) ── */
+.h1-title    { font-size: var(--fs-hero);  font-weight: 900; line-height: var(--lh-tight); }
+.h2-title    { font-size: var(--fs-7xl);   font-weight: 900; line-height: 1; }
+.h3-title    { font-size: var(--fs-6xl);   font-weight: 900; line-height: var(--lh-snug); text-transform: uppercase; }
+.h4-title    { font-size: var(--fs-5xl);   font-weight: 900; line-height: 1.2; text-transform: uppercase; }
+.title-text  { font-size: var(--fs-hero);  font-weight: 900; line-height: var(--lh-normal); }
+.subtext     { font-size: var(--fs-lg);    font-weight: 500; line-height: 25px; }
+.link        { color: var(--color-primary); font-size: var(--fs-2xl); font-weight: 800; }

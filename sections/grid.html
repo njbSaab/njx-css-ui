@@ -1,0 +1,90 @@
+      <section class="lib-section" id="grid">
+        <div class="lib-section-title">📏 Grid System</div>
+        <div class="lib-section-desc">Two systems to choose from: classic 12-column (Flex) and modern CSS Grid.
+          File <code>_grid.css</code>.</div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">12-Column Flex Grid (.row + .col-*)</div>
+          <div class="lib-preview col no-dot">
+            <div class="row" style="background:rgba(255,255,255,0.03);padding:10px;width:100%">
+              <div class="col-12"
+                style="background:var(--color-primary);color:#000;padding:10px;text-align:center;font-size:11px;font-weight:700;border-radius:4px">
+                col-12</div>
+            </div>
+            <div class="row" style="background:rgba(255,255,255,0.03);padding:10px;width:100%">
+              <div class="col-6"
+                style="background:var(--color-primary);color:#000;padding:10px;text-align:center;font-size:11px;font-weight:700;border-radius:4px">
+                col-6</div>
+              <div class="col-6"
+                style="background:var(--color-primary);color:#000;padding:10px;text-align:center;font-size:11px;font-weight:700;border-radius:4px">
+                col-6</div>
+            </div>
+            <div class="row" style="background:rgba(255,255,255,0.03);padding:10px;width:100%">
+              <div class="col-4"
+                style="background:var(--color-primary);color:#000;padding:10px;text-align:center;font-size:11px;font-weight:700;border-radius:4px">
+                col-4</div>
+              <div class="col-4"
+                style="background:var(--color-primary);color:#000;padding:10px;text-align:center;font-size:11px;font-weight:700;border-radius:4px">
+                col-4</div>
+              <div class="col-4"
+                style="background:var(--color-primary);color:#000;padding:10px;text-align:center;font-size:11px;font-weight:700;border-radius:4px">
+                col-4</div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code"
+                data-raw="&lt;!-- _grid.css: 12-column grid --&gt;&#10;&lt;div class=&quot;row&quot;&gt;&#10;  &lt;div class=&quot;col-6&quot;&gt;50%&lt;/div&gt;&#10;  &lt;div class=&quot;col-6&quot;&gt;50%&lt;/div&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;div class=&quot;row&quot;&gt;&#10;  &lt;div class=&quot;col-4&quot;&gt;33%&lt;/div&gt;&#10;  &lt;div class=&quot;col-4&quot;&gt;33%&lt;/div&gt;&#10;  &lt;div class=&quot;col-4&quot;&gt;33%&lt;/div&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;div class=&quot;row&quot;&gt;&#10;  &lt;div class=&quot;col-8&quot;&gt;Main (66%)&lt;/div&gt;&#10;  &lt;div class=&quot;col-4&quot;&gt;Sidebar (33%)&lt;/div&gt;&#10;&lt;/div&gt;">
+                <span class="c">/* _grid.css: 12-column grid, col-1 → col-12 */</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"row"</span><span
+                  class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"col-6"</span><span class="k">&gt;</span>50%<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"col-6"</span><span class="k">&gt;</span>50%<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"row"</span><span
+                  class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"col-8"</span><span class="k">&gt;</span>Main (66%)<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"col-4"</span><span class="k">&gt;</span>Sidebar (33%)<span
+                  class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">CSS Grid Helpers</div>
+          <div class="lib-preview col no-dot">
+            <div class="grid-col-3" style="width:100%;gap:10px">
+              <div
+                style="background:var(--color-accent);color:#fff;padding:20px;text-align:center;border-radius:8px;font-weight:700">
+                1</div>
+              <div
+                style="background:var(--color-accent);color:#fff;padding:20px;text-align:center;border-radius:8px;font-weight:700">
+                2</div>
+              <div
+                style="background:var(--color-accent);color:#fff;padding:20px;text-align:center;border-radius:8px;font-weight:700">
+                3</div>
+            </div>
+            <div class="text-xs text-muted mt-2">.grid-col-3 (3 columns via display: grid)</div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code"
+                data-raw="&lt;!-- CSS Grid helpers: grid-col-2 | grid-col-3 | grid-col-4 | grid-col-6 --&gt;&#10;&lt;div class=&quot;grid-col-3&quot; style=&quot;gap:16px&quot;&gt;&#10;  &lt;div&gt;Item 1&lt;/div&gt;&#10;  &lt;div&gt;Item 2&lt;/div&gt;&#10;  &lt;div&gt;Item 3&lt;/div&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;!-- Responsive: 1 column on mobile --&gt;&#10;&lt;div class=&quot;grid-col-4&quot;&gt;...&lt;/div&gt;">
+                <span class="c">/* CSS Grid helpers: grid-col-2 | grid-col-3 | grid-col-4 | grid-col-6 */</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"grid-col-3"</span> <span
+                  class="s">style</span>=<span class="cn">"gap:16px"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div&gt;</span>Item 1<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div&gt;</span>Item 2<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div&gt;</span>Item 3<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>

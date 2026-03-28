@@ -1,0 +1,19 @@
+/.claude
+/.superpowers
+/.docs
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor
+.idea/
+*.swp
+*.swo

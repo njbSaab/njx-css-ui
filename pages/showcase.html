@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🤩 njX UI — 40KB CSS library. 9 themes. Zero dependencies.</title>
+  <meta name="description"
+    content="A modern CSS component library with 9 built-in themes, 25+ components, hover effects, gradients and animations. Switch themes with a single HTML attribute." />
+  <meta property="og:title" content="njX UI — 40KB CSS library. 9 themes. Zero dependencies." />
+  <meta property="og:description" content="Modern CSS components. 9 themes. No build step. One line to install." />
+  <meta property="og:type" content="website" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.min.css" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+      transition: background 0.35s, color 0.35s;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .sc-nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      height: 60px;
+      background: color-mix(in srgb, var(--bg-main) 85%, transparent);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      gap: 24px;
+      transition: background 0.35s, border-color 0.35s;
+    }
+
+    .sc-nav-logo {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .sc-nav-ver {
+      font-size: 11px;
+      font-family: 'Roboto Mono', monospace;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    .sc-nav-links {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .sc-nav-links a {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .sc-nav-links a:hover {
+      color: var(--text-main);
+      background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    }
+
+    .sc-nav-spacer {
+      flex: 1;
+    }
+
+    .sc-nav-themes {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .sc-theme-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .sc-theme-dot:hover {
+      transform: scale(1.2);
+    }
+
+    .sc-theme-dot.active {
+      border-color: var(--text-main);
+      transform: scale(1.15);
+    }
+
+    .sc-nav-github {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      background: var(--color-primary);
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px color-mix(in srgb, var(--color-primary) 40%, transparent);
+    }
+
+    .sc-nav-github:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px color-mix(in srgb, var(--color-primary) 50%, transparent);
+    }
+
+    /* ── HERO ── */
+    .sc-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 32px 80px;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, color-mix(in srgb, var(--color-primary) 18%, transparent), transparent);
+    }
+
+    .sc-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--bg-main));
+      pointer-events: none;
+    }
+
+    .sc-hero-noise {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .sc-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .sc-hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--color-primary) 28%, transparent);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-primary);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .sc-hero-label-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(1.4)
+      }
+    }
+
+    .sc-hero-title {
+      font-size: clamp(42px, 7vw, 80px);
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    .sc-hero-title span.grad {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 60%, color-mix(in srgb, var(--color-accent) 60%, #a855f7) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sc-hero-title span.dim {
+      color: var(--text-muted);
+    }
+
+    .sc-hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 580px;
+      margin: 0 auto 40px;
+    }
+
+    .sc-hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .sc-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      background: var(--color-primary);
+      color: #fff;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 28px color-mix(in srgb, var(--color-primary) 40%, transparent);
+      transition: all 0.25s;
+    }
+
+    .sc-btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px color-mix(in srgb, var(--color-primary) 55%, transparent);
+    }
+
+    .sc-btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      background: color-mix(in srgb, var(--color-neutral-600) 12%, transparent);
+      border: 1.5px solid color-mix(in srgb, var(--color-neutral-600) 35%, transparent);
+      color: var(--text-main);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .sc-btn-ghost:hover {
+      transform: translateY(-3px);
+      border-color: var(--color-primary);
+      background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    }
+
+    /* Stats row */
+    .sc-stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+      border-radius: 16px;
+      overflow: hidden;
+      background: color-mix(in srgb, var(--bg-secondary) 60%, transparent);
+      backdrop-filter: blur(12px);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .sc-stat {
+      flex: 1;
+      min-width: 120px;
+      padding: 20px 24px;
+      text-align: center;
+      border-right: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+    }
+
+    .sc-stat:last-child {
+      border-right: none;
+    }
+
+    .sc-stat-val {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .sc-stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* ── THEME DEMO ── */
+    .sc-section {
+      padding: 80px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sc-section-center {
+      text-align: center;
+    }
+
+    .sc-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--color-primary);
+      margin-bottom: 12px;
+    }
+
+    .sc-heading {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .sc-subheading {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    .sc-subheading.center {
+      margin: 0 auto;
+    }
+
+    /* Theme pills row */
+    .sc-theme-pills {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 32px 0;
+    }
+
+    .sc-tpill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border-radius: 24px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border: 1.5px solid color-mix(in srgb, var(--color-neutral-600) 35%, transparent);
+      background: var(--bg-secondary);
+      transition: all 0.2s;
+    }
+
+    .sc-tpill:hover {
+      color: var(--text-main);
+      transform: translateY(-2px);
+    }
+
+    .sc-tpill.active {
+      border-color: var(--pill-color);
+      background: color-mix(in srgb, var(--pill-color) 14%, var(--bg-secondary));
+      color: var(--text-main);
+      box-shadow: 0 0 18px color-mix(in srgb, var(--pill-color) 30%, transparent);
+    }
+
+    .sc-tpill .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--pill-color);
+      flex-shrink: 0;
+    }
+
+    /* Theme preview card */
+    .sc-theme-preview {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 28%, transparent);
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
+    }
+
+    .sc-theme-preview-bar {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: color-mix(in srgb, var(--bg-secondary) 95%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+    }
+
+    .sc-tpbar-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .sc-tpbar-url {
+      flex: 1;
+      height: 28px;
+      border-radius: 8px;
+      margin: 0 12px;
+      background: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    .sc-theme-preview-body {
+      background: var(--bg-main);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      min-height: 280px;
+      transition: background 0.35s;
+    }
+
+    .sc-demo-card {
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+      transition: all 0.35s;
+    }
+
+    .sc-demo-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .sc-demo-card-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    /* ── FEATURES GRID ── */
+    .sc-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px;
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+      border-radius: 20px;
+      overflow: hidden;
+      background: color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+    }
+
+    .sc-feat {
+      background: var(--bg-main);
+      padding: 32px;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sc-feat:hover {
+      background: color-mix(in srgb, var(--color-primary) 5%, var(--bg-main));
+    }
+
+    .sc-feat-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .sc-feat-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .sc-feat-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .sc-feat-tag {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+      color: var(--color-primary);
+      border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+    }
+
+    /* ── CODE BLOCK ── */
+    .sc-code-wrap {
+      background: #0d0d0d;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #222;
+      position: relative;
+    }
+
+    .sc-code-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: #111;
+      border-bottom: 1px solid #222;
+    }
+
+    .sc-code-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .sc-code-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .sc-code-filename {
+      font-size: 12px;
+      font-family: 'Roboto Mono', monospace;
+      color: #555;
+    }
+
+    .sc-code-copy {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: #222;
+      border: 1px solid #333;
+      color: #888;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sc-code-copy:hover {
+      background: #333;
+      color: #fff;
+    }
+
+    .sc-code-body {
+      padding: 24px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+
+    .sc-code-body .c {
+      color: #555;
+      font-style: italic;
+    }
+
+    .sc-code-body .k {
+      color: #e06c75;
+    }
+
+    .sc-code-body .s {
+      color: #98c379;
+    }
+
+    .sc-code-body .v {
+      color: #61afef;
+    }
+
+    .sc-code-body .n {
+      color: #c678dd;
+    }
+
+    .sc-code-body .t {
+      color: #e5c07b;
+    }
+
+    /* ── COMPARISON ── */
+    .sc-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .sc-table th,
+    .sc-table td {
+      padding: 14px 20px;
+      text-align: center;
+      border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+      font-size: 14px;
+    }
+
+    .sc-table th {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      padding-bottom: 16px;
+    }
+
+    .sc-table td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .sc-table .col-njx {
+      background: color-mix(in srgb, var(--color-primary) 5%, transparent);
+    }
+
+    .sc-table .col-njx td:nth-child(5) {
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    .sc-table-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+    }
+
+    .sc-check {
+      color: var(--color-success);
+      font-size: 16px;
+    }
+
+    .sc-cross {
+      color: var(--text-muted);
+      font-size: 16px;
+      opacity: 0.4;
+    }
+
+    /* ── COMPONENTS GRID ── */
+    .sc-comp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .sc-comp-item {
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+      background: var(--bg-secondary);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .sc-comp-item:hover {
+      border-color: var(--color-primary);
+      background: color-mix(in srgb, var(--color-primary) 7%, var(--bg-secondary));
+      transform: translateY(-2px);
+    }
+
+    /* ── PHILOSOPHY ── */
+    .sc-manifesto {
+      padding: 80px 32px;
+      text-align: center;
+      background: color-mix(in srgb, var(--color-primary) 6%, var(--bg-main));
+      border-top: 1px solid color-mix(in srgb, var(--color-primary) 15%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 15%, transparent);
+    }
+
+    .sc-manifesto-quote {
+      font-size: clamp(20px, 3vw, 30px);
+      font-weight: 700;
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0 auto 24px;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+
+    .sc-manifesto-quote em {
+      color: var(--color-primary);
+      font-style: normal;
+    }
+
+    /* ── QUICKSTART ── */
+    .sc-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sc-step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .sc-step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+      border: 1.5px solid var(--color-primary);
+      color: var(--color-primary);
+      font-weight: 800;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sc-step-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .sc-step-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    .sc-footer {
+      padding: 48px 32px;
+      text-align: center;
+      border-top: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+    }
+
+    .sc-footer-logo {
+      font-size: 22px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .sc-footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+
+    .sc-footer-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .sc-footer-links a:hover {
+      color: var(--color-primary);
+    }
+
+    .sc-footer-copy {
+      font-size: 12px;
+      color: var(--text-muted);
+      opacity: 0.4;
+    }
+
+    /* ── TAILWIND SECTION ── */
+    .sc-tw-section {
+      background: color-mix(in srgb, var(--color-primary) 4%, var(--bg-main));
+      border-top: 1px solid color-mix(in srgb, var(--color-primary) 12%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 12%, transparent);
+    }
+
+    .sc-tw-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .sc-tw-pill {
+      padding: 10px 20px;
+      border-radius: 24px;
+      background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+      border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    /* ── DIVIDER ── */
+    .sc-divider {
+      height: 1px;
+      background: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+      margin: 0 32px;
+    }
+
+    /* ── GRID HELPERS ── */
+    .sc-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .sc-two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .sc-theme-preview-body {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .sc-nav-links {
+        display: none;
+      }
+
+      .sc-stat-val {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .sc-hero {
+        padding: 60px 20px 60px;
+      }
+
+      .sc-theme-preview-body {
+        grid-template-columns: 1fr;
+      }
+
+      .sc-stats {
+        flex-direction: column;
+      }
+
+      .sc-stat {
+        border-right: none;
+        border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════ NAV ══════════════════════ -->
+  <nav class="sc-nav">
+    <a class="sc-nav-logo" href="#">njX UI</a>
+    <span class="sc-nav-ver">v1.0.0</span>
+    <div class="sc-nav-links">
+      <a href="../index.html">Components</a>
+      <a href="doc.html">Docs</a>
+      <a href="quickstart.html">Quick Start</a>
+    </div>
+    <div class="sc-nav-spacer"></div>
+    <div class="sc-nav-themes" title="Switch theme">
+      <div class="sc-theme-dot active" style="background:#14a0ff" onclick="setTheme(this,'dark')" data-t="dark"></div>
+      <div class="sc-theme-dot" style="background:#e2e8f0" onclick="setTheme(this,'light')" data-t="light"></div>
+      <div class="sc-theme-dot" style="background:#f43f5e" onclick="setTheme(this,'red')" data-t="red"></div>
+      <div class="sc-theme-dot" style="background:#3b82f6" onclick="setTheme(this,'blue')" data-t="blue"></div>
+      <div class="sc-theme-dot" style="background:#22c55e" onclick="setTheme(this,'green')" data-t="green"></div>
+      <div class="sc-theme-dot" style="background:#00e5ff" onclick="setTheme(this,'cyan')" data-t="cyan"></div>
+      <div class="sc-theme-dot" style="background:#a855f7" onclick="setTheme(this,'purple')" data-t="purple"></div>
+    </div>
+    <a class="sc-nav-github" href="#" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+      </svg>
+      GitHub
+    </a>
+  </nav>
+
+  <!-- ══════════════════════ HERO ══════════════════════ -->
+  <section class="sc-hero">
+    <div class="sc-hero-noise"></div>
+    <div class="sc-hero-inner">
+      <div class="sc-hero-label">
+        <span class="sc-hero-label-dot"></span>
+        Open Source · MIT License · v1.0.0
+      </div>
+
+      <h1 class="sc-hero-title">
+        <span class="grad">9 themes.</span><br>
+        <span class="dim">One attribute.</span>
+      </h1>
+
+      <p class="sc-hero-sub">
+        A modern CSS component library — 40&nbsp;KB, zero dependencies, zero build step.
+        Switch the entire UI theme with a single HTML attribute.
+      </p>
+
+      <div class="sc-hero-actions">
+        <a href="quickstart.html" class="sc-btn-primary">
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+            <path d="M8 1v10M5 8l3 3 3-3M2 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+          Get Started
+        </a>
+        <a href="../index.html" class="sc-btn-ghost">
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+            <rect x="2" y="2" width="12" height="12" rx="3" stroke="currentColor" stroke-width="1.5" />
+            <path d="M5 8h6M5 5.5h6M5 10.5h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+          Browse Components
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="sc-stats">
+        <div class="sc-stat">
+          <div class="sc-stat-val">40KB</div>
+          <div class="sc-stat-label">Full bundle</div>
+        </div>
+        <div class="sc-stat">
+          <div class="sc-stat-val">0</div>
+          <div class="sc-stat-label">Dependencies</div>
+        </div>
+        <div class="sc-stat">
+          <div class="sc-stat-val">9</div>
+          <div class="sc-stat-label">Built-in themes</div>
+        </div>
+        <div class="sc-stat">
+          <div class="sc-stat-val">25+</div>
+          <div class="sc-stat-label">Components</div>
+        </div>
+        <div class="sc-stat">
+          <div class="sc-stat-val">60+</div>
+          <div class="sc-stat-label">CSS variables</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ THEME DEMO ══════════════════════ -->
+  <div class="sc-section sc-section-center" style="padding-top:100px">
+    <span class="sc-eyebrow">Theme system</span>
+    <h2 class="sc-heading">Switch the entire UI<br>with one HTML attribute</h2>
+    <p class="sc-subheading center">
+      No CSS overrides. No JavaScript required. Every component adapts automatically
+      through CSS custom properties inherited from <code
+        style="color:var(--color-primary);font-family:'Roboto Mono',monospace">data-theme</code>.
+    </p>
+
+    <!-- Theme pills -->
+    <div class="sc-theme-pills">
+      <div class="sc-tpill active" style="--pill-color:#14a0ff" onclick="setTheme2(this,'dark')" data-t="dark"><span
+          class="dot"></span>Dark</div>
+      <div class="sc-tpill" style="--pill-color:#94a3b8" onclick="setTheme2(this,'light')" data-t="light"><span
+          class="dot"></span>Light</div>
+      <div class="sc-tpill" style="--pill-color:#f43f5e" onclick="setTheme2(this,'red')" data-t="red"><span
+          class="dot"></span>Red</div>
+      <div class="sc-tpill" style="--pill-color:#3b82f6" onclick="setTheme2(this,'blue')" data-t="blue"><span
+          class="dot"></span>Blue</div>
+      <div class="sc-tpill" style="--pill-color:#22c55e" onclick="setTheme2(this,'green')" data-t="green"><span
+          class="dot"></span>Green</div>
+      <div class="sc-tpill" style="--pill-color:#00e5ff" onclick="setTheme2(this,'cyan')" data-t="cyan"><span
+          class="dot"></span>Cyan</div>
+      <div class="sc-tpill" style="--pill-color:#facc15" onclick="setTheme2(this,'yellow')" data-t="yellow"><span
+          class="dot"></span>Yellow</div>
+      <div class="sc-tpill" style="--pill-color:#ec4899" onclick="setTheme2(this,'pink')" data-t="pink"><span
+          class="dot"></span>Pink</div>
+      <div class="sc-tpill" style="--pill-color:#a855f7" onclick="setTheme2(this,'purple')" data-t="purple"><span
+          class="dot"></span>Purple</div>
+    </div>
+
+    <!-- Browser mockup with live demo inside -->
+    <div class="sc-theme-preview">
+      <div class="sc-theme-preview-bar">
+        <div class="sc-tpbar-dot" style="background:#ff5f57"></div>
+        <div class="sc-tpbar-dot" style="background:#febc2e"></div>
+        <div class="sc-tpbar-dot" style="background:#28c840"></div>
+        <div class="sc-tpbar-url">
+          &lt;html <span style="color:var(--color-primary)" id="attr-display">data-theme="dark"</span>&gt;
+        </div>
+      </div>
+      <div class="sc-theme-preview-body">
+        <!-- Card 1 -->
+        <div class="sc-demo-card">
+          <div class="sc-demo-card-title" style="color:var(--color-primary)">Dashboard</div>
+          <div class="sc-demo-card-text">Real-time analytics overview with live metrics and trend data.</div>
+          <button class="btn btn-primary btn-sm">View Stats</button>
+        </div>
+        <!-- Card 2 — form -->
+        <div class="sc-demo-card">
+          <div class="sc-demo-card-title">Sign in</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+            <input class="inp inp-sm" placeholder="Email" type="email" style="font-size:12px" />
+            <input class="inp inp-sm" placeholder="Password" type="password" style="font-size:12px" />
+            <button class="btn btn-primary btn-sm" style="width:100%">Login</button>
+          </div>
+        </div>
+        <!-- Card 3 — tags/badges -->
+        <div class="sc-demo-card">
+          <div class="sc-demo-card-title">Components</div>
+          <div class="sc-demo-card-text">Mix and match freely.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+            <span class="tag tag-primary" style="font-size:11px">primary</span>
+            <span class="tag tag-success" style="font-size:11px">success</span>
+            <span class="tag tag-filled-primary" style="font-size:11px">filled</span>
+            <span class="badge badge-error" style="font-size:11px">3</span>
+          </div>
+          <div style="margin-top:10px">
+            <div class="progress"
+              style="height:6px;background:color-mix(in srgb,var(--color-primary) 20%,transparent);border-radius:4px">
+              <div
+                style="height:100%;width:65%;background:var(--color-primary);border-radius:4px;transition:width 0.6s">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code hint -->
+    <div style="margin-top:24px;font-family:'Roboto Mono',monospace;font-size:13px;color:var(--text-muted)">
+      That's literally it →
+      <span
+        style="color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 10%,transparent);padding:3px 10px;border-radius:6px">
+        &lt;html data-theme="purple"&gt;
+      </span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ FEATURES ══════════════════════ -->
+  <div class="sc-section" style="padding-top:100px">
+    <div class="section-header" style="margin-bottom:40px">
+      <span class="sc-eyebrow">Why njX</span>
+      <h2 class="sc-heading">Everything you need.<br>Nothing you don't.</h2>
+      <p class="sc-subheading">Built on CSS custom properties from the ground up. No preprocessors, no PostCSS, no
+        config files.</p>
+    </div>
+
+    <div class="sc-features">
+      <div class="sc-feat">
+        <span class="sc-feat-icon">🎨</span>
+        <div class="sc-feat-title">9 Themes, one attribute</div>
+        <div class="sc-feat-desc">Dark, Light, Red, Blue, Green, Cyan, Yellow, Pink, Purple. Every component adapts
+          automatically. No extra CSS needed.</div>
+        <span class="sc-feat-tag">data-theme="purple"</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">⚡</span>
+        <div class="sc-feat-title">Zero build step</div>
+        <div class="sc-feat-desc">One CDN link and you're running. No npm, no webpack, no PostCSS config. Works in any
+          HTML file, today.</div>
+        <span class="sc-feat-tag">CDN ready</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">🔑</span>
+        <div class="sc-feat-title">CSS Variables First</div>
+        <div class="sc-feat-desc">60+ design tokens. Change <code
+            style="color:var(--color-primary)">--color-primary</code> once and it ripples through every component. Theme
+          your brand in 30 seconds.</div>
+        <span class="sc-feat-tag">60+ tokens</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">✨</span>
+        <div class="sc-feat-title">Hover effects built in</div>
+        <div class="sc-feat-desc">30+ hover classes: scale, lift, glow, rotate, shimmer, blur, brightness. Effects that
+          usually need custom CSS — already here.</div>
+        <span class="sc-feat-tag">30+ effects</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">🌈</span>
+        <div class="sc-feat-title">Gradients out of the box</div>
+        <div class="sc-feat-desc">15+ background gradients, 8 text gradients, gradient borders, animated gradients.
+          Design-ready without a single line of custom CSS.</div>
+        <span class="sc-feat-tag">_gradients.css</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">🎭</span>
+        <div class="sc-feat-title">Animations included</div>
+        <div class="sc-feat-desc">Float, pulse, bounce, spin, heartbeat, wiggle, glow, neon text, rainbow, fade-in
+          variants. Add a class, get an animation.</div>
+        <span class="sc-feat-tag">_animations.css</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">♻️</span>
+        <div class="sc-feat-title">Bulma compatible</div>
+        <div class="sc-feat-desc">Already using Bulma? Classes like <code
+            style="color:var(--color-primary)">.button.is-primary</code> work without changes. Migrate progressively,
+          zero rewrites.</div>
+        <span class="sc-feat-tag">Drop-in replacement</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">📐</span>
+        <div class="sc-feat-title">Two grid systems</div>
+        <div class="sc-feat-desc">Classic 12-col flex grid (<code style="color:var(--color-primary)">.row</code> + <code
+            style="color:var(--color-primary)">.col-*</code>) and modern CSS Grid helpers (<code
+            style="color:var(--color-primary)">.grid-col-3</code>). Pick what fits.</div>
+        <span class="sc-feat-tag">_grid.css</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">🎯</span>
+        <div class="sc-feat-title">Tailwind-compatible utils</div>
+        <div class="sc-feat-desc">Same class names as Tailwind — <code
+            style="color:var(--color-primary)">flex gap-4 mt-6 px-4 rounded-lg</code> work out of the box. Zero PostCSS,
+          zero build step, 40&nbsp;KB instead of 3&nbsp;MB.</div>
+        <span class="sc-feat-tag">_utils.css</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ TAILWIND COMPAT ══════════════════════ -->
+  <div class="sc-tw-section">
+    <div class="sc-section">
+      <div style="text-align:center;margin-bottom:48px">
+        <span class="sc-eyebrow">Familiar API</span>
+        <h2 class="sc-heading">Know Tailwind?<br>You already know njX.</h2>
+        <p class="sc-subheading center">
+          njX utilities use the exact same class names as Tailwind — no new syntax to learn.
+          The difference: no build step, no PostCSS config, no 3&nbsp;MB pipeline. Just 40&nbsp;KB, drop it in and ship.
+        </p>
+      </div>
+
+      <div class="sc-two-col" style="gap:24px">
+        <!-- Tailwind -->
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span
+              style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted)">Tailwind
+              CSS</span>
+            <span
+              style="font-size:11px;padding:3px 10px;border-radius:20px;background:rgba(239,68,68,0.1);color:#ef4444;border:1px solid rgba(239,68,68,0.2)">3
+              MB+ · requires PostCSS build</span>
+          </div>
+          <div class="sc-code-wrap">
+            <div class="sc-code-header">
+              <div class="sc-code-dots">
+                <div class="sc-code-dot" style="background:#ff5f57"></div>
+                <div class="sc-code-dot" style="background:#febc2e"></div>
+                <div class="sc-code-dot" style="background:#28c840"></div>
+              </div>
+              <span class="sc-code-filename">tailwind.config.js + postcss.config.js</span>
+            </div>
+            <div class="sc-code-body" style="white-space:pre"><span class="c">&lt;!-- npm install tailwindcss postcss
+                autoprefixer --&gt;
+                &lt;!-- + tailwind.config.js + postcss.config.js + purge paths --&gt;</span>
+              &lt;<span class="k">div</span> <span class="t">class</span>=<span class="s">"flex items-center gap-4 mt-6
+                px-4"</span>&gt;
+              &lt;<span class="k">button</span> <span class="t">class</span>=<span class="s">"bg-blue-500 text-white
+                font-bold
+                px-6 py-2 rounded-lg hover:scale-105"</span>&gt;
+              Click me
+              &lt;/<span class="k">button</span>&gt;
+              &lt;/<span class="k">div</span>&gt;</div>
+          </div>
+        </div>
+
+        <!-- njX -->
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span
+              style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--color-primary)">njX
+              UI</span>
+            <span
+              style="font-size:11px;padding:3px 10px;border-radius:20px;background:color-mix(in srgb,var(--color-primary) 12%,transparent);color:var(--color-primary);border:1px solid color-mix(in srgb,var(--color-primary) 25%,transparent)">40
+              KB · zero build · one CDN link</span>
+          </div>
+          <div class="sc-code-wrap">
+            <div class="sc-code-header">
+              <div class="sc-code-dots">
+                <div class="sc-code-dot" style="background:#ff5f57"></div>
+                <div class="sc-code-dot" style="background:#febc2e"></div>
+                <div class="sc-code-dot" style="background:#28c840"></div>
+              </div>
+              <span class="sc-code-filename">index.html — nothing else needed</span>
+            </div>
+            <div class="sc-code-body" style="white-space:pre"><span class="c">&lt;!-- &lt;link rel="stylesheet"
+                href="njx.min.css"&gt; — done --&gt;</span>
+              &lt;<span class="k">div</span> <span class="t">class</span>=<span class="s">"flex items-center gap-4 mt-6
+                px-4"</span>&gt;
+              &lt;<span class="k">button</span> <span class="t">class</span>=<span class="s">"btn btn-primary
+                hover-scale"</span>&gt;
+              Click me
+              &lt;/<span class="k">button</span>&gt;
+              &lt;/<span class="k">div</span>&gt;
+              <span class="c">&lt;!-- + 9 themes, hover FX, gradients, animations --&gt;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sc-tw-pills">
+        <div class="sc-tw-pill">✓ Same utility class names</div>
+        <div class="sc-tw-pill">✓ Zero build step</div>
+        <div class="sc-tw-pill">✓ 40 KB vs 3 MB+</div>
+        <div class="sc-tw-pill">✓ Pre-built themed components on top</div>
+        <div class="sc-tw-pill">✓ No PostCSS, no config files</div>
+        <div class="sc-tw-pill">✓ Drop-in for any HTML file</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ QUICK START ══════════════════════ -->
+  <div class="sc-section" style="padding-top:100px">
+    <div class="sc-two-col">
+      <div>
+        <span class="sc-eyebrow">Quick Start</span>
+        <h2 class="sc-heading" style="margin-bottom:16px">Up and running<br>in 3 steps</h2>
+        <p class="sc-subheading" style="margin-bottom:40px">No CLI. No config. No node_modules.<br>Just paste and build.
+        </p>
+        <div class="sc-steps">
+          <div class="sc-step">
+            <div class="sc-step-num">1</div>
+            <div>
+              <div class="sc-step-title">Add the CDN link</div>
+              <div class="sc-step-desc">One line in <code style="color:var(--color-primary)">&lt;head&gt;</code>. That's
+                all the setup you'll ever do.</div>
+            </div>
+          </div>
+          <div class="sc-step">
+            <div class="sc-step-num">2</div>
+            <div>
+              <div class="sc-step-title">Set your theme</div>
+              <div class="sc-step-desc">Add <code style="color:var(--color-primary)">data-theme="dark"</code> to <code
+                  style="color:var(--color-primary)">&lt;html&gt;</code>. Switch anytime, no rebuild.</div>
+            </div>
+          </div>
+          <div class="sc-step">
+            <div class="sc-step-num">3</div>
+            <div>
+              <div class="sc-step-title">Use any component</div>
+              <div class="sc-step-desc">Add classes like <code
+                  style="color:var(--color-primary)">.btn.btn-primary</code>, <code
+                  style="color:var(--color-primary)">.card-glow</code>, <code
+                  style="color:var(--color-primary)">.inp</code>. Done.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sc-code-wrap">
+          <div class="sc-code-header">
+            <div class="sc-code-dots">
+              <div class="sc-code-dot" style="background:#ff5f57"></div>
+              <div class="sc-code-dot" style="background:#febc2e"></div>
+              <div class="sc-code-dot" style="background:#28c840"></div>
+            </div>
+            <span class="sc-code-filename">index.html</span>
+            <button class="sc-code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="sc-code-body" id="quickstart-code">
+            <span class="c">&lt;!-- Step 1: One line install --&gt;</span>
+            <span class="k">&lt;link</span> <span class="s">rel</span>=<span class="t">"stylesheet"</span>
+            <span class="s">href</span>=<span class="t">"https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css"</span>
+            <span class="k">/&gt;</span>
+
+            <span class="c">&lt;!-- Step 2: Choose your theme --&gt;</span>
+            <span class="k">&lt;html</span> <span class="s">data-theme</span>=<span class="t">"dark"</span><span
+              class="k">&gt;</span>
+
+            <span class="c">&lt;!-- Step 3: Start building --&gt;</span>
+            <span class="k">&lt;button</span> <span class="s">class</span>=<span class="t">"btn btn-primary"</span><span
+              class="k">&gt;</span>
+            Launch
+            <span class="k">&lt;/button&gt;</span>
+
+            <span class="k">&lt;div</span> <span class="s">class</span>=<span class="t">"card-glow
+              hover-lift"</span><span class="k">&gt;</span>
+            <span class="k">&lt;h2</span> <span class="s">class</span>=<span
+              class="t">"text-gradient-primary"</span><span class="k">&gt;</span>
+            Hello njX
+            <span class="k">&lt;/h2&gt;</span>
+            <span class="k">&lt;p</span> <span class="s">class</span>=<span class="t">"text-muted mt-2"</span><span
+              class="k">&gt;</span>
+            Built in 30 seconds.
+            <span class="k">&lt;/p&gt;</span>
+            <span class="k">&lt;/div&gt;</span>
+          </div>
+        </div>
+        <!-- Live preview -->
+        <div
+          style="margin-top:16px;padding:24px;border-radius:12px;background:var(--bg-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 25%,transparent)">
+          <div
+            style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:16px">
+            Live preview</div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+            <button class="btn btn-primary">Launch</button>
+            <div class="card-glow hover-lift" style="padding:16px 20px">
+              <h2 class="text-gradient-primary" style="font-size:18px;font-weight:800;margin:0 0 4px">Hello njX</h2>
+              <p class="text-muted" style="font-size:13px;margin:0">Built in 30 seconds.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ COMPONENTS ══════════════════════ -->
+  <div class="sc-section" style="padding-top:80px">
+    <div style="margin-bottom:40px">
+      <span class="sc-eyebrow">Components</span>
+      <h2 class="sc-heading">27+ ready-to-use components</h2>
+      <p class="sc-subheading">Everything a UI needs. Forms, navigation, feedback, layout — all styled, all themed.</p>
+    </div>
+    <div class="sc-comp-grid">
+      <div class="sc-comp-item">🔲 Buttons <span style="margin-left:auto;font-size:11px;color:var(--text-muted)">14
+          variants</span></div>
+      <div class="sc-comp-item">🃏 Cards <span style="margin-left:auto;font-size:11px;color:var(--text-muted)">7
+          variants</span></div>
+      <div class="sc-comp-item">📋 Forms & Inputs <span
+          style="margin-left:auto;font-size:11px;color:var(--text-muted)">float, glass</span></div>
+      <div class="sc-comp-item">🏷 Tags & Badges <span
+          style="margin-left:auto;font-size:11px;color:var(--text-muted)">dots, filled</span></div>
+      <div class="sc-comp-item">💬 Modals <span style="margin-left:auto;font-size:11px;color:var(--text-muted)">4
+          variants</span></div>
+      <div class="sc-comp-item">🗂 Tabs <span
+          style="margin-left:auto;font-size:11px;color:var(--text-muted)">switchable</span></div>
+      <div class="sc-comp-item">📂 Accordion <span
+          style="margin-left:auto;font-size:11px;color:var(--text-muted)">collapse</span></div>
+      <div class="sc-comp-item">🔔 Notifications <span
+          style="margin-left:auto;font-size:11px;color:var(--text-muted)">toast, banner</span></div>
+      <div class="sc-comp-item">📊 Tables <span style="margin-left:auto;font-size:11px;color:var(--text-muted)">striped,
+          hover</span></div>
+      <div class="sc-comp-item">🧭 Breadcrumbs <span
+          style="margin-left:auto;font-size:11px;color:var(--text-muted)">nav</span></div>
+      <div class="sc-comp-item">📏 Grid System <span
+          style="margin-left:auto;font-size:11px;color:var(--text-muted)">flex + css grid</span></div>
+      <div class="sc-comp-item">🔤 Typography <span style="margin-left:auto;font-size:11px;color:var(--text-muted)">full
+          scale</span></div>
+      <div class="sc-comp-item">🌈 Gradients <span style="margin-left:auto;font-size:11px;color:var(--text-muted)">15+
+          types</span></div>
+      <div class="sc-comp-item">🎭 Hover FX <span style="margin-left:auto;font-size:11px;color:var(--text-muted)">30+
+          effects</span></div>
+      <div class="sc-comp-item">✨ Animations <span style="margin-left:auto;font-size:11px;color:var(--text-muted)">loop
+          + fade-in</span></div>
+      <div class="sc-comp-item">🗃 Panel <span
+          style="margin-left:auto;font-size:11px;color:var(--text-muted)">sidebar</span></div>
+      <div class="sc-comp-item">🔄 Progress <span
+          style="margin-left:auto;font-size:11px;color:var(--text-muted)">bars</span></div>
+      <div class="sc-comp-item">🔻 Dropdown <span style="margin-left:auto;font-size:11px;color:var(--text-muted)">nav
+          menu</span></div>
+      <div class="sc-comp-item">🎛 Slider <span style="margin-left:auto;font-size:11px;color:var(--text-muted)">range
+          input</span></div>
+      <div class="sc-comp-item">🔲 Sections <span style="margin-left:auto;font-size:11px;color:var(--text-muted)">hero,
+          banner</span></div>
+      <div class="sc-comp-item">🎠 Carousel <span
+          style="margin-left:auto;font-size:11px;color:var(--text-muted)">scroll-snap</span></div>
+      <div class="sc-comp-item">🔗 Links <span style="margin-left:auto;font-size:11px;color:var(--text-muted)">styles +
+          hover</span></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ COMPARISON ══════════════════════ -->
+  <div class="sc-section" style="padding-top:80px">
+    <div style="margin-bottom:40px">
+      <span class="sc-eyebrow">Comparison</span>
+      <h2 class="sc-heading">Heavier than chota.<br>Lighter than everything else.</h2>
+      <p class="sc-subheading">40KB gets you themes, animations, hover effects and gradients — features that don't exist
+        anywhere else at this weight.</p>
+    </div>
+
+    <div class="sc-table-wrap">
+      <table class="sc-table">
+        <thead>
+          <tr>
+            <th style="text-align:left">Feature</th>
+            <th>chota</th>
+            <th>Pico CSS</th>
+            <th>Bulma</th>
+            <th style="color:var(--color-primary)">njX ✦</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bundle size</td>
+            <td>3 KB</td>
+            <td>9 KB</td>
+            <td>78 KB</td>
+            <td style="color:var(--color-primary);font-weight:700">~40 KB</td>
+          </tr>
+          <tr>
+            <td>Built-in themes</td>
+            <td><span class="sc-cross">—</span></td>
+            <td>2</td>
+            <td><span class="sc-cross">—</span></td>
+            <td style="color:var(--color-primary);font-weight:700">9</td>
+          </tr>
+          <tr>
+            <td>CSS Custom Properties</td>
+            <td>partial</td>
+            <td><span class="sc-check">✓</span></td>
+            <td><span class="sc-cross">—</span></td>
+            <td style="color:var(--color-primary);font-weight:700">✓ full</td>
+          </tr>
+          <tr>
+            <td>Hover effects</td>
+            <td><span class="sc-cross">—</span></td>
+            <td><span class="sc-cross">—</span></td>
+            <td><span class="sc-cross">—</span></td>
+            <td style="color:var(--color-primary);font-weight:700">30+</td>
+          </tr>
+          <tr>
+            <td>Gradients</td>
+            <td><span class="sc-cross">—</span></td>
+            <td><span class="sc-cross">—</span></td>
+            <td><span class="sc-cross">—</span></td>
+            <td style="color:var(--color-primary);font-weight:700">15+</td>
+          </tr>
+          <tr>
+            <td>Animations</td>
+            <td><span class="sc-cross">—</span></td>
+            <td><span class="sc-cross">—</span></td>
+            <td><span class="sc-cross">—</span></td>
+            <td style="color:var(--color-primary);font-weight:700">✓</td>
+          </tr>
+          <tr>
+            <td>Text gradients</td>
+            <td><span class="sc-cross">—</span></td>
+            <td><span class="sc-cross">—</span></td>
+            <td><span class="sc-cross">—</span></td>
+            <td style="color:var(--color-primary);font-weight:700">8 styles</td>
+          </tr>
+          <tr>
+            <td>Bulma compatible</td>
+            <td><span class="sc-cross">—</span></td>
+            <td><span class="sc-cross">—</span></td>
+            <td>—</td>
+            <td style="color:var(--color-primary);font-weight:700">✓</td>
+          </tr>
+          <tr>
+            <td>Build step required</td>
+            <td>No</td>
+            <td>No</td>
+            <td>No</td>
+            <td style="color:var(--color-success);font-weight:700">No</td>
+          </tr>
+          <tr>
+            <td>Tailwind-compatible utils</td>
+            <td><span class="sc-cross">—</span></td>
+            <td><span class="sc-cross">—</span></td>
+            <td><span class="sc-cross">—</span></td>
+            <td style="color:var(--color-primary);font-weight:700">✓ same API</td>
+          </tr>
+          <tr style="border-bottom:none">
+            <td>JS required</td>
+            <td>No</td>
+            <td>No</td>
+            <td>No</td>
+            <td style="color:var(--color-success);font-weight:700">No</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ PHILOSOPHY ══════════════════════ -->
+  <div class="sc-manifesto" style="margin-top:80px">
+    <span class="sc-eyebrow" style="display:block;margin-bottom:16px">Philosophy</span>
+    <p class="sc-manifesto-quote">
+      "CSS has everything you need to build a <em>great UI</em>.<br>
+      You just shouldn't have to write it <em>every time</em>."
+    </p>
+    <p style="font-size:15px;color:var(--text-muted);max-width:560px;margin:0 auto;line-height:1.7">
+      njX is built on the belief that a CSS library should be <strong style="color:var(--text-main)">invisible</strong>
+      —
+      no framework lock-in, no class name memorisation marathons, no config files.
+      Just CSS custom properties doing what they were designed to do.
+    </p>
+  </div>
+
+  <!-- ══════════════════════ COMPONENT PREVIEW ══════════════════════ -->
+  <div class="sc-section" style="padding-top:80px">
+    <span class="sc-eyebrow">Live preview</span>
+    <h2 class="sc-heading" style="margin-bottom:40px">See it in action</h2>
+
+    <!-- Buttons row -->
+    <div style="margin-bottom:32px">
+      <div
+        style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);margin-bottom:16px">
+        Buttons — 14 variants</div>
+      <div
+        style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:24px;background:var(--bg-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 25%,transparent)">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-accent">Accent</button>
+        <button class="btn btn-success">Success</button>
+        <button class="btn btn-danger">Danger</button>
+        <button class="btn btn-outline">Outline</button>
+        <button class="btn btn-ghost">Ghost</button>
+        <button class="btn btn-gradient">Gradient</button>
+        <button class="btn btn-glow">Glow</button>
+        <button class="btn btn-shine">Shine</button>
+        <button class="btn btn-rainbow">Rainbow</button>
+      </div>
+    </div>
+
+    <!-- Cards row -->
+    <div style="margin-bottom:32px">
+      <div
+        style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);margin-bottom:16px">
+        Cards — 7 variants</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px">
+        <div class="card" style="padding:16px;font-size:13px;font-weight:600">card</div>
+        <div class="card-glass" style="padding:16px;font-size:13px;font-weight:600">card-glass</div>
+        <div class="card-dark" style="padding:16px;font-size:13px;font-weight:600">card-dark</div>
+        <div class="card-bordered" style="padding:16px;font-size:13px;font-weight:600">card-bordered</div>
+        <div class="card-glow" style="padding:16px;font-size:13px;font-weight:600">card-glow</div>
+        <div class="card-gradient" style="padding:16px;font-size:13px;font-weight:600">card-gradient</div>
+      </div>
+    </div>
+
+    <!-- Typography -->
+    <div style="margin-bottom:32px">
+      <div
+        style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);margin-bottom:16px">
+        Text Gradients — 8 styles</div>
+      <div
+        style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;padding:24px;background:var(--bg-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 25%,transparent)">
+        <span class="text-gradient-primary" style="font-size:22px;font-weight:800">Primary</span>
+        <span class="text-gradient-accent" style="font-size:22px;font-weight:800">Accent</span>
+        <span class="text-gradient-sunset" style="font-size:22px;font-weight:800">Sunset</span>
+        <span class="text-gradient-ocean" style="font-size:22px;font-weight:800">Ocean</span>
+        <span class="text-gradient-gold" style="font-size:22px;font-weight:800">Gold</span>
+        <span class="text-gradient-cosmic" style="font-size:22px;font-weight:800">Cosmic</span>
+        <span class="text-gradient-rainbow" style="font-size:22px;font-weight:800">Rainbow</span>
+      </div>
+    </div>
+
+    <!-- Animations -->
+    <div>
+      <div
+        style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);margin-bottom:16px">
+        Animations — loop classes</div>
+      <div
+        style="display:flex;flex-wrap:wrap;gap:20px;padding:24px;background:var(--bg-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 25%,transparent);align-items:center">
+        <div style="text-align:center">
+          <div class="animate-float"
+            style="width:44px;height:44px;background:var(--color-primary);border-radius:10px;margin:0 auto 8px"></div>
+          <div style="font-size:11px;color:var(--text-muted)">float</div>
+        </div>
+        <div style="text-align:center">
+          <div class="animate-pulse"
+            style="width:44px;height:44px;background:var(--color-accent);border-radius:10px;margin:0 auto 8px"></div>
+          <div style="font-size:11px;color:var(--text-muted)">pulse</div>
+        </div>
+        <div style="text-align:center">
+          <div class="animate-bounce"
+            style="width:44px;height:44px;background:var(--color-success);border-radius:10px;margin:0 auto 8px"></div>
+          <div style="font-size:11px;color:var(--text-muted)">bounce</div>
+        </div>
+        <div style="text-align:center">
+          <div class="animate-spin"
+            style="width:44px;height:44px;border-radius:50%;border:3px solid color-mix(in srgb,var(--color-primary) 30%,transparent);border-top-color:var(--color-primary);margin:0 auto 8px">
+          </div>
+          <div style="font-size:11px;color:var(--text-muted)">spin</div>
+        </div>
+        <div style="text-align:center">
+          <div class="animate-heartbeat"
+            style="width:44px;height:44px;background:var(--color-error);border-radius:10px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:22px">
+            ♥</div>
+          <div style="font-size:11px;color:var(--text-muted)">heartbeat</div>
+        </div>
+        <div style="text-align:center">
+          <div class="animate-glow"
+            style="width:44px;height:44px;background:var(--color-warning);border-radius:10px;margin:0 auto 8px"></div>
+          <div style="font-size:11px;color:var(--text-muted)">glow</div>
+        </div>
+        <div style="flex:1;min-width:200px">
+          <div class="animate-neon text-accent" style="font-size:28px;font-weight:900;text-align:center">Neon text</div>
+          <div class="animate-rainbow" style="font-size:28px;font-weight:900;text-align:center">Rainbow</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ CTA ══════════════════════ -->
+  <div
+    style="padding:80px 32px;text-align:center;background:radial-gradient(ellipse 70% 80% at 50% 50%, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent)">
+    <h2 class="sc-heading" style="margin-bottom:16px">Ready to build?</h2>
+    <p class="sc-subheading center" style="margin-bottom:40px">
+      One line. Any HTML file. Any project. Start in under a minute.
+    </p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="quickstart.html" class="sc-btn-primary" style="font-size:16px;padding:16px 40px">
+        Get Started — it's free
+      </a>
+      <a href="../index.html" class="sc-btn-ghost" style="font-size:16px;padding:16px 40px">
+        Browse all components →
+      </a>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ FOOTER ══════════════════════ -->
+  <footer class="sc-footer">
+    <div class="sc-footer-logo">njX UI</div>
+    <p
+      style="font-size:14px;color:var(--text-muted);margin-bottom:20px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.6">
+      A modern CSS component library built for developers who value speed and simplicity.
+    </p>
+    <div class="sc-footer-links">
+      <a href="../index.html">Components</a>
+      <a href="doc.html">Documentation</a>
+      <a href="quickstart.html">Quick Start</a>
+      <a href="check.html">Changelog</a>
+      <a href="#" target="_blank">GitHub</a>
+    </div>
+    <p class="sc-footer-copy">MIT License · Open Source · Built with ❤️ and pure CSS</p>
+  </footer>
+
+  <script>
+    // Nav theme switcher (dots)
+    function setTheme(dot, theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.querySelectorAll('.sc-theme-dot').forEach(d => d.classList.remove('active'));
+      dot.classList.add('active');
+      // sync pills
+      document.querySelectorAll('.sc-tpill').forEach(p => {
+        p.classList.toggle('active', p.dataset.t === theme);
+      });
+      document.getElementById('attr-display').textContent = `data-theme="${theme}"`;
+      localStorage.setItem('njx-theme', theme);
+    }
+
+    // Section theme pills
+    function setTheme2(pill, theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.querySelectorAll('.sc-tpill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      // sync nav dots
+      document.querySelectorAll('.sc-theme-dot').forEach(d => {
+        d.classList.toggle('active', d.dataset.t === theme);
+      });
+      document.getElementById('attr-display').textContent = `data-theme="${theme}"`;
+      localStorage.setItem('njx-theme', theme);
+    }
+
+    // Copy code
+    function copyCode(btn) {
+      const code = document.getElementById('quickstart-code').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = 'Copied!';
+        btn.style.color = 'var(--color-success)';
+        setTimeout(() => { btn.textContent = 'Copy'; btn.style.color = ''; }, 2000);
+      });
+    }
+
+    // Restore theme
+    const saved = localStorage.getItem('njx-theme');
+    if (saved) {
+      document.documentElement.setAttribute('data-theme', saved);
+      document.querySelectorAll('.sc-theme-dot').forEach(d => d.classList.toggle('active', d.dataset.t === saved));
+      document.querySelectorAll('.sc-tpill').forEach(p => p.classList.toggle('active', p.dataset.t === saved));
+      const el = document.getElementById('attr-display');
+      if (el) el.textContent = `data-theme="${saved}"`;
+    }
+  </script>
+</body>
+
+</html>

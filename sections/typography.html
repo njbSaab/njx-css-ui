@@ -1,0 +1,77 @@
+      <section class="lib-section" id="typography">
+        <div class="lib-section-title">🔤 Typography</div>
+        <div class="lib-section-desc">Classes from <code>_typography.css</code>. Add <code>.fluid</code> for vw-size.
+        </div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">Headings</div>
+          <div class="lib-preview col">
+            <div class="typo-row"><span class="typo-class">.title-hero</span><span class="title-hero"
+                style="font-size:clamp(32px,5vw,64px)">Hero Title</span><span class="typo-size">96px / fluid:
+                clamp(60,10vw,120)</span></div>
+            <div class="typo-row"><span class="typo-class">.title-xl</span><span class="title-xl"
+                style="font-size:clamp(28px,4vw,48px)">Title XL</span><span class="typo-size">72px</span></div>
+            <div class="typo-row"><span class="typo-class">.title-lg</span><span class="title-lg"
+                style="font-size:clamp(24px,3.5vw,40px)">Title LG</span><span class="typo-size">60px</span></div>
+            <div class="typo-row"><span class="typo-class">.title-md</span><span class="title-md"
+                style="font-size:clamp(22px,3vw,36px)">Title MD</span><span class="typo-size">48px</span></div>
+            <div class="typo-row"><span class="typo-class">.title-sm</span><span class="title-sm"
+                style="font-size:clamp(18px,2.5vw,28px)">Title SM</span><span class="typo-size">36px</span></div>
+            <div class="typo-row"><span class="typo-class">.title-xs</span><span class="title-xs"
+                style="font-size:clamp(16px,2vw,24px)">Title XS</span><span class="typo-size">30px</span></div>
+          </div>
+        </div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">Text</div>
+          <div class="lib-preview col">
+            <div class="typo-row"><span class="typo-class">.text-lead</span><span class="text-lead">Lead text — fs-xl /
+                20px</span><span class="typo-size">20px, w:500</span></div>
+            <div class="typo-row"><span class="typo-class">.text-body</span><span class="text-body">Body text — fs-base
+                / 16px</span><span class="typo-size">16px, w:400</span></div>
+            <div class="typo-row"><span class="typo-class">.text-sm</span><span class="text-sm">Small text — fs-sm /
+                14px</span><span class="typo-size">14px</span></div>
+            <div class="typo-row"><span class="typo-class">.text-xs</span><span class="text-xs">Extra small — fs-xs /
+                12px</span><span class="typo-size">12px</span></div>
+            <div class="typo-row"><span class="typo-class">.text-caption</span><span class="text-caption">Caption
+                uppercase</span><span class="typo-size">12px, upper</span></div>
+            <div class="typo-row"><span class="typo-class">.text-label</span><span class="text-label">Label
+                text</span><span class="typo-size">14px, w:600</span></div>
+          </div>
+        </div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">Colors and modifiers</div>
+          <div class="lib-preview">
+            <span class="text-primary text-label">.text-primary</span>
+            <span class="text-accent text-label">.text-accent</span>
+            <span class="text-success text-label">.text-success</span>
+            <span class="text-error text-label">.text-error</span>
+            <span class="text-warning text-label">.text-warning</span>
+            <span class="text-muted text-label">.text-muted</span>
+            <span class="text-white text-label">.text-white</span>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code"
+                data-raw="&lt;!-- _typography.css: title-hero | title-xl | title-lg | title-md | title-sm | title-xs --&gt;&#10;&lt;h1 class=&quot;title-hero&quot;&gt;Hero Title&lt;/h1&gt;&#10;&lt;h2 class=&quot;title-xl&quot;&gt;Title XL&lt;/h2&gt;&#10;&lt;h3 class=&quot;title-lg&quot;&gt;Title LG&lt;/h3&gt;&#10;&#10;&lt;!-- .fluid — adaptive clamp-size --&gt;&#10;&lt;h1 class=&quot;title-hero fluid text-accent&quot;&gt;Fluid Hero&lt;/h1&gt;&#10;&#10;&lt;!-- Text classes --&gt;&#10;&lt;p class=&quot;text-lead&quot;&gt;Intro text&lt;/p&gt;&#10;&lt;p class=&quot;text-body&quot;&gt;Body text&lt;/p&gt;&#10;&lt;p class=&quot;text-sm text-muted&quot;&gt;Small muted&lt;/p&gt;&#10;&lt;span class=&quot;text-caption&quot;&gt;CAPTION&lt;/span&gt;">
+                <span class="c">/* _typography.css: title-hero → title-xs + text-* classes */</span><br>
+                <span class="k">&lt;h1</span> <span class="s">class</span>=<span class="cn">"title-hero"</span><span
+                  class="k">&gt;</span>Hero<span class="k">&lt;/h1&gt;</span><br>
+                <span class="k">&lt;h2</span> <span class="s">class</span>=<span class="cn">"title-xl"</span><span
+                  class="k">&gt;</span>Title XL<span class="k">&lt;/h2&gt;</span><br>
+                <span class="k">&lt;h3</span> <span class="s">class</span>=<span class="cn">"title-lg"</span><span
+                  class="k">&gt;</span>Title LG<span class="k">&lt;/h3&gt;</span><br>
+                <span class="c">/* .fluid — adaptive clamp-size */</span><br>
+                <span class="k">&lt;h1</span> <span class="s">class</span>=<span class="cn">"title-hero fluid
+                  text-accent"</span><span class="k">&gt;</span>Fluid Hero<span class="k">&lt;/h1&gt;</span><br>
+                <span class="c">/* Text classes */</span><br>
+                <span class="k">&lt;p</span> <span class="s">class</span>=<span class="cn">"text-lead"</span><span
+                  class="k">&gt;</span>Intro text<span class="k">&lt;/p&gt;</span><br>
+                <span class="k">&lt;p</span> <span class="s">class</span>=<span class="cn">"text-sm
+                  text-muted"</span><span class="k">&gt;</span>Small muted<span class="k">&lt;/p&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>

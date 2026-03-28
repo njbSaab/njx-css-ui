@@ -1,0 +1,46 @@
+{
+  "name": "njx-ui",
+  "version": "1.0.0",
+  "description": "Lightweight CSS component library — 25+ components, 9 themes, zero dependencies. ~40KB.",
+  "main": "css/style.css",
+  "style": "css/style.css",
+  "scripts": {
+    "build": "npm run minify && npm run header",
+    "minify": "lightningcss --minify --bundle css/style.css -o css/style.min.css",
+    "header": "node -e \"const fs=require('fs');const f='css/style.min.css';const h='/* njX UI v'+require('./package.json').version+' | MIT License | github.com/njbSaab/njx-css-ui */\\n';fs.writeFileSync(f,h+fs.readFileSync(f,'utf8'));\""
+  },
+  "files": [
+    "css/",
+    "js/njx.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "css",
+    "ui-library",
+    "css-framework",
+    "dark-theme",
+    "themes",
+    "css-variables",
+    "zero-dependencies",
+    "tailwind-alternative",
+    "bulma-compatible",
+    "frontend",
+    "web",
+    "components",
+    "design-system"
+  ],
+  "author": "njbSaab",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/njbSaab/njx-css-ui.git"
+  },
+  "homepage": "https://njbSaab.github.io/njx-css-ui",
+  "bugs": {
+    "url": "https://github.com/njbSaab/njx-css-ui/issues"
+  },
+  "devDependencies": {
+    "lightningcss-cli": "^1.32.0"
+  }
+}
