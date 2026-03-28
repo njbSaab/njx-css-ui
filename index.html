@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✨ njX UI — Component Library</title>
+  <meta name="description" content="njX UI component library — 25+ components, 9 themes, zero dependencies." />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.min.css" />
+  <link rel="stylesheet" href="styles/lib-docs.css" />
+</head>
+
+<body>
+
+  <!-- Toast container -->
+  <div id="lib-toast-container"></div>
+
+  <!-- ═══════════════════════════════════════════
+     TOP BAR
+═══════════════════════════════════════════ -->
+  <!-- ═══ TOPBAR → components/topbar.html ═══ -->
+  <div data-component="topbar"></div>
+
+  <div class="lib-wrap">
+
+
+    <!-- ═══════════════════════════════════════════
+     SIDEBAR — компонент: components/sidebar.html
+═══════════════════════════════════════════ -->
+    <div data-component="sidebar"></div>
+
+    <!-- УДАЛЕНО (вынесено в components/sidebar.html):
+    <nav class="lib-sidebar">
+
+      <div class="lib-sidebar-group">
+        <span class="lib-sidebar-title">Pages</span>
+        <a href="pages/showcase.html">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <rect x="1" y="1" width="5" height="5" rx="1.5" />
+            <rect x="10" y="1" width="5" height="5" rx="1.5" />
+            <rect x="1" y="10" width="5" height="5" rx="1.5" />
+            <rect x="10" y="10" width="5" height="5" rx="1.5" />
+          </svg>
+          Overview
+        </a>
+        <a href="pages/quickstart.html">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 2L4 9h4l-1 5 5-7H8l1-5z" />
+          </svg>
+          Quick Start
+        </a>
+        <a href="pages/doc.html">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <path d="M4 2h6l3 3v9a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" />
+            <path d="M10 2v3h3M6 7h4M6 10h4M6 13h2" />
+          </svg>
+          Docs
+        </a>
+        <a href="pages/check.html">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <circle cx="8" cy="8" r="6" />
+            <path d="M8 5v3.5l2 2" />
+          </svg>
+          Changelog
+        </a>
+      </div>
+
+      <div class="lib-sidebar-group">
+        <span class="lib-sidebar-title">Foundation</span>
+        <a href="#tokens">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <circle cx="5" cy="5" r="3" />
+            <circle cx="11" cy="11" r="3" />
+            <path d="M8 5h5M3 11h5" />
+          </svg>
+          Tokens
+        </a>
+        <a href="#grid">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <rect x="1" y="1" width="4" height="4" rx="1" />
+            <rect x="6" y="1" width="4" height="4" rx="1" />
+            <rect x="11" y="1" width="4" height="4" rx="1" />
+            <rect x="1" y="6" width="4" height="4" rx="1" />
+            <rect x="6" y="6" width="4" height="4" rx="1" />
+            <rect x="11" y="6" width="4" height="4" rx="1" />
+            <rect x="1" y="11" width="4" height="4" rx="1" />
+            <rect x="6" y="11" width="4" height="4" rx="1" />
+            <rect x="11" y="11" width="4" height="4" rx="1" />
+          </svg>
+          Grid System
+        </a>
+        <a href="#typography">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 4h12M8 4v9M5 13h6" />
+          </svg>
+          Typography
+        </a>
+        <a href="#utils">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12.5 2.5l1 1-9 9-1-1 9-9zM2 12l1 1M9 2l1.5 1.5M13 6.5l1.5-1.5" />
+            <path d="M2 11l3 3" />
+          </svg>
+          Utils
+        </a>
+      </div>
+
+      <div class="lib-sidebar-group">
+        <span class="lib-sidebar-title">Components</span>
+        <a href="#buttons">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <rect x="1" y="5" width="14" height="6" rx="2" />
+            <path d="M5 8h6" />
+          </svg>
+          Buttons
+        </a>
+        <a href="#cards">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <rect x="1" y="3" width="14" height="10" rx="2" />
+            <path d="M1 7h14" />
+          </svg>
+          Cards
+        </a>
+        <a href="#tags">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 4h7l4 4-4 4H2V4z" />
+            <circle cx="5" cy="8" r="1" fill="currentColor" stroke="none" />
+          </svg>
+          Tags & Badges
+        </a>
+        <a href="#forms">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <rect x="1" y="4" width="14" height="8" rx="2" />
+            <path d="M4 8h1M6 8h2" />
+          </svg>
+          Forms
+        </a>
+        <a href="#tabs">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <path d="M1 6h4v7H1zM6 4h4v9H6zM11 6h4v7h-4z" />
+          </svg>
+          Tabs
+        </a>
+        <a href="#collapse">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6l4 4 4-4" />
+            <rect x="1" y="2" width="14" height="12" rx="2" />
+          </svg>
+          Collapse
+        </a>
+        <a href="#popups">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h12a1 1 0 011 1v7a1 1 0 01-1 1H5l-3 2V4a1 1 0 011-1z" />
+          </svg>
+          Popups
+        </a>
+        <a href="#nav">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <path d="M2 4h12M2 8h12M2 12h12" />
+          </svg>
+          Nav
+        </a>
+        <a href="#sections">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <rect x="1" y="1" width="14" height="4" rx="1" />
+            <rect x="1" y="7" width="14" height="4" rx="1" />
+            <rect x="1" y="13" width="9" height="2" rx="1" />
+          </svg>
+          Sections
+        </a>
+        <a href="#panel">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <rect x="1" y="1" width="14" height="14" rx="2" />
+            <path d="M1 5h14M5 5v10" />
+          </svg>
+          Panel
+        </a>
+        <a href="#table">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <rect x="1" y="1" width="14" height="14" rx="2" />
+            <path d="M1 5h14M1 9h14M6 5v9" />
+          </svg>
+          Table
+        </a>
+        <a href="#breadcrumb">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 8h12M10 5l3 3-3 3" />
+          </svg>
+          Breadcrumb
+        </a>
+        <a href="#pagination">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <rect x="1" y="5" width="3" height="6" rx="1" />
+            <rect x="6" y="5" width="3" height="6" rx="1" />
+            <rect x="11" y="5" width="3" height="6" rx="1" />
+          </svg>
+          Pagination
+        </a>
+        <a href="#notifications">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <path d="M8 2a5 5 0 015 5v3l1 1H2l1-1V7a5 5 0 015-5z" />
+            <path d="M6.5 13a1.5 1.5 0 003 0" />
+          </svg>
+          Notifications
+        </a>
+        <a href="#progress">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <rect x="1" y="6" width="14" height="4" rx="2" />
+            <path d="M1 8h7" stroke-width="3" stroke-linecap="round" />
+          </svg>
+          Progress
+        </a>
+        <a href="#links">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 10a3.5 3.5 0 005 0l2-2a3.5 3.5 0 00-5-5l-1 1" />
+            <path d="M10 6a3.5 3.5 0 00-5 0L3 8a3.5 3.5 0 005 5l1-1" />
+          </svg>
+          Links
+        </a>
+        <a href="#dropdown">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="14" height="5" rx="2" />
+            <path d="M4 11h8M6 14h4" />
+          </svg>
+          Dropdown
+        </a>
+        <a href="#carousel">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="4" width="14" height="8" rx="2" />
+            <path d="M5 8h6M8 5v6" />
+            <circle cx="2.5" cy="8" r="1" fill="currentColor" stroke="none" />
+            <circle cx="13.5" cy="8" r="1" fill="currentColor" stroke="none" />
+          </svg>
+          Carousel
+        </a>
+      </div>
+
+      <div class="lib-sidebar-group">
+        <span class="lib-sidebar-title">Visual</span>
+        <a href="#animations">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 1v3M8 12v3M1 8h3M12 8h3M3.5 3.5l2 2M10.5 10.5l2 2M10.5 3.5l-2 2M5.5 10.5l-2 2" />
+          </svg>
+          Animations
+        </a>
+        <a href="#gradients">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <rect x="1" y="4" width="14" height="8" rx="2" />
+            <path d="M4 8h2M7 8h1M9 8h.5" stroke-width="2" />
+          </svg>
+          Gradients
+        </a>
+        <a href="#hovers">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 2v9l3-2 2 4 1.5-.7-2-4 3.5-.3L4 2z" />
+          </svg>
+          Hovers
+        </a>
+      </div>
+
+    </nav>
+    END УДАЛЕНО -->
+
+    <!-- ═══════════════════════════════════════════
+     MAIN
+═══════════════════════════════════════════ -->
+    <main class="lib-main">
+
+      <!-- ── 1. TOKENS ── -->
+      <!-- section: tokens → sections/tokens.html -->
+      <div data-section="tokens"></div>
+
+      <!-- ── 1.5. GRID ── -->
+      <!-- section: grid → sections/grid.html -->
+      <div data-section="grid"></div>
+
+      <!-- ── 2. TYPOGRAPHY ── -->
+      <!-- section: typography → sections/typography.html -->
+      <div data-section="typography"></div>
+
+      <!-- ── 3. UTILS ── -->
+      <!-- section: utils → sections/utils.html -->
+      <div data-section="utils"></div>
+
+      <!-- ── 4. BUTTONS ── -->
+      <!-- section: buttons → sections/buttons.html -->
+      <div data-section="buttons"></div>
+
+      <!-- ── 5. CARDS ── -->
+      <!-- section: cards → sections/cards.html -->
+      <div data-section="cards"></div>
+
+      <!-- ── 6. TAGS ── -->
+      <!-- section: tags → sections/tags.html -->
+      <div data-section="tags"></div>
+
+      <!-- ── 8. FORMS ── -->
+      <!-- section: forms → sections/forms.html -->
+      <div data-section="forms"></div>
+
+      <!-- ── 8. SECTIONS ── -->
+      <!-- section: sections → sections/sections.html -->
+      <div data-section="sections"></div>
+
+      <!-- ── 9. TABS ── -->
+      <!-- section: tabs → sections/tabs.html -->
+      <div data-section="tabs"></div>
+
+      <!-- ── 10. COLLAPSE ── -->
+      <!-- section: collapse → sections/collapse.html -->
+      <div data-section="collapse"></div>
+
+      <!-- ── 11. POPUPS ── -->
+      <!-- section: popups → sections/popups.html -->
+      <div data-section="popups"></div>
+
+      <!-- ══════ MODALS ══════ -->
+
+      <!-- Default -->
+      <div id="modal-default" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box">
+          <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-default'))">✕</button>
+          <div class="lib-modal-icon-wrap">🔲</div>
+          <div class="lib-modal-title">Confirm action</div>
+          <div class="lib-modal-text">This is a standard modal window. Use it for confirmations, notifications and
+            details. Close — Escape or click the overlay.</div>
+          <div class="lib-modal-actions">
+            <button class="btn btn-primary btn-sm"
+              onclick="closeModal(document.getElementById('modal-default'))">Confirm</button>
+            <button class="btn btn-ghost btn-sm"
+              onclick="closeModal(document.getElementById('modal-default'))">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Primary -->
+      <div id="modal-primary" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-primary">
+          <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-primary'))">✕</button>
+          <div class="lib-modal-icon-wrap">🚀</div>
+          <div class="lib-modal-title">Welcome!</div>
+          <div class="lib-modal-text">Primary modal with themed overlay. For onboarding, promo and key action steps.
+          </div>
+          <div class="lib-modal-actions">
+            <button class="btn btn-primary btn-sm" onclick="closeModal(document.getElementById('modal-primary'))">Get
+              started</button>
+            <button class="btn btn-ghost btn-sm"
+              onclick="closeModal(document.getElementById('modal-primary'))">Later</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div id="modal-success" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-success">
+          <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-success'))">✕</button>
+          <div class="lib-modal-icon-wrap">✅</div>
+          <div class="lib-modal-title">Success!</div>
+          <div class="lib-modal-text">Your request has been completed. Data saved without errors. Overlay coloured green
+            via CSS variables.</div>
+          <div class="lib-modal-actions">
+            <button class="btn btn-success btn-sm"
+              onclick="closeModal(document.getElementById('modal-success'))">Great!</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div id="modal-error" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-error">
+          <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-error'))">✕</button>
+          <div class="lib-modal-icon-wrap">❌</div>
+          <div class="lib-modal-title">Something went wrong</div>
+          <div class="lib-modal-text">Error processing the request. The overlay is colored red via
+            <code>color-mix()</code>. Try again or contact support.
+          </div>
+          <div class="lib-modal-actions">
+            <button class="btn btn-danger btn-sm" onclick="closeModal(document.getElementById('modal-error'))">Try
+              again</button>
+            <button class="btn btn-ghost btn-sm"
+              onclick="closeModal(document.getElementById('modal-error'))">Close</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warning -->
+      <div id="modal-warning" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-warning">
+          <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-warning'))">✕</button>
+          <div class="lib-modal-icon-wrap">⚠️</div>
+          <div class="lib-modal-title">Warning!</div>
+          <div class="lib-modal-text">This action cannot be undone. The overlay is colored amber. Use for
+            warnings and destructive operations.</div>
+          <div class="lib-modal-actions">
+            <button class="btn btn-warning btn-sm"
+              onclick="closeModal(document.getElementById('modal-warning'))">Continue</button>
+            <button class="btn btn-ghost btn-sm"
+              onclick="closeModal(document.getElementById('modal-warning'))">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div id="modal-info" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-info">
+          <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-info'))">✕</button>
+          <div class="lib-modal-icon-wrap">ℹ️</div>
+          <div class="lib-modal-title">Information</div>
+          <div class="lib-modal-text">Info modal with teal-tinted overlay. For hints, updates and
+            neutral notifications.</div>
+          <div class="lib-modal-actions">
+            <button class="btn btn-accent btn-sm" onclick="closeModal(document.getElementById('modal-info'))">Got
+              it</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- With form -->
+      <div id="modal-form" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-primary is-lg" style="max-width:420px">
+          <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-form'))">✕</button>
+          <div class="lib-modal-icon-wrap">🔑</div>
+          <div class="lib-modal-title">Sign In</div>
+          <div class="lib-modal-text" style="margin-bottom:16px">Enter your login credentials</div>
+          <div class="field" style="margin-bottom:12px">
+            <div class="field-label">Email</div>
+            <div class="inp-wrap"><span class="inp-icon-left">📧</span><input class="inp inp-primary" type="email"
+                placeholder="your@email.com"></div>
+          </div>
+          <div class="field" style="margin-bottom:16px">
+            <div class="field-label">Password</div>
+            <div class="inp-wrap"><span class="inp-icon-left">🔒</span><input class="inp inp-suffix inp-primary"
+                type="password" placeholder="••••••••"></div>
+          </div>
+          <div class="lib-modal-actions is-column">
+            <button class="btn btn-primary" style="width:100%;justify-content:center"
+              onclick="closeModal(document.getElementById('modal-form'))">Sign In</button>
+            <button class="btn btn-ghost" style="width:100%;justify-content:center;font-size:12px"
+              onclick="closeModal(document.getElementById('modal-form'))">Don't have an account? Register</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 11.5. NAV ── -->
+      <!-- section: nav → sections/nav.html -->
+      <div data-section="nav"></div>
+
+      <!-- ── 12. NOTIFICATIONS ── -->
+      <!-- section: notifications → sections/notifications.html -->
+      <div data-section="notifications"></div>
+
+      <!-- ── 13. PROGRESS ── -->
+      <!-- section: progress → sections/progress.html -->
+      <div data-section="progress"></div>
+
+      <!-- ── 14. TABLE ── -->
+      <!-- section: table → sections/table.html -->
+      <div data-section="table"></div>
+
+      <!-- ── 15. BREADCRUMB ── -->
+      <!-- section: breadcrumb → sections/breadcrumb.html -->
+      <div data-section="breadcrumb"></div>
+
+      <!-- ── 16. PAGINATION ── -->
+      <!-- section: pagination → sections/pagination.html -->
+      <div data-section="pagination"></div>
+
+      <!-- ── 17. PANEL ── -->
+      <!-- section: panel → sections/panel.html -->
+      <div data-section="panel"></div>
+
+      <!-- ── LINKS ── -->
+      <!-- section: links → sections/links.html -->
+      <div data-section="links"></div>
+
+      <!-- ── DROPDOWN ── -->
+      <!-- section: dropdown → sections/dropdown.html -->
+      <div data-section="dropdown"></div>
+
+      <!-- ── CAROUSEL ── -->
+      <!-- section: carousel → sections/carousel.html -->
+      <div data-section="carousel"></div>
+
+      <!-- ── ANIMATIONS ── -->
+      <!-- section: animations → sections/animations.html -->
+      <div data-section="animations"></div>
+
+      <!-- ── GRADIENTS ── -->
+      <!-- section: gradients → sections/gradients.html -->
+      <div data-section="gradients"></div>
+
+      <!-- ── HOVERS ── -->
+      <!-- section: hovers → sections/hovers.html -->
+      <div data-section="hovers"></div>
+
+    </main>
+
+  </div><!-- /.lib-wrap -->
+
+  <!-- Download modal → components/download-modal.html -->
+  <div data-component="download-modal"></div>
+
+  <!-- Component JS (collapseToggle, tabSwitch, dropdownToggle, openModal, closeModal, showToast, initCarousels, carouselGo) -->
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="scripts/loader.js"></script>
+  <script src="js/njx.js"></script>
+  <script src="scripts/lib-docs.js"></script>
+
+  <footer class="lib-footer">
+    <a class="lib-footer-logo" href="index.html">njX UI</a>
+    <div class="lib-footer-links">
+      <a href="pages/showcase.html">Overview</a>
+      <a href="pages/quickstart.html">Quick Start</a>
+      <a href="pages/doc.html">Docs</a>
+      <a href="pages/check.html">Changelog</a>
+    </div>
+    <div class="lib-footer-copy">v1.0.0 · MIT License</div>
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,566 @@
+/* ============================================================
+   _form.css — Формы и инпуты
+   Все цвета через переменные из _base.css.
+   Работает со всеми темами: dark, light, color.
+   ============================================================ */
+
+/* ── Токены формы (переопределяются по теме) ── */
+:root,
+[data-theme] {
+  --form-bg:          var(--bg-secondary);
+  --form-bg-input:    color-mix(in srgb, var(--bg-secondary) 80%, #000 20%);
+  --form-border:      color-mix(in srgb, var(--color-primary) 18%, var(--color-neutral-700));
+  --form-border-hover:color-mix(in srgb, var(--color-primary) 40%, var(--color-neutral-600));
+  --form-placeholder: var(--text-muted);
+  --form-text:        var(--text-main);
+  --form-focus-ring:  color-mix(in srgb, var(--color-primary) 20%, transparent);
+  --form-radius:      var(--radius-sm);
+  --form-padding:     10px 14px;
+  --form-font-size:   var(--fs-sm);
+}
+
+[data-theme="light"] {
+  --form-bg:          var(--bg-secondary);
+  --form-bg-input:    #ffffff;
+  --form-border:      color-mix(in srgb, var(--color-primary) 18%, #cccccc);
+  --form-border-hover:color-mix(in srgb, var(--color-primary) 40%, #aaaaaa);
+  --form-placeholder: #999999;
+  --form-text:        var(--text-main);
+}
+
+/* ── Fieldset ── */
+fieldset {
+  padding: var(--space-4) var(--space-8);
+  border: 1px solid var(--form-border);
+  border-radius: var(--radius-md);
+  background: var(--form-bg);
+}
+
+legend {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+  padding: 0 var(--space-2);
+}
+
+/* ── Базовые нативные инпуты ── */
+input:not(
+  [type="checkbox"],
+  [type="radio"],
+  [type="submit"],
+  [type="color"],
+  [type="button"],
+  [type="reset"]
+),
+select,
+textarea,
+textarea[type="text"] {
+  font-family: inherit;
+  font-size: var(--form-font-size);
+  color: var(--form-text);
+  background: var(--form-bg-input);
+  border: 1.5px solid var(--form-border);
+  border-radius: var(--form-radius);
+  padding: var(--form-padding);
+  width: 100%;
+  outline: none;
+  transition: border-color var(--ease-fast), box-shadow var(--ease-fast), background var(--ease-fast);
+  box-sizing: border-box;
+}
+
+input:not(
+  [type="checkbox"],
+  [type="radio"],
+  [type="submit"],
+  [type="color"],
+  [type="button"],
+  [type="reset"]
+)::placeholder,
+textarea::placeholder {
+  color: var(--form-placeholder);
+}
+
+/* ── Select ── */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%23888'%3E%3Cpath d='M0 0h12L6 8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 10px;
+  padding-right: 38px;
+  cursor: pointer;
+}
+
+select option {
+  background: var(--bg-secondary);
+  color: var(--text-main);
+}
+
+/* ── Hover ── */
+input:not(
+  [type="checkbox"],
+  [type="radio"],
+  [type="submit"],
+  [type="color"],
+  [type="button"],
+  [type="reset"]
+):hover,
+select:hover,
+textarea:hover {
+  border-color: var(--form-border-hover);
+}
+
+/* ── Focus ── */
+input:not(
+  [type="checkbox"],
+  [type="radio"],
+  [type="submit"],
+  [type="color"],
+  [type="button"],
+  [type="reset"]
+):focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--form-focus-ring);
+}
+
+/* ── Состояния ── */
+input.error:not(
+  [type="checkbox"],
+  [type="radio"],
+  [type="submit"],
+  [type="color"],
+  [type="button"],
+  [type="reset"]
+),
+textarea.error {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-error) 20%, transparent);
+}
+
+input.success:not(
+  [type="checkbox"],
+  [type="radio"],
+  [type="submit"],
+  [type="color"],
+  [type="button"],
+  [type="reset"]
+),
+textarea.success {
+  border-color: var(--color-success);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-success) 20%, transparent);
+}
+
+/* ── Disabled ── */
+input:disabled,
+select:disabled,
+textarea:disabled,
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Checkbox / Radio ── */
+input[type="checkbox"],
+input[type="radio"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ── Range / Progress ── */
+input[type="range"],
+progress {
+  accent-color: var(--color-primary);
+  height: 6px;
+  border-radius: var(--radius-full);
+  width: 100%;
+}
+
+input[type="range"] {
+  cursor: pointer;
+}
+
+/* ── Кнопки форм (нативные) ── */
+.button,
+[type="button"],
+[type="reset"],
+[type="submit"],
+button {
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--form-radius);
+  background: var(--color-primary);
+  color: #ffffff;
+  cursor: pointer;
+  transition: background var(--ease-fast), transform var(--ease-fast), box-shadow var(--ease-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  line-height: 1.5;
+}
+
+.button:hover:not(:disabled),
+[type="button"]:hover:not(:disabled),
+[type="reset"]:hover:not(:disabled),
+[type="submit"]:hover:not(:disabled),
+button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-primary) 85%, #000);
+}
+
+.button:active:not(:disabled),
+[type="button"]:active:not(:disabled),
+[type="reset"]:active:not(:disabled),
+[type="submit"]:active:not(:disabled),
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* ══════════════════════════════════════════════════════
+   УТИЛИТЫ ФОРМ
+   ══════════════════════════════════════════════════════ */
+
+/* ── Form group ── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.form-label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+}
+
+.form-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.form-error-msg {
+  font-size: 11px;
+  color: var(--color-error);
+  margin-top: 2px;
+}
+
+.form-success-msg {
+  font-size: 11px;
+  color: var(--color-success);
+  margin-top: 2px;
+}
+
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-error) 18%, transparent);
+}
+
+.form-group.success input,
+.form-group.success select,
+.form-group.success textarea {
+  border-color: var(--color-success);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-success) 18%, transparent);
+}
+
+.form-group.active {
+  color: var(--color-primary);
+}
+
+/* ── Error message ── */
+.error-message {
+  color: var(--color-error);
+  font-size: var(--fs-xs);
+  margin-top: var(--space-1);
+  display: block;
+}
+
+/* ── Float label (.input + .user-label) ── */
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  border: 1.5px solid var(--form-border);
+  border-radius: var(--form-radius);
+  background: var(--form-bg-input);
+  padding: 1.2rem 1rem 0.5rem;
+  font-size: var(--fs-sm);
+  font-family: inherit;
+  color: var(--form-text);
+  outline: none;
+  transition: border-color var(--ease-fast), box-shadow var(--ease-fast);
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: transparent;
+}
+
+.input:hover {
+  border-color: var(--form-border-hover);
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--form-focus-ring);
+}
+
+.user-label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  color: var(--form-placeholder);
+  background: transparent;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input:focus ~ .user-label,
+.input:not(:placeholder-shown) ~ .user-label,
+.input-group input:valid ~ .user-label {
+  top: 8px;
+  transform: translateY(0) scale(0.78);
+  transform-origin: left top;
+  color: var(--color-primary);
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+/* ── Shake animation ── */
+.shake-popup {
+  animation: shake-form 0.5s ease-in-out;
+}
+
+@keyframes shake-form {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-8px); box-shadow: 0 0 16px color-mix(in srgb, var(--color-error) 50%, transparent); border-color: var(--color-error); }
+  40%  { transform: translateX(8px);  box-shadow: 0 0 16px color-mix(in srgb, var(--color-error) 60%, transparent); border-color: var(--color-error); }
+  60%  { transform: translateX(-8px); box-shadow: 0 0 16px color-mix(in srgb, var(--color-error) 60%, transparent); border-color: var(--color-error); }
+  80%  { transform: translateX(8px);  box-shadow: 0 0 16px color-mix(in srgb, var(--color-error) 40%, transparent); }
+  100% { transform: translateX(0); }
+}
+
+/* ── Popup form input (legacy) ── */
+.popup .form-input {
+  border-radius: var(--radius-md);
+  height: 50px;
+  margin: var(--space-3) 0;
+  border: 1.5px solid var(--form-border);
+  background: var(--form-bg-input);
+  color: var(--form-text);
+  padding: var(--form-padding);
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  transition: border-color var(--ease-fast), box-shadow var(--ease-fast);
+}
+
+.popup .form-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--form-focus-ring);
+}
+
+.form-group.error .form-input,
+.form-group.error .inpt-group .form-input {
+  border-color: var(--color-error);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--color-error) 30%, transparent);
+}
+
+/* ── Tg-list form (lead-gen) ── */
+.form.tg-list {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  border-radius: var(--radius-xl);
+  transition: all var(--ease-fast);
+}
+
+.form.tg-list .form-group {
+  width: 100%;
+  margin-bottom: var(--space-5);
+}
+
+.form.tg-list .form-group label {
+  font-size: var(--fs-lg);
+  color: var(--text-muted);
+}
+
+.form.tg-list .f-size-h1 {
+  font-size: clamp(28px, calc(45 / 1680 * 100vw), 45px);
+  font-weight: 700;
+  text-align: center;
+  margin: 0 auto var(--space-8);
+}
+
+.form.tg-list .text-p {
+  font-size: clamp(18px, calc(40 / 1680 * 100vw), 40px);
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: var(--space-8);
+  line-height: 1.4;
+}
+
+.form.tg-list input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-lg);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-xl);
+  height: 65px;
+  background: color-mix(in srgb, var(--bg-main) 60%, transparent);
+  color: var(--text-main);
+  outline: none;
+  transition: border-color var(--ease-fast), transform var(--ease-fast);
+}
+
+.form.tg-list input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 20%, transparent);
+  transform: scale(1.01);
+}
+
+.form.tg-list input::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ── Radio input UI ── */
+.radio-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+}
+
+.radio-input * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.radio-input label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0 var(--space-5);
+  width: 220px;
+  cursor: pointer;
+  height: 50px;
+  position: relative;
+  color: var(--text-main);
+}
+
+.radio-input label::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 45px;
+  z-index: -1;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+}
+
+.radio-input label:hover::before {
+  background-color: color-mix(in srgb, var(--color-primary) 10%, var(--bg-secondary));
+}
+
+/* Checked states per option */
+.radio-input .label:nth-child(1):has(input:checked)::before {
+  background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  border-color: var(--color-primary);
+  height: 50px;
+}
+.radio-input .label:nth-child(2):has(input:checked)::before {
+  background-color: color-mix(in srgb, var(--color-success) 15%, transparent);
+  border-color: var(--color-success);
+  height: 50px;
+}
+.radio-input .label:nth-child(3):has(input:checked)::before {
+  background-color: color-mix(in srgb, var(--color-warning) 15%, transparent);
+  border-color: var(--color-warning);
+  height: 50px;
+}
+
+.radio-input .label input[type="radio"] {
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 2px solid var(--color-neutral-500);
+  background: var(--form-bg-input);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: border-color var(--ease-fast), background var(--ease-fast);
+}
+
+.radio-input .label input[type="radio"]:checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  animation: pulse-radio 0.7s forwards;
+}
+
+.radio-input .label:nth-child(2) input[type="radio"]:checked {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+}
+
+.radio-input .label:nth-child(3) input[type="radio"]:checked {
+  background-color: var(--color-warning);
+  border-color: var(--color-warning);
+}
+
+.radio-input .label input[type="radio"]::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: scale(0);
+  transition: transform 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.radio-input .label input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+@keyframes pulse-radio {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 50%, transparent); }
+  70%  { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* ── Pulse animation (generic) ── */
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 50%, transparent); }
+  70%  { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}

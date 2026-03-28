@@ -1,0 +1,40 @@
+/* ============================================================
+   style.css — точка входа
+   Только @import. Никаких стилей здесь.
+   ============================================================ */
+
+/* 1. Токены и Reset */
+@import "_base.css";
+@import "_reset.css";
+
+/* 2. Система */
+@import "_grid.css";
+@import "_typography.css";
+@import "_utils.css";
+@import "_gradients.css";
+@import "_animations.css";
+
+/* 3. Компоненты */
+@import "_buttons.css";
+@import "_cards.css";
+@import "_form.css";
+@import "_tags.css";
+@import "_nav.css";
+@import "_tab.css";
+@import "_collapse.css";
+@import "_dropdown.css";
+@import "_slider.css";
+@import "_popups.css";
+@import "_hovers.css";
+@import "_notifications.css";
+@import "_table.css";
+@import "_breadcrumb.css";
+@import "_links.css";
+
+/* 4. Глобальные секции */
+@import "_sections.css";
+@import "_global.css";
+
+/* 5. Responsive prefix utilities (sm: md: lg: xl:) */
+@import "_responsive.css";
+

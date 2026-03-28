@@ -1,0 +1,285 @@
+/* ─────────────────────────────────────────────
+   _links.css — Links
+   ─────────────────────────────────────────────
+   API:
+     <a class="link">Default</a>
+     <a class="link link-primary">Primary</a>
+     <a class="link link-muted">Muted</a>
+     <a class="link link-danger">Danger</a>
+     <a class="link link-success">Success</a>
+
+     <a class="link link-underline">Animated underline</a>
+     <a class="link link-plain">No underline</a>
+     <a class="link link-arrow">With arrow →</a>
+     <a class="link link-external">External ↗</a>
+
+     <a class="link-btn">Ghost link button</a>
+     <a class="link-btn link-btn-primary">Primary link button</a>
+
+     <a class="link-card">Block link card</a>
+───────────────────────────────────────────── */
+
+/* ═══════════════════════════════
+   BASE INLINE LINK
+═══════════════════════════════ */
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: inherit;
+  line-height: inherit;
+  transition: color 0.18s, opacity 0.18s;
+  cursor: pointer;
+  position: relative;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+/* ═══════════════════════════════
+   COLOR VARIANTS
+═══════════════════════════════ */
+.link-primary { color: var(--color-primary); }
+.link-muted   { color: var(--text-muted); }
+.link-success { color: var(--color-success, #22c55e); }
+.link-danger  { color: var(--color-danger,  #ef4444); }
+.link-warning { color: var(--color-warning, #f59e0b); }
+.link-info    { color: var(--color-accent,  #06b6d4); }
+
+.link-muted:hover   { color: var(--text-main); opacity: 1; }
+.link-success:hover { color: var(--color-success, #22c55e); opacity: 0.75; }
+.link-danger:hover  { color: var(--color-danger,  #ef4444); opacity: 0.75; }
+
+/* ═══════════════════════════════
+   UNDERLINE STYLE VARIANTS
+═══════════════════════════════ */
+
+/* Always visible underline */
+.link-underline {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  transition: text-decoration-color 0.2s, color 0.18s, opacity 0.18s;
+}
+
+.link-underline:hover {
+  text-decoration-color: currentColor;
+  opacity: 1;
+}
+
+/* Animated slide-in underline */
+.link-slide {
+  text-decoration: none;
+}
+
+.link-slide::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link-slide:hover::after {
+  transform: scaleX(1);
+}
+
+/* No underline */
+.link-plain {
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+.link-plain:hover {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════
+   ICON VARIANTS
+═══════════════════════════════ */
+
+/* Arrow → */
+.link-arrow::after {
+  content: '→';
+  font-style: normal;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+.link-arrow:hover::after {
+  transform: translateX(3px);
+}
+
+/* External ↗ */
+.link-external::after {
+  content: '↗';
+  font-size: 0.8em;
+  line-height: 1;
+  vertical-align: super;
+  margin-left: 1px;
+}
+
+/* ═══════════════════════════════
+   LINK BUTTON
+═══════════════════════════════ */
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius-md, 8px);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.18s;
+  line-height: 1.4;
+}
+
+.link-btn:hover {
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary) 35%, transparent);
+}
+
+.link-btn-primary {
+  color: #fff;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.link-btn-primary:hover {
+  opacity: 0.88;
+  background: var(--color-primary);
+}
+
+.link-btn-muted {
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--color-neutral-600) 8%, transparent);
+  border-color: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+}
+
+.link-btn-muted:hover {
+  color: var(--text-main);
+  background: color-mix(in srgb, var(--color-neutral-600) 14%, transparent);
+}
+
+/* Small variant */
+.link-btn-sm {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+/* ═══════════════════════════════
+   LINK CARD (block clickable)
+═══════════════════════════════ */
+.link-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-lg, 12px);
+  background: var(--bg-secondary);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.18s;
+}
+
+.link-card:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 35%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 4%, var(--bg-secondary));
+  transform: translateX(2px);
+}
+
+.link-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md, 8px);
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.link-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.link-card-title {
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.link-card-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.link-card-arrow {
+  color: var(--text-muted);
+  font-size: 16px;
+  transition: transform 0.2s, color 0.18s;
+}
+
+.link-card:hover .link-card-arrow {
+  transform: translateX(3px);
+  color: var(--color-primary);
+}
+
+/* ═══════════════════════════════
+   LINK LIST (nav-style list)
+═══════════════════════════════ */
+.link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.link-list a,
+.link-list .link-list-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md, 8px);
+  color: var(--text-muted);
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  cursor: pointer;
+}
+
+.link-list a:hover,
+.link-list .link-list-item:hover {
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  color: var(--text-main);
+}
+
+.link-list a.is-active,
+.link-list .link-list-item.is-active {
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  color: var(--color-primary);
+  font-weight: 500;
+}

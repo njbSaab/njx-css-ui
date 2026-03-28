@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🚀 Quick Start — njX UI Library</title>
+  <meta name="description"
+    content="Get started with njX UI in under 60 seconds. One line CDN, npm install, or download ZIP. 9 themes, 25+ components, zero dependencies." />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+      transition: background 0.35s, color 0.35s;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .sc-nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      height: 60px;
+      background: color-mix(in srgb, var(--bg-main) 85%, transparent);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      gap: 24px;
+      transition: background 0.35s, border-color 0.35s;
+    }
+
+    .sc-nav-logo {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .sc-nav-ver {
+      font-size: 11px;
+      font-family: 'Roboto Mono', monospace;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    .sc-nav-links {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .sc-nav-links a {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .sc-nav-links a:hover {
+      color: var(--text-main);
+      background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    }
+
+    .sc-nav-links a.active {
+      color: var(--color-primary);
+      background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    }
+
+    .sc-nav-spacer {
+      flex: 1;
+    }
+
+    .sc-nav-themes {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .sc-theme-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .sc-theme-dot:hover {
+      transform: scale(1.2);
+    }
+
+    .sc-theme-dot.active {
+      border-color: var(--text-main);
+      transform: scale(1.15);
+    }
+
+    .sc-nav-github {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      background: var(--color-primary);
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px color-mix(in srgb, var(--color-primary) 40%, transparent);
+    }
+
+    .sc-nav-github:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px color-mix(in srgb, var(--color-primary) 50%, transparent);
+    }
+
+    /* ── HERO ── */
+    .sc-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 80px 32px 60px;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, color-mix(in srgb, var(--color-primary) 18%, transparent), transparent);
+    }
+
+    .sc-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(to bottom, transparent, var(--bg-main));
+      pointer-events: none;
+    }
+
+    .sc-hero-noise {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .sc-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .sc-hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--color-primary) 28%, transparent);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-primary);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .sc-hero-label-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(1.4)
+      }
+    }
+
+    .sc-hero-title {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 900;
+      letter-spacing: -2.5px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .sc-hero-title span.grad {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 60%, color-mix(in srgb, var(--color-accent) 60%, #a855f7) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sc-hero-title span.dim {
+      color: var(--text-muted);
+    }
+
+    .sc-hero-sub {
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 520px;
+      margin: 0 auto 36px;
+    }
+
+    /* ── SHARED ── */
+    .sc-section {
+      padding: 72px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sc-section-center {
+      text-align: center;
+    }
+
+    .sc-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--color-primary);
+      margin-bottom: 12px;
+    }
+
+    .sc-heading {
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .sc-subheading {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    .sc-subheading.center {
+      margin: 0 auto;
+    }
+
+    .sc-divider {
+      height: 1px;
+      background: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+      margin: 0 32px;
+    }
+
+    /* ── INSTALL METHOD CARDS ── */
+    .qs-methods {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .qs-method {
+      border-radius: 16px;
+      padding: 24px;
+      border: 1.5px solid color-mix(in srgb, var(--color-neutral-600) 28%, transparent);
+      background: var(--bg-secondary);
+      cursor: pointer;
+      transition: all 0.25s;
+      text-align: left;
+    }
+
+    .qs-method:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-3px);
+    }
+
+    .qs-method.selected {
+      border-color: var(--color-primary);
+      background: color-mix(in srgb, var(--color-primary) 8%, var(--bg-secondary));
+      box-shadow: 0 0 28px color-mix(in srgb, var(--color-primary) 18%, transparent);
+    }
+
+    .qs-method-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+      display: block;
+      line-height: 1;
+    }
+
+    .qs-method-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .qs-method-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .qs-method-badge {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+      color: var(--color-primary);
+      border: 1px solid color-mix(in srgb, var(--color-primary) 28%, transparent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── PANELS ── */
+    .qs-panel {
+      display: none;
+    }
+
+    .qs-panel.active {
+      display: block;
+    }
+
+    /* ── CODE BLOCK ── */
+    .sc-code-wrap {
+      background: #0d0d0d;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #222;
+      position: relative;
+    }
+
+    .sc-code-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: #111;
+      border-bottom: 1px solid #222;
+    }
+
+    .sc-code-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .sc-code-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .sc-code-filename {
+      font-size: 12px;
+      font-family: 'Roboto Mono', monospace;
+      color: #555;
+    }
+
+    .sc-code-copy {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: #222;
+      border: 1px solid #333;
+      color: #888;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sc-code-copy:hover {
+      background: #333;
+      color: #fff;
+    }
+
+    .sc-code-body {
+      padding: 22px 24px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 13px;
+      line-height: 1.9;
+      overflow-x: auto;
+    }
+
+    .sc-code-body .c {
+      color: #555;
+      font-style: italic;
+    }
+
+    .sc-code-body .k {
+      color: #e06c75;
+    }
+
+    .sc-code-body .s {
+      color: #98c379;
+    }
+
+    .sc-code-body .v {
+      color: #61afef;
+    }
+
+    .sc-code-body .n {
+      color: #c678dd;
+    }
+
+    .sc-code-body .t {
+      color: #e5c07b;
+    }
+
+    .sc-code-body .p {
+      color: #abb2bf;
+    }
+
+    .sc-code-body .num {
+      color: #d19a66;
+    }
+
+    /* inline code */
+    code {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.88em;
+      background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+      color: var(--color-primary);
+      padding: 2px 7px;
+      border-radius: 5px;
+    }
+
+    /* ── STEPS ── */
+    .sc-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .sc-step {
+      display: flex;
+      gap: 0;
+      position: relative;
+    }
+
+    .sc-step-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 56px;
+      flex-shrink: 0;
+    }
+
+    .sc-step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+      border: 1.5px solid var(--color-primary);
+      color: var(--color-primary);
+      font-weight: 800;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    .sc-step-line {
+      flex: 1;
+      width: 1.5px;
+      background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+      margin: 6px 0;
+    }
+
+    .sc-step:last-child .sc-step-line {
+      display: none;
+    }
+
+    .sc-step-body {
+      padding: 4px 0 40px 24px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .sc-step-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .sc-step-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    /* ── THEME GRID ── */
+    .qs-theme-grid {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 10px;
+      margin: 28px 0;
+    }
+
+    .qs-theme-card {
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .qs-theme-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-primary);
+    }
+
+    .qs-theme-card.selected {
+      border-color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .qs-theme-top {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qs-theme-dot-big {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+    }
+
+    .qs-theme-bottom {
+      padding: 8px 6px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* ── SNIPPET CARDS ── */
+    .qs-snippet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 20px;
+    }
+
+    .qs-snippet {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+    }
+
+    .qs-snippet-label {
+      padding: 12px 18px 10px;
+      background: color-mix(in srgb, var(--bg-secondary) 80%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .qs-snippet-copy {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 5px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .qs-snippet-copy:hover {
+      color: #fff;
+      background: #333;
+    }
+
+    .qs-snippet pre {
+      padding: 18px;
+      background: #0d0d0d;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 12.5px;
+      line-height: 1.85;
+      overflow-x: auto;
+      margin: 0;
+    }
+
+    .qs-snippet .c {
+      color: #555;
+      font-style: italic;
+    }
+
+    .qs-snippet .k {
+      color: #e06c75;
+    }
+
+    .qs-snippet .s {
+      color: #98c379;
+    }
+
+    .qs-snippet .v {
+      color: #61afef;
+    }
+
+    .qs-snippet .n {
+      color: #c678dd;
+    }
+
+    .qs-snippet .t {
+      color: #e5c07b;
+    }
+
+    .qs-snippet .p {
+      color: #abb2bf;
+    }
+
+    /* ── NEXT STEPS ── */
+    .qs-next-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .qs-next-card {
+      padding: 24px;
+      border-radius: 16px;
+      border: 1.5px solid color-mix(in srgb, var(--color-neutral-600) 28%, transparent);
+      background: var(--bg-secondary);
+      text-decoration: none;
+      transition: all 0.25s;
+      display: block;
+    }
+
+    .qs-next-card:hover {
+      border-color: var(--color-primary);
+      background: color-mix(in srgb, var(--color-primary) 6%, var(--bg-secondary));
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px color-mix(in srgb, var(--color-primary) 15%, transparent);
+    }
+
+    .qs-next-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .qs-next-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 5px;
+      color: var(--text-main);
+    }
+
+    .qs-next-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .qs-next-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    /* ── LIVE PREVIEW ── */
+    .qs-preview-box {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+    }
+
+    .qs-preview-bar {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: color-mix(in srgb, var(--bg-secondary) 95%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+    }
+
+    .qs-preview-bar-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .qs-preview-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: 'Roboto Mono', monospace;
+      margin-left: 8px;
+    }
+
+    .qs-preview-body {
+      padding: 28px;
+      background: var(--bg-main);
+      transition: background 0.35s;
+    }
+
+    /* ── TIP ── */
+    .qs-tip {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+      border: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+      margin-top: 16px;
+    }
+
+    .qs-tip-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+      line-height: 1.4;
+    }
+
+    .qs-tip-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .qs-tip-text strong {
+      color: var(--text-main);
+    }
+
+    /* ── BTN ── */
+    .sc-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      background: var(--color-primary);
+      color: #fff;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 22px color-mix(in srgb, var(--color-primary) 40%, transparent);
+      transition: all 0.25s;
+    }
+
+    .sc-btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px color-mix(in srgb, var(--color-primary) 55%, transparent);
+    }
+
+    .sc-btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      background: color-mix(in srgb, var(--color-neutral-600) 12%, transparent);
+      border: 1.5px solid color-mix(in srgb, var(--color-neutral-600) 35%, transparent);
+      color: var(--text-main);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .sc-btn-ghost:hover {
+      transform: translateY(-3px);
+      border-color: var(--color-primary);
+    }
+
+    /* ── LAYOUT HELPERS ── */
+    .sc-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .sc-two-col-3-2 {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ── FOOTER ── */
+    .sc-footer {
+      padding: 48px 32px;
+      text-align: center;
+      border-top: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+    }
+
+    .sc-footer-logo {
+      font-size: 22px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .sc-footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+
+    .sc-footer-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .sc-footer-links a:hover {
+      color: var(--color-primary);
+    }
+
+    .sc-footer-copy {
+      font-size: 12px;
+      color: var(--text-muted);
+      opacity: 0.4;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+
+      .sc-two-col,
+      .sc-two-col-3-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .qs-methods {
+        grid-template-columns: 1fr;
+      }
+
+      .qs-theme-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .sc-nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .sc-hero {
+        padding: 60px 20px 50px;
+      }
+
+      .sc-section {
+        padding: 48px 20px;
+      }
+
+      .qs-snippet-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .qs-theme-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════ NAV ══════════════════════ -->
+  <nav class="sc-nav">
+    <a class="sc-nav-logo" href="showcase.html">njX UI</a>
+    <span class="sc-nav-ver">v1.0.0</span>
+    <div class="sc-nav-links">
+      <a href="showcase.html">Overview</a>
+      <a href="index.html">Components</a>
+      <a href="doc.html">Docs</a>
+      <a href="quickstart.html" class="active">Quick Start</a>
+    </div>
+    <div class="sc-nav-spacer"></div>
+    <div class="sc-nav-themes" title="Switch theme">
+      <div class="sc-theme-dot active" style="background:#14a0ff" onclick="setTheme(this,'dark')" data-t="dark"></div>
+      <div class="sc-theme-dot" style="background:#e2e8f0" onclick="setTheme(this,'light')" data-t="light"></div>
+      <div class="sc-theme-dot" style="background:#f43f5e" onclick="setTheme(this,'red')" data-t="red"></div>
+      <div class="sc-theme-dot" style="background:#3b82f6" onclick="setTheme(this,'blue')" data-t="blue"></div>
+      <div class="sc-theme-dot" style="background:#22c55e" onclick="setTheme(this,'green')" data-t="green"></div>
+      <div class="sc-theme-dot" style="background:#00e5ff" onclick="setTheme(this,'cyan')" data-t="cyan"></div>
+      <div class="sc-theme-dot" style="background:#a855f7" onclick="setTheme(this,'purple')" data-t="purple"></div>
+    </div>
+    <a class="sc-nav-github" href="#" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+      </svg>
+      GitHub
+    </a>
+  </nav>
+
+  <!-- ══════════════════════ HERO ══════════════════════ -->
+  <section class="sc-hero">
+    <div class="sc-hero-noise"></div>
+    <div class="sc-hero-inner">
+      <div class="sc-hero-label">
+        <span class="sc-hero-label-dot"></span>
+        Up and running in 60 seconds
+      </div>
+      <h1 class="sc-hero-title">
+        <span class="grad">Start building</span><br>
+        <span class="dim">right now.</span>
+      </h1>
+      <p class="sc-hero-sub">
+        No build tools. No npm install (unless you want to). No configuration.
+        Paste one line of HTML and you're done.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ INSTALL ══════════════════════ -->
+  <div class="sc-section" style="padding-top:80px">
+    <span class="sc-eyebrow">Installation</span>
+    <h2 class="sc-heading">Choose your method</h2>
+    <p class="sc-subheading" style="margin-bottom:36px">Three ways to get njX into your project — pick whatever fits
+      your workflow.</p>
+
+    <div class="qs-methods">
+      <div class="qs-method selected" onclick="selectMethod(this,'cdn')">
+        <span class="qs-method-icon">🔗</span>
+        <div class="qs-method-title">CDN Link</div>
+        <div class="qs-method-sub">Paste one &lt;link&gt; tag. Works in any HTML file instantly.</div>
+        <span class="qs-method-badge">Recommended</span>
+      </div>
+      <div class="qs-method" onclick="selectMethod(this,'npm')">
+        <span class="qs-method-icon">📦</span>
+        <div class="qs-method-title">npm Install</div>
+        <div class="qs-method-sub">For Node.js projects, Vite, Webpack, or any bundler.</div>
+        <span class="qs-method-badge">For bundlers</span>
+      </div>
+      <div class="qs-method" onclick="selectMethod(this,'zip')">
+        <span class="qs-method-icon">📁</span>
+        <div class="qs-method-title">Download ZIP</div>
+        <div class="qs-method-sub">Self-host all CSS files. Full control, works offline.</div>
+        <span class="qs-method-badge">Self-hosted</span>
+      </div>
+    </div>
+
+    <!-- CDN panel -->
+    <div class="qs-panel active" id="panel-cdn">
+      <div class="sc-two-col-3-2">
+        <div>
+          <div class="sc-code-wrap">
+            <div class="sc-code-header">
+              <div class="sc-code-dots">
+                <div class="sc-code-dot" style="background:#ff5f57"></div>
+                <div class="sc-code-dot" style="background:#febc2e"></div>
+                <div class="sc-code-dot" style="background:#28c840"></div>
+              </div>
+              <span class="sc-code-filename">index.html</span>
+              <button class="sc-code-copy" onclick="copyBlock('cdn-code',this)">Copy</button>
+            </div>
+            <div class="sc-code-body" id="cdn-code"><span class="c">&lt;!-- 1. Add to &lt;head&gt; --&gt;</span>
+              <span class="k">&lt;link</span> <span class="t">rel</span>=<span class="s">"stylesheet"</span>
+              <span class="t">href</span>=<span
+                class="s">"https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css"</span><span class="k">&gt;</span>
+
+              <span class="c">&lt;!-- 2. Set a theme on &lt;html&gt; --&gt;</span>
+              <span class="k">&lt;html</span> <span class="t">data-theme</span>=<span class="s">"dark"</span><span
+                class="k">&gt;</span>
+
+              <span class="c">&lt;!-- 3. Use any component --&gt;</span>
+              <span class="k">&lt;button</span> <span class="t">class</span>=<span class="s">"btn
+                btn-primary"</span><span class="k">&gt;</span>Hello njX<span class="k">&lt;/button&gt;</span>
+              <span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"card-glow"</span><span
+                class="k">&gt;</span>
+              <span class="k">&lt;h2</span> <span class="t">class</span>=<span
+                class="s">"text-gradient-primary"</span><span class="k">&gt;</span>Built in 30 seconds<span
+                class="k">&lt;/h2&gt;</span>
+              <span class="k">&lt;/div&gt;</span>
+            </div>
+          </div>
+          <div class="qs-tip">
+            <span class="qs-tip-icon">💡</span>
+            <div class="qs-tip-text"><strong>That's it.</strong> No npm, no build, no config. Delivered via jsDelivr —
+              100+ edge locations globally, free, and highly reliable.</div>
+          </div>
+        </div>
+        <div>
+          <div class="qs-preview-box">
+            <div class="qs-preview-bar">
+              <div class="qs-preview-bar-dot" style="background:#ff5f57"></div>
+              <div class="qs-preview-bar-dot" style="background:#febc2e"></div>
+              <div class="qs-preview-bar-dot" style="background:#28c840"></div>
+              <span class="qs-preview-label">Live preview</span>
+            </div>
+            <div class="qs-preview-body">
+              <div style="margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap">
+                <button class="btn btn-primary">Hello njX</button>
+                <button class="btn btn-outline">Outline</button>
+                <button class="btn btn-ghost">Ghost</button>
+              </div>
+              <div class="card-glow" style="padding:16px">
+                <h3 class="text-gradient-primary" style="margin-bottom:6px;font-size:16px">Built in 30 seconds</h3>
+                <p style="font-size:13px;color:var(--text-muted)">A real component from njX CSS</p>
+                <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
+                  <span class="tag tag-primary">CSS only</span>
+                  <span class="tag tag-success">No build</span>
+                  <span class="tag tag-accent">9 themes</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- npm panel -->
+    <div class="qs-panel" id="panel-npm">
+      <div class="sc-two-col-3-2">
+        <div>
+          <div class="sc-code-wrap">
+            <div class="sc-code-header">
+              <div class="sc-code-dots">
+                <div class="sc-code-dot" style="background:#ff5f57"></div>
+                <div class="sc-code-dot" style="background:#febc2e"></div>
+                <div class="sc-code-dot" style="background:#28c840"></div>
+              </div>
+              <span class="sc-code-filename">terminal</span>
+              <button class="sc-code-copy" onclick="copyBlock('npm-code',this)">Copy</button>
+            </div>
+            <div class="sc-code-body" id="npm-code"><span class="c"># Install via npm</span>
+              <span class="v">npm</span> install njx-ui
+
+              <span class="c"># Or with yarn</span>
+              <span class="v">yarn</span> add njx-ui
+
+              <span class="c"># Or with pnpm</span>
+              <span class="v">pnpm</span> add njx-ui
+            </div>
+          </div>
+          <div class="sc-code-wrap" style="margin-top:14px">
+            <div class="sc-code-header">
+              <div class="sc-code-dots">
+                <div class="sc-code-dot" style="background:#ff5f57"></div>
+                <div class="sc-code-dot" style="background:#febc2e"></div>
+                <div class="sc-code-dot" style="background:#28c840"></div>
+              </div>
+              <span class="sc-code-filename">Import in your project</span>
+              <button class="sc-code-copy" onclick="copyBlock('npm-import-code',this)">Copy</button>
+            </div>
+            <div class="sc-code-body" id="npm-import-code"><span class="c">// In your JS/TS entry file</span>
+              <span class="k">import</span> <span class="s">'njx-ui/css/style.min.css'</span><span class="p">;</span>
+
+              <span class="c">// Or in your main CSS</span>
+              <span class="k">@import</span> <span class="s">'njx-ui/css/style.min.css'</span><span class="p">;</span>
+
+              <span class="c">// Then set theme on &lt;html&gt;</span>
+              <span class="k">&lt;html</span> <span class="t">data-theme</span>=<span class="s">"dark"</span><span
+                class="k">&gt;</span>
+            </div>
+          </div>
+          <div class="qs-tip">
+            <span class="qs-tip-icon">⚡</span>
+            <div class="qs-tip-text"><strong>Bundler-friendly.</strong> Works with Vite, Webpack, Rollup, Next.js, Nuxt,
+              Astro. No PostCSS plugins or extra config needed — it's just CSS.</div>
+          </div>
+        </div>
+        <div>
+          <div
+            style="padding:24px;border-radius:16px;border:1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);background:var(--bg-secondary)">
+            <div
+              style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:16px">
+              Package info</div>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:13px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="color:var(--text-muted)">Package</span><code>njx-ui</code>
+              </div>
+              <div style="height:1px;background:color-mix(in srgb, var(--color-neutral-600) 20%, transparent)"></div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="color:var(--text-muted)">Version</span><code>1.0.0</code>
+              </div>
+              <div style="height:1px;background:color-mix(in srgb, var(--color-neutral-600) 20%, transparent)"></div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="color:var(--text-muted)">Size (min+gzip)</span><code>~8 KB</code>
+              </div>
+              <div style="height:1px;background:color-mix(in srgb, var(--color-neutral-600) 20%, transparent)"></div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="color:var(--text-muted)">License</span><code>MIT</code>
+              </div>
+              <div style="height:1px;background:color-mix(in srgb, var(--color-neutral-600) 20%, transparent)"></div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="color:var(--text-muted)">Dependencies</span>
+                <span style="color:var(--color-success);font-weight:700">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ZIP panel -->
+    <div class="qs-panel" id="panel-zip">
+      <div class="sc-two-col-3-2">
+        <div>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">
+            Download the full <code>njx-css/</code> folder and host it yourself. No CDN dependency, works completely
+            offline and behind firewalls.
+          </p>
+          <a href="#" onclick="triggerDownload(event)" class="sc-btn-primary" style="margin-bottom:20px">
+            <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+              <path d="M8 1v9M5 7l3 3 3-3M2 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            Download njx-css.zip
+          </a>
+          <div class="sc-code-wrap">
+            <div class="sc-code-header">
+              <div class="sc-code-dots">
+                <div class="sc-code-dot" style="background:#ff5f57"></div>
+                <div class="sc-code-dot" style="background:#febc2e"></div>
+                <div class="sc-code-dot" style="background:#28c840"></div>
+              </div>
+              <span class="sc-code-filename">After extracting</span>
+              <button class="sc-code-copy" onclick="copyBlock('zip-code',this)">Copy</button>
+            </div>
+            <div class="sc-code-body" id="zip-code"><span class="c">&lt;!-- Reference the local file --&gt;</span>
+              <span class="k">&lt;link</span> <span class="t">rel</span>=<span class="s">"stylesheet"</span>
+              <span class="t">href</span>=<span class="s">"./njx-css/style.min.css"</span><span class="k">&gt;</span>
+
+              <span class="c">&lt;!-- Or import only what you need --&gt;</span>
+              <span class="k">&lt;link</span> <span class="t">rel</span>=<span class="s">"stylesheet"</span> <span
+                class="t">href</span>=<span class="s">"./njx-css/_base.css"</span><span class="k">&gt;</span>
+              <span class="k">&lt;link</span> <span class="t">rel</span>=<span class="s">"stylesheet"</span> <span
+                class="t">href</span>=<span class="s">"./njx-css/_buttons.css"</span><span class="k">&gt;</span>
+              <span class="k">&lt;link</span> <span class="t">rel</span>=<span class="s">"stylesheet"</span> <span
+                class="t">href</span>=<span class="s">"./njx-css/_cards.css"</span><span class="k">&gt;</span>
+            </div>
+          </div>
+          <div class="qs-tip">
+            <span class="qs-tip-icon">🗂</span>
+            <div class="qs-tip-text"><strong>Granular control.</strong> The archive contains 24 individual CSS files —
+              import only the parts you need to minimize file size even further.</div>
+          </div>
+        </div>
+        <div>
+          <div
+            style="padding:24px;border-radius:16px;border:1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);background:var(--bg-secondary)">
+            <div
+              style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:14px">
+              Archive contents</div>
+            <div style="font-family:'Roboto Mono',monospace;font-size:12px;line-height:2.1;color:var(--text-muted)">
+              <span style="color:var(--color-primary)">njx-css/</span><br>
+              &nbsp;├── <span style="color:var(--text-main)">style.min.css</span> <span style="opacity:.4">← full
+                bundle</span><br>
+              &nbsp;├── _base.css<br>
+              &nbsp;├── _reset.css<br>
+              &nbsp;├── _tokens.css<br>
+              &nbsp;├── _themes.css<br>
+              &nbsp;├── _buttons.css<br>
+              &nbsp;├── _cards.css<br>
+              &nbsp;├── _forms.css<br>
+              &nbsp;├── _tags.css<br>
+              &nbsp;├── _modals.css<br>
+              &nbsp;├── _tables.css<br>
+              &nbsp;├── _animations.css<br>
+              &nbsp;├── _gradients.css<br>
+              &nbsp;├── _hovers.css<br>
+              &nbsp;└── <span style="opacity:.4">... 10 more files</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sc-divider"></div>
+
+  <!-- ══════════════════════ FIRST PAGE ══════════════════════ -->
+  <div class="sc-section">
+    <span class="sc-eyebrow">Your first page</span>
+    <h2 class="sc-heading">From zero to styled<br>in 3 steps</h2>
+
+    <div class="sc-two-col" style="margin-top:40px">
+      <div class="sc-steps">
+        <div class="sc-step">
+          <div class="sc-step-left">
+            <div class="sc-step-num">1</div>
+            <div class="sc-step-line"></div>
+          </div>
+          <div class="sc-step-body">
+            <div class="sc-step-title">Connect the stylesheet</div>
+            <div class="sc-step-desc">One <code>&lt;link&gt;</code> tag inside <code>&lt;head&gt;</code>. No JavaScript,
+              no build step, nothing else required.</div>
+            <div class="sc-code-wrap" style="margin-top:10px">
+              <div class="sc-code-body" style="padding:14px 18px;font-size:12px"><span class="k">&lt;link</span> <span
+                  class="t">rel</span>=<span class="s">"stylesheet"</span> <span class="t">href</span>=<span
+                  class="s">"https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css"</span><span class="k">&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-step">
+          <div class="sc-step-left">
+            <div class="sc-step-num">2</div>
+            <div class="sc-step-line"></div>
+          </div>
+          <div class="sc-step-body">
+            <div class="sc-step-title">Pick a theme</div>
+            <div class="sc-step-desc">Set <code>data-theme</code> on the <code>&lt;html&gt;</code> element. Every
+              component adapts automatically — no extra CSS needed.</div>
+            <div class="sc-code-wrap" style="margin-top:10px">
+              <div class="sc-code-body" style="padding:14px 18px;font-size:12px"><span class="k">&lt;html</span> <span
+                  class="t">lang</span>=<span class="s">"en"</span> <span class="t">data-theme</span>=<span
+                  class="s">"dark"</span><span class="k">&gt;</span>
+                <span class="c">&lt;!-- dark · light · red · blue · green · cyan · yellow · pink · purple --&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-step">
+          <div class="sc-step-left">
+            <div class="sc-step-num">3</div>
+          </div>
+          <div class="sc-step-body">
+            <div class="sc-step-title">Use component classes</div>
+            <div class="sc-step-desc">Add classes like <code>btn btn-primary</code> or <code>card</code>. That's the
+              whole API — just class names on HTML elements.</div>
+            <div class="sc-code-wrap" style="margin-top:10px">
+              <div class="sc-code-body" style="padding:14px 18px;font-size:12px"><span class="k">&lt;button</span> <span
+                  class="t">class</span>=<span class="s">"btn btn-primary"</span><span class="k">&gt;</span>Click
+                me<span class="k">&lt;/button&gt;</span>
+                <span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"card"</span><span
+                  class="k">&gt;</span>A styled card<span class="k">&lt;/div&gt;</span>
+                <span class="k">&lt;span</span> <span class="t">class</span>=<span class="s">"tag
+                  tag-primary"</span><span class="k">&gt;</span>Badge<span class="k">&lt;/span&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div
+          style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:12px">
+          Complete boilerplate</div>
+        <div class="sc-code-wrap">
+          <div class="sc-code-header">
+            <div class="sc-code-dots">
+              <div class="sc-code-dot" style="background:#ff5f57"></div>
+              <div class="sc-code-dot" style="background:#febc2e"></div>
+              <div class="sc-code-dot" style="background:#28c840"></div>
+            </div>
+            <span class="sc-code-filename">index.html</span>
+            <button class="sc-code-copy" onclick="copyBlock('boilerplate-code',this)">Copy</button>
+          </div>
+          <div class="sc-code-body" id="boilerplate-code"><span class="k">&lt;!DOCTYPE html&gt;</span>
+            <span class="k">&lt;html</span> <span class="t">lang</span>=<span class="s">"en"</span> <span
+              class="t">data-theme</span>=<span class="s">"dark"</span><span class="k">&gt;</span>
+            <span class="k">&lt;head&gt;</span>
+            <span class="k">&lt;meta</span> <span class="t">charset</span>=<span class="s">"UTF-8"</span><span
+              class="k">&gt;</span>
+            <span class="k">&lt;meta</span> <span class="t">name</span>=<span class="s">"viewport"</span>
+            <span class="t">content</span>=<span class="s">"width=device-width, initial-scale=1"</span><span
+              class="k">&gt;</span>
+            <span class="k">&lt;link</span> <span class="t">rel</span>=<span class="s">"stylesheet"</span>
+            <span class="t">href</span>=<span
+              class="s">"https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css"</span><span class="k">&gt;</span>
+            <span class="k">&lt;title&gt;</span>My App<span class="k">&lt;/title&gt;</span>
+            <span class="k">&lt;/head&gt;</span>
+            <span class="k">&lt;body&gt;</span>
+
+            <span class="k">&lt;button</span> <span class="t">class</span>=<span class="s">"btn btn-primary"</span><span
+              class="k">&gt;</span>
+            Get Started
+            <span class="k">&lt;/button&gt;</span>
+
+            <span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"card-glow"</span><span
+              class="k">&gt;</span>
+            <span class="k">&lt;h2</span> <span class="t">class</span>=<span
+              class="s">"text-gradient-primary"</span><span class="k">&gt;</span>
+            Hello njX
+            <span class="k">&lt;/h2&gt;</span>
+            <span class="k">&lt;p</span> <span class="t">class</span>=<span class="s">"text-muted"</span><span
+              class="k">&gt;</span>
+            Built in 30 seconds.
+            <span class="k">&lt;/p&gt;</span>
+            <span class="k">&lt;/div&gt;</span>
+
+            <span class="k">&lt;/body&gt;</span>
+            <span class="k">&lt;/html&gt;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sc-divider"></div>
+
+  <!-- ══════════════════════ THEMES ══════════════════════ -->
+  <div class="sc-section sc-section-center">
+    <span class="sc-eyebrow">Theme system</span>
+    <h2 class="sc-heading">9 themes, one attribute</h2>
+    <p class="sc-subheading center" style="margin-bottom:0">
+      Click any theme below — every component on this page updates instantly.
+      Save preference with: <code>localStorage.setItem('theme', 'purple')</code>
+    </p>
+
+    <div class="qs-theme-grid">
+      <div class="qs-theme-card selected" onclick="setThemeCard(this,'dark')" data-tc="dark" style="background:#0d1117">
+        <div class="qs-theme-top" style="background:#0d1117">
+          <div class="qs-theme-dot-big" style="background:#14a0ff"></div>
+        </div>
+        <div class="qs-theme-bottom" style="background:#161b22;color:#8b949e">Dark</div>
+      </div>
+      <div class="qs-theme-card" onclick="setThemeCard(this,'light')" data-tc="light" style="background:#f8fafc">
+        <div class="qs-theme-top" style="background:#f8fafc">
+          <div class="qs-theme-dot-big" style="background:#0f172a;opacity:0.6"></div>
+        </div>
+        <div class="qs-theme-bottom" style="background:#e2e8f0;color:#475569">Light</div>
+      </div>
+      <div class="qs-theme-card" onclick="setThemeCard(this,'red')" data-tc="red" style="background:#0f0a0a">
+        <div class="qs-theme-top" style="background:#0f0a0a">
+          <div class="qs-theme-dot-big" style="background:#f43f5e"></div>
+        </div>
+        <div class="qs-theme-bottom" style="background:#1a0d0f;color:#f43f5e">Red</div>
+      </div>
+      <div class="qs-theme-card" onclick="setThemeCard(this,'blue')" data-tc="blue" style="background:#080f1a">
+        <div class="qs-theme-top" style="background:#080f1a">
+          <div class="qs-theme-dot-big" style="background:#3b82f6"></div>
+        </div>
+        <div class="qs-theme-bottom" style="background:#0e1629;color:#3b82f6">Blue</div>
+      </div>
+      <div class="qs-theme-card" onclick="setThemeCard(this,'green')" data-tc="green" style="background:#071209">
+        <div class="qs-theme-top" style="background:#071209">
+          <div class="qs-theme-dot-big" style="background:#22c55e"></div>
+        </div>
+        <div class="qs-theme-bottom" style="background:#0a1e0d;color:#22c55e">Green</div>
+      </div>
+      <div class="qs-theme-card" onclick="setThemeCard(this,'cyan')" data-tc="cyan" style="background:#030f11">
+        <div class="qs-theme-top" style="background:#030f11">
+          <div class="qs-theme-dot-big" style="background:#00e5ff"></div>
+        </div>
+        <div class="qs-theme-bottom" style="background:#061a1e;color:#00e5ff">Cyan</div>
+      </div>
+      <div class="qs-theme-card" onclick="setThemeCard(this,'yellow')" data-tc="yellow" style="background:#100f03">
+        <div class="qs-theme-top" style="background:#100f03">
+          <div class="qs-theme-dot-big" style="background:#facc15"></div>
+        </div>
+        <div class="qs-theme-bottom" style="background:#1a1904;color:#facc15">Yellow</div>
+      </div>
+      <div class="qs-theme-card" onclick="setThemeCard(this,'pink')" data-tc="pink" style="background:#110610">
+        <div class="qs-theme-top" style="background:#110610">
+          <div class="qs-theme-dot-big" style="background:#ec4899"></div>
+        </div>
+        <div class="qs-theme-bottom" style="background:#1e0b1b;color:#ec4899">Pink</div>
+      </div>
+      <div class="qs-theme-card" onclick="setThemeCard(this,'purple')" data-tc="purple" style="background:#0c0812">
+        <div class="qs-theme-top" style="background:#0c0812">
+          <div class="qs-theme-dot-big" style="background:#a855f7"></div>
+        </div>
+        <div class="qs-theme-bottom" style="background:#160c22;color:#a855f7">Purple</div>
+      </div>
+    </div>
+
+    <div style="max-width:600px;margin:0 auto">
+      <div class="sc-code-wrap">
+        <div class="sc-code-header">
+          <div class="sc-code-dots">
+            <div class="sc-code-dot" style="background:#ff5f57"></div>
+            <div class="sc-code-dot" style="background:#febc2e"></div>
+            <div class="sc-code-dot" style="background:#28c840"></div>
+          </div>
+          <span class="sc-code-filename">Theme switching with JS</span>
+          <button class="sc-code-copy" onclick="copyBlock('theme-code',this)">Copy</button>
+        </div>
+        <div class="sc-code-body" id="theme-code"><span class="c">// Switch theme at any time</span>
+          <span class="k">function</span> <span class="v">setTheme</span><span class="p">(</span><span
+            class="t">name</span><span class="p">) {</span>
+          <span class="v">document</span><span class="p">.</span><span class="t">documentElement</span>
+          <span class="p">.</span><span class="v">setAttribute</span><span class="p">(</span><span
+            class="s">'data-theme'</span><span class="p">,</span> <span class="t">name</span><span class="p">);</span>
+          <span class="v">localStorage</span><span class="p">.</span><span class="v">setItem</span><span
+            class="p">(</span><span class="s">'theme'</span><span class="p">,</span> <span class="t">name</span><span
+            class="p">);</span>
+          <span class="p">}</span>
+
+          <span class="c">// Restore on page load</span>
+          <span class="k">const</span> <span class="t">saved</span> <span class="p">=</span> <span
+            class="v">localStorage</span><span class="p">.</span><span class="v">getItem</span><span
+            class="p">(</span><span class="s">'theme'</span><span class="p">);</span>
+          <span class="k">if</span> <span class="p">(</span><span class="t">saved</span><span class="p">)</span> <span
+            class="v">setTheme</span><span class="p">(</span><span class="t">saved</span><span class="p">);</span>
+
+          <span class="c">// Usage</span>
+          <span class="v">setTheme</span><span class="p">(</span><span class="s">'purple'</span><span
+            class="p">);</span> <span class="c">// entire UI turns purple</span>
+          <span class="v">setTheme</span><span class="p">(</span><span class="s">'dark'</span><span class="p">);</span>
+          <span class="c">// back to dark</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sc-divider"></div>
+
+  <!-- ══════════════════════ SNIPPETS ══════════════════════ -->
+  <div class="sc-section">
+    <span class="sc-eyebrow">Common patterns</span>
+    <h2 class="sc-heading">Copy-paste snippets</h2>
+    <p class="sc-subheading" style="margin-bottom:36px">The most commonly used patterns — ready to drop into your
+      project.</p>
+
+    <div class="qs-snippet-grid">
+
+      <div class="qs-snippet">
+        <div class="qs-snippet-label">Buttons<button class="qs-snippet-copy"
+            onclick="copySnippet('snip-btn',this)">Copy</button></div>
+        <pre
+          id="snip-btn"><span class="k">&lt;button</span> <span class="t">class</span>=<span class="s">"btn btn-primary"</span><span class="k">&gt;</span>Primary<span class="k">&lt;/button&gt;</span>
+<span class="k">&lt;button</span> <span class="t">class</span>=<span class="s">"btn btn-secondary"</span><span class="k">&gt;</span>Secondary<span class="k">&lt;/button&gt;</span>
+<span class="k">&lt;button</span> <span class="t">class</span>=<span class="s">"btn btn-outline"</span><span class="k">&gt;</span>Outline<span class="k">&lt;/button&gt;</span>
+<span class="k">&lt;button</span> <span class="t">class</span>=<span class="s">"btn btn-ghost"</span><span class="k">&gt;</span>Ghost<span class="k">&lt;/button&gt;</span>
+<span class="k">&lt;button</span> <span class="t">class</span>=<span class="s">"btn btn-gradient"</span><span class="k">&gt;</span>Gradient<span class="k">&lt;/button&gt;</span>
+<span class="k">&lt;button</span> <span class="t">class</span>=<span class="s">"btn btn-sm btn-primary"</span><span class="k">&gt;</span>Small<span class="k">&lt;/button&gt;</span>
+<span class="k">&lt;button</span> <span class="t">class</span>=<span class="s">"btn btn-lg btn-primary"</span><span class="k">&gt;</span>Large<span class="k">&lt;/button&gt;</span></pre>
+      </div>
+
+      <div class="qs-snippet">
+        <div class="qs-snippet-label">Cards<button class="qs-snippet-copy"
+            onclick="copySnippet('snip-card',this)">Copy</button></div>
+        <pre
+          id="snip-card"><span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"card"</span><span class="k">&gt;</span>Basic card<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"card-glow"</span><span class="k">&gt;</span>Glow on hover<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"card-gradient"</span><span class="k">&gt;</span>Gradient border<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"card-glass"</span><span class="k">&gt;</span>Glass morphism<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"card-dark"</span><span class="k">&gt;</span>Dark variant<span class="k">&lt;/div&gt;</span></pre>
+      </div>
+
+      <div class="qs-snippet">
+        <div class="qs-snippet-label">Tags &amp; Badges<button class="qs-snippet-copy"
+            onclick="copySnippet('snip-tag',this)">Copy</button></div>
+        <pre
+          id="snip-tag"><span class="k">&lt;span</span> <span class="t">class</span>=<span class="s">"tag"</span><span class="k">&gt;</span>Default<span class="k">&lt;/span&gt;</span>
+<span class="k">&lt;span</span> <span class="t">class</span>=<span class="s">"tag tag-primary"</span><span class="k">&gt;</span>Primary<span class="k">&lt;/span&gt;</span>
+<span class="k">&lt;span</span> <span class="t">class</span>=<span class="s">"tag tag-success"</span><span class="k">&gt;</span>Success<span class="k">&lt;/span&gt;</span>
+<span class="k">&lt;span</span> <span class="t">class</span>=<span class="s">"tag tag-danger"</span><span class="k">&gt;</span>Danger<span class="k">&lt;/span&gt;</span>
+<span class="k">&lt;span</span> <span class="t">class</span>=<span class="s">"tag tag-accent"</span><span class="k">&gt;</span>Accent<span class="k">&lt;/span&gt;</span>
+<span class="c">&lt;!-- Outline variant --&gt;</span>
+<span class="k">&lt;span</span> <span class="t">class</span>=<span class="s">"tag tag-primary tag-outline"</span><span class="k">&gt;</span>Outline<span class="k">&lt;/span&gt;</span></pre>
+      </div>
+
+      <div class="qs-snippet">
+        <div class="qs-snippet-label">Text gradients<button class="qs-snippet-copy"
+            onclick="copySnippet('snip-tg',this)">Copy</button></div>
+        <pre
+          id="snip-tg"><span class="k">&lt;h1</span> <span class="t">class</span>=<span class="s">"text-gradient-primary"</span><span class="k">&gt;</span>
+  Primary gradient
+<span class="k">&lt;/h1&gt;</span>
+<span class="k">&lt;h2</span> <span class="t">class</span>=<span class="s">"text-gradient-accent"</span><span class="k">&gt;</span>
+  Accent gradient
+<span class="k">&lt;/h2&gt;</span>
+<span class="k">&lt;span</span> <span class="t">class</span>=<span class="s">"text-gradient-rainbow"</span><span class="k">&gt;</span>
+  Rainbow
+<span class="k">&lt;/span&gt;</span>
+<span class="k">&lt;span</span> <span class="t">class</span>=<span class="s">"text-gradient-gold"</span><span class="k">&gt;</span>Gold<span class="k">&lt;/span&gt;</span></pre>
+      </div>
+
+      <div class="qs-snippet">
+        <div class="qs-snippet-label">Animations<button class="qs-snippet-copy"
+            onclick="copySnippet('snip-anim',this)">Copy</button></div>
+        <pre
+          id="snip-anim"><span class="c">&lt;!-- Loop animations --&gt;</span>
+<span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"animate-float"</span><span class="k">&gt;</span>Float<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"animate-pulse"</span><span class="k">&gt;</span>Pulse<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"animate-glow"</span><span class="k">&gt;</span>Glow<span class="k">&lt;/div&gt;</span>
+<span class="c">&lt;!-- Hover effects --&gt;</span>
+<span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"hover-lift"</span><span class="k">&gt;</span>Lifts on hover<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"hover-glow"</span><span class="k">&gt;</span>Glows on hover<span class="k">&lt;/div&gt;</span>
+<span class="c">&lt;!-- Text effects --&gt;</span>
+<span class="k">&lt;span</span> <span class="t">class</span>=<span class="s">"animate-neon"</span><span class="k">&gt;</span>Neon glow<span class="k">&lt;/span&gt;</span></pre>
+      </div>
+
+      <div class="qs-snippet">
+        <div class="qs-snippet-label">Layout grid<button class="qs-snippet-copy"
+            onclick="copySnippet('snip-grid',this)">Copy</button></div>
+        <pre id="snip-grid"><span class="c">&lt;!-- 12-column flex grid --&gt;</span>
+<span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"row"</span><span class="k">&gt;</span>
+  <span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"col-6"</span><span class="k">&gt;</span>Half<span class="k">&lt;/div&gt;</span>
+  <span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"col-6"</span><span class="k">&gt;</span>Half<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;/div&gt;</span>
+<span class="c">&lt;!-- CSS Grid --&gt;</span>
+<span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"grid-col-3"</span><span class="k">&gt;</span>
+  <span class="k">&lt;div&gt;</span>A<span class="k">&lt;/div&gt;</span>
+  <span class="k">&lt;div&gt;</span>B<span class="k">&lt;/div&gt;</span>
+  <span class="k">&lt;div&gt;</span>C<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;/div&gt;</span></pre>
+      </div>
+
+      <div class="qs-snippet">
+        <div class="qs-snippet-label">CSS Variables — Customize<button class="qs-snippet-copy"
+            onclick="copySnippet('snip-vars',this)">Copy</button></div>
+        <pre id="snip-vars"><span class="c">/* Override any token in your CSS */</span>
+<span class="k">:root</span> <span class="p">{</span>
+  <span class="c">/* Change primary color globally */</span>
+  <span class="v">--color-primary</span><span class="p">:</span> <span class="s">#ff6b35</span><span class="p">;</span>
+  <span class="c">/* Adjust base spacing unit */</span>
+  <span class="v">--space-base</span><span class="p">:</span> <span class="p">5px;</span>
+  <span class="c">/* Change border-radius across all components */</span>
+  <span class="v">--radius-md</span><span class="p">:</span> <span class="p">6px;</span>
+<span class="p">}</span></pre>
+      </div>
+
+      <div class="qs-snippet">
+        <div class="qs-snippet-label">Bulma compatibility<button class="qs-snippet-copy"
+            onclick="copySnippet('snip-bulma',this)">Copy</button></div>
+        <pre id="snip-bulma"><span class="c">&lt;!-- Bulma classes work out of the box --&gt;</span>
+<span class="k">&lt;button</span> <span class="t">class</span>=<span class="s">"button is-primary"</span><span class="k">&gt;</span>
+  Primary
+<span class="k">&lt;/button&gt;</span>
+<span class="k">&lt;button</span> <span class="t">class</span>=<span class="s">"button is-primary is-rounded"</span><span class="k">&gt;</span>
+  Rounded
+<span class="k">&lt;/button&gt;</span>
+<span class="k">&lt;button</span> <span class="t">class</span>=<span class="s">"button is-loading"</span><span class="k">&gt;</span>
+  Loading
+<span class="k">&lt;/button&gt;</span></pre>
+      </div>
+
+      <div class="qs-snippet">
+        <div class="qs-snippet-label">Utility classes<button class="qs-snippet-copy"
+            onclick="copySnippet('snip-utils',this)">Copy</button></div>
+        <pre
+          id="snip-utils"><span class="c">&lt;!-- Tailwind-compatible spacing --&gt;</span>
+<span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"p-4 mt-2 mb-4"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+<span class="c">&lt;!-- Flexbox helpers --&gt;</span>
+<span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"flex items-center gap-4"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+<span class="c">&lt;!-- Typography --&gt;</span>
+<span class="k">&lt;p</span> <span class="t">class</span>=<span class="s">"text-sm text-muted"</span><span class="k">&gt;</span>Muted text<span class="k">&lt;/p&gt;</span>
+<span class="k">&lt;h1</span> <span class="t">class</span>=<span class="s">"text-2xl font-bold"</span><span class="k">&gt;</span>Heading<span class="k">&lt;/h1&gt;</span>
+<span class="c">&lt;!-- Background gradients --&gt;</span>
+<span class="k">&lt;div</span> <span class="t">class</span>=<span class="s">"bg-gradient-primary"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span></pre>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sc-divider"></div>
+
+  <!-- ══════════════════════ NEXT STEPS ══════════════════════ -->
+  <div class="sc-section sc-section-center">
+    <span class="sc-eyebrow">What's next</span>
+    <h2 class="sc-heading">Keep building</h2>
+    <p class="sc-subheading center" style="margin-bottom:36px">You're set up. Here's where to go from here.</p>
+
+    <div class="qs-next-grid">
+      <a href="index.html" class="qs-next-card">
+        <span class="qs-next-icon">🧩</span>
+        <div class="qs-next-title">All Components</div>
+        <div class="qs-next-desc">Browse every component with live previews and copy-ready code. 25+ components, fully
+          documented.</div>
+        <span class="qs-next-arrow">Browse components →</span>
+      </a>
+      <a href="doc.html" class="qs-next-card">
+        <span class="qs-next-icon">📖</span>
+        <div class="qs-next-title">Full Documentation</div>
+        <div class="qs-next-desc">Themes, design tokens, CSS variables, customization, and the complete API reference.
+        </div>
+        <span class="qs-next-arrow">Read the docs →</span>
+      </a>
+      <a href="showcase.html" class="qs-next-card">
+        <span class="qs-next-icon">🎨</span>
+        <div class="qs-next-title">Why njX?</div>
+        <div class="qs-next-desc">See how njX compares to Bootstrap, Bulma, Pico CSS, and chota. What makes it
+          different.</div>
+        <span class="qs-next-arrow">View showcase →</span>
+      </a>
+      <a href="check.html" class="qs-next-card">
+        <span class="qs-next-icon">📋</span>
+        <div class="qs-next-title">Changelog</div>
+        <div class="qs-next-desc">Track updates, new components, bug fixes, and all version history.</div>
+        <span class="qs-next-arrow">See changelog →</span>
+      </a>
+    </div>
+
+    <div
+      style="margin-top:56px;padding:40px;border-radius:20px;background:radial-gradient(ellipse 80% 100% at 50% 50%, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent);border:1px solid color-mix(in srgb, var(--color-primary) 18%, transparent)">
+      <div
+        style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--color-primary);margin-bottom:14px">
+        Open Source</div>
+      <h3 style="font-size:clamp(20px,3vw,28px);font-weight:900;letter-spacing:-1px;margin-bottom:12px">Like njX? Star
+        it on GitHub ⭐</h3>
+      <p
+        style="font-size:15px;color:var(--text-muted);line-height:1.65;margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto">
+        Free, open-source, MIT licensed. A GitHub star helps others discover the project and keeps development going.
+      </p>
+      <a href="#" target="_blank" class="sc-btn-primary" style="font-size:15px;padding:14px 36px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+        </svg>
+        Star on GitHub
+      </a>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ FOOTER ══════════════════════ -->
+  <footer class="sc-footer">
+    <div class="sc-footer-logo">njX UI</div>
+    <p
+      style="font-size:14px;color:var(--text-muted);margin-bottom:20px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.6">
+      A modern CSS component library built for developers who value speed and simplicity.
+    </p>
+    <div class="sc-footer-links">
+      <a href="showcase.html">Overview</a>
+      <a href="index.html">Components</a>
+      <a href="doc.html">Documentation</a>
+      <a href="quickstart.html">Quick Start</a>
+      <a href="check.html">Changelog</a>
+      <a href="#" target="_blank">GitHub</a>
+    </div>
+    <p class="sc-footer-copy">MIT License · Open Source · Built with ❤️ and pure CSS</p>
+  </footer>
+
+  <script>
+    // ── THEME (nav dots) ──
+    function setTheme(dot, theme) {
+      applyTheme(theme);
+      document.querySelectorAll('.sc-theme-dot').forEach(d => d.classList.remove('active'));
+      dot.classList.add('active');
+      document.querySelectorAll('.qs-theme-card').forEach(c => c.classList.toggle('selected', c.dataset.tc === theme));
+    }
+
+    // ── THEME (grid cards) ──
+    function setThemeCard(card, theme) {
+      applyTheme(theme);
+      document.querySelectorAll('.qs-theme-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      document.querySelectorAll('.sc-theme-dot').forEach(d => d.classList.toggle('active', d.dataset.t === theme));
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('njx-theme', theme);
+    }
+
+    // ── INSTALL METHOD SELECTOR ──
+    function selectMethod(card, method) {
+      document.querySelectorAll('.qs-method').forEach(m => m.classList.remove('selected'));
+      card.classList.add('selected');
+      document.querySelectorAll('.qs-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + method).classList.add('active');
+    }
+
+    // ── COPY CODE BLOCK ──
+    function copyBlock(id, btn) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        btn.style.color = '#98c379';
+        setTimeout(() => { btn.textContent = 'Copy'; btn.style.color = ''; }, 2000);
+      });
+    }
+
+    // ── COPY SNIPPET ──
+    function copySnippet(id, btn) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        btn.style.color = '#98c379';
+        setTimeout(() => { btn.textContent = 'Copy'; btn.style.color = ''; }, 2000);
+      });
+    }
+
+    // ── ZIP DOWNLOAD ──
+    function triggerDownload(e) {
+      e.preventDefault();
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+      s.onload = () => {
+        const files = ['style.css', '_base.css', '_reset.css', '_tokens.css', '_themes.css', '_buttons.css', '_cards.css', '_forms.css', '_tags.css', '_modals.css', '_tables.css', '_tabs.css', '_accordion.css', '_notifications.css', '_breadcrumbs.css', '_progress.css', '_typography.css', '_animations.css', '_gradients.css', '_hovers.css', '_grid.css', '_utils.css', '_bulma-compat.css', 'style.min.css'];
+        const zip = new JSZip();
+        const folder = zip.folder('njx-css');
+        Promise.all(files.map(async f => {
+          const r = await fetch('css/' + f);
+          if (r.ok) folder.file(f, await r.text());
+        })).then(() => zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } }))
+          .then(blob => {
+            const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'njx-css.zip' });
+            a.click();
+          });
+      };
+      document.head.appendChild(s);
+    }
+
+    // ── RESTORE THEME ──
+    const saved = localStorage.getItem('njx-theme');
+    if (saved) {
+      document.documentElement.setAttribute('data-theme', saved);
+      document.querySelectorAll('.sc-theme-dot').forEach(d => d.classList.toggle('active', d.dataset.t === saved));
+      document.querySelectorAll('.qs-theme-card').forEach(c => c.classList.toggle('selected', c.dataset.tc === saved));
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,498 @@
+/* ============================================================
+   _gradients.css — Градиенты
+   Готовые градиентные классы для фона и текста
+   ============================================================ */
+
+/* ═══════════════════════════════════════════
+   BACKGROUND GRADIENTS — Основные
+═══════════════════════════════════════════ */
+
+/* Primary Gradients */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 60%, #000)) !important;
+}
+
+.gradient-primary-light {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 30%, #fff), var(--color-primary)) !important;
+}
+
+.gradient-primary-dark {
+  background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 80%, #000)) !important;
+}
+
+.gradient-primary-vertical {
+  background: linear-gradient(180deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 60%, #000)) !important;
+}
+
+/* Accent Gradients */
+.gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 60%, #000)) !important;
+}
+
+.gradient-accent-light {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-accent) 30%, #fff), var(--color-accent)) !important;
+}
+
+.gradient-accent-dark {
+  background: linear-gradient(135deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 80%, #000)) !important;
+}
+
+/* Success Gradients */
+.gradient-success {
+  background: linear-gradient(135deg, var(--color-success), color-mix(in srgb, var(--color-success) 60%, #000)) !important;
+}
+
+.gradient-success-light {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-success) 30%, #fff), var(--color-success)) !important;
+}
+
+/* Error Gradients */
+.gradient-error {
+  background: linear-gradient(135deg, var(--color-error), color-mix(in srgb, var(--color-error) 60%, #000)) !important;
+}
+
+.gradient-error-light {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-error) 30%, #fff), var(--color-error)) !important;
+}
+
+/* Warning Gradients */
+.gradient-warning {
+  background: linear-gradient(135deg, var(--color-warning), color-mix(in srgb, var(--color-warning) 60%, #000)) !important;
+}
+
+/* ═══════════════════════════════════════════
+   BACKGROUND GRADIENTS — Комбинированные
+═══════════════════════════════════════════ */
+
+/* Blue to Purple */
+.gradient-blue-purple {
+  background: linear-gradient(135deg, #14a0ff, #9933ff) !important;
+}
+
+.gradient-ocean {
+  background: linear-gradient(135deg, #00c6ff, #0072ff) !important;
+}
+
+.gradient-sky {
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+}
+
+/* Red to Pink */
+.gradient-sunset {
+  background: linear-gradient(135deg, #ff6b6b, #ff0088) !important;
+}
+
+.gradient-fire {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b) !important;
+}
+
+.gradient-love {
+  background: linear-gradient(135deg, #ff9a9e, #fecfef) !important;
+}
+
+/* Green to Cyan */
+.gradient-nature {
+  background: linear-gradient(135deg, #56ab2f, #a8e063) !important;
+}
+
+.gradient-mint {
+  background: linear-gradient(135deg, #00b09b, #96c93d) !important;
+}
+
+.gradient-ocean-green {
+  background: linear-gradient(135deg, #00c9ff, #92fe9d) !important;
+}
+
+/* Orange to Yellow */
+.gradient-gold {
+  background: linear-gradient(135deg, #f09819, #edde5d) !important;
+}
+
+.gradient-orange-sun {
+  background: linear-gradient(135deg, #ff9966, #ff5e62) !important;
+}
+
+.gradient-honey {
+  background: linear-gradient(135deg, #f7971e, #ffd200) !important;
+}
+
+/* Purple to Pink */
+.gradient-cosmic {
+  background: linear-gradient(135deg, #667eea, #f093fb) !important;
+}
+
+.gradient-neon {
+  background: linear-gradient(135deg, #cc2b5e, #753a88) !important;
+}
+
+.gradient-purple-love {
+  background: linear-gradient(135deg, #da22ff, #9733ee) !important;
+}
+
+/* Multi-color */
+.gradient-rainbow {
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb) !important;
+}
+
+.gradient-aurora {
+  background: linear-gradient(135deg, #00c6ff, #0072ff, #667eea) !important;
+}
+
+.gradient-galaxy {
+  background: linear-gradient(135deg, #f093fb, #f5576c, #667eea) !important;
+}
+
+/* ═══════════════════════════════════════════
+   BACKGROUND GRADIENTS — Тёмные
+═══════════════════════════════════════════ */
+
+.gradient-dark-midnight {
+  background: linear-gradient(135deg, #232526, #414345) !important;
+}
+
+.gradient-dark-void {
+  background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
+}
+
+.gradient-dark-shadow {
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #2d2d2d) !important;
+}
+
+.gradient-dark-blue {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364) !important;
+}
+
+.gradient-dark-purple {
+  background: linear-gradient(135deg, #1a0524, #2d0f3f, #4a1a5c) !important;
+}
+
+/* ═══════════════════════════════════════════
+   BACKGROUND GRADIENTS — Металлические
+═══════════════════════════════════════════ */
+
+.gradient-gold-metal {
+  background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c) !important;
+}
+
+.gradient-silver {
+  background: linear-gradient(135deg, #e0e0e0, #ffffff, #a0a0a0, #ffffff, #d0d0d0) !important;
+}
+
+.gradient-bronze {
+  background: linear-gradient(135deg, #cd7f32, #e6a85c, #b87333, #e6a85c, #cd7f32) !important;
+}
+
+/* ═══════════════════════════════════════════
+   TEXT GRADIENTS
+═══════════════════════════════════════════ */
+
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 60%, #fff));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 60%, #fff));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-success {
+  background: linear-gradient(135deg, var(--color-success), color-mix(in srgb, var(--color-success) 60%, #fff));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-error {
+  background: linear-gradient(135deg, var(--color-error), color-mix(in srgb, var(--color-error) 60%, #fff));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Text Gradient Combinations */
+.text-gradient-blue-purple {
+  background: linear-gradient(135deg, #14a0ff, #9933ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-sunset {
+  background: linear-gradient(135deg, #ff6b6b, #ff0088);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-ocean {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #f09819, #edde5d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-cosmic {
+  background: linear-gradient(135deg, #667eea, #f093fb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-nature {
+  background: linear-gradient(135deg, #56ab2f, #a8e063);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-fire {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-rainbow {
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-metallic {
+  background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════════════════
+   GRADIENT BORDERS
+═══════════════════════════════════════════ */
+
+.border-gradient-primary {
+  position: relative;
+  background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
+              linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 60%, #000)) border-box;
+  border: 2px solid transparent;
+}
+
+.border-gradient-accent {
+  position: relative;
+  background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
+              linear-gradient(135deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 60%, #000)) border-box;
+  border: 2px solid transparent;
+}
+
+.border-gradient-rainbow {
+  position: relative;
+  background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
+              linear-gradient(135deg, #667eea, #764ba2, #f093fb) border-box;
+  border: 2px solid transparent;
+}
+
+.border-gradient-gold {
+  position: relative;
+  background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
+              linear-gradient(135deg, #f09819, #edde5d) border-box;
+  border: 2px solid transparent;
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATED GRADIENTS
+═══════════════════════════════════════════ */
+
+.gradient-animated {
+  background: linear-gradient(-45deg, 
+    var(--color-primary), 
+    var(--color-accent), 
+    var(--color-success), 
+    var(--color-primary));
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-animated-subtle {
+  background: linear-gradient(-45deg, 
+    color-mix(in srgb, var(--color-primary) 80%, var(--bg-secondary)), 
+    color-mix(in srgb, var(--color-accent) 80%, var(--bg-secondary)), 
+    color-mix(in srgb, var(--color-primary) 80%, var(--bg-secondary)));
+  background-size: 300% 300%;
+  animation: gradient-shift 20s ease infinite;
+}
+
+/* ═══════════════════════════════════════════
+   GRADIENT OVERLAYS
+═══════════════════════════════════════════ */
+
+.gradient-overlay-dark {
+  position: relative;
+}
+
+.gradient-overlay-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.gradient-overlay-light {
+  position: relative;
+}
+
+.gradient-overlay-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.4) 100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.gradient-overlay-primary {
+  position: relative;
+}
+
+.gradient-overlay-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--color-primary) 40%, transparent) 0%, 
+    color-mix(in srgb, var(--color-primary) 80%, transparent) 100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ═══════════════════════════════════════════
+   HOVER GRADIENT EFFECTS
+═══════════════════════════════════════════ */
+
+.hover-gradient-animate {
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.hover-gradient-animate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    color-mix(in srgb, var(--color-primary) 30%, transparent), 
+    transparent);
+  transition: left 0.5s;
+}
+
+.hover-gradient-animate:hover::before {
+  left: 100%;
+}
+
+/* ═══════════════════════════════════════════
+   UTILITY CLASSES
+═══════════════════════════════════════════ */
+
+/* Gradient Direction */
+.gradient-horizontal {
+  background: linear-gradient(90deg, var(--gradient-from, var(--color-primary)), var(--gradient-to, var(--color-accent))) !important;
+}
+
+.gradient-vertical {
+  background: linear-gradient(180deg, var(--gradient-from, var(--color-primary)), var(--gradient-to, var(--color-accent))) !important;
+}
+
+.gradient-diagonal {
+  background: linear-gradient(135deg, var(--gradient-from, var(--color-primary)), var(--gradient-to, var(--color-accent))) !important;
+}
+
+.gradient-radial {
+  background: radial-gradient(circle, var(--gradient-from, var(--color-primary)), var(--gradient-to, var(--color-accent))) !important;
+}
+
+/* ═══════════════════════════════════════════
+   CONIC GRADIENTS
+═══════════════════════════════════════════ */
+.gradient-conic {
+  background: conic-gradient(from 0deg, var(--color-primary), var(--color-accent), var(--color-success), var(--color-primary)) !important;
+}
+
+.gradient-conic-warm {
+  background: conic-gradient(from 0deg, #f9063f, #f59e0b, #ffd200, #f9063f) !important;
+}
+
+.gradient-conic-cool {
+  background: conic-gradient(from 0deg, #667eea, #22c55e, #0ea5e9, #667eea) !important;
+}
+
+.gradient-conic-pie {
+  background: conic-gradient(var(--color-primary) 0% 33%, var(--color-accent) 33% 66%, var(--color-success) 66% 100%) !important;
+}
+
+/* ═══════════════════════════════════════════
+   MESH-LIKE (multi-stop radial)
+═══════════════════════════════════════════ */
+.gradient-mesh {
+  background:
+    radial-gradient(at 0% 0%, color-mix(in srgb, var(--color-primary) 40%, transparent) 0%, transparent 60%),
+    radial-gradient(at 100% 100%, color-mix(in srgb, var(--color-accent) 40%, transparent) 0%, transparent 60%),
+    var(--bg-secondary) !important;
+}
+
+.gradient-mesh-warm {
+  background:
+    radial-gradient(at 20% 30%, rgba(249, 6, 63, 0.4) 0%, transparent 50%),
+    radial-gradient(at 80% 70%, rgba(245, 158, 11, 0.4) 0%, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(255, 210, 0, 0.2) 0%, transparent 60%),
+    #0d0d0d !important;
+}
+
+.gradient-mesh-cool {
+  background:
+    radial-gradient(at 10% 80%, rgba(102, 126, 234, 0.5) 0%, transparent 50%),
+    radial-gradient(at 90% 20%, rgba(34, 197, 94, 0.4) 0%, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(14, 165, 233, 0.25) 0%, transparent 60%),
+    #0d0d0d !important;
+}
+
+/* ═══════════════════════════════════════════
+   SHIMMER GRADIENT (animated scan)
+═══════════════════════════════════════════ */
+.gradient-shimmer {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-neutral-700) 80%, transparent) 0%,
+    color-mix(in srgb, var(--color-neutral-500) 60%, transparent) 50%,
+    color-mix(in srgb, var(--color-neutral-700) 80%, transparent) 100%
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: shimmerScan 1.5s infinite !important;
+}
+
+@keyframes shimmerScan {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

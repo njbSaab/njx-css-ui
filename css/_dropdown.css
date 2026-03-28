@@ -1,0 +1,280 @@
+/* ─────────────────────────────────────────────
+   _dropdown.css — Dropdown Menu
+   ─────────────────────────────────────────────
+   API (native details):
+     <details class="dropdown">
+       <summary class="dropdown-trigger btn btn-ghost">
+         Menu <span class="dropdown-arrow"></span>
+       </summary>
+       <div class="dropdown-menu">
+         <a href="#" class="dropdown-item">Item</a>
+         <div class="dropdown-divider"></div>
+         <a href="#" class="dropdown-item is-danger">Delete</a>
+       </div>
+     </details>
+
+   API (JS toggle):
+     <div class="dropdown">
+       <button class="dropdown-trigger" onclick="dropdownToggle(this)">...</button>
+       <div class="dropdown-menu">...</div>
+     </div>
+
+   Position:  .dropdown-right  .dropdown-top  .dropdown-center
+   Variants:  .dropdown-primary  .dropdown-dark
+   Items:     .dropdown-item  .dropdown-item-icon  .dropdown-divider
+              .dropdown-item.is-active  .dropdown-item.is-danger  [disabled]
+───────────────────────────────────────────── */
+
+/* ═══════════════════════════════
+   WRAPPER
+═══════════════════════════════ */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* ═══════════════════════════════
+   TRIGGER (summary reset)
+═══════════════════════════════ */
+details.dropdown > summary.dropdown-trigger {
+  list-style: none;
+  cursor: pointer;
+}
+
+details.dropdown > summary.dropdown-trigger::-webkit-details-marker {
+  display: none;
+}
+
+/* ═══════════════════════════════
+   ARROW ICON
+═══════════════════════════════ */
+.dropdown-arrow {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  position: relative;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.dropdown-arrow::before,
+.dropdown-arrow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.2s;
+}
+
+.dropdown-arrow::before { left: 1px;  transform: translateY(-50%) rotate(45deg); }
+.dropdown-arrow::after  { right: 1px; transform: translateY(-50%) rotate(-45deg); }
+
+/* Rotate when open */
+.dropdown.is-open .dropdown-arrow,
+details.dropdown[open] .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* ═══════════════════════════════
+   MENU
+═══════════════════════════════ */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 500;
+  min-width: 180px;
+  background: var(--bg-secondary);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+  border-radius: var(--radius-lg, 12px);
+  padding: 6px;
+  box-shadow:
+    0 4px 6px -1px color-mix(in srgb, #000 12%, transparent),
+    0 12px 32px -4px color-mix(in srgb, #000 20%, transparent);
+
+  /* hidden by default (JS-based) */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(0.97);
+  transform-origin: top left;
+  transition:
+    opacity 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0.18s;
+}
+
+/* JS open */
+.dropdown.is-open > .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* Native details open */
+details.dropdown[open] > .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* ═══════════════════════════════
+   POSITION VARIANTS
+═══════════════════════════════ */
+.dropdown-right > .dropdown-menu {
+  left: auto;
+  right: 0;
+  transform-origin: top right;
+}
+
+.dropdown-center > .dropdown-menu {
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px) scale(0.97);
+  transform-origin: top center;
+}
+
+.dropdown-center.is-open > .dropdown-menu,
+details.dropdown-center[open] > .dropdown-menu {
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.dropdown-top > .dropdown-menu {
+  top: auto;
+  bottom: calc(100% + 6px);
+  transform-origin: bottom left;
+  transform: translateY(6px) scale(0.97);
+}
+
+.dropdown-top.is-open > .dropdown-menu,
+details.dropdown-top[open] > .dropdown-menu {
+  transform: translateY(0) scale(1);
+}
+
+.dropdown-top.dropdown-right > .dropdown-menu {
+  transform-origin: bottom right;
+}
+
+/* ═══════════════════════════════
+   ITEMS
+═══════════════════════════════ */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--radius-md, 8px);
+  font-size: 14px;
+  color: var(--text-main);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  line-height: 1.4;
+  transition: background 0.14s, color 0.14s;
+  user-select: none;
+}
+
+.dropdown-item:hover {
+  background: color-mix(in srgb, var(--color-neutral-600) 10%, transparent);
+  color: var(--text-main);
+}
+
+.dropdown-item.is-active {
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.dropdown-item.is-danger {
+  color: var(--color-danger, #ef4444);
+}
+
+.dropdown-item.is-danger:hover {
+  background: color-mix(in srgb, var(--color-danger, #ef4444) 10%, transparent);
+}
+
+.dropdown-item[disabled],
+.dropdown-item.is-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Icon column */
+.dropdown-item-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  opacity: 0.65;
+}
+
+/* Right-side meta (shortcut, badge) */
+.dropdown-item-meta {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+/* Divider */
+.dropdown-divider {
+  height: 1px;
+  background: color-mix(in srgb, var(--color-neutral-600) 16%, transparent);
+  margin: 4px 0;
+}
+
+/* Section label */
+.dropdown-label {
+  padding: 6px 10px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+/* ═══════════════════════════════
+   VARIANT: PRIMARY header
+═══════════════════════════════ */
+.dropdown-primary > .dropdown-menu {
+  border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+}
+
+.dropdown-primary > .dropdown-menu::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: 2px 2px 0 0;
+  margin: -6px -6px 6px;
+}
+
+/* ═══════════════════════════════
+   VARIANT: DARK menu
+═══════════════════════════════ */
+.dropdown-dark > .dropdown-menu {
+  background: #111;
+  border-color: rgba(255,255,255,0.1);
+}
+
+.dropdown-dark .dropdown-item {
+  color: rgba(255,255,255,0.82);
+}
+
+.dropdown-dark .dropdown-item:hover {
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+}
+
+.dropdown-dark .dropdown-divider {
+  background: rgba(255,255,255,0.08);
+}
+
+.dropdown-dark .dropdown-label {
+  color: rgba(255,255,255,0.35);
+}

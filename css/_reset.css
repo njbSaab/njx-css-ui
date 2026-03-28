@@ -1,0 +1,134 @@
+/* ============================================================
+   _reset.css — Normalize + Base Reset
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.15;
+  scroll-behavior: smooth;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  color: var(--text-main);
+  background-color: var(--bg-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  line-height: var(--lh-snug);
+}
+
+p {
+  margin: 0;
+}
+
+ul, ol, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+hr {
+  border: none;
+  background-color: var(--color-neutral-600);
+  height: 1px;
+  margin: var(--space-4) 0;
+}
+
+blockquote {
+  padding: var(--space-4) var(--space-6);
+  border-left: 3px solid var(--color-primary);
+  background: var(--bg-secondary);
+}
+
+code, kbd, pre, samp {
+  font-family: var(--font-mono);
+}
+
+code, kbd {
+  font-size: 90%;
+  padding: 0.2em 0.4em;
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  color: var(--color-error);
+}
+
+pre {
+  background: var(--bg-secondary);
+  padding: var(--space-4);
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+fieldset {
+  border: 1px solid var(--color-neutral-600);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-6);
+}
+
+iframe {
+  border: 0;
+}
+
+[v-cloak] {
+  display: none;
+}

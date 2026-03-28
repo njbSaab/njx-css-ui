@@ -1,0 +1,433 @@
+      <section class="lib-section" id="carousel">
+        <div class="lib-section-title">🎠 Carousel / Slider</div>
+        <div class="lib-section-desc">
+          <strong>CSS-only</strong> — scroll-snap, no JS needed, works with touch/swipe.<br>
+          <strong>JS</strong> — sequential prev/next, dots sync, autoplay support.
+        </div>
+
+        <!-- ══════════════════════════
+             PURE CSS — SCROLL ONLY
+        ══════════════════════════ -->
+
+        <div class="lib-component">
+          <div class="lib-component-label">CSS — Scroll only (swipe / drag)</div>
+          <div class="lib-preview" style="display:block;padding:0">
+            <div style="max-width:520px;margin:0 auto">
+              <div class="scroll-carousel-wrap">
+                <div class="scroll-carousel">
+                  <div style="min-width:260px;height:160px;background:linear-gradient(135deg,color-mix(in srgb,var(--color-primary) 25%,var(--bg-secondary)),var(--bg-secondary));border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px">
+                    <div style="font-size:1.5rem">🚀</div>
+                    <div style="font-weight:700;color:var(--text-main);font-size:14px">Card 1</div>
+                    <div style="font-size:12px;color:var(--text-muted)">scroll-snap-align: start</div>
+                  </div>
+                  <div style="min-width:260px;height:160px;background:linear-gradient(135deg,color-mix(in srgb,var(--color-accent) 25%,var(--bg-secondary)),var(--bg-secondary));border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px">
+                    <div style="font-size:1.5rem">⚡</div>
+                    <div style="font-weight:700;color:var(--text-main);font-size:14px">Card 2</div>
+                    <div style="font-size:12px;color:var(--text-muted)">swipe or drag</div>
+                  </div>
+                  <div style="min-width:260px;height:160px;background:linear-gradient(135deg,color-mix(in srgb,#22c55e 25%,var(--bg-secondary)),var(--bg-secondary));border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px">
+                    <div style="font-size:1.5rem">✅</div>
+                    <div style="font-weight:700;color:var(--text-main);font-size:14px">Card 3</div>
+                    <div style="font-size:12px;color:var(--text-muted)">pure CSS, zero JS</div>
+                  </div>
+                  <div style="min-width:260px;height:160px;background:linear-gradient(135deg,color-mix(in srgb,#f59e0b 25%,var(--bg-secondary)),var(--bg-secondary));border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px">
+                    <div style="font-size:1.5rem">🎯</div>
+                    <div style="font-weight:700;color:var(--text-main);font-size:14px">Card 4</div>
+                    <div style="font-size:12px;color:var(--text-muted)">touch-friendly</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- Scroll-only: swipe/drag, fade edges hint -->
+<div class="scroll-carousel-wrap">
+  <div class="scroll-carousel">
+    <div style="min-width:260px">Card 1</div>
+    <div style="min-width:260px">Card 2</div>
+    <div style="min-width:260px">Card 3</div>
+  </div>
+</div>
+
+/* CSS: scroll-snap-type: x mandatory on container */
+/* each child: scroll-snap-align: start        */
+/* ::before/::after fade edges via mask        */'>
+                <span class="c">/* .scroll-carousel-wrap — fade edges */</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"scroll-carousel-wrap"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"scroll-carousel"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">style</span>=<span class="cn">"min-width:260px"</span><span class="k">&gt;</span>Card 1<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">style</span>=<span class="cn">"min-width:260px"</span><span class="k">&gt;</span>Card 2<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fullscreen snap -->
+        <div class="lib-component">
+          <div class="lib-component-label">CSS — Full-width snap (one slide at a time)</div>
+          <div class="lib-preview" style="display:block;padding:0">
+            <div style="max-width:520px;margin:0 auto">
+              <div class="snap-carousel">
+                <div style="height:170px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;border-radius:12px">
+                  <div style="font-size:2rem">🌌</div>
+                  <div style="font-weight:700;color:#fff;font-size:15px">Slide 1</div>
+                  <div style="font-size:12px;color:rgba(255,255,255,0.75)">swipe or drag →</div>
+                </div>
+                <div style="height:170px;background:linear-gradient(135deg,#f093fb,#f5576c);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;border-radius:12px">
+                  <div style="font-size:2rem">🌸</div>
+                  <div style="font-weight:700;color:#fff;font-size:15px">Slide 2</div>
+                  <div style="font-size:12px;color:rgba(255,255,255,0.75)">snaps to center</div>
+                </div>
+                <div style="height:170px;background:linear-gradient(135deg,#4facfe,#00f2fe);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;border-radius:12px">
+                  <div style="font-size:2rem">🌊</div>
+                  <div style="font-weight:700;color:#fff;font-size:15px">Slide 3</div>
+                  <div style="font-size:12px;color:rgba(255,255,255,0.75)">zero JS</div>
+                </div>
+                <div style="height:170px;background:linear-gradient(135deg,#43e97b,#38f9d7);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;border-radius:12px">
+                  <div style="font-size:2rem">🍀</div>
+                  <div style="font-weight:700;color:#fff;font-size:15px">Slide 4</div>
+                  <div style="font-size:12px;color:rgba(255,255,255,0.75)">touch-friendly</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="snap-carousel">
+  <div style="height:170px">Slide 1</div>
+  <div style="height:170px">Slide 2</div>
+  <div style="height:170px">Slide 3</div>
+</div>
+/* scroll-snap-type: x mandatory, each child: flex: 0 0 100% scroll-snap-align: center */'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"snap-carousel"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">style</span>=<span class="cn">"height:170px"</span><span class="k">&gt;</span>Slide 1<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">style</span>=<span class="cn">"height:170px"</span><span class="k">&gt;</span>Slide 2<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">style</span>=<span class="cn">"height:170px"</span><span class="k">&gt;</span>Slide 3<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Peek carousel -->
+        <div class="lib-component">
+          <div class="lib-component-label">CSS — Peek (shows edge of next card)</div>
+          <div class="lib-preview" style="display:block;padding:0">
+            <div style="max-width:520px;margin:0 auto">
+              <div class="peek-carousel-wrap">
+                <div class="peek-carousel">
+                  <div style="height:160px;background:linear-gradient(135deg,color-mix(in srgb,var(--color-primary) 30%,var(--bg-secondary)),var(--bg-secondary));border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;flex-shrink:0">
+                    <div style="font-size:1.8rem">🎯</div>
+                    <div style="font-weight:700;color:var(--text-main);font-size:14px">Card 1</div>
+                    <div style="font-size:11px;color:var(--text-muted)">next card peeks at right</div>
+                  </div>
+                  <div style="height:160px;background:linear-gradient(135deg,color-mix(in srgb,var(--color-accent) 30%,var(--bg-secondary)),var(--bg-secondary));border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;flex-shrink:0">
+                    <div style="font-size:1.8rem">💎</div>
+                    <div style="font-weight:700;color:var(--text-main);font-size:14px">Card 2</div>
+                    <div style="font-size:11px;color:var(--text-muted)">swipe to navigate</div>
+                  </div>
+                  <div style="height:160px;background:linear-gradient(135deg,color-mix(in srgb,#22c55e 30%,var(--bg-secondary)),var(--bg-secondary));border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;flex-shrink:0">
+                    <div style="font-size:1.8rem">🚀</div>
+                    <div style="font-weight:700;color:var(--text-main);font-size:14px">Card 3</div>
+                    <div style="font-size:11px;color:var(--text-muted)">zero JS</div>
+                  </div>
+                  <div style="height:160px;background:linear-gradient(135deg,color-mix(in srgb,#f59e0b 30%,var(--bg-secondary)),var(--bg-secondary));border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;flex-shrink:0">
+                    <div style="font-size:1.8rem">⚡</div>
+                    <div style="font-weight:700;color:var(--text-main);font-size:14px">Card 4</div>
+                    <div style="font-size:11px;color:var(--text-muted)">touch-friendly</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- peek-carousel-wrap adds side padding to reveal next card edge -->
+<div class="peek-carousel-wrap">
+  <div class="peek-carousel">
+    <div style="height:160px">Card 1</div>
+    <div style="height:160px">Card 2</div>
+    <div style="height:160px">Card 3</div>
+  </div>
+</div>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"peek-carousel-wrap"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"peek-carousel"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">style</span>=<span class="cn">"height:160px"</span><span class="k">&gt;</span>Card 1<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">style</span>=<span class="cn">"height:160px"</span><span class="k">&gt;</span>Card 2<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vertical scroll snap -->
+        <div class="lib-component">
+          <div class="lib-component-label">CSS — Vertical scroll snap</div>
+          <div class="lib-preview" style="display:block;padding:0">
+            <div style="max-width:360px;margin:0 auto">
+              <div class="scroll-carousel-v" style="height:180px">
+                <div style="height:180px;background:linear-gradient(180deg,color-mix(in srgb,var(--color-primary) 20%,var(--bg-secondary)),var(--bg-secondary));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+                  <div style="font-size:1.8rem">📱</div>
+                  <div style="font-weight:700;color:var(--text-main);font-size:14px">Row 1</div>
+                  <div style="font-size:12px;color:var(--text-muted)">scroll down ↓</div>
+                </div>
+                <div style="height:180px;background:linear-gradient(180deg,color-mix(in srgb,var(--color-accent) 20%,var(--bg-secondary)),var(--bg-secondary));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+                  <div style="font-size:1.8rem">🖥</div>
+                  <div style="font-weight:700;color:var(--text-main);font-size:14px">Row 2</div>
+                  <div style="font-size:12px;color:var(--text-muted)">snap-type: y mandatory</div>
+                </div>
+                <div style="height:180px;background:linear-gradient(180deg,color-mix(in srgb,#22c55e 20%,var(--bg-secondary)),var(--bg-secondary));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+                  <div style="font-size:1.8rem">⌨️</div>
+                  <div style="font-weight:700;color:var(--text-main);font-size:14px">Row 3</div>
+                  <div style="font-size:12px;color:var(--text-muted)">zero JS</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- Vertical scroll snap — set height on wrapper and each child -->
+<div class="scroll-carousel-v" style="height:180px">
+  <div style="height:180px">Row 1</div>
+  <div style="height:180px">Row 2</div>
+  <div style="height:180px">Row 3</div>
+</div>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"scroll-carousel-v"</span> <span class="s">style</span>=<span class="cn">"height:180px"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">style</span>=<span class="cn">"height:180px"</span><span class="k">&gt;</span>Row 1<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">style</span>=<span class="cn">"height:180px"</span><span class="k">&gt;</span>Row 2<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">style</span>=<span class="cn">"height:180px"</span><span class="k">&gt;</span>Row 3<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════
+             JS CAROUSELS
+        ══════════════════════════ -->
+
+        <div class="lib-component">
+          <div class="lib-component-label">JS — Sequential prev/next + dots</div>
+          <div class="lib-preview" style="display:block;padding:0">
+            <div style="max-width:480px;margin:0 auto">
+              <div class="js-carousel-wrap">
+                <div class="js-carousel">
+                  <div class="js-carousel-track">
+                    <div style="height:200px;background:linear-gradient(135deg,color-mix(in srgb,var(--color-primary) 25%,var(--bg-secondary)),var(--bg-secondary));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+                      <div style="font-size:2rem">🚀</div>
+                      <div style="font-weight:700;color:var(--text-main)">Slide 1 / 4</div>
+                      <div style="font-size:13px;color:var(--text-muted)">Click arrows — goes 1→2→3→4</div>
+                    </div>
+                    <div style="height:200px;background:linear-gradient(135deg,color-mix(in srgb,var(--color-accent) 25%,var(--bg-secondary)),var(--bg-secondary));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+                      <div style="font-size:2rem">⚡</div>
+                      <div style="font-weight:700;color:var(--text-main)">Slide 2 / 4</div>
+                      <div style="font-size:13px;color:var(--text-muted)">Dots sync with arrows</div>
+                    </div>
+                    <div style="height:200px;background:linear-gradient(135deg,color-mix(in srgb,#22c55e 25%,var(--bg-secondary)),var(--bg-secondary));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+                      <div style="font-size:2rem">✅</div>
+                      <div style="font-weight:700;color:var(--text-main)">Slide 3 / 4</div>
+                      <div style="font-size:13px;color:var(--text-muted)">Click dot to jump</div>
+                    </div>
+                    <div style="height:200px;background:linear-gradient(135deg,color-mix(in srgb,#f59e0b 25%,var(--bg-secondary)),var(--bg-secondary));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+                      <div style="font-size:2rem">🎯</div>
+                      <div style="font-weight:700;color:var(--text-main)">Slide 4 / 4</div>
+                      <div style="font-size:13px;color:var(--text-muted)">Wraps infinitely</div>
+                    </div>
+                  </div>
+                  <button class="js-carousel-btn js-prev" aria-label="Previous"></button>
+                  <button class="js-carousel-btn js-next" aria-label="Next"></button>
+                </div>
+                <div class="js-dots">
+                  <button class="js-dot is-active"></button>
+                  <button class="js-dot"></button>
+                  <button class="js-dot"></button>
+                  <button class="js-dot"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- JS Carousel: arrows OUTSIDE .js-carousel so overflow:hidden does not block them -->
+<div class="js-carousel-wrap">
+  <div style="position:relative">
+    <div class="js-carousel">
+      <div class="js-carousel-track">
+        <div>Slide 1</div>
+        <div>Slide 2</div>
+        <div>Slide 3</div>
+      </div>
+    </div>
+    <button class="js-carousel-btn js-prev" aria-label="Previous">&#�;</button>
+    <button class="js-carousel-btn js-next" aria-label="Next">&#9;›</button>
+  </div>
+  <div class="js-dots">
+    <button class="js-dot is-active"></button>
+    <button class="js-dot"></button>
+    <button class="js-dot"></button>
+  </div>
+</div>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"js-carousel-wrap"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">style</span>=<span class="cn">"position:relative"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"js-carousel"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"js-carousel-track"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"js-carousel-btn js-prev"</span><span class="k">&gt;</span>‹<span class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"js-carousel-btn js-next"</span><span class="k">&gt;</span>›<span class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"js-dots"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">JS — Autoplay (pauses on hover)</div>
+          <div class="lib-preview" style="display:block;padding:0">
+            <div style="max-width:480px;margin:0 auto">
+              <div class="js-carousel-wrap" data-autoplay="2500">
+                <div class="js-carousel">
+                  <div class="js-carousel-track">
+                    <div style="height:180px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+                      <div style="font-size:1.8rem">🌌</div>
+                      <div style="font-weight:700;color:#fff">Auto Slide 1</div>
+                      <div style="font-size:12px;color:rgba(255,255,255,0.7)">autoplay every 2.5s</div>
+                    </div>
+                    <div style="height:180px;background:linear-gradient(135deg,#f093fb,#f5576c);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+                      <div style="font-size:1.8rem">🌸</div>
+                      <div style="font-weight:700;color:#fff">Auto Slide 2</div>
+                      <div style="font-size:12px;color:rgba(255,255,255,0.7)">hover to pause</div>
+                    </div>
+                    <div style="height:180px;background:linear-gradient(135deg,#4facfe,#00f2fe);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+                      <div style="font-size:1.8rem">🌊</div>
+                      <div style="font-weight:700;color:#fff">Auto Slide 3</div>
+                      <div style="font-size:12px;color:rgba(255,255,255,0.7)">data-autoplay="2500"</div>
+                    </div>
+                  </div>
+                  <button class="js-carousel-btn js-prev" aria-label="Previous"></button>
+                  <button class="js-carousel-btn js-next" aria-label="Next"></button>
+                </div>
+                <div class="js-dots">
+                  <button class="js-dot is-active"></button>
+                  <button class="js-dot"></button>
+                  <button class="js-dot"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- Autoplay: add data-autoplay="ms" to .js-carousel-wrap -->
+<!-- Pauses on mouseenter, resumes on mouseleave -->
+<div class="js-carousel-wrap" data-autoplay="3000">
+  <div class="js-carousel">
+    <div class="js-carousel-track">
+      <div>Slide 1</div>
+      <div>Slide 2</div>
+    </div>
+    <button class="js-carousel-btn js-prev" aria-label="Previous"></button>
+    <button class="js-carousel-btn js-next" aria-label="Next"></button>
+  </div>
+  <div class="js-dots">
+    <button class="js-dot is-active"></button>
+    <button class="js-dot"></button>
+  </div>
+</div>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"js-carousel-wrap"</span> <span class="s">data-autoplay</span>=<span class="cn">"3000"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"js-carousel"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"js-carousel-track"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"js-carousel-btn js-prev"</span><span class="k">&gt;&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"js-carousel-btn js-next"</span><span class="k">&gt;&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"js-dots"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sizes reference -->
+        <div class="lib-component">
+          <div class="lib-component-label">📐 CSS Classes Reference</div>
+          <div class="lib-preview" style="flex-wrap:wrap;gap:16px;align-items:flex-start">
+            <div style="background:var(--bg-secondary);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--text-muted);border:1px solid color-mix(in srgb,var(--color-neutral-600) 20%,transparent);min-width:200px">
+              <b style="color:var(--text-main)">CSS Scroll-only</b><br>
+              <code>.scroll-carousel-wrap</code> — fade edges<br>
+              <code>.scroll-carousel</code> — scrollable track<br>
+            </div>
+            <div style="background:var(--bg-secondary);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--text-muted);border:1px solid color-mix(in srgb,var(--color-neutral-600) 20%,transparent);min-width:200px">
+              <b style="color:var(--text-main)">JS Carousel</b><br>
+              <code>.js-carousel-wrap</code> — outer container<br>
+              <code>data-autoplay="ms"</code> — autoplay<br>
+              <code>.js-carousel</code> — viewport (overflow:hidden)<br>
+              <code>.js-carousel-track</code> — sliding track<br>
+              <code>.js-carousel-btn</code> — arrow button<br>
+              <code>.js-prev / .js-next</code> — direction<br>
+              <code>.js-dots</code> — dot container<br>
+              <code>.js-dot</code> — single dot<br>
+              <code>.is-active</code> — active dot state<br>
+            </div>
+            <div style="background:var(--bg-secondary);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--text-muted);border:1px solid color-mix(in srgb,var(--color-neutral-600) 20%,transparent);min-width:200px">
+              <b style="color:var(--text-main)">Carousel item sizes</b><br>
+              <code>.carousel-item-sm</code> — 160px<br>
+              <code>.carousel-item-md</code> — 260px<br>
+              <code>.carousel-item-lg</code> — 360px<br>
+              <code>.carousel-item-xl</code> — 480px<br>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- 1. CSS scroll-only — simplest, no JS -->
+<div class="scroll-carousel-wrap">
+  <div class="scroll-carousel">
+    <div style="min-width:300px">Card 1</div>
+    <div style="min-width:300px">Card 2</div>
+  </div>
+</div>
+
+<!-- 2. JS sequential — arrows outside overflow:hidden wrapper -->
+<div class="js-carousel-wrap">
+  <div style="position:relative">
+    <div class="js-carousel">
+      <div class="js-carousel-track">
+        <div>Slide 1</div>
+        <div>Slide 2</div>
+      </div>
+    </div>
+    <button class="js-carousel-btn js-prev" aria-label="Previous">&#8249;</button>
+    <button class="js-carousel-btn js-next" aria-label="Next">&#8250;</button>
+  </div>
+  <div class="js-dots">
+    <button class="js-dot is-active"></button>
+    <button class="js-dot"></button>
+  </div>
+</div>
+
+<!-- 3. JS autoplay — add data-autoplay="ms" -->
+<div class="js-carousel-wrap" data-autoplay="3000">...</div>'>
+                <span class="c">/* 1. CSS scroll-only — simplest */</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"scroll-carousel-wrap"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"scroll-carousel"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span><br><br>
+                <span class="c">/* 2. JS: arrows outside overflow:hidden */</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"js-carousel-wrap"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">style</span>=<span class="cn">"position:relative"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"js-carousel"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"js-carousel-btn js-prev"</span><span class="k">&gt;</span>‹<span class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"js-carousel-btn js-next"</span><span class="k">&gt;</span>›<span class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"js-dots"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span><br><br>
+                <span class="c">/* 3. Autoplay */</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"js-carousel-wrap"</span> <span class="s">data-autoplay</span>=<span class="cn">"3000"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>

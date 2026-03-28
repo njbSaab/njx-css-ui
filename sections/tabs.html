@@ -1,0 +1,288 @@
+      <section class="lib-section" id="tabs">
+        <div class="lib-section-title">🗂 Tabs</div>
+        <div class="lib-section-desc">From <code>_tab.css</code>. Variants: underline (default),
+          <code>.tab-nav-pills</code>, <code>.tab-nav-boxed</code>, <code>.tab-nav-card</code>. Modifiers:
+          <code>.is-full</code>, <code>.tab-nav-sm</code>, <code>.tab-nav-lg</code>. JS: <code>tabSwitch(btn)</code>.
+        </div>
+
+        <!-- Underline (default) -->
+        <div class="lib-component">
+          <div class="lib-component-label">Default — underline</div>
+          <div class="lib-preview col" style="align-items:stretch">
+            <div class="tab-wrap">
+              <div class="tab-nav">
+                <button class="tab-btn is-active" onclick="tabSwitch(this)">Overview</button>
+                <button class="tab-btn" onclick="tabSwitch(this)">Features</button>
+                <button class="tab-btn" onclick="tabSwitch(this)">Changelog</button>
+              </div>
+              <div class="tab-content">
+                <div class="tab-panel is-active text-sm text-muted" style="line-height:1.7">
+                  njX is a zero-dependency CSS library with 9 built-in themes. One <code>&lt;link&gt;</code> tag — no
+                  build step required.
+                </div>
+                <div class="tab-panel text-sm text-muted" style="line-height:1.7">
+                  9 themes · 25+ components · CSS variables · Bulma-compatible · 0 dependencies.
+                </div>
+                <div class="tab-panel text-sm text-muted" style="line-height:1.7">
+                  <strong>v1.3</strong> — Added <code>_links.css</code>, new collapse variants, improved tab system.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="tab-wrap">
+  <div class="tab-nav">
+    <button class="tab-btn is-active" onclick="tabSwitch(this)">Tab 1</button>
+    <button class="tab-btn" onclick="tabSwitch(this)">Tab 2</button>
+    <button class="tab-btn" onclick="tabSwitch(this)">Tab 3</button>
+  </div>
+  <div class="tab-content">
+    <div class="tab-panel is-active">Content 1</div>
+    <div class="tab-panel">Content 2</div>
+    <div class="tab-panel">Content 3</div>
+  </div>
+</div>
+
+<script>
+function tabSwitch(btn) {
+  const wrap = btn.closest(".tab-wrap");
+  wrap.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("is-active"));
+  wrap.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("is-active"));
+  btn.classList.add("is-active");
+  const idx = [...btn.parentElement.children].indexOf(btn);
+  wrap.querySelectorAll(".tab-panel")[idx].classList.add("is-active");
+}
+</script>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tab-wrap"</span><span
+                  class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"tab-nav"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span
+                  class="cn">"tab-btn is-active"</span> <span class="s">onclick</span>=<span
+                  class="cn">"tabSwitch(this)"</span><span class="k">&gt;</span>Tab 1<span
+                  class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span
+                  class="cn">"tab-btn"</span> <span class="s">onclick</span>=<span
+                  class="cn">"tabSwitch(this)"</span><span class="k">&gt;</span>Tab 2<span
+                  class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"tab-content"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"tab-panel is-active"</span><span class="k">&gt;</span>Content 1<span
+                  class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"tab-panel"</span><span class="k">&gt;</span>Content 2<span
+                  class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pills -->
+        <div class="lib-component">
+          <div class="lib-component-label">Pills</div>
+          <div class="lib-preview col" style="align-items:stretch">
+            <div class="tab-wrap">
+              <div class="tab-nav tab-nav-pills" style="align-self:flex-start">
+                <button class="tab-btn is-active" onclick="tabSwitch(this)">Daily</button>
+                <button class="tab-btn" onclick="tabSwitch(this)">Weekly</button>
+                <button class="tab-btn" onclick="tabSwitch(this)">Monthly</button>
+              </div>
+              <div class="tab-content">
+                <div class="tab-panel is-active text-sm text-muted">Stats for today: 1,204 visits · 38 signups</div>
+                <div class="tab-panel text-sm text-muted">Stats for this week: 8,720 visits · 214 signups</div>
+                <div class="tab-panel text-sm text-muted">Stats for this month: 32,100 visits · 890 signups</div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="tab-nav tab-nav-pills">
+  <button class="tab-btn is-active" onclick="tabSwitch(this)">Daily</button>
+  <button class="tab-btn" onclick="tabSwitch(this)">Weekly</button>
+  <button class="tab-btn" onclick="tabSwitch(this)">Monthly</button>
+</div>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tab-nav
+                  tab-nav-pills"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"tab-btn
+                  is-active"</span> <span class="s">onclick</span>=<span class="cn">"tabSwitch(this)"</span><span
+                  class="k">&gt;</span>Daily<span class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span
+                  class="cn">"tab-btn"</span> <span class="s">onclick</span>=<span
+                  class="cn">"tabSwitch(this)"</span><span class="k">&gt;</span>Weekly<span
+                  class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span
+                  class="cn">"tab-btn"</span> <span class="s">onclick</span>=<span
+                  class="cn">"tabSwitch(this)"</span><span class="k">&gt;</span>Monthly<span
+                  class="k">&lt;/button&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Boxed -->
+        <div class="lib-component">
+          <div class="lib-component-label">Boxed</div>
+          <div class="lib-preview col" style="align-items:stretch">
+            <div class="tab-wrap">
+              <div class="tab-nav tab-nav-boxed">
+                <button class="tab-btn is-active" onclick="tabSwitch(this)">HTML</button>
+                <button class="tab-btn" onclick="tabSwitch(this)">CSS</button>
+                <button class="tab-btn" onclick="tabSwitch(this)">JS</button>
+              </div>
+              <div class="tab-content tab-content-bordered">
+                <div class="tab-panel is-active text-sm text-muted">
+                  <code>&lt;div class="tab-wrap"&gt;...&lt;/div&gt;</code>
+                </div>
+                <div class="tab-panel text-sm text-muted"><code>.tab-nav { display: flex; }</code></div>
+                <div class="tab-panel text-sm text-muted"><code>function tabSwitch(btn) { ... }</code></div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="tab-nav tab-nav-boxed">...</div>
+<div class="tab-content tab-content-bordered">...</div>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tab-nav
+                  tab-nav-boxed"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tab-content
+                  tab-content-bordered"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card (VS Code style) -->
+        <div class="lib-component">
+          <div class="lib-component-label">Card — top border (VS Code style)</div>
+          <div class="lib-preview col" style="align-items:stretch">
+            <div class="tab-wrap">
+              <div class="tab-nav tab-nav-card">
+                <button class="tab-btn is-active" onclick="tabSwitch(this)">index.html</button>
+                <button class="tab-btn" onclick="tabSwitch(this)">style.css</button>
+                <button class="tab-btn" onclick="tabSwitch(this)">main.js</button>
+              </div>
+              <div class="tab-content tab-content-bordered">
+                <div class="tab-panel is-active text-sm text-muted">
+                  <code>&lt;!DOCTYPE html&gt;&lt;html data-theme="dark"&gt;...</code>
+                </div>
+                <div class="tab-panel text-sm text-muted"><code>@import "_base.css"; @import "_buttons.css";</code>
+                </div>
+                <div class="tab-panel text-sm text-muted">
+                  <code>document.addEventListener('DOMContentLoaded', init);</code>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="tab-nav tab-nav-card">
+  <button class="tab-btn is-active" onclick="tabSwitch(this)">index.html</button>
+  <button class="tab-btn" onclick="tabSwitch(this)">style.css</button>
+</div>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tab-nav
+                  tab-nav-card"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"tab-btn
+                  is-active"</span> <span class="s">onclick</span>=<span class="cn">"tabSwitch(this)"</span><span
+                  class="k">&gt;</span>index.html<span class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span
+                  class="cn">"tab-btn"</span> <span class="s">onclick</span>=<span
+                  class="cn">"tabSwitch(this)"</span><span class="k">&gt;</span>style.css<span
+                  class="k">&lt;/button&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- With badges + full width -->
+        <div class="lib-component">
+          <div class="lib-component-label">Badges + full width</div>
+          <div class="lib-preview col" style="align-items:stretch">
+            <div class="tab-wrap">
+              <div class="tab-nav is-full">
+                <button class="tab-btn is-active" onclick="tabSwitch(this)">
+                  Inbox <span class="tab-badge">4</span>
+                </button>
+                <button class="tab-btn" onclick="tabSwitch(this)">
+                  Sent <span class="tab-badge">12</span>
+                </button>
+                <button class="tab-btn" onclick="tabSwitch(this)">
+                  Drafts <span class="tab-badge">1</span>
+                </button>
+              </div>
+              <div class="tab-content">
+                <div class="tab-panel is-active text-sm text-muted">4 unread messages in your inbox.</div>
+                <div class="tab-panel text-sm text-muted">12 sent messages.</div>
+                <div class="tab-panel text-sm text-muted">1 draft saved.</div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- Full-width tabs with badges -->
+<div class="tab-nav is-full">
+  <button class="tab-btn is-active" onclick="tabSwitch(this)">
+    Inbox <span class="tab-badge">4</span>
+  </button>
+  <button class="tab-btn" onclick="tabSwitch(this)">
+    Sent <span class="tab-badge">12</span>
+  </button>
+</div>'>
+                <span class="c">&lt;!-- Full-width tabs with badges --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tab-nav
+                  is-full"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"tab-btn
+                  is-active"</span> <span class="s">onclick</span>=<span class="cn">"tabSwitch(this)"</span><span
+                  class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Inbox <span class="k">&lt;span</span> <span class="s">class</span>=<span
+                  class="cn">"tab-badge"</span><span class="k">&gt;</span>4<span class="k">&lt;/span&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/button&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sizes -->
+        <div class="lib-component">
+          <div class="lib-component-label">Sizes — sm / default / lg</div>
+          <div class="lib-preview col" style="align-items:stretch;gap:20px">
+            <div class="tab-nav tab-nav-sm">
+              <button class="tab-btn is-active" onclick="tabSwitch(this)">Small</button>
+              <button class="tab-btn" onclick="tabSwitch(this)">Tabs</button>
+              <button class="tab-btn" onclick="tabSwitch(this)">Here</button>
+            </div>
+            <div class="tab-nav">
+              <button class="tab-btn is-active" onclick="tabSwitch(this)">Default</button>
+              <button class="tab-btn" onclick="tabSwitch(this)">Size</button>
+              <button class="tab-btn" onclick="tabSwitch(this)">Tabs</button>
+            </div>
+            <div class="tab-nav tab-nav-lg">
+              <button class="tab-btn is-active" onclick="tabSwitch(this)">Large</button>
+              <button class="tab-btn" onclick="tabSwitch(this)">Tabs</button>
+              <button class="tab-btn" onclick="tabSwitch(this)">Demo</button>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="tab-nav tab-nav-sm">...</div>
+<div class="tab-nav">...</div>
+<div class="tab-nav tab-nav-lg">...</div>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tab-nav
+                  tab-nav-sm"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tab-nav"</span><span
+                  class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tab-nav
+                  tab-nav-lg"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>

@@ -1,0 +1,494 @@
+/* ─────────────────────────────────────────────
+   _slider.css — Carousel (CSS scroll-snap)
+   ─────────────────────────────────────────────
+   API:
+     <div class="carousel">
+       <div class="carousel-item" id="slide1">...</div>
+       <div class="carousel-item" id="slide2">...</div>
+     </div>
+
+     Navigation (pure CSS anchor links):
+     <div class="carousel-nav">
+       <a href="#slide1" class="carousel-btn">❮</a>
+       <a href="#slide2" class="carousel-btn">❯</a>
+     </div>
+
+     Dots:
+     <div class="carousel-dots">
+       <a href="#slide1" class="carousel-dot"></a>
+       <a href="#slide2" class="carousel-dot"></a>
+     </div>
+
+   Snap modes:  default (start)  .carousel-center  .carousel-end
+   Direction:   default (x)      .carousel-vertical
+   Multi-item:  .carousel-gap (shows partial next item)
+   Fullwidth:   .carousel-full
+───────────────────────────────────────────── */
+
+/* ═══════════════════════════════
+   WRAPPER
+═══════════════════════════════ */
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 0;
+  border-radius: var(--radius-lg, 12px);
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* ═══════════════════════════════
+   ITEM
+═══════════════════════════════ */
+.carousel-item {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ═══════════════════════════════
+   SNAP VARIANTS
+═══════════════════════════════ */
+.carousel-center .carousel-item {
+  scroll-snap-align: center;
+}
+
+.carousel-end .carousel-item {
+  scroll-snap-align: end;
+}
+
+/* ═══════════════════════════════
+   VERTICAL
+═══════════════════════════════ */
+.carousel-vertical {
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+
+.carousel-vertical .carousel-item {
+  flex: 0 0 100%;
+}
+
+/* ═══════════════════════════════
+   MULTI-ITEM (gap carousel)
+   Shows partial next slide
+═══════════════════════════════ */
+.carousel-gap {
+  gap: 16px;
+  padding: 0 16px;
+}
+
+.carousel-gap .carousel-item {
+  flex: 0 0 calc(80% - 8px);
+  border-radius: var(--radius-lg, 12px);
+}
+
+/* ═══════════════════════════════
+   FULLWIDTH (edge-to-edge)
+═══════════════════════════════ */
+.carousel-full {
+  border-radius: 0;
+}
+
+/* ═══════════════════════════════
+   NAVIGATION WRAPPER
+   (wraps carousel + nav overlay)
+═══════════════════════════════ */
+.carousel-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Prev/Next button overlay */
+.carousel-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  pointer-events: none;
+}
+
+/* Absolute overlay mode (buttons float over carousel) */
+.carousel-wrap > .carousel-nav {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  padding: 0 12px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.carousel-wrap > .carousel-nav .carousel-btn {
+  pointer-events: all;
+}
+
+/* ═══════════════════════════════
+   PREV / NEXT BUTTONS
+═══════════════════════════════ */
+.carousel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--bg-secondary) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+  color: var(--text-main);
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px color-mix(in srgb, #000 18%, transparent);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.carousel-btn:hover {
+  background: var(--bg-secondary);
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px color-mix(in srgb, #000 24%, transparent);
+}
+
+.carousel-btn:active {
+  transform: scale(0.96);
+}
+
+/* ═══════════════════════════════
+   DOTS
+═══════════════════════════════ */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px 0;
+}
+
+.carousel-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-neutral-600) 35%, transparent);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.18s, width 0.18s, border-radius 0.18s;
+  flex-shrink: 0;
+}
+
+.carousel-dot:hover {
+  background: color-mix(in srgb, var(--color-primary) 60%, transparent);
+}
+
+/* Active dot — highlight via :target on slides */
+.carousel-dot.is-active,
+.carousel-dot[aria-current="true"] {
+  background: var(--color-primary);
+  width: 20px;
+  border-radius: 4px;
+}
+
+/* ═══════════════════════════════
+   SLIDE SIZES
+═══════════════════════════════ */
+.carousel-item-sm  { min-height: 160px; }
+.carousel-item-md  { min-height: 260px; }
+.carousel-item-lg  { min-height: 360px; }
+.carousel-item-xl  { min-height: 480px; }
+
+/* ═══════════════════════════════
+   SLIDE CONTENT HELPERS
+═══════════════════════════════ */
+.carousel-slide {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  text-align: center;
+  gap: 12px;
+  border-radius: inherit;
+}
+
+.carousel-slide-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.carousel-slide-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  max-width: 420px;
+}
+
+/* ═══════════════════════════════
+   CARD CAROUSEL ITEM
+   (multi-item, shows as cards)
+═══════════════════════════════ */
+.carousel-card {
+  background: var(--bg-secondary);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+  border-radius: var(--radius-lg, 12px);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 180px;
+}
+
+/* ═══════════════════════════════
+   :target ACTIVE DOT (no JS)
+   When a slide is targeted via anchor,
+   the corresponding dot turns active.
+   Requires dot IDs: dot-slide1, etc.
+   and slide IDs: slide1, etc.
+═══════════════════════════════ */
+#slide1:target ~ .carousel-dots [href="#slide1"],
+#slide2:target ~ .carousel-dots [href="#slide2"],
+#slide3:target ~ .carousel-dots [href="#slide3"],
+#slide4:target ~ .carousel-dots [href="#slide4"] {
+  background: var(--color-primary);
+  width: 20px;
+  border-radius: 4px;
+}
+
+
+/* ═══════════════════════════════
+   JS CAROUSEL (.js-carousel)
+   Sequential prev/next via JS.
+   Track slides horizontally.
+═══════════════════════════════ */
+.js-carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+.js-carousel-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+.js-carousel-track > * {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+.js-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg-secondary) 90%, transparent);
+  backdrop-filter: blur(6px);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-600) 35%, transparent);
+  color: var(--text-main);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--ease), border-color var(--ease), box-shadow var(--ease);
+}
+.js-carousel-btn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 12px color-mix(in srgb, var(--color-primary) 40%, transparent);
+}
+/* CSS-only chevron icons — no SVG, no unicode */
+.js-carousel-btn::before {
+  content: '';
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-top: 2.5px solid currentColor;
+  border-radius: 1px;
+}
+.js-prev { left: 12px; }
+.js-prev::before {
+  border-left: 2.5px solid currentColor;
+  transform: rotate(-45deg) translate(2px, 1px);
+}
+.js-next { right: 12px; }
+.js-next::before {
+  border-right: 2.5px solid currentColor;
+  transform: rotate(45deg) translate(-2px, 1px);
+}
+.js-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding-top: 12px;
+}
+.js-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-neutral-600) 50%, transparent);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s;
+}
+.js-dot.is-active {
+  background: var(--color-primary);
+  width: 20px;
+  border-radius: 4px;
+}
+
+/* ═══════════════════════════════
+   FADE CAROUSEL (.js-carousel-fade)
+═══════════════════════════════ */
+.js-carousel-fade {
+  position: relative;
+}
+.js-carousel-fade .js-fade-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.5s ease;
+}
+.js-carousel-fade .js-fade-slide:first-child {
+  position: relative;
+  opacity: 1;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════
+   SCROLL-ONLY CAROUSEL (no JS, no nav arrows)
+   Just scroll-snap + momentum
+═══════════════════════════════ */
+.scroll-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  gap: 16px;
+  padding: 4px 4px 12px;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-carousel::-webkit-scrollbar { display: none; }
+.scroll-carousel > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Faded edges hint (mask) */
+.scroll-carousel-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.scroll-carousel-wrap::before,
+.scroll-carousel-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  z-index: 2;
+  pointer-events: none;
+}
+.scroll-carousel-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-main), transparent);
+}
+.scroll-carousel-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-main), transparent);
+}
+
+/* ═══════════════════════════════
+   FULLSCREEN SNAP — 1 slide = 100% width, swipe
+═══════════════════════════════ */
+.snap-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  border-radius: var(--radius-lg);
+  -webkit-overflow-scrolling: touch;
+}
+.snap-carousel::-webkit-scrollbar { display: none; }
+.snap-carousel > * {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+}
+
+/* ═══════════════════════════════
+   PEEK — shows edge of next card
+═══════════════════════════════ */
+.peek-carousel-wrap {
+  overflow: hidden;
+  padding: 0 32px;
+}
+.peek-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  gap: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+.peek-carousel::-webkit-scrollbar { display: none; }
+.peek-carousel > * {
+  flex: 0 0 calc(100% - 16px);
+  scroll-snap-align: center;
+}
+
+/* ═══════════════════════════════
+   VERTICAL SCROLL SNAP
+═══════════════════════════════ */
+.scroll-carousel-v {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-lg);
+}
+.scroll-carousel-v::-webkit-scrollbar { display: none; }
+.scroll-carousel-v > * {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}

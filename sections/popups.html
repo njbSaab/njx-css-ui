@@ -1,0 +1,88 @@
+      <section class="lib-section" id="popups">
+        <div class="lib-section-title">💬 Popups / Modals</div>
+        <div class="lib-section-desc">From <code>_popups.css</code>. Variant is set on <code>.lib-modal-box</code> —
+          the overlay is automatically colored via <code>:has()</code>. Close — Escape or click the overlay.</div>
+
+        <!-- All variants -->
+        <div class="lib-component">
+          <div class="lib-component-label">All variants — colored overlays</div>
+          <div class="lib-preview" style="gap:10px;flex-wrap:wrap">
+            <button class="btn btn-ghost btn-sm" onclick="openModal('modal-default')">Default</button>
+            <button class="btn btn-primary btn-sm" onclick="openModal('modal-primary')">Primary</button>
+            <button class="btn btn-success btn-sm" onclick="openModal('modal-success')">✅ Success</button>
+            <button class="btn btn-danger btn-sm" onclick="openModal('modal-error')">❌ Error</button>
+            <button class="btn btn-warning btn-sm" onclick="openModal('modal-warning')">⚠️ Warning</button>
+            <button class="btn btn-accent btn-sm" onclick="openModal('modal-info')">ℹ️ Info</button>
+            <button class="btn btn-ghost btn-sm" onclick="openModal('modal-form')">📋 With form</button>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- Overlay is automatically colored via :has() -->
+<!-- Variants: is-primary | is-success | is-error | is-warning | is-info -->
+
+<div id="my-modal" class="lib-modal-overlay"
+     onclick="if(event.target===this)closeModal(this)">
+
+  <div class="lib-modal-box is-success">
+    <button class="lib-modal-close"
+      onclick="closeModal(document.getElementById(&apos;my-modal&apos;))">✕</button>
+
+    <div class="lib-modal-icon-wrap">✅</div>
+    <div class="lib-modal-title">Success!</div>
+    <div class="lib-modal-text">Description of the action or result.</div>
+
+    <div class="lib-modal-actions">
+      <button class="btn btn-success btn-sm">Great!</button>
+      <button class="btn btn-ghost btn-sm">Close</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openModal(id) {
+  document.getElementById(id).classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeModal(el) {
+  el.classList.remove("open");
+  document.body.style.overflow = "";
+}
+// close on Escape
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape")
+    document.querySelectorAll(".lib-modal-overlay.open")
+      .forEach(closeModal);
+});
+</script>'>
+                <span class="c">&lt;!-- Variants: is-primary | is-success | is-error | is-warning | is-info
+                  --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"lib-modal-overlay"</span>
+                <span class="s">id</span>=<span class="cn">"my-modal"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"lib-modal-box
+                  is-success"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span
+                  class="cn">"lib-modal-close"</span><span class="k">&gt;</span>✕<span
+                  class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"lib-modal-icon-wrap"</span><span class="k">&gt;</span>✅<span
+                  class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"lib-modal-title"</span><span class="k">&gt;</span>Success!<span
+                  class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"lib-modal-text"</span><span class="k">&gt;</span>Description.<span
+                  class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"lib-modal-actions"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span
+                  class="cn">"btn btn-success btn-sm"</span><span class="k">&gt;</span>Great!<span
+                  class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>

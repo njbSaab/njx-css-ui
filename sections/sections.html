@@ -1,0 +1,220 @@
+      <section class="lib-section" id="sections">
+        <div class="lib-section-title">🔲 Sections & Containers</div>
+        <div class="lib-section-desc">From <code>_sections.css</code>. Containers and wrappers for layouts.</div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">Containers (container-*)</div>
+          <div class="lib-preview col" style="align-items:flex-start;gap:16px">
+            <div style="background:var(--color-primary);padding:16px;border-radius:8px;width:100%" class="flex-center">
+              <span class="text-sm">default .container (max-width: 1280px)</span>
+            </div>
+            <div style="background:var(--color-accent);padding:16px;border-radius:8px;width:100%" class="flex-center">
+              <span class="text-sm">.container-sm (max-width: 640px)</span>
+            </div>
+            <div style="background:var(--color-success);padding:16px;border-radius:8px;width:100%" class="flex-center">
+              <span class="text-sm">.container-md (max-width: 960px)</span>
+            </div>
+            <div style="background:var(--color-warning);padding:16px;border-radius:8px;width:100%" class="flex-center">
+              <span class="text-sm">.container-lg (max-width: 1200px)</span>
+            </div>
+            <div style="background:var(--color-error);padding:16px;border-radius:8px;width:100%" class="flex-center">
+              <span class="text-sm">.container-xl (max-width: 1400px)</span>
+            </div>
+            <div style="background:#888888;padding:16px;border-radius:8px;width:100%" class="flex-center"><span
+                class="text-sm">.container-fluid (100% width)</span></div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code"
+                data-raw="&lt;!-- _sections.css: container, container-sm/md/lg/xl, container-fluid --&gt;&#10;&lt;div class=&quot;container&quot;&gt;          &lt;!-- max-width: 1280px --&gt;&#10;  Content&#10;&lt;/div&gt;&#10;&#10;&lt;div class=&quot;container-sm&quot;&gt;       &lt;!-- max-width: 640px --&gt;&#10;  Content&#10;&lt;/div&gt;&#10;&#10;&lt;div class=&quot;container-fluid&quot;&gt;    &lt;!-- 100% width --&gt;&#10;  Content&#10;&lt;/div&gt;">
+                <span class="c">/* _sections.css: container, container-sm/md/lg/xl, container-fluid */</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"container"</span><span
+                  class="k">&gt;</span> <span class="c">/* max-width: 1280px */</span><br>
+                &nbsp;&nbsp;Content<br>
+                <span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"container-sm"</span><span
+                  class="k">&gt;</span> <span class="c">/* max-width: 640px */</span><br>
+                &nbsp;&nbsp;Content<br>
+                <span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"container-fluid"</span><span class="k">&gt;</span> <span class="c">/* 100% width
+                  */</span><br>
+                &nbsp;&nbsp;Content<br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">Section (padding variants)</div>
+          <div class="lib-preview col" style="align-items:flex-start;gap:12px">
+            <div
+              style="background:var(--lib-preview-bg);padding:24px;border-radius:8px;width:100%;border:2px dashed var(--lib-comp-brd)">
+              <span class="text-xs text-muted">.section (padding: 64px 0 by default)</span>
+            </div>
+            <div
+              style="background:var(--lib-preview-bg);padding:24px;border-radius:8px;width:100%;border:2px dashed var(--lib-comp-brd)">
+              <span class="text-xs text-muted">.section-sm (padding: 32px 0)</span>
+            </div>
+            <div
+              style="background:var(--lib-preview-bg);padding:24px;border-radius:8px;width:100%;border:2px dashed var(--lib-comp-brd)">
+              <span class="text-xs text-muted">.section-lg (padding: 96px 0)</span>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code"
+                data-raw="&lt;!-- section | section-sm (32px) | section-lg (96px) --&gt;&#10;&lt;section class=&quot;section&quot;&gt;             &lt;!-- padding: 64px 0 --&gt;&#10;  &lt;div class=&quot;container&quot;&gt;...&lt;/div&gt;&#10;&lt;/section&gt;&#10;&#10;&lt;section class=&quot;section section-sm&quot;&gt;    &lt;!-- padding: 32px 0 --&gt;&#10;  &lt;div class=&quot;container&quot;&gt;...&lt;/div&gt;&#10;&lt;/section&gt;&#10;&#10;&lt;section class=&quot;section section-lg&quot;&gt;    &lt;!-- padding: 96px 0 --&gt;&#10;  &lt;div class=&quot;container&quot;&gt;...&lt;/div&gt;&#10;&lt;/section&gt;">
+                <span class="c">/* section | section-sm (32px) | section-lg (96px) */</span><br>
+                <span class="k">&lt;section</span> <span class="s">class</span>=<span class="cn">"section"</span><span
+                  class="k">&gt;</span> <span class="c">/* padding: 64px 0 */</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"container"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/section&gt;</span><br>
+                <span class="k">&lt;section</span> <span class="s">class</span>=<span class="cn">"section
+                  section-sm"</span><span class="k">&gt;</span> <span class="c">/* padding: 32px 0 */</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"container"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/section&gt;</span><br>
+                <span class="k">&lt;section</span> <span class="s">class</span>=<span class="cn">"section
+                  section-lg"</span><span class="k">&gt;</span> <span class="c">/* padding: 96px 0 */</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"container"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/section&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">Section Banner (full-height hero)</div>
+          <div class="lib-preview col"
+            style="align-items:center;justify-content:center;min-height:200px;background:linear-gradient(135deg, #1a1a2e, #16213e)">
+            <div style="text-align:center">
+              <div class="title-lg" style="color:#fff;margin-bottom:12px">.section-banner</div>
+              <div class="text-sm text-muted">Full screen hero section (min-height: 100dvh)</div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code"><span class="k">&lt;section</span> <span class="s">class</span>=<span
+                  class="cn">"section-banner"</span> <span class="s">style</span>=<span class="cn">"background-image:
+                  url(...)"</span><span class="k">&gt;</span><br>&nbsp;&nbsp;<span class="k">&lt;div</span> <span
+                  class="s">class</span>=<span class="cn">"container"</span><span class="k">&gt;</span>...<span
+                  class="k">&lt;/div&gt;</span><br><span class="k">&lt;/section&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">Wrappers & Lists</div>
+          <div class="lib-preview col" style="align-items:flex-start;gap:12px">
+            <div
+              style="background:var(--lib-preview-bg);padding:16px;border-radius:8px;width:100%;border:1px solid var(--lib-sep)">
+              <div class="text-xs text-muted" style="margin-bottom:8px">.items-wrapper-col (flex column)</div>
+              <div class="items-wrapper-col" style="gap:8px">
+                <div style="background:var(--color-primary);padding:12px;border-radius:4px;color:#000">Item 1</div>
+                <div style="background:var(--color-accent);padding:12px;border-radius:4px;color:#000">Item 2</div>
+              </div>
+            </div>
+            <div
+              style="background:var(--lib-preview-bg);padding:16px;border-radius:8px;width:100%;border:1px solid var(--lib-sep)">
+              <div class="text-xs text-muted" style="margin-bottom:8px">.list-items-row (flex row)</div>
+              <div class="list-items-row">
+                <div style="background:var(--color-success);padding:12px 20px;border-radius:4px">Item A</div>
+                <div style="background:var(--color-warning);padding:12px 20px;border-radius:4px">Item B</div>
+                <div style="background:var(--color-error);padding:12px 20px;border-radius:4px">Item C</div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code"><span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"items-wrapper-col"</span><span class="k">&gt;</span>...<span
+                  class="k">&lt;/div&gt;</span><br><span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"list-items-row"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">Social List (with blur effect)</div>
+          <div class="lib-preview" style="justify-content:center">
+            <div class="social-list" style="width:fit-content">
+              <div class="text-xs" style="color:var(--color-accent);text-align:center;margin-bottom:12px">Social
+                icons</div>
+              <ul style="margin:0">
+                <li style="list-style:none"><span style="font-size:24px">📱</span></li>
+                <li style="list-style:none"><span style="font-size:24px">💻</span></li>
+                <li style="list-style:none"><span style="font-size:24px">🎮</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code"><span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"social-list"</span><span class="k">&gt;</span><br>&nbsp;&nbsp;<span
+                  class="k">&lt;ul&gt;</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;li&gt;</span>...<span
+                  class="k">&lt;/li&gt;</span><br>&nbsp;&nbsp;<span class="k">&lt;/ul&gt;</span><br><span
+                  class="k">&lt;/div&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">CTA Toast (call-to-action banner)</div>
+          <div class="lib-preview" style="justify-content:center">
+            <div class="cta-toast" style="width:100%;max-width:500px">Click here!</div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code"><span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"cta-toast"</span><span class="k">&gt;</span>Call to Action<span
+                  class="k">&lt;/div&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">Background Support</div>
+          <div class="lib-preview col" style="align-items:flex-start;gap:12px">
+            <div
+              style="width:100%;height:120px;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);border-radius:8px"
+              class="flex-center"><span class="text-sm" style="color:#fff">.section.bg (with background)</span></div>
+            <div
+              style="width:100%;padding:16px;background:var(--lib-preview-bg);border:1px solid var(--lib-sep);border-radius:8px"
+              class="flex-center"><span class="text-xs text-muted">.bg (utility class)</span></div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code"><span class="k">&lt;section</span> <span class="s">class</span>=<span
+                  class="cn">"section bg"</span> <span class="s">style</span>=<span class="cn">"background-image:
+                  url(...)"</span><span class="k">&gt;</span>...<span class="k">&lt;/section&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lib-component">
+          <div class="lib-component-label">Wrapper & Agent classes</div>
+          <div class="lib-preview col" style="align-items:flex-start;gap:12px">
+            <div
+              style="background:var(--lib-preview-bg);padding:16px;border-radius:8px;width:100%;border:1px dashed var(--lib-comp-brd)">
+              <span class="text-xs text-muted">.wrapper — container with position: relative and z-index: 1</span>
+            </div>
+            <div
+              style="background:var(--lib-preview-bg);padding:16px;border-radius:8px;width:100%;border:1px dashed var(--lib-comp-brd)">
+              <span class="text-xs text-muted">.agent — for elements with max-width: 100%</span>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code"><span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"wrapper"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br><span
+                  class="k">&lt;img</span> <span class="s">class</span>=<span class="cn">"agent"</span> <span
+                  class="s">src</span>=<span class="cn">"..."</span><span class="k">&gt;</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
