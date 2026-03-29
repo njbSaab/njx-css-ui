@@ -1,41 +1,236 @@
       <section class="lib-section" id="panel">
         <div class="lib-section-title">🗃 Panel</div>
-        <div class="lib-section-desc">From <code>_breadcrumb.css</code>.</div>
+        <div class="lib-section-desc">
+          List panel component — filterable, selectable, with tabs, badges and actions.
+          From <code>_breadcrumb.css</code>. Color variants: <code>is-primary</code> <code>is-success</code> <code>is-warning</code> <code>is-danger</code>.
+        </div>
+
+        <!-- ── 1. Color variants ── -->
         <div class="lib-component">
-          <div class="lib-preview" style="align-items:flex-start">
+          <div class="lib-component-label">Color variants</div>
+          <div class="lib-preview" style="align-items:flex-start;flex-wrap:wrap;gap:16px">
+            <div class="panel is-primary" style="min-width:200px">
+              <div class="panel-heading">Primary</div>
+              <a class="panel-block is-active"><span class="panel-icon">⭐</span> Dashboard</a>
+              <a class="panel-block"><span class="panel-icon">📁</span> Projects</a>
+              <a class="panel-block"><span class="panel-icon">⚙️</span> Settings</a>
+            </div>
+            <div class="panel is-success" style="min-width:200px">
+              <div class="panel-heading">Success</div>
+              <a class="panel-block is-active"><span class="panel-icon">✅</span> Deployed</a>
+              <a class="panel-block"><span class="panel-icon">📦</span> Packages</a>
+              <a class="panel-block"><span class="panel-icon">🔗</span> Links</a>
+            </div>
+            <div class="panel is-warning" style="min-width:200px">
+              <div class="panel-heading">Warning</div>
+              <a class="panel-block is-active"><span class="panel-icon">⚠️</span> Pending</a>
+              <a class="panel-block"><span class="panel-icon">🕐</span> Queued</a>
+              <a class="panel-block"><span class="panel-icon">🔄</span> In Progress</a>
+            </div>
+            <div class="panel is-danger" style="min-width:200px">
+              <div class="panel-heading">Danger</div>
+              <a class="panel-block is-active"><span class="panel-icon">❌</span> Errors</a>
+              <a class="panel-block"><span class="panel-icon">🚫</span> Blocked</a>
+              <a class="panel-block"><span class="panel-icon">🗑️</span> Deleted</a>
+            </div>
+          </div>
+          <div class="lib-code-wrapper"><div class="lib-code-container">
+            <div class="lib-code" data-raw="&lt;div class=&quot;panel is-primary&quot;&gt;&#10;  &lt;div class=&quot;panel-heading&quot;&gt;Title&lt;/div&gt;&#10;  &lt;a class=&quot;panel-block is-active&quot;&gt;&lt;span class=&quot;panel-icon&quot;&gt;⭐&lt;/span&gt; Item&lt;/a&gt;&#10;  &lt;a class=&quot;panel-block&quot;&gt;&lt;span class=&quot;panel-icon&quot;&gt;📁&lt;/span&gt; Item 2&lt;/a&gt;&#10;&lt;/div&gt;">
+              <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"panel is-primary"</span><span class="k">&gt;</span><br>
+              &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"panel-heading"</span><span class="k">&gt;</span>Title<span class="k">&lt;/div&gt;</span><br>
+              &nbsp;&nbsp;<span class="k">&lt;a</span> <span class="s">class</span>=<span class="cn">"panel-block is-active"</span><span class="k">&gt;</span>...<span class="k">&lt;/a&gt;</span><br>
+              <span class="k">&lt;/div&gt;</span>
+            </div>
+            <button class="lib-copy-btn" onclick="copyCode(this)">Copy</button>
+          </div></div>
+        </div>
+
+        <!-- ── 2. With Tabs ── -->
+        <div class="lib-component">
+          <div class="lib-component-label">With tabs</div>
+          <div class="lib-preview">
             <div class="panel is-primary" style="min-width:280px">
               <div class="panel-heading">Repository</div>
-              <div class="panel-tabs"><a class="is-active">All</a><a>Public</a><a>Private</a></div>
-              <a class="panel-block is-active"><span class="panel-icon">⭐</span> bulma</a>
+              <div class="panel-tabs">
+                <a class="is-active">All</a>
+                <a>Public</a>
+                <a>Private</a>
+                <a>Forks</a>
+              </div>
+              <a class="panel-block is-active"><span class="panel-icon">⭐</span> njx-css-ui</a>
               <a class="panel-block"><span class="panel-icon">📁</span> marksheet</a>
               <a class="panel-block"><span class="panel-icon">📄</span> blog</a>
               <a class="panel-block"><span class="panel-icon">🔧</span> config</a>
             </div>
           </div>
-          <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-              <div class="lib-code"
-                data-raw="&lt;!-- panel: is-primary | is-success | is-warning | is-danger --&gt;&#10;&lt;div class=&quot;panel is-primary&quot;&gt;&#10;  &lt;div class=&quot;panel-heading&quot;&gt;Repository&lt;/div&gt;&#10;  &lt;div class=&quot;panel-tabs&quot;&gt;&#10;    &lt;a class=&quot;is-active&quot;&gt;All&lt;/a&gt;&#10;    &lt;a&gt;Public&lt;/a&gt;&#10;  &lt;/div&gt;&#10;  &lt;a class=&quot;panel-block is-active&quot;&gt;&#10;    &lt;span class=&quot;panel-icon&quot;&gt;⭐&lt;/span&gt; bulma&#10;  &lt;/a&gt;&#10;  &lt;a class=&quot;panel-block&quot;&gt;&#10;    &lt;span class=&quot;panel-icon&quot;&gt;📁&lt;/span&gt; marksheet&#10;  &lt;/a&gt;&#10;&lt;/div&gt;">
-                <span class="c">/* panel: is-primary | is-success | is-warning | is-danger */</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"panel
-                  is-primary"</span><span class="k">&gt;</span><br>
-                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
-                  class="cn">"panel-heading"</span><span class="k">&gt;</span>Repository<span
-                  class="k">&lt;/div&gt;</span><br>
-                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
-                  class="cn">"panel-tabs"</span><span class="k">&gt;</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;a</span> <span class="s">class</span>=<span
-                  class="cn">"is-active"</span><span class="k">&gt;</span>All<span class="k">&lt;/a&gt;</span><br>
-                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
-                &nbsp;&nbsp;<span class="k">&lt;a</span> <span class="s">class</span>=<span class="cn">"panel-block
-                  is-active"</span><span class="k">&gt;</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;span</span> <span class="s">class</span>=<span
-                  class="cn">"panel-icon"</span><span class="k">&gt;</span>⭐<span class="k">&lt;/span&gt;</span>
-                bulma<br>
-                &nbsp;&nbsp;<span class="k">&lt;/a&gt;</span><br>
-                <span class="k">&lt;/div&gt;</span>
+          <div class="lib-code-wrapper"><div class="lib-code-container">
+            <div class="lib-code" data-raw="&lt;div class=&quot;panel is-primary&quot;&gt;&#10;  &lt;div class=&quot;panel-heading&quot;&gt;Repository&lt;/div&gt;&#10;  &lt;div class=&quot;panel-tabs&quot;&gt;&#10;    &lt;a class=&quot;is-active&quot;&gt;All&lt;/a&gt;&#10;    &lt;a&gt;Public&lt;/a&gt;&#10;  &lt;/div&gt;&#10;  &lt;a class=&quot;panel-block is-active&quot;&gt;item&lt;/a&gt;&#10;&lt;/div&gt;">
+              <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"panel-tabs"</span><span class="k">&gt;</span><br>
+              &nbsp;&nbsp;<span class="k">&lt;a</span> <span class="s">class</span>=<span class="cn">"is-active"</span><span class="k">&gt;</span>All<span class="k">&lt;/a&gt;</span><br>
+              &nbsp;&nbsp;<span class="k">&lt;a&gt;</span>Public<span class="k">&lt;/a&gt;</span><br>
+              <span class="k">&lt;/div&gt;</span>
+            </div>
+            <button class="lib-copy-btn" onclick="copyCode(this)">Copy</button>
+          </div></div>
+        </div>
+
+        <!-- ── 3. With Search ── -->
+        <div class="lib-component">
+          <div class="lib-component-label">With search filter</div>
+          <div class="lib-preview">
+            <div class="panel" style="min-width:280px">
+              <div class="panel-heading">Team members</div>
+              <div class="panel-search">
+                <input type="text" placeholder="Search member…">
+              </div>
+              <a class="panel-block is-active">
+                <span class="panel-icon">👤</span> Alice Johnson
+                <span class="panel-block-badge">Admin</span>
+              </a>
+              <a class="panel-block">
+                <span class="panel-icon">👤</span> Bob Smith
+                <span class="panel-block-badge is-muted">Member</span>
+              </a>
+              <a class="panel-block">
+                <span class="panel-icon">👤</span> Carol White
+                <span class="panel-block-badge is-muted">Member</span>
+              </a>
+              <div class="panel-footer">
+                <button class="btn btn-primary btn-sm">Invite</button>
               </div>
             </div>
           </div>
+          <div class="lib-code-wrapper"><div class="lib-code-container">
+            <div class="lib-code" data-raw="&lt;div class=&quot;panel&quot;&gt;&#10;  &lt;div class=&quot;panel-heading&quot;&gt;Team members&lt;/div&gt;&#10;  &lt;div class=&quot;panel-search&quot;&gt;&#10;    &lt;input type=&quot;text&quot; placeholder=&quot;Search…&quot;&gt;&#10;  &lt;/div&gt;&#10;  &lt;a class=&quot;panel-block&quot;&gt;&#10;    Alice &lt;span class=&quot;panel-block-badge&quot;&gt;Admin&lt;/span&gt;&#10;  &lt;/a&gt;&#10;  &lt;div class=&quot;panel-footer&quot;&gt;...&lt;/div&gt;&#10;&lt;/div&gt;">
+              <span class="c">&lt;!-- search input --&gt;</span><br>
+              <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"panel-search"</span><span class="k">&gt;</span><br>
+              &nbsp;&nbsp;<span class="k">&lt;input</span> <span class="s">type</span>=<span class="cn">"text"</span> <span class="s">placeholder</span>=<span class="cn">"Search…"</span><span class="k">&gt;</span><br>
+              <span class="k">&lt;/div&gt;</span><br>
+              <span class="c">&lt;!-- badge --&gt;</span><br>
+              <span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"panel-block-badge"</span><span class="k">&gt;</span>Admin<span class="k">&lt;/span&gt;</span><br>
+              <span class="c">&lt;!-- footer --&gt;</span><br>
+              <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"panel-footer"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+            </div>
+            <button class="lib-copy-btn" onclick="copyCode(this)">Copy</button>
+          </div></div>
         </div>
+
+        <!-- ── 4. With Checkboxes ── -->
+        <div class="lib-component">
+          <div class="lib-component-label">Selectable — checkboxes</div>
+          <div class="lib-preview">
+            <div class="panel" style="min-width:280px">
+              <div class="panel-heading">Features</div>
+              <label class="panel-block">
+                <input type="checkbox" checked> Dark mode
+                <span class="panel-block-meta">enabled</span>
+              </label>
+              <label class="panel-block">
+                <input type="checkbox" checked> Animations
+                <span class="panel-block-meta">enabled</span>
+              </label>
+              <label class="panel-block">
+                <input type="checkbox"> Compact layout
+                <span class="panel-block-meta">disabled</span>
+              </label>
+              <label class="panel-block">
+                <input type="checkbox"> Beta features
+                <span class="panel-block-meta">disabled</span>
+              </label>
+              <div class="panel-footer">
+                <button class="btn btn-sm btn-outline">Reset</button>
+                <button class="btn btn-sm btn-primary">Save</button>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper"><div class="lib-code-container">
+            <div class="lib-code" data-raw="&lt;div class=&quot;panel&quot;&gt;&#10;  &lt;div class=&quot;panel-heading&quot;&gt;Features&lt;/div&gt;&#10;  &lt;label class=&quot;panel-block&quot;&gt;&#10;    &lt;input type=&quot;checkbox&quot; checked&gt; Dark mode&#10;    &lt;span class=&quot;panel-block-meta&quot;&gt;enabled&lt;/span&gt;&#10;  &lt;/label&gt;&#10;  &lt;div class=&quot;panel-footer&quot;&gt;&#10;    &lt;button class=&quot;btn btn-sm btn-primary&quot;&gt;Save&lt;/button&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;">
+              <span class="k">&lt;label</span> <span class="s">class</span>=<span class="cn">"panel-block"</span><span class="k">&gt;</span><br>
+              &nbsp;&nbsp;<span class="k">&lt;input</span> <span class="s">type</span>=<span class="cn">"checkbox"</span> <span class="s">checked</span><span class="k">&gt;</span> Dark mode<br>
+              &nbsp;&nbsp;<span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"panel-block-meta"</span><span class="k">&gt;</span>enabled<span class="k">&lt;/span&gt;</span><br>
+              <span class="k">&lt;/label&gt;</span>
+            </div>
+            <button class="lib-copy-btn" onclick="copyCode(this)">Copy</button>
+          </div></div>
+        </div>
+
+        <!-- ── 5. With Badges & Counts ── -->
+        <div class="lib-component">
+          <div class="lib-component-label">With notification badges</div>
+          <div class="lib-preview">
+            <div class="panel" style="min-width:280px">
+              <div class="panel-heading">Notifications</div>
+              <div class="panel-tabs">
+                <a class="is-active">All</a>
+                <a>Mentions</a>
+                <a>Updates</a>
+              </div>
+              <a class="panel-block is-active">
+                <span class="panel-icon">💬</span> Messages
+                <span class="panel-block-badge">12</span>
+              </a>
+              <a class="panel-block">
+                <span class="panel-icon">🔔</span> Alerts
+                <span class="panel-block-badge">3</span>
+              </a>
+              <a class="panel-block">
+                <span class="panel-icon">⭐</span> Starred
+                <span class="panel-block-badge is-muted">24</span>
+              </a>
+              <a class="panel-block">
+                <span class="panel-icon">📦</span> Releases
+                <span class="panel-block-badge is-muted">0</span>
+              </a>
+            </div>
+          </div>
+          <div class="lib-code-wrapper"><div class="lib-code-container">
+            <div class="lib-code" data-raw="&lt;a class=&quot;panel-block&quot;&gt;&#10;  &lt;span class=&quot;panel-icon&quot;&gt;💬&lt;/span&gt; Messages&#10;  &lt;span class=&quot;panel-block-badge&quot;&gt;12&lt;/span&gt;&#10;&lt;/a&gt;">
+              <span class="k">&lt;a</span> <span class="s">class</span>=<span class="cn">"panel-block"</span><span class="k">&gt;</span><br>
+              &nbsp;&nbsp;<span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"panel-icon"</span><span class="k">&gt;</span>💬<span class="k">&lt;/span&gt;</span> Messages<br>
+              &nbsp;&nbsp;<span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"panel-block-badge"</span><span class="k">&gt;</span>12<span class="k">&lt;/span&gt;</span><br>
+              <span class="k">&lt;/a&gt;</span>
+            </div>
+            <button class="lib-copy-btn" onclick="copyCode(this)">Copy</button>
+          </div></div>
+        </div>
+
+        <!-- ── 6. With Avatars ── -->
+        <div class="lib-component">
+          <div class="lib-component-label">With avatars</div>
+          <div class="lib-preview">
+            <div class="panel" style="min-width:300px">
+              <div class="panel-heading">Contributors</div>
+              <a class="panel-block">
+                <span class="panel-avatar">AJ</span>
+                Alice Johnson
+                <span class="panel-block-meta">32 commits</span>
+              </a>
+              <a class="panel-block is-active">
+                <span class="panel-avatar" style="background:color-mix(in srgb,var(--color-success) 18%,transparent);color:var(--color-success)">BS</span>
+                Bob Smith
+                <span class="panel-block-meta">18 commits</span>
+              </a>
+              <a class="panel-block">
+                <span class="panel-avatar" style="background:color-mix(in srgb,var(--color-accent) 18%,transparent);color:var(--color-accent)">CW</span>
+                Carol White
+                <span class="panel-block-meta">9 commits</span>
+              </a>
+              <div class="panel-footer">
+                <span style="font-size:var(--fs-xs);color:var(--text-muted)">3 contributors total</span>
+                <button class="btn btn-sm btn-outline">View all</button>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper"><div class="lib-code-container">
+            <div class="lib-code" data-raw="&lt;a class=&quot;panel-block&quot;&gt;&#10;  &lt;span class=&quot;panel-avatar&quot;&gt;AJ&lt;/span&gt;&#10;  Alice Johnson&#10;  &lt;span class=&quot;panel-block-meta&quot;&gt;32 commits&lt;/span&gt;&#10;&lt;/a&gt;">
+              <span class="k">&lt;a</span> <span class="s">class</span>=<span class="cn">"panel-block"</span><span class="k">&gt;</span><br>
+              &nbsp;&nbsp;<span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"panel-avatar"</span><span class="k">&gt;</span>AJ<span class="k">&lt;/span&gt;</span><br>
+              &nbsp;&nbsp;Alice Johnson<br>
+              &nbsp;&nbsp;<span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"panel-block-meta"</span><span class="k">&gt;</span>32 commits<span class="k">&lt;/span&gt;</span><br>
+              <span class="k">&lt;/a&gt;</span>
+            </div>
+            <button class="lib-copy-btn" onclick="copyCode(this)">Copy</button>
+          </div></div>
+        </div>
+
       </section>
