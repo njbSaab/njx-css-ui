@@ -161,6 +161,35 @@
       color: #fff;
     }
 
+    /* ═══ INLINE CODE COPY ═══ */
+    .lib-code-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 12px;
+      background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+      color: var(--color-primary);
+      border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+      border-radius: 5px;
+      padding: 1px 7px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .lib-code-inline:hover {
+      background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+      border-color: var(--color-primary);
+    }
+
+    .lib-code-inline--copied {
+      background: var(--color-primary) !important;
+      color: #000 !important;
+      border-color: var(--color-primary) !important;
+    }
+
     /* ═══ SEARCH ═══ */
     .lib-search {
       position: absolute;
