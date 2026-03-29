@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Restore saved theme before first paint — prevents flash -->
-  <script>try{var t=localStorage.getItem('njx-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+  <script>try { var t = localStorage.getItem('njx-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) { }</script>
   <title>✨ njX UI — Component Library</title>
   <meta name="description" content="njX UI component library — 25+ components, 9 themes, zero dependencies." />
   <!-- Open Graph -->
@@ -42,83 +42,55 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQNNS6QB" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-
   <!-- Toast container -->
   <div id="lib-toast-container"></div>
-
-  <!-- ═══════════════════════════════════════════
-     TOP BAR
-═══════════════════════════════════════════ -->
   <!-- ═══ TOPBAR → components/topbar.html ═══ -->
   <div data-component="topbar"></div>
-
   <div class="lib-wrap">
-    <!-- ═══════════════════════════════════════════
-     SIDEBAR — компонент: components/sidebar.html
-═══════════════════════════════════════════ -->
     <div data-component="sidebar"></div>
-
-    <!-- ═══════════════════════════════════════════
-     MAIN
-═══════════════════════════════════════════ -->
     <main class="lib-main">
-
       <!-- ── 1. TOKENS ── -->
       <!-- section: tokens → sections/tokens.html -->
       <div data-section="tokens"></div>
-
       <!-- ── 1.5. GRID ── -->
       <!-- section: grid → sections/grid.html -->
       <div data-section="grid"></div>
-
       <!-- ── 2. TYPOGRAPHY ── -->
       <!-- section: typography → sections/typography.html -->
       <div data-section="typography"></div>
-
       <!-- ── 3. UTILS ── -->
       <!-- section: utils → sections/utils.html -->
       <div data-section="utils"></div>
-
       <!-- ── 4. BUTTONS ── -->
       <!-- section: buttons → sections/buttons.html -->
       <div data-section="buttons"></div>
-
       <!-- ── 5. CARDS ── -->
       <!-- section: cards → sections/cards.html -->
       <div data-section="cards"></div>
-
       <!-- ── 6. TAGS ── -->
       <!-- section: tags → sections/tags.html -->
       <div data-section="tags"></div>
-
       <!-- ── 8. FORMS ── -->
       <!-- section: forms → sections/forms.html -->
       <div data-section="forms"></div>
-
       <!-- ── 8. SECTIONS ── -->
       <!-- section: sections → sections/sections.html -->
       <div data-section="sections"></div>
       <div data-section="social"></div>
       <div data-section="skeleton"></div>
-
       <!-- ── 9. TABS ── -->
       <!-- section: tabs → sections/tabs.html -->
       <div data-section="tabs"></div>
-
       <!-- ── 10. COLLAPSE ── -->
       <!-- section: collapse → sections/collapse.html -->
       <div data-section="collapse"></div>
-
       <!-- ── 11. POPUPS ── -->
       <!-- section: popups → sections/popups.html -->
       <div data-section="popups"></div>
-
       <!-- ── SIDEBAR ── -->
       <!-- section: sidebar → sections/sidebar.html -->
       <div data-section="sidebar"></div>
-
       <!-- ══════ MODALS ══════ -->
-
       <!-- Default -->
       <div id="modal-default" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
         <div class="lib-modal-box">
