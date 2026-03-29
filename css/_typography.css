@@ -135,6 +135,47 @@
 .text-line-through { text-decoration: line-through !important; }
 .text-no-underline { text-decoration: none !important; }
 
+/* ── Tips / Callouts ── */
+.tip {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--tip-color, var(--color-primary));
+  background: color-mix(in srgb, var(--tip-color, var(--color-primary)) 10%, transparent);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+.tip-icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  color: var(--tip-color, var(--color-primary));
+}
+
+.tip-title {
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  color: var(--tip-color, var(--color-primary));
+  margin-bottom: 4px;
+}
+
+.tip-body {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+.tip--info    { --tip-color: var(--color-primary); }
+.tip--success { --tip-color: var(--color-success); }
+.tip--warning { --tip-color: var(--color-warning); }
+.tip--danger  { --tip-color: var(--color-error); }
+.tip--neutral { --tip-color: var(--text-muted); }
+
 /* ── Обратная совместимость (старые классы) ── */
 .h1-title    { font-size: var(--fs-hero);  font-weight: 900; line-height: var(--lh-tight); }
 .h2-title    { font-size: var(--fs-7xl);   font-weight: 900; line-height: 1; }

@@ -99,4 +99,87 @@
             </div>
           </div>
         </div>
+        <div class="lib-component">
+          <div class="lib-component-label">Tips / Callouts</div>
+          <div class="lib-section-desc">Use <code>.tip</code> with a variant modifier. Icon slot via <code>.tip-icon</code>, title via <code>.tip-title</code>.</div>
+          <div class="lib-preview col">
+
+            <div class="tip tip--info">
+              <svg class="tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
+              </svg>
+              <div>
+                <div class="tip-title">Info</div>
+                <div class="tip-body">Use <code>.tip--info</code> for general information and neutral notes.</div>
+              </div>
+            </div>
+
+            <div class="tip tip--success">
+              <svg class="tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/>
+              </svg>
+              <div>
+                <div class="tip-title">Success</div>
+                <div class="tip-body">Use <code>.tip--success</code> to confirm an action or show a completed state.</div>
+              </div>
+            </div>
+
+            <div class="tip tip--warning">
+              <svg class="tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/>
+              </svg>
+              <div>
+                <div class="tip-title">Warning</div>
+                <div class="tip-body">Use <code>.tip--warning</code> to flag something that requires attention before proceeding.</div>
+              </div>
+            </div>
+
+            <div class="tip tip--danger">
+              <svg class="tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/>
+              </svg>
+              <div>
+                <div class="tip-title">Danger</div>
+                <div class="tip-body">Use <code>.tip--danger</code> for destructive or critical error messages.</div>
+              </div>
+            </div>
+
+            <div class="tip tip--neutral">
+              <svg class="tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+              </svg>
+              <div>
+                <div class="tip-title">Note</div>
+                <div class="tip-body">Use <code>.tip--neutral</code> for side notes or supplementary context.</div>
+              </div>
+            </div>
+
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw="&lt;!-- Base + variant modifier --&gt;&#10;&lt;div class=&quot;tip tip--info&quot;&gt;&#10;  &lt;svg class=&quot;tip-icon&quot;&gt;...&lt;/svg&gt;&#10;  &lt;div&gt;&#10;    &lt;div class=&quot;tip-title&quot;&gt;Info&lt;/div&gt;&#10;    &lt;div class=&quot;tip-body&quot;&gt;Message text here.&lt;/div&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;!-- Without icon --&gt;&#10;&lt;div class=&quot;tip tip--warning&quot;&gt;&#10;  &lt;div&gt;&#10;    &lt;div class=&quot;tip-title&quot;&gt;Warning&lt;/div&gt;&#10;    &lt;div class=&quot;tip-body&quot;&gt;This action cannot be undone.&lt;/div&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;!-- All variants --&gt;&#10;&lt;div class=&quot;tip tip--info&quot;&gt;...&lt;/div&gt;&#10;&lt;div class=&quot;tip tip--success&quot;&gt;...&lt;/div&gt;&#10;&lt;div class=&quot;tip tip--warning&quot;&gt;...&lt;/div&gt;&#10;&lt;div class=&quot;tip tip--danger&quot;&gt;...&lt;/div&gt;&#10;&lt;div class=&quot;tip tip--neutral&quot;&gt;...&lt;/div&gt;">
+                <span class="c">/* Base + variant modifier */</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tip tip--info"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;svg</span> <span class="s">class</span>=<span class="cn">"tip-icon"</span><span class="k">&gt;</span>...<span class="k">&lt;/svg&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tip-title"</span><span class="k">&gt;</span>Info<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tip-body"</span><span class="k">&gt;</span>Message text.<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span><br><br>
+                <span class="c">/* Without icon */</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tip tip--warning"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tip-title"</span><span class="k">&gt;</span>Warning<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"tip-body"</span><span class="k">&gt;</span>Cannot be undone.<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span><br><br>
+                <span class="c">/* All variants */</span><br>
+                <span class="k">.tip--info</span> &nbsp;&nbsp;&nbsp;<span class="c">/* primary color */</span><br>
+                <span class="k">.tip--success</span> <span class="c">/* green */</span><br>
+                <span class="k">.tip--warning</span> <span class="c">/* yellow */</span><br>
+                <span class="k">.tip--danger</span> &nbsp;<span class="c">/* red */</span><br>
+                <span class="k">.tip--neutral</span> <span class="c">/* muted */</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </section>
