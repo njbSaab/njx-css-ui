@@ -72,8 +72,9 @@
     </a>
   </div>
 
+  <!-- CSS-only components -->
   <div class="lib-sidebar-group">
-    <span class="lib-sidebar-title">Components</span>
+    <span class="lib-sidebar-title">Components · CSS only</span>
     <a href="#buttons">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
         <rect x="1" y="5" width="14" height="6" rx="2" />
@@ -102,52 +103,18 @@
       </svg>
       Forms
     </a>
-    <a href="#tabs">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-        <path d="M1 6h4v7H1zM6 4h4v9H6zM11 6h4v7h-4z" />
-      </svg>
-      Tabs
-    </a>
-    <a href="#collapse">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 6l4 4 4-4" />
-        <rect x="1" y="2" width="14" height="12" rx="2" />
-      </svg>
-      Collapse
-    </a>
-    <a href="#popups">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M2 3h12a1 1 0 011 1v7a1 1 0 01-1 1H5l-3 2V4a1 1 0 011-1z" />
-      </svg>
-      Popups
-    </a>
-    <a href="#sidebar">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="1" y="2" width="14" height="12" rx="2"/>
-        <path d="M5 2v12"/>
-      </svg>
-      Sidebar
-    </a>
     <a href="#nav">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
         <path d="M2 4h12M2 8h12M2 12h12" />
       </svg>
       Nav
     </a>
-    <a href="#sections">
+    <a href="#progress">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-        <rect x="1" y="1" width="14" height="4" rx="1" />
-        <rect x="1" y="7" width="14" height="4" rx="1" />
-        <rect x="1" y="13" width="9" height="2" rx="1" />
+        <rect x="1" y="6" width="14" height="4" rx="2" />
+        <path d="M1 8h7" stroke-width="3" stroke-linecap="round" />
       </svg>
-      Sections
-    </a>
-    <a href="#panel">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-        <rect x="1" y="1" width="14" height="14" rx="2" />
-        <path d="M1 5h14M5 5v10" />
-      </svg>
-      Panel
+      Progress
     </a>
     <a href="#table">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
@@ -170,19 +137,12 @@
       </svg>
       Pagination
     </a>
-    <a href="#notifications">
+    <a href="#panel">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-        <path d="M8 2a5 5 0 015 5v3l1 1H2l1-1V7a5 5 0 015-5z" />
-        <path d="M6.5 13a1.5 1.5 0 003 0" />
+        <rect x="1" y="1" width="14" height="14" rx="2" />
+        <path d="M1 5h14M5 5v10" />
       </svg>
-      Notifications
-    </a>
-    <a href="#progress">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-        <rect x="1" y="6" width="14" height="4" rx="2" />
-        <path d="M1 8h7" stroke-width="3" stroke-linecap="round" />
-      </svg>
-      Progress
+      Panel
     </a>
     <a href="#links">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -191,12 +151,67 @@
       </svg>
       Links
     </a>
+    <a href="#sections">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <rect x="1" y="1" width="14" height="4" rx="1" />
+        <rect x="1" y="7" width="14" height="4" rx="1" />
+        <rect x="1" y="13" width="9" height="2" rx="1" />
+      </svg>
+      Sections
+    </a>
+    <a href="#social">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="4" cy="8" r="2.5"/>
+        <circle cx="12" cy="4" r="2"/>
+        <circle cx="12" cy="12" r="2"/>
+        <path d="M6.4 7L10.2 4.8M6.4 9L10.2 11.2"/>
+      </svg>
+      Social
+    </a>
+  </div>
+
+  <!-- Components requiring njx.js -->
+  <div class="lib-sidebar-group">
+    <span class="lib-sidebar-title">Components · JS</span>
+    <a href="#tabs">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M1 6h4v7H1zM6 4h4v9H6zM11 6h4v7h-4z" />
+      </svg>
+      Tabs
+    </a>
+    <a href="#collapse">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 6l4 4 4-4" />
+        <rect x="1" y="2" width="14" height="12" rx="2" />
+      </svg>
+      Collapse
+    </a>
     <a href="#dropdown">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <rect x="1" y="3" width="14" height="5" rx="2" />
         <path d="M4 11h8M6 14h4" />
       </svg>
       Dropdown
+    </a>
+    <a href="#popups">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 3h12a1 1 0 011 1v7a1 1 0 01-1 1H5l-3 2V4a1 1 0 011-1z" />
+      </svg>
+      Popups
+    </a>
+    <a href="#sidebar">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="1" y="2" width="14" height="12" rx="2"/>
+        <path d="M5 2v12"/>
+      </svg>
+      Sidebar
+    </a>
+    <a href="#notifications">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M8 2a5 5 0 015 5v3l1 1H2l1-1V7a5 5 0 015-5z" />
+        <path d="M6.5 13a1.5 1.5 0 003 0" />
+      </svg>
+      Notifications
     </a>
     <a href="#carousel">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -211,6 +226,14 @@
 
   <div class="lib-sidebar-group">
     <span class="lib-sidebar-title">Visual</span>
+    <a href="#skeleton">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="1" y="2" width="14" height="3" rx="1.5"/>
+        <rect x="1" y="7" width="10" height="2.5" rx="1.25"/>
+        <rect x="1" y="11.5" width="12" height="2.5" rx="1.25"/>
+      </svg>
+      Skeleton
+    </a>
     <a href="#animations">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M8 1v3M8 12v3M1 8h3M12 8h3M3.5 3.5l2 2M10.5 10.5l2 2M10.5 3.5l-2 2M5.5 10.5l-2 2" />

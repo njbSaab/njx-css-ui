@@ -1,0 +1,197 @@
+/* ─────────────────────────────────────────────
+   _skeleton.css — Skeleton loading placeholders
+   Base: .skeleton + modifiers
+   Animations: shimmer (default) | pulse | wave
+───────────────────────────────────────────── */
+
+/* ── Shimmer animation ── */
+@keyframes skeleton-shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── Pulse animation ── */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+/* ── Wave animation ── */
+@keyframes skeleton-wave {
+  0%   { transform: translateX(-200%) skewX(-12deg); }
+  100% { transform: translateX(200%)  skewX(-12deg); }
+}
+
+/* ═══════════════════════════════
+   BASE
+═══════════════════════════════ */
+.skeleton {
+  background: color-mix(in srgb, var(--color-neutral-600, #444) 55%, transparent);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Default shimmer ::after */
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--color-neutral-400, #999) 22%, transparent) 50%,
+    transparent 100%
+  );
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════
+   SIZES (height)
+═══════════════════════════════ */
+.skeleton-xs { height: 8px; }
+.skeleton-sm { height: 12px; }
+.skeleton-md { height: 16px; }
+.skeleton-lg { height: 24px; }
+.skeleton-xl { height: 40px; }
+.skeleton-2xl{ height: 64px; }
+
+/* ═══════════════════════════════
+   WIDTHS
+═══════════════════════════════ */
+.skeleton-full  { width: 100%; }
+.skeleton-3\/4  { width: 75%; }
+.skeleton-2\/3  { width: 66%; }
+.skeleton-1\/2  { width: 50%; }
+.skeleton-1\/3  { width: 33%; }
+.skeleton-1\/4  { width: 25%; }
+
+/* ═══════════════════════════════
+   SHAPES
+═══════════════════════════════ */
+.skeleton-circle  { border-radius: 50%; }
+.skeleton-pill    { border-radius: 999px; }
+.skeleton-square  { border-radius: 0; }
+.skeleton-rounded { border-radius: 14px; }
+
+/* ═══════════════════════════════
+   LAYOUT HELPERS
+═══════════════════════════════ */
+.skeleton-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.skeleton-user {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.skeleton-user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ═══════════════════════════════
+   CARD SKELETON
+═══════════════════════════════ */
+.skeleton-card {
+  background: var(--bg-secondary, #1a1a1a);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-600, #444) 40%, transparent);
+  border-radius: 14px;
+  overflow: hidden;
+  width: 260px;
+  flex-shrink: 0;
+}
+
+.skeleton-card-img {
+  width: 100%;
+  height: 152px;
+  border-radius: 0;
+}
+
+.skeleton-card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ═══════════════════════════════
+   LIST SKELETON
+═══════════════════════════════ */
+.skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.skeleton-list-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.skeleton-list-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ═══════════════════════════════
+   TABLE SKELETON
+═══════════════════════════════ */
+.skeleton-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeleton-table-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.skeleton-table-row .skeleton {
+  height: 14px;
+  flex: 1;
+}
+
+.skeleton-table-row .skeleton:first-child { flex: 0 0 32px; height: 32px; }
+
+/* ═══════════════════════════════
+   ANIMATION VARIANTS
+═══════════════════════════════ */
+
+/* Pulse — replaces shimmer */
+.skeleton-pulse .skeleton::after { display: none; }
+.skeleton-pulse .skeleton {
+  animation: skeleton-pulse 1.8s ease-in-out infinite;
+}
+
+/* Wave — wider highlight streak */
+.skeleton-wave .skeleton::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, #fff 18%, transparent),
+    transparent
+  );
+  animation: skeleton-wave 1.8s ease-in-out infinite;
+}
+
+/* Static — no animation */
+.skeleton-static .skeleton::after { display: none; }
+.skeleton-static .skeleton { animation: none; }
