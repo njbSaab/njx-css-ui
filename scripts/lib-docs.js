@@ -478,6 +478,30 @@ function initCarousels() {
   });
 }
 
+// ── Inline <code> copy on click ──
+function initInlineCodeCopy() {
+  document.querySelectorAll(
+    '.lib-section-desc code, .lib-component-label code, .lib-section-title code, .lib-section-eyebrow code'
+  ).forEach(el => {
+    if (el.dataset.copyReady) return;
+    el.dataset.copyReady = '1';
+    el.classList.add('lib-code-inline');
+    el.title = 'Click to copy';
+
+    el.addEventListener('click', () => {
+      const text = el.textContent.trim();
+      navigator.clipboard.writeText(text).catch(() => {});
+      el.classList.add('lib-code-inline--copied');
+      const prev = el.textContent;
+      el.textContent = '✓ copied';
+      setTimeout(() => {
+        el.textContent = prev;
+        el.classList.remove('lib-code-inline--copied');
+      }, 1200);
+    });
+  });
+}
+
 // ── Search ──
 function initSearch() {
   const input = document.getElementById('libSearchInput');
@@ -630,4 +654,5 @@ document.addEventListener('components-loaded', () => {
   initSidebarObserver();
   initCarousels();
   initSearch();
+  initInlineCodeCopy();
 });
