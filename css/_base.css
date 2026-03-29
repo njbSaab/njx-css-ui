@@ -636,3 +636,21 @@
     --grid-gutter: 0.375rem;
   }
 }
+
+/* ── Smooth theme transition ──────────────────────────
+   Applied only while JS adds .theme-switching to <html>.
+   Keeps hover/focus transitions unaffected at other times.
+──────────────────────────────────────────────────────── */
+.theme-switching,
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition:
+    background-color 0.3s ease,
+    background     0.3s ease,
+    color          0.2s ease,
+    border-color   0.3s ease,
+    box-shadow     0.3s ease,
+    fill           0.2s ease,
+    stroke         0.2s ease !important;
+}
