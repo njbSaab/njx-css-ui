@@ -77,6 +77,7 @@ css/
   _typography.css  ← typography classes
   _utils.css       ← utility classes (Tailwind-style)
   _responsive.css  ← responsive prefix utilities (sm: md: lg: xl:)
+  _tooltip.css     ← pure CSS tooltips via [data-tip] attribute
   ...components    ← only the components you selected
 
 js/
@@ -93,14 +94,20 @@ Set theme on <html>:
 
   <html data-theme="dark">   <!-- dark / light / red / blue / green / cyan / yellow / pink / purple -->
 
+## Tooltips
+
+  <button data-tip="Hello!">Hover me</button>
+  <button data-tip="Bottom" data-tip-pos="bottom">Bottom</button>
+  <button data-tip="Styled" data-tip-color="primary">Primary</button>
+
 ## CDN (no download needed)
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-ui-libe@main/css/style.min.css">
-  <script src="https://cdn.jsdelivr.net/gh/njbSaab/njx-ui-libe@main/js/njx.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@main/css/style.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@main/js/njx.js"></script>
 
 ## Docs
 
-  https://github.com/njbSaab/njx-ui-libe
+  https://github.com/njbSaab/njx-css-ui
 
 MIT License
 `;
