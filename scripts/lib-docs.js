@@ -1,14 +1,6 @@
 // ── Unified theme apply — syncs all UI elements ──
 function applyTheme(theme) {
-  const html = document.documentElement;
-
-  // Add transition class, apply theme, then remove after animation
-  html.classList.add('theme-switching');
-  html.setAttribute('data-theme', theme);
-
-  clearTimeout(applyTheme._t);
-  applyTheme._t = setTimeout(() => html.classList.remove('theme-switching'), 350);
-
+  document.documentElement.setAttribute('data-theme', theme);
   document.querySelectorAll('.lib-theme-pill').forEach(p => {
     p.classList.toggle('active', p.title.toLowerCase() === theme);
   });
