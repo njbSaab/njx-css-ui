@@ -49,8 +49,46 @@
   <!-- ── Variant 3: Push left ── -->
   <div class="lib-component">
     <div class="lib-component-label">Left — push content</div>
-    <div class="lib-preview" style="gap:12px;flex-wrap:wrap;">
-      <button class="btn btn-accent" onclick="sidebarToggle('demo-sidebar-push')">Toggle Push Sidebar</button>
+    <div class="lib-preview" style="padding:0;overflow:hidden;border-radius:var(--radius-lg)">
+      <!-- Live push demo inside a contained box -->
+      <div class="sidebar-layout" id="push-demo-layout" style="height:260px;min-height:0;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--sidebar-border)">
+        <aside class="sidebar sidebar-push is-open" id="demo-sidebar-push">
+          <div class="sidebar-header">
+            <span class="sidebar-title">Sidebar</span>
+            <button class="sidebar-close" onclick="sidebarToggle('demo-sidebar-push')" aria-label="Close">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13"/></svg>
+            </button>
+          </div>
+          <div class="sidebar-body">
+            <nav class="sidebar-nav">
+              <a class="sidebar-link is-active" href="#">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L2 7v7h4v-4h4v4h4V7z"/></svg>
+                Home
+              </a>
+              <a class="sidebar-link" href="#">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="6" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+                Profile
+              </a>
+              <a class="sidebar-link" href="#">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2"/></svg>
+                Settings
+              </a>
+            </nav>
+          </div>
+        </aside>
+        <div class="sidebar-content" style="padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-4);overflow:hidden">
+          <div style="display:flex;align-items:center;gap:var(--space-3)">
+            <button class="btn btn-primary btn-sm" onclick="sidebarToggle('demo-sidebar-push')">☰ Toggle Sidebar</button>
+            <span style="font-size:var(--fs-sm);color:var(--text-muted)">Content shifts — no overlay</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-3)">
+            <div style="height:14px;border-radius:4px;background:color-mix(in srgb,var(--color-neutral-600) 18%,transparent);width:70%"></div>
+            <div style="height:14px;border-radius:4px;background:color-mix(in srgb,var(--color-neutral-600) 12%,transparent);width:90%"></div>
+            <div style="height:14px;border-radius:4px;background:color-mix(in srgb,var(--color-neutral-600) 12%,transparent);width:55%"></div>
+            <div style="height:80px;border-radius:var(--radius-md);background:color-mix(in srgb,var(--color-primary) 8%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 20%,transparent)"></div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="lib-code-wrapper">
       <div class="lib-code-container">
@@ -208,37 +246,6 @@
   </div>
   <div class="sidebar-footer">
     <button class="btn btn-primary" style="width:100%" onclick="sidebarClose('demo-sidebar-right')">Apply Filters</button>
-  </div>
-</aside>
-
-<!-- ── Push sidebar (demo — overlay mode for in-page demo) ── -->
-<aside class="sidebar" id="demo-sidebar-push">
-  <div class="sidebar-header">
-    <span class="sidebar-title">Push Sidebar</span>
-    <button class="sidebar-close" onclick="sidebarClose('demo-sidebar-push')" aria-label="Close">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13"/></svg>
-    </button>
-  </div>
-  <div class="sidebar-body">
-    <span class="sidebar-label">App</span>
-    <nav class="sidebar-nav">
-      <a class="sidebar-link is-active" href="#">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L2 7v7h4v-4h4v4h4V7z"/></svg>
-        Home
-      </a>
-      <a class="sidebar-link" href="#">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v4l2 2"/></svg>
-        About
-      </a>
-      <a class="sidebar-link" href="#">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12v8a1 1 0 01-1 1H3a1 1 0 01-1-1V4zM5 4V3a1 1 0 011-1h4a1 1 0 011 1v1"/></svg>
-        Portfolio
-      </a>
-      <a class="sidebar-link" href="#">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12l3-3 3 2 3-4 3 3"/><rect x="1" y="1" width="14" height="14" rx="2"/></svg>
-        Analytics
-      </a>
-    </nav>
   </div>
 </aside>
 
