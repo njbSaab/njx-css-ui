@@ -156,3 +156,78 @@
 .panel.is-success .panel-heading { background: var(--color-success); color: #111; }
 .panel.is-danger  .panel-heading { background: var(--color-error);   color: #fff; }
 .panel.is-warning .panel-heading { background: var(--color-warning); color: #111; }
+
+/* ── Panel: search block ── */
+.panel-search {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-neutral-700);
+}
+.panel-search input {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-neutral-700);
+  border-radius: var(--radius-sm);
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-size: var(--fs-sm);
+  outline: none;
+  transition: border-color var(--ease-fast);
+}
+.panel-search input:focus { border-color: var(--color-primary); }
+.panel-search input::placeholder { color: var(--text-muted); }
+
+/* ── Panel: footer ── */
+.panel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-top: 1px solid var(--color-neutral-700);
+  background: var(--color-neutral-800);
+}
+
+/* ── Panel block extras ── */
+/* Right-slot (badge / action) */
+.panel-block-badge {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  background: color-mix(in srgb, var(--color-primary) 18%, transparent);
+  color: var(--color-primary);
+}
+.panel-block-badge.is-muted {
+  background: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+  color: var(--text-muted);
+}
+.panel-block-meta {
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+/* Checkbox inside panel-block */
+.panel-block input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+/* Avatar in panel-block */
+.panel-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
