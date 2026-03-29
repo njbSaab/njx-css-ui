@@ -9,6 +9,26 @@
 ───────────────────────────────────────────── */
 
 /* ═══════════════════════════════
+   THEME
+   Saves selected theme to localStorage and applies it to <html>.
+   Add this snippet once in <head> to restore theme before first paint:
+     <script>try{var t=localStorage.getItem('njx-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+
+   Usage:
+     njxSetTheme('dark')           — set a specific theme
+     njxToggleTheme()              — toggle dark ↔ light
+   Themes: dark | light | red | blue | green | cyan | yellow | pink | purple
+═══════════════════════════════ */
+function njxSetTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  try { localStorage.setItem('njx-theme', theme); } catch(e) {}
+}
+
+function njxToggleTheme() {
+  var current = document.documentElement.getAttribute('data-theme') || 'dark';
+  njxSetTheme(current === 'light' ? 'dark' : 'light');
+}
+/* ═══════════════════════════════
    COLLAPSE
    Usage: onclick="collapseToggle(this)"
 ═══════════════════════════════ */
@@ -175,5 +195,11 @@ function showToast(msg, type, duration) {
    AUTO INIT
 ═══════════════════════════════ */
 document.addEventListener('DOMContentLoaded', function() {
+  // Restore saved theme (fallback if inline <head> script is not present)
+  try {
+    var saved = localStorage.getItem('njx-theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+  } catch(e) {}
+
   initCarousels();
 });
