@@ -3,6 +3,28 @@ function setTheme(pill, theme) {
   document.documentElement.setAttribute('data-theme', theme);
   document.querySelectorAll('.lib-theme-pill').forEach(p => p.classList.remove('active'));
   pill.classList.add('active');
+  // sync theme showcase
+  document.querySelectorAll('.ts-tile').forEach(t => t.classList.toggle('active', t.dataset.ts === theme));
+  const attrEl = document.getElementById('tsAttrCode');
+  const codeEl = document.getElementById('tsCodeTheme');
+  if (attrEl) attrEl.textContent = `data-theme="${theme}"`;
+  if (codeEl) codeEl.textContent = theme;
+}
+
+// ── Theme showcase switcher ──
+function tsSwitch(tile, theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  // sync topbar pills
+  document.querySelectorAll('.lib-theme-pill').forEach(p => {
+    p.classList.toggle('active', p.title.toLowerCase() === theme);
+  });
+  // sync showcase tiles
+  document.querySelectorAll('.ts-tile').forEach(t => t.classList.toggle('active', t === tile));
+  // update attr badge + code
+  const attrEl = document.getElementById('tsAttrCode');
+  const codeEl = document.getElementById('tsCodeTheme');
+  if (attrEl) attrEl.textContent = `data-theme="${theme}"`;
+  if (codeEl) codeEl.textContent = theme;
 }
 
 // ── Download modal ──
