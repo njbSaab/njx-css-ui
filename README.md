@@ -377,6 +377,13 @@ https://cdn.jsdelivr.net/npm/njx-ui/
 ```
 
 ### Modal
+
+<div align="center">
+
+![njX UI — Modals & Popups](img/gif/popup.gif)
+
+</div>
+
 ```html
 <button class="btn btn-primary" onclick="openModal('my-modal')">Open</button>
 
@@ -414,6 +421,13 @@ showToast('Info message', 'primary')
 ```
 
 ### Hover Effects & Animations
+
+<div align="center">
+
+![njX UI — Animations & Hover Effects](img/gif/anim.gif)
+
+</div>
+
 ```html
 <div class="hover-scale">Scale on hover</div>
 <div class="hover-lift">Lift on hover</div>
