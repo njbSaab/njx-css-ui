@@ -1,0 +1,260 @@
+/* ============================================================
+   _sidebar.css — Sidebar / Drawer component
+   ============================================================
+
+   Variants:
+   ┌─────────────────────────────────────────────────────────┐
+   │ .sidebar                  — base (left, overlay mode)   │
+   │ .sidebar.sidebar-right    — slides from right           │
+   │ .sidebar.sidebar-push     — pushes page content         │
+   │ .sidebar.sidebar-right.sidebar-push — push from right   │
+   │ .sidebar.sidebar-fullpage — full viewport overlay        │
+   └─────────────────────────────────────────────────────────┘
+
+   Required HTML wrapper for push variants:
+     <div class="sidebar-layout">
+       <aside class="sidebar sidebar-push" id="my-sidebar">...</aside>
+       <div class="sidebar-content">...page content...</div>
+     </div>
+
+   Open/Close via JS:
+     sidebarOpen('my-sidebar')
+     sidebarClose('my-sidebar')
+     sidebarToggle('my-sidebar')
+
+   Backdrop click to close:
+     <div class="sidebar-backdrop" onclick="sidebarClose('my-sidebar')"></div>
+   ============================================================ */
+
+/* ── CSS Variables ── */
+:root {
+  --sidebar-width:    280px;
+  --sidebar-bg:       var(--bg-secondary);
+  --sidebar-border:   color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+  --sidebar-shadow:   0 8px 40px rgba(0, 0, 0, 0.45);
+  --sidebar-duration: 0.28s;
+  --sidebar-ease:     cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ══════════════════════════════════════════
+   BASE SIDEBAR
+══════════════════════════════════════════ */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  height: 100dvh;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border);
+  display: flex;
+  flex-direction: column;
+  z-index: calc(var(--z-modal) - 1);
+  transform: translateX(-100%);
+  transition: transform var(--sidebar-duration) var(--sidebar-ease),
+              box-shadow var(--sidebar-duration) var(--sidebar-ease);
+  overflow: hidden;
+}
+
+.sidebar.is-open {
+  transform: translateX(0);
+  box-shadow: var(--sidebar-shadow);
+}
+
+/* ── Header ── */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--sidebar-border);
+  flex-shrink: 0;
+  min-height: 60px;
+}
+
+.sidebar-title {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.sidebar-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background var(--ease-fast), color var(--ease-fast);
+  flex-shrink: 0;
+}
+.sidebar-close:hover {
+  background: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+  color: var(--text-main);
+}
+.sidebar-close svg { pointer-events: none; }
+
+/* ── Body ── */
+.sidebar-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* ── Footer ── */
+.sidebar-footer {
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--sidebar-border);
+  flex-shrink: 0;
+}
+
+/* ── Nav links inside sidebar ── */
+.sidebar-nav { display: flex; flex-direction: column; gap: var(--space-1); }
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  color: var(--text-light);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--ease-fast), color var(--ease-fast);
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+.sidebar-link:hover {
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  color: var(--text-main);
+}
+.sidebar-link.is-active {
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  color: var(--color-primary);
+}
+.sidebar-link svg { flex-shrink: 0; opacity: 0.7; }
+.sidebar-link.is-active svg { opacity: 1; }
+
+/* ── Section label ── */
+.sidebar-label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  padding: var(--space-4) var(--space-4) var(--space-1);
+}
+
+/* ── Divider ── */
+.sidebar-divider {
+  height: 1px;
+  background: var(--sidebar-border);
+  margin: var(--space-2) 0;
+}
+
+/* ══════════════════════════════════════════
+   VARIANT: RIGHT
+══════════════════════════════════════════ */
+.sidebar.sidebar-right {
+  left: auto;
+  right: 0;
+  border-right: none;
+  border-left: 1px solid var(--sidebar-border);
+  transform: translateX(100%);
+}
+.sidebar.sidebar-right.is-open {
+  transform: translateX(0);
+}
+
+/* ══════════════════════════════════════════
+   VARIANT: PUSH (shifts page content)
+   Requires .sidebar-layout wrapper
+══════════════════════════════════════════ */
+.sidebar-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+.sidebar-layout .sidebar.sidebar-push {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  transform: translateX(0);
+  flex-shrink: 0;
+  width: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  transition: width var(--sidebar-duration) var(--sidebar-ease);
+  z-index: 1;
+}
+
+.sidebar-layout .sidebar.sidebar-push.is-open {
+  width: var(--sidebar-width);
+  border-right: 1px solid var(--sidebar-border);
+  box-shadow: none;
+}
+
+.sidebar-layout .sidebar.sidebar-push.sidebar-right {
+  order: 1;
+}
+.sidebar-layout .sidebar.sidebar-push.sidebar-right.is-open {
+  border-left: 1px solid var(--sidebar-border);
+  border-right: none;
+}
+
+.sidebar-content {
+  flex: 1;
+  min-width: 0;
+  transition: none;
+}
+
+/* ══════════════════════════════════════════
+   VARIANT: FULLPAGE
+══════════════════════════════════════════ */
+.sidebar.sidebar-fullpage {
+  width: 100vw;
+  border: none;
+  transform: translateX(-100%);
+}
+.sidebar.sidebar-fullpage.is-open {
+  transform: translateX(0);
+  box-shadow: none;
+}
+
+/* ══════════════════════════════════════════
+   BACKDROP
+   <div class="sidebar-backdrop" onclick="sidebarClose('id')"></div>
+══════════════════════════════════════════ */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: calc(var(--z-modal) - 2);
+  animation: sidebar-backdrop-in 0.22s ease forwards;
+}
+.sidebar-backdrop.is-visible { display: block; }
+
+@keyframes sidebar-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Prevent body scroll when overlay sidebar is open ── */
+body.sidebar-open { overflow: hidden; }
