@@ -159,6 +159,73 @@ function carouselGo(carousel, idx) {
 }
 
 /* ═══════════════════════════════
+   SIDEBAR
+   Opens/closes sidebar drawer with optional backdrop.
+   Backdrop element id = sidebar id + '-backdrop'
+
+   Usage:
+     sidebarOpen('my-sidebar')
+     sidebarClose('my-sidebar')
+     sidebarToggle('my-sidebar')
+
+   HTML structure:
+     <div class="sidebar-backdrop" id="my-sidebar-backdrop" onclick="sidebarClose('my-sidebar')"></div>
+     <aside class="sidebar" id="my-sidebar">
+       <div class="sidebar-header">
+         <span class="sidebar-title">Menu</span>
+         <button class="sidebar-close" onclick="sidebarClose('my-sidebar')">✕</button>
+       </div>
+       <div class="sidebar-body">...</div>
+     </aside>
+
+   Variants (add modifier classes to .sidebar):
+     sidebar-right      — slides from right
+     sidebar-push       — pushes content (wrap page in .sidebar-layout)
+     sidebar-fullpage   — full viewport overlay
+═══════════════════════════════ */
+function sidebarOpen(id) {
+  var sidebar = document.getElementById(id);
+  if (!sidebar) return;
+  sidebar.classList.add('is-open');
+  var backdrop = document.getElementById(id + '-backdrop');
+  if (backdrop) backdrop.classList.add('is-visible');
+  if (!sidebar.classList.contains('sidebar-push')) {
+    document.body.classList.add('sidebar-open');
+  }
+}
+
+function sidebarClose(id) {
+  var sidebar = document.getElementById(id);
+  if (!sidebar) return;
+  sidebar.classList.remove('is-open');
+  var backdrop = document.getElementById(id + '-backdrop');
+  if (backdrop) backdrop.classList.remove('is-visible');
+  document.body.classList.remove('sidebar-open');
+}
+
+function sidebarToggle(id) {
+  var sidebar = document.getElementById(id);
+  if (!sidebar) return;
+  sidebar.classList.contains('is-open') ? sidebarClose(id) : sidebarOpen(id);
+}
+
+// Close all open sidebars (useful for shared backdrop)
+function sidebarCloseAll() {
+  document.querySelectorAll('.sidebar.is-open').forEach(function(s) {
+    s.classList.remove('is-open');
+  });
+  document.querySelectorAll('.sidebar-backdrop.is-visible').forEach(function(b) {
+    b.classList.remove('is-visible');
+  });
+  document.body.classList.remove('sidebar-open');
+}
+
+// Close sidebar on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') sidebarCloseAll();
+});
+
+/* ═══════════════════════════════
    TOAST
    Usage: showToast('Message', 'success', 2200)
    Types: success | error | primary | dark
