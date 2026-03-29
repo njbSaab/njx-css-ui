@@ -1808,6 +1808,9 @@
       color: var(--text-main);
     }
 
+    .sidebar-close.sidebar-close-lg{
+      padding: 0;
+    }
     @keyframes lib-toast-in {
       from {
         opacity: 0;
