@@ -421,8 +421,8 @@ const SECTION_GROUPS = {
   sections: 'Components', panel: 'Components', table: 'Components',
   breadcrumb: 'Components', pagination: 'Components',
   notifications: 'Components', progress: 'Components', links: 'Components',
-  dropdown: 'Components', carousel: 'Components',
-  animations: 'Visual', gradients: 'Visual', hovers: 'Visual'
+  dropdown: 'Components', carousel: 'Components', social: 'Components', sidebar: 'Components',
+  animations: 'Visual', gradients: 'Visual', hovers: 'Visual', skeleton: 'Visual', 'hover-tips': 'Visual'
 };
 
 function initSectionHeaders() {
@@ -556,8 +556,8 @@ function initSearch() {
     tabs: '📑', collapse: '🔽', popups: '💬', nav: '🧭',
     sections: '📐', panel: '🗂', table: '📊', breadcrumb: '›',
     pagination: '«»', notifications: '🔔', progress: '▮',
-    links: '🔗', dropdown: '⌄', carousel: '🎠',
-    animations: '✨', gradients: '🌈', hovers: '🖱',
+    links: '🔗', dropdown: '⌄', carousel: '🎠', social: '🌐', sidebar: '◫',
+    animations: '✨', gradients: '🌈', hovers: '🖱', skeleton: '💀', 'hover-tips': '💡',
   };
 
   document.querySelectorAll('.lib-section[id]').forEach(section => {
