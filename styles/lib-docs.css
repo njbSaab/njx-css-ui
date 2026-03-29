@@ -164,40 +164,133 @@
     /* ═══ THEME SYSTEM SHOWCASE ═══ */
     .ts-wrap { padding: 0; overflow: hidden; }
 
-    .ts-hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      min-height: 320px;
+    /* stage — main container with ambient glow */
+    .ts-stage {
+      position: relative;
+      padding: 36px 32px 32px;
+      overflow: hidden;
+      background: radial-gradient(ellipse 70% 60% at 65% 50%,
+        color-mix(in srgb, var(--color-primary) 8%, transparent),
+        transparent 70%);
+      transition: background 0.5s;
     }
 
-    .ts-left {
-      padding: 32px 32px 28px;
+    .ts-glow {
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, color-mix(in srgb, var(--color-primary) 20%, transparent), transparent 70%);
+      pointer-events: none;
+      transition: background 0.5s;
+      filter: blur(40px);
+    }
+
+    /* top row */
+    .ts-top {
       display: flex;
-      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
       gap: 20px;
-      border-right: 1px solid var(--lib-comp-brd);
+      margin-bottom: 28px;
+    }
+
+    .ts-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--color-primary);
+      margin-bottom: 10px;
+      transition: color 0.3s;
     }
 
     .ts-heading {
-      font-size: 22px;
-      font-weight: 800;
+      font-size: 26px;
+      font-weight: 900;
       color: var(--text-main);
       line-height: 1.2;
-      letter-spacing: -0.3px;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
     }
 
     .ts-sub {
       font-size: 13px;
       color: var(--text-muted);
-      line-height: 1.6;
-      max-width: 360px;
+      line-height: 1.65;
+      max-width: 340px;
     }
 
-    /* theme tiles */
-    .ts-tiles {
-      display: flex;
-      flex-wrap: wrap;
+    .ts-inline-code {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 12px;
+      background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+      color: var(--color-primary);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    /* attr pill */
+    .ts-attr-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: color-mix(in srgb, var(--color-neutral-600) 15%, transparent);
+      border: 1px solid var(--lib-comp-brd);
+      border-radius: 10px;
+      padding: 9px 16px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .ts-attr-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      box-shadow: 0 0 6px var(--color-primary);
+      animation: ts-pulse 2s infinite;
+      flex-shrink: 0;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    @keyframes ts-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.6; transform: scale(0.85); }
+    }
+
+    .ts-attr-pill code {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .ts-attr-pill code span {
+      color: var(--color-primary);
+      font-weight: 700;
+      transition: color 0.3s;
+    }
+
+    /* body: selector + app */
+    .ts-body {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* selector */
+    .ts-selector-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .ts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 6px;
     }
 
@@ -205,238 +298,285 @@
       display: flex;
       align-items: center;
       gap: 7px;
-      padding: 6px 12px 6px 8px;
-      border-radius: 8px;
-      border: 1.5px solid color-mix(in srgb, var(--tc) 25%, transparent);
-      background: color-mix(in srgb, var(--tc) 8%, transparent);
+      padding: 8px 10px;
+      border-radius: 9px;
+      border: 1.5px solid color-mix(in srgb, var(--tc) 22%, transparent);
+      background: color-mix(in srgb, var(--tc) 7%, transparent);
       cursor: pointer;
-      transition: all 0.18s;
+      transition: all 0.2s;
       font-size: 12px;
       font-weight: 600;
       color: var(--text-muted);
       font-family: inherit;
+      line-height: 1;
     }
 
     .ts-tile:hover {
-      border-color: color-mix(in srgb, var(--tc) 60%, transparent);
-      background: color-mix(in srgb, var(--tc) 14%, transparent);
+      border-color: color-mix(in srgb, var(--tc) 55%, transparent);
+      background: color-mix(in srgb, var(--tc) 13%, transparent);
       color: var(--text-main);
+      transform: translateY(-1px);
     }
 
     .ts-tile.active {
       border-color: var(--tc);
       background: color-mix(in srgb, var(--tc) 18%, transparent);
       color: var(--text-main);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--tc) 15%, transparent);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--tc) 20%, transparent),
+                  0 4px 12px color-mix(in srgb, var(--tc) 25%, transparent);
     }
 
-    .ts-tile-dot {
-      width: 10px;
-      height: 10px;
+    .ts-tile-swatch {
+      width: 9px; height: 9px;
       border-radius: 50%;
       background: var(--tc);
       flex-shrink: 0;
-      transition: transform 0.18s;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .ts-tile:hover .ts-tile-dot,
-    .ts-tile.active .ts-tile-dot { transform: scale(1.2); }
-
-    .ts-tile-name { line-height: 1; }
-
-    .ts-tile-check {
-      width: 12px;
-      height: 12px;
-      color: var(--tc);
-      opacity: 0;
-      transform: scale(0.5);
-      transition: all 0.18s;
-      flex-shrink: 0;
+    .ts-tile.active .ts-tile-swatch {
+      box-shadow: 0 0 8px var(--tc);
+      transform: scale(1.25);
     }
 
-    .ts-tile.active .ts-tile-check {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* attr badge */
-    .ts-attr-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: color-mix(in srgb, var(--color-neutral-600) 12%, transparent);
-      border: 1px solid var(--lib-comp-brd);
-      border-radius: 8px;
-      padding: 8px 14px;
-      align-self: flex-start;
-    }
-
-    .ts-attr-label {
-      font-size: 11px;
-      color: var(--text-muted);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      white-space: nowrap;
-    }
-
-    .ts-attr-code {
-      font-family: 'Roboto Mono', monospace;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--color-primary);
-      transition: color 0.25s;
-    }
-
-    /* right: live preview */
-    .ts-right {
-      padding: 28px 28px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      background: color-mix(in srgb, var(--bg-main) 60%, transparent);
-    }
-
-    .ts-preview-label {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--text-muted);
-    }
-
-    .ts-card {
-      background: var(--bg-card);
+    /* mini app window */
+    .ts-app {
+      background: var(--bg-secondary);
       border: 1px solid var(--lib-comp-brd);
       border-radius: 14px;
       overflow: hidden;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      transition: background 0.3s, border-color 0.3s;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 4px 12px rgba(0,0,0,0.2);
+      transition: box-shadow 0.4s;
     }
 
-    .ts-card-top {
+    .ts-app-chrome {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 18px 20px 16px;
+      gap: 6px;
+      padding: 10px 14px;
+      background: color-mix(in srgb, var(--bg-main) 80%, transparent);
       border-bottom: 1px solid var(--lib-comp-brd);
     }
 
-    .ts-card-avatar {
-      width: 38px;
-      height: 38px;
+    .ts-dot {
+      width: 10px; height: 10px;
       border-radius: 50%;
-      background: color-mix(in srgb, var(--color-primary) 18%, transparent);
-      color: var(--color-primary);
+      flex-shrink: 0;
+    }
+
+    .ts-app-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-left: 6px;
+    }
+
+    .ts-app-body {
+      display: flex;
+      height: 230px;
+    }
+
+    /* app sidebar */
+    .ts-app-sidebar {
+      width: 120px;
+      flex-shrink: 0;
+      background: var(--bg-main);
+      border-right: 1px solid var(--lib-comp-brd);
+      padding: 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .ts-app-logo {
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .ts-card-name {
-      font-size: 14px;
-      font-weight: 700;
+      gap: 6px;
+      padding: 0 12px 12px;
+      font-size: 13px;
+      font-weight: 900;
       color: var(--text-main);
-      transition: color 0.3s;
+      border-bottom: 1px solid var(--lib-comp-brd);
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
     }
 
-    .ts-card-role {
+    .ts-app-logo-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      box-shadow: 0 0 6px var(--color-primary);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .ts-app-nav { display: flex; flex-direction: column; gap: 2px; padding: 0 6px; }
+
+    .ts-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 8px;
+      border-radius: 7px;
       font-size: 11px;
+      font-weight: 500;
       color: var(--text-muted);
-      margin-top: 2px;
-      transition: color 0.3s;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
     }
 
-    .ts-card-badge {
-      margin-left: auto;
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      padding: 3px 9px;
-      border-radius: 20px;
-      background: color-mix(in srgb, var(--color-primary) 18%, transparent);
+    .ts-nav-item:hover { background: color-mix(in srgb, var(--color-primary) 8%, transparent); color: var(--text-main); }
+
+    .ts-nav-item.active {
+      background: color-mix(in srgb, var(--color-primary) 15%, transparent);
       color: var(--color-primary);
-      border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+      font-weight: 700;
       transition: all 0.3s;
     }
 
-    .ts-card-stats {
-      display: flex;
-      border-bottom: 1px solid var(--lib-comp-brd);
-    }
-
-    .ts-card-stat {
+    /* app main content */
+    .ts-app-main {
       flex: 1;
-      padding: 14px 20px;
-      border-right: 1px solid var(--lib-comp-brd);
-      transition: border-color 0.3s;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow: hidden;
     }
 
-    .ts-card-stat:last-child { border-right: none; }
+    .ts-stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
 
-    .ts-card-stat-val {
-      font-size: 22px;
-      font-weight: 800;
+    .ts-stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--lib-comp-brd);
+      border-radius: 10px;
+      padding: 10px 12px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .ts-stat-icon {
+      width: 24px; height: 24px;
+      border-radius: 6px;
+      background: color-mix(in srgb, var(--color-primary) 15%, transparent);
       color: var(--color-primary);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 6px;
+      transition: all 0.3s;
+    }
+
+    .ts-stat-val {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-main);
       line-height: 1;
       transition: color 0.3s;
     }
 
-    .ts-card-stat-key {
-      font-size: 10px;
+    .ts-stat-key {
+      font-size: 9px;
       color: var(--text-muted);
-      margin-top: 4px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      margin-top: 3px;
     }
 
-    .ts-card-actions {
+    .ts-stat-trend {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .ts-stat-trend.up   { background: color-mix(in srgb,#22c55e 15%,transparent); color:#22c55e; }
+    .ts-stat-trend.down { background: color-mix(in srgb,#f43f5e 15%,transparent); color:#f43f5e; }
+
+    /* progress */
+    .ts-progress-block { display: flex; flex-direction: column; gap: 5px; }
+
+    .ts-progress-row {
       display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+    }
+
+    .ts-progress-label { color: var(--text-muted); }
+    .ts-progress-val   { color: var(--color-primary); font-weight: 700; transition: color 0.3s; }
+
+    .ts-bar {
+      height: 5px;
+      background: color-mix(in srgb, var(--color-neutral-600) 30%, transparent);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .ts-bar-fill {
+      height: 100%;
+      background: var(--color-primary);
+      border-radius: 99px;
+      transition: background 0.3s, width 0.5s;
+    }
+
+    /* actions row */
+    .ts-actions {
+      display: flex;
+      align-items: center;
       gap: 8px;
-      padding: 14px 20px;
+      flex-wrap: wrap;
     }
 
     .ts-btn-primary {
-      padding: 7px 16px;
+      padding: 6px 14px;
       border-radius: 7px;
       border: none;
       background: var(--color-primary);
       color: #000;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.3s;
       font-family: inherit;
     }
 
-    .ts-btn-primary:hover { opacity: 0.85; }
+    .ts-btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
 
-    .ts-btn-ghost {
-      padding: 7px 16px;
+    .ts-btn-outline {
+      padding: 5px 12px;
       border-radius: 7px;
-      border: 1.5px solid var(--lib-comp-brd);
+      border: 1.5px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
       background: transparent;
-      color: var(--text-muted);
-      font-size: 12px;
+      color: var(--color-primary);
+      font-size: 11px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s;
       font-family: inherit;
     }
 
-    .ts-btn-ghost:hover {
-      border-color: var(--color-primary);
-      color: var(--color-primary);
+    .ts-btn-outline:hover { background: color-mix(in srgb, var(--color-primary) 10%, transparent); }
+
+    .ts-badge {
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+      color: var(--color-accent);
+      border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
+      transition: all 0.3s;
     }
 
-    @media (max-width: 768px) {
-      .ts-hero { grid-template-columns: 1fr; }
-      .ts-left { border-right: none; border-bottom: 1px solid var(--lib-comp-brd); }
+    @media (max-width: 900px) {
+      .ts-body { grid-template-columns: 1fr; }
+      .ts-top  { flex-direction: column; }
+      .ts-app  { display: none; }
     }
 
     /* ═══ INLINE CODE COPY ═══ */
@@ -791,7 +931,7 @@
     .lib-section-desc {
       font-size: 14px;
       color: var(--text-muted);
-      margin-bottom: 32px;
+      margin-bottom: 0;
       padding-bottom: 24px;
       border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
       line-height: 1.7;
