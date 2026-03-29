@@ -14,6 +14,17 @@
     <div class="lib-theme-pill" style="--pill-color:#a855f7" onclick="setTheme(this,'purple')" title="Purple"></div>
   </div>
   <div class="lib-topbar-spacer"></div>
+
+  <!-- Search -->
+  <div class="lib-search" id="libSearch">
+    <svg class="lib-search-icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <circle cx="6.5" cy="6.5" r="4.5"/>
+      <path d="M10.5 10.5L14 14"/>
+    </svg>
+    <input class="lib-search-input" id="libSearchInput" type="text" placeholder="Search components…" autocomplete="off" spellcheck="false">
+    <kbd class="lib-search-kbd">⌘K</kbd>
+    <div class="lib-search-dropdown" id="libSearchDropdown"></div>
+  </div>
   <button class="lib-download-btn" id="downloadBtn" onclick="downloadCssZip()" title="Download CSS">
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
       <path d="M7 1v8M4 6l3 3 3-3M2 10v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.5"
@@ -21,5 +32,5 @@
     </svg>
     Download CSS
   </button>
-  <div class="lib-topbar-version">v1.0.0</div>
+  <div class="lib-topbar-version">v1.0.1</div>
 </header>

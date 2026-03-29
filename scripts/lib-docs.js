@@ -478,6 +478,150 @@ function initCarousels() {
   });
 }
 
+// ── Search ──
+function initSearch() {
+  const input = document.getElementById('libSearchInput');
+  const dropdown = document.getElementById('libSearchDropdown');
+  if (!input || !dropdown) return;
+
+  // Build index: sections + component labels
+  const index = [];
+
+  const SECTION_ICONS = {
+    tokens: '🎨', grid: '▦', typography: '𝐓', utils: '⚡',
+    buttons: '🔲', cards: '🃏', tags: '🏷', forms: '📋',
+    tabs: '📑', collapse: '🔽', popups: '💬', nav: '🧭',
+    sections: '📐', panel: '🗂', table: '📊', breadcrumb: '›',
+    pagination: '«»', notifications: '🔔', progress: '▮',
+    links: '🔗', dropdown: '⌄', carousel: '🎠',
+    animations: '✨', gradients: '🌈', hovers: '🖱',
+  };
+
+  document.querySelectorAll('.lib-section[id]').forEach(section => {
+    const id = section.id;
+    const titleEl = section.querySelector('.lib-section-title');
+    const title = titleEl ? titleEl.textContent.replace(/^[^\w\s]+/, '').trim() : id;
+    const group = SECTION_GROUPS[id] || 'Other';
+    const icon = SECTION_ICONS[id] || '◻';
+
+    // Section itself
+    index.push({ label: title, section: group, icon, el: section, type: 'section' });
+
+    // Component labels inside section
+    section.querySelectorAll('.lib-component-label').forEach(labelEl => {
+      const labelText = labelEl.textContent.trim();
+      if (!labelText) return;
+      index.push({ label: labelText, section: title, icon: '◈', el: labelEl.closest('.lib-component') || section, type: 'component' });
+    });
+  });
+
+  let focusedIndex = -1;
+  let currentItems = [];
+
+  function highlight(text, query) {
+    if (!query) return text;
+    const re = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    return text.replace(re, '<mark>$1</mark>');
+  }
+
+  function renderResults(query) {
+    const q = query.trim().toLowerCase();
+    dropdown.innerHTML = '';
+    focusedIndex = -1;
+
+    if (!q) { dropdown.classList.remove('open'); return; }
+
+    const results = index.filter(item =>
+      item.label.toLowerCase().includes(q) ||
+      item.section.toLowerCase().includes(q)
+    );
+
+    if (!results.length) {
+      dropdown.innerHTML = `<div class="lib-search-empty">No results for "<strong>${query}</strong>"</div>`;
+      dropdown.classList.add('open');
+      currentItems = [];
+      return;
+    }
+
+    // Group by section category
+    const groups = {};
+    results.forEach(item => {
+      const g = item.type === 'section' ? 'Sections' : item.section;
+      if (!groups[g]) groups[g] = [];
+      groups[g].push(item);
+    });
+
+    currentItems = [];
+    Object.entries(groups).forEach(([groupName, items]) => {
+      const groupLabel = document.createElement('div');
+      groupLabel.className = 'lib-search-group-label';
+      groupLabel.textContent = groupName;
+      dropdown.appendChild(groupLabel);
+
+      items.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'lib-search-item';
+        row.innerHTML = `
+          <div class="lib-search-item-icon">${item.icon}</div>
+          <div class="lib-search-item-body">
+            <div class="lib-search-item-name">${highlight(item.label, q)}</div>
+            <div class="lib-search-item-section">${item.section}</div>
+          </div>`;
+        row.addEventListener('click', () => selectItem(item));
+        dropdown.appendChild(row);
+        currentItems.push({ el: row, item });
+      });
+    });
+
+    dropdown.classList.add('open');
+  }
+
+  function selectItem(item) {
+    item.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    input.value = '';
+    dropdown.classList.remove('open');
+    input.blur();
+  }
+
+  function moveFocus(dir) {
+    if (!currentItems.length) return;
+    currentItems[focusedIndex]?.el.classList.remove('focused');
+    focusedIndex = (focusedIndex + dir + currentItems.length) % currentItems.length;
+    currentItems[focusedIndex].el.classList.add('focused');
+    currentItems[focusedIndex].el.scrollIntoView({ block: 'nearest' });
+  }
+
+  input.addEventListener('input', () => renderResults(input.value));
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); moveFocus(1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); moveFocus(-1); }
+    else if (e.key === 'Enter') {
+      if (focusedIndex >= 0 && currentItems[focusedIndex]) {
+        selectItem(currentItems[focusedIndex].item);
+      }
+    }
+    else if (e.key === 'Escape') {
+      dropdown.classList.remove('open');
+      input.blur();
+    }
+  });
+
+  // Close on outside click
+  document.addEventListener('click', e => {
+    if (!e.target.closest('#libSearch')) dropdown.classList.remove('open');
+  });
+
+  // ⌘K / Ctrl+K to focus
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+}
+
 // ── Init после загрузки всех компонентов через loader.js ──
 document.addEventListener('components-loaded', () => {
   initSectionHeaders();
@@ -485,4 +629,5 @@ document.addEventListener('components-loaded', () => {
   renderUtils();
   initSidebarObserver();
   initCarousels();
+  initSearch();
 });
