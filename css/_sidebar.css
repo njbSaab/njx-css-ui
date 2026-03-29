@@ -411,3 +411,163 @@
 
 /* ── Prevent body scroll when overlay sidebar is open ── */
 body.sidebar-open { overflow: hidden; }
+
+/* ══════════════════════════════════════════
+   VARIANT: PUSH RIGHT
+   Same as push left but sidebar slides from right.
+   Wrap page in .sidebar-layout:
+     <div class="sidebar-layout">
+       <div class="sidebar-content">...page...</div>
+       <aside class="sidebar sidebar-push sidebar-right" id="...">...</aside>
+     </div>
+══════════════════════════════════════════ */
+/* Already handled by .sidebar-push.sidebar-right rules above */
+
+
+/* ══════════════════════════════════════════
+   VARIANT: MINI / ICON RAIL
+   Always-visible rail that collapses to icons.
+   Use inside .sidebar-layout + add .sidebar-push.
+   Toggle with sidebarExpandToggle('id').
+
+   Wrap text in <span class="sidebar-link-text"> for hide/show.
+══════════════════════════════════════════ */
+:root {
+  --sidebar-mini-width: 62px;
+}
+
+/* Override push defaults — mini is always visible */
+.sidebar-layout .sidebar.sidebar-push.sidebar-mini {
+  width: var(--sidebar-mini-width) !important;
+  border-right: 1px solid var(--sidebar-border) !important;
+  overflow: hidden;
+  transition: width var(--sidebar-duration) var(--sidebar-ease);
+}
+.sidebar-layout .sidebar.sidebar-push.sidebar-mini.is-expanded {
+  width: var(--sidebar-width) !important;
+}
+
+/* Header: center when collapsed */
+.sidebar.sidebar-mini .sidebar-header {
+  justify-content: center;
+  padding: var(--space-3) var(--space-2);
+  min-height: 60px;
+}
+.sidebar.sidebar-mini.is-expanded .sidebar-header {
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-5);
+}
+
+/* Nav links: center icon, no gap in collapsed */
+.sidebar.sidebar-mini .sidebar-nav { gap: 2px; }
+.sidebar.sidebar-mini .sidebar-link {
+  justify-content: center;
+  padding: var(--space-3) var(--space-2);
+  gap: 0;
+  border-radius: var(--radius-sm);
+}
+.sidebar.sidebar-mini.is-expanded .sidebar-link {
+  justify-content: flex-start;
+  padding: var(--space-3) var(--space-4);
+  gap: var(--space-3);
+}
+
+/* Hide text labels when collapsed */
+.sidebar.sidebar-mini .sidebar-link-text,
+.sidebar.sidebar-mini .sidebar-brand-text,
+.sidebar.sidebar-mini .sidebar-label,
+.sidebar.sidebar-mini .sidebar-footer { opacity: 0; }
+.sidebar.sidebar-mini .sidebar-link-text,
+.sidebar.sidebar-mini .sidebar-brand-text,
+.sidebar.sidebar-mini .sidebar-label {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: opacity 0.15s, max-width 0.22s var(--sidebar-ease);
+}
+.sidebar.sidebar-mini .sidebar-footer {
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+
+/* Show text labels when expanded */
+.sidebar.sidebar-mini.is-expanded .sidebar-link-text,
+.sidebar.sidebar-mini.is-expanded .sidebar-brand-text,
+.sidebar.sidebar-mini.is-expanded .sidebar-label {
+  opacity: 1;
+  max-width: 200px;
+}
+.sidebar.sidebar-mini.is-expanded .sidebar-footer {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Bigger icon hit area when collapsed */
+.sidebar.sidebar-mini .sidebar-link svg { flex-shrink: 0; }
+
+/* Body padding adjusts */
+.sidebar.sidebar-mini .sidebar-body {
+  padding: var(--space-3) var(--space-2);
+}
+.sidebar.sidebar-mini.is-expanded .sidebar-body {
+  padding: var(--space-4) var(--space-5);
+}
+
+/* Active indicator — thinner in mini mode */
+.sidebar.sidebar-mini:not(.is-expanded) .sidebar-link.is-active::before { display: none; }
+
+/* Expand toggle button */
+.sidebar-mini-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  transition: background var(--ease-fast), color var(--ease-fast);
+}
+.sidebar-mini-toggle:hover {
+  background: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+  color: var(--text-main);
+}
+/* Hide collapse arrow in mini mode (logo acts as expand trigger) */
+.sidebar.sidebar-mini:not(.is-expanded) .sidebar-mini-toggle { opacity: 0; width: 0; padding: 0; }
+
+
+/* ══════════════════════════════════════════
+   VARIANT: FLOATING
+   Detached from edge — rounded, inset from viewport.
+   Overlay mode (slides in like left/right).
+   Add class .sidebar-floating to base .sidebar.
+══════════════════════════════════════════ */
+.sidebar.sidebar-floating {
+  top: var(--space-5);
+  bottom: var(--space-5);
+  left: var(--space-4);
+  height: auto;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--sidebar-border);
+  background: color-mix(in srgb, var(--sidebar-bg) 94%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.sidebar.sidebar-floating.is-open {
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.32), 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+.sidebar.sidebar-floating.sidebar-right {
+  left: auto;
+  right: var(--space-4);
+  border-left: 1px solid var(--sidebar-border);
+  border-right: none;
+}
+.sidebar.sidebar-floating .sidebar-header {
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+.sidebar.sidebar-floating .sidebar-footer {
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+}
