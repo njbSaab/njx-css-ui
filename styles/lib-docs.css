@@ -975,6 +975,72 @@
       gap: 8px;
     }
 
+    /* ── Show/hide code toggle bar ── */
+    .lib-code-reveal-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 20px;
+      background: color-mix(in srgb, var(--bg-main) 50%, var(--bg-secondary));
+      border: none;
+      border-top: 1px solid color-mix(in srgb, var(--color-neutral-600) 16%, transparent);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      font-family: 'Roboto Mono', monospace;
+      letter-spacing: 0.2px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      text-align: left;
+    }
+
+    .lib-code-reveal-btn:hover {
+      background: color-mix(in srgb, var(--color-primary) 7%, var(--bg-secondary));
+      color: var(--color-primary);
+    }
+
+    .lib-code-reveal-btn:active {
+      transform: none;
+      filter: brightness(1.18);
+    }
+
+    .lib-copy-btn:active {
+      transform: none;
+      filter: brightness(1.18);
+    }
+
+    .lib-code-reveal-btn.open {
+      color: var(--color-primary);
+    }
+
+    .lib-code-reveal-btn .lib-crb-chevron {
+      margin-left: auto;
+      flex-shrink: 0;
+      transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .lib-code-reveal-btn.open .lib-crb-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* code wrapper hidden by default — grid-template-rows trick */
+    .lib-code-wrapper {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* single inner wrapper needed for the animation to work */
+    .lib-code-inner {
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .lib-code-wrapper.code-open {
+      grid-template-rows: 1fr;
+    }
+
     .lib-component-label::before {
       content: '';
       width: 7px;
@@ -1657,73 +1723,9 @@
     /* ═══ MODAL ═══ */
     /* lib-modal-* — moved to _popups.css */
 
-    /* ═══ COLLAPSIBLE CODE ═══ */
-    .lib-code-wrapper {
-      position: relative;
-      border-top: 1px solid color-mix(in srgb, var(--color-neutral-600) 15%, transparent);
-    }
-
+    /* ═══ CODE CONTAINER ═══ */
     .lib-code-container {
-      max-height: 200px;
-      overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-    }
-
-    .lib-code-container.expanded {
-      max-height: none;
-      overflow: visible;
-    }
-
-    .lib-code-container::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 50px;
-      background: linear-gradient(to bottom, transparent, #0d0d0d);
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .lib-code-container.expanded::after {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .lib-code-toggle {
-      background: #0d0d0d;
-      border: none;
-      border-top: 1px solid color-mix(in srgb, var(--color-neutral-600) 15%, transparent);
-      color: var(--color-primary);
-      cursor: pointer;
-      padding: 8px 20px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      width: 100%;
-      text-align: left;
-      transition: all 0.2s ease;
-    }
-
-    .lib-code-toggle:hover {
-      color: var(--color-accent);
-    }
-
-    .lib-code-toggle::before {
-      content: '▶';
-      display: inline-block;
-      transition: transform 0.3s ease;
-      font-size: 9px;
-    }
-
-    .lib-code-toggle.expanded::before {
-      transform: rotate(90deg);
+      overflow-x: auto;
     }
 
     /* ── Copy button in code header ── */
@@ -1732,10 +1734,10 @@
       align-items: center;
       gap: 5px;
       padding: 3px 10px;
-      background: #222;
-      border: 1px solid #333;
+      background: color-mix(in srgb, var(--color-neutral-600) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 28%, transparent);
       border-radius: 6px;
-      color: #888;
+      color: var(--text-muted);
       font-size: 11px;
       font-weight: 600;
       font-family: inherit;
@@ -1745,13 +1747,14 @@
     }
 
     .lib-copy-btn:hover {
-      background: #333;
-      color: #fff;
+      background: color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+      color: var(--text-main);
+      border-color: color-mix(in srgb, var(--color-neutral-600) 45%, transparent);
     }
 
     .lib-copy-btn.copied {
-      background: color-mix(in srgb, var(--color-success) 20%, #222);
-      border-color: color-mix(in srgb, var(--color-success) 40%, transparent);
+      background: color-mix(in srgb, var(--color-success) 15%, transparent);
+      border-color: color-mix(in srgb, var(--color-success) 35%, transparent);
       color: var(--color-success);
     }
 
@@ -1949,22 +1952,6 @@
   .lib-main {
     max-width: none;
     padding: 28px 64px;
-  }
-
-  /* Снимаем ограничение высоты — код раскрыт полностью */
-  .lib-code-container {
-    max-height: none !important;
-    overflow: visible !important;
-  }
-
-  /* Убираем fade-градиент снизу */
-  .lib-code-container::after {
-    display: none !important;
-  }
-
-  /* Скрываем "Show more" — код уже весь виден */
-  .lib-code-toggle {
-    display: none !important;
   }
 
 }
