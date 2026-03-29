@@ -501,3 +501,69 @@
 .py-md     { padding-top: var(--space-2) !important; padding-bottom: var(--space-2) !important; }
 .py-lg     { padding-top: var(--space-4) !important; padding-bottom: var(--space-4) !important; }
 .py-xl     { padding-top: var(--space-6) !important; padding-bottom: var(--space-6) !important; }
+
+/* ── Hover Tooltips ── */
+[data-tip] {
+  position: relative;
+  cursor: default;
+}
+
+[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(3px);
+  background: var(--tooltip-bg, rgba(12,12,16,.94));
+  color: var(--tooltip-fg, #fff);
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s, transform .15s;
+  z-index: 1000;
+}
+
+[data-tip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+[data-tip][data-tip-pos="bottom"]::after {
+  bottom: auto;
+  top: calc(100% + 8px);
+  transform: translateX(-50%) translateY(-3px);
+}
+[data-tip][data-tip-pos="bottom"]:hover::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+[data-tip][data-tip-pos="left"]::after {
+  bottom: auto;
+  top: 50%;
+  left: auto;
+  right: calc(100% + 8px);
+  transform: translateY(-50%) translateX(3px);
+}
+[data-tip][data-tip-pos="left"]:hover::after {
+  transform: translateY(-50%) translateX(0);
+}
+
+[data-tip][data-tip-pos="right"]::after {
+  bottom: auto;
+  top: 50%;
+  left: calc(100% + 8px);
+  transform: translateY(-50%) translateX(-3px);
+}
+[data-tip][data-tip-pos="right"]:hover::after {
+  transform: translateY(-50%) translateX(0);
+}
+
+[data-tip][data-tip-color="primary"]::after { background: var(--color-primary); }
+[data-tip][data-tip-color="success"]::after { background: var(--color-success); color: #000; }
+[data-tip][data-tip-color="warning"]::after { background: var(--color-warning); color: #000; }
+[data-tip][data-tip-color="danger"]::after  { background: var(--color-error); }

@@ -931,6 +931,7 @@
 
     .lib-section-desc {
       font-size: 14px;
+      padding-left: 10px;
       color: var(--text-muted);
       margin-bottom: 0;
       padding-bottom: 24px;
