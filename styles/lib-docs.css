@@ -885,7 +885,7 @@
     /* ═══ MAIN ═══ */
     .lib-main {
       flex: 1;
-      padding: 48px 56px;
+      padding: 28px 56px;
       overflow-y: auto;
       max-width: 1080px;
     }
@@ -917,6 +917,7 @@
     }
 
     .lib-section-badge {
+      width: fit-content;
       font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
@@ -1901,7 +1902,7 @@
   /* Main — убираем ограничение ширины */
   .lib-main {
     max-width: none;
-    padding: 48px 64px;
+    padding: 28px 64px;
   }
 
   /* Снимаем ограничение высоты — код раскрыт полностью */
@@ -1920,4 +1921,239 @@
     display: none !important;
   }
 
+}
+
+/* ═══════════════════════════════════════════
+   THEME SWITCHER VARIANTS
+═══════════════════════════════════════════ */
+
+.sw-showcase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.sw-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 22px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 14px;
+  flex: 1;
+  min-width: 150px;
+}
+
+.sw-card--wide {
+  min-width: 220px;
+  flex: 2;
+}
+
+.sw-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Variant 1: Toggle slide ── */
+.sw-toggle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 99px;
+  color: var(--text-main);
+  transition: background .2s;
+}
+.sw-toggle:hover { background: rgba(128,128,128,.1); }
+
+.sw-track {
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  background: var(--color-primary);
+  position: relative;
+  flex-shrink: 0;
+  transition: background .3s;
+}
+html[data-theme="light"] .sw-track {
+  background: var(--color-neutral-300, #cbd5e1);
+}
+
+.sw-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: transform .25s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+html[data-theme="light"] .sw-thumb {
+  transform: translateX(20px);
+}
+
+.sw-toggle-icon {
+  opacity: .45;
+  flex-shrink: 0;
+  transition: opacity .2s;
+}
+html:not([data-theme="light"]) .sw-toggle-icon.sw-ico-moon { opacity: 1; }
+html[data-theme="light"] .sw-toggle-icon.sw-ico-sun { opacity: 1; }
+
+/* ── Variant 2: Segmented pill ── */
+.sw-seg {
+  display: flex;
+  border-radius: 10px;
+  border: 1px solid var(--border-card);
+  overflow: hidden;
+  background: var(--bg-main);
+}
+
+.sw-seg-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: background .2s, color .2s;
+  white-space: nowrap;
+}
+.sw-seg-btn:hover { color: var(--text-main); }
+
+html:not([data-theme="light"]) .sw-btn-dark {
+  background: var(--color-primary);
+  color: #fff;
+}
+html[data-theme="light"] .sw-btn-light {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* ── Variant 3: Icon button ── */
+.sw-icon-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 30%, transparent);
+}
+.sw-icon-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
+.sw-icon-btn:active { transform: scale(.94); }
+
+.sw-icon-btn svg {
+  position: absolute;
+  transition: opacity .22s, transform .28s cubic-bezier(.4,0,.2,1);
+}
+
+/* dark themes: show moon */
+html:not([data-theme="light"]) .sw-icon-btn .sw-ico-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+html:not([data-theme="light"]) .sw-icon-btn .sw-ico-sun {
+  opacity: 0;
+  transform: rotate(80deg) scale(.4);
+}
+/* light theme: show sun */
+html[data-theme="light"] .sw-icon-btn .sw-ico-moon {
+  opacity: 0;
+  transform: rotate(-80deg) scale(.4);
+}
+html[data-theme="light"] .sw-icon-btn .sw-ico-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* ── Variant 4: Settings row ── */
+.sw-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border-card);
+  background: var(--bg-main);
+  cursor: pointer;
+  width: 100%;
+  user-select: none;
+  transition: background .2s;
+}
+.sw-row:hover { background: rgba(128,128,128,.08); }
+
+.sw-row-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+/* row icon: moon in dark, sun in light */
+.sw-row-sun { display: none; }
+html[data-theme="light"] .sw-row-moon { display: none; }
+html[data-theme="light"] .sw-row-sun { display: block; }
+
+/* row label text */
+.sw-row-text-light { display: none; }
+html[data-theme="light"] .sw-row-text-dark { display: none; }
+html[data-theme="light"] .sw-row-text-light { display: inline; }
+
+/* mini toggle track */
+.sw-mini-track {
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--color-neutral-400, #94a3b8);
+  position: relative;
+  flex-shrink: 0;
+  transition: background .3s;
+}
+html:not([data-theme="light"]) .sw-mini-track {
+  background: var(--color-primary);
+}
+
+.sw-mini-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: transform .25s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 1px 3px rgba(0,0,0,.25);
+}
+html:not([data-theme="light"]) .sw-mini-thumb {
+  transform: translateX(16px);
 }

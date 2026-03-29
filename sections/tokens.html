@@ -154,6 +154,98 @@
         </div>
         <!-- ═══ END THEME SYSTEM ═══ -->
 
+        <!-- ═══ THEME SWITCHER VARIANTS ═══ -->
+        <div class="lib-component">
+          <div class="lib-component-label">Theme switcher variants</div>
+          <div class="lib-section-desc">Copy-paste dark / light toggle components. Click any to try live.</div>
+
+          <div class="lib-preview sw-showcase">
+
+            <!-- 1. Toggle slide -->
+            <div class="sw-card">
+              <div class="sw-card-label">Toggle</div>
+              <button class="sw-toggle" onclick="toggleDarkLight()" title="Toggle dark / light">
+                <svg class="sw-toggle-icon sw-ico-moon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+                <span class="sw-track"><span class="sw-thumb"></span></span>
+                <svg class="sw-toggle-icon sw-ico-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                  <circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/>
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- 2. Segmented pill -->
+            <div class="sw-card">
+              <div class="sw-card-label">Segmented</div>
+              <div class="sw-seg">
+                <button class="sw-seg-btn sw-btn-dark" onclick="applyTheme('dark')">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                  Dark
+                </button>
+                <button class="sw-seg-btn sw-btn-light" onclick="applyTheme('light')">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                  Light
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. Icon button -->
+            <div class="sw-card">
+              <div class="sw-card-label">Icon</div>
+              <button class="sw-icon-btn" onclick="toggleDarkLight()" title="Toggle theme">
+                <svg class="sw-ico-moon" width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="sw-ico-sun" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+              </button>
+            </div>
+
+            <!-- 4. Settings row -->
+            <div class="sw-card sw-card--wide">
+              <div class="sw-card-label">Settings row</div>
+              <div class="sw-row" onclick="toggleDarkLight()" role="button" tabindex="0">
+                <div class="sw-row-left">
+                  <svg class="sw-row-moon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                  <svg class="sw-row-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                  <span class="sw-row-text-dark">Dark mode</span>
+                  <span class="sw-row-text-light">Light mode</span>
+                </div>
+                <span class="sw-mini-track"><span class="sw-mini-thumb"></span></span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw="/* 1. JS helpers (add once to your project) */&#10;function applyTheme(theme) {&#10;  document.documentElement.setAttribute('data-theme', theme);&#10;  localStorage.setItem('theme', theme);&#10;}&#10;function toggleDarkLight() {&#10;  const t = document.documentElement.dataset.theme;&#10;  applyTheme(t === 'light' ? 'dark' : 'light');&#10;}&#10;const saved = localStorage.getItem('theme');&#10;if (saved) applyTheme(saved);&#10;&#10;/* 2. Toggle variant HTML */&#10;&lt;button onclick=&quot;toggleDarkLight()&quot;&gt;...&lt;/button&gt;&#10;&#10;/* 3. Segmented variant HTML */&#10;&lt;div class=&quot;sw-seg&quot;&gt;&#10;  &lt;button onclick=&quot;applyTheme('dark')&quot;&gt;Dark&lt;/button&gt;&#10;  &lt;button onclick=&quot;applyTheme('light')&quot;&gt;Light&lt;/button&gt;&#10;&lt;/div&gt;&#10;&#10;/* 4. CSS active states (pure CSS, no JS) */&#10;html:not([data-theme=&quot;light&quot;]) .dark-btn { background: var(--color-primary); }&#10;html[data-theme=&quot;light&quot;]       .light-btn { background: var(--color-primary); }">
+                <span class="c">/* 1. JS helpers */</span><br>
+                <span class="k">function</span> <span class="s">applyTheme</span>(theme) {<br>
+                &nbsp;&nbsp;<span class="s">document</span>.<span class="k">documentElement</span>.<span class="s">setAttribute</span>(<span class="cn">'data-theme'</span>, theme);<br>
+                &nbsp;&nbsp;<span class="s">localStorage</span>.<span class="k">setItem</span>(<span class="cn">'theme'</span>, theme);<br>
+                }<br>
+                <span class="k">function</span> <span class="s">toggleDarkLight</span>() {<br>
+                &nbsp;&nbsp;<span class="k">const</span> t = <span class="s">document</span>.<span class="k">documentElement</span>.<span class="s">dataset</span>.<span class="k">theme</span>;<br>
+                &nbsp;&nbsp;<span class="s">applyTheme</span>(t === <span class="cn">'light'</span> ? <span class="cn">'dark'</span> : <span class="cn">'light'</span>);<br>
+                }<br>
+                <span class="k">const</span> saved = <span class="s">localStorage</span>.<span class="k">getItem</span>(<span class="cn">'theme'</span>);<br>
+                <span class="k">if</span> (saved) <span class="s">applyTheme</span>(saved);<br><br>
+                <span class="c">/* 2. HTML — toggle variant */</span><br>
+                <span class="k">&lt;button</span> <span class="s">onclick</span>=<span class="cn">"toggleDarkLight()"</span><span class="k">&gt;</span>...<span class="k">&lt;/button&gt;</span><br><br>
+                <span class="c">/* 3. HTML — segmented variant */</span><br>
+                <span class="k">&lt;div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">onclick</span>=<span class="cn">"applyTheme('dark')"</span><span class="k">&gt;</span>Dark<span class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">onclick</span>=<span class="cn">"applyTheme('light')"</span><span class="k">&gt;</span>Light<span class="k">&lt;/button&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span><br><br>
+                <span class="c">/* 4. CSS active states — no extra JS needed */</span><br>
+                <span class="k">html:not([data-theme="light"])</span> <span class="s">.dark-btn</span> { <span class="v">background</span>: <span class="cn">var(--color-primary)</span>; }<br>
+                <span class="k">html[data-theme="light"]</span> <span class="s">.light-btn</span> { <span class="v">background</span>: <span class="cn">var(--color-primary)</span>; }
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ═══ END THEME SWITCHER VARIANTS ═══ -->
+
         <div class="lib-component">
           <div class="lib-component-label">Main colors</div>
           <div class="lib-preview">
