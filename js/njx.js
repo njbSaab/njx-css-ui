@@ -229,6 +229,13 @@ function sidebarToggle(id) {
   sidebar.classList.contains('is-open') ? sidebarClose(id) : sidebarOpen(id);
 }
 
+// Expand/collapse mini icon-rail sidebar (toggles is-expanded class)
+function sidebarExpandToggle(id) {
+  var sidebar = document.getElementById(id);
+  if (!sidebar) return;
+  sidebar.classList.toggle('is-expanded');
+}
+
 // Close all open sidebars and clean up listeners
 function sidebarCloseAll() {
   document.querySelectorAll('.sidebar.is-open').forEach(function(s) {
