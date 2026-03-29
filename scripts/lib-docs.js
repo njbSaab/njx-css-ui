@@ -768,6 +768,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ── Init после загрузки всех компонентов через loader.js ──
 document.addEventListener('components-loaded', () => {
+  // Sync theme pills with the current active theme (restored from localStorage on reload)
+  const currentTheme = document.documentElement.dataset.theme || 'dark';
+  document.querySelectorAll('.lib-theme-pill').forEach(p => {
+    p.classList.toggle('active', p.title.toLowerCase() === currentTheme);
+  });
+  document.querySelectorAll('.ts-tile').forEach(t => {
+    t.classList.toggle('active', t.dataset.ts === currentTheme);
+  });
   initSectionHeaders();
   initCodeToggles();
   renderUtils();
