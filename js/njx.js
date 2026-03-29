@@ -192,6 +192,19 @@ function sidebarOpen(id) {
   if (!sidebar.classList.contains('sidebar-push')) {
     document.body.classList.add('sidebar-open');
   }
+  // Remove any stale listener, then attach a fresh outside-click handler
+  if (sidebar._njxOutside) {
+    document.removeEventListener('pointerdown', sidebar._njxOutside);
+  }
+  sidebar._njxOutside = function(e) {
+    if (sidebar.contains(e.target)) return;
+    if (backdrop && backdrop.contains(e.target)) return;
+    sidebarClose(id);
+  };
+  // Delay so the triggering click itself doesn't immediately close the sidebar
+  setTimeout(function() {
+    document.addEventListener('pointerdown', sidebar._njxOutside);
+  }, 50);
 }
 
 function sidebarClose(id) {
@@ -201,6 +214,10 @@ function sidebarClose(id) {
   var backdrop = document.getElementById(id + '-backdrop');
   if (backdrop) backdrop.classList.remove('is-visible');
   document.body.classList.remove('sidebar-open');
+  if (sidebar._njxOutside) {
+    document.removeEventListener('pointerdown', sidebar._njxOutside);
+    delete sidebar._njxOutside;
+  }
 }
 
 function sidebarToggle(id) {
@@ -209,10 +226,14 @@ function sidebarToggle(id) {
   sidebar.classList.contains('is-open') ? sidebarClose(id) : sidebarOpen(id);
 }
 
-// Close all open sidebars (useful for shared backdrop)
+// Close all open sidebars and clean up listeners
 function sidebarCloseAll() {
   document.querySelectorAll('.sidebar.is-open').forEach(function(s) {
     s.classList.remove('is-open');
+    if (s._njxOutside) {
+      document.removeEventListener('pointerdown', s._njxOutside);
+      delete s._njxOutside;
+    }
   });
   document.querySelectorAll('.sidebar-backdrop.is-visible').forEach(function(b) {
     b.classList.remove('is-visible');
