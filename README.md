@@ -17,6 +17,14 @@
 
 ---
 
+<div align="center">
+
+![njX UI — library overview](img/gif/overview-1.gif)
+
+</div>
+
+---
+
 ## Why njX?
 
 ### 1. 9 themes — one attribute
@@ -46,6 +54,12 @@ document.documentElement.setAttribute('data-theme', 'purple')
 
 Spacing, flexbox, typography, display, positioning — all available as single-purpose classes. No build step, no config, no `node_modules`.
 
+<div align="center">
+
+![njX UI — utility classes](img/gif/utils.gif)
+
+</div>
+
 ```html
 <!-- Layout -->
 <div class="flex items-center justify-between gap-4">...</div>
@@ -72,6 +86,108 @@ Spacing, flexbox, typography, display, positioning — all available as single-p
 ```
 
 Breakpoints: `sm` (≤ 640px) · `md` (≤ 768px) · `lg` (≤ 1024px) · `xl` (≤ 1280px)
+
+#### Full utility reference
+
+**Display**
+
+| Class | CSS |
+|---|---|
+| `d-block` | `display: block` |
+| `d-inline` | `display: inline` |
+| `d-inline-block` | `display: inline-block` |
+| `d-flex` / `flex` | `display: flex` |
+| `d-grid` | `display: grid` |
+| `d-none` / `hidden` | `display: none` |
+| `visible` / `invisible` | `visibility: visible/hidden` |
+
+**Flexbox**
+
+| Class | CSS |
+|---|---|
+| `flex-row` / `flex-col` | `flex-direction` |
+| `flex-wrap` / `flex-nowrap` | `flex-wrap` |
+| `flex-grow` / `flex-shrink` / `flex-none` | flex sizing |
+| `items-start/center/end/stretch/baseline` | `align-items` |
+| `justify-start/center/end/between/around/evenly` | `justify-content` |
+| `flex-center` | `display:flex` + center both axes |
+| `flex-center-between` | `display:flex` + center + space-between |
+| `flex-col-center` | `flex-col` + center both axes |
+| `gap-0…gap-20` | `gap: var(--space-N)` |
+
+**Spacing** — margin & padding scale: `0 1 2 3 4 5 6 8 10 12 16 20`
+
+| Pattern | Classes |
+|---|---|
+| Margin all | `m-0`, `m-auto` |
+| Margin axis | `mx-auto`, `my-auto` |
+| Margin side | `mt-N`, `mb-N`, `ml-N`, `mr-N` |
+| Margin named | `mt-sm/md/lg/xl`, `mb-sm/md/lg/xl`, `mx-sm/md/lg/xl` |
+| Padding all | `p-0…p-20` |
+| Padding axis | `px-N`, `py-N` |
+| Padding side | `pt-N`, `pb-N`, `pl-N`, `pr-N` |
+| Padding named | `pt-sm/md/lg/xl`, `px-sm/md/lg/xl`, `py-sm/md/lg/xl` |
+
+**Sizing**
+
+| Class | CSS |
+|---|---|
+| `w-full` / `w-auto` | `width: 100% / auto` |
+| `w-screen` | `width: 100vw` |
+| `w-fit` | `width: fit-content` |
+| `w-min` / `w-max` | `width: min/max-content` |
+| `max-w-xs…max-w-full` | `max-width` presets |
+| `h-full` / `h-screen` / `h-auto` | `height` |
+| `min-h-screen` | `min-height: 100vh` |
+
+**Position**
+
+| Class | CSS |
+|---|---|
+| `relative` / `absolute` / `fixed` / `sticky` | `position` |
+| `inset-0` | `top/right/bottom/left: 0` |
+| `top-0` / `bottom-0` / `left-0` / `right-0` | edges |
+| `z-0…z-50`, `z-auto` | `z-index` |
+| `transform-center` | `translate(-50%, -50%)` |
+| `transform-x-center` / `transform-y-center` | single-axis centering |
+
+**Typography**
+
+| Class | CSS |
+|---|---|
+| `text-xs/sm/base/lg/xl/2xl…6xl` | `font-size` |
+| `font-thin/light/normal/medium/semibold/bold/extrabold/black` | `font-weight` |
+| `text-left/center/right/justify` | `text-align` |
+| `text-uppercase/lowercase/capitalize` | `text-transform` |
+| `italic` / `not-italic` | `font-style` |
+| `underline` / `line-through` / `no-underline` | `text-decoration` |
+| `truncate` | single-line ellipsis |
+| `line-clamp-2` / `line-clamp-3` | multi-line clamp |
+| `text-nowrap` / `text-wrap` / `text-balance` / `text-pretty` | wrapping |
+| `text-muted` / `text-main` / `text-light` | theme text colors |
+| `text-primary/success/warning/danger/error` | semantic colors |
+| `text-white` / `text-black` | absolute colors |
+
+**Backgrounds & Borders**
+
+| Class | CSS |
+|---|---|
+| `bg-light` / `bg-dark` / `bg-grey` / `bg-shadow` | background presets |
+| `bd-primary` / `bd-error` / `bd-success` / `bd-grey` | 1px solid borders |
+
+**Overflow & Misc**
+
+| Class | CSS |
+|---|---|
+| `overflow-hidden` / `overflow-auto` / `overflow-scroll` | `overflow` |
+| `overflow-x-auto` / `overflow-y-auto` | single axis |
+| `rounded` / `rounded-full` | border-radius |
+| `opacity-0/50/100` | `opacity` |
+| `cursor-pointer` / `cursor-default` / `cursor-not-allowed` | cursor |
+| `pointer-events-none` / `pointer-events-auto` | events |
+| `select-none` / `select-all` / `select-text` | user-select |
+| `sr-only` | visually hidden, screen-reader accessible |
+| `transition` / `transition-fast` / `transition-slow` / `transition-none` | transition presets |
 
 ---
 
