@@ -761,6 +761,11 @@ function initItemCopy() {
   });
 }
 
+// Safety: ensure body scroll is never locked by a stale sidebar-open class on page load
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.remove('sidebar-open');
+});
+
 // ── Init после загрузки всех компонентов через loader.js ──
 document.addEventListener('components-loaded', () => {
   initSectionHeaders();
