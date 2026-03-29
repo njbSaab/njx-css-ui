@@ -190,8 +190,7 @@ input[type="range"] {
 .button,
 [type="button"],
 [type="reset"],
-[type="submit"],
-button {
+[type="submit"] {
   font-family: inherit;
   font-size: var(--fs-sm);
   font-weight: 600;
@@ -212,16 +211,14 @@ button {
 .button:hover:not(:disabled),
 [type="button"]:hover:not(:disabled),
 [type="reset"]:hover:not(:disabled),
-[type="submit"]:hover:not(:disabled),
-button:hover:not(:disabled) {
+[type="submit"]:hover:not(:disabled){
   background: color-mix(in srgb, var(--color-primary) 85%, #000);
 }
 
 .button:active:not(:disabled),
 [type="button"]:active:not(:disabled),
 [type="reset"]:active:not(:disabled),
-[type="submit"]:active:not(:disabled),
-button:active:not(:disabled) {
+[type="submit"]:active:not(:disabled) {
   transform: scale(0.98);
 }
 

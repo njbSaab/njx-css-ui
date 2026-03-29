@@ -247,6 +247,34 @@ function initCodeToggles() {
     const labelEl = component ? component.querySelector('.lib-component-label') : null;
     const labelText = labelEl ? labelEl.textContent.trim() : 'HTML';
 
+    // ── Wrap all inner content in lib-code-inner (required for grid animation) ──
+    const inner = document.createElement('div');
+    inner.className = 'lib-code-inner';
+    wrapper.insertBefore(inner, container);
+    inner.appendChild(container);
+
+    // ── "Show code / Hide code" reveal button inserted before the wrapper ──
+    const revealBtn = document.createElement('button');
+    revealBtn.className = 'lib-code-reveal-btn';
+    revealBtn.innerHTML = `
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" style="flex-shrink:0;opacity:.75">
+        <path d="M5.78 4.03a.75.75 0 0 1 0 1.06L3.87 7l1.91 1.91a.75.75 0 1 1-1.06 1.06l-2.47-2.47a.75.75 0 0 1 0-1.06l2.47-2.47a.75.75 0 0 1 1.06 0zm4.44 0a.75.75 0 0 1 1.06 0l2.47 2.47a.75.75 0 0 1 0 1.06l-2.47 2.47a.75.75 0 1 1-1.06-1.06L12.13 7l-1.91-1.91a.75.75 0 0 1 0-1.06z"/>
+      </svg>
+      <span class="lib-crb-text">Show code</span>
+      <svg class="lib-crb-chevron" width="12" height="12" viewBox="0 0 16 16" fill="currentColor" style="flex-shrink:0">
+        <path d="M3.22 6.03a.75.75 0 0 1 1.06 0L8 9.75l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L3.22 7.09a.75.75 0 0 1 0-1.06z"/>
+      </svg>`;
+
+    revealBtn.addEventListener('click', () => {
+      const isOpen = wrapper.classList.contains('code-open');
+      wrapper.classList.toggle('code-open', !isOpen);
+      revealBtn.classList.toggle('open', !isOpen);
+      revealBtn.querySelector('.lib-crb-text').textContent = isOpen ? 'Show code' : 'Hide code';
+    });
+
+    wrapper.parentNode.insertBefore(revealBtn, wrapper);
+
+    // ── Code header: mac-dots + label + copy button ──
     const header = document.createElement('div');
     header.className = 'lib-code-header';
     header.innerHTML = `
@@ -260,37 +288,37 @@ function initCodeToggles() {
 
     const copyBtn = document.createElement('button');
     copyBtn.className = 'lib-copy-btn';
-    copyBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg> Copy`;
+    copyBtn.innerHTML = `
+      <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/>
+        <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/>
+      </svg>
+      Copy`;
 
     copyBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const rawCode = getRawCode(code);
-      navigator.clipboard.writeText(rawCode).then(() => {
+      navigator.clipboard.writeText(getRawCode(code)).then(() => {
         copyBtn.classList.add('copied');
-        copyBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg> Copied`;
+        copyBtn.innerHTML = `
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/>
+          </svg>
+          Copied!`;
         showToast('Code copied', 'success');
         setTimeout(() => {
           copyBtn.classList.remove('copied');
-          copyBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg> Copy`;
+          copyBtn.innerHTML = `
+            <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/>
+              <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/>
+            </svg>
+            Copy`;
         }, 1800);
       }).catch(() => showToast('Copy failed', 'error'));
     });
 
     header.appendChild(copyBtn);
-    wrapper.insertBefore(header, container);
-
-    if (code.scrollHeight > 200) {
-      const toggle = document.createElement('button');
-      toggle.className = 'lib-code-toggle';
-      toggle.innerHTML = '▶ Show more';
-      toggle.addEventListener('click', function () {
-        const isExpanded = container.classList.contains('expanded');
-        container.classList.toggle('expanded', !isExpanded);
-        toggle.classList.toggle('expanded', !isExpanded);
-        toggle.innerHTML = isExpanded ? '▶ Show more' : '▼ Show less';
-      });
-      wrapper.appendChild(toggle);
-    }
+    inner.insertBefore(header, container);
   });
 }
 
