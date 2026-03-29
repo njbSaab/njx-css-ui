@@ -198,12 +198,15 @@ function sidebarOpen(id) {
   }
   sidebar._njxOutside = function(e) {
     if (sidebar.contains(e.target)) return;
-    if (backdrop && backdrop.contains(e.target)) return;
+    // backdrop click = also "outside" → close
     sidebarClose(id);
   };
-  // Delay so the triggering click itself doesn't immediately close the sidebar
+  // Push sidebars are persistent panels — no outside-click to close
+  // Overlay/fullpage variants close when clicking outside
   setTimeout(function() {
-    document.addEventListener('pointerdown', sidebar._njxOutside);
+    if (!sidebar.classList.contains('sidebar-push')) {
+      document.addEventListener('pointerdown', sidebar._njxOutside);
+    }
   }, 50);
 }
 
