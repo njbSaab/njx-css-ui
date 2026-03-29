@@ -20,10 +20,10 @@ function tsSwitch(tile, theme) {
   });
   // sync showcase tiles
   document.querySelectorAll('.ts-tile').forEach(t => t.classList.toggle('active', t === tile));
-  // update attr badge + code
-  const attrEl = document.getElementById('tsAttrCode');
+  // update attr pill + code
+  const attrThemeEl = document.getElementById('tsAttrTheme');
   const codeEl = document.getElementById('tsCodeTheme');
-  if (attrEl) attrEl.textContent = `data-theme="${theme}"`;
+  if (attrThemeEl) attrThemeEl.textContent = theme;
   if (codeEl) codeEl.textContent = theme;
 }
 
