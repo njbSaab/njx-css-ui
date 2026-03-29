@@ -161,6 +161,167 @@
       color: #fff;
     }
 
+    /* ═══ SEARCH ═══ */
+    .lib-search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--lib-inp-bg);
+      border: 1px solid var(--lib-inp-brd);
+      border-radius: 8px;
+      padding: 0 10px;
+      height: 34px;
+      width: 200px;
+      transition: border-color 0.2s, width 0.25s, box-shadow 0.2s;
+      flex-shrink: 0;
+    }
+
+    .lib-search:focus-within {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 15%, transparent);
+      width: 260px;
+    }
+
+    .lib-search-icon {
+      color: var(--lib-inp-icon);
+      flex-shrink: 0;
+      pointer-events: none;
+    }
+
+    .lib-search-input {
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--text-main);
+      font-size: 13px;
+      font-family: inherit;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .lib-search-input::placeholder {
+      color: var(--lib-inp-placeholder);
+    }
+
+    .lib-search-kbd {
+      font-size: 10px;
+      font-family: 'Roboto Mono', monospace;
+      color: var(--text-muted);
+      background: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 30%, transparent);
+      border-radius: 4px;
+      padding: 1px 5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: opacity 0.15s;
+    }
+
+    .lib-search:focus-within .lib-search-kbd {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* dropdown */
+    .lib-search-dropdown {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: var(--bg-secondary);
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 30%, transparent);
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+      overflow: hidden;
+      z-index: 999;
+      display: none;
+      max-height: 360px;
+      overflow-y: auto;
+      min-width: 280px;
+    }
+
+    .lib-search-dropdown.open {
+      display: block;
+    }
+
+    .lib-search-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      cursor: pointer;
+      transition: background 0.12s;
+      text-decoration: none;
+    }
+
+    .lib-search-item:hover,
+    .lib-search-item.focused {
+      background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    }
+
+    .lib-search-item-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 13px;
+    }
+
+    .lib-search-item-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      min-width: 0;
+    }
+
+    .lib-search-item-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lib-search-item-name mark {
+      background: none;
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    .lib-search-item-section {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .lib-search-empty {
+      padding: 20px 14px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .lib-search-group-label {
+      padding: 8px 14px 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
+      border-top: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+    }
+
+    .lib-search-group-label:first-child {
+      border-top: none;
+    }
+
     .lib-download-btn.loading {
       opacity: 0.6;
       pointer-events: none;
