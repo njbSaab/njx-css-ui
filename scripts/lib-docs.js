@@ -685,6 +685,82 @@ function initSearch() {
   });
 }
 
+// ── Per-element copy chip ──
+function initItemCopy() {
+  const COPY_SVG = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>`;
+  const CHECK_SVG = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>`;
+
+  const chip = document.createElement('button');
+  chip.className = 'lib-item-copy-chip';
+  chip.title = 'Copy element';
+  chip.innerHTML = COPY_SVG;
+  document.body.appendChild(chip);
+
+  let currentEl = null;
+  let hideTimer = null;
+  let resetTimer = null;
+
+  function positionChip(el) {
+    const rect = el.getBoundingClientRect();
+    chip.style.top  = (rect.top  - 10) + 'px';
+    chip.style.left = (rect.right - 28) + 'px';
+  }
+
+  function showChip(el) {
+    clearTimeout(hideTimer);
+    currentEl = el;
+    positionChip(el);
+    chip.classList.add('visible');
+  }
+
+  function hideChip() {
+    hideTimer = setTimeout(() => {
+      chip.classList.remove('visible');
+      currentEl = null;
+    }, 180);
+  }
+
+  // Attach hover listeners to all lib-preview containers
+  document.querySelectorAll('.lib-preview').forEach(preview => {
+    preview.addEventListener('mouseover', e => {
+      const child = e.target === preview ? null : e.target.closest('.lib-preview > *');
+      if (!child || child === chip) return;
+      showChip(child);
+    });
+
+    preview.addEventListener('mouseleave', () => {
+      hideChip();
+    });
+  });
+
+  // Keep chip visible when hovering chip itself
+  chip.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+  chip.addEventListener('mouseleave', () => {
+    hideChip();
+  });
+
+  chip.addEventListener('click', () => {
+    if (!currentEl) return;
+    // Clone and strip docs-only attributes/classes
+    const clone = currentEl.cloneNode(true);
+    clone.removeAttribute('data-njx-item');
+    // Remove any injected chip elements inside
+    clone.querySelectorAll('.lib-item-copy-chip').forEach(n => n.remove());
+    const html = clone.outerHTML;
+
+    navigator.clipboard.writeText(html).then(() => {
+      chip.innerHTML = CHECK_SVG;
+      chip.classList.add('copied');
+      showToast('Element copied', 'success');
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => {
+        chip.innerHTML = COPY_SVG;
+        chip.classList.remove('copied');
+      }, 1600);
+    }).catch(() => showToast('Copy failed', 'error'));
+  });
+}
+
 // ── Init после загрузки всех компонентов через loader.js ──
 document.addEventListener('components-loaded', () => {
   initSectionHeaders();
@@ -694,4 +770,5 @@ document.addEventListener('components-loaded', () => {
   initCarousels();
   initSearch();
   initInlineCodeCopy();
+  initItemCopy();
 });

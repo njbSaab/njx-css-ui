@@ -95,71 +95,6 @@
   padding: var(--space-5);
 }
 
-/* ── Social list ── */
-.social-list {
-  display: flex;
-  gap: var(--space-6);
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  padding: var(--space-10) var(--space-5);
-  width: fit-content;
-  position: relative;
-  z-index: var(--z-100);
-  border-radius: var(--radius-xl);
-  border: 2px solid var(--color-accent);
-  background: rgba(0,0,0,0.56);
-  backdrop-filter: blur(45px);
-}
-.social-list ul {
-  display: flex;
-  flex-direction: row;
-  gap: var(--space-8);
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-}
-.social-list ul img {
-  width: 130px;
-  height: auto;
-  border-radius: var(--radius-md);
-}
-.social-list ul li:hover {
-  scale: 1.1;
-  transition: var(--ease);
-}
-.social-list ul li:hover img {
-  box-shadow: 0 0 35px #ffffff;
-  backdrop-filter: blur(5px);
-  border-radius: var(--radius-md);
-  transition: var(--ease);
-}
-.social-list .click-text-anim p {
-  color: #ffeb57;
-  text-align: center;
-  font-size: var(--fs-f-5xl);
-  font-weight: 900;
-  letter-spacing: 1px;
-}
-
-/* ── CTA Toast ── */
-.cta-toast {
-  border-radius: var(--radius-2xl);
-  border: 1px solid #1c5982;
-  background: linear-gradient(180deg, #000 14.05%, var(--color-primary) 204.17%);
-  color: #fff;
-  text-align: center;
-  font-size: var(--fs-f-5xl);
-  font-weight: 900;
-  line-height: 1.5;
-  text-transform: uppercase;
-  padding: var(--space-5) var(--space-10);
-}
-
 /* ── Decorative line ── */
 .line {
   position: relative;
@@ -225,8 +160,6 @@
 
 @media (max-width: 768px) {
   .logo { max-width: 148px; }
-  .social-list { margin-top: -15px; }
-  .social-list ul img { width: 100px; }
   .items-wrapper-col.gap-50 { gap: var(--space-8) !important; }
   .hero-layout { bottom: -5%; top: auto; left: -20%; z-index: 1; }
   .hero-agent.translate-center {
@@ -245,7 +178,6 @@
 @media screen and (max-width: 500px) {
   .section-banner { min-height: 990px; padding: var(--space-8) 0; }
   .container { padding: 0 var(--space-2); }
-  .social-list { padding: var(--space-5); }
 }
 
 @media screen and (max-width: 390px) {

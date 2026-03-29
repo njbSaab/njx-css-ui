@@ -35,6 +35,8 @@
 
 /* 4. Глобальные секции */
 @import "_sections.css";
+@import "_social.css";
+@import "_skeleton.css";
 @import "_global.css";
 
 /* 5. Responsive prefix utilities (sm: md: lg: xl:) */
