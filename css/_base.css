@@ -636,3 +636,23 @@
     --grid-gutter: 0.375rem;
   }
 }
+
+/* ── View Transitions — smooth full-page cross-fade on theme switch ──
+   Chrome 111+, Edge 111+, Safari 18+.
+   Firefox: falls back to per-element CSS transitions in _reset.css.
+────────────────────────────────────────────────────────────────────── */
+::view-transition-old(root) {
+  animation: njx-theme-out 0.18s ease forwards;
+}
+::view-transition-new(root) {
+  animation: njx-theme-in  0.22s ease forwards;
+}
+
+@keyframes njx-theme-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes njx-theme-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

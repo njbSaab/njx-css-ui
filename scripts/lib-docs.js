@@ -1,6 +1,6 @@
 // ── Unified theme apply — syncs all UI elements ──
 function applyTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
+  // Update pills, labels etc. immediately (outside the visual transition)
   document.querySelectorAll('.lib-theme-pill').forEach(p => {
     p.classList.toggle('active', p.title.toLowerCase() === theme);
   });
@@ -11,6 +11,16 @@ function applyTheme(theme) {
   const codeEl = document.getElementById('tsCodeTheme');
   if (attrThemeEl) attrThemeEl.textContent = theme;
   if (codeEl) codeEl.textContent = theme;
+
+  // View Transitions API — whole-page cross-fade (Chrome/Edge/Safari 18+)
+  // Firefox fallback: per-element CSS transitions from _reset.css
+  if (document.startViewTransition) {
+    document.startViewTransition(() => {
+      document.documentElement.setAttribute('data-theme', theme);
+    });
+  } else {
+    document.documentElement.setAttribute('data-theme', theme);
+  }
 }
 
 // ── Toggle dark ↔ light ──
