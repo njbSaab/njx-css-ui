@@ -555,8 +555,11 @@ body.sidebar-open { overflow: hidden; }
   background: color-mix(in srgb, var(--sidebar-bg) 94%, transparent);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  /* Override base translateX(-100%) — add extra offset to fully clear the left inset */
+  transform: translateX(calc(-100% - var(--space-4) - 2px));
 }
 .sidebar.sidebar-floating.is-open {
+  transform: translateX(0);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.32), 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 .sidebar.sidebar-floating.sidebar-right {
@@ -564,6 +567,10 @@ body.sidebar-open { overflow: hidden; }
   right: var(--space-4);
   border-left: 1px solid var(--sidebar-border);
   border-right: none;
+  transform: translateX(calc(100% + var(--space-4) + 2px));
+}
+.sidebar.sidebar-floating.sidebar-right.is-open {
+  transform: translateX(0);
 }
 .sidebar.sidebar-floating .sidebar-header {
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
