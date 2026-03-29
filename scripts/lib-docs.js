@@ -1,5 +1,8 @@
 // ── Unified theme apply — syncs all UI elements ──
 function applyTheme(theme) {
+  // Persist choice
+  try { localStorage.setItem('njx-theme', theme); } catch(e) {}
+
   // Update pills, labels etc. immediately (outside the visual transition)
   document.querySelectorAll('.lib-theme-pill').forEach(p => {
     p.classList.toggle('active', p.title.toLowerCase() === theme);
