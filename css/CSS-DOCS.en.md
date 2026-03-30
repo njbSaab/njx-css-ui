@@ -23,6 +23,7 @@
 14. [Navigation (_nav.css)](#14-navigation)
 15. [Tabs (_tab.css)](#15-tabs)
 16. [Notifications (_notifications.css)](#16-notifications)
+17. [Sidebar / Drawer (_sidebar.css)](#17-sidebar--drawer)
 
 ---
 
@@ -81,9 +82,48 @@ Each color has shades from 100 (light) to 900 (dark):
 
 ### Fonts
 
+#### Font role variables (change these to apply globally)
+
 ```css
---font-sans:  "Roboto", system-ui, sans-serif
---font-mono:  "Consolas", monospace
+--font-sans:    var(--font-inter)    /* body text */
+--font-heading: var(--font-poppins)  /* all headings & .title-* */
+--font-mono:    var(--font-roboto-mono) /* code blocks */
+```
+
+#### Named font stacks — all loaded via Google Fonts
+
+```css
+--font-inter:       "Inter", system-ui, sans-serif
+--font-roboto:      "Roboto", -apple-system, sans-serif
+--font-poppins:     "Poppins", sans-serif
+--font-montserrat:  "Montserrat", sans-serif
+--font-outfit:      "Outfit", sans-serif
+--font-jakarta:     "Plus Jakarta Sans", sans-serif
+--font-dm-sans:     "DM Sans", sans-serif
+--font-nunito:      "Nunito", sans-serif
+--font-space:       "Space Grotesk", sans-serif
+--font-manrope:     "Manrope", sans-serif
+--font-figtree:     "Figtree", sans-serif
+--font-sora:        "Sora", sans-serif
+
+/* Monospace */
+--font-roboto-mono: "Roboto Mono", monospace
+--font-jetbrains:   "JetBrains Mono", monospace
+--font-fira-code:   "Fira Code", monospace
+```
+
+#### Switch fonts globally — one line in your CSS
+
+```css
+:root {
+  --font-sans:    var(--font-montserrat);
+  --font-heading: var(--font-sora);
+  --font-mono:    var(--font-jetbrains);
+}
+```
+
+> Google Fonts are loaded via `@import` in `styles/lib-docs.css` for the docs site.
+> In your own project add a `<link>` tag for the fonts you need.
 
 /* Fixed sizes */
 --fs-xs:   12px
@@ -1263,6 +1303,167 @@ File: `css/_notifications.css`
 
 ---
 
+## 17. Sidebar / Drawer
+
+File: `css/_sidebar.css`
+
+<div align="center">
+
+![njX UI — Sidebar / Drawer](../img/gif/sidebar.gif)
+
+</div>
+
+### CSS Variables
+
+```css
+--sidebar-width:    280px;
+--sidebar-bg:       var(--bg-secondary);
+--sidebar-border:   color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+--sidebar-shadow:   0 8px 48px rgba(0, 0, 0, 0.38);
+--sidebar-duration: 0.28s;
+```
+
+### Base structure — left overlay (default)
+
+```html
+<!-- Trigger -->
+<button class="btn btn-primary" onclick="sidebarOpen('my-sidebar')">Open</button>
+
+<!-- Backdrop (click outside to close) -->
+<div class="sidebar-backdrop" id="my-sidebar-backdrop" onclick="sidebarClose('my-sidebar')"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="my-sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">Menu</span>
+    <button class="sidebar-close" onclick="sidebarClose('my-sidebar')">✕</button>
+  </div>
+  <div class="sidebar-body">
+    <nav class="sidebar-nav">
+      <a class="sidebar-link is-active" href="#">Dashboard</a>
+      <a class="sidebar-link" href="#">Profile</a>
+      <a class="sidebar-link" href="#">Settings</a>
+    </nav>
+  </div>
+  <div class="sidebar-footer">Footer content</div>
+</aside>
+```
+
+### Variants
+
+| Class | Description |
+|---|---|
+| `.sidebar` | Left overlay (default) |
+| `.sidebar.sidebar-right` | Slides from right |
+| `.sidebar.sidebar-push` | Pushes page content (needs `.sidebar-layout`) |
+| `.sidebar.sidebar-fullpage` | Full viewport overlay |
+| `.sidebar.sidebar-mini` | Icon rail — always visible, collapses to icons |
+| `.sidebar.sidebar-floating` | Detached, rounded, glassmorphism |
+
+### Right overlay
+
+```html
+<aside class="sidebar sidebar-right" id="my-sidebar">...</aside>
+```
+
+### Push (shifts page content)
+
+Requires a wrapper around the sidebar and the page content:
+
+```html
+<div class="sidebar-layout">
+  <aside class="sidebar sidebar-push" id="my-sidebar">...</aside>
+  <div class="sidebar-content">...page content...</div>
+</div>
+
+<!-- Push from right -->
+<div class="sidebar-layout">
+  <div class="sidebar-content">...page content...</div>
+  <aside class="sidebar sidebar-push sidebar-right" id="my-sidebar">...</aside>
+</div>
+```
+
+### Fullpage overlay
+
+```html
+<aside class="sidebar sidebar-fullpage" id="my-sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">Menu</span>
+    <button class="sidebar-close sidebar-close-lg" onclick="sidebarClose('my-sidebar')">✕</button>
+  </div>
+  <div class="sidebar-fullpage-body">
+    <nav class="sidebar-fullpage-nav">
+      <a class="sidebar-fullpage-link" href="#">Home</a>
+      <a class="sidebar-fullpage-link" href="#">About</a>
+      <a class="sidebar-fullpage-link" href="#">Contact</a>
+    </nav>
+  </div>
+</aside>
+```
+
+### Mini / Icon rail
+
+Always visible, collapses to icons. Wrap text in `.sidebar-link-text` so it hides when collapsed:
+
+```html
+<div class="sidebar-layout">
+  <aside class="sidebar sidebar-push sidebar-mini" id="my-sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-brand-logo">N</span>
+      <button class="sidebar-mini-toggle" onclick="sidebarExpandToggle('my-sidebar')">▶</button>
+    </div>
+    <div class="sidebar-body">
+      <nav class="sidebar-nav">
+        <a class="sidebar-link is-active" href="#">
+          <svg>...</svg>
+          <span class="sidebar-link-text">Dashboard</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <div class="sidebar-content">...page content...</div>
+</div>
+```
+
+### Floating
+
+```html
+<aside class="sidebar sidebar-floating" id="my-sidebar">...</aside>
+
+<!-- Floating from right -->
+<aside class="sidebar sidebar-floating sidebar-right" id="my-sidebar">...</aside>
+```
+
+### Inner elements
+
+| Element | Description |
+|---|---|
+| `.sidebar-header` | Top bar with title and close button |
+| `.sidebar-title` | Title text in header |
+| `.sidebar-brand` | Logo + brand name wrapper |
+| `.sidebar-brand-logo` | Logo mark / monogram |
+| `.sidebar-brand-text` | Brand subtitle |
+| `.sidebar-close` | × close button (`sidebar-close-lg` — bigger, red hover) |
+| `.sidebar-body` | Scrollable content area |
+| `.sidebar-nav` | Vertical link list container |
+| `.sidebar-link` | Navigation link (add `.is-active` for active state) |
+| `.sidebar-link-text` | Text label — hidden in mini collapsed mode |
+| `.sidebar-label` | Section heading label (uppercase, muted) |
+| `.sidebar-divider` | Horizontal separator line |
+| `.sidebar-footer` | Fixed bottom area |
+| `.sidebar-backdrop` | Dimmed overlay behind the sidebar |
+
+### JS API
+
+```js
+sidebarOpen('my-sidebar')          // open
+sidebarClose('my-sidebar')         // close
+sidebarToggle('my-sidebar')        // toggle open/close
+sidebarExpandToggle('my-sidebar')  // toggle mini ↔ expanded (mini variant only)
+```
+
+---
+
 ## Quick Reference — Common Patterns
 
 ```html
@@ -1358,3 +1559,93 @@ function setTheme(theme) {
 const saved = localStorage.getItem('theme') || 'dark';
 document.documentElement.setAttribute('data-theme', saved);
 ```
+
+---
+
+## Overriding Library Styles
+
+### 1. Load order — always put your file last
+
+```html
+<link rel="stylesheet" href="njx/style.min.css" /> <!-- library first -->
+<link rel="stylesheet" href="global.css" />         <!-- your styles second -->
+```
+
+### 2. Override via CSS variables — recommended
+
+The cleanest approach. All components consume tokens, so changing a token changes everything at once.
+
+```css
+/* global.css */
+:root {
+  --color-primary:  #ff6b35;
+  --color-accent:   #ffd700;
+  --font-sans:      var(--font-montserrat);
+  --font-heading:   var(--font-sora);
+  --radius-md:      999px; /* pill-shaped components */
+}
+```
+
+### 3. Override a component class — write it later in your file
+
+```css
+/* global.css */
+.btn-primary {
+  background: #ff6b35;
+  border-radius: 999px;
+}
+```
+
+### 4. Increase specificity with a wrapper class
+
+```css
+.my-app .btn-primary {
+  background: #ff6b35; /* wins over library's .btn-primary */
+}
+```
+
+### 5. Double class trick — no wrapper needed
+
+```css
+.btn-primary.btn-primary {
+  background: #ff6b35; /* doubled specificity */
+}
+```
+
+### 6. CSS `@layer` — modern priority control
+
+```css
+@layer njx, overrides;
+
+@layer overrides {
+  .btn-primary { background: #ff6b35; } /* always wins over njx layer */
+}
+```
+
+### 7. `!important` — last resort for utility overrides
+
+```css
+/* Fine for utilities */
+.hidden { display: none !important; }
+
+/* Avoid for components — use specificity instead */
+```
+
+---
+
+## CSS Specificity Reference
+
+```
+[inline]  [id]  [class / attr / pseudo]  [tag]
+   1        1             1                1
+
+p                    →  0-0-0-1
+.btn                 →  0-0-1-0
+.btn.btn             →  0-0-2-0  (double class trick)
+#hero                →  0-1-0-0
+.app .btn            →  0-0-2-0
+:where(.btn)         →  0-0-0-0  (zero — easy to override)
+:is(#app, .btn)      →  0-1-0-0  (inherits highest — #app)
+```
+
+> **Library convention:** base component styles use `:where()` so a single class in your file always overrides. Utility classes (`.d-none`, `.text-center`, etc.) use `!important` by design.

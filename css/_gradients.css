@@ -1,10 +1,10 @@
 /* ============================================================
-   _gradients.css — Градиенты
-   Готовые градиентные классы для фона и текста
+   _gradients.css — Gradients
+   Ready-made gradient classes for backgrounds and text
    ============================================================ */
 
 /* ═══════════════════════════════════════════
-   BACKGROUND GRADIENTS — Основные
+   BACKGROUND GRADIENTS — Primary
 ═══════════════════════════════════════════ */
 
 /* Primary Gradients */
@@ -61,7 +61,7 @@
 }
 
 /* ═══════════════════════════════════════════
-   BACKGROUND GRADIENTS — Комбинированные
+   BACKGROUND GRADIENTS — Combined
 ═══════════════════════════════════════════ */
 
 /* Blue to Purple */
@@ -143,7 +143,7 @@
 }
 
 /* ═══════════════════════════════════════════
-   BACKGROUND GRADIENTS — Тёмные
+   BACKGROUND GRADIENTS — Dark
 ═══════════════════════════════════════════ */
 
 .gradient-dark-midnight {
@@ -167,7 +167,7 @@
 }
 
 /* ═══════════════════════════════════════════
-   BACKGROUND GRADIENTS — Металлические
+   BACKGROUND GRADIENTS — Metallic
 ═══════════════════════════════════════════ */
 
 .gradient-gold-metal {

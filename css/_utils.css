@@ -1,7 +1,7 @@
 /* ============================================================
-   _utils.css — Утилиты (Tailwind-style)
-   Все размеры через переменные из _base.css.
-   Без дублей. Без хардкода.
+   _utils.css — Utilities (Tailwind-style)
+   All sizes via variables from _base.css.
+   No duplicates. No hardcoded values.
    ============================================================ */
 
 /* ── Display ── */
@@ -40,14 +40,14 @@
 .justify-around  { justify-content: space-around !important; }
 .justify-evenly  { justify-content: space-evenly !important; }
 
-/* Комбо-утилиты flex */
+/* Flex combo utilities */
 .flex-center        { display: flex !important; align-items: center !important; justify-content: center !important; }
 .flex-center-start  { display: flex !important; align-items: center !important; justify-content: flex-start !important; }
 .flex-center-end    { display: flex !important; align-items: center !important; justify-content: flex-end !important; }
 .flex-center-between{ display: flex !important; align-items: center !important; justify-content: space-between !important; }
 .flex-col-center    { display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; }
 
-/* ── Gap (через --space-*) ── */
+/* ── Gap (via --space-*) ── */
 .gap-0  { gap: var(--space-0) !important; }
 .gap-1  { gap: var(--space-1) !important; }
 .gap-2  { gap: var(--space-2) !important; }
@@ -61,7 +61,7 @@
 .gap-16 { gap: var(--space-16) !important; }
 .gap-20 { gap: var(--space-20) !important; }
 
-/* ── Margin (через --space-*) ── */
+/* ── Margin (via --space-*) ── */
 .m-0  { margin: 0 !important; }
 .m-auto { margin: auto !important; }
 .mx-auto { margin-left: auto !important; margin-right: auto !important; }
@@ -127,7 +127,7 @@
 .my-10 { margin-top: var(--space-10) !important; margin-bottom: var(--space-10) !important; }
 .my-12 { margin-top: var(--space-12) !important; margin-bottom: var(--space-12) !important; }
 
-/* ── Padding (через --space-*) ── */
+/* ── Padding (via --space-*) ── */
 .p-0  { padding: 0 !important; }
 .p-1  { padding: var(--space-1) !important; }
 .p-2  { padding: var(--space-2) !important; }
@@ -245,7 +245,7 @@
 .translateX-center { left: 50% !important; transform: translateX(-50%) !important; }
 .translateY-center { top: 50% !important; transform: translateY(-50%) !important; }
 
-/* ── Z-index (через --z-*) ── */
+/* ── Z-index (via --z-*) ── */
 .z-0     { z-index: var(--z-0) !important; }
 .z-1     { z-index: var(--z-1) !important; }
 .z-10    { z-index: var(--z-10) !important; }
@@ -260,7 +260,7 @@
 .overflow-x-hidden { overflow-x: hidden !important; }
 .overflow-y-auto   { overflow-y: auto !important; }
 
-/* ── Border Radius (через --radius-*) ── */
+/* ── Border Radius (via --radius-*) ── */
 .rounded-none { border-radius: var(--radius-none) !important; }
 .rounded-sm   { border-radius: var(--radius-sm) !important; }
 .rounded-md   { border-radius: var(--radius-md) !important; }
@@ -288,7 +288,7 @@
 .bg-center    { background-position: center !important; }
 .bg-no-repeat { background-repeat: no-repeat !important; }
 
-/* Псевдоэлементы фона */
+/* Background pseudo-elements */
 .bg-after  { position: relative; }
 .bg-after::after  { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: -1; background-repeat: no-repeat; }
 .bg-before { position: relative; }
@@ -311,7 +311,7 @@
 .opacity-75  { opacity: 0.75 !important; }
 .opacity-100 { opacity: 1 !important; }
 
-/* ── Shadows (через --shadow-*) ── */
+/* ── Shadows (via --shadow-*) ── */
 .shadow-sm      { box-shadow: var(--shadow-sm) !important; }
 .shadow-md      { box-shadow: var(--shadow-md) !important; }
 .shadow-lg      { box-shadow: var(--shadow-lg) !important; }
@@ -320,7 +320,7 @@
 .shadow-accent  { box-shadow: var(--shadow-accent) !important; }
 .shadow-glow    { box-shadow: var(--shadow-glow) !important; }
 
-/* ── Transitions (через --ease-*) ── */
+/* ── Transitions (via --ease-*) ── */
 .transition      { transition: all var(--ease) !important; }
 .transition-fast { transition: all var(--ease-fast) !important; }
 .transition-slow { transition: all var(--ease-slow) !important; }
@@ -389,7 +389,7 @@
 .is-hidden       { display: none !important; }
 .sr-only         { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
-/* Обратная совместимость */
+/* Backward compatibility */
 .flex-justify-center  { display: flex; justify-content: center; align-items: center; }
 .flex-items-center    { display: flex; align-items: center; }
 .flex-center-right    { display: flex; align-items: center; justify-content: flex-end; }
@@ -397,7 +397,7 @@
 .justify-between      { display: flex; justify-content: space-between; }
 .items-center         { display: flex; align-items: center; }
 
-/* Старые gap-классы */
+/* Legacy gap classes */
 .gap-sm  { gap: var(--space-1) !important; }
 .gap-md  { gap: var(--space-2) !important; }
 .gap-lg  { gap: var(--space-4) !important; }

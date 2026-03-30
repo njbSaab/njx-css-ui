@@ -1,10 +1,10 @@
 /* ============================================================
-   _buttons.css — Кнопки
-   Базовый .btn + варианты. Без @keyframes (все в _animations.css).
-   Использование: <button class="btn btn-primary">Текст</button>
+   _buttons.css — Buttons
+   Base .btn + variants. No @keyframes (all in _animations.css).
+   Usage: <button class="btn btn-primary">Text</button>
    ============================================================ */
 
-/* ── Базовая кнопка ── */
+/* ── Base button ── */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -34,7 +34,7 @@
   pointer-events: none;
 }
 
-/* ── Размеры ── */
+/* ── Sizes ── */
 .btn-xs  { height: 28px; padding: 0 var(--space-3); font-size: var(--fs-xs); }
 .btn-sm  { height: 36px; padding: 0 var(--space-4); font-size: var(--fs-sm); }
 .btn-md  { height: 48px; padding: 0 var(--space-6); font-size: var(--fs-base); }
@@ -45,7 +45,7 @@
 .btn-wide  { width: 100%; }
 .btn-block { display: flex; width: 100%; }
 
-/* ── Цветовые варианты ── */
+/* ── Color variants ── */
 .btn-primary {
   background-color: var(--color-primary);
   color: #ffffff;
@@ -120,7 +120,7 @@
   transform: translateY(-2px);
 }
 
-/* ── Outline варианты ── */
+/* ── Outline variants ── */
 .btn-outline {
   background: transparent;
   color: var(--color-primary);
@@ -151,7 +151,7 @@
   border-color: #fff;
 }
 
-/* ── Ghost (прозрачный) ── */
+/* ── Ghost (transparent) ── */
 .btn-ghost {
   background: transparent;
   color: var(--text-main);
@@ -170,7 +170,7 @@
   background: var(--color-primary-900);
 }
 
-/* ── Gradient варианты ── */
+/* ── Gradient variants ── */
 .btn-gradient {
   background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
   color: #fff;
@@ -215,7 +215,7 @@
   animation: animateGradient 8s linear infinite;
 }
 
-/* ── Glow варианты ── */
+/* ── Glow variants ── */
 .btn-glow {
   background: var(--color-accent);
   color: #fff;
@@ -367,7 +367,7 @@
   cursor: pointer;
 }
 
-/* ── Кнопки в духе Bulma ── */
+/* ── Bulma-style buttons ── */
 .button {
   display: inline-flex;
   align-items: center;

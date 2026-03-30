@@ -1,9 +1,9 @@
 /* ============================================================
-   _sections.css — Глобальные секции и лэйаут
-   Содержимое перенесено из _global.css
+   _sections.css — Global sections and layout
+   Content moved from _global.css
    ============================================================ */
 
-/* ── Контейнер ── */
+/* ── Container ── */
 .container {
   max-width: var(--container-width);
   width: 100%;
@@ -39,7 +39,7 @@
   background-position: center;
 }
 
-/* ── Banner секция ── */
+/* ── Banner section ── */
 .section-banner {
   background-size: cover;
   background-position: center;

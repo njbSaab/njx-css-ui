@@ -186,7 +186,7 @@
    Legacy / project-specific popup styles
    ════════════════════════════════════════════ */
 
-/* Общие стили для попапов */
+/* Common styles for popups */
 
 .form-popup-overlay{
     position: fixed;
@@ -204,7 +204,7 @@
 .shake {
   animation: shake 0.5s ease-in-out;
 }
-/* Стили для error-message (если они не определены) */
+/* Styles for error-message (if not already defined) */
 .error-message {
   color: red;
   font-size: 15px;
@@ -231,7 +231,7 @@
   overflow-y: auto;
 }
 
-/* Остальные стили для кнопки и попапа */
+/* Other styles for button and popup */
 /* .submit-btn {
   width: 70%;
   padding: 23px 36px;
@@ -279,13 +279,13 @@
   align-items: center;
   z-index: 1000;
   transition: background 0.3s ease;
-  /* Скрываем по умолчанию */
+  /* Hidden by default */
   visibility: hidden;
   opacity: 0;
 }
 
 .popup-overlay.visible {
-  /* Показываем, когда Vue добавляет класс */
+  /* Shown when Vue adds the class */
   visibility: visible;
   opacity: 1;
 }
@@ -414,7 +414,7 @@
 /** sweet pop */
 
 .swal2-html-container {
-  display: block !important; /* Принудительно показываем контейнер */
+  display: block !important; /* Force-show container */
 }
 div:where(.swal2-container).swal2-center > .swal2-popup {
   grid-column: 2;

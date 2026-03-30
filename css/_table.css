@@ -1,5 +1,5 @@
 /* ============================================================
-   _table.css — Таблицы (Bulma-style)
+   _table.css — Tables (Bulma-style)
    ============================================================ */
 
 .table {
@@ -31,7 +31,7 @@
   font-weight: 600;
 }
 
-/* ── Варианты ── */
+/* ── Variants ── */
 .table.is-striped tbody tr:nth-child(even) {
   background: rgba(255,255,255,0.03);
 }
@@ -51,13 +51,13 @@
   width: 100%;
 }
 
-/* ── Цветные строки ── */
+/* ── Colored rows ── */
 .table tr.is-selected { background: var(--color-primary-900); color: var(--color-primary-200); }
 .table tr.is-success  { background: var(--color-success-800); }
 .table tr.is-danger   { background: var(--color-error-800); }
 .table tr.is-warning  { background: rgba(255,221,0,0.08); }
 
-/* ── Table wrapper (скролл) ── */
+/* ── Table wrapper (scroll) ── */
 .table-container {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;

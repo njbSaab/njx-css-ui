@@ -1,9 +1,9 @@
 /* ============================================================
-   _tags.css — Теги, Бейджи (tag/badge)
-   Использование: <span class="tag tag-primary">Текст</span>
+   _tags.css — Tags, Badges (tag/badge)
+   Usage: <span class="tag tag-primary">Text</span>
    ============================================================ */
 
-/* ── Базовый тег ── */
+/* ── Base tag ── */
 .tag {
   display: inline-flex;
   align-items: center;
@@ -21,12 +21,12 @@
   white-space: nowrap;
 }
 
-/* ── Размеры ── */
+/* ── Sizes ── */
 .tag.is-small  { font-size: 10px; padding: 2px var(--space-2); }
 .tag.is-medium { font-size: var(--fs-sm); padding: var(--space-1) var(--space-4); }
 .tag.is-large  { font-size: var(--fs-base); padding: var(--space-2) var(--space-5); }
 
-/* ── Цветовые варианты ── */
+/* ── Color variants ── */
 .tag-primary  { background: var(--color-primary-900); border-color: var(--color-primary); color: var(--color-primary); }
 .tag-accent   { background: var(--color-accent-900);  border-color: var(--color-accent);  color: var(--color-accent); }
 .tag-success  { background: var(--color-success-800); border-color: var(--color-success); color: var(--color-success); }
@@ -35,7 +35,7 @@
 .tag-dark     { background: var(--color-neutral-800); border-color: var(--color-neutral-600); color: var(--text-light); }
 .tag-white    { background: rgba(255,255,255,0.1);    border-color: rgba(255,255,255,0.3); color: #fff; }
 
-/* Заливка */
+/* Filled */
 .tag-filled-primary { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
 .tag-filled-accent  { background: var(--color-accent);  border-color: var(--color-accent);  color: #fff; }
 .tag-filled-success { background: var(--color-success); border-color: var(--color-success); color: #111; }
@@ -54,7 +54,7 @@
 .tag.is-light   { background: var(--color-neutral-100); border-color: var(--color-neutral-200); color: #111; }
 .tag.is-rounded { border-radius: var(--radius-full); }
 
-/* ── Badge (счётчик / цифровой бейдж) ── */
+/* ── Badge (counter / numeric badge) ── */
 .badge {
   display: inline-flex;
   align-items: center;

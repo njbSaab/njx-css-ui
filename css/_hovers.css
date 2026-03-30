@@ -1,7 +1,7 @@
 /* ============================================================
-   _hovers.css — Hover-эффекты
-   Добавь класс к любому элементу.
-   Все эффекты используют CSS переменные из _base.css
+   _hovers.css — Hover effects
+   Add a class to any element.
+   All effects use CSS variables from _base.css
    ============================================================ */
 
 /* ═══════════════════════════════════════════
@@ -627,7 +627,7 @@
 .hover-tilt-r:hover { transform: perspective(400px) rotateX(4deg) rotateY(4deg) scale(1.02); }
 
 /* ═══════════════════════════════════════════
-   Обратная совместимость
+   Backward compatibility
 ═══════════════════════════════════════════ */
 .hover-scailed-1 {
   transition: transform var(--ease-fast);

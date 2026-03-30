@@ -1,10 +1,10 @@
 /* ============================================================
-   _form.css — Формы и инпуты
-   Все цвета через переменные из _base.css.
-   Работает со всеми темами: dark, light, color.
+   _form.css — Forms and inputs
+   All colors via variables from _base.css.
+   Works with all themes: dark, light, color.
    ============================================================ */
 
-/* ── Токены формы (переопределяются по теме) ── */
+/* ── Form tokens (override per theme) ── */
 :root,
 [data-theme] {
   --form-bg:          var(--bg-secondary);
@@ -14,9 +14,9 @@
   --form-placeholder: var(--text-muted);
   --form-text:        var(--text-main);
   --form-focus-ring:  color-mix(in srgb, var(--color-primary) 20%, transparent);
-  --form-radius:      var(--radius-sm);
+  --form-radius:      var(--radius-lg);
   --form-padding:     10px 14px;
-  --form-font-size:   var(--fs-sm);
+  --form-font-size:   var(--fs-base);
 }
 
 [data-theme="light"] {
@@ -45,7 +45,7 @@ legend {
   padding: 0 var(--space-2);
 }
 
-/* ── Базовые нативные инпуты ── */
+/* ── Base native inputs ── */
 input:not(
   [type="checkbox"],
   [type="radio"],
@@ -127,7 +127,7 @@ textarea:focus {
   box-shadow: 0 0 0 3px var(--form-focus-ring);
 }
 
-/* ── Состояния ── */
+/* ── States ── */
 input.error:not(
   [type="checkbox"],
   [type="radio"],
@@ -186,7 +186,7 @@ input[type="range"] {
   cursor: pointer;
 }
 
-/* ── Кнопки форм (нативные) ── */
+/* ── Native form buttons ── */
 .button,
 [type="button"],
 [type="reset"],
@@ -223,7 +223,7 @@ input[type="range"] {
 }
 
 /* ══════════════════════════════════════════════════════
-   УТИЛИТЫ ФОРМ
+   FORM UTILITIES
    ══════════════════════════════════════════════════════ */
 
 /* ── Form group ── */

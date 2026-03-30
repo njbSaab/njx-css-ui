@@ -25,6 +25,115 @@
 
 ---
 
+## Quick Start
+
+Choose the method that fits your project:
+
+---
+
+### Option 1 — CDN (jsDelivr via npm)
+
+No install. Just add to your HTML:
+
+```html
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <!-- Latest version -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/njx-ui/js/njx.js"></script>
+
+  <!-- Pinned version (recommended for production — won't change) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1.0.1/css/style.min.css">
+</head>
+<body>
+  <button class="btn btn-primary">Primary</button>
+  <div class="card mt-4">Card</div>
+</body>
+</html>
+```
+
+> jsDelivr may cache for 5–10 minutes after a new publish. If it doesn't load yet — wait a moment.
+
+---
+
+### Option 2 — CDN (jsDelivr via GitHub)
+
+Works immediately after `git push`, without publishing to npm:
+
+```html
+<!-- Always latest from main branch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@main/css/style.min.css">
+<script src="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@main/js/njx.js"></script>
+
+<!-- Pinned to a specific tag -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@v1.0.1/css/style.min.css">
+```
+
+---
+
+### Option 3 — unpkg
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/njx-ui/css/style.min.css">
+<script src="https://unpkg.com/njx-ui/js/njx.js"></script>
+```
+
+---
+
+### Option 4 — npm install
+
+```bash
+mkdir my-project && cd my-project
+npm install njx-ui
+```
+
+Then in your HTML:
+
+```html
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <link rel="stylesheet" href="node_modules/njx-ui/css/style.min.css">
+</head>
+<body>
+  <button class="btn btn-primary">Primary</button>
+  <button class="btn btn-accent">Accent</button>
+  <div class="card mt-4">Card test</div>
+</body>
+</html>
+```
+
+Verify installed files:
+
+```bash
+ls node_modules/njx-ui/css/
+# → style.css  style.min.css  _base.css  _buttons.css  ...
+```
+
+---
+
+### Option 5 — Download
+
+Download `css/style.min.css` and `js/njx.js` from the [releases](https://github.com/njbSaab/njx-css-ui/releases) and link locally:
+
+```html
+<link rel="stylesheet" href="css/style.min.css">
+<script src="js/njx.js"></script>
+```
+
+---
+
+### Verify CDN in browser
+
+Open this URL to see all files available in the package:
+
+```
+https://cdn.jsdelivr.net/npm/njx-ui/
+```
+
+---
+
 ## Why njX?
 
 ### 1. 9 themes — one attribute
@@ -224,115 +333,6 @@ No framework. No dependencies. Every component is plain CSS — ready to paste i
 | Bulma-compatible | ❌ | ❌ | — | ❌ | **✅** |
 | JS dependencies | 0 | 0 | 0 | required | **0** |
 | Build step required | No | No | No | No | **No** |
-
----
-
-## Quick Start
-
-Choose the method that fits your project:
-
----
-
-### Option 1 — CDN (jsDelivr via npm)
-
-No install. Just add to your HTML:
-
-```html
-<!DOCTYPE html>
-<html data-theme="dark">
-<head>
-  <!-- Latest version -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/njx-ui/js/njx.js"></script>
-
-  <!-- Pinned version (recommended for production — won't change) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1.0.1/css/style.min.css">
-</head>
-<body>
-  <button class="btn btn-primary">Primary</button>
-  <div class="card mt-4">Card</div>
-</body>
-</html>
-```
-
-> jsDelivr may cache for 5–10 minutes after a new publish. If it doesn't load yet — wait a moment.
-
----
-
-### Option 2 — CDN (jsDelivr via GitHub)
-
-Works immediately after `git push`, without publishing to npm:
-
-```html
-<!-- Always latest from main branch -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@main/css/style.min.css">
-<script src="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@main/js/njx.js"></script>
-
-<!-- Pinned to a specific tag -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@v1.0.1/css/style.min.css">
-```
-
----
-
-### Option 3 — unpkg
-
-```html
-<link rel="stylesheet" href="https://unpkg.com/njx-ui/css/style.min.css">
-<script src="https://unpkg.com/njx-ui/js/njx.js"></script>
-```
-
----
-
-### Option 4 — npm install
-
-```bash
-mkdir my-project && cd my-project
-npm install njx-ui
-```
-
-Then in your HTML:
-
-```html
-<!DOCTYPE html>
-<html data-theme="dark">
-<head>
-  <link rel="stylesheet" href="node_modules/njx-ui/css/style.min.css">
-</head>
-<body>
-  <button class="btn btn-primary">Primary</button>
-  <button class="btn btn-accent">Accent</button>
-  <div class="card mt-4">Card test</div>
-</body>
-</html>
-```
-
-Verify installed files:
-
-```bash
-ls node_modules/njx-ui/css/
-# → style.css  style.min.css  _base.css  _buttons.css  ...
-```
-
----
-
-### Option 5 — Download
-
-Download `css/style.min.css` and `js/njx.js` from the [releases](https://github.com/njbSaab/njx-css-ui/releases) and link locally:
-
-```html
-<link rel="stylesheet" href="css/style.min.css">
-<script src="js/njx.js"></script>
-```
-
----
-
-### Verify CDN in browser
-
-Open this URL to see all files available in the package:
-
-```
-https://cdn.jsdelivr.net/npm/njx-ui/
-```
 
 ---
 
