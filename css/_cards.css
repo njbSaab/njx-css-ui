@@ -1,10 +1,10 @@
 /* ============================================================
-   _cards.css — Карточки
+   _cards.css — Cards
    .card .card-glass .card-dark .card-bordered .card-primary
    + Bulma: .card .card-header .card-content .card-footer
    ============================================================ */
 
-/* ── Базовая карточка ── */
+/* ── Base card ── */
 .card {
   border-radius: var(--radius-md);
   background: var(--bg-card);
@@ -14,7 +14,7 @@
   transition: all var(--ease);
 }
 
-/* ── Варианты ── */
+/* ── Variants ── */
 .card-glass {
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.05);
@@ -158,7 +158,7 @@
   border: 1px solid rgba(255,255,255,0.1);
 }
 
-/* ── Card list (список карточек) ── */
+/* ── Card list ── */
 .card-list {
   display: flex;
   flex-direction: column;
@@ -170,7 +170,7 @@
   gap: var(--space-5);
 }
 
-/* ── Текстовые стили внутри карточек ── */
+/* ── Text styles inside cards ── */
 .card-title {
   font-size: var(--fs-xl);
   font-weight: 700;
@@ -371,7 +371,7 @@
 .card-stat-trend.up   { color: var(--color-success); background: color-mix(in srgb,var(--color-success) 12%,transparent); }
 .card-stat-trend.down { color: var(--color-error);   background: color-mix(in srgb,var(--color-error)   12%,transparent); }
 
-/* Обратная совместимость */
+/* Backward compatibility */
 .card-regular-list {
   display: flex;
   flex-direction: column;

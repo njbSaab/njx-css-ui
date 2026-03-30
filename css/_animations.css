@@ -1,6 +1,6 @@
 /* ============================================================
-   _animations.css — ВСЕ @keyframes + utility-классы анимаций
-   Единственный источник анимаций в проекте.
+   _animations.css — ALL @keyframes + animation utility classes
+   Single source of truth for animations in the project.
    ============================================================ */
 
 /* ============================================================
@@ -287,8 +287,8 @@
 }
 
 /* ============================================================
-   UTILITY КЛАССЫ АНИМАЦИЙ
-   Добавь класс к любому элементу.
+   ANIMATION UTILITY CLASSES
+   Add a class to any element.
    ============================================================ */
 
 /* ── Fade ── */
@@ -353,12 +353,12 @@
 .animate-rubber { animation: rubberBand 0.8s ease; }
 .animate-tada   { animation: tada 1s ease; }
 
-/* ── Управление скоростью ── */
+/* ── Speed control ── */
 .anim-fast   { animation-duration: 0.3s !important; }
 .anim-slow   { animation-duration: 2s !important; }
 .anim-slower { animation-duration: 4s !important; }
 
-/* ── Задержка ── */
+/* ── Delay ── */
 .anim-delay-1 { animation-delay: 0.1s !important; }
 .anim-delay-2 { animation-delay: 0.2s !important; }
 .anim-delay-3 { animation-delay: 0.3s !important; }
@@ -369,7 +369,7 @@
 .anim-paused { animation-play-state: paused !important; }
 .anim-none   { animation: none !important; }
 
-/* ── Обратная совместимость ── */
+/* ── Backward compatibility ── */
 .animate-float      { animation: floating 1.5s ease-in-out infinite alternate-reverse both; }
 .click-text-anim    {}
 .rotate-anim        { animation: rotate90 1s ease-in-out infinite; }

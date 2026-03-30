@@ -1,11 +1,11 @@
 /* ============================================================
    _base.css — Design Tokens
-   Единственный источник всех переменных.
-   Меняй здесь — работает везде.
+   Single source of truth for all variables.
+   Change here — applies everywhere.
    ============================================================ */
 
 :root {
-  /* ── Цвета — семантические ── */
+  /* ── Colors — semantic ── */
   --color-primary:   #14a0ff;
   --color-accent:    #F9063F;
   --color-success:   #9ce700;
@@ -13,7 +13,7 @@
   --color-warning:   #ffdd00;
   --color-shadow:    rgba(20, 161, 255, 0.56);
 
-  /* ── Цвета — фон и текст (Dark theme по умолчанию) ── */
+  /* ── Colors — background and text (Dark theme by default) ── */
   --bg-main:         #0a0a0a;
   --bg-secondary:    #151515;
   --bg-card:         rgba(20, 160, 255, 0.12);
@@ -22,7 +22,7 @@
   --text-muted:      #8a8f99;
   --text-light:      #d2d6dd;
 
-  /* ── Шейды primary (100=светлый, 900=тёмный) ── */
+  /* ── Shades primary (100=light, 900=dark) ── */
   --color-primary-100: #e6f4ff;
   --color-primary-200: #bde0ff;
   --color-primary-300: #7ec8ff;
@@ -33,7 +33,7 @@
   --color-primary-800: #004080;
   --color-primary-900: #002050;
 
-  /* ── Шейды accent ── */
+  /* ── Shades accent ── */
   --color-accent-100: #ffe6ec;
   --color-accent-200: #ffb3c2;
   --color-accent-300: #ff6680;
@@ -44,7 +44,7 @@
   --color-accent-800: #660015;
   --color-accent-900: #33000a;
 
-  /* ── Шейды success ── */
+  /* ── Shades success ── */
   --color-success-100: #edffd1;
   --color-success-200: #ccff80;
   --color-success-300: #aaee33;
@@ -54,7 +54,7 @@
   --color-success-700: #407000;
   --color-success-800: #204000;
 
-  /* ── Шейды error ── */
+  /* ── Shades error ── */
   --color-error-100: #ffe6e6;
   --color-error-200: #ffb3b3;
   --color-error-300: #ff6666;
@@ -64,7 +64,7 @@
   --color-error-700: #801010;
   --color-error-800: #550808;
 
-  /* ── Нейтрали (greys) ── */
+  /* ── Neutrals (greys) ── */
   --color-neutral-50:  #f9f9f9;
   --color-neutral-100: #f0f0f0;
   --color-neutral-200: #d2d6dd;
@@ -76,11 +76,31 @@
   --color-neutral-800: #1a1a1a;
   --color-neutral-900: #0a0a0a;
 
-  /* ── Шрифты — семейства ── */
-  --font-sans: "Roboto", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Helvetica Neue", sans-serif;
-  --font-mono: "Consolas", "Monaco", "Lucida Console", monospace;
+  /* ── Fonts — named stacks (Google Fonts) ── */
+  --font-inter:       "Inter", system-ui, -apple-system, sans-serif;
+  --font-roboto:      "Roboto", -apple-system, "Segoe UI", sans-serif;
+  --font-poppins:     "Poppins", sans-serif;
+  --font-montserrat:  "Montserrat", sans-serif;
+  --font-outfit:      "Outfit", sans-serif;
+  --font-jakarta:     "Plus Jakarta Sans", sans-serif;
+  --font-dm-sans:     "DM Sans", sans-serif;
+  --font-nunito:      "Nunito", sans-serif;
+  --font-space:       "Space Grotesk", sans-serif;
+  --font-manrope:     "Manrope", sans-serif;
+  --font-figtree:     "Figtree", sans-serif;
+  --font-sora:        "Sora", sans-serif;
 
-  /* ── Шрифты — фиксированные (px) ── */
+  /* ── Fonts — monospace ── */
+  --font-roboto-mono: "Roboto Mono", "Consolas", monospace;
+  --font-jetbrains:   "JetBrains Mono", "Consolas", monospace;
+  --font-fira-code:   "Fira Code", "Consolas", monospace;
+
+  /* ── Active roles (change here — applies everywhere) ── */
+  --font-sans:    var(--font-inter);
+  --font-heading: var(--font-poppins);
+  --font-mono:    var(--font-roboto-mono);
+
+  /* ── Fonts — fixed sizes (px) ── */
   --fs-xs:   12px;
   --fs-sm:   14px;
   --fs-base: 16px;
@@ -94,7 +114,7 @@
   --fs-7xl:  72px;
   --fs-hero: 96px;
 
-  /* ── Шрифты — fluid / адаптивные (vw + clamp) ── */
+  /* ── Fonts — fluid / responsive (vw + clamp) ── */
   --fs-f-xs:   clamp(10px, 1vw,   12px);
   --fs-f-sm:   clamp(12px, 1.2vw, 14px);
   --fs-f-base: clamp(14px, 1.4vw, 16px);
@@ -108,13 +128,13 @@
   --fs-f-7xl:  clamp(48px, 8vw,   96px);
   --fs-f-hero: clamp(60px, 10vw, 120px);
 
-  /* ── Межстрочный интервал ── */
+  /* ── Line height ── */
   --lh-tight:   0.9;
   --lh-snug:    1.2;
   --lh-normal:  1.5;
   --lh-relaxed: 1.8;
 
-  /* ── Отступы (spacing scale) ── */
+  /* ── Spacing (spacing scale) ── */
   --space-0:  0px;
   --space-1:  4px;
   --space-2:  8px;
@@ -129,7 +149,7 @@
   --space-20: 80px;
   --space-24: 96px;
 
-  /* ── Скругления ── */
+  /* ── Border radius ── */
   --radius-none: 0px;
   --radius-sm:   6px;
   --radius-md:   12px;
@@ -138,12 +158,12 @@
   --radius-2xl:  40px;
   --radius-full: 9999px;
 
-  /* ── Переходы ── */
+  /* ── Transitions ── */
   --ease-fast: 0.15s ease-in-out;
   --ease:      0.3s ease-in-out;
   --ease-slow: 0.5s ease-in-out;
 
-  /* ── Z-индексы ── */
+  /* ── Z-indexes ── */
   --z-0:     0;
   --z-1:     1;
   --z-10:    10;
@@ -151,7 +171,7 @@
   --z-100:   100;
   --z-modal: 1000;
 
-  /* ── Тени ── */
+  /* ── Shadows ── */
   --shadow-sm:      0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-md:      0 4px 6px rgba(0, 0, 0, 0.4);
   --shadow-lg:      0 10px 20px rgba(0, 0, 0, 0.5);
@@ -159,12 +179,12 @@
   --shadow-accent:  0 0 20px rgba(249, 6, 63, 0.5);
   --shadow-glow:    0 0 30px rgba(255, 255, 255, 0.2);
 
-  /* ── Контейнер ── */
+  /* ── Container ── */
   --container-width: 1340px;
   --grid-maxWidth:   120rem;
   --grid-gutter:     2rem;
 
-  /* ── Устаревшие алиасы (для обратной совместимости) ── */
+  /* ── Deprecated aliases (for backward compatibility) ── */
   --font-size:              var(--fs-base);
   --font-color:             var(--text-main);
   --font-color-secondary:   var(--text-secondary);
@@ -178,7 +198,7 @@
 }
 
 /* ============================================================
-   ТЕМЫ — переключение через data-theme на <html>
+   THEMES — toggle via data-theme on <html>
    document.documentElement.setAttribute('data-theme', 'red')
    ============================================================ */
 
@@ -322,14 +342,14 @@
 
 
 /* ============================================================
-   RESPONSIVE TOKENS — переопределяем переменные на каждом
-   брейкпоинте. Все компоненты масштабируются автоматически.
+   RESPONSIVE TOKENS — override variables at each
+   breakpoint. All components scale automatically.
    ============================================================ */
 
-/* ── 1200px — планшет / ноутбук ── */
+/* ── 1200px — tablet / laptop ── */
 @media (max-width: 1200px) {
   :root {
-    /* Шрифты */
+    /* Fonts */
     --fs-base: 15px;
     --fs-lg:   17px;
     --fs-xl:   19px;
@@ -341,7 +361,7 @@
     --fs-7xl:  62px;
     --fs-hero: 80px;
 
-    /* Fluid-шрифты */
+    /* Fluid fonts */
     --fs-f-xl:   clamp(16px, 2vw,   22px);
     --fs-f-2xl:  clamp(18px, 2.5vw, 28px);
     --fs-f-3xl:  clamp(20px, 3vw,   32px);
@@ -351,7 +371,7 @@
     --fs-f-7xl:  clamp(42px, 7vw,   80px);
     --fs-f-hero: clamp(52px, 9vw,  100px);
 
-    /* Отступы */
+    /* Spacing */
     --space-3:  10px;
     --space-4:  14px;
     --space-5:  18px;
@@ -363,16 +383,16 @@
     --space-20: 70px;
     --space-24: 84px;
 
-    /* Сетка */
+    /* Grid */
     --grid-gutter:     1.5rem;
     --container-width: 1100px;
   }
 }
 
-/* ── 768px — мобильный / планшет портрет ── */
+/* ── 768px — mobile / tablet portrait ── */
 @media (max-width: 768px) {
   :root {
-    /* Шрифты */
+    /* Fonts */
     --fs-xs:   11px;
     --fs-sm:   13px;
     --fs-base: 14px;
@@ -386,7 +406,7 @@
     --fs-7xl:  52px;
     --fs-hero: 64px;
 
-    /* Fluid-шрифты */
+    /* Fluid fonts */
     --fs-f-xs:   clamp(9px,  1.2vw, 11px);
     --fs-f-sm:   clamp(11px, 1.5vw, 13px);
     --fs-f-base: clamp(13px, 1.8vw, 15px);
@@ -400,7 +420,7 @@
     --fs-f-7xl:  clamp(32px, 8vw,   62px);
     --fs-f-hero: clamp(38px, 9vw,   72px);
 
-    /* Отступы */
+    /* Spacing */
     --space-2:  6px;
     --space-3:  8px;
     --space-4:  12px;
@@ -413,21 +433,21 @@
     --space-20: 60px;
     --space-24: 72px;
 
-    /* Скругления */
+    /* Border radius */
     --radius-lg:  16px;
     --radius-xl:  22px;
     --radius-2xl: 30px;
 
-    /* Сетка */
+    /* Grid */
     --grid-gutter:     1rem;
     --container-width: 100%;
   }
 }
 
-/* ── 480px — маленький мобильный ── */
+/* ── 480px — small mobile ── */
 @media (max-width: 480px) {
   :root {
-    /* Шрифты */
+    /* Fonts */
     --fs-xs:   10px;
     --fs-sm:   12px;
     --fs-base: 13px;
@@ -441,7 +461,7 @@
     --fs-7xl:  40px;
     --fs-hero: 48px;
 
-    /* Fluid-шрифты */
+    /* Fluid fonts */
     --fs-f-xs:   clamp(9px,  2vw,  10px);
     --fs-f-sm:   clamp(10px, 2.5vw, 12px);
     --fs-f-base: clamp(12px, 3vw,  14px);
@@ -455,7 +475,7 @@
     --fs-f-7xl:  clamp(28px, 9vw,  44px);
     --fs-f-hero: clamp(32px, 10vw, 52px);
 
-    /* Отступы */
+    /* Spacing */
     --space-1:  3px;
     --space-2:  5px;
     --space-3:  7px;
@@ -469,19 +489,19 @@
     --space-20: 48px;
     --space-24: 56px;
 
-    /* Скругления */
+    /* Border radius */
     --radius-md:  8px;
     --radius-lg:  12px;
     --radius-xl:  16px;
     --radius-2xl: 22px;
 
-    /* Сетка */
+    /* Grid */
     --grid-gutter:     0.75rem;
     --container-width: 100%;
   }
 }
 
-/* ── 390px — iPhone 14 / стандартный мобильный ── */
+/* ── 390px — iPhone 14 / standard mobile ── */
 @media (max-width: 390px) {
   :root {
     --fs-xs:   9px;
@@ -533,7 +553,7 @@
   }
 }
 
-/* ── 360px — Android / мелкий мобильный ── */
+/* ── 360px — Android / small mobile ── */
 @media (max-width: 360px) {
   :root {
     --fs-xs:   8px;
@@ -585,7 +605,7 @@
   }
 }
 
-/* ── 320px — очень маленький экран ── */
+/* ── 320px — very small screen ── */
 @media (max-width: 320px) {
   :root {
     --fs-xs:   7px;

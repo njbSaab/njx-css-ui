@@ -1,20 +1,20 @@
 /* ============================================================
-   style.css — точка входа
-   Только @import. Никаких стилей здесь.
+   style.css — entry point
+   @import only. No styles here.
    ============================================================ */
 
-/* 1. Токены и Reset */
+/* 1. Tokens and Reset */
 @import "_base.css";
 @import "_reset.css";
 
-/* 2. Система */
+/* 2. System */
 @import "_grid.css";
 @import "_typography.css";
 @import "_utils.css";
 @import "_gradients.css";
 @import "_animations.css";
 
-/* 3. Компоненты */
+/* 3. Components */
 @import "_buttons.css";
 @import "_cards.css";
 @import "_form.css";
@@ -33,7 +33,7 @@
 @import "_breadcrumb.css";
 @import "_links.css";
 
-/* 4. Глобальные секции */
+/* 4. Global sections */
 @import "_sections.css";
 @import "_social.css";
 @import "_skeleton.css";

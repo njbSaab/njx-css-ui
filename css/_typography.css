@@ -1,18 +1,18 @@
 /* ============================================================
-   _typography.css — система заголовков и текста
-   Нейминг: DaisyUI/Bootstrap style
+   _typography.css — heading and text system
+   Naming: DaisyUI/Bootstrap style
    .title-hero .title-xl .title-lg .title-md .title-sm .title-xs
    .text-lead .text-body .text-sm .text-xs .text-caption .text-label
-   Модификатор .fluid — переключает на vw-размер (clamp)
+   Modifier .fluid — switches to vw-size (clamp)
    ============================================================ */
 
-/* ── Заголовки ── */
+/* ── Headings ── */
 
 .title-hero {
   font-size: var(--fs-hero);
   font-weight: 900;
   line-height: var(--lh-tight);
-  font-family: var(--font-sans);
+  font-family: var(--font-heading);
 }
 .title-hero.fluid { font-size: var(--fs-f-hero); }
 
@@ -20,6 +20,7 @@
   font-size: var(--fs-7xl);
   font-weight: 900;
   line-height: var(--lh-tight);
+  font-family: var(--font-heading);
 }
 .title-xl.fluid { font-size: var(--fs-f-7xl); }
 
@@ -27,6 +28,7 @@
   font-size: var(--fs-6xl);
   font-weight: 900;
   line-height: var(--lh-snug);
+  font-family: var(--font-heading);
 }
 .title-lg.fluid { font-size: var(--fs-f-6xl); }
 
@@ -34,6 +36,7 @@
   font-size: var(--fs-5xl);
   font-weight: 900;
   line-height: var(--lh-snug);
+  font-family: var(--font-heading);
 }
 .title-md.fluid { font-size: var(--fs-f-5xl); }
 
@@ -41,6 +44,7 @@
   font-size: var(--fs-4xl);
   font-weight: 800;
   line-height: var(--lh-snug);
+  font-family: var(--font-heading);
 }
 .title-sm.fluid { font-size: var(--fs-f-4xl); }
 
@@ -48,10 +52,11 @@
   font-size: var(--fs-3xl);
   font-weight: 700;
   line-height: var(--lh-normal);
+  font-family: var(--font-heading);
 }
 .title-xs.fluid { font-size: var(--fs-f-3xl); }
 
-/* ── Текст ── */
+/* ── Text ── */
 
 .text-lead {
   font-size: var(--fs-xl);
@@ -92,7 +97,7 @@
   letter-spacing: 0.04em;
 }
 
-/* ── Цветовые модификаторы ── */
+/* ── Color modifiers ── */
 .text-primary   { color: var(--color-primary) !important; }
 .text-accent    { color: var(--color-accent) !important; }
 .text-success   { color: var(--color-success) !important; }
@@ -103,19 +108,19 @@
 .text-white     { color: #ffffff !important; }
 .text-black     { color: #000000 !important; }
 
-/* ── Трансформации ── */
+/* ── Transformations ── */
 .text-upper   { text-transform: uppercase !important; }
 .text-lower   { text-transform: lowercase !important; }
 .text-cap     { text-transform: capitalize !important; }
 .text-normal  { text-transform: none !important; }
 
-/* ── Выравнивание ── */
+/* ── Alignment ── */
 .text-center  { text-align: center !important; }
 .text-left    { text-align: left !important; }
 .text-right   { text-align: right !important; }
 .text-justify { text-align: justify !important; }
 
-/* ── Вес ── */
+/* ── Weight ── */
 .font-thin    { font-weight: 100 !important; }
 .font-light   { font-weight: 300 !important; }
 .font-normal  { font-weight: 400 !important; }
@@ -130,7 +135,7 @@
 .text-balance { text-wrap: balance !important; }
 .text-pretty  { text-wrap: pretty !important; }
 
-/* ── Декорации ── */
+/* ── Decorations ── */
 .text-underline    { text-decoration: underline !important; }
 .text-line-through { text-decoration: line-through !important; }
 .text-no-underline { text-decoration: none !important; }
@@ -176,7 +181,7 @@
 .tip--danger  { --tip-color: var(--color-error); }
 .tip--neutral { --tip-color: var(--text-muted); }
 
-/* ── Обратная совместимость (старые классы) ── */
+/* ── Backward compatibility (legacy classes) ── */
 .h1-title    { font-size: var(--fs-hero);  font-weight: 900; line-height: var(--lh-tight); }
 .h2-title    { font-size: var(--fs-7xl);   font-weight: 900; line-height: 1; }
 .h3-title    { font-size: var(--fs-6xl);   font-weight: 900; line-height: var(--lh-snug); text-transform: uppercase; }
