@@ -192,6 +192,23 @@ async function buildAndDownload() {
   }
 }
 
+// ── Anim-tile hover/click replay ──
+function initAnimTileReplay() {
+  document.querySelectorAll('.anim-tile').forEach(function(tile) {
+    function replay() {
+      var icon = tile.querySelector('.anim-icon');
+      if (!icon) return;
+      var cls = Array.prototype.find.call(icon.classList, function(c) { return c.startsWith('animate-'); });
+      if (!cls) return;
+      icon.classList.remove(cls);
+      void icon.offsetWidth;
+      icon.classList.add(cls);
+    }
+    tile.addEventListener('mouseenter', replay);
+    tile.addEventListener('click', replay);
+  });
+}
+
 // ── Trigger one-shot animation ──
 function triggerAnim(id, cls) {
   const el = document.getElementById(id);
@@ -806,6 +823,7 @@ document.addEventListener('components-loaded', () => {
   });
   initSectionHeaders();
   initCodeToggles();
+  initAnimTileReplay();
   renderUtils();
   initSidebarObserver();
   initCarousels();

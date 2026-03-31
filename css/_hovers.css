@@ -624,16 +624,21 @@
   transform-style: preserve-3d;
 }
 .hover-tilt:hover { transform: perspective(400px) rotateX(4deg) rotateY(-4deg) scale(1.02); }
+
+.hover-tilt-r {
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+}
 .hover-tilt-r:hover { transform: perspective(400px) rotateX(4deg) rotateY(4deg) scale(1.02); }
 
 /* ═══════════════════════════════════════════
    Backward compatibility
+   (kept for projects using older class names)
 ═══════════════════════════════════════════ */
+/** @deprecated use .hover-scale instead */
 .hover-scailed-1 {
-  transition: transform var(--ease-fast);
-  transform: scale(1);
+  transition: transform var(--ease);
 }
 .hover-scailed-1:hover {
   transform: scale(1.05);
-  transition: transform var(--ease);
 }

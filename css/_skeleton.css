@@ -172,8 +172,139 @@
 .skeleton-table-row .skeleton:first-child { flex: 0 0 32px; height: 32px; }
 
 /* ═══════════════════════════════
+   FORM SKELETON
+═══════════════════════════════ */
+.skeleton-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.skeleton-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-form-label {
+  height: 12px;
+  width: 32%;
+  border-radius: 4px;
+}
+
+.skeleton-form-input {
+  height: 40px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.skeleton-form-row-inline {
+  display: flex;
+  gap: 12px;
+}
+
+.skeleton-form-row-inline .skeleton-form-row {
+  flex: 1;
+}
+
+/* ═══════════════════════════════
+   STATS / DASHBOARD
+═══════════════════════════════ */
+.skeleton-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+}
+
+.skeleton-stat {
+  background: var(--bg-secondary, #1a1a1a);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-600, #444) 40%, transparent);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.skeleton-stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.skeleton-stat-value {
+  height: 32px;
+  width: 60%;
+  border-radius: 6px;
+}
+
+.skeleton-stat-label {
+  height: 12px;
+  width: 80%;
+}
+
+/* ═══════════════════════════════
+   GALLERY / GRID
+═══════════════════════════════ */
+.skeleton-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+.skeleton-gallery-item {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  min-height: 90px;
+}
+
+/* ═══════════════════════════════
+   DETAIL / PRODUCT
+═══════════════════════════════ */
+.skeleton-detail {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.skeleton-detail-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+.skeleton-detail-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ═══════════════════════════════
    ANIMATION VARIANTS
 ═══════════════════════════════ */
+
+/* Shimmer — explicit (default, resets shimmer inside static/pulse/wave wrappers) */
+.skeleton-shimmer .skeleton::after {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--color-neutral-400, #999) 22%, transparent) 50%,
+    transparent 100%
+  );
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+}
+.skeleton-shimmer .skeleton { animation: none; }
 
 /* Pulse — replaces shimmer */
 .skeleton-pulse .skeleton::after { display: none; }
@@ -195,3 +326,10 @@
 /* Static — no animation */
 .skeleton-static .skeleton::after { display: none; }
 .skeleton-static .skeleton { animation: none; }
+
+/* Soft — dimmed, for ghost/outline button skeletons */
+.skeleton-soft { opacity: 0.38; }
+
+/* Fixed-width cells in table rows (pills and circles keep their size) */
+.skeleton-table-row .skeleton-pill   { flex: none; }
+.skeleton-table-row .skeleton-circle { flex: none; }
