@@ -338,6 +338,13 @@ No framework. No dependencies. Every component is plain CSS — ready to paste i
 
 ## Components
 ### Buttons
+
+<div align="center">
+
+![njX UI — Buttons](img/gif/buttons.gif)
+
+</div>
+
 ```html
 <button class="btn btn-primary">Primary</button>
 <button class="btn btn-accent">Accent</button>
@@ -409,6 +416,25 @@ No framework. No dependencies. Every component is plain CSS — ready to paste i
 </div>
 ```
 
+### Sidebar & Navigation
+
+<div align="center">
+
+![njX UI — Sidebar](img/gif/sidebar.gif)
+
+</div>
+
+```html
+<div class="sidebar sidebar-left" id="my-sidebar">
+  <div class="sidebar-header">Menu</div>
+  <nav class="sidebar-nav">
+    <a class="sidebar-link active" href="#">Dashboard</a>
+    <a class="sidebar-link" href="#">Settings</a>
+  </nav>
+</div>
+<div class="sidebar-overlay" onclick="closeSidebar('my-sidebar')"></div>
+```
+
 ### Toast notifications
 ```html
 <div id="lib-toast-container"></div>
@@ -437,6 +463,30 @@ showToast('Info message', 'primary')
 <div class="animate-fade-in">Fade in</div>
 <div class="animate-fade-up">Fade up</div>
 <div class="animate-pulse">Pulse</div>
+```
+
+### Social Cards & Skeleton Loaders
+
+<div align="center">
+
+![njX UI — Social & Skeleton](img/gif/relese-social-skeleton.gif)
+
+</div>
+
+```html
+<!-- Skeleton loader -->
+<div class="skeleton-user">
+  <span class="skeleton skeleton-circle" style="width:44px;height:44px"></span>
+  <div class="skeleton-user-info">
+    <span class="skeleton skeleton-md skeleton-2/3"></span>
+    <span class="skeleton skeleton-sm skeleton-1/2"></span>
+  </div>
+</div>
+
+<!-- Social card -->
+<div class="card social-card">
+  <div class="social-card-header">...</div>
+</div>
 ```
 
 ### Gradients & Text Effects
