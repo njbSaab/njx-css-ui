@@ -8,7 +8,8 @@
     "build": "npm run minify && npm run header && npm run sync-version",
     "minify": "lightningcss --minify --bundle css/style.css -o css/style.min.css",
     "header": "node -e \"const fs=require('fs');const f='css/style.min.css';const h='/* njX UI v'+require('./package.json').version+' | MIT License | github.com/njbSaab/njx-css-ui */\\n';fs.writeFileSync(f,h+fs.readFileSync(f,'utf8'));\"",
-    "sync-version": "node scripts/sync-version.js"
+    "sync-version": "node scripts/sync-version.js",
+    "release": "node scripts/release.js"
   },
   "files": [
     "css/",
