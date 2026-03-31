@@ -16,10 +16,15 @@ function applyTheme(theme) {
   if (codeEl) codeEl.textContent = theme;
 
   // View Transitions API — whole-page cross-fade (Chrome/Edge/Safari 18+)
-  // Firefox fallback: per-element CSS transitions from _reset.css
+  // .vt-active suppresses per-element CSS transitions from _reset.css
+  // so they don't fire simultaneously with the crossfade (avoids double-animation).
   if (document.startViewTransition) {
-    document.startViewTransition(() => {
+    document.documentElement.classList.add('vt-active');
+    const vt = document.startViewTransition(() => {
       document.documentElement.setAttribute('data-theme', theme);
+    });
+    vt.finished.finally(() => {
+      document.documentElement.classList.remove('vt-active');
     });
   } else {
     document.documentElement.setAttribute('data-theme', theme);
