@@ -273,6 +273,265 @@
           </div>
         </div>
 
+        <!-- ── Soft / Tinted variants ── -->
+        <div class="lib-component">
+          <div class="lib-component-label">Soft / Tinted variants</div>
+          <div class="lib-preview" style="gap:10px;flex-wrap:wrap">
+            <button class="btn btn-soft-primary">soft-primary</button>
+            <button class="btn btn-soft-accent">soft-accent</button>
+            <button class="btn btn-soft-success">soft-success</button>
+            <button class="btn btn-soft-error">soft-error</button>
+            <button class="btn btn-soft-warning">soft-warning</button>
+            <button class="btn btn-soft-info">soft-info</button>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- Soft: tinted bg + colored text + colored border -->
+<!-- Great for secondary actions, tags, status chips -->
+<button class="btn btn-soft-primary">Primary</button>
+<button class="btn btn-soft-accent">Accent</button>
+<button class="btn btn-soft-success">Success</button>
+<button class="btn btn-soft-error">Delete</button>
+<button class="btn btn-soft-warning">Warning</button>
+<button class="btn btn-soft-info">Info</button>
+
+<!-- Combine with sizes -->
+<button class="btn btn-soft-primary btn-sm">Small soft</button>
+<button class="btn btn-soft-error btn-xs">xs soft</button>'>
+                <span class="c">&lt;!-- Soft: tinted bg + colored text + border --&gt;</span><br>
+                <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-soft-primary"</span><span class="k">&gt;</span>Primary<span class="k">&lt;/button&gt;</span><br>
+                <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-soft-accent"</span><span class="k">&gt;</span>Accent<span class="k">&lt;/button&gt;</span><br>
+                <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-soft-success"</span><span class="k">&gt;</span>Success<span class="k">&lt;/button&gt;</span><br>
+                <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-soft-error"</span><span class="k">&gt;</span>Delete<span class="k">&lt;/button&gt;</span><br>
+                <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-soft-warning"</span><span class="k">&gt;</span>Warning<span class="k">&lt;/button&gt;</span><br>
+                <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-soft-info"</span><span class="k">&gt;</span>Info<span class="k">&lt;/button&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Glass & Neon ── -->
+        <div class="lib-component">
+          <div class="lib-component-label">Glass &amp; Neon</div>
+          <div class="lib-preview" style="background:linear-gradient(135deg,#0f0f23 0%,#1a0a2e 50%,#0d1b2a 100%);gap:14px;flex-wrap:wrap">
+            <button class="btn btn-glass">btn-glass</button>
+            <button class="btn btn-glass btn-sm">Glass sm</button>
+            <button class="btn btn-neon">btn-neon</button>
+            <button class="btn btn-neon btn-sm">Neon sm</button>
+            <button class="btn btn-neon btn-lg">Neon lg</button>
+            <button class="btn btn-glow-primary">btn-glow-primary</button>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- Glass: frosted backdrop blur -->
+<button class="btn btn-glass">Glass</button>
+
+<!-- Neon: glowing border + text shadow (uses --color-primary) -->
+<button class="btn btn-neon">Neon</button>
+<button class="btn btn-neon btn-lg">Neon Large</button>
+
+<!-- Glow primary: solid with expanding shadow -->
+<button class="btn btn-glow-primary">Glow Primary</button>'>
+                <span class="c">&lt;!-- Glass: frosted backdrop blur --&gt;</span><br>
+                <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-glass"</span><span class="k">&gt;</span>Glass<span class="k">&lt;/button&gt;</span><br>
+                <span class="c">&lt;!-- Neon: glowing border + text-shadow --&gt;</span><br>
+                <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-neon"</span><span class="k">&gt;</span>Neon<span class="k">&lt;/button&gt;</span><br>
+                <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-neon btn-lg"</span><span class="k">&gt;</span>Neon Large<span class="k">&lt;/button&gt;</span><br>
+                <span class="c">&lt;!-- Glow: solid + shadow pulse --&gt;</span><br>
+                <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-glow-primary"</span><span class="k">&gt;</span>Glow Primary<span class="k">&lt;/button&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 3D Depth ── -->
+        <div class="lib-component">
+          <div class="lib-component-label">3D Depth — click to feel the press</div>
+          <div class="lib-preview" style="gap:14px;flex-wrap:wrap;align-items:flex-end">
+            <button class="btn btn-3d">btn-3d</button>
+            <button class="btn btn-3d btn-sm">3D sm</button>
+            <button class="btn btn-3d btn-lg">3D lg</button>
+            <button class="btn btn-3d-success">3d-success</button>
+            <button class="btn btn-3d-error">3d-error</button>
+            <button class="btn btn-3d-dark">3d-dark</button>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- 3D depth: thick bottom border sinks on :active -->
+<button class="btn btn-3d">Primary 3D</button>
+<button class="btn btn-3d-success">Success 3D</button>
+<button class="btn btn-3d-error">Danger 3D</button>
+<button class="btn btn-3d-dark">Dark 3D</button>
+
+<!-- Combine with size modifiers -->
+<button class="btn btn-3d btn-lg">Large 3D</button>
+<button class="btn btn-3d btn-sm">Small 3D</button>'>
+                <span class="c">&lt;!-- 3D: thick border-bottom sinks on :active --&gt;</span><br>
+                <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-3d"</span><span class="k">&gt;</span>Primary 3D<span class="k">&lt;/button&gt;</span><br>
+                <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-3d-success"</span><span class="k">&gt;</span>Success 3D<span class="k">&lt;/button&gt;</span><br>
+                <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-3d-error"</span><span class="k">&gt;</span>Danger 3D<span class="k">&lt;/button&gt;</span><br>
+                <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-3d btn-lg"</span><span class="k">&gt;</span>Large 3D<span class="k">&lt;/button&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Badge buttons ── -->
+        <div class="lib-component">
+          <div class="lib-component-label">Badge buttons</div>
+          <div class="lib-preview" style="gap:20px;flex-wrap:wrap;padding:32px 28px 40px">
+            <span class="btn-badge-wrap">
+              <button class="btn btn-primary btn-sm">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M13 11.5L8 14 3 11.5V5L8 2l5 3v6.5z"/><path d="M8 2v12"/><path d="M3 5l5 3 5-3"/></svg>
+                Inbox
+              </button>
+              <span class="btn-count">5</span>
+            </span>
+            <span class="btn-badge-wrap">
+              <button class="btn btn-outline btn-sm">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 1.5C4.4 1.5 1.5 4.4 1.5 8S4.4 14.5 8 14.5 14.5 11.6 14.5 8 11.6 1.5 8 1.5z"/><path d="M8 5v3l2 2"/></svg>
+                Updates
+              </button>
+              <span class="btn-count">12</span>
+            </span>
+            <span class="btn-badge-wrap">
+              <button class="btn btn-ghost btn-icon btn-sm">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13.5 10.5L8 13 2.5 10.5v-5L8 3l5.5 2.5v5z"/></svg>
+              </button>
+              <span class="btn-dot"></span>
+            </span>
+            <span class="btn-badge-wrap">
+              <button class="btn btn-soft-primary btn-icon">
+                <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 1a5.5 5.5 0 0 1 5.5 5.5c0 3.5-5.5 8.5-5.5 8.5S2.5 10 2.5 6.5A5.5 5.5 0 0 1 8 1z"/><circle cx="8" cy="6.5" r="1.5"/></svg>
+              </button>
+              <span class="btn-count">3</span>
+            </span>
+            <span class="btn-badge-wrap">
+              <button class="btn btn-dark">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="margin-right:6px"><path d="M1 12s.5-3 3-4.5S7.5 6 8 4c.5 2 2.5 3 4 3.5s3 4.5 3 4.5H1z"/><path d="M6 12c0 1.1.9 2 2 2s2-.9 2-2"/></svg>
+                Notifications
+              </button>
+              <span class="btn-count" style="background:#f59e0b">99+</span>
+            </span>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- Badge wrap: relative parent + absolute badge -->
+<span class="btn-badge-wrap">
+  <button class="btn btn-primary btn-sm">Inbox</button>
+  <span class="btn-count">5</span>
+</span>
+
+<!-- Dot indicator (no number) -->
+<span class="btn-badge-wrap">
+  <button class="btn btn-ghost btn-icon btn-sm">
+    <svg .../>
+  </button>
+  <span class="btn-dot"></span>
+</span>
+
+<!-- Custom badge color -->
+<span class="btn-badge-wrap">
+  <button class="btn btn-dark">Notifications</button>
+  <span class="btn-count" style="background:#f59e0b">99+</span>
+</span>'>
+                <span class="c">&lt;!-- Badge: .btn-badge-wrap + .btn-count --&gt;</span><br>
+                <span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"btn-badge-wrap"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-primary btn-sm"</span><span class="k">&gt;</span>Inbox<span class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"btn-count"</span><span class="k">&gt;</span>5<span class="k">&lt;/span&gt;</span><br>
+                <span class="k">&lt;/span&gt;</span><br>
+                <span class="c">&lt;!-- Dot only (no number) --&gt;</span><br>
+                <span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"btn-badge-wrap"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-ghost btn-icon"</span><span class="k">&gt;</span>...<span class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"btn-dot"</span><span class="k">&gt;&lt;/span&gt;</span><br>
+                <span class="k">&lt;/span&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Real-world patterns ── -->
+        <div class="lib-component">
+          <div class="lib-component-label">Real-world patterns</div>
+          <div class="lib-preview col" style="gap:24px;align-items:flex-start">
+
+            <!-- CTA row -->
+            <div style="display:flex;flex-direction:column;gap:6px;width:100%">
+              <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">Hero CTA</div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+                <button class="btn btn-primary btn-lg" style="gap:10px">
+                  <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 1v8M5 6l3 3 3-3M2 11v1a1 1 0 001 1h10a1 1 0 001-1v-1"/></svg>
+                  Get started free
+                </button>
+                <button class="btn btn-ghost btn-lg" style="gap:8px">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="5 3 13 8 5 13 5 3"/></svg>
+                  Watch demo
+                </button>
+              </div>
+            </div>
+
+            <!-- Toolbar -->
+            <div style="display:flex;flex-direction:column;gap:6px;width:100%">
+              <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">Toolbar</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+                <div class="btn-group">
+                  <button class="btn btn-outline btn-sm btn-icon" title="Bold">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 8h6a3 3 0 0 0 0-6H4v6zM4 8h7a3 3 0 0 1 0 6H4V8z"/></svg>
+                  </button>
+                  <button class="btn btn-outline btn-sm btn-icon" title="Italic">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="10" y1="2" x2="6" y2="14"/><line x1="7" y1="2" x2="13" y2="2"/><line x1="3" y1="14" x2="9" y2="14"/></svg>
+                  </button>
+                  <button class="btn btn-outline btn-sm btn-icon" title="Underline">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 2v5a4 4 0 0 0 8 0V2M2 14h12"/></svg>
+                  </button>
+                </div>
+                <div class="btn-group">
+                  <button class="btn btn-outline btn-sm btn-icon" title="Align left">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="10" y2="8"/><line x1="2" y1="12" x2="13" y2="12"/></svg>
+                  </button>
+                  <button class="btn btn-outline btn-sm btn-icon" title="Align center">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="4" x2="14" y2="4"/><line x1="4" y1="8" x2="12" y2="8"/><line x1="3" y1="12" x2="13" y2="12"/></svg>
+                  </button>
+                  <button class="btn btn-outline btn-sm btn-icon" title="Align right">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="4" x2="14" y2="4"/><line x1="6" y1="8" x2="14" y2="8"/><line x1="3" y1="12" x2="14" y2="12"/></svg>
+                  </button>
+                </div>
+                <button class="btn btn-soft-error btn-sm" style="gap:6px">
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polyline points="3 6 4.5 14.5 11.5 14.5 13 6"/><path d="M1 6h14"/><path d="M6 6V3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3"/></svg>
+                  Delete
+                </button>
+                <button class="btn btn-soft-primary btn-sm" style="gap:6px">
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 1v8M5 6l3 3 3-3M2 11v1a1 1 0 001 1h10a1 1 0 001-1v-1"/></svg>
+                  Export
+                </button>
+                <button class="btn btn-primary btn-sm" style="gap:6px">
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M13.5 10.5L8 13 2.5 10.5v-5L8 3l5.5 2.5v5z"/></svg>
+                  Publish
+                </button>
+              </div>
+            </div>
+
+            <!-- Confirmation row -->
+            <div style="display:flex;flex-direction:column;gap:6px;width:100%">
+              <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">Form actions</div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+                <button class="btn btn-primary" style="gap:8px">
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+                  Save changes
+                </button>
+                <button class="btn btn-outline" style="gap:8px">
+                  Cancel
+                </button>
+                <button class="btn btn-soft-error btn-sm" style="gap:6px;margin-left:auto">
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polyline points="3 6 4.5 14.5 11.5 14.5 13 6"/><path d="M1 6h14"/></svg>
+                  Delete account
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
         <div class="lib-component">
           <div class="lib-component-label">Bulma .button</div>
           <div class="lib-preview">

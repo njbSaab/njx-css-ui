@@ -1,268 +1,529 @@
       <section class="lib-section" id="animations">
         <div class="lib-section-title">✨ Animations</div>
-        <div class="lib-section-desc">Classes from <code>_animations.css</code>. All @keyframes in one file.</div>
+        <div class="lib-section-desc">Classes from <code>_animations.css</code>. Add to any element — no JS required for loop animations. Hover any tile to replay. Combine with <code>.anim-fast</code>, <code>.anim-slow</code>, <code>.anim-delay-*</code> modifiers.</div>
 
+        <!-- ── Fade animations ── -->
         <div class="lib-component">
-          <div class="lib-component-label">Basic animations</div>
-          <div class="lib-preview">
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-float">Float</div>
-              <div class="text-xs text-muted mt-2">.animate-float</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-pulse">Pulse</div>
-              <div class="text-xs text-muted mt-2">.animate-pulse</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-spin" style="border-radius:50%"></div>
-              <div class="text-xs text-muted mt-2">.animate-spin</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-bounce">Bounce</div>
-              <div class="text-xs text-muted mt-2">.animate-bounce</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-heartbeat">Heart</div>
-              <div class="text-xs text-muted mt-2">.animate-heartbeat</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-wiggle">Wiggle</div>
-              <div class="text-xs text-muted mt-2">.animate-wiggle</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-glow">Glow</div>
-              <div class="text-xs text-muted mt-2">.animate-glow</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-scale">Scale</div>
-              <div class="text-xs text-muted mt-2">.animate-scale</div>
+          <div class="lib-component-label">Fade animations — hover to replay</div>
+          <div class="lib-preview" style="display:block;padding:20px">
+            <div class="anim-grid">
+              <div class="anim-tile">
+                <div class="anim-icon animate-fade-in">
+                  <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <div class="anim-label">.animate-fade-in</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-fade-out">
+                  <svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </div>
+                <div class="anim-label">.animate-fade-out</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-fade-in-up">
+                  <svg viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+                </div>
+                <div class="anim-label">.animate-fade-in-up</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-fade-in-down">
+                  <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                </div>
+                <div class="anim-label">.animate-fade-in-down</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-fade-in-left">
+                  <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                </div>
+                <div class="anim-label">.animate-fade-in-left</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-fade-in-right">
+                  <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
+                <div class="anim-label">.animate-fade-in-right</div>
+              </div>
             </div>
           </div>
           <div class="lib-code-wrapper">
             <div class="lib-code-container">
-              <div class="lib-code"
-                data-raw="&lt;!-- _animations.css — loop animations (infinite) --&gt;&#10;&lt;div class=&quot;animate-float&quot;&gt;Float&lt;/div&gt;&#10;&lt;div class=&quot;animate-pulse&quot;&gt;Pulse&lt;/div&gt;&#10;&lt;div class=&quot;animate-spin&quot; style=&quot;border-radius:50%&quot;&gt;&lt;/div&gt;&#10;&lt;div class=&quot;animate-bounce&quot;&gt;Bounce&lt;/div&gt;&#10;&lt;div class=&quot;animate-heartbeat&quot;&gt;Heart&lt;/div&gt;&#10;&lt;div class=&quot;animate-wiggle&quot;&gt;Wiggle&lt;/div&gt;&#10;&lt;div class=&quot;animate-glow&quot;&gt;Glow&lt;/div&gt;&#10;&lt;div class=&quot;animate-scale&quot;&gt;Scale&lt;/div&gt;">
-                <span class="c">/* _animations.css — loop animations */</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-float"</span><span
-                  class="k">&gt;</span>Float<span class="k">&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-pulse"</span><span
-                  class="k">&gt;</span>Pulse<span class="k">&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-spin"</span><span
-                  class="k">&gt;</span>Spin<span class="k">&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span
-                  class="cn">"animate-bounce"</span><span class="k">&gt;</span>Bounce<span
-                  class="k">&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span
-                  class="cn">"animate-heartbeat"</span><span class="k">&gt;</span>Heart<span
-                  class="k">&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span
-                  class="cn">"animate-wiggle"</span><span class="k">&gt;</span>Wiggle<span
-                  class="k">&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-glow"</span><span
-                  class="k">&gt;</span>Glow<span class="k">&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-scale"</span><span
-                  class="k">&gt;</span>Scale<span class="k">&lt;/div&gt;</span>
+              <div class="lib-code" data-raw='<!-- Fade-in from any direction (one-shot, play on load) -->
+<div class="animate-fade-in">Fade in</div>
+<div class="animate-fade-in-up">From below</div>
+<div class="animate-fade-in-down">From above</div>
+<div class="animate-fade-in-left">From left</div>
+<div class="animate-fade-in-right">From right</div>
+<div class="animate-fade-out">Fade out</div>
+
+<!-- Combine with delay + speed -->
+<div class="animate-fade-in-up anim-delay-3 anim-slow">Later, slower</div>'>
+                <span class="c">&lt;!-- Fade-in from any direction (one-shot) --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-fade-in"</span><span class="k">&gt;</span>Fade in<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-fade-in-up"</span><span class="k">&gt;</span>From below<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-fade-in-down"</span><span class="k">&gt;</span>From above<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-fade-in-left"</span><span class="k">&gt;</span>From left<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-fade-in-right"</span><span class="k">&gt;</span>From right<span class="k">&lt;/div&gt;</span><br>
+                <span class="c">&lt;!-- Combine with delay + speed --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-fade-in-up anim-delay-3 anim-slow"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- ── Float & Bounce ── -->
+        <div class="lib-component">
+          <div class="lib-component-label">Float &amp; Bounce — hover to replay</div>
+          <div class="lib-preview" style="display:block;padding:20px">
+            <div class="anim-grid">
+              <div class="anim-tile">
+                <div class="anim-icon animate-float">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <div class="anim-label">.animate-float</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-float-big">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <div class="anim-label">.animate-float-big</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-bounce">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                </div>
+                <div class="anim-label">.animate-bounce</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-bounce-in">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <div class="anim-label">.animate-bounce-in</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-scale-in">
+                  <svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                </div>
+                <div class="anim-label">.animate-scale-in</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-flip">
+                  <svg viewBox="0 0 24 24"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                </div>
+                <div class="anim-label">.animate-flip</div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- Continuous float (loop) -->
+<div class="animate-float">Gentle levitation</div>
+<div class="animate-float-big">Wide arc float</div>
+<div class="animate-bounce">Bouncing loop</div>
+
+<!-- One-shot entrance animations -->
+<div class="animate-bounce-in">Bounce in on load</div>
+<div class="animate-scale-in">Scale from 0</div>
+<div class="animate-flip">3D flip entrance</div>'>
+                <span class="c">&lt;!-- Continuous float (loop) --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-float"</span><span class="k">&gt;</span>Gentle levitation<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-float-big"</span><span class="k">&gt;</span>Wide arc float<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-bounce"</span><span class="k">&gt;</span>Bouncing loop<span class="k">&lt;/div&gt;</span><br>
+                <span class="c">&lt;!-- One-shot entrance --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-bounce-in"</span><span class="k">&gt;</span>Bounce in<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-scale-in"</span><span class="k">&gt;</span>Scale from 0<span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Spin & Rotate ── -->
+        <div class="lib-component">
+          <div class="lib-component-label">Spin &amp; Rotate — hover to replay</div>
+          <div class="lib-preview" style="display:block;padding:20px">
+            <div class="anim-grid">
+              <div class="anim-tile">
+                <div class="anim-icon animate-spin">
+                  <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+                </div>
+                <div class="anim-label">.animate-spin</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-spin-slow">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div class="anim-label">.animate-spin-slow</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-rotate">
+                  <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                </div>
+                <div class="anim-label">.animate-rotate</div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- Loading spinner (1s, full 360°) -->
+<svg class="animate-spin" .../>
+
+<!-- Slow spin (3s, decorative) -->
+<div class="animate-spin-slow" style="border-radius:50%"></div>
+
+<!-- 90° back-and-forth rock -->
+<div class="animate-rotate"></div>
+
+<!-- Combine with anim-fast for rapid spin -->
+<svg class="animate-spin anim-fast" .../>'>
+                <span class="c">&lt;!-- Loading spinner --&gt;</span><br>
+                <span class="k">&lt;svg</span> <span class="s">class</span>=<span class="cn">"animate-spin"</span> <span class="s">width</span>=<span class="cn">"20"</span> <span class="s">height</span>=<span class="cn">"20"</span><span class="k">&gt;</span>...<span class="k">&lt;/svg&gt;</span><br>
+                <span class="c">&lt;!-- Slow spin — decorative --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-spin-slow"</span> <span class="s">style</span>=<span class="cn">"border-radius:50%"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="c">&lt;!-- 90° rock --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-rotate"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="c">&lt;!-- Fast spin --&gt;</span><br>
+                <span class="k">&lt;svg</span> <span class="s">class</span>=<span class="cn">"animate-spin anim-fast"</span><span class="k">&gt;</span>...<span class="k">&lt;/svg&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Shake, Wiggle & Attention ── -->
+        <div class="lib-component">
+          <div class="lib-component-label">Shake, Wiggle &amp; Attention — click to trigger</div>
+          <div class="lib-preview" style="display:block;padding:20px">
+            <div class="anim-grid">
+              <div class="anim-tile" onclick="triggerAnim('anim-shake-icon','animate-shake')">
+                <div class="anim-icon" id="anim-shake-icon" style="background:color-mix(in srgb,var(--color-error,#ef4444) 16%,transparent)">
+                  <svg viewBox="0 0 24 24" style="stroke:var(--color-error,#ef4444)"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                </div>
+                <div class="anim-label">.animate-shake</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-wiggle">
+                  <svg viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+                </div>
+                <div class="anim-label">.animate-wiggle</div>
+              </div>
+              <div class="anim-tile" onclick="triggerAnim('anim-tada-icon','animate-tada')">
+                <div class="anim-icon" id="anim-tada-icon" style="background:color-mix(in srgb,var(--color-warning,#f59e0b) 18%,transparent)">
+                  <svg viewBox="0 0 24 24" style="stroke:var(--color-warning,#f59e0b)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <div class="anim-label">.animate-tada</div>
+              </div>
+              <div class="anim-tile" onclick="triggerAnim('anim-rubber-icon','animate-rubber')">
+                <div class="anim-icon" id="anim-rubber-icon">
+                  <svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                </div>
+                <div class="anim-label">.animate-rubber</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-heartbeat">
+                  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
+                <div class="anim-label">.animate-heartbeat</div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- One-shot: play once per trigger -->
+<div class="animate-shake">Error state</div>   <!-- horizontal shake -->
+<div class="animate-tada">Celebration!</div>   <!-- scale + rotate party -->
+<div class="animate-rubber">Stretch!</div>     <!-- rubberBand squish -->
+
+<!-- Loop: continuous attention getter -->
+<div class="animate-wiggle">Wiggling...</div>
+<div class="animate-heartbeat">● Live</div>
+
+<!-- JS replay trick -->
+el.classList.remove("animate-shake");
+void el.offsetWidth; // force reflow
+el.classList.add("animate-shake");'>
+                <span class="c">&lt;!-- One-shot (play once) --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-shake"</span><span class="k">&gt;</span>Error state<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-tada"</span><span class="k">&gt;</span>Celebration!<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-rubber"</span><span class="k">&gt;</span>Stretch<span class="k">&lt;/div&gt;</span><br>
+                <span class="c">&lt;!-- JS replay --&gt;</span><br>
+                el.classList.remove(<span class="cn">"animate-shake"</span>);<br>
+                <span class="k">void</span> el.offsetWidth;<br>
+                el.classList.add(<span class="cn">"animate-shake"</span>);
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Pulse & Scale ── -->
+        <div class="lib-component">
+          <div class="lib-component-label">Pulse &amp; Scale — hover to replay</div>
+          <div class="lib-preview" style="display:block;padding:20px">
+            <div class="anim-grid">
+              <div class="anim-tile">
+                <div class="anim-icon animate-pulse">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+                </div>
+                <div class="anim-label">.animate-pulse</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-scale">
+                  <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                </div>
+                <div class="anim-label">.animate-scale</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-scale-big">
+                  <svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                </div>
+                <div class="anim-label">.animate-scale-big</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-border-pulse" style="background:transparent;border:2px solid var(--color-primary)">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+                </div>
+                <div class="anim-label">.animate-border-pulse</div>
+              </div>
+              <div class="anim-tile">
+                <div class="anim-icon animate-shimmer" style="background:none;width:80px;height:16px;border-radius:4px"></div>
+                <div class="anim-label">.animate-shimmer</div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- Subtle scale pulse (loop) -->
+<div class="animate-pulse">Scale 1→1.05</div>
+<div class="animate-scale-big">Scale 1→1.1</div>
+
+<!-- Border glow pulse -->
+<div class="animate-border-pulse"></div>
+
+<!-- Skeleton / loading shimmer -->
+<div class="animate-shimmer" style="height:16px;border-radius:4px"></div>
+<div class="animate-shimmer" style="height:12px;width:60%;border-radius:4px"></div>'>
+                <span class="c">&lt;!-- Scale pulse (loop) --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-pulse"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-scale-big"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="c">&lt;!-- Border glow --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-border-pulse"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="c">&lt;!-- Skeleton shimmer --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-shimmer"</span> <span class="s">style</span>=<span class="cn">"height:16px;border-radius:4px"</span><span class="k">&gt;&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Text effects ── -->
         <div class="lib-component">
           <div class="lib-component-label">Text effects</div>
           <div class="lib-preview col">
             <div class="title-sm animate-neon text-accent">.animate-neon</div>
             <div class="title-sm animate-rainbow" style="font-size:var(--fs-4xl)">.animate-rainbow</div>
             <div class="title-sm animate-breathe" style="font-size:var(--fs-4xl)">.animate-breathe</div>
-            <div class="title-sm animate-neon-blue text-primary" style="font-size:var(--fs-4xl)">.animate-neon-blue
-            </div>
+            <div class="title-sm animate-neon-blue text-primary" style="font-size:var(--fs-4xl)">.animate-neon-blue</div>
           </div>
           <div class="lib-code-wrapper">
             <div class="lib-code-container">
-              <div class="lib-code"
-                data-raw="&lt;!-- _animations.css — text effects (loop) --&gt;&#10;&lt;h2 class=&quot;animate-neon text-accent&quot;&gt;Neon Glow&lt;/h2&gt;&#10;&lt;h2 class=&quot;animate-rainbow&quot;&gt;Rainbow Text&lt;/h2&gt;&#10;&lt;h2 class=&quot;animate-breathe&quot;&gt;Breathe Effect&lt;/h2&gt;&#10;&lt;h2 class=&quot;animate-neon-blue text-primary&quot;&gt;Neon Blue&lt;/h2&gt;">
-                <span class="c">/* _animations.css — text loop effects */</span><br>
-                <span class="k">&lt;h2</span> <span class="s">class</span>=<span class="cn">"animate-neon
-                  text-accent"</span><span class="k">&gt;</span>Neon Glow<span class="k">&lt;/h2&gt;</span><br>
-                <span class="k">&lt;h2</span> <span class="s">class</span>=<span
-                  class="cn">"animate-rainbow"</span><span class="k">&gt;</span>Rainbow Text<span
-                  class="k">&lt;/h2&gt;</span><br>
-                <span class="k">&lt;h2</span> <span class="s">class</span>=<span
-                  class="cn">"animate-breathe"</span><span class="k">&gt;</span>Breathe Effect<span
-                  class="k">&lt;/h2&gt;</span><br>
-                <span class="k">&lt;h2</span> <span class="s">class</span>=<span class="cn">"animate-neon-blue
-                  text-primary"</span><span class="k">&gt;</span>Neon Blue<span class="k">&lt;/h2&gt;</span>
+              <div class="lib-code" data-raw='<!-- Text glow / neon effects -->
+<h2 class="animate-neon text-accent">Neon Glow</h2>
+<h2 class="animate-rainbow">Rainbow shadow</h2>
+<h2 class="animate-breathe">Breathe</h2>
+<h2 class="animate-neon-blue text-primary">Neon Blue</h2>
+
+<!-- Scan line effect (uses data-text attribute) -->
+<span class="animate-scan" data-text="Scanning...">Scanning...</span>'>
+                <span class="k">&lt;h2</span> <span class="s">class</span>=<span class="cn">"animate-neon text-accent"</span><span class="k">&gt;</span>Neon Glow<span class="k">&lt;/h2&gt;</span><br>
+                <span class="k">&lt;h2</span> <span class="s">class</span>=<span class="cn">"animate-rainbow"</span><span class="k">&gt;</span>Rainbow shadow<span class="k">&lt;/h2&gt;</span><br>
+                <span class="k">&lt;h2</span> <span class="s">class</span>=<span class="cn">"animate-breathe"</span><span class="k">&gt;</span>Breathe<span class="k">&lt;/h2&gt;</span><br>
+                <span class="k">&lt;h2</span> <span class="s">class</span>=<span class="cn">"animate-neon-blue text-primary"</span><span class="k">&gt;</span>Neon Blue<span class="k">&lt;/h2&gt;</span><br>
+                <span class="c">&lt;!-- Scan line --&gt;</span><br>
+                <span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"animate-scan"</span> <span class="s">data-text</span>=<span class="cn">"Scanning..."</span><span class="k">&gt;</span>Scanning...<span class="k">&lt;/span&gt;</span>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- ── Glow & Neon (boxes) ── -->
         <div class="lib-component">
-          <div class="lib-component-label">Fade In animations</div>
-          <div class="lib-preview">
-            <button class="btn btn-outline btn-sm" onclick="playFade('fadeUp')">fade-in-up</button>
-            <button class="btn btn-outline btn-sm" onclick="playFade('fadeLeft')">fade-in-left</button>
-            <button class="btn btn-outline btn-sm" onclick="playFade('fadeRight')">fade-in-right</button>
-            <button class="btn btn-outline btn-sm" onclick="playFade('fadeDown')">fade-in-down</button>
-            <button class="btn btn-outline btn-sm" onclick="playFade('scaleIn')">scale-in</button>
-            <button class="btn btn-outline btn-sm" onclick="playFade('bounceIn')">bounce-in</button>
-            <button class="btn btn-outline btn-sm" onclick="playFade('flipIn')">flip-in</button>
-            <div id="fade-demo"
-              style="width:60px;height:60px;background:var(--color-primary);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">
+          <div class="lib-component-label">Glow &amp; Shadow effects</div>
+          <div class="lib-preview" style="display:block;padding:20px">
+            <div class="glow-grid">
+              <div class="glow-tile">
+                <div class="glow-box animate-glow"></div>
+                <div class="glow-label">.animate-glow<br><span style="opacity:.6">primary theme color</span></div>
+              </div>
+              <div class="glow-tile">
+                <div class="glow-box animate-glow-accent" style="background:color-mix(in srgb,var(--color-accent,#a78bfa) 16%,transparent)"></div>
+                <div class="glow-label">.animate-glow-accent<br><span style="opacity:.6">accent color</span></div>
+              </div>
+              <div class="glow-tile">
+                <div class="glow-box animate-border-pulse" style="background:transparent;border:2px solid var(--color-primary)"></div>
+                <div class="glow-label">.animate-border-pulse<br><span style="opacity:.6">expanding ring</span></div>
+              </div>
+              <div class="glow-tile">
+                <div class="glow-box shadow-neon"></div>
+                <div class="glow-label">.shadow-neon<br><span style="opacity:.6">static white glow</span></div>
+              </div>
+              <div class="glow-tile">
+                <div class="glow-box shadow-neon-primary"></div>
+                <div class="glow-label">.shadow-neon-primary<br><span style="opacity:.6">static primary glow</span></div>
+              </div>
             </div>
           </div>
           <div class="lib-code-wrapper">
             <div class="lib-code-container">
-              <div class="lib-code"
-                data-raw="&lt;!-- _animations.css — fade-in classes (one-shot, triggered on appearance) --&gt;&#10;&lt;div class=&quot;animate-fade-in-up&quot;&gt;Appears from below&lt;/div&gt;&#10;&lt;div class=&quot;animate-fade-in-left&quot;&gt;Appears from left&lt;/div&gt;&#10;&lt;div class=&quot;animate-fade-in-right&quot;&gt;Appears from right&lt;/div&gt;&#10;&lt;div class=&quot;animate-scale-in&quot;&gt;Scale from 0&lt;/div&gt;&#10;&lt;div class=&quot;animate-bounce-in&quot;&gt;Bounce effect&lt;/div&gt;&#10;&#10;&lt;!-- Can be combined with anim-delay-* and anim-fast/anim-slow --&gt;&#10;&lt;div class=&quot;animate-fade-in-up anim-delay-3 anim-slow&quot;&gt;Later, slower&lt;/div&gt;">
-                <span class="c">/* _animations.css — fade-in classes */</span><br>
-                <span class="cn">.animate-fade-in-up</span><br>
-                <span class="cn">.animate-fade-in-left</span><br>
-                <span class="cn">.animate-fade-in-right</span><br>
-                <span class="cn">.animate-scale-in</span><br>
-                <span class="cn">.animate-bounce-in</span><br>
-                <span class="c">/* Combine with delays */</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-fade-in-up
-                  anim-delay-3 anim-slow"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+              <div class="lib-code" data-raw='<!-- Pulsing glow (box-shadow based) -->
+<div class="animate-glow">Primary color glow</div>
+<div class="animate-glow-accent">Accent color glow</div>
+
+<!-- Expanding border ring -->
+<div class="animate-border-pulse"></div>
+
+<!-- Static neon shadow utilities -->
+<div class="shadow-neon">White neon glow</div>
+<div class="shadow-neon-primary">Theme color glow</div>'>
+                <span class="c">&lt;!-- Pulsing glow --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-glow"</span><span class="k">&gt;</span>Primary glow<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-glow-accent"</span><span class="k">&gt;</span>Accent glow<span class="k">&lt;/div&gt;</span><br>
+                <span class="c">&lt;!-- Expanding border ring --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-border-pulse"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="c">&lt;!-- Static shadow utilities --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"shadow-neon"</span><span class="k">&gt;</span>White neon<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"shadow-neon-primary"</span><span class="k">&gt;</span>Theme glow<span class="k">&lt;/div&gt;</span>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- ── Border & Rainbow ── -->
         <div class="lib-component">
-          <div class="lib-component-label">One-shot effects (click to trigger)</div>
-          <div class="lib-preview">
-            <div style="text-align:center">
-              <div class="anim-demo-box" id="demo-shake" onclick="triggerAnim('demo-shake','animate-shake')" style="cursor:pointer;background:var(--color-error)">
-                Shake
-              </div>
-              <div class="text-xs text-muted mt-2">click</div>
+          <div class="lib-component-label">Border pulse &amp; Rainbow sweep</div>
+          <div class="lib-preview" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px">
+            <div style="background:var(--bg-secondary);border:1px solid transparent;border-radius:12px;padding:22px;text-align:center;position:relative;z-index:1" class="animate-border-pulse">
+              <div style="font-weight:700;margin-bottom:4px;color:var(--text-main)">Border pulse</div>
+              <div style="font-size:11px;font-family:monospace;color:var(--text-muted)">.animate-border-pulse</div>
             </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box" id="demo-tada" onclick="triggerAnim('demo-tada','animate-tada')" style="cursor:pointer;background:var(--color-warning);color:#111">
-                Tada
-              </div>
-              <div class="text-xs text-muted mt-2">click</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box" id="demo-rubber" onclick="triggerAnim('demo-rubber','animate-rubber')" style="cursor:pointer;background:var(--color-accent)">
-                Rubber
-              </div>
-              <div class="text-xs text-muted mt-2">click</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box" id="demo-flip" onclick="triggerAnim('demo-flip','animate-flip')" style="cursor:pointer;background:var(--color-success);color:#111">
-                Flip
-              </div>
-              <div class="text-xs text-muted mt-2">click</div>
+            <div style="border-radius:12px;padding:22px;text-align:center;color:#fff;font-weight:700;position:relative;z-index:1" class="animate-rainbow">
+              <div style="margin-bottom:4px">Rainbow sweep</div>
+              <div style="font-size:11px;font-family:monospace;opacity:.8">.animate-rainbow</div>
             </div>
           </div>
           <div class="lib-code-wrapper">
             <div class="lib-code-container">
-              <div class="lib-code"
-                data-raw="&lt;!-- One-shot animations: add class, remove after --&gt;&#10;&lt;div class=&quot;animate-shake&quot;&gt;...&lt;/div&gt;   &lt;!-- shake horizontally --&gt;&#10;&lt;div class=&quot;animate-tada&quot;&gt;...&lt;/div&gt;    &lt;!-- celebration shake+scale --&gt;&#10;&lt;div class=&quot;animate-rubber&quot;&gt;...&lt;/div&gt;  &lt;!-- rubberBand squish --&gt;&#10;&lt;div class=&quot;animate-flip&quot;&gt;...&lt;/div&gt;    &lt;!-- flipIn 3D --&gt;&#10;&#10;&lt;!-- Trigger on click via JS --&gt;&#10;el.classList.remove('animate-shake');&#10;void el.offsetWidth; // reflow&#10;el.classList.add('animate-shake');">
-                <span class="c">/* One-shot: add class → remove after animation */</span><br>
-                <span class="cn">.animate-shake</span>  <span class="c">/* shake horizontally */</span><br>
-                <span class="cn">.animate-tada</span>   <span class="c">/* celebration wiggle */</span><br>
-                <span class="cn">.animate-rubber</span> <span class="c">/* rubberBand squish */</span><br>
-                <span class="cn">.animate-flip</span>   <span class="c">/* flipIn 3D */</span><br>
-                <span class="c">/* Trigger via JS */</span><br>
-                el.classList.remove(<span class="cn">'animate-shake'</span>);<br>
-                <span class="c">void</span> el.offsetWidth; <span class="c">/* force reflow */</span><br>
-                el.classList.add(<span class="cn">'animate-shake'</span>);
+              <div class="lib-code" data-raw='<!-- Pulsing border ring -->
+<div class="animate-border-pulse" style="border:1px solid transparent"></div>
+
+<!-- Multi-color shadow sweep (great for featured cards) -->
+<div class="animate-rainbow">Featured!</div>
+<h2 class="animate-rainbow">Rainbow heading</h2>'>
+                <span class="c">&lt;!-- Pulsing border ring --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-border-pulse"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="c">&lt;!-- Multi-color shadow sweep --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-rainbow"</span><span class="k">&gt;</span>Featured!<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;h2</span> <span class="s">class</span>=<span class="cn">"animate-rainbow"</span><span class="k">&gt;</span>Rainbow heading<span class="k">&lt;/h2&gt;</span>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- ── Speed & Delay modifiers ── -->
         <div class="lib-component">
-          <div class="lib-component-label">More loop animations</div>
-          <div class="lib-preview">
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-float-big">Float+</div>
-              <div class="text-xs text-muted mt-2">.animate-float-big</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-scale-big">Scale+</div>
-              <div class="text-xs text-muted mt-2">.animate-scale-big</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-spin-slow" style="border-radius:50%"></div>
-              <div class="text-xs text-muted mt-2">.animate-spin-slow</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-glow-accent" style="background:var(--color-accent)">Glow</div>
-              <div class="text-xs text-muted mt-2">.animate-glow-accent</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-border-pulse" style="background:transparent;border:2px solid var(--color-primary);color:var(--color-primary)">Border</div>
-              <div class="text-xs text-muted mt-2">.animate-border-pulse</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-shimmer" style="background:none"></div>
-              <div class="text-xs text-muted mt-2">.animate-shimmer</div>
+          <div class="lib-component-label">Speed &amp; Delay modifiers</div>
+          <div class="lib-preview" style="display:block;padding:20px">
+            <div class="mod-grid">
+              <div class="mod-tile"><div class="mod-name">.anim-fast</div><div class="mod-val">0.3s duration</div></div>
+              <div class="mod-tile"><div class="mod-name">.anim-slow</div><div class="mod-val">2s duration</div></div>
+              <div class="mod-tile"><div class="mod-name">.anim-slower</div><div class="mod-val">4s duration</div></div>
+              <div class="mod-tile"><div class="mod-name">.anim-delay-1</div><div class="mod-val">0.1s delay</div></div>
+              <div class="mod-tile"><div class="mod-name">.anim-delay-2</div><div class="mod-val">0.2s delay</div></div>
+              <div class="mod-tile"><div class="mod-name">.anim-delay-3</div><div class="mod-val">0.3s delay</div></div>
+              <div class="mod-tile"><div class="mod-name">.anim-delay-5</div><div class="mod-val">0.5s delay</div></div>
+              <div class="mod-tile"><div class="mod-name">.anim-delay-1s</div><div class="mod-val">1s delay</div></div>
+              <div class="mod-tile"><div class="mod-name">.anim-paused</div><div class="mod-val">Pauses animation</div></div>
+              <div class="mod-tile"><div class="mod-name">.anim-none</div><div class="mod-val">Removes animation</div></div>
             </div>
           </div>
           <div class="lib-code-wrapper">
             <div class="lib-code-container">
-              <div class="lib-code"
-                data-raw="&lt;div class=&quot;animate-float-big&quot;&gt;...&lt;/div&gt;   &lt;!-- larger float arc --&gt;&#10;&lt;div class=&quot;animate-scale-big&quot;&gt;...&lt;/div&gt;   &lt;!-- larger pulse --&gt;&#10;&lt;div class=&quot;animate-spin-slow&quot;&gt;...&lt;/div&gt;   &lt;!-- 3s rotation --&gt;&#10;&lt;div class=&quot;animate-glow-accent&quot;&gt;...&lt;/div&gt; &lt;!-- accent glow pulse --&gt;&#10;&lt;div class=&quot;animate-border-pulse&quot;&gt;...&lt;/div&gt;&lt;!-- pulsing border shadow --&gt;&#10;&lt;div class=&quot;animate-shimmer&quot;&gt;...&lt;/div&gt;     &lt;!-- skeleton loader scan --&gt;">
-                <span class="cn">.animate-float-big</span>    <span class="c">/* larger float arc */</span><br>
-                <span class="cn">.animate-scale-big</span>    <span class="c">/* larger pulse */</span><br>
-                <span class="cn">.animate-spin-slow</span>    <span class="c">/* 3s rotation */</span><br>
-                <span class="cn">.animate-glow-accent</span>  <span class="c">/* accent glow */</span><br>
-                <span class="cn">.animate-border-pulse</span> <span class="c">/* border shadow pulse */</span><br>
-                <span class="cn">.animate-shimmer</span>      <span class="c">/* skeleton scan */</span>
+              <div class="lib-code" data-raw='<!-- Speed modifiers -->
+<div class="animate-spin anim-fast">Very fast</div>
+<div class="animate-spin anim-slow">Slow</div>
+<div class="animate-spin anim-slower">Very slow</div>
+
+<!-- Delay modifiers -->
+<div class="animate-fade-in-up anim-delay-1">0.1s later</div>
+<div class="animate-fade-in-up anim-delay-3">0.3s later</div>
+<div class="animate-fade-in-up anim-delay-1s">1s later</div>
+
+<!-- Pause / remove -->
+<div class="animate-float anim-paused">Paused</div>
+<div class="animate-float anim-none">No animation</div>
+
+<!-- Staggered entrance (great for lists) -->
+<div class="animate-fade-in-up anim-delay-1">Item 1</div>
+<div class="animate-fade-in-up anim-delay-3">Item 2</div>
+<div class="animate-fade-in-up anim-delay-5">Item 3</div>'>
+                <span class="c">&lt;!-- Speed modifiers --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-spin anim-fast"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-spin anim-slow"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="c">&lt;!-- Staggered entrance --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-fade-in-up anim-delay-1"</span><span class="k">&gt;</span>Item 1<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-fade-in-up anim-delay-3"</span><span class="k">&gt;</span>Item 2<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-fade-in-up anim-delay-5"</span><span class="k">&gt;</span>Item 3<span class="k">&lt;/div&gt;</span><br>
+                <span class="c">&lt;!-- Pause / remove --&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-float anim-paused"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-float anim-none"</span><span class="k">&gt;&lt;/div&gt;</span>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- ── Real-world examples ── -->
         <div class="lib-component">
-          <div class="lib-component-label">Delays and speed</div>
-          <div class="lib-preview">
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-float anim-delay-1">0.1s</div>
-              <div class="text-xs text-muted mt-2">.anim-delay-1</div>
+          <div class="lib-component-label">Real-world examples</div>
+          <div class="lib-preview" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;padding:20px">
+
+            <!-- Loading button -->
+            <div style="background:var(--bg-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px;position:relative;z-index:1">
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px">Loading state</div>
+              <button class="btn btn-primary" style="display:flex;align-items:center;gap:8px;justify-content:center">
+                <svg class="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+                Saving...
+              </button>
+              <div style="font-size:10px;font-family:monospace;color:var(--text-muted)">svg.animate-spin inside btn</div>
             </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-float anim-delay-3">0.3s</div>
-              <div class="text-xs text-muted mt-2">.anim-delay-3</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-float anim-delay-5">0.5s</div>
-              <div class="text-xs text-muted mt-2">.anim-delay-5</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-spin anim-fast">Fast</div>
-              <div class="text-xs text-muted mt-2">.anim-fast</div>
-            </div>
-            <div style="text-align:center">
-              <div class="anim-demo-box animate-spin anim-slow">Slow</div>
-              <div class="text-xs text-muted mt-2">.anim-slow</div>
-            </div>
-          </div>
-          <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-              <div class="lib-code"
-                data-raw="&lt;!-- _animations.css — delays .anim-delay-* and speed .anim-fast / .anim-slow --&gt;&#10;&#10;&lt;!-- Delays: 0.1s / 0.3s / 0.5s --&gt;&#10;&lt;div class=&quot;animate-float anim-delay-1&quot;&gt;0.1s&lt;/div&gt;&#10;&lt;div class=&quot;animate-float anim-delay-3&quot;&gt;0.3s&lt;/div&gt;&#10;&lt;div class=&quot;animate-float anim-delay-5&quot;&gt;0.5s&lt;/div&gt;&#10;&#10;&lt;!-- Playback speed --&gt;&#10;&lt;div class=&quot;animate-spin anim-fast&quot;&gt;Fast&lt;/div&gt;&#10;&lt;div class=&quot;animate-spin anim-slow&quot;&gt;Slow&lt;/div&gt;&#10;&#10;&lt;!-- Combo: fade-in + delay + slow --&gt;&#10;&lt;div class=&quot;animate-fade-in-up anim-delay-3 anim-slow&quot;&gt;Later, smoothly&lt;/div&gt;">
-                <span class="c">/* _animations.css — timing modifiers */</span><br>
-                <span class="c">/* Start delays */</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-float
-                  anim-delay-1"</span><span class="k">&gt;</span>0.1s<span class="k">&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-float
-                  anim-delay-3"</span><span class="k">&gt;</span>0.3s<span class="k">&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-float
-                  anim-delay-5"</span><span class="k">&gt;</span>0.5s<span class="k">&lt;/div&gt;</span><br>
-                <span class="c">/* Playback speed */</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-spin
-                  anim-fast"</span><span class="k">&gt;</span>Fast<span class="k">&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-spin
-                  anim-slow"</span><span class="k">&gt;</span>Slow<span class="k">&lt;/div&gt;</span><br>
-                <span class="c">/* Combo */</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"animate-fade-in-up
-                  anim-delay-3 anim-slow"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+
+            <!-- Notification badge -->
+            <div style="background:var(--bg-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px;position:relative;z-index:1">
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px">Live indicator</div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <div class="animate-bounce" style="position:relative;display:inline-flex">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                  <span class="animate-heartbeat" style="position:absolute;top:-4px;right:-4px;width:12px;height:12px;background:#f43f5e;border-radius:50%;border:2px solid var(--bg-main)"></span>
+                </div>
+                <span style="font-size:13px;color:var(--text-muted)">3 new alerts</span>
               </div>
+              <div style="font-size:10px;font-family:monospace;color:var(--text-muted)">.animate-bounce + .animate-heartbeat badge</div>
             </div>
+
+            <!-- Float + Fade-in card -->
+            <div style="background:var(--bg-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);border-radius:12px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;position:relative;z-index:1">
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px">Float + Fade</div>
+              <div class="animate-float" style="width:48px;height:48px;background:color-mix(in srgb,var(--color-primary) 16%,transparent);border-radius:12px;display:flex;align-items:center;justify-content:center">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <div class="animate-fade-in" style="font-size:13px;font-weight:700;color:var(--text-main)">njX UI ✦</div>
+              <div style="font-size:10px;font-family:monospace;color:var(--text-muted)">.animate-float + .animate-fade-in</div>
+            </div>
+
+            <!-- Skeleton loader -->
+            <div style="background:var(--bg-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:10px;position:relative;z-index:1">
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px">Skeleton loader</div>
+              <div class="animate-shimmer" style="height:12px;border-radius:4px;width:80%"></div>
+              <div class="animate-shimmer anim-delay-1" style="height:12px;border-radius:4px;width:60%"></div>
+              <div class="animate-shimmer anim-delay-2" style="height:12px;border-radius:4px;width:70%"></div>
+              <div style="font-size:10px;font-family:monospace;color:var(--text-muted)">.animate-shimmer + .anim-delay-*</div>
+            </div>
+
           </div>
         </div>
+
       </section>

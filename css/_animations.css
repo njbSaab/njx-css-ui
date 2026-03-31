@@ -369,15 +369,13 @@
 .anim-paused { animation-play-state: paused !important; }
 .anim-none   { animation: none !important; }
 
-/* ── Backward compatibility ── */
-.animate-float      { animation: floating 1.5s ease-in-out infinite alternate-reverse both; }
-.click-text-anim    {}
-.rotate-anim        { animation: rotate90 1s ease-in-out infinite; }
-.scaling-animation  { animation: scalePulse 1.5s ease-in-out infinite forwards; }
-.scaling-animation-2{ animation: scalePulseBig 2s ease-in-out infinite alternate; }
-.text-rainbow       { animation: rainbowShadow 15s ease-in alternate infinite; }
-.text-breathe       { text-shadow: 0 0 10px rgb(255,255,255); animation: breathe 3.5s ease-in-out infinite; }
-.text-neon          { animation: neonPulse 5.5s ease-in-out infinite alternate; }
-.text-scan          { color: #fff; position: relative; }
-.text-scan::after   { content: attr(data-text); position: absolute; left: 0; top: 0; color: #fff; text-shadow: 2px 0 10px rgb(255,0,0); animation: scan 3s linear infinite; }
-.sceled-reverse     { animation: scaleedReverse 7s ease-out infinite alternate; }
+/* ── Legacy aliases (kept for backward compatibility) ── */
+.rotate-anim         { animation: rotate90 1s ease-in-out infinite; }
+.scaling-animation   { animation: scalePulse 1.5s ease-in-out infinite forwards; }
+.scaling-animation-2 { animation: scalePulseBig 2s ease-in-out infinite alternate; }
+.text-rainbow        { animation: rainbowShadow 15s ease-in alternate infinite; }
+.text-breathe        { text-shadow: 0 0 10px rgb(255,255,255); animation: breathe 3.5s ease-in-out infinite; }
+.text-neon           { animation: neonPulse 5.5s ease-in-out infinite alternate; }
+.text-scan           { color: #fff; position: relative; }
+.text-scan::after    { content: attr(data-text); position: absolute; left: 0; top: 0; color: #fff; text-shadow: 2px 0 10px rgb(255,0,0); animation: scan 3s linear infinite; }
+.sceled-reverse      { animation: scaleedReverse 7s ease-out infinite alternate; }

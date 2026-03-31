@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="/img/logo-xs.png" />
+  <meta name="viewport" content="width=device-widsekth, initial-scale=1.0" />
+  <link rel="icon" href="img/logo-xs.png" sizes="32x32" type="image/png" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-969JS8G6QK"></script>
   <script>
@@ -42,48 +42,35 @@
   <div class="lib-wrap">
     <div data-component="sidebar"></div>
     <main class="lib-main">
-      <!-- ── 1. TOKENS ── -->
-      <!-- section: tokens → sections/tokens.html -->
+
+      <!-- ════ FOUNDATION ════ -->
       <div data-section="tokens"></div>
-      <!-- ── 1.5. GRID ── -->
-      <!-- section: grid → sections/grid.html -->
       <div data-section="grid"></div>
-      <!-- ── 2. TYPOGRAPHY ── -->
-      <!-- section: typography → sections/typography.html -->
       <div data-section="typography"></div>
-      <!-- ── 3. UTILS ── -->
-      <!-- section: utils → sections/utils.html -->
       <div data-section="utils"></div>
-      <!-- ── 4. BUTTONS ── -->
-      <!-- section: buttons → sections/buttons.html -->
+
+      <!-- ════ COMPONENTS · CSS ONLY ════ -->
       <div data-section="buttons"></div>
-      <!-- ── 5. CARDS ── -->
-      <!-- section: cards → sections/cards.html -->
       <div data-section="cards"></div>
-      <!-- ── 6. TAGS ── -->
-      <!-- section: tags → sections/tags.html -->
       <div data-section="tags"></div>
-      <!-- ── 8. FORMS ── -->
-      <!-- section: forms → sections/forms.html -->
       <div data-section="forms"></div>
-      <!-- ── 8. SECTIONS ── -->
-      <!-- section: sections → sections/sections.html -->
+      <div data-section="nav"></div>
+      <div data-section="progress"></div>
+      <div data-section="table"></div>
+      <div data-section="breadcrumb"></div>
+      <div data-section="pagination"></div>
+      <div data-section="panel"></div>
+      <div data-section="links"></div>
       <div data-section="sections"></div>
       <div data-section="social"></div>
-      <div data-section="skeleton"></div>
-      <!-- ── 9. TABS ── -->
-      <!-- section: tabs → sections/tabs.html -->
+
+      <!-- ════ COMPONENTS · JS ════ -->
       <div data-section="tabs"></div>
-      <!-- ── 10. COLLAPSE ── -->
-      <!-- section: collapse → sections/collapse.html -->
       <div data-section="collapse"></div>
-      <!-- ── 11. POPUPS ── -->
+      <div data-section="dropdown"></div>
       <!-- section: popups → sections/popups.html -->
       <div data-section="popups"></div>
-      <!-- ── SIDEBAR ── -->
-      <!-- section: sidebar → sections/sidebar.html -->
-      <div data-section="sidebar"></div>
-      <!-- ══════ MODALS ══════ -->
+      <!-- ══════ MODALS (used by popups section) ══════ -->
       <!-- Default -->
       <div id="modal-default" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
         <div class="lib-modal-box">
@@ -209,60 +196,72 @@
         </div>
       </div>
 
-      <!-- ── 11.5. NAV ── -->
-      <!-- section: nav → sections/nav.html -->
-      <div data-section="nav"></div>
+      <!-- Small modal -->
+      <div id="modal-small" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-sm is-primary">
+          <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-small'))">✕</button>
+          <div class="lib-modal-icon-wrap">🔹</div>
+          <div class="lib-modal-title">Small modal</div>
+          <div class="lib-modal-text">max-width: 340px. Compact and focused — ideal for quick confirms.</div>
+          <div class="lib-modal-divider"></div>
+          <div class="lib-modal-actions">
+            <button class="btn btn-primary btn-sm"
+              onclick="closeModal(document.getElementById('modal-small'))">OK</button>
+            <button class="btn btn-ghost btn-sm"
+              onclick="closeModal(document.getElementById('modal-small'))">Cancel</button>
+          </div>
+        </div>
+      </div>
 
-      <!-- ── 12. NOTIFICATIONS ── -->
-      <!-- section: notifications → sections/notifications.html -->
+      <!-- Large modal -->
+      <div id="modal-large" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-lg">
+          <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-large'))">✕</button>
+          <div class="lib-modal-icon-wrap">🔲</div>
+          <div class="lib-modal-title">Large modal</div>
+          <div class="lib-modal-text">max-width: 620px. A wider canvas for richer content — feature announcements,
+            media, long policy text, or step-by-step instructions. You have plenty of horizontal room to work with.
+            Combine with <code>.is-primary</code> or any other color variant.</div>
+          <div class="lib-modal-divider"></div>
+          <div class="lib-modal-actions">
+            <button class="btn btn-primary btn-sm"
+              onclick="closeModal(document.getElementById('modal-large'))">Accept</button>
+            <button class="btn btn-ghost btn-sm"
+              onclick="closeModal(document.getElementById('modal-large'))">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column actions modal -->
+      <div id="modal-column" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-warning">
+          <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-column'))">✕</button>
+          <div class="lib-modal-icon-wrap">🗑️</div>
+          <div class="lib-modal-title">Delete project?</div>
+          <div class="lib-modal-text">This will permanently remove the project and all associated data. This action
+            cannot be undone.</div>
+          <div class="lib-modal-divider"></div>
+          <div class="lib-modal-actions is-column">
+            <button class="btn btn-error btn-sm" onclick="closeModal(document.getElementById('modal-column'))">Delete
+              permanently</button>
+            <button class="btn btn-warning btn-sm" onclick="closeModal(document.getElementById('modal-column'))">Archive
+              instead</button>
+            <button class="btn btn-ghost btn-sm"
+              onclick="closeModal(document.getElementById('modal-column'))">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- section: sidebar → sections/sidebar.html -->
+      <div data-section="sidebar"></div>
       <div data-section="notifications"></div>
-
-      <!-- ── 13. PROGRESS ── -->
-      <!-- section: progress → sections/progress.html -->
-      <div data-section="progress"></div>
-
-      <!-- ── 14. TABLE ── -->
-      <!-- section: table → sections/table.html -->
-      <div data-section="table"></div>
-
-      <!-- ── 15. BREADCRUMB ── -->
-      <!-- section: breadcrumb → sections/breadcrumb.html -->
-      <div data-section="breadcrumb"></div>
-
-      <!-- ── 16. PAGINATION ── -->
-      <!-- section: pagination → sections/pagination.html -->
-      <div data-section="pagination"></div>
-
-      <!-- ── 17. PANEL ── -->
-      <!-- section: panel → sections/panel.html -->
-      <div data-section="panel"></div>
-
-      <!-- ── LINKS ── -->
-      <!-- section: links → sections/links.html -->
-      <div data-section="links"></div>
-
-      <!-- ── DROPDOWN ── -->
-      <!-- section: dropdown → sections/dropdown.html -->
-      <div data-section="dropdown"></div>
-
-      <!-- ── CAROUSEL ── -->
-      <!-- section: carousel → sections/carousel.html -->
       <div data-section="carousel"></div>
 
-      <!-- ── ANIMATIONS ── -->
-      <!-- section: animations → sections/animations.html -->
+      <!-- ════ VISUAL ════ -->
+      <div data-section="skeleton"></div>
       <div data-section="animations"></div>
-
-      <!-- ── GRADIENTS ── -->
-      <!-- section: gradients → sections/gradients.html -->
       <div data-section="gradients"></div>
-
-      <!-- ── HOVERS ── -->
-      <!-- section: hovers → sections/hovers.html -->
       <div data-section="hovers"></div>
-
-      <!-- ── HOVER TIPS (Tooltips) ── -->
-      <!-- section: hover-tips → sections/hover-tips.html -->
       <div data-section="hover-tips"></div>
 
     </main>
