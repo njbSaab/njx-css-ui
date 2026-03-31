@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="nGrad" x1="150" y1="120" x2="360" y2="392" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+
+    <filter id="nGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="0.4 0 0 0 0
+                0 0.4 0 0 0
+                0 0 0.9 0 0
+                0 0 0 0.35 0" result="colored"/>
+      <feMerge>
+        <feMergeNode in="colored"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Pure dark background, rounded square (iOS-like) -->
+  <rect x="32" y="32" width="448" height="448" rx="110" ry="110" fill="#0d0d0f"/>
+
+  <!-- Main N -->
+  <text x="256" y="250"
+        font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial, sans-serif"
+        font-weight="900"
+        font-size="300"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        fill="url(#nGrad)"
+        filter="url(#nGlow)">N</text>
+
+  <!-- Tiny "jX" underneath (muted white) -->
+  <text x="256" y="355"
+        font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial, sans-serif"
+        font-weight="700"
+        font-size="48"
+        letter-spacing="-2"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        fill="#ffffff"
+        opacity="0.78">jX</text>
+</svg>
