@@ -2311,3 +2311,15 @@ html:not([data-theme="light"]) .sw-mini-track {
 html:not([data-theme="light"]) .sw-mini-thumb {
   transform: translateX(16px);
 }
+
+/* ── View Transition: suppress per-element CSS transitions during crossfade ── */
+/* Without this, _reset.css * { transition } fires simultaneously with the    */
+/* view transition crossfade → double-animation, choppy color change.         */
+.vt-active * {
+  transition: none !important;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.28s;
+  animation-timing-function: ease;
+}
