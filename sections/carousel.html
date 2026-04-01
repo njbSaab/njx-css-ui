@@ -351,6 +351,346 @@
           </div>
         </div>
 
+        <!-- ══════════════════════════
+             HERO SLIDER
+        ══════════════════════════ -->
+        <div class="lib-component">
+          <div class="lib-component-label">Hero Slider — autoplay · progress bar · prev/next · dots</div>
+          <div class="lib-preview" style="display:block;padding:0">
+            <div style="max-width:560px;margin:0 auto">
+              <div class="hero-slider" id="sec-heroSlider">
+                <div class="hero-slider-track" id="sec-heroTrack">
+
+                  <div class="hero-slider-slide" style="background:linear-gradient(135deg,#001830 0%,#002a50 100%)">
+                    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%, color-mix(in srgb, var(--color-primary) 18%, transparent) 0%, transparent 60%);pointer-events:none"></div>
+                    <div class="hero-slider-body">
+                      <div class="hero-slider-label">njX UI · Component Library</div>
+                      <div class="hero-slider-title">Beautiful UI.<br>Zero dependencies.</div>
+                      <div class="hero-slider-desc">25+ components, 9 themes, ~40KB. Drop one CDN link and ship faster.</div>
+                      <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <a href="https://njbsaab.github.io/njx-css-ui" target="_blank" class="btn btn-primary btn-sm" style="text-decoration:none">Get Started</a>
+                        <a href="https://github.com/njbSaab/njx-css-ui" target="_blank" class="btn btn-ghost btn-sm" style="text-decoration:none;color:#fff;border-color:rgba(255,255,255,0.25)">★ GitHub</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="hero-slider-slide" style="background:linear-gradient(135deg,#0d0020 0%,#2d0060 100%)">
+                    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%, rgba(168,85,247,0.22) 0%, transparent 60%);pointer-events:none"></div>
+                    <div class="hero-slider-body">
+                      <div class="hero-slider-label">Themes</div>
+                      <div class="hero-slider-title">9 Themes.<br>One click to switch.</div>
+                      <div class="hero-slider-desc">Dark · Light · Red · Blue · Green · Cyan · Yellow · Pink · Purple. All driven by CSS variables.</div>
+                      <div style="display:flex;gap:6px;flex-wrap:wrap">
+                        <span class="tag tag-white">Dark</span>
+                        <span class="tag" style="border-color:rgba(168,85,247,0.6);color:#a855f7">Purple</span>
+                        <span class="tag" style="border-color:rgba(236,72,153,0.6);color:#ec4899">Pink</span>
+                        <span class="tag" style="border-color:rgba(34,197,94,0.6);color:#22c55e">Green</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="hero-slider-slide" style="background:linear-gradient(135deg,#001a10 0%,#003a20 100%)">
+                    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 70%, rgba(34,197,94,0.18) 0%, transparent 60%);pointer-events:none"></div>
+                    <div class="hero-slider-body">
+                      <div class="hero-slider-label">Performance</div>
+                      <div class="hero-slider-title">~40KB total.<br>Lighter than a logo.</div>
+                      <div class="hero-slider-desc">Minified + gzipped. No framework. No build step. Just a CSS link.</div>
+                      <code style="background:rgba(255,255,255,0.1);border-radius:8px;padding:8px 14px;font-size:12px;color:rgba(255,255,255,0.85);display:inline-block">npm install njx-ui</code>
+                    </div>
+                  </div>
+
+                  <div class="hero-slider-slide" style="background:linear-gradient(135deg,#1a0008 0%,#3a0018 100%)">
+                    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%, rgba(249,6,63,0.18) 0%, transparent 60%);pointer-events:none"></div>
+                    <div class="hero-slider-body">
+                      <div class="hero-slider-label">Components</div>
+                      <div class="hero-slider-title">25+ components.<br>Ready to use.</div>
+                      <div class="hero-slider-desc">Buttons · Cards · Forms · Nav · Modals · Skeleton · Animations and more.</div>
+                      <a href="https://njbsaab.github.io/njx-css-ui" target="_blank" class="btn btn-primary btn-sm" style="text-decoration:none">Browse All →</a>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="hero-slider-nav">
+                  <button class="hero-slider-btn" id="sec-hsPrev">&#8249;</button>
+                  <button class="hero-slider-btn" id="sec-hsNext">&#8250;</button>
+                </div>
+                <div class="hero-slider-dots" id="sec-hsDots"></div>
+                <div class="hero-slider-progress" id="sec-hsProgress"></div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="hero-slider" id="mySlider">
+  <div class="hero-slider-track" id="myTrack">
+    <div class="hero-slider-slide" style="background:linear-gradient(135deg,#001830,#002a50)">
+      <div class="hero-slider-body">
+        <div class="hero-slider-label">Label</div>
+        <div class="hero-slider-title">Slide Title</div>
+        <div class="hero-slider-desc">Description text here.</div>
+        <button class="btn btn-primary btn-sm">CTA</button>
+      </div>
+    </div>
+    <!-- more .hero-slider-slide items -->
+  </div>
+  <div class="hero-slider-nav">
+    <button class="hero-slider-btn" id="myPrev">&#8249;</button>
+    <button class="hero-slider-btn" id="myNext">&#8250;</button>
+  </div>
+  <div class="hero-slider-dots" id="myDots"></div>
+  <div class="hero-slider-progress" id="myProgress"></div>
+</div>
+
+<script>
+(function(){
+  var track = document.getElementById("myTrack");
+  var n = track.children.length, cur = 0;
+  var INTERVAL = 4500;
+  var progressEl = document.getElementById("myProgress");
+  var dotsEl = document.getElementById("myDots");
+  for(var i=0;i<n;i++){
+    var d=document.createElement("button");
+    d.className="hero-slider-dot"+(i===0?" is-active":"");
+    d.dataset.i=i;
+    d.addEventListener("click",function(){ goTo(+this.dataset.i); resetAuto(); });
+    dotsEl.appendChild(d);
+  }
+  function goTo(idx){
+    cur=(idx+n)%n;
+    track.style.transform="translateX(-"+(cur*100)+"%)";
+    dotsEl.querySelectorAll(".hero-slider-dot").forEach(function(d,i){ d.classList.toggle("is-active",i===cur); });
+    resetProgress();
+  }
+  function resetProgress(){
+    progressEl.style.transition="none"; progressEl.style.width="0%";
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      progressEl.style.transition="width "+INTERVAL+"ms linear";
+      progressEl.style.width="100%";
+    }); });
+  }
+  var timer = setInterval(function(){ goTo(cur+1); }, INTERVAL);
+  function resetAuto(){ clearInterval(timer); timer=setInterval(function(){ goTo(cur+1); },INTERVAL); }
+  document.getElementById("myPrev").onclick=function(){ goTo(cur-1); resetAuto(); };
+  document.getElementById("myNext").onclick=function(){ goTo(cur+1); resetAuto(); };
+  resetProgress();
+})();
+</script>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"hero-slider"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"hero-slider-track"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"hero-slider-slide"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"hero-slider-body"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"hero-slider-label"</span><span class="k">&gt;</span>Label<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"hero-slider-title"</span><span class="k">&gt;</span>Title<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"hero-slider-desc"</span><span class="k">&gt;</span>Desc<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"hero-slider-nav"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"hero-slider-btn"</span><span class="k">&gt;</span>&#8249;<span class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"hero-slider-btn"</span><span class="k">&gt;</span>&#8250;<span class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"hero-slider-dots"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"hero-slider-progress"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════
+             TESTIMONIALS SLIDER
+        ══════════════════════════ -->
+        <div class="lib-component">
+          <div class="lib-component-label">Testimonials Slider — swipe · prev/next · counter</div>
+          <div class="lib-preview" style="display:block;padding:0">
+            <div style="max-width:560px;margin:0 auto">
+              <div class="testi-slider" id="sec-testiSlider">
+                <div class="testi-track" id="sec-testiTrack">
+
+                  <div class="testi-slide">
+                    <div class="testi-stars">★★★★★</div>
+                    <div class="testi-quote">Switched from Bootstrap and never looked back. The theme system is pure genius — one attribute on the html tag and everything updates instantly. My team ships UI twice as fast now.</div>
+                    <div class="testi-user">
+                      <div class="testi-avatar" style="background:color-mix(in srgb,var(--color-primary) 16%,transparent);color:var(--color-primary)">A</div>
+                      <div><div class="testi-name">alex_dev</div><div class="testi-role">Senior Frontend Engineer · Berlin</div></div>
+                      <span class="tag tag-primary is-small" style="margin-left:auto">Verified</span>
+                    </div>
+                  </div>
+
+                  <div class="testi-slide">
+                    <div class="testi-stars">★★★★★</div>
+                    <div class="testi-quote">I was skeptical about a CSS-only library in 2025, but the skeleton loaders alone are worth it. The animations are buttery smooth and the 40KB footprint is incredible for what you get.</div>
+                    <div class="testi-user">
+                      <div class="testi-avatar" style="background:color-mix(in srgb,var(--color-accent) 16%,transparent);color:var(--color-accent)">M</div>
+                      <div><div class="testi-name">maria_ui</div><div class="testi-role">UI Designer · Amsterdam</div></div>
+                      <span class="tag tag-filled-accent is-small" style="margin-left:auto">New</span>
+                    </div>
+                  </div>
+
+                  <div class="testi-slide">
+                    <div class="testi-stars">★★★★★</div>
+                    <div class="testi-quote">We migrated our docs site to njX UI in a weekend. The dark theme out of the box is stunning and component variety meant we barely had to write custom CSS. Highly recommend.</div>
+                    <div class="testi-user">
+                      <div class="testi-avatar" style="background:color-mix(in srgb,var(--color-success) 16%,transparent);color:var(--color-success)">K</div>
+                      <div><div class="testi-name">kai_codes</div><div class="testi-role">Full-Stack Dev · Tokyo</div></div>
+                      <span class="tag tag-success is-small" style="margin-left:auto">Pro user</span>
+                    </div>
+                  </div>
+
+                  <div class="testi-slide">
+                    <div class="testi-stars">★★★★★</div>
+                    <div class="testi-quote">The carousel component alone sold me. CSS scroll-snap with touch support and no dependencies? Insane. I've replaced Swiper on three projects already.</div>
+                    <div class="testi-user">
+                      <div class="testi-avatar" style="background:color-mix(in srgb,#a855f7 16%,transparent);color:#a855f7">R</div>
+                      <div><div class="testi-name">react_dev</div><div class="testi-role">React Developer · London</div></div>
+                      <span class="tag tag-dark is-small" style="margin-left:auto">Power user</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="testi-controls" style="margin-top:12px">
+                <div class="testi-nav">
+                  <button class="testi-btn" id="sec-testiPrev">&#8249;</button>
+                  <button class="testi-btn" id="sec-testiNext">&#8250;</button>
+                </div>
+                <div class="testi-counter" id="sec-testiCounter">1 / 4</div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="testi-slider" id="ts">
+  <div class="testi-track" id="tsTrack">
+    <div class="testi-slide">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-quote">Your review text here...</div>
+      <div class="testi-user">
+        <div class="testi-avatar" style="background:color-mix(in srgb,var(--color-primary) 16%,transparent);color:var(--color-primary)">A</div>
+        <div>
+          <div class="testi-name">Name</div>
+          <div class="testi-role">Role · Location</div>
+        </div>
+      </div>
+    </div>
+    <!-- more .testi-slide items -->
+  </div>
+</div>
+<div class="testi-controls">
+  <div class="testi-nav">
+    <button class="testi-btn" id="tsPrev">&#8249;</button>
+    <button class="testi-btn" id="tsNext">&#8250;</button>
+  </div>
+  <div class="testi-counter" id="tsCnt">1 / 3</div>
+</div>
+
+<script>
+(function(){
+  var track = document.getElementById("tsTrack");
+  var n = track.children.length, cur = 0;
+  var counter = document.getElementById("tsCnt");
+  function goTo(idx){
+    cur=(idx+n)%n;
+    track.style.transform="translateX(-"+(cur*100)+"%)";
+    counter.textContent=(cur+1)+" / "+n;
+  }
+  document.getElementById("tsPrev").onclick=function(){ goTo(cur-1); };
+  document.getElementById("tsNext").onclick=function(){ goTo(cur+1); };
+  // Swipe
+  var sx=0;
+  track.parentElement.addEventListener("touchstart",function(e){ sx=e.touches[0].clientX; },{passive:true});
+  track.parentElement.addEventListener("touchend",function(e){
+    var dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>40) goTo(dx<0?cur+1:cur-1);
+  });
+})();
+</script>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"testi-slider"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"testi-track"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"testi-slide"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"testi-stars"</span><span class="k">&gt;</span>★★★★★<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"testi-quote"</span><span class="k">&gt;</span>Text...<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"testi-user"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"testi-controls"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"testi-nav"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"testi-btn"</span><span class="k">&gt;</span>&#8249;<span class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"testi-btn"</span><span class="k">&gt;</span>&#8250;<span class="k">&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"testi-counter"</span><span class="k">&gt;</span>1 / 3<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════
+             AUTOPLAY LOGO STRIP
+        ══════════════════════════ -->
+        <div class="lib-component">
+          <div class="lib-component-label">Autoplay Strip — CSS @keyframes only · hover to pause</div>
+          <div class="lib-preview" style="display:block;padding:1rem 0">
+            <div class="autoplay-strip-wrap">
+              <div class="autoplay-strip">
+                <div class="autoplay-strip-item"><span>⚡</span> Buttons</div>
+                <div class="autoplay-strip-item"><span>🎨</span> Themes</div>
+                <div class="autoplay-strip-item"><span>📋</span> Forms</div>
+                <div class="autoplay-strip-item"><span>🃏</span> Cards</div>
+                <div class="autoplay-strip-item"><span>🔔</span> Alerts</div>
+                <div class="autoplay-strip-item"><span>◎</span> Skeleton</div>
+                <div class="autoplay-strip-item"><span>🌊</span> Hovers</div>
+                <div class="autoplay-strip-item"><span>🧩</span> Nav</div>
+                <div class="autoplay-strip-item"><span>📊</span> Progress</div>
+                <div class="autoplay-strip-item"><span>💬</span> Popups</div>
+                <div class="autoplay-strip-item"><span>🏷</span> Tags</div>
+                <div class="autoplay-strip-item"><span>🎠</span> Carousel</div>
+                <!-- duplicate for seamless loop -->
+                <div class="autoplay-strip-item"><span>⚡</span> Buttons</div>
+                <div class="autoplay-strip-item"><span>🎨</span> Themes</div>
+                <div class="autoplay-strip-item"><span>📋</span> Forms</div>
+                <div class="autoplay-strip-item"><span>🃏</span> Cards</div>
+                <div class="autoplay-strip-item"><span>🔔</span> Alerts</div>
+                <div class="autoplay-strip-item"><span>◎</span> Skeleton</div>
+                <div class="autoplay-strip-item"><span>🌊</span> Hovers</div>
+                <div class="autoplay-strip-item"><span>🧩</span> Nav</div>
+                <div class="autoplay-strip-item"><span>📊</span> Progress</div>
+                <div class="autoplay-strip-item"><span>💬</span> Popups</div>
+                <div class="autoplay-strip-item"><span>🏷</span> Tags</div>
+                <div class="autoplay-strip-item"><span>🎠</span> Carousel</div>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- Autoplay strip: duplicate items for seamless loop -->
+<div class="autoplay-strip-wrap">
+  <div class="autoplay-strip">
+    <div class="autoplay-strip-item">⚡ Buttons</div>
+    <div class="autoplay-strip-item">🎨 Themes</div>
+    <div class="autoplay-strip-item">🃏 Cards</div>
+    <!-- ...more items... -->
+    <!-- duplicate the same set again for seamless loop -->
+    <div class="autoplay-strip-item">⚡ Buttons</div>
+    <div class="autoplay-strip-item">🎨 Themes</div>
+    <div class="autoplay-strip-item">🃏 Cards</div>
+  </div>
+</div>
+/* CSS: animation: njxAutoScroll 20s linear infinite */
+/* hover pauses: .autoplay-strip:hover { animation-play-state: paused } */'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"autoplay-strip-wrap"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"autoplay-strip"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"autoplay-strip-item"</span><span class="k">&gt;</span>⚡ Buttons<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"autoplay-strip-item"</span><span class="k">&gt;</span>🎨 Themes<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="c">/* ...duplicate same set for loop... */</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Sizes reference -->
         <div class="lib-component">
           <div class="lib-component-label">📐 CSS Classes Reference</div>
@@ -431,3 +771,5 @@
         </div>
 
       </section>
+
+

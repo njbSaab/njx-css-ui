@@ -1,146 +1,624 @@
+      <style>
+        /* ── Trigger buttons ── */
+        .njx-trigger-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+        @media (min-width:480px) { .njx-trigger-grid { grid-template-columns:repeat(4,1fr); } }
+        .njx-trigger-btn {
+          display:flex; flex-direction:column; align-items:center; gap:8px;
+          padding:16px 12px; border-radius:14px;
+          background:var(--bg-secondary);
+          border:1px solid color-mix(in srgb,var(--color-neutral-600) 22%,transparent);
+          cursor:pointer;
+          transition:transform .18s,box-shadow .18s,border-color .18s;
+          font-size:12px; font-weight:700; color:var(--text-muted); text-align:center;
+        }
+        .njx-trigger-btn:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.25); }
+        .njx-trigger-btn .t-icon { font-size:1.6rem; }
+        .njx-trigger-btn.t-success:hover { border-color:var(--color-success); color:var(--color-success); }
+        .njx-trigger-btn.t-error:hover   { border-color:var(--color-error);   color:var(--color-error); }
+        .njx-trigger-btn.t-warning:hover { border-color:var(--color-warning); color:var(--color-warning); }
+        .njx-trigger-btn.t-info:hover    { border-color:var(--color-primary); color:var(--color-primary); }
+
+        /* ── Bell button ── */
+        .njx-bell-btn {
+          width:46px; height:46px; border-radius:12px;
+          background:var(--bg-secondary);
+          border:1px solid color-mix(in srgb,var(--color-neutral-600) 25%,transparent);
+          color:var(--text-main); display:flex; align-items:center; justify-content:center;
+          font-size:1.2rem; cursor:pointer; position:relative;
+          transition:background .18s,box-shadow .18s;
+        }
+        .njx-bell-btn:hover { background:color-mix(in srgb,var(--color-primary) 10%,var(--bg-secondary)); box-shadow:0 4px 16px rgba(0,0,0,.2); }
+        .njx-bell-badge {
+          position:absolute; top:-6px; right:-6px;
+          min-width:18px; height:18px;
+          background:var(--color-error); color:#fff; font-size:10px; font-weight:800;
+          border-radius:9px; display:flex; align-items:center; justify-content:center;
+          padding:0 4px; border:2px solid var(--bg-main);
+          transition:transform .2s,opacity .2s;
+        }
+        .njx-bell-badge.hidden { transform:scale(0); opacity:0; }
+
+        /* ── Notification dropdown ── */
+        .njx-notif-dropdown {
+          position:absolute; top:calc(100% + 10px); left:50%;
+          transform:translateX(-50%) scale(0.95);
+          width:310px; background:var(--bg-secondary);
+          border:1px solid color-mix(in srgb,var(--color-neutral-600) 25%,transparent);
+          border-radius:16px; box-shadow:0 16px 48px rgba(0,0,0,.4);
+          z-index:9990; opacity:0; pointer-events:none;
+          transition:transform .22s cubic-bezier(0.34,1.4,0.64,1),opacity .18s ease;
+          transform-origin:top center;
+        }
+        .njx-notif-dropdown.open { opacity:1; pointer-events:all; transform:translateX(-50%) scale(1); }
+        .njx-notif-header { display:flex; align-items:center; justify-content:space-between; padding:14px 16px 10px; border-bottom:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent); }
+        .njx-notif-header-title { font-size:14px; font-weight:800; }
+        .njx-notif-mark-all { font-size:11px; font-weight:700; color:var(--color-primary); background:none; border:none; cursor:pointer; padding:0; }
+        .njx-notif-list { max-height:280px; overflow-y:auto; scrollbar-width:thin; }
+        .njx-notif-item {
+          display:flex; align-items:flex-start; gap:10px;
+          padding:12px 16px;
+          border-bottom:1px solid color-mix(in srgb,var(--color-neutral-600) 10%,transparent);
+          cursor:pointer; transition:background .15s; position:relative;
+        }
+        .njx-notif-item:last-child { border-bottom:none; }
+        .njx-notif-item:hover { background:color-mix(in srgb,var(--color-primary) 5%,transparent); }
+        .njx-notif-item.unread { background:color-mix(in srgb,var(--color-primary) 4%,transparent); }
+        .njx-notif-item.unread::before { content:''; position:absolute; left:6px; top:50%; transform:translateY(-50%); width:5px; height:5px; border-radius:50%; background:var(--color-primary); }
+        .njx-notif-avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.9rem; font-weight:800; flex-shrink:0; }
+        .njx-notif-body { flex:1; min-width:0; }
+        .njx-notif-text { font-size:12px; line-height:1.5; color:var(--text-main); }
+        .njx-notif-text b { font-weight:700; }
+        .njx-notif-time { font-size:11px; color:var(--text-muted); margin-top:2px; }
+        .njx-notif-footer { padding:10px 16px; border-top:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent); text-align:center; }
+        .njx-notif-footer a { font-size:12px; font-weight:700; color:var(--color-primary); text-decoration:none; }
+
+        /* ── Inline alerts ── */
+        .njx-alert-stack { display:flex; flex-direction:column; gap:10px; }
+        .njx-notif-inline {
+          display:flex; align-items:flex-start; gap:12px;
+          padding:14px 16px; border-radius:12px; position:relative;
+          transition:opacity .3s,max-height .3s,margin .3s,padding .3s; overflow:hidden;
+        }
+        .njx-notif-inline.dismissed { opacity:0; max-height:0!important; padding:0; margin:0; }
+        .njx-notif-inline-icon { font-size:1.2rem; flex-shrink:0; margin-top:1px; }
+        .njx-notif-inline-body { flex:1; }
+        .njx-notif-inline-title { font-size:13px; font-weight:700; margin-bottom:3px; }
+        .njx-notif-inline-msg { font-size:12px; line-height:1.55; }
+        .njx-notif-inline-close { background:none; border:none; cursor:pointer; padding:0; font-size:16px; color:inherit; opacity:.5; transition:opacity .15s; flex-shrink:0; }
+        .njx-notif-inline-close:hover { opacity:1; }
+        .njx-ni-success { background:color-mix(in srgb,var(--color-success) 12%,var(--bg-secondary)); border:1px solid color-mix(in srgb,var(--color-success) 30%,transparent); color:var(--color-success); }
+        .njx-ni-error   { background:color-mix(in srgb,var(--color-error)   12%,var(--bg-secondary)); border:1px solid color-mix(in srgb,var(--color-error)   30%,transparent); color:var(--color-error); }
+        .njx-ni-warning { background:color-mix(in srgb,var(--color-warning) 10%,var(--bg-secondary)); border:1px solid color-mix(in srgb,var(--color-warning) 30%,transparent); color:var(--color-warning); }
+        .njx-ni-info    { background:color-mix(in srgb,var(--color-primary) 10%,var(--bg-secondary)); border:1px solid color-mix(in srgb,var(--color-primary) 25%,transparent); color:var(--color-primary); }
+        .njx-ni-dark    { background:var(--bg-secondary); border:1px solid color-mix(in srgb,var(--color-neutral-600) 30%,transparent); color:var(--text-main); }
+        .njx-ni-success .njx-notif-inline-msg,
+        .njx-ni-error   .njx-notif-inline-msg,
+        .njx-ni-warning .njx-notif-inline-msg,
+        .njx-ni-info    .njx-notif-inline-msg { color:inherit; opacity:.85; }
+        .njx-ni-dark .njx-notif-inline-msg { color:var(--text-muted); }
+
+        /* ── Message inbox ── */
+        .njx-inbox { background:var(--bg-secondary); border:1px solid color-mix(in srgb,var(--color-neutral-600) 22%,transparent); border-radius:16px; overflow:hidden; }
+        .njx-inbox-header { display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent); }
+        .njx-inbox-title { font-size:14px; font-weight:800; display:flex; align-items:center; gap:8px; }
+        .njx-inbox-actions { display:flex; gap:8px; }
+        .njx-inbox-action-btn { background:none; border:none; cursor:pointer; padding:6px; border-radius:8px; color:var(--text-muted); font-size:14px; transition:background .15s,color .15s; }
+        .njx-inbox-action-btn:hover { background:color-mix(in srgb,var(--color-primary) 10%,transparent); color:var(--color-primary); }
+        .njx-msg-item { display:flex; align-items:flex-start; gap:12px; padding:14px 18px; border-bottom:1px solid color-mix(in srgb,var(--color-neutral-600) 10%,transparent); cursor:pointer; transition:background .15s; position:relative; }
+        .njx-msg-item:last-child { border-bottom:none; }
+        .njx-msg-item:hover { background:color-mix(in srgb,var(--color-primary) 4%,transparent); }
+        .njx-msg-item.unread { background:color-mix(in srgb,var(--color-primary) 5%,transparent); }
+        .njx-msg-item.unread::before { content:''; position:absolute; left:5px; top:50%; transform:translateY(-50%); width:5px; height:5px; border-radius:50%; background:var(--color-primary); }
+        .njx-msg-avatar { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1rem; font-weight:800; flex-shrink:0; }
+        .njx-msg-content { flex:1; min-width:0; }
+        .njx-msg-top { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:3px; }
+        .njx-msg-name { font-size:13px; font-weight:700; }
+        .njx-msg-time { font-size:11px; color:var(--text-muted); flex-shrink:0; }
+        .njx-msg-subject { font-size:12px; font-weight:600; color:var(--text-main); margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .njx-msg-preview { font-size:11px; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .njx-msg-dot { width:8px; height:8px; border-radius:50%; background:var(--color-primary); flex-shrink:0; margin-top:4px; transition:opacity .2s; }
+        .njx-msg-item.read .njx-msg-dot { opacity:0; }
+        .njx-inbox-footer { padding:12px 18px; border-top:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent); display:flex; justify-content:center; }
+      </style>
+
       <section class="lib-section" id="notifications">
         <div class="lib-section-title">🔔 Notifications & Messages</div>
-        <div class="lib-section-desc">From <code>_notifications.css</code>.</div>
+        <div class="lib-section-desc">
+          Toasts · Bell dropdown · Inline alerts · Message inbox — from <code>_notifications.css</code>.
+        </div>
 
+        <!-- ══════════════════════════
+             TOAST TRIGGERS
+        ══════════════════════════ -->
         <div class="lib-component">
-          <div class="lib-component-label">Notifications</div>
-          <div class="lib-preview col" style="align-items:stretch">
-            <div class="notification">Basic notification</div>
-            <div class="notification is-primary">is-primary — Information</div>
-            <div class="notification is-success">is-success — Completed successfully</div>
-            <div class="notification is-warning">is-warning — Warning</div>
-            <div class="notification is-danger">is-danger — Error or threat</div>
+          <div class="lib-component-label">Toast Notifications — click to trigger · auto-dismiss · stackable</div>
+          <div class="lib-preview col" style="gap:16px">
+            <div class="njx-trigger-grid">
+              <button class="njx-trigger-btn t-success" onclick="njxFireToast('success','Deployed!','Your changes are live ✓')">
+                <span class="t-icon">✅</span><span>Success</span>
+              </button>
+              <button class="njx-trigger-btn t-error" onclick="njxFireToast('error','Error 500','Server failed to respond')">
+                <span class="t-icon">❌</span><span>Error</span>
+              </button>
+              <button class="njx-trigger-btn t-warning" onclick="njxFireToast('warning','Low storage','Only 120MB remaining')">
+                <span class="t-icon">⚠️</span><span>Warning</span>
+              </button>
+              <button class="njx-trigger-btn t-info" onclick="njxFireToast('info','New update','v1.0.7 is available now')">
+                <span class="t-icon">💡</span><span>Info</span>
+              </button>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <button class="btn btn-ghost btn-sm" onclick="njxFireToast('success','Saved','document.css was saved')">+ Save</button>
+              <button class="btn btn-ghost btn-sm" onclick="njxFireToast('info','Copied!','Link copied to clipboard')">+ Copy</button>
+              <button class="btn btn-ghost btn-sm" onclick="njxFireToast('error','Deleted','Item moved to trash')">+ Delete</button>
+              <button class="btn btn-ghost btn-sm" onclick="njxFireToast('warning','Session','Your session expires in 5 min')">+ Session</button>
+              <button class="btn btn-ghost btn-sm" onclick="njxFireToast('success','Subscribed','Welcome to the newsletter!')">+ Subscribe</button>
+            </div>
           </div>
           <div class="lib-code-wrapper">
             <div class="lib-code-container">
-              <div class="lib-code"
-                data-raw="&lt;!-- _notifications.css: is-primary | is-success | is-warning | is-danger --&gt;&#10;&lt;div class=&quot;notification&quot;&gt;Basic notification&lt;/div&gt;&#10;&lt;div class=&quot;notification is-primary&quot;&gt;Information&lt;/div&gt;&#10;&lt;div class=&quot;notification is-success&quot;&gt;Completed successfully&lt;/div&gt;&#10;&lt;div class=&quot;notification is-warning&quot;&gt;Warning&lt;/div&gt;&#10;&lt;div class=&quot;notification is-danger&quot;&gt;Error&lt;/div&gt;">
-                <span class="c">/* _notifications.css: is-primary | is-success | is-warning | is-danger */</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"notification"</span><span
-                  class="k">&gt;</span>Basic notification<span class="k">&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"notification
-                  is-primary"</span><span class="k">&gt;</span>Information<span class="k">&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"notification
-                  is-success"</span><span class="k">&gt;</span>Success<span class="k">&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"notification
-                  is-warning"</span><span class="k">&gt;</span>Warning<span class="k">&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"notification
-                  is-danger"</span><span class="k">&gt;</span>Error<span class="k">&lt;/div&gt;</span>
+              <div class="lib-code" data-raw='<!-- Toast: success | error | warning | info -->
+<!-- Slides in from bottom-right, auto-dismisses, stackable -->
+<button onclick="njxFireToast(type, title, message)">Show Toast</button>
+
+njxFireToast("success", "Deployed!", "Your changes are live ✓");
+njxFireToast("error",   "Error 500", "Server failed to respond");
+njxFireToast("warning", "Low storage", "Only 120MB remaining");
+njxFireToast("info",    "New update", "v1.0.7 is available");'>
+                <span class="c">/* njxFireToast(type, title, msg, duration=4000) */</span><br><br>
+                <span class="n">njxFireToast</span>(<span class="cn">"success"</span>, <span class="cn">"Deployed!"</span>, <span class="cn">"Your changes are live ✓"</span>);<br>
+                <span class="n">njxFireToast</span>(<span class="cn">"error"</span>, <span class="cn">"Error 500"</span>, <span class="cn">"Server failed to respond"</span>);<br>
+                <span class="n">njxFireToast</span>(<span class="cn">"warning"</span>, <span class="cn">"Low storage"</span>, <span class="cn">"Only 120MB remaining"</span>);<br>
+                <span class="n">njxFireToast</span>(<span class="cn">"info"</span>, <span class="cn">"New update"</span>, <span class="cn">"v1.0.7 is available"</span>);
               </div>
             </div>
           </div>
         </div>
 
+        <!-- ══════════════════════════
+             BELL DROPDOWN
+        ══════════════════════════ -->
         <div class="lib-component">
-          <div class="lib-component-label">Messages</div>
-          <div class="lib-preview col" style="align-items:stretch">
-            <div class="message is-primary">
-              <div class="message-header">Primary<button class="delete is-small" style="margin-left:auto">✕</button>
+          <div class="lib-component-label">Notification Bell — click to open · mark as read · badge counter</div>
+          <div class="lib-preview" style="gap:32px;align-items:flex-start;flex-wrap:wrap;overflow:visible">
+
+            <!-- Bell + dropdown -->
+            <div style="position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:6px" id="njxBellWrap">
+              <button class="njx-bell-btn" id="njxBellBtn" onclick="njxToggleBell()">
+                🔔
+                <span class="njx-bell-badge" id="njxBellBadge">4</span>
+              </button>
+              <span style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em">Bell</span>
+
+              <div class="njx-notif-dropdown" id="njxBellDropdown">
+                <div class="njx-notif-header">
+                  <span class="njx-notif-header-title">Notifications &nbsp;<span class="tag tag-primary is-small" id="njxUnreadTag">4 new</span></span>
+                  <button class="njx-notif-mark-all" onclick="njxMarkAllRead()">Mark all read</button>
+                </div>
+                <div class="njx-notif-list" id="njxNotifList">
+
+                  <div class="njx-notif-item unread" onclick="njxReadNotif(this)">
+                    <div class="njx-notif-avatar" style="background:color-mix(in srgb,var(--color-primary) 16%,transparent);color:var(--color-primary)">A</div>
+                    <div class="njx-notif-body">
+                      <div class="njx-notif-text"><b>alex_dev</b> pushed to main branch</div>
+                      <div class="njx-notif-time">2 min ago · GitHub</div>
+                    </div>
+                  </div>
+
+                  <div class="njx-notif-item unread" onclick="njxReadNotif(this)">
+                    <div class="njx-notif-avatar" style="background:color-mix(in srgb,var(--color-success) 16%,transparent);color:var(--color-success)">✓</div>
+                    <div class="njx-notif-body">
+                      <div class="njx-notif-text"><b>CI/CD</b> Build #142 passed successfully</div>
+                      <div class="njx-notif-time">8 min ago · Pipeline</div>
+                    </div>
+                  </div>
+
+                  <div class="njx-notif-item unread" onclick="njxReadNotif(this)">
+                    <div class="njx-notif-avatar" style="background:color-mix(in srgb,var(--color-accent) 16%,transparent);color:var(--color-accent)">M</div>
+                    <div class="njx-notif-body">
+                      <div class="njx-notif-text"><b>maria_ui</b> commented on your PR #38</div>
+                      <div class="njx-notif-time">15 min ago · GitHub</div>
+                    </div>
+                  </div>
+
+                  <div class="njx-notif-item unread" onclick="njxReadNotif(this)">
+                    <div class="njx-notif-avatar" style="background:color-mix(in srgb,var(--color-warning) 16%,transparent);color:var(--color-warning)">⚠</div>
+                    <div class="njx-notif-body">
+                      <div class="njx-notif-text"><b>Alert</b> CPU usage above 85% on prod</div>
+                      <div class="njx-notif-time">22 min ago · Monitor</div>
+                    </div>
+                  </div>
+
+                  <div class="njx-notif-item" onclick="njxReadNotif(this)">
+                    <div class="njx-notif-avatar" style="background:color-mix(in srgb,#a855f7 16%,transparent);color:#a855f7">K</div>
+                    <div class="njx-notif-body">
+                      <div class="njx-notif-text"><b>kai_codes</b> started following you</div>
+                      <div class="njx-notif-time">1 hour ago</div>
+                    </div>
+                  </div>
+
+                  <div class="njx-notif-item" onclick="njxReadNotif(this)">
+                    <div class="njx-notif-avatar" style="background:color-mix(in srgb,var(--color-primary) 12%,transparent);color:var(--color-primary)">📦</div>
+                    <div class="njx-notif-body">
+                      <div class="njx-notif-text"><b>npm</b> njx-ui@1.0.6 published successfully</div>
+                      <div class="njx-notif-time">3 hours ago</div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="njx-notif-footer">
+                  <a href="#">View all notifications →</a>
+                </div>
               </div>
-              <div class="message-body">Message text with header</div>
             </div>
-            <div class="message is-success">
-              <div class="message-header">Success</div>
-              <div class="message-body">Operation completed successfully</div>
-            </div>
-            <div class="message is-danger">
-              <div class="message-header">Danger</div>
-              <div class="message-body">An error occurred</div>
+
+            <!-- Static bell variants -->
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+                <div style="position:relative;display:inline-flex">
+                  <button class="njx-bell-btn" onclick="njxFireToast('info','Messages','You have 3 new messages')">💬</button>
+                  <span class="njx-bell-badge" style="background:var(--color-primary)">3</span>
+                </div>
+                <div style="position:relative;display:inline-flex">
+                  <button class="njx-bell-btn" onclick="njxFireToast('warning','Tasks','2 tasks overdue')">📋</button>
+                  <span class="njx-bell-badge" style="background:var(--color-warning);color:#111">2</span>
+                </div>
+                <div style="position:relative;display:inline-flex">
+                  <button class="njx-bell-btn" onclick="njxFireToast('success','All clear','No new notifications')">🔕</button>
+                </div>
+                <div style="position:relative;display:inline-flex">
+                  <button class="njx-bell-btn" onclick="njxFireToast('error','Critical','Server error requires attention')">🚨</button>
+                  <span class="njx-bell-badge" style="background:var(--color-error)">!</span>
+                </div>
+              </div>
+              <p style="font-size:12px;color:var(--text-muted)">Click any icon to trigger a toast</p>
             </div>
           </div>
           <div class="lib-code-wrapper">
             <div class="lib-code-container">
-              <div class="lib-code"
-                data-raw="&lt;!-- message: is-primary | is-success | is-warning | is-danger --&gt;&#10;&lt;div class=&quot;message is-primary&quot;&gt;&#10;  &lt;div class=&quot;message-header&quot;&gt;&#10;    Header&#10;    &lt;button class=&quot;delete is-small&quot;&gt;✕&lt;/button&gt;&#10;  &lt;/div&gt;&#10;  &lt;div class=&quot;message-body&quot;&gt;Message text&lt;/div&gt;&#10;&lt;/div&gt;">
-                <span class="c">/* message: is-primary | is-success | is-warning | is-danger */</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"message
-                  is-primary"</span><span class="k">&gt;</span><br>
-                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
-                  class="cn">"message-header"</span><span class="k">&gt;</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Header<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span
-                  class="cn">"delete is-small"</span><span class="k">&gt;</span>✕<span
-                  class="k">&lt;/button&gt;</span><br>
-                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
-                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
-                  class="cn">"message-body"</span><span class="k">&gt;</span>Message text<span
-                  class="k">&lt;/div&gt;</span><br>
+              <div class="lib-code" data-raw='<div style="position:relative" id="njxBellWrap">
+  <button class="njx-bell-btn" onclick="njxToggleBell()">🔔
+    <span class="njx-bell-badge" id="njxBellBadge">4</span>
+  </button>
+  <div class="njx-notif-dropdown" id="njxBellDropdown">
+    <div class="njx-notif-item unread" onclick="njxReadNotif(this)">
+      <div class="njx-notif-avatar">A</div>
+      <div class="njx-notif-body">
+        <div class="njx-notif-text"><b>alex_dev</b> pushed to main</div>
+        <div class="njx-notif-time">2 min ago</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+/* njxToggleBell()   — open/close dropdown
+   njxReadNotif(el)  — mark single item read
+   njxMarkAllRead()  — mark all read, clear badge */'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"njx-notif-dropdown"</span> <span class="s">id</span>=<span class="cn">"njxBellDropdown"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"njx-notif-item unread"</span> <span class="s">onclick</span>=<span class="cn">"njxReadNotif(this)"</span><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br>
                 <span class="k">&lt;/div&gt;</span>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- ══════════════════════════
+             INLINE ALERTS
+        ══════════════════════════ -->
         <div class="lib-component">
-          <div class="lib-component-label">Toast</div>
-          <div class="lib-preview">
-            <span class="toast toast-primary">toast-primary</span>
-            <span class="toast toast-success">toast-success</span>
-            <span class="toast toast-error">toast-error</span>
-            <span class="toast toast-warning">toast-warning</span>
-            <span class="toast toast-dark">toast-dark</span>
+          <div class="lib-component-label">Inline Alerts — click × to dismiss · smooth collapse</div>
+          <div class="lib-preview col" style="align-items:stretch;gap:0">
+            <div class="njx-alert-stack" id="njxAlertStack">
+
+              <div class="njx-notif-inline njx-ni-success">
+                <span class="njx-notif-inline-icon">✅</span>
+                <div class="njx-notif-inline-body">
+                  <div class="njx-notif-inline-title">Deployment successful</div>
+                  <div class="njx-notif-inline-msg">Version 1.0.6 is live. CDN cache updated in 28 regions.</div>
+                </div>
+                <button class="njx-notif-inline-close" onclick="njxDismissAlert(this)">×</button>
+              </div>
+
+              <div class="njx-notif-inline njx-ni-error">
+                <span class="njx-notif-inline-icon">❌</span>
+                <div class="njx-notif-inline-body">
+                  <div class="njx-notif-inline-title">Payment failed</div>
+                  <div class="njx-notif-inline-msg">Your card ending in 4242 was declined. Please update billing info.</div>
+                </div>
+                <button class="njx-notif-inline-close" onclick="njxDismissAlert(this)">×</button>
+              </div>
+
+              <div class="njx-notif-inline njx-ni-warning">
+                <span class="njx-notif-inline-icon">⚠️</span>
+                <div class="njx-notif-inline-body">
+                  <div class="njx-notif-inline-title">Storage almost full</div>
+                  <div class="njx-notif-inline-msg">You're using 92% of your 5GB storage. Upgrade to avoid interruptions.</div>
+                </div>
+                <button class="njx-notif-inline-close" onclick="njxDismissAlert(this)">×</button>
+              </div>
+
+              <div class="njx-notif-inline njx-ni-info">
+                <span class="njx-notif-inline-icon">💡</span>
+                <div class="njx-notif-inline-body">
+                  <div class="njx-notif-inline-title">New feature available</div>
+                  <div class="njx-notif-inline-msg">Skeleton loaders are now in the component library. Check the docs.</div>
+                </div>
+                <button class="njx-notif-inline-close" onclick="njxDismissAlert(this)">×</button>
+              </div>
+
+              <div class="njx-notif-inline njx-ni-dark">
+                <span class="njx-notif-inline-icon">🔒</span>
+                <div class="njx-notif-inline-body">
+                  <div class="njx-notif-inline-title">Security notice</div>
+                  <div class="njx-notif-inline-msg">We detected a sign-in from a new device in Tokyo, Japan.</div>
+                </div>
+                <button class="njx-notif-inline-close" onclick="njxDismissAlert(this)">×</button>
+              </div>
+
+            </div>
+            <div style="padding:12px 0 0">
+              <button class="btn btn-ghost btn-sm" onclick="njxRestoreAlerts()">↺ Restore all</button>
+            </div>
           </div>
           <div class="lib-code-wrapper">
             <div class="lib-code-container">
-              <div class="lib-code"
-                data-raw="&lt;!-- toast: toast-primary | toast-success | toast-error | toast-warning | toast-dark --&gt;&#10;&lt;span class=&quot;toast toast-primary&quot;&gt;Information&lt;/span&gt;&#10;&lt;span class=&quot;toast toast-success&quot;&gt;Success!&lt;/span&gt;&#10;&lt;span class=&quot;toast toast-error&quot;&gt;Error&lt;/span&gt;&#10;&lt;span class=&quot;toast toast-warning&quot;&gt;Warning notice&lt;/span&gt;&#10;&lt;span class=&quot;toast toast-dark&quot;&gt;Dark&lt;/span&gt;">
-                <span class="c">/* toast: toast-primary | toast-success | toast-error | toast-warning | toast-dark
-                  */</span><br>
-                <span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"toast
-                  toast-primary"</span><span class="k">&gt;</span>Information<span class="k">&lt;/span&gt;</span><br>
-                <span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"toast
-                  toast-success"</span><span class="k">&gt;</span>Success!<span class="k">&lt;/span&gt;</span><br>
-                <span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"toast
-                  toast-error"</span><span class="k">&gt;</span>Error<span class="k">&lt;/span&gt;</span><br>
-                <span class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"toast
-                  toast-warning"</span><span class="k">&gt;</span>Warning notice<span class="k">&lt;/span&gt;</span>
+              <div class="lib-code" data-raw='<!-- njx-ni-success | njx-ni-error | njx-ni-warning | njx-ni-info | njx-ni-dark -->
+<div class="njx-notif-inline njx-ni-success">
+  <span class="njx-notif-inline-icon">✅</span>
+  <div class="njx-notif-inline-body">
+    <div class="njx-notif-inline-title">Deployment successful</div>
+    <div class="njx-notif-inline-msg">Version 1.0.6 is live.</div>
+  </div>
+  <button class="njx-notif-inline-close" onclick="njxDismissAlert(this)">×</button>
+</div>
+
+/* njxDismissAlert(btn) — collapses parent alert smoothly */
+/* njxRestoreAlerts()   — restores all dismissed alerts   */'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"njx-notif-inline njx-ni-success"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"njx-notif-inline-close"</span> <span class="s">onclick</span>=<span class="cn">"njxDismissAlert(this)"</span><span class="k">&gt;</span>×<span class="k">&lt;/button&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- ══════════════════════════
+             MESSAGE INBOX
+        ══════════════════════════ -->
+        <div class="lib-component">
+          <div class="lib-component-label">Message Inbox — click to read · badge counter</div>
+          <div class="lib-preview col" style="align-items:stretch;padding:0">
+            <div class="njx-inbox">
+              <div class="njx-inbox-header">
+                <div class="njx-inbox-title">
+                  Messages
+                  <span class="badge badge-primary" id="njxMsgBadge">3</span>
+                </div>
+                <div class="njx-inbox-actions">
+                  <button class="njx-inbox-action-btn" title="Mark all read" onclick="njxMarkAllMsgs()">✓✓</button>
+                  <button class="njx-inbox-action-btn" title="Compose" onclick="njxFireToast('info','Compose','Opening new message...')">✏</button>
+                </div>
+              </div>
+              <div id="njxMsgList">
+
+                <div class="njx-msg-item unread" onclick="njxReadMsg(this)">
+                  <div class="njx-msg-avatar" style="background:color-mix(in srgb,var(--color-primary) 16%,transparent);color:var(--color-primary)">A</div>
+                  <div class="njx-msg-content">
+                    <div class="njx-msg-top"><span class="njx-msg-name">alex_dev</span><span class="njx-msg-time">2m</span></div>
+                    <div class="njx-msg-subject">Re: PR #38 carousel component</div>
+                    <div class="njx-msg-preview">Looks great! Just one question about the autoplay logic...</div>
+                  </div>
+                  <div class="njx-msg-dot"></div>
+                </div>
+
+                <div class="njx-msg-item unread" onclick="njxReadMsg(this)">
+                  <div class="njx-msg-avatar" style="background:color-mix(in srgb,var(--color-accent) 16%,transparent);color:var(--color-accent)">M</div>
+                  <div class="njx-msg-content">
+                    <div class="njx-msg-top"><span class="njx-msg-name">maria_ui</span><span class="njx-msg-time">15m</span></div>
+                    <div class="njx-msg-subject">Design tokens feedback</div>
+                    <div class="njx-msg-preview">Hey! I reviewed the token structure and have some suggestions...</div>
+                  </div>
+                  <div class="njx-msg-dot"></div>
+                </div>
+
+                <div class="njx-msg-item unread" onclick="njxReadMsg(this)">
+                  <div class="njx-msg-avatar" style="background:color-mix(in srgb,var(--color-success) 16%,transparent);color:var(--color-success)">📦</div>
+                  <div class="njx-msg-content">
+                    <div class="njx-msg-top"><span class="njx-msg-name">npm registry</span><span class="njx-msg-time">1h</span></div>
+                    <div class="njx-msg-subject">njx-ui@1.0.6 published</div>
+                    <div class="njx-msg-preview">Your package has been successfully published to the npm registry...</div>
+                  </div>
+                  <div class="njx-msg-dot"></div>
+                </div>
+
+                <div class="njx-msg-item read" onclick="njxReadMsg(this)">
+                  <div class="njx-msg-avatar" style="background:color-mix(in srgb,#a855f7 16%,transparent);color:#a855f7">K</div>
+                  <div class="njx-msg-content">
+                    <div class="njx-msg-top"><span class="njx-msg-name">kai_codes</span><span class="njx-msg-time">3h</span></div>
+                    <div class="njx-msg-subject">Collaboration proposal</div>
+                    <div class="njx-msg-preview">I'd love to contribute to the animation system if you're open...</div>
+                  </div>
+                  <div class="njx-msg-dot"></div>
+                </div>
+
+                <div class="njx-msg-item read" onclick="njxReadMsg(this)">
+                  <div class="njx-msg-avatar" style="background:var(--bg-secondary);color:var(--text-muted)">G</div>
+                  <div class="njx-msg-content">
+                    <div class="njx-msg-top"><span class="njx-msg-name">GitHub</span><span class="njx-msg-time">1d</span></div>
+                    <div class="njx-msg-subject">New star on njx-css-ui</div>
+                    <div class="njx-msg-preview">react_dev starred your repository njx-css-ui</div>
+                  </div>
+                  <div class="njx-msg-dot"></div>
+                </div>
+
+              </div>
+              <div class="njx-inbox-footer">
+                <a href="#" style="font-size:12px;font-weight:700;color:var(--color-primary);text-decoration:none">View all messages →</a>
+              </div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<div class="njx-inbox">
+  <div class="njx-inbox-header">
+    <div class="njx-inbox-title">Messages <span class="badge badge-primary" id="njxMsgBadge">3</span></div>
+    <div class="njx-inbox-actions">
+      <button class="njx-inbox-action-btn" onclick="njxMarkAllMsgs()">✓✓</button>
+    </div>
+  </div>
+  <div class="njx-msg-item unread" onclick="njxReadMsg(this)">
+    <div class="njx-msg-avatar">A</div>
+    <div class="njx-msg-content">
+      <div class="njx-msg-top">
+        <span class="njx-msg-name">alex_dev</span>
+        <span class="njx-msg-time">2m</span>
+      </div>
+      <div class="njx-msg-subject">Re: PR #38</div>
+      <div class="njx-msg-preview">Looks great! One question...</div>
+    </div>
+    <div class="njx-msg-dot"></div>
+  </div>
+</div>
+
+/* njxReadMsg(el)    — mark message read, update badge
+   njxMarkAllMsgs() — mark all read */'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"njx-msg-item unread"</span> <span class="s">onclick</span>=<span class="cn">"njxReadMsg(this)"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"njx-msg-dot"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════
+             STATIC NOTIFICATIONS
+        ══════════════════════════ -->
+        <div class="lib-component">
+          <div class="lib-component-label">Notification — static variants</div>
+          <div class="lib-preview col" style="align-items:stretch">
+            <div class="notification">
+              <span style="margin-right:8px">🔔</span>Basic notification — default style
+            </div>
+            <div class="notification is-primary">
+              <span style="margin-right:8px">ℹ️</span><b>is-primary</b> — Informational message
+              <button class="delete is-small" style="margin-left:auto" onclick="this.closest('.notification').style.display='none'"></button>
+            </div>
+            <div class="notification is-success">
+              <span style="margin-right:8px">✅</span><b>is-success</b> — Completed successfully
+              <button class="delete is-small" style="margin-left:auto" onclick="this.closest('.notification').style.display='none'"></button>
+            </div>
+            <div class="notification is-warning">
+              <span style="margin-right:8px">⚠️</span><b>is-warning</b> — Warning, attention needed
+              <button class="delete is-small" style="margin-left:auto" onclick="this.closest('.notification').style.display='none'"></button>
+            </div>
+            <div class="notification is-danger">
+              <span style="margin-right:8px">❌</span><b>is-danger</b> — Error or critical issue
+              <button class="delete is-small" style="margin-left:auto" onclick="this.closest('.notification').style.display='none'"></button>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- notification: is-primary | is-success | is-warning | is-danger -->
+<div class="notification is-success">
+  <button class="delete is-small" onclick="this.closest(&apos;.notification&apos;).style.display=&apos;none&apos;"></button>
+  Completed successfully
+</div>'>
+                <span class="c">/* notification: is-primary | is-success | is-warning | is-danger */</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"notification is-success"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"delete is-small"</span> <span class="s">onclick</span>=<span class="cn">"this.closest('.notification').style.display='none'"</span><span class="k">&gt;&lt;/button&gt;</span><br>
+                &nbsp;&nbsp;Completed successfully<br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════
+             MESSAGES
+        ══════════════════════════ -->
+        <div class="lib-component">
+          <div class="lib-component-label">Messages</div>
+          <div class="lib-preview col" style="align-items:stretch">
+            <div class="message is-primary">
+              <div class="message-header">Primary <button class="delete is-small" style="margin-left:auto" onclick="this.closest('.message').style.display='none'"></button></div>
+              <div class="message-body">Message text with header and dismiss button</div>
+            </div>
+            <div class="message is-success">
+              <div class="message-header">Success <button class="delete is-small" style="margin-left:auto" onclick="this.closest('.message').style.display='none'"></button></div>
+              <div class="message-body">Operation completed successfully</div>
+            </div>
+            <div class="message is-warning">
+              <div class="message-header">Warning <button class="delete is-small" style="margin-left:auto" onclick="this.closest('.message').style.display='none'"></button></div>
+              <div class="message-body">This action may have side effects</div>
+            </div>
+            <div class="message is-danger">
+              <div class="message-header">Danger <button class="delete is-small" style="margin-left:auto" onclick="this.closest('.message').style.display='none'"></button></div>
+              <div class="message-body">An error occurred. Please try again.</div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw='<!-- message: is-primary | is-success | is-warning | is-danger -->
+<div class="message is-primary">
+  <div class="message-header">
+    Header
+    <button class="delete is-small"></button>
+  </div>
+  <div class="message-body">Message text</div>
+</div>'>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"message is-primary"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"message-header"</span><span class="k">&gt;</span>Header &nbsp;<span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"delete is-small"</span><span class="k">&gt;&lt;/button&gt;&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"message-body"</span><span class="k">&gt;</span>Message text<span class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════
+             LOADERS
+        ══════════════════════════ -->
         <div class="lib-component">
           <div class="lib-component-label">Loaders</div>
-          <div class="lib-preview">
-            <div>
+          <div class="lib-preview" style="gap:24px;align-items:center">
+            <div style="text-align:center">
               <div class="loader"></div>
               <div class="text-xs text-muted mt-2">default</div>
             </div>
-            <div>
+            <div style="text-align:center">
               <div class="loader loader-accent"></div>
               <div class="text-xs text-muted mt-2">accent</div>
             </div>
-            <div>
+            <div style="text-align:center">
               <div class="loader loader-success"></div>
               <div class="text-xs text-muted mt-2">success</div>
             </div>
-            <div>
+            <div style="text-align:center">
               <div class="loader loader-lg"></div>
               <div class="text-xs text-muted mt-2">lg</div>
             </div>
-            <div>
+            <div style="text-align:center">
               <div class="loader loader-xl"></div>
               <div class="text-xs text-muted mt-2">xl</div>
             </div>
           </div>
           <div class="lib-code-wrapper">
             <div class="lib-code-container">
-              <div class="lib-code"
-                data-raw="&lt;!-- loader: default | loader-accent | loader-success | loader-lg | loader-xl --&gt;&#10;&lt;div class=&quot;loader&quot;&gt;&lt;/div&gt;&#10;&lt;div class=&quot;loader loader-accent&quot;&gt;&lt;/div&gt;&#10;&lt;div class=&quot;loader loader-success&quot;&gt;&lt;/div&gt;&#10;&lt;div class=&quot;loader loader-lg&quot;&gt;&lt;/div&gt;&#10;&lt;div class=&quot;loader loader-xl&quot;&gt;&lt;/div&gt;">
-                <span class="c">/* loader: default | loader-accent | loader-success | loader-lg | loader-xl
-                  */</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"loader"</span><span
-                  class="k">&gt;&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"loader
-                  loader-accent"</span><span class="k">&gt;&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"loader
-                  loader-success"</span><span class="k">&gt;&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"loader
-                  loader-lg"</span><span class="k">&gt;&lt;/div&gt;</span><br>
-                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"loader
-                  loader-xl"</span><span class="k">&gt;&lt;/div&gt;</span>
+              <div class="lib-code" data-raw='<!-- loader: default | loader-accent | loader-success | loader-lg | loader-xl -->
+<div class="loader"></div>
+<div class="loader loader-accent"></div>
+<div class="loader loader-success"></div>
+<div class="loader loader-lg"></div>
+<div class="loader loader-xl"></div>'>
+                <span class="c">/* loader: default | loader-accent | loader-success | loader-lg | loader-xl */</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"loader"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"loader loader-accent"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"loader loader-success"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"loader loader-lg"</span><span class="k">&gt;&lt;/div&gt;</span><br>
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"loader loader-xl"</span><span class="k">&gt;&lt;/div&gt;</span>
               </div>
             </div>
           </div>
         </div>
+
       </section>

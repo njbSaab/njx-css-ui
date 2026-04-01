@@ -567,6 +567,94 @@ function initCarousels() {
   });
 }
 
+// ── Hero Slider ──
+function initHeroSliders() {
+  document.querySelectorAll('.hero-slider').forEach((slider) => {
+    const track = slider.querySelector('.hero-slider-track');
+    if (!track) return;
+    const slides = Array.from(track.children);
+    const n = slides.length;
+    if (!n) return;
+    let cur = 0;
+    let timer = null;
+    const INTERVAL = 4500;
+    const progressEl = slider.querySelector('.hero-slider-progress');
+    const dotsEl = slider.querySelector('.hero-slider-dots');
+
+    if (dotsEl && !dotsEl.children.length) {
+      slides.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'hero-slider-dot' + (i === 0 ? ' is-active' : '');
+        d.addEventListener('click', () => { goTo(i); resetAuto(); });
+        dotsEl.appendChild(d);
+      });
+    }
+
+    function goTo(idx) {
+      cur = (idx + n) % n;
+      track.style.transform = `translateX(-${cur * 100}%)`;
+      if (dotsEl) {
+        dotsEl.querySelectorAll('.hero-slider-dot').forEach((d, i) => d.classList.toggle('is-active', i === cur));
+      }
+      resetProgress();
+    }
+
+    function resetProgress() {
+      if (!progressEl) return;
+      progressEl.style.transition = 'none';
+      progressEl.style.width = '0%';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        progressEl.style.transition = `width ${INTERVAL}ms linear`;
+        progressEl.style.width = '100%';
+      }));
+    }
+
+    function resetAuto() {
+      clearInterval(timer);
+      timer = setInterval(() => goTo(cur + 1), INTERVAL);
+    }
+
+    const btns = Array.from(slider.querySelectorAll('.hero-slider-btn'));
+    btns[0]?.addEventListener('click', () => { goTo(cur - 1); resetAuto(); });
+    btns[1]?.addEventListener('click', () => { goTo(cur + 1); resetAuto(); });
+
+    resetProgress();
+    resetAuto();
+  });
+}
+
+// ── Testimonials Slider ──
+function initTestiSliders() {
+  document.querySelectorAll('.testi-slider').forEach((slider) => {
+    const track = slider.querySelector('.testi-track');
+    if (!track) return;
+    const n = track.children.length;
+    if (!n) return;
+    let cur = 0;
+    const wrap = slider.closest('.lib-component') || slider.parentElement;
+    const counter = wrap ? wrap.querySelector('.testi-counter') : null;
+    const btns = wrap ? Array.from(wrap.querySelectorAll('.testi-btn')) : [];
+    const prevBtn = btns[0] || null;
+    const nextBtn = btns[1] || null;
+
+    function goTo(idx) {
+      cur = (idx + n) % n;
+      track.style.transform = `translateX(-${cur * 100}%)`;
+      if (counter) counter.textContent = `${cur + 1} / ${n}`;
+    }
+
+    prevBtn?.addEventListener('click', () => goTo(cur - 1));
+    nextBtn?.addEventListener('click', () => goTo(cur + 1));
+
+    let sx = 0;
+    track.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) goTo(dx < 0 ? cur + 1 : cur - 1);
+    });
+  });
+}
+
 // ── Inline <code> copy on click ──
 function initInlineCodeCopy() {
   document.querySelectorAll(
@@ -832,7 +920,216 @@ document.addEventListener('components-loaded', () => {
   renderUtils();
   initSidebarObserver();
   initCarousels();
+  initHeroSliders();
+  initTestiSliders();
   initSearch();
   initInlineCodeCopy();
   initItemCopy();
 });
+
+// ── Notifications Section: Toast ──────────────────────────────────────────────
+(function() {
+  let container = null;
+
+  function getContainer() {
+    if (!container || !document.body.contains(container)) {
+      container = document.createElement('div');
+      container.id = 'njx-toast-container';
+      Object.assign(container.style, {
+        position: 'fixed', bottom: '24px', right: '24px',
+        display: 'flex', flexDirection: 'column', gap: '10px',
+        zIndex: '9999', pointerEvents: 'none'
+      });
+      document.body.appendChild(container);
+    }
+    return container;
+  }
+
+  const TOAST_ICONS = {
+    success: `<svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#22c55e"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    error:   `<svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7l6 6M13 7l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>`,
+    warning: `<svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#f59e0b"/><path d="M10 6v5M10 13v1" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>`,
+    info:    `<svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#3b82f6"/><path d="M10 9v5M10 7v1" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>`,
+  };
+
+  const TOAST_COLORS = {
+    success: { bg: '#16a34a', bar: '#4ade80' },
+    error:   { bg: '#dc2626', bar: '#f87171' },
+    warning: { bg: '#d97706', bar: '#fbbf24' },
+    info:    { bg: '#2563eb', bar: '#60a5fa' },
+  };
+
+  window.njxFireToast = function(type, title, msg, duration) {
+    duration = duration || 4000;
+    const c = getContainer();
+    const colors = TOAST_COLORS[type] || TOAST_COLORS.info;
+    const icon = TOAST_ICONS[type] || TOAST_ICONS.info;
+
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+      min-width:280px; max-width:340px; background:var(--bg-card,#1e1e2e);
+      border:1px solid color-mix(in srgb,${colors.bg} 40%,transparent);
+      border-radius:10px; padding:14px 16px 10px; pointer-events:all;
+      box-shadow:0 4px 20px rgba(0,0,0,.35);
+      display:flex; flex-direction:column; gap:6px;
+      transform:translateX(120%); transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+      position:relative; overflow:hidden;
+    `;
+
+    const head = document.createElement('div');
+    head.style.cssText = 'display:flex;align-items:center;gap:8px;';
+    head.innerHTML = `${icon}<strong style="flex:1;font-size:.875rem;color:var(--text-main,#f0f0f0)">${title}</strong>`;
+
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '×';
+    closeBtn.style.cssText = 'background:none;border:none;color:var(--text-muted,#888);font-size:1.1rem;cursor:pointer;padding:0 0 0 6px;line-height:1';
+    closeBtn.onclick = () => dismiss(toast);
+    head.appendChild(closeBtn);
+    toast.appendChild(head);
+
+    if (msg) {
+      const body = document.createElement('div');
+      body.style.cssText = 'font-size:.8rem;color:var(--text-muted,#aaa);padding-left:26px;';
+      body.textContent = msg;
+      toast.appendChild(body);
+    }
+
+    const bar = document.createElement('div');
+    bar.style.cssText = `height:3px;border-radius:2px;margin-top:4px;background:${colors.bar};width:100%;transition:width ${duration}ms linear;`;
+    toast.appendChild(bar);
+
+    c.appendChild(toast);
+
+    // Animate in
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      toast.style.transform = 'translateX(0)';
+      requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = '0%'; }));
+    }));
+
+    const timer = setTimeout(() => dismiss(toast), duration);
+    toast._timer = timer;
+
+    function dismiss(t) {
+      clearTimeout(t._timer);
+      t.style.transform = 'translateX(120%)';
+      t.style.opacity = '0';
+      setTimeout(() => t.remove(), 350);
+    }
+  };
+})();
+
+// ── Notifications Section: Bell Dropdown ──────────────────────────────────────
+window.njxToggleBell = function() {
+  const wrap = document.getElementById('njxBellWrap');
+  const btn  = document.getElementById('njxBellBtn');
+  const dropdown = document.getElementById('njxBellDropdown');
+  if (!wrap || !dropdown || !btn) return;
+
+  const isOpen = dropdown.classList.contains('open');
+
+  if (isOpen) {
+    dropdown.classList.remove('open');
+    return;
+  }
+
+  // Teleport to body so it escapes any overflow:hidden parent
+  if (dropdown.parentElement !== document.body) {
+    document.body.appendChild(dropdown);
+  }
+
+  // Position fixed below the bell button
+  const rect = btn.getBoundingClientRect();
+  dropdown.style.position = 'fixed';
+  dropdown.style.top  = (rect.bottom + 10) + 'px';
+  dropdown.style.left = (rect.left + rect.width / 2) + 'px';
+  dropdown.style.transform = 'translateX(-50%) scale(0.95)';
+  dropdown.style.zIndex = '9999';
+
+  // Force reflow then open
+  dropdown.offsetHeight;
+  dropdown.classList.add('open');
+
+  const closeOutside = (e) => {
+    if (!wrap.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.remove('open');
+      document.removeEventListener('click', closeOutside);
+    }
+  };
+  setTimeout(() => document.addEventListener('click', closeOutside), 10);
+};
+
+window.njxReadNotif = function(item) {
+  if (!item.classList.contains('unread')) return;
+  item.classList.remove('unread');
+  const badge = document.getElementById('njxBellBadge');
+  const unreadTag = document.getElementById('njxUnreadTag');
+  const list = document.getElementById('njxNotifList');
+  if (list) {
+    const count = list.querySelectorAll('.njx-notif-item.unread').length;
+    if (badge) {
+      badge.textContent = count;
+      badge.classList.toggle('hidden', count === 0);
+    }
+    if (unreadTag) unreadTag.textContent = count > 0 ? `${count} new` : 'all read';
+  }
+};
+
+window.njxMarkAllRead = function() {
+  const list = document.getElementById('njxNotifList');
+  if (!list) return;
+  list.querySelectorAll('.njx-notif-item.unread').forEach(item => item.classList.remove('unread'));
+  const badge = document.getElementById('njxBellBadge');
+  const unreadTag = document.getElementById('njxUnreadTag');
+  if (badge) { badge.textContent = '0'; badge.classList.add('hidden'); }
+  if (unreadTag) unreadTag.textContent = 'all read';
+  njxFireToast('success', 'All read', 'All notifications marked as read');
+};
+
+// ── Notifications Section: Inline Alerts ─────────────────────────────────────
+window.njxDismissAlert = function(btn) {
+  const alert = btn.closest('.njx-notif-inline');
+  if (!alert) return;
+  alert.style.maxHeight = alert.offsetHeight + 'px';
+  requestAnimationFrame(() => {
+    alert.classList.add('dismissed');
+    setTimeout(() => { alert.style.display = 'none'; }, 320);
+  });
+};
+
+window.njxRestoreAlerts = function() {
+  const stack = document.getElementById('njxAlertStack');
+  if (!stack) return;
+  stack.querySelectorAll('.njx-notif-inline').forEach(alert => {
+    alert.classList.remove('dismissed');
+    alert.style.display = '';
+    alert.style.maxHeight = '';
+  });
+};
+
+// ── Notifications Section: Message Inbox ─────────────────────────────────────
+window.njxReadMsg = function(item) {
+  if (item.classList.contains('read')) return;
+  item.classList.remove('unread');
+  item.classList.add('read');
+  const badge = document.getElementById('njxMsgBadge');
+  const list = document.getElementById('njxMsgList');
+  if (list && badge) {
+    const count = list.querySelectorAll('.njx-msg-item.unread').length;
+    badge.textContent = count;
+    badge.style.opacity = count > 0 ? '1' : '0.3';
+  }
+  const subject = item.querySelector('.njx-msg-subject');
+  if (subject) njxFireToast('info', 'Marked as read', subject.textContent);
+};
+
+window.njxMarkAllMsgs = function() {
+  const list = document.getElementById('njxMsgList');
+  if (!list) return;
+  list.querySelectorAll('.njx-msg-item.unread').forEach(item => {
+    item.classList.remove('unread');
+    item.classList.add('read');
+  });
+  const badge = document.getElementById('njxMsgBadge');
+  if (badge) { badge.textContent = '0'; badge.style.opacity = '0.3'; }
+  njxFireToast('success', 'All read', 'All messages marked as read');
+};
