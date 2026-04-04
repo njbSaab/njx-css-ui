@@ -5,7 +5,9 @@
   "main": "css/style.css",
   "style": "css/style.css",
   "scripts": {
-    "build": "npm run minify && npm run header && npm run sync-version",
+    "build": "npm run build:css:full && npm run build:css:classless && npm run sync-version",
+    "build:css:full": "lightningcss --minify --bundle css/style.css -o css/style.min.css && node -e \"const fs=require('fs');const f='css/style.min.css';const h='/* njX UI v'+require('./package.json').version+' | MIT License | github.com/njbSaab/njx-css-ui */\\n';fs.writeFileSync(f,h+fs.readFileSync(f,'utf8'));\"",
+    "build:css:classless": "lightningcss --minify --bundle css/classless.css -o css/classless.min.css && node -e \"const fs=require('fs');const f='css/classless.min.css';const h='/* njX UI Classless v'+require('./package.json').version+' | MIT License | github.com/njbSaab/njx-css-ui */\\n';fs.writeFileSync(f,h+fs.readFileSync(f,'utf8'));\"",
     "minify": "lightningcss --minify --bundle css/style.css -o css/style.min.css",
     "header": "node -e \"const fs=require('fs');const f='css/style.min.css';const h='/* njX UI v'+require('./package.json').version+' | MIT License | github.com/njbSaab/njx-css-ui */\\n';fs.writeFileSync(f,h+fs.readFileSync(f,'utf8'));\"",
     "sync-version": "node scripts/sync-version.js",

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>njX UI — Classless Mode Demo</title>
+  <meta name="description" content="njX UI Classless Mode: beautiful semantic HTML with zero class names. One CSS file, auto light/dark theme.">
+  <link rel="stylesheet" href="css/classless.min.css">
+  <style>
+    /* Demo-only overrides — not part of classless.css */
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--color-neutral-600);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .theme-toggle:hover {
+      background: var(--bg-secondary);
+      border-color: var(--color-primary);
+      box-shadow: none;
+      opacity: 1;
+    }
+    .hero {
+      text-align: center;
+      padding: 80px 24px 64px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
+    .hero p  { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .price { font-size: 2.5rem; font-weight: 700; color: var(--color-primary); }
+    .price small { font-size: 1rem; color: var(--text-muted); }
+    .badge {
+      display: inline-block;
+      background: var(--color-primary-opacity, rgba(20,161,255,.15));
+      color: var(--color-primary);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 32px;
+      text-align: left;
+      margin-bottom: 40px;
+    }
+    .footer-grid h4 { margin-top: 0; font-size: 14px; color: var(--text-main); margin-bottom: 12px; }
+    .footer-grid a  { display: block; margin-bottom: 8px; font-size: 13px; }
+    .section-label {
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: .12em;
+      color: var(--color-primary);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto var(--space-6);
+    }
+    /* Code snippet styling */
+    .snippet { max-width: 580px; margin: 0 auto; }
+    /* Divider in nav */
+    .nav-brand { font-weight: 700; font-size: 18px; color: var(--text-main); text-decoration: none; margin-right: auto; }
+    .nav-brand:hover { color: var(--color-primary); background: none; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<header role="banner">
+  <a class="nav-brand" href="#">njX UI</a>
+  <nav aria-label="Main navigation">
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="index.html">Full Mode</a>
+  </nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle light/dark theme">🌓 Theme</button>
+</header>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section style="padding-top:0;padding-bottom:0;">
+  <div class="hero">
+    <p class="section-label">Classless Mode</p>
+    <h1>Beautiful HTML, <em>zero&nbsp;classes</em></h1>
+    <p>njX UI Classless gives your semantic HTML instant styling — typography, forms, tables, and more — with a single&nbsp;CSS&nbsp;file. No class names required.</p>
+    <div class="hero-actions">
+      <a href="https://github.com/njbSaab/njx-css-ui">
+        <button>Get Started</button>
+      </a>
+      <a href="#features">
+        <button style="background:transparent;color:var(--color-primary);border-color:var(--color-primary);">See Features</button>
+      </a>
+    </div>
+    <p style="margin-top:24px;">
+      <code>&lt;link rel="stylesheet" href="css/classless.min.css"&gt;</code>
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════ FEATURE CARDS ═══════════════ -->
+<section id="features" style="background:var(--bg-secondary);">
+  <p class="section-label">Why Classless</p>
+  <h2 class="section-title">Everything styled out of the box</h2>
+  <p class="section-sub">Drop in one CSS file and your semantic HTML looks great immediately — no markup changes needed.</p>
+
+  <div class="features-grid">
+    <article>
+      <header><h3>🎨 9 Themes</h3></header>
+      <p>Dark, Light, Red, Blue, Green, Cyan, Yellow, Pink, Purple — controlled by a single <code>data-theme</code> attribute.</p>
+      <footer>Switch at runtime with one line of JavaScript.</footer>
+    </article>
+
+    <article>
+      <header><h3>🌓 Auto Light/Dark</h3></header>
+      <p>Respects <code>prefers-color-scheme</code> automatically when no <code>data-theme</code> is set — users see the theme that matches their OS.</p>
+      <footer>Zero configuration required.</footer>
+    </article>
+
+    <article>
+      <header><h3>⚡ 20 KB Minified</h3></header>
+      <p>The full classless bundle is under 20 KB — lighter than a single image. Instant load, no render-blocking.</p>
+      <footer>Includes all tokens, typography, forms, tables, and more.</footer>
+    </article>
+
+    <article>
+      <header><h3>📝 Full Forms</h3></header>
+      <p>Every form element — <code>input</code>, <code>textarea</code>, <code>select</code>, <code>button</code>, <code>fieldset</code> — styled with focus rings and hover states.</p>
+      <footer>Accessible and keyboard-friendly.</footer>
+    </article>
+
+    <article>
+      <header><h3>📊 Tables</h3></header>
+      <p>Clean <code>table</code> styling with hover rows, bordered cells, and responsive overflow — works out of the box.</p>
+      <footer>No classes. Just valid HTML.</footer>
+    </article>
+
+    <article>
+      <header><h3>🤝 FAQ Accordion</h3></header>
+      <p>Native <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> elements styled as polished accordion cards with animated arrows.</p>
+      <footer>No JavaScript needed.</footer>
+    </article>
+  </div>
+</section>
+
+<!-- ═══════════════ DEMO ELEMENTS ═══════════════ -->
+<section id="demo">
+  <p class="section-label">Live Demo</p>
+  <h2 class="section-title">All elements, no classes</h2>
+  <p class="section-sub">Everything below is plain semantic HTML styled purely by <code>classless.min.css</code>.</p>
+
+  <h3>Typography</h3>
+  <p>This is a body paragraph. It uses <strong>strong emphasis</strong>, <em>italic text</em>, <a href="#">inline links</a>, and <code>inline code</code>. Small text looks like <small>this little note</small>.</p>
+
+  <blockquote>
+    "The best code is code you never have to write."
+    <cite>— Unknown Developer</cite>
+  </blockquote>
+
+  <h3>Headings Scale</h3>
+  <h1>Heading 1</h1>
+  <h2>Heading 2</h2>
+  <h3>Heading 3</h3>
+  <h4>Heading 4</h4>
+  <h5>Heading 5</h5>
+  <h6>Heading 6</h6>
+
+  <hr>
+
+  <h3>Lists</h3>
+  <ul>
+    <li>Unordered item one</li>
+    <li>Unordered item two
+      <ul>
+        <li>Nested item A</li>
+        <li>Nested item B</li>
+      </ul>
+    </li>
+    <li>Unordered item three</li>
+  </ul>
+
+  <ol>
+    <li>Ordered step one</li>
+    <li>Ordered step two</li>
+    <li>Ordered step three</li>
+  </ol>
+
+  <hr>
+
+  <h3>Code Blocks</h3>
+  <pre><code>&lt;!-- Just one link tag — that's it --&gt;
+&lt;link rel="stylesheet" href="css/classless.min.css"&gt;
+
+&lt;!-- Optional: choose a theme --&gt;
+&lt;html data-theme="light"&gt;</code></pre>
+
+  <p>Inline <code>code snippets</code> and keyboard shortcuts like <kbd>Ctrl</kbd> + <kbd>C</kbd> are styled too.</p>
+
+  <hr>
+
+  <h3>Table</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Classless Mode</th>
+        <th>Full UI Mode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Semantic HTML styling</td>
+        <td>✅ Yes</td>
+        <td>✅ Yes (via reset)</td>
+      </tr>
+      <tr>
+        <td>Utility classes</td>
+        <td>❌ No</td>
+        <td>✅ 600+ classes</td>
+      </tr>
+      <tr>
+        <td>Components (btn, card…)</td>
+        <td>❌ No</td>
+        <td>✅ 25+ components</td>
+      </tr>
+      <tr>
+        <td>Bundle size</td>
+        <td>~20 KB</td>
+        <td>~243 KB</td>
+      </tr>
+      <tr>
+        <td>Themes</td>
+        <td>✅ 9 themes</td>
+        <td>✅ 9 themes</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <h3>Figure &amp; Image</h3>
+  <figure>
+    <img src="https://via.placeholder.com/800x300/14a0ff/ffffff?text=Classless+Mode+Demo" alt="Demo placeholder image" width="800" height="300">
+    <figcaption>A figure with an image and a caption — styled automatically.</figcaption>
+  </figure>
+
+  <hr>
+
+  <h3>Form</h3>
+  <form>
+    <fieldset>
+      <legend>Contact Information</legend>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Jane Smith">
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="jane@example.com">
+
+      <label for="topic">Topic</label>
+      <select id="topic" name="topic">
+        <option value="">Choose a topic…</option>
+        <option value="general">General question</option>
+        <option value="bug">Bug report</option>
+        <option value="feature">Feature request</option>
+      </select>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="4" placeholder="Your message…"></textarea>
+
+      <label>
+        <input type="checkbox" name="subscribe" value="1">
+        Subscribe to release announcements
+      </label>
+    </fieldset>
+
+    <button type="submit">Send Message</button>
+    <input type="reset" value="Clear Form">
+  </form>
+</section>
+
+<!-- ═══════════════ PRICING ═══════════════ -->
+<section id="pricing" style="background:var(--bg-secondary);">
+  <p class="section-label">Pricing</p>
+  <h2 class="section-title">Simple, transparent pricing</h2>
+  <p class="section-sub">njX UI is free and open-source. Forever. Choose the tier that matches your support needs.</p>
+
+  <div class="pricing-grid">
+    <article>
+      <header>
+        <div class="badge">Open Source</div>
+        <h3>Free</h3>
+        <p class="price">$0 <small>/ forever</small></p>
+      </header>
+      <ul>
+        <li>Full CSS library</li>
+        <li>9 themes</li>
+        <li>25+ components</li>
+        <li>Classless mode</li>
+        <li>MIT License</li>
+      </ul>
+      <footer>
+        <button style="width:100%">Get Started Free</button>
+      </footer>
+    </article>
+
+    <article style="border-color:var(--color-primary);">
+      <header>
+        <div class="badge">Popular</div>
+        <h3>Sponsor</h3>
+        <p class="price">$5 <small>/ month</small></p>
+      </header>
+      <ul>
+        <li>Everything in Free</li>
+        <li>Priority issue support</li>
+        <li>Vote on roadmap</li>
+        <li>Early access to new components</li>
+        <li>Sponsor badge in README</li>
+      </ul>
+      <footer>
+        <button style="width:100%">Become a Sponsor</button>
+      </footer>
+    </article>
+
+    <article>
+      <header>
+        <div class="badge">Enterprise</div>
+        <h3>Custom</h3>
+        <p class="price">Contact <small>us</small></p>
+      </header>
+      <ul>
+        <li>Everything in Sponsor</li>
+        <li>Custom theme design</li>
+        <li>Integration support</li>
+        <li>SLA agreement</li>
+        <li>Private Slack channel</li>
+      </ul>
+      <footer>
+        <button style="width:100%;background:transparent;color:var(--color-primary);border:1px solid var(--color-primary);">Contact Us</button>
+      </footer>
+    </article>
+  </div>
+</section>
+
+<!-- ═══════════════ FAQ ═══════════════ -->
+<section id="faq">
+  <p class="section-label">FAQ</p>
+  <h2 class="section-title">Frequently asked questions</h2>
+  <p class="section-sub">Everything you need to know about njX UI Classless Mode.</p>
+
+  <details>
+    <summary>What is Classless Mode?</summary>
+    <p>Classless Mode styles semantic HTML elements (<code>h1</code>–<code>h6</code>, <code>p</code>, <code>table</code>, <code>form</code>, etc.) directly — no class names needed. It's ideal for content-heavy pages, Markdown output, CMS templates, or anywhere you want beautiful defaults without touching your markup.</p>
+  </details>
+
+  <details>
+    <summary>Can I use Classless Mode and Full UI Mode together?</summary>
+    <p>No — use <strong>one mode per page</strong>. Both files define styles for the same elements and combining them may cause conflicts. Classless Mode (<code>classless.min.css</code>) is intentionally separate from Full UI Mode (<code>style.min.css</code>).</p>
+  </details>
+
+  <details>
+    <summary>How do I switch themes?</summary>
+    <p>Set <code>data-theme</code> on the <code>&lt;html&gt;</code> element:</p>
+    <pre><code>&lt;html data-theme="light"&gt;   &lt;!-- or dark, red, blue, green… --&gt;</code></pre>
+    <p>Or switch at runtime with JavaScript:</p>
+    <pre><code>document.documentElement.setAttribute('data-theme', 'purple');</code></pre>
+    <p>If no <code>data-theme</code> is set, Classless Mode automatically follows <code>prefers-color-scheme</code>.</p>
+  </details>
+
+  <details>
+    <summary>Is Classless Mode accessible?</summary>
+    <p>Yes. Focus styles use a visible <code>outline</code> on interactive elements. Color contrast ratios are designed to pass WCAG AA for both light and dark themes. Form fields use <code>accent-color</code> for native checkboxes and radio buttons.</p>
+  </details>
+
+  <details>
+    <summary>How small is the CSS file?</summary>
+    <p>The minified bundle (<code>classless.min.css</code>) is approximately <strong>20 KB</strong> — lighter than most images. It includes all design tokens, typography, forms, tables, code blocks, and navigation styles.</p>
+  </details>
+
+  <details>
+    <summary>Can I customize the tokens?</summary>
+    <p>Yes. Override any CSS variable in your own stylesheet after including <code>classless.min.css</code>:</p>
+    <pre><code>:root {
+  --color-primary: #ff6b35;
+  --font-sans: "Georgia", serif;
+  --radius-md: 4px;
+}</code></pre>
+  </details>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer role="contentinfo">
+  <div class="footer-grid">
+    <div>
+      <h4>njX UI</h4>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Lightweight CSS library. Zero dependencies.</p>
+      <a href="https://github.com/njbSaab/njx-css-ui">GitHub</a>
+      <a href="https://cdn.jsdelivr.net/npm/njx-ui/">CDN Files</a>
+    </div>
+    <div>
+      <h4>Modes</h4>
+      <a href="classless.html">Classless Demo</a>
+      <a href="index.html">Full UI Demo</a>
+      <a href="docs/MODES.md">Modes Guide</a>
+    </div>
+    <div>
+      <h4>Docs</h4>
+      <a href="css/CSS-DOCS.en.md">CSS Reference</a>
+      <a href="README.md">README</a>
+      <a href="CONTRIBUTING.md">Contributing</a>
+    </div>
+    <div>
+      <h4>Install</h4>
+      <a href="https://www.npmjs.com/package/njx-ui">npm</a>
+      <a href="https://cdn.jsdelivr.net/npm/njx-ui/css/classless.min.css">jsDelivr CDN</a>
+      <a href="https://unpkg.com/njx-ui/css/classless.min.css">unpkg CDN</a>
+    </div>
+  </div>
+  <p style="margin:0;">© 2024 <a href="https://github.com/njbSaab">njbSaab</a> · MIT License · <a href="classless.html" aria-current="page">Classless Mode</a></p>
+</footer>
+
+<!-- Theme toggle (tiny inline script — no external deps) -->
+<script>
+  (function () {
+    var THEMES = ['dark', 'light', 'blue', 'purple', 'red', 'green', 'cyan', 'yellow', 'pink'];
+    var stored = localStorage.getItem('njx-theme');
+    if (stored) document.documentElement.setAttribute('data-theme', stored);
+
+    window.toggleTheme = function () {
+      var current = document.documentElement.getAttribute('data-theme') || 'dark';
+      var idx = THEMES.indexOf(current);
+      var next = THEMES[(idx + 1) % THEMES.length];
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('njx-theme', next);
+    };
+  })();
+</script>
+
+</body>
+</html>

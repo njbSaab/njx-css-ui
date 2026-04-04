@@ -25,6 +25,35 @@
 
 ---
 
+## Choose Your Mode
+
+> ⚠️ **Use one mode per page.** Do not include both CSS files — combining them causes conflicts.
+
+### 🌿 Classless Mode — semantic HTML, no class names
+
+Beautiful defaults for `h1`–`h6`, `p`, `a`, `table`, `form`, `details`, and more.  
+Zero markup changes required. ~20 KB minified.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/classless.min.css">
+```
+
+👉 [**Classless Mode demo**](classless.html) · [Classless guide](docs/MODES.md)
+
+### ⚡ Full UI Mode — utility classes + 25+ components
+
+The complete library: 600+ utilities, buttons, cards, modals, sidebar, animations, and more.  
+~243 KB minified.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css">
+<script src="https://cdn.jsdelivr.net/npm/njx-ui/js/njx.js"></script>
+```
+
+👉 [**Full UI demo**](index.html) · [Full documentation](css/CSS-DOCS.en.md)
+
+---
+
 ## Quick Start
 
 Choose the method that fits your project:
@@ -44,7 +73,7 @@ No install. Just add to your HTML:
   <script src="https://cdn.jsdelivr.net/npm/njx-ui/js/njx.js"></script>
 
   <!-- Pinned version (recommended for production — won't change) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1.0.1/css/style.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1.0.5/css/style.min.css">
 </head>
 <body>
   <button class="btn btn-primary">Primary</button>
@@ -67,7 +96,7 @@ Works immediately after `git push`, without publishing to npm:
 <script src="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@main/js/njx.js"></script>
 
 <!-- Pinned to a specific tag -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@v1.0.1/css/style.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@v1.0.5/css/style.min.css">
 ```
 
 ---
