@@ -1,5 +1,5 @@
 {
-  "name": "njx-css-ui",
+  "name": "njx-ui",
   "version": "1.1.0",
   "description": "Lightweight CSS component library — 30+ components, 9 themes, zero dependencies. ~59KB.",
   "main": "css/style.css",
@@ -33,7 +33,7 @@
     "type": "git",
     "url": "git+https://github.com/njbSaab/njx-css-ui.git"
   },
-  "homepage": "https://njbSaab.github.io/njx-css-ui",
+  "homepage": "https://njxui.dev",
   "bugs": {
     "url": "https://github.com/njbSaab/njx-css-ui/issues"
   },
