@@ -1,0 +1,187 @@
+/* ============================================================
+   _notifications.css — Notifications, messages, progress, loader
+   Bulma: notification, message, progress, loader, delete
+   ============================================================ */
+
+/* ── Notification ── */
+.notification {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--color-dark-secondary);
+  border: 1px solid var(--color-neutral-700);
+  font-size: var(--fs-base);
+  color: var(--color-light);
+  position: relative;
+}
+.notification .delete {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+}
+.notification.is-primary { background: var(--color-primary-900); border-color: var(--color-primary); color: var(--color-primary-200); }
+.notification.is-success  { background: var(--color-success-800); border-color: var(--color-success); color: var(--color-success-100); }
+.notification.is-warning  { background: rgba(255,221,0,0.1);      border-color: var(--color-warning); color: var(--color-warning); }
+.notification.is-danger   { background: var(--color-error-800);   border-color: var(--color-error);   color: var(--color-error-200); }
+.notification.is-info     { background: rgba(0,229,255,0.1);      border-color: #00e5ff; color: #00e5ff; }
+.notification.is-dark     { background: var(--color-neutral-900); border-color: var(--color-neutral-700); }
+
+/* ── Toast (pop-up notification) ── */
+.toast {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  animation: fadeInUp 0.3s ease forwards;
+}
+.toast-primary { background: var(--color-primary); color: #fff; }
+.toast-success { background: var(--color-success); color: #111; }
+.toast-error   { background: var(--color-error);   color: #fff; }
+.toast-warning { background: var(--color-warning); color: #111; }
+.toast-dark    { background: var(--color-neutral-900); color: #fff; border: 1px solid var(--color-neutral-700); }
+
+/* ── Message (Bulma) ── */
+.message {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-dark-secondary);
+  border: 1px solid var(--color-neutral-700);
+}
+.message-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-neutral-800);
+  font-weight: 700;
+  font-size: var(--fs-base);
+}
+.message-body {
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-neutral-700);
+}
+.message.is-primary .message-header { background: var(--color-primary); color: #fff; }
+.message.is-primary .message-body   { background: var(--color-primary-900); border-color: var(--color-primary); color: var(--color-primary-200); }
+.message.is-success .message-header { background: var(--color-success); color: #111; }
+.message.is-success .message-body   { background: var(--color-success-800); border-color: var(--color-success); color: var(--color-success-100); }
+.message.is-warning .message-header { background: var(--color-warning); color: #111; }
+.message.is-warning .message-body   { background: rgba(255,221,0,0.1); border-color: var(--color-warning); color: var(--color-warning); }
+.message.is-danger  .message-header { background: var(--color-error); color: #fff; }
+.message.is-danger  .message-body   { background: var(--color-error-800); border-color: var(--color-error); color: var(--color-error-200); }
+.message.is-info    .message-header { background: #00d1ff; color: #111; }
+.message.is-info    .message-body   { background: rgba(0,209,255,0.1); border-color: #00d1ff; color: #00d1ff; }
+
+/* ── Progress bar ── */
+.progress {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-800);
+  overflow: hidden;
+  border: none;
+}
+.progress::-webkit-progress-bar   { background: var(--color-neutral-800); border-radius: var(--radius-full); }
+.progress::-webkit-progress-value { background: var(--color-primary); border-radius: var(--radius-full); transition: width var(--ease); }
+.progress::-moz-progress-bar      { background: var(--color-primary); border-radius: var(--radius-full); }
+.progress.is-small  { height: 4px; }
+.progress.is-medium { height: 12px; }
+.progress.is-large  { height: 18px; }
+.progress.is-primary::-webkit-progress-value { background: var(--color-primary); }
+.progress.is-accent::-webkit-progress-value  { background: var(--color-accent); }
+.progress.is-success::-webkit-progress-value { background: var(--color-success); }
+.progress.is-danger::-webkit-progress-value  { background: var(--color-error); }
+.progress.is-warning::-webkit-progress-value { background: var(--color-warning); }
+
+/* Custom progress (for more control) */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--color-neutral-800);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.6s ease;
+}
+.progress-bar-fill.is-accent   { background: var(--color-accent); }
+.progress-bar-fill.is-success  { background: var(--color-success); }
+.progress-bar-fill.is-danger   { background: var(--color-error); }
+.progress-bar-fill.is-gradient { background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); }
+.progress-bar-fill.is-animated {
+  background: linear-gradient(90deg, var(--color-primary) 25%, var(--color-primary-300) 50%, var(--color-primary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ── Loader / Spinner ── */
+.loader {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255,255,255,0.15);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: rotateFull 0.7s linear infinite;
+}
+.loader-sm  { width: 16px; height: 16px; border-width: 2px; }
+.loader-lg  { width: 40px; height: 40px; border-width: 4px; }
+.loader-xl  { width: 60px; height: 60px; border-width: 5px; }
+.loader-accent  { border-top-color: var(--color-accent); }
+.loader-success { border-top-color: var(--color-success); }
+.loader-white   { border-top-color: #fff; }
+
+/* Overlay loader */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  backdrop-filter: blur(4px);
+}
+
+/* ── Delete (Bulma ×) ── */
+.delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
+  transition: background var(--ease);
+  flex-shrink: 0;
+}
+.delete:hover  { background: rgba(255,255,255,0.25); }
+.delete.is-small  { width: 16px; height: 16px; font-size: 10px; }
+.delete.is-medium { width: 32px; height: 32px; font-size: 18px; }
+.delete.is-large  { width: 40px; height: 40px; font-size: 22px; }
+.delete::before,
+.delete::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+  border-radius: 2px;
+}
+.delete::before { width: 50%; height: 2px; }
+.delete::after  { width: 2px; height: 50%; }

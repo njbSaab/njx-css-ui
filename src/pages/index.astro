@@ -1,0 +1,765 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import Tokens from '../components/njx-sections/Tokens.astro';
+import Grid from '../components/njx-sections/Grid.astro';
+import Typography from '../components/njx-sections/Typography.astro';
+import Utils from '../components/njx-sections/Utils.astro';
+import Buttons from '../components/njx-sections/Buttons.astro';
+import Cards from '../components/njx-sections/Cards.astro';
+import Tags from '../components/njx-sections/Tags.astro';
+import Forms from '../components/njx-sections/Forms.astro';
+import Nav from '../components/njx-sections/Nav.astro';
+import Progress from '../components/njx-sections/Progress.astro';
+import Table from '../components/njx-sections/Table.astro';
+import Breadcrumb from '../components/njx-sections/Breadcrumb.astro';
+import Pagination from '../components/njx-sections/Pagination.astro';
+import Panel from '../components/njx-sections/Panel.astro';
+import Links from '../components/njx-sections/Links.astro';
+import Sections from '../components/njx-sections/Sections.astro';
+import Social from '../components/njx-sections/Social.astro';
+import Tabs from '../components/njx-sections/Tabs.astro';
+import Collapse from '../components/njx-sections/Collapse.astro';
+import Dropdown from '../components/njx-sections/Dropdown.astro';
+import Popups from '../components/njx-sections/Popups.astro';
+import Notifications from '../components/njx-sections/Notifications.astro';
+import Carousel from '../components/njx-sections/Carousel.astro';
+import Skeleton from '../components/njx-sections/Skeleton.astro';
+import Animations from '../components/njx-sections/Animations.astro';
+import Gradients from '../components/njx-sections/Gradients.astro';
+import Hovers from '../components/njx-sections/Hovers.astro';
+import HoverTips from '../components/njx-sections/HoverTips.astro';
+import Topbar from '../components/njx-sections/Topbar.astro';
+
+// Импортируем шапку и сайдбар
+import LibsTopbar from '../components/LibsTopbar.astro';
+import Sidebar from '../components/Sidebar.astro';
+import DownloadModal from '../components/DownloadModal.astro';
+import LibsFooter from '../components/LibsFooter.astro';
+import LibsSidebar from '../components/LibsSidebar.astro';
+import Bottombar from '../components/Bottombar.astro';
+import { SIZE_FULL } from '../lib/meta';
+---
+
+<BaseLayout
+	title="njX UI — Lightweight CSS Component Library (30+ components, 9 themes, 308 KB)"
+	description="njX UI is a lightweight, dependency-free CSS component library."
+	withDocsCss={true}
+	withDocsScripts={true}
+>
+	<!-- Слот head: page-specific мета -->
+	<Fragment slot="head">
+		<link rel="canonical" href="https://njxui.dev/" />
+		<meta name="keywords" content="css component library, ..." />
+		<meta name="robots" content="index, follow" />
+		<meta name="author" content="njX UI" />
+
+		<meta property="og:type" content="website" />
+		<meta
+			property="og:title"
+			content="njX UI — Lightweight CSS Component Library"
+		/>
+		<meta
+			property="og:description"
+			content="30+modern CSS components, 9 themes, zero dependencies."
+		/>
+		<meta
+			property="og:image"
+			content="https://njxui.dev/img/og-image.png"
+		/>
+		<meta property="og:url" content="https://njxui.dev/" />
+		<meta property="og:site_name" content="njX UI" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta
+			name="twitter:title"
+			content="njX UI — Lightweight CSS Component Library"
+		/>
+		<meta
+			name="twitter:description"
+			content="30+ components • 9 themes • 308 KB • Zero dependencies"
+		/>
+		<meta
+			name="twitter:image"
+			content="https://njxui.dev/img/og-image.png"
+		/>
+
+		<script is:inline type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "WebSite",
+				"name": "njX UI",
+				"url": "https://njxui.dev/"
+			}
+		</script>
+	</Fragment>
+
+	<style is:global>
+		.ui-preview-hero {
+			padding: 0 0 22px;
+		}
+		.ui-preview-shell {
+			position: relative;
+			overflow: hidden;
+			border: 1px solid
+				color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+			border-radius: 28px;
+			background:
+				radial-gradient(
+					circle at top right,
+					color-mix(in srgb, var(--color-primary) 12%, transparent),
+					transparent 28%
+				),
+				radial-gradient(
+					circle at bottom left,
+					color-mix(in srgb, var(--color-accent) 12%, transparent),
+					transparent 30%
+				),
+				linear-gradient(
+					145deg,
+					color-mix(
+						in srgb,
+						var(--color-dark-secondary) 88%,
+						var(--сolor-dark)
+					),
+					color-mix(
+						in srgb,
+						var(--сolor-dark) 82%,
+						var(--color-dark-secondary)
+					)
+				);
+			box-shadow:
+				0 22px 60px color-mix(in srgb, #000 20%, transparent),
+				inset 0 1px 0 color-mix(in srgb, #fff 4%, transparent);
+		}
+		.ui-preview-shell::before,
+		.ui-preview-shell::after {
+			content: '';
+			position: absolute;
+			border-radius: 999px;
+			filter: blur(14px);
+			pointer-events: none;
+		}
+		.ui-preview-shell::before {
+			top: -90px;
+			right: -70px;
+			width: 260px;
+			height: 260px;
+			background: radial-gradient(
+				circle,
+				color-mix(in srgb, var(--color-primary) 18%, transparent),
+				transparent 72%
+			);
+		}
+		.ui-preview-shell::after {
+			left: -70px;
+			bottom: -100px;
+			width: 220px;
+			height: 220px;
+			background: radial-gradient(
+				circle,
+				color-mix(in srgb, var(--color-accent) 16%, transparent),
+				transparent 72%
+			);
+		}
+		.ui-preview-grid {
+			display: grid;
+			grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.95fr);
+			gap: 24px;
+			padding: 28px;
+		}
+		.ui-preview-copy {
+			max-width: 760px;
+		}
+		.ui-preview-kicker {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			padding: 8px 14px;
+			margin-bottom: 18px;
+			border-radius: 999px;
+			border: 1px solid
+				color-mix(in srgb, var(--color-primary) 22%, transparent);
+			background: color-mix(
+				in srgb,
+				var(--color-primary) 9%,
+				transparent
+			);
+			color: var(--color-primary);
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 1.4px;
+			text-transform: uppercase;
+		}
+		.ui-preview-kicker::before {
+			content: '';
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			background: currentColor;
+			box-shadow: 0 0 14px currentColor;
+		}
+		.ui-preview-title {
+			margin: 0 0 16px;
+			color: var(--color-light);
+			font-family: 'Space Grotesk', 'Roboto', sans-serif;
+			font-size: clamp(34px, 5vw, 58px);
+			line-height: 0.95;
+			letter-spacing: -2px;
+		}
+		.ui-preview-title strong {
+			display: inline-block;
+			color: var(--color-primary);
+		}
+		.ui-preview-text {
+			max-width: 640px;
+			margin: 0 0 22px;
+			color: var(--color-muted);
+			font-size: 15px;
+			line-height: 1.72;
+		}
+		.ui-preview-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+			margin-bottom: 18px;
+		}
+		.ui-preview-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			min-height: 42px;
+			padding: 0 16px;
+			border-radius: 12px;
+			text-decoration: none;
+			font-size: 13px;
+			font-weight: 700;
+			transition:
+				transform 0.18s ease,
+				border-color 0.18s ease,
+				background 0.18s ease,
+				color 0.18s ease;
+		}
+		.ui-preview-btn:hover {
+			transform: translateY(-1px);
+		}
+		.ui-preview-btn-primary {
+			background: linear-gradient(
+				135deg,
+				var(--color-primary),
+				color-mix(
+					in srgb,
+					var(--color-accent) 55%,
+					var(--color-primary)
+				)
+			);
+			color: #fff;
+			box-shadow: 0 12px 30px
+				color-mix(in srgb, var(--color-primary) 28%, transparent);
+		}
+		.ui-preview-btn-secondary {
+			border: 1px solid
+				color-mix(in srgb, var(--color-neutral-600) 26%, transparent);
+			background: color-mix(in srgb, var(--сolor-dark) 35%, transparent);
+			color: var(--color-light);
+		}
+		.ui-preview-meta {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+		}
+		.ui-preview-pill {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			min-height: 34px;
+			padding: 0 12px;
+			border-radius: 999px;
+			border: 1px solid
+				color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+			background: color-mix(in srgb, var(--сolor-dark) 26%, transparent);
+			color: var(--color-muted);
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 0.2px;
+		}
+		.ui-preview-pill strong {
+			color: var(--color-light);
+		}
+		.ui-preview-summary {
+			display: grid;
+			gap: 14px;
+			align-content: start;
+		}
+		.ui-preview-card {
+			position: relative;
+			overflow: hidden;
+			padding: 18px;
+			border-radius: 22px;
+			border: 1px solid
+				color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+			background: linear-gradient(
+				180deg,
+				color-mix(in srgb, var(--сolor-dark) 12%, transparent),
+				color-mix(
+					in srgb,
+					var(--color-dark-secondary) 88%,
+					var(--сolor-dark)
+				)
+			);
+		}
+		.ui-preview-card::before {
+			content: '';
+			position: absolute;
+			inset: auto -40px -80px auto;
+			width: 160px;
+			height: 160px;
+			border-radius: 50%;
+			background: radial-gradient(
+				circle,
+				color-mix(in srgb, var(--color-primary) 18%, transparent),
+				transparent 72%
+			);
+			pointer-events: none;
+		}
+		.ui-preview-label {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			margin-bottom: 14px;
+			color: var(--color-primary);
+			font-size: 11px;
+			font-weight: 800;
+			letter-spacing: 1.2px;
+			text-transform: uppercase;
+		}
+		.ui-preview-label::before {
+			content: '';
+			width: 24px;
+			height: 1px;
+			background: currentColor;
+		}
+		.ui-preview-code {
+			display: block;
+			margin-bottom: 12px;
+			padding: 16px;
+			overflow: auto;
+			border-radius: 16px;
+			border: 1px solid
+				color-mix(in srgb, var(--color-neutral-600) 16%, transparent);
+			background: color-mix(in srgb, var(--сolor-dark) 72%, transparent);
+			color: #d7e0ea;
+			font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+			font-size: 12px;
+			line-height: 1.7;
+		}
+		.ui-preview-note {
+			margin: 0;
+			color: var(--color-muted);
+			font-size: 13px;
+			line-height: 1.68;
+		}
+		.ui-preview-note strong {
+			color: var(--color-light);
+		}
+		.ui-preview-stats {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 10px;
+		}
+		.ui-preview-stat {
+			padding: 14px 12px;
+			border-radius: 16px;
+			border: 1px solid
+				color-mix(in srgb, var(--color-neutral-600) 14%, transparent);
+			background: color-mix(in srgb, var(--сolor-dark) 32%, transparent);
+		}
+		.ui-preview-stat-value {
+			display: block;
+			margin-bottom: 4px;
+			color: var(--color-light);
+			font-size: 22px;
+			font-weight: 900;
+			letter-spacing: -0.8px;
+		}
+		.ui-preview-stat-label {
+			color: var(--color-muted);
+			font-size: 11px;
+			line-height: 1.4;
+		}
+		.ui-preview-quick {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 14px;
+			margin: 18px 0 30px;
+		}
+		.ui-preview-quick-card {
+			display: block;
+			padding: 18px 18px 16px;
+			border-radius: 20px;
+			text-decoration: none;
+			border: 1px solid
+				color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+			background: linear-gradient(
+				180deg,
+				color-mix(
+					in srgb,
+					var(--color-dark-secondary) 92%,
+					var(--сolor-dark)
+				),
+				color-mix(
+					in srgb,
+					var(--сolor-dark) 14%,
+					var(--color-dark-secondary)
+				)
+			);
+			transition:
+				transform 0.2s ease,
+				border-color 0.2s ease,
+				box-shadow 0.2s ease;
+		}
+		.ui-preview-quick-card:hover {
+			transform: translateY(-2px);
+			border-color: color-mix(
+				in srgb,
+				var(--color-primary) 26%,
+				transparent
+			);
+			box-shadow: 0 16px 36px color-mix(in srgb, #000 18%, transparent);
+		}
+		.ui-preview-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 40px;
+			height: 40px;
+			margin-bottom: 14px;
+			border-radius: 14px;
+			background: color-mix(
+				in srgb,
+				var(--color-primary) 10%,
+				transparent
+			);
+			color: var(--color-primary);
+		}
+		.ui-preview-quick-card strong {
+			display: block;
+			margin-bottom: 8px;
+			color: var(--color-light);
+			font-size: 15px;
+			letter-spacing: -0.2px;
+		}
+		.ui-preview-quick-card span {
+			display: block;
+			color: var(--color-muted);
+			font-size: 13px;
+			line-height: 1.6;
+		}
+
+		@media (max-width: 1100px) {
+			.ui-preview-grid {
+				grid-template-columns: 1fr;
+			}
+			.ui-preview-summary {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+		}
+
+		@media (max-width: 900px) {
+			.ui-preview-summary,
+			.ui-preview-quick {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		@media (max-width: 640px) {
+			.ui-preview-hero {
+				padding-bottom: 18px;
+			}
+			.ui-preview-shell {
+				border-radius: 22px;
+			}
+			.ui-preview-grid {
+				padding: 22px;
+				gap: 18px;
+			}
+			.ui-preview-title {
+				font-size: clamp(30px, 10vw, 42px);
+				letter-spacing: -1.4px;
+			}
+			.ui-preview-text {
+				font-size: 14px;
+			}
+			.ui-preview-actions {
+				flex-direction: column;
+			}
+			.ui-preview-btn {
+				justify-content: center;
+				width: 100%;
+			}
+			.ui-preview-stats {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+
+	<!-- Body content -->
+	<div id="lib-toast-container"></div>
+
+	<!-- Topbar и Sidebar — компоненты вместо data-component -->
+	<LibsTopbar />
+
+	<div class="lib-wrap">
+		<Sidebar><LibsSidebar /></Sidebar>
+		<main class="lib-main">
+			<section class="ui-preview-hero">
+				<div class="ui-preview-shell">
+					<div class="ui-preview-grid">
+						<div class="ui-preview-copy">
+							<div class="ui-preview-kicker">njX UI Preview</div>
+							<h1 class="ui-preview-title">
+								Component classes.
+								<strong>Production-ready polish.</strong>
+							</h1>
+							<p class="ui-preview-text">
+								This page is the full <code>njX UI</code> library
+								preview: themed components, layout primitives, utilities,
+								interactive patterns, and motion helpers in one place.
+								Instead of starting with a long wall of sections,
+								this intro gives a clear entry point into what the
+								library is for and where to start exploring.
+							</p>
+							<div class="ui-preview-actions">
+								<a
+									class="ui-preview-btn ui-preview-btn-primary"
+									href="#tokens"
+								>
+									Start With Themes
+								</a>
+								<a
+									class="ui-preview-btn ui-preview-btn-secondary"
+									href="#buttons"
+								>
+									Explore Components
+								</a>
+							</div>
+							<div class="ui-preview-meta">
+								<div class="ui-preview-pill">
+									<strong>9 themes</strong>
+									one <code>data-theme</code>
+								</div>
+								<div class="ui-preview-pill">
+									<strong>30+ components</strong>
+									CSS-first system
+								</div>
+								<div class="ui-preview-pill">
+									<strong>Motion ready</strong>
+									hover, loop, scroll
+								</div>
+							</div>
+						</div>
+
+						<div class="ui-preview-summary">
+							<div class="ui-preview-card">
+								<div class="ui-preview-label">How It Feels</div>
+								<code class="ui-preview-code">
+									&lt;button class="btn
+									btn-primary"&gt;Launch&lt;/button&gt;
+									<br />
+									&lt;div class="card glass"&gt;...&lt;/div&gt;
+									<br />
+									&lt;html data-theme="ocean"&gt;
+								</code>
+								<p class="ui-preview-note">
+									<strong>The idea:</strong> ship a consistent UI
+									layer with real component classes, theme tokens,
+									and expressive states, without adding JS dependencies
+									or a custom build toolchain.
+								</p>
+							</div>
+
+							<div class="ui-preview-card">
+								<div class="ui-preview-label">Best For</div>
+								<p class="ui-preview-note">
+									Landing pages, dashboards, docs, admin
+									panels, SaaS interfaces, internal tools, and
+									fast prototypes where you want stronger UI
+									control than classless mode while keeping
+									the system lightweight.
+								</p>
+							</div>
+
+							<div class="ui-preview-card">
+								<div class="ui-preview-label">At A Glance</div>
+								<div class="ui-preview-stats">
+									<div class="ui-preview-stat">
+										<span class="ui-preview-stat-value"
+											>30+</span
+										>
+										<span class="ui-preview-stat-label"
+											>component sections on this page</span
+										>
+									</div>
+									<div class="ui-preview-stat">
+										<span class="ui-preview-stat-value"
+											>9</span
+										>
+										<span class="ui-preview-stat-label"
+											>built-in themes</span
+										>
+									</div>
+									<div class="ui-preview-stat">
+										<span class="ui-preview-stat-value"
+											>{SIZE_FULL}</span
+										>
+										<span class="ui-preview-stat-label"
+											>full bundle target</span
+										>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="ui-preview-quick" aria-label="Quick navigation">
+				<a class="ui-preview-quick-card" href="#tokens">
+					<div class="ui-preview-icon">
+						<svg
+							width="18"
+							height="18"
+							viewBox="0 0 16 16"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.6"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<circle cx="8" cy="8" r="5"></circle>
+							<path d="M8 3v2M8 11v2M3 8h2M11 8h2"></path>
+						</svg>
+					</div>
+					<strong>Theme Foundation</strong>
+					<span>
+						Start with tokens and palettes to see how the same UI
+						system reshapes itself through a single HTML attribute.
+					</span>
+				</a>
+
+				<a class="ui-preview-quick-card" href="#buttons">
+					<div class="ui-preview-icon">
+						<svg
+							width="18"
+							height="18"
+							viewBox="0 0 16 16"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.6"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<rect x="2" y="3" width="12" height="10" rx="2"
+							></rect>
+							<path d="M5 6.5h6M5 9.5h4"></path>
+						</svg>
+					</div>
+					<strong>Core Components</strong>
+					<span>
+						Jump into buttons, cards, forms, tables, navigation and
+						overlays to inspect the main building blocks.
+					</span>
+				</a>
+
+				<a class="ui-preview-quick-card" href="#animations">
+					<div class="ui-preview-icon">
+						<svg
+							width="18"
+							height="18"
+							viewBox="0 0 16 16"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.6"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M3 10c1.2-3.2 2.7-4.8 4.6-4.8 1.6 0 2.3 1 3 2.2.6 1 1.2 1.8 2.4 1.8"
+							></path>
+							<path d="M3 6.5h2.2"></path>
+							<path d="M10.8 10.2H13"></path>
+						</svg>
+					</div>
+					<strong>Motion & Polish</strong>
+					<span>
+						Review animation, gradient and hover helpers to see how
+						`njX UI` adds visual energy without heavy runtime logic.
+					</span>
+				</a>
+			</section>
+
+			<!--! Foundation -->
+			<Tokens />
+			<Grid />
+			<Typography />
+			<Utils />
+
+			<!--! Visual -->
+			<Skeleton />
+			<Animations />
+			<Gradients />
+			<Hovers />
+			<HoverTips />
+
+			<!--! Components · CSS -->
+			<Buttons />
+			<Cards />
+			<Tags />
+			<Forms />
+			<Nav />
+			<Progress />
+			<Table />
+			<Breadcrumb />
+			<Pagination />
+			<Panel />
+			<Links />
+			<Sections />
+			<Social />
+
+			<!--! Components · JS -->
+			<Tabs />
+			<Collapse />
+			<Dropdown />
+			<Popups />
+			<Topbar />
+			<Notifications />
+			<Carousel />
+		</main>
+	</div>
+
+	<DownloadModal />
+
+	<!-- jszip — нужен для кнопки Download CSS -->
+	<script
+		is:inline
+		src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"
+	></script>
+
+	<!-- Ko-fi виджет -->
+	<!-- <script is:inline src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
+	></script> -->
+	<!-- <script is:inline>
+		if (!window.__kofiDrawn) {
+			window.__kofiDrawn = true;
+			kofiwidget2.init('Support me on Ko-fi', 'O5O51XAFMR');
+			kofiwidget2.draw();
+		}
+	</script> -->
+	<LibsFooter activePage="njxUIComponents" />
+
+	<!-- Dispatch components-loaded so lib-docs.js initializes (renderUtils, carousels, etc.) -->
+	<script is:inline>
+		document.dispatchEvent(new Event('components-loaded'));
+	</script>
+	<Bottombar activePage="index" />
+</BaseLayout>

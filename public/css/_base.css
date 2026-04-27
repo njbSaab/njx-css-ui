@@ -1,0 +1,689 @@
+/* ============================================================
+   _base.css — Design Tokens
+   Single source of truth for all variables.
+   Change here — applies everywhere.
+   ============================================================ */
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&family=Figtree:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* ── Colors — semantic ── */
+  --color-primary:   #14a0ff;
+  --color-accent:    #F9063F;
+  --color-success:   #9ce700;
+  --color-error:     #d43939;
+  --color-warning:   #ffdd00;
+  --color-primary-shadow:    rgba(20, 161, 255, 0.56);
+
+  --сolor-dark:         #0a0a0a;
+  --color-dark-secondary:    #151515;
+  --color-primary-opacity:         rgba(20, 160, 255, 0.12);
+  --color-light:       #ffffff;
+  --color-light-secondary:  #ffffff;
+  --color-muted:      #8a8f99;
+  --color-muted-light:      #d2d6dd;
+
+  /* ── Shades primary (100=light, 900=dark) ── */
+  --color-primary-100: #e6f4ff;
+  --color-primary-200: #bde0ff;
+  --color-primary-300: #7ec8ff;
+  --color-primary-400: #3db1ff;
+  --color-primary-500: #14a0ff;
+  --color-primary-600: #0080e0;
+  --color-primary-700: #0060b0;
+  --color-primary-800: #004080;
+  --color-primary-900: #002050;
+
+  /* ── Shades accent ── */
+  --color-accent-100: #ffe6ec;
+  --color-accent-200: #ffb3c2;
+  --color-accent-300: #ff6680;
+  --color-accent-400: #ff2255;
+  --color-accent-500: #F9063F;
+  --color-accent-600: #cc0030;
+  --color-accent-700: #990020;
+  --color-accent-800: #660015;
+  --color-accent-900: #33000a;
+
+  /* ── Shades success ── */
+  --color-success-100: #edffd1;
+  --color-success-200: #ccff80;
+  --color-success-300: #aaee33;
+  --color-success-400: #9ce700;
+  --color-success-500: #80cc00;
+  --color-success-600: #60a000;
+  --color-success-700: #407000;
+  --color-success-800: #204000;
+
+  /* ── Shades error ── */
+  --color-error-100: #ffe6e6;
+  --color-error-200: #ffb3b3;
+  --color-error-300: #ff6666;
+  --color-error-400: #ee3333;
+  --color-error-500: #d43939;
+  --color-error-600: #aa2020;
+  --color-error-700: #801010;
+  --color-error-800: #550808;
+
+  /* ── Neutrals (greys) ── */
+  --color-neutral-50:  #f9f9f9;
+  --color-neutral-100: #f0f0f0;
+  --color-neutral-200: #d2d6dd;
+  --color-neutral-300: #aaaaaa;
+  --color-neutral-400: #747681;
+  --color-neutral-500: #555555;
+  --color-neutral-600: #3f4144;
+  --color-neutral-700: #2a2a2a;
+  --color-neutral-800: #1a1a1a;
+  --color-neutral-900: #0a0a0a;
+
+  /* ── Colors — back copability ── */
+  --bg-main:         #0a0a0a;
+  --bg-secondary:    #151515;
+  --bg-card:         rgba(20, 160, 255, 0.12);
+  --text-main:       #ffffff;
+  --text-secondary:  #ffffff;
+  --text-light:      #d2d6dd;
+  --color-shadow:    rgba(20, 161, 255, 0.56);
+
+
+  /* ── Fonts — named stacks (Google Fonts) ── */
+  --font-inter:       "Inter", system-ui, -apple-system, sans-serif;
+  --font-roboto:      "Roboto", -apple-system, "Segoe UI", sans-serif;
+  --font-poppins:     "Poppins", sans-serif;
+  --font-montserrat:  "Montserrat", sans-serif;
+  --font-outfit:      "Outfit", sans-serif;
+  --font-jakarta:     "Plus Jakarta Sans", sans-serif;
+  --font-dm-sans:     "DM Sans", sans-serif;
+  --font-nunito:      "Nunito", sans-serif;
+  --font-space:       "Space Grotesk", sans-serif;
+  --font-manrope:     "Manrope", sans-serif;
+  --font-figtree:     "Figtree", sans-serif;
+  --font-sora:        "Sora", sans-serif;
+
+  /* ── Fonts — monospace ── */
+  --font-roboto-mono: "Roboto Mono", "Consolas", monospace;
+  --font-jetbrains:   "JetBrains Mono", "Consolas", monospace;
+  --font-fira-code:   "Fira Code", "Consolas", monospace;
+
+  /* ── Active roles (change here — applies everywhere) ── */
+  --font-sans:    var(--font-inter);
+  --font-heading: var(--font-poppins);
+  --font-mono:    var(--font-roboto-mono);
+
+  /* ── Fonts — fixed sizes (px) ── */
+  --fs-xs:   12px;
+  --fs-sm:   14px;
+  --fs-base: 16px;
+  --fs-lg:   18px;
+  --fs-xl:   20px;
+  --fs-2xl:  24px;
+  --fs-3xl:  30px;
+  --fs-4xl:  36px;
+  --fs-5xl:  48px;
+  --fs-6xl:  60px;
+  --fs-7xl:  72px;
+  --fs-hero: 96px;
+
+  /* ── Fonts — fluid / responsive (vw + clamp) ── */
+  --fs-f-xs:   clamp(10px, 1vw,   12px);
+  --fs-f-sm:   clamp(12px, 1.2vw, 14px);
+  --fs-f-base: clamp(14px, 1.4vw, 16px);
+  --fs-f-lg:   clamp(16px, 1.6vw, 20px);
+  --fs-f-xl:   clamp(18px, 2vw,   24px);
+  --fs-f-2xl:  clamp(20px, 2.5vw, 30px);
+  --fs-f-3xl:  clamp(24px, 3vw,   36px);
+  --fs-f-4xl:  clamp(28px, 4vw,   48px);
+  --fs-f-5xl:  clamp(36px, 5vw,   60px);
+  --fs-f-6xl:  clamp(40px, 6vw,   72px);
+  --fs-f-7xl:  clamp(48px, 8vw,   96px);
+  --fs-f-hero: clamp(60px, 10vw, 120px);
+
+  /* ── Line height ── */
+  --lh-tight:   0.9;
+  --lh-snug:    1.2;
+  --lh-normal:  1.5;
+  --lh-relaxed: 1.8;
+
+  /* ── Spacing (spacing scale) ── */
+  --space-0:  0px;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ── Border radius ── */
+  --radius-none: 0px;
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-xl:   30px;
+  --radius-2xl:  40px;
+  --radius-full: 9999px;
+
+  /* ── Transitions ── */
+  --ease-fast: 0.15s ease-in-out;
+  --ease:      0.3s ease-in-out;
+  --ease-slow: 0.5s ease-in-out;
+
+  /* ── Z-indexes ── */
+  --z-0:     0;
+  --z-1:     1;
+  --z-10:    10;
+  --z-50:    50;
+  --z-100:   100;
+  --z-modal: 1000;
+
+  /* ── Shadows ── */
+  --shadow-sm:      0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md:      0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg:      0 10px 20px rgba(0, 0, 0, 0.5);
+  --shadow-primary: 0 0 20px var(--color-primary-shadow);
+  --shadow-accent:  0 0 20px rgba(249, 6, 63, 0.5);
+  --shadow-glow:    0 0 30px rgba(255, 255, 255, 0.2);
+
+  /* ── Container ── */
+  --container-width: 1340px;
+  --grid-maxWidth:   120rem;
+  --grid-gutter:     2rem;
+
+  /* ── Deprecated aliases (for backward compatibility) ── */
+  --font-size:              var(--fs-base);
+  --font-color:             var(--color-light);
+  --font-color-secondary:   var(--color-light-secondary);
+  --font-family-sans:       var(--font-sans);
+  --font-family-mono:       var(--font-mono);
+  --color-lightGrey:        var(--color-neutral-200);
+  --color-grey:             var(--color-neutral-400);
+  --color-darkGrey:         var(--color-neutral-600);
+  --color-link:             var(--color-primary);
+  --color-link-hover:       var(--color-primary);
+}
+
+/* ============================================================
+   THEMES — toggle via data-theme on <html>
+   document.documentElement.setAttribute('data-theme', 'red')
+   ============================================================ */
+
+[data-theme="dark"],
+:root {
+  --color-primary:   #14a0ff;
+  --color-accent:    #ff6e00;
+  --color-success:   #9ce700;
+  --color-error:     #d43939;
+  --color-warning:   #ffdd00;
+  --сolor-dark:         #0a0a0a;
+  --color-dark-secondary:    #151515;
+  --color-primary-opacity:         #1a1a1a;
+  --color-light:       #ffffff;
+  --color-muted:      #8a8f99;
+  --color-primary-shadow:    rgba(20, 161, 255, 0.56);
+  --color-primary-opacity:    rgba(20, 161, 255, 0.1);
+}
+
+[data-theme="light"] {
+  --color-primary:   #14a0ff;
+  --color-accent:    #ff4500;
+  --color-success:   #44aa00;
+  --color-error:     #cc2200;
+  --color-warning:   #ffa500;
+  --сolor-dark:         #ffffff;
+  --color-dark-secondary:    #f5f5f5;
+  --color-primary-opacity:         #f5f5f5;
+  --color-light:       #0d1117;
+  --color-light-secondary:  #1a2332;
+  --color-muted:      #57606a;
+  --color-primary-shadow:    rgba(20, 161, 255, 0.3);
+  --color-primary-opacity:    rgba(20, 161, 255, 0.1);
+}
+
+[data-theme="red"] {
+  --color-primary:   #ff2233;
+  --color-accent:    #00e5ff;
+  --color-success:   #9ce700;
+  --color-error:     #ff0000;
+  --color-warning:   #ffaa00;
+  --сolor-dark:         #1a0505;
+  --color-dark-secondary:    #120303;
+  --color-primary-opacity:         rgba(50, 0, 0, 0.5);
+  --color-light:       #ffffff;
+  --color-muted:      #aa7777;
+  --color-primary-shadow:    rgba(255, 34, 51, 0.6);
+  --color-primary-opacity:    rgba(255, 34, 51, 0.1);
+}
+
+[data-theme="blue"] {
+  --color-primary:   #0055ff;
+  --color-accent:    #ff9500;
+  --color-success:   #00ddaa;
+  --color-error:     #ff4455;
+  --color-warning:   #ffcc00;
+  --сolor-dark:         #030d1a;
+  --color-dark-secondary:    #020a14;
+  --color-primary-opacity:         rgba(0, 20, 60, 0.5);
+  --color-light:       #ffffff;
+  --color-muted:      #7799bb;
+  --color-primary-shadow:    rgba(0, 85, 255, 0.6);
+  --color-primary-opacity:    rgba(0, 85, 255, 0.1);
+}
+
+[data-theme="green"] {
+  --color-primary:   #00cc44;
+  --color-accent:    #ff2d55;
+  --color-success:   #00ff88;
+  --color-error:     #ff4444;
+  --color-warning:   #ffdd00;
+  --сolor-dark:         #031a05;
+  --color-dark-secondary:    #021203;
+  --color-primary-opacity:         rgba(0, 30, 5, 0.5);
+  --color-light:       #ffffff;
+  --color-muted:      #66aa77;
+  --color-primary-shadow:    rgba(0, 204, 68, 0.6);
+  --color-primary-opacity:    rgba(0, 204, 68, 0.1);
+}
+
+[data-theme="cyan"] {
+  --color-primary:   #00e5ff;
+  --color-accent:    #ff6e00;
+  --color-success:   #00ff88;
+  --color-error:     #ff4455;
+  --color-warning:   #ffdd00;
+  --сolor-dark:         #031418;
+  --color-dark-secondary:    #020e10;
+  --color-primary-opacity:         rgba(0, 30, 40, 0.5);
+  --color-light:       #ffffff;
+  --color-muted:      #559999;
+  --color-primary-shadow:    rgba(0, 229, 255, 0.5);
+  --color-regular-opacity:    rgba(0, 229, 255, 0.1);
+}
+
+[data-theme="yellow"] {
+  --color-primary:   #ffdd00;
+  --color-accent:    #b040ff;
+  --color-success:   #9ce700;
+  --color-error:     #ff3333;
+  --color-warning:   #ffaa00;
+  --сolor-dark:         #1a1400;
+  --color-dark-secondary:    #120f00;
+  --color-primary-opacity:         rgba(40, 30, 0, 0.5);
+  --color-light:       #ffffff;
+  --color-muted:      #aa9944;
+  --color-primary-shadow:    rgba(255, 221, 0, 0.5);
+  --color-primary-opacity:    rgba(255, 221, 0, 0.1);
+}
+
+[data-theme="pink"] {
+  --color-primary:   #B40950;
+  --color-accent:    #00e5ff;
+  --color-success:   #9ce700;
+  --color-error:     #ff3333;
+  --color-warning:   #F2FF00;
+  --сolor-dark:         #1a0312;
+  --color-dark-secondary:    #12020d;
+  --color-primary-opacity:         rgba(50, 0, 30, 0.5);
+  --color-light:       #ffffff;
+  --color-muted:      #aa5588;
+  --color-primary-shadow:    rgba(255, 0, 136, 0.5);
+  --color-primary-opacity:    rgba(255, 0, 136, 0.1);
+}
+
+[data-theme="purple"] {
+  --color-primary:   #9933ff;
+  --color-accent:    #00ffcc;
+  --color-success:   #00ddaa;
+  --color-error:     #ff4455;
+  --color-warning:   #ffdd00;
+  --сolor-dark:         #0d0318;
+  --color-dark-secondary:    #080112;
+  --color-primary-opacity:         rgba(20, 0, 50, 0.5);
+  --color-light:       #ffffff;
+  --color-muted:      #8855aa;
+  --color-primary-shadow:    rgba(153, 51, 255, 0.5);
+  --color-primary-opacity:    rgba(153, 51, 255, 0.1);
+}
+
+
+/* ============================================================
+   RESPONSIVE TOKENS — override variables at each
+   breakpoint. All components scale automatically.
+   ============================================================ */
+
+/* ── 1200px — tablet / laptop ── */
+@media (max-width: 1200px) {
+  :root {
+    /* Fonts */
+    --fs-base: 15px;
+    --fs-lg:   17px;
+    --fs-xl:   19px;
+    --fs-2xl:  22px;
+    --fs-3xl:  26px;
+    --fs-4xl:  32px;
+    --fs-5xl:  42px;
+    --fs-6xl:  52px;
+    --fs-7xl:  62px;
+    --fs-hero: 80px;
+
+    /* Fluid fonts */
+    --fs-f-xl:   clamp(16px, 2vw,   22px);
+    --fs-f-2xl:  clamp(18px, 2.5vw, 28px);
+    --fs-f-3xl:  clamp(20px, 3vw,   32px);
+    --fs-f-4xl:  clamp(24px, 4vw,   44px);
+    --fs-f-5xl:  clamp(30px, 5vw,   52px);
+    --fs-f-6xl:  clamp(36px, 6vw,   64px);
+    --fs-f-7xl:  clamp(42px, 7vw,   80px);
+    --fs-f-hero: clamp(52px, 9vw,  100px);
+
+    /* Spacing */
+    --space-3:  10px;
+    --space-4:  14px;
+    --space-5:  18px;
+    --space-6:  20px;
+    --space-8:  28px;
+    --space-10: 36px;
+    --space-12: 44px;
+    --space-16: 56px;
+    --space-20: 70px;
+    --space-24: 84px;
+
+    /* Grid */
+    --grid-gutter:     1.5rem;
+    --container-width: 1100px;
+  }
+}
+
+/* ── 768px — mobile / tablet portrait ── */
+@media (max-width: 768px) {
+  :root {
+    /* Fonts */
+    --fs-xs:   11px;
+    --fs-sm:   13px;
+    --fs-base: 14px;
+    --fs-lg:   16px;
+    --fs-xl:   18px;
+    --fs-2xl:  20px;
+    --fs-3xl:  24px;
+    --fs-4xl:  28px;
+    --fs-5xl:  36px;
+    --fs-6xl:  44px;
+    --fs-7xl:  52px;
+    --fs-hero: 64px;
+
+    /* Fluid fonts */
+    --fs-f-xs:   clamp(9px,  1.2vw, 11px);
+    --fs-f-sm:   clamp(11px, 1.5vw, 13px);
+    --fs-f-base: clamp(13px, 1.8vw, 15px);
+    --fs-f-lg:   clamp(14px, 2vw,   17px);
+    --fs-f-xl:   clamp(15px, 2.5vw, 20px);
+    --fs-f-2xl:  clamp(16px, 3vw,   24px);
+    --fs-f-3xl:  clamp(18px, 3.5vw, 28px);
+    --fs-f-4xl:  clamp(20px, 5vw,   36px);
+    --fs-f-5xl:  clamp(24px, 6vw,   44px);
+    --fs-f-6xl:  clamp(28px, 7vw,   52px);
+    --fs-f-7xl:  clamp(32px, 8vw,   62px);
+    --fs-f-hero: clamp(38px, 9vw,   72px);
+
+    /* Spacing */
+    --space-2:  6px;
+    --space-3:  8px;
+    --space-4:  12px;
+    --space-5:  14px;
+    --space-6:  18px;
+    --space-8:  24px;
+    --space-10: 30px;
+    --space-12: 36px;
+    --space-16: 48px;
+    --space-20: 60px;
+    --space-24: 72px;
+
+    /* Border radius */
+    --radius-lg:  16px;
+    --radius-xl:  22px;
+    --radius-2xl: 30px;
+
+    /* Grid */
+    --grid-gutter:     1rem;
+    --container-width: 100%;
+  }
+}
+
+/* ── 480px — small mobile ── */
+@media (max-width: 480px) {
+  :root {
+    /* Fonts */
+    --fs-xs:   10px;
+    --fs-sm:   12px;
+    --fs-base: 13px;
+    --fs-lg:   14px;
+    --fs-xl:   16px;
+    --fs-2xl:  18px;
+    --fs-3xl:  20px;
+    --fs-4xl:  24px;
+    --fs-5xl:  28px;
+    --fs-6xl:  34px;
+    --fs-7xl:  40px;
+    --fs-hero: 48px;
+
+    /* Fluid fonts */
+    --fs-f-xs:   clamp(9px,  2vw,  10px);
+    --fs-f-sm:   clamp(10px, 2.5vw, 12px);
+    --fs-f-base: clamp(12px, 3vw,  14px);
+    --fs-f-lg:   clamp(13px, 3.5vw, 15px);
+    --fs-f-xl:   clamp(14px, 4vw,  17px);
+    --fs-f-2xl:  clamp(15px, 4.5vw, 20px);
+    --fs-f-3xl:  clamp(16px, 5vw,  22px);
+    --fs-f-4xl:  clamp(18px, 6vw,  26px);
+    --fs-f-5xl:  clamp(20px, 7vw,  32px);
+    --fs-f-6xl:  clamp(24px, 8vw,  38px);
+    --fs-f-7xl:  clamp(28px, 9vw,  44px);
+    --fs-f-hero: clamp(32px, 10vw, 52px);
+
+    /* Spacing */
+    --space-1:  3px;
+    --space-2:  5px;
+    --space-3:  7px;
+    --space-4:  10px;
+    --space-5:  12px;
+    --space-6:  14px;
+    --space-8:  18px;
+    --space-10: 24px;
+    --space-12: 28px;
+    --space-16: 36px;
+    --space-20: 48px;
+    --space-24: 56px;
+
+    /* Border radius */
+    --radius-md:  8px;
+    --radius-lg:  12px;
+    --radius-xl:  16px;
+    --radius-2xl: 22px;
+
+    /* Grid */
+    --grid-gutter:     0.75rem;
+    --container-width: 100%;
+  }
+}
+
+/* ── 390px — iPhone 14 / standard mobile ── */
+@media (max-width: 390px) {
+  :root {
+    --fs-xs:   9px;
+    --fs-sm:   11px;
+    --fs-base: 12px;
+    --fs-lg:   13px;
+    --fs-xl:   15px;
+    --fs-2xl:  17px;
+    --fs-3xl:  19px;
+    --fs-4xl:  22px;
+    --fs-5xl:  26px;
+    --fs-6xl:  30px;
+    --fs-7xl:  36px;
+    --fs-hero: 44px;
+
+    --fs-f-xs:   clamp(8px,  2vw,   9px);
+    --fs-f-sm:   clamp(9px,  2.5vw, 11px);
+    --fs-f-base: clamp(11px, 3vw,   13px);
+    --fs-f-lg:   clamp(12px, 3.5vw, 14px);
+    --fs-f-xl:   clamp(13px, 4vw,   16px);
+    --fs-f-2xl:  clamp(14px, 4.5vw, 18px);
+    --fs-f-3xl:  clamp(15px, 5vw,   20px);
+    --fs-f-4xl:  clamp(16px, 6vw,   24px);
+    --fs-f-5xl:  clamp(18px, 7vw,   28px);
+    --fs-f-6xl:  clamp(22px, 8vw,   34px);
+    --fs-f-7xl:  clamp(26px, 9vw,   40px);
+    --fs-f-hero: clamp(30px, 10vw,  48px);
+
+    --space-1:  2px;
+    --space-2:  4px;
+    --space-3:  6px;
+    --space-4:  9px;
+    --space-5:  10px;
+    --space-6:  12px;
+    --space-8:  16px;
+    --space-10: 20px;
+    --space-12: 24px;
+    --space-16: 32px;
+    --space-20: 42px;
+    --space-24: 50px;
+
+    --radius-sm:  4px;
+    --radius-md:  7px;
+    --radius-lg:  10px;
+    --radius-xl:  14px;
+    --radius-2xl: 18px;
+
+    --grid-gutter: 0.625rem;
+  }
+}
+
+/* ── 360px — Android / small mobile ── */
+@media (max-width: 360px) {
+  :root {
+    --fs-xs:   8px;
+    --fs-sm:   10px;
+    --fs-base: 11px;
+    --fs-lg:   12px;
+    --fs-xl:   14px;
+    --fs-2xl:  16px;
+    --fs-3xl:  18px;
+    --fs-4xl:  20px;
+    --fs-5xl:  24px;
+    --fs-6xl:  28px;
+    --fs-7xl:  32px;
+    --fs-hero: 40px;
+
+    --fs-f-xs:   clamp(7px,  2vw,   8px);
+    --fs-f-sm:   clamp(8px,  2.5vw, 10px);
+    --fs-f-base: clamp(10px, 3vw,   12px);
+    --fs-f-lg:   clamp(11px, 3.5vw, 13px);
+    --fs-f-xl:   clamp(12px, 4vw,   15px);
+    --fs-f-2xl:  clamp(13px, 4.5vw, 17px);
+    --fs-f-3xl:  clamp(14px, 5vw,   19px);
+    --fs-f-4xl:  clamp(15px, 6vw,   22px);
+    --fs-f-5xl:  clamp(17px, 7vw,   26px);
+    --fs-f-6xl:  clamp(20px, 8vw,   30px);
+    --fs-f-7xl:  clamp(23px, 9vw,   36px);
+    --fs-f-hero: clamp(27px, 10vw,  44px);
+
+    --space-1:  2px;
+    --space-2:  4px;
+    --space-3:  5px;
+    --space-4:  8px;
+    --space-5:  9px;
+    --space-6:  11px;
+    --space-8:  14px;
+    --space-10: 18px;
+    --space-12: 22px;
+    --space-16: 28px;
+    --space-20: 36px;
+    --space-24: 44px;
+
+    --radius-sm:  3px;
+    --radius-md:  6px;
+    --radius-lg:  9px;
+    --radius-xl:  12px;
+    --radius-2xl: 16px;
+
+    --grid-gutter: 0.5rem;
+  }
+}
+
+/* ── 320px — very small screen ── */
+@media (max-width: 320px) {
+  :root {
+    --fs-xs:   7px;
+    --fs-sm:   9px;
+    --fs-base: 10px;
+    --fs-lg:   11px;
+    --fs-xl:   13px;
+    --fs-2xl:  15px;
+    --fs-3xl:  16px;
+    --fs-4xl:  18px;
+    --fs-5xl:  21px;
+    --fs-6xl:  25px;
+    --fs-7xl:  29px;
+    --fs-hero: 35px;
+
+    --fs-f-xs:   clamp(6px,  2vw,   7px);
+    --fs-f-sm:   clamp(7px,  2.5vw, 9px);
+    --fs-f-base: clamp(9px,  3vw,   11px);
+    --fs-f-lg:   clamp(10px, 3.5vw, 12px);
+    --fs-f-xl:   clamp(11px, 4vw,   14px);
+    --fs-f-2xl:  clamp(12px, 4.5vw, 16px);
+    --fs-f-3xl:  clamp(13px, 5vw,   17px);
+    --fs-f-4xl:  clamp(14px, 6vw,   20px);
+    --fs-f-5xl:  clamp(15px, 7vw,   23px);
+    --fs-f-6xl:  clamp(17px, 8vw,   27px);
+    --fs-f-7xl:  clamp(20px, 9vw,   32px);
+    --fs-f-hero: clamp(23px, 10vw,  38px);
+
+    --space-1:  1px;
+    --space-2:  3px;
+    --space-3:  4px;
+    --space-4:  7px;
+    --space-5:  8px;
+    --space-6:  9px;
+    --space-8:  12px;
+    --space-10: 15px;
+    --space-12: 18px;
+    --space-16: 24px;
+    --space-20: 30px;
+    --space-24: 36px;
+
+    --radius-sm:  3px;
+    --radius-md:  5px;
+    --radius-lg:  8px;
+    --radius-xl:  10px;
+    --radius-2xl: 14px;
+
+    --grid-gutter: 0.375rem;
+  }
+}
+
+/* ── View Transitions — smooth full-page cross-fade on theme switch ──
+   Chrome 111+, Edge 111+, Safari 18+.
+   Firefox: falls back to per-element CSS transitions in _reset.css.
+────────────────────────────────────────────────────────────────────── */
+::view-transition-old(root) {
+  animation: njx-theme-out 0.18s ease forwards;
+}
+::view-transition-new(root) {
+  animation: njx-theme-in  0.22s ease forwards;
+}
+
+@keyframes njx-theme-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes njx-theme-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

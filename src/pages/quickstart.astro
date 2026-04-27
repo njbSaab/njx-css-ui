@@ -1,0 +1,3267 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PagesTopbar from '../components/PagesTopbar.astro';
+import PagesFooter from '../components/PagesFooter.astro';
+import Bottombar from '../components/Bottombar.astro';
+import Demo from '../components/demo/Demo.astro';
+import { LIB_VERSION, SIZE_FULL, SIZE_CLASSLESS } from '../lib/meta';
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Quick Start — njX UI · One CDN link. Nine themes. Zero build tools."
+  description="One CDN link. Nine themes ready to go. No bundler, no config. CDN in 30 seconds, npm in 60."
+>
+  <!-- ══ NAV ══ -->
+  <PagesTopbar activePage="quickstart" />
+
+  <!-- ══════════════════════ HERO ══════════════════════ -->
+  <section class="qs-hero">
+    <div class="qs-badge">⏱ 60-second install</div>
+    <h1 class="qs-h1">
+      <span class="qs-grad">Up and running</span><br />before your coffee.
+    </h1>
+    <p class="qs-sub">
+      One CDN link. Nine themes ready to go. No bundler, no config.
+    </p>
+  </section>
+
+  <!-- ══════════════════════ MODE BAR ══════════════════════ -->
+  <div class="doc-mode-bar" id="qs-mode-bar">
+    <span class="doc-mode-label">Mode</span>
+    <div class="doc-mode-tabs">
+      <button
+        class="doc-mode-tab active"
+        data-mode="full"
+        onclick="qsSyncMode('full')"
+      >
+        <span class="doc-mode-icon">◈</span>
+        njX UI Full
+        <span class="doc-mode-default">RECOMMENDED</span>
+        <span class="doc-mode-size">{SIZE_FULL}</span>
+      </button>
+      <button
+        class="doc-mode-tab"
+        data-mode="classless"
+        onclick="qsSyncMode('classless')"
+      >
+        <span class="doc-mode-icon">&lt;/&gt;</span>
+        Classless Only
+        <span class="doc-mode-default">LITE</span>
+        <span class="doc-mode-size">{SIZE_CLASSLESS}</span>
+      </button>
+      <button
+        class="doc-mode-tab"
+        data-mode="interactive"
+        onclick="qsSyncMode('interactive')"
+      >
+        <span class="doc-mode-icon">JS</span>
+        Interactive
+      </button>
+    </div>
+    <span class="doc-mode-hint" id="qs-mode-hint"
+      >Classless built-in — your HTML is styled automatically</span
+    >
+  </div>
+
+  <!-- ══════════════════════ PATH SELECTOR ══════════════════════ -->
+  <div class="qs-paths">
+    <div class="qs-paths-row" id="qs-paths">
+      <button class="on" data-p="cdn"
+        ><span class="em">⚡</span>CDN <span style="opacity:0.7">· 30s</span
+        ></button
+      >
+      <button data-p="npm"
+        ><span class="em">📦</span>npm <span style="opacity:0.7">· 60s</span
+        ></button
+      >
+      <button data-p="zip"
+        ><span class="em">🗂</span>Download <span style="opacity:0.7"
+          >· 90s</span
+        ></button
+      >
+    </div>
+  </div>
+
+  <!-- ══════════════════════ TIMER ══════════════════════ -->
+  <div class="qs-timer">
+    <span>Progress</span>
+    <div class="qs-timer-bar"><div id="qs-prog"></div></div>
+    <span class="qs-clock" id="qs-clock">0/4</span>
+  </div>
+
+  <!-- ══════════════════════ TRACK ══════════════════════ -->
+  <div class="qs-track" id="qs-track"></div>
+
+  <!-- ══════════════════════ SUCCESS ══════════════════════ -->
+  <div class="qs-success show" id="qs-success">
+    <div class="qs-success-card">
+      <div class="qs-success-em">🎉</div>
+      <h3>You're shipping njX UI.</h3>
+      <p>
+        Every <code>.btn</code>, <code>.tag</code>, <code>.card</code> on your page
+        now responds to <code>data-theme</code>. Want more?
+      </p>
+      <div class="qs-success-ctas">
+        <a class="qs-b qs-b-p" href={`${base}overview`}
+          >Browse 30+ components →</a
+        >
+        <a
+          class="qs-b qs-b-g"
+          href="https://github.com/njbSaab/njx-css-ui"
+          target="_blank">Star on GitHub ★</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ PANE ══════════════════════ -->
+  <div class="qs3-pane">
+    <div class="qs3-left">
+      <section class="qs3-block" id="qs3-b1">
+        <div class="qs3-n" data-n="1">Install</div>
+        <h2>One line in your <span class="qs3-em">&lt;head&gt;</span>.</h2>
+
+        <!-- Full / Interactive description -->
+        <div data-qs-mode="full interactive">
+          <p>
+            njX UI is a single CSS file. Link it from a CDN, install via npm, or
+            grab the ZIP. The rest of this page assumes the CDN path since it's
+            the fastest.
+          </p>
+          <p>
+            After the &lt;link&gt; loads you instantly have every <code
+              >.btn</code
+            >, <code>.inp</code>, <code>.tag</code>, <code>.card</code>, <code
+              >.tip</code
+            > and 20+ more classes available. No build. No bundler.
+          </p>
+        </div>
+        <!-- Classless description -->
+        <div data-qs-mode="classless" style="display:none">
+          <p>
+            <code>classless.min.css</code> — 47 KB, standalone. One link tag is all
+            you need. No class names, no build step, no bundler.
+          </p>
+          <p>
+            Every <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>,
+            <code>&lt;table&gt;</code>, <code>&lt;details&gt;</code> is styled automatically
+            through native HTML element selectors.
+          </p>
+        </div>
+
+        <div class="qs3-tip">
+          <div>
+            <b>Tip</b><br />The CDN is cached on jsdelivr — 293&nbsp;KB on disk,
+            ~40&nbsp;KB over the wire (gzip). Subsequent visitors hit your CDN
+            cache or theirs.
+          </div>
+        </div>
+      </section>
+
+      <section class="qs3-block" id="qs3-b2">
+        <div class="qs3-n" data-n="2">Theme</div>
+        <h2>One attribute. <span class="qs3-em">Nine themes.</span></h2>
+        <p>
+          Set <code>data-theme</code> on &lt;html&gt; (or any wrapper — it's scoped
+          to the subtree). Every component below that node re-tints automatically
+          through inherited CSS custom properties.
+        </p>
+        <ul>
+          <li><strong>dark</strong>Default. Electric blue on deep black.</li>
+          <li><strong>light</strong>Inverted. Readable on white.</li>
+          <li>
+            <strong>red · blue · green · cyan · yellow · pink · purple</strong
+            >Bold chromatic variants. Swap at any time.
+          </li>
+        </ul>
+        <div class="qs3-tip">
+          <div>
+            <b>Persist it</b><br />Drop this before the library to remember the
+            user's pick across reloads:<br /><code
+              style="background:transparent;padding:0;color:#9ce700"
+              >localStorage.getItem('theme') &amp;&amp;
+              document.documentElement.setAttribute('data-theme',
+              localStorage.getItem('theme'))</code
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="qs3-block" id="qs3-b3">
+        <!-- Full / Interactive: class composition -->
+        <div data-qs-mode="full interactive">
+          <div class="qs3-n" data-n="3">Compose</div>
+          <h2>Stack classes like <span class="qs3-em">Lego</span>.</h2>
+          <p>
+            Every class is additive. Mix a <code>.btn</code> with <code
+              >.btn-primary</code
+            > for color, <code>.btn-sm</code> for size, and <code
+              >.hover-glow</code
+            > for the hover — all on one element.
+          </p>
+          <p>
+            Same pattern for cards, inputs, tags, progress. There's no component
+            "instance" to instantiate and no config file to edit — if you can
+            write HTML, you're styling njX UI.
+          </p>
+          <ul>
+            <li>
+              <strong>Color</strong><code>.btn-primary</code>, <code
+                >.btn-accent</code
+              >, <code>.btn-success</code>, <code>.btn-error</code>, <code
+                >.btn-ghost</code
+              >, <code>.btn-outline</code>
+            </li>
+            <li>
+              <strong>Size</strong><code>.btn-xs</code>, <code>.btn-sm</code>, <code
+                >.btn-lg</code
+              >, <code>.btn-xl</code>
+            </li>
+            <li>
+              <strong>Hover</strong><code>.hover-grow</code>, <code
+                >.hover-lift</code
+              >, <code>.hover-glow</code>, <code>.hover-shimmer</code>, and 25
+              more
+            </li>
+          </ul>
+        </div>
+
+        <!-- Classless: elements reference -->
+        <div data-qs-mode="classless" style="display:none">
+          <div class="qs3-n" data-n="3">Elements</div>
+          <h2>Write HTML. <span class="qs3-em">It just works.</span></h2>
+          <p>
+            Every native HTML element below is styled automatically — no class
+            names, no configuration. Classless mode styles the browser's default
+            elements so your semantic markup looks great out of the box.
+          </p>
+          <ul>
+            <li>
+              <strong>Text</strong><code>&lt;h1&gt;</code>–<code
+                >&lt;h6&gt;</code
+              >, <code>&lt;p&gt;</code>, <code>&lt;blockquote&gt;</code>, <code
+                >&lt;code&gt;</code
+              >, <code>&lt;pre&gt;</code>
+            </li>
+            <li>
+              <strong>Forms</strong><code>&lt;input&gt;</code>, <code
+                >&lt;textarea&gt;</code
+              >, <code>&lt;select&gt;</code>, <code>&lt;button&gt;</code>, <code
+                >&lt;fieldset&gt;</code
+              >
+            </li>
+            <li>
+              <strong>Layout</strong><code>&lt;table&gt;</code>, <code
+                >&lt;ul&gt;</code
+              >, <code>&lt;ol&gt;</code>, <code>&lt;details&gt;</code>, <code
+                >&lt;nav&gt;</code
+              >
+            </li>
+          </ul>
+          <div class="qs3-tip">
+            <div>
+              <b>Want component classes?</b><br />Switch to <strong>Full</strong
+              > mode. Add <code>classless-mode.css</code> + <code
+                >data-classless</code
+              > on
+              <code>&lt;html&gt;</code> to get bare element styles <em>plus</em> all
+              30+ component classes.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="qs3-block" id="qs3-b4">
+        <div class="qs3-n" data-n="4">Brand it</div>
+        <h2>Override <span class="qs3-em">one variable</span>.</h2>
+        <p>
+          You don't need to ship a custom theme. Drop a <code>:root</code> override
+          in your own stylesheet and every component on the page retints. The default
+          palette is nine CSS custom properties; override them to match your brand.
+        </p>
+        <p>
+          Want scoped branding? Apply the same override to a wrapper element
+          instead of <code>:root</code>. Anything inside inherits — anything
+          outside keeps the default.
+        </p>
+        <div class="qs3-tip">
+          <div>
+            <b>Full tokens list</b><br />60+ variables live in the <code
+              >_base.css</code
+            > file — colors, radii, shadows, font stacks, ease curves. Every one is
+            overridable.
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="qs3-right">
+      <div class="qs3-code-card" id="qs3-ccard">
+        <div class="qs3-code-bar">
+          <div class="qs3-code-dots">
+            <span class="qs3-d" style="background:#ff5f57"></span>
+            <span class="qs3-d" style="background:#febc2e"></span>
+            <span class="qs3-d" style="background:#28c840"></span>
+          </div>
+          <span class="qs3-code-fname" id="qs3-cfname">index.html</span>
+          <span class="qs3-code-lang" id="qs3-clang">HTML</span>
+        </div>
+        <div class="qs3-code-tabs" id="qs3-ctabs"></div>
+        <div class="qs3-code-body" id="qs3-cbody">
+          <button class="qs3-code-copy" id="qs3-ccopy">Copy</button>
+          <pre id="qs3-cpre"></pre>
+        </div>
+        <div class="qs3-preview-toggle">
+          <button id="qs3-tb-code" class="on">code</button>
+          <button id="qs3-tb-both">code + preview</button>
+        </div>
+        <div class="qs3-preview-body" id="qs3-cpreview"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ CALLOUT ══════════════════════ -->
+  <section class="qs3-callout">
+    <div class="qs3-callout-card">
+      <div>
+        <h3>That's the whole tour.</h3>
+        <p>
+          30+ components, 9 themes, animations, hovers, gradients — all
+          available from the same CSS file you already linked.
+        </p>
+      </div>
+      <div class="qs3-ctas">
+        <a href={`${base}overview`} class="qs3-btn-pill qs3-p"
+          >Browse Components →</a
+        >
+        <a
+          href="https://github.com/njbSaab/njx-css-ui"
+          target="_blank"
+          class="qs3-btn-pill qs3-g">★ Star on GitHub</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ FROM ZERO ══════════════════════ -->
+  <div class="sc-section" style="padding-top:48px;padding-bottom:48px">
+    <span class="sc-eyebrow">Your first page</span>
+    <h2 class="sc-heading">From zero to styled<br />in 3 steps</h2>
+    <div class="sc-two-col" style="margin-top:24px;align-items:stretch">
+      <div class="sc-steps">
+        <div class="sc-step">
+          <div class="sc-step-left">
+            <div class="sc-step-num">1</div>
+            <div class="sc-step-line"></div>
+          </div>
+          <div class="sc-step-body">
+            <div class="sc-step-title">Connect the stylesheet</div>
+            <div class="sc-step-desc">
+              One <code>&lt;link&gt;</code> tag inside <code>&lt;head&gt;</code
+              >. No JavaScript, no build step, nothing else required.
+            </div>
+            <div class="sc-code-wrap" style="margin-top:10px">
+              <div
+                class="sc-code-body"
+                style="padding:14px 18px;font-size:12px"
+              >
+                <span class="k">&lt;link</span>
+                <span class="t">rel</span>=<span class="s">"stylesheet"</span>
+                <span class="t">href</span>=<span class="s"
+                  >"https://cdn.jsdelivr.net/npm/njx-css-ui@1.1.0/css/<span
+                    data-qs-cssfile>style.min.css</span
+                  >"</span
+                ><span class="k">&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-step">
+          <div class="sc-step-left">
+            <div class="sc-step-num">2</div>
+            <div class="sc-step-line"></div>
+          </div>
+          <div class="sc-step-body">
+            <div class="sc-step-title">Pick a theme</div>
+            <div class="sc-step-desc">
+              Set <code>data-theme</code> on the <code>&lt;html&gt;</code> element.
+              Every component adapts automatically — no extra CSS needed.
+            </div>
+            <div class="sc-code-wrap" style="margin-top:10px">
+              <div
+                class="sc-code-body"
+                style="padding:14px 18px;font-size:12px"
+              >
+                <span class="k">&lt;html</span>
+                <span class="t">lang</span>=<span class="s">"en"</span>
+                <span class="t">data-theme</span>=<span class="s">"dark"</span
+                ><span class="k">&gt;</span>
+                <span class="c"
+                  >&lt;!-- dark · light · red · blue · green · cyan · yellow ·
+                  pink · purple --&gt;</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Step 3: Full / Interactive -->
+        <div class="sc-step" data-qs-mode="full interactive">
+          <div class="sc-step-left">
+            <div class="sc-step-num">3</div>
+          </div>
+          <div class="sc-step-body">
+            <div class="sc-step-title">Use component classes</div>
+            <div class="sc-step-desc">
+              Add classes like <code>btn btn-primary</code> or <code>card</code
+              >. That's the whole API — just class names on HTML elements.
+            </div>
+            <div class="sc-code-wrap" style="margin-top:10px">
+              <div
+                class="sc-code-body"
+                style="padding:14px 18px;font-size:12px"
+              >
+                <span class="k">&lt;button</span>
+                <span class="t">class</span>=<span class="s"
+                  >"btn btn-primary"</span
+                ><span class="k">&gt;</span>Click me<span class="k"
+                  >&lt;/button&gt;</span
+                ><br /><span class="k">&lt;div</span>
+                <span class="t">class</span>=<span class="s">"card"</span><span
+                  class="k">&gt;</span
+                >A styled card<span class="k">&lt;/div&gt;</span><br /><span
+                  class="k">&lt;span</span
+                >
+                <span class="t">class</span>=<span class="s"
+                  >"tag tag-primary"</span
+                ><span class="k">&gt;</span>Badge<span class="k"
+                  >&lt;/span&gt;</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Step 3: Classless -->
+        <div class="sc-step" data-qs-mode="classless" style="display:none">
+          <div class="sc-step-left">
+            <div class="sc-step-num">3</div>
+          </div>
+          <div class="sc-step-body">
+            <div class="sc-step-title">Write semantic HTML</div>
+            <div class="sc-step-desc">
+              No class names needed. Every native HTML element is styled
+              automatically —
+              <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>,
+              <code>&lt;table&gt;</code>, <code>&lt;details&gt;</code> and more.
+            </div>
+            <div class="sc-code-wrap" style="margin-top:10px">
+              <div
+                class="sc-code-body"
+                style="padding:14px 18px;font-size:12px"
+              >
+                <span class="k">&lt;button&gt;</span>Click me<span class="k"
+                  >&lt;/button&gt;</span
+                ><br />
+                <span class="k">&lt;input</span>
+                <span class="t">type</span>=<span class="s">"text"</span>
+                <span class="t">placeholder</span>=<span class="s">"email"</span
+                ><span class="k">&gt;</span><br />
+                <span class="k">&lt;details&gt;&lt;summary&gt;</span>FAQ<span
+                  class="k">&lt;/summary&gt;</span
+                >Answer<span class="k">&lt;/details&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <div
+          style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--color-muted);margin-bottom:12px"
+        >
+          Complete boilerplate
+        </div>
+        <div
+          class="sc-code-wrap"
+          style="flex:1;display:flex;flex-direction:column"
+        >
+          <div class="sc-code-header">
+            <div class="sc-code-dots">
+              <div class="sc-code-dot" style="background:#ff5f57"></div>
+              <div class="sc-code-dot" style="background:#febc2e"></div>
+              <div class="sc-code-dot" style="background:#28c840"></div>
+            </div>
+            <span class="sc-code-filename">index.html</span>
+            <button class="sc-code-copy" id="qs-boilerplate-copy">Copy</button>
+          </div>
+          <div
+            class="sc-code-body"
+            id="qs-boilerplate-code"
+            style="padding:20px 22px;flex:1;overflow-y:auto"
+          >
+            <!-- Full / Interactive boilerplate -->
+            <span data-qs-mode="full interactive"
+              ><span class="k">&lt;!DOCTYPE html&gt;</span><br /><span class="k"
+                >&lt;html</span
+              >
+              <span class="t">lang</span>=<span class="s">"en"</span>
+              <span class="t">data-theme</span>=<span class="s">"dark"</span
+              ><span class="k">&gt;</span><br /><span class="k"
+                >&lt;head&gt;</span
+              ><br />&nbsp;&nbsp;<span class="k">&lt;meta</span>
+              <span class="t">charset</span>=<span class="s">"UTF-8"</span><span
+                class="k">&gt;</span
+              ><br />&nbsp;&nbsp;<span class="k">&lt;meta</span>
+              <span class="t">name</span>=<span class="s">"viewport"</span>
+              <span class="t">content</span>=<span class="s"
+                >"width=device-width, initial-scale=1"</span
+              ><span class="k">&gt;</span><br />&nbsp;&nbsp;<span class="k"
+                >&lt;link</span
+              >
+              <span class="t">rel</span>=<span class="s">"stylesheet"</span><br
+              />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t"
+                >href</span
+              >=<span class="s"
+                >"https://cdn.jsdelivr.net/npm/njx-css-ui@1.1.0/css/<span
+                  data-qs-cssfile>style.min.css</span
+                >"</span
+              ><span class="k">&gt;</span><br />&nbsp;&nbsp;<span class="k"
+                >&lt;title&gt;</span
+              >My App<span class="k">&lt;/title&gt;</span><br /><span class="k"
+                >&lt;/head&gt;</span
+              ><br /><span class="k">&lt;body&gt;</span><br /><br
+              />&nbsp;&nbsp;<span class="k">&lt;button</span>
+              <span class="t">class</span>=<span class="s"
+                >"btn btn-primary"</span
+              ><span class="k">&gt;</span>Get Started<span class="k"
+                >&lt;/button&gt;</span
+              ><br /><br />&nbsp;&nbsp;<span class="k">&lt;div</span>
+              <span class="t">class</span>=<span class="s">"card-glow"</span
+              ><span class="k">&gt;</span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span
+                class="k">&lt;h2</span
+              >
+              <span class="t">class</span>=<span class="s"
+                >"text-gradient-primary"</span
+              ><span class="k">&gt;</span>Hello njX<span class="k"
+                >&lt;/h2&gt;</span
+              ><br />&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;p</span>
+              <span class="t">class</span>=<span class="s">"text-muted"</span
+              ><span class="k">&gt;</span>Built in 30 seconds.<span class="k"
+                >&lt;/p&gt;</span
+              ><br />&nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br /><br
+              /><span class="k">&lt;/body&gt;</span><br /><span class="k"
+                >&lt;/html&gt;</span
+              ></span
+            >
+            <!-- Classless boilerplate -->
+            <span data-qs-mode="classless" style="display:none"
+              ><span class="k">&lt;!DOCTYPE html&gt;</span><br /><span class="k"
+                >&lt;html</span
+              >
+              <span class="t">lang</span>=<span class="s">"en"</span>
+              <span class="t">data-theme</span>=<span class="s">"dark"</span
+              ><span class="k">&gt;</span><br /><span class="k"
+                >&lt;head&gt;</span
+              ><br />&nbsp;&nbsp;<span class="k">&lt;meta</span>
+              <span class="t">charset</span>=<span class="s">"UTF-8"</span><span
+                class="k">&gt;</span
+              ><br />&nbsp;&nbsp;<span class="k">&lt;meta</span>
+              <span class="t">name</span>=<span class="s">"viewport"</span>
+              <span class="t">content</span>=<span class="s"
+                >"width=device-width, initial-scale=1"</span
+              ><span class="k">&gt;</span><br />&nbsp;&nbsp;<span class="k"
+                >&lt;link</span
+              >
+              <span class="t">rel</span>=<span class="s">"stylesheet"</span><br
+              />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t"
+                >href</span
+              >=<span class="s"
+                >"https://cdn.jsdelivr.net/npm/njx-css-ui@1.1.0/css/<span
+                  data-qs-cssfile>classless.min.css</span
+                >"</span
+              ><span class="k">&gt;</span><br />&nbsp;&nbsp;<span class="k"
+                >&lt;title&gt;</span
+              >My App<span class="k">&lt;/title&gt;</span><br /><span class="k"
+                >&lt;/head&gt;</span
+              ><br /><span class="k">&lt;body&gt;</span><br /><br
+              />&nbsp;&nbsp;<span class="k">&lt;h1&gt;</span>Hello njX<span
+                class="k">&lt;/h1&gt;</span
+              ><br />&nbsp;&nbsp;<span class="k">&lt;p&gt;</span>No class names
+              needed.<span class="k">&lt;/p&gt;</span><br />&nbsp;&nbsp;<span
+                class="k">&lt;button&gt;</span
+              >Get Started<span class="k">&lt;/button&gt;</span><br
+              />&nbsp;&nbsp;<span class="k">&lt;input</span>
+              <span class="t">type</span>=<span class="s">"text"</span>
+              <span class="t">placeholder</span>=<span class="s"
+                >"Your name"</span
+              ><span class="k">&gt;</span><br /><br /><span class="k"
+                >&lt;/body&gt;</span
+              ><br /><span class="k">&lt;/html&gt;</span></span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ COMPONENT SHELF ══════════════════════ -->
+  <section class="sc-section" style="padding-top:0">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="sc-eyebrow">Component shelf</span>
+      <h2 class="sc-heading">30+ components.<br />One file.</h2>
+      <p class="sc-subheading" style="margin:0 auto">
+        Each tile uses real njX classes — no fake screenshots. Hover to see the
+        lift.
+      </p>
+    </div>
+    <div class="container">
+      <Demo />
+    </div>
+  </section>
+
+  <!-- ══════════════════════ KEEP BUILDING ══════════════════════ -->
+  <div class="sc-section sc-section-center" style="padding-bottom:80px">
+    <span class="sc-eyebrow">What's next</span>
+    <h2 class="sc-heading">Keep building</h2>
+    <p class="sc-subheading center" style="margin-bottom:36px">
+      You're set up. Here's where to go from here.
+    </p>
+    <div class="qs-next-grid">
+      <a href={`${base}documentation`} class="qs-next-card">
+        <span class="qs-next-icon">🧩</span>
+        <div class="qs-next-title">All Components</div>
+        <div class="qs-next-desc">
+          Browse every component with live previews and copy-ready code. 30+
+          components, fully documented.
+        </div>
+        <span class="qs-next-arrow">Browse components →</span>
+      </a>
+      <a href={`${base}documentation`} class="qs-next-card">
+        <span class="qs-next-icon">📖</span>
+        <div class="qs-next-title">Full Documentation</div>
+        <div class="qs-next-desc">
+          Themes, design tokens, CSS variables, customization, and the complete
+          API reference.
+        </div>
+        <span class="qs-next-arrow">Read the docs →</span>
+      </a>
+      <a href={`${base}classless-components`} class="qs-next-card">
+        <span class="qs-next-icon">🌐</span>
+        <div class="qs-next-title">Classless Mode</div>
+        <div class="qs-next-desc">
+          Style plain HTML with zero class names. Drop the stylesheet and your
+          bare tags are themed automatically.
+        </div>
+        <span class="qs-next-arrow">Explore classless →</span>
+      </a>
+      <a href={`${base}overviewnew`} class="qs-next-card">
+        <span class="qs-next-icon">🎨</span>
+        <div class="qs-next-title">Why njX?</div>
+        <div class="qs-next-desc">
+          See how njX compares to Bootstrap, Bulma, Pico CSS, and chota.
+          Interactive demos and live playground.
+        </div>
+        <span class="qs-next-arrow">View overview →</span>
+      </a>
+    </div>
+    <div
+      style="margin-top:56px;padding:40px;border-radius:20px;background:radial-gradient(ellipse 80% 100% at 50% 50%,color-mix(in srgb,var(--color-primary) 10%,transparent),transparent);border:1px solid color-mix(in srgb,var(--color-primary) 18%,transparent);text-align:center"
+    >
+      <div
+        style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--color-primary);margin-bottom:14px"
+      >
+        Open Source
+      </div>
+      <h3
+        style="font-size:clamp(20px,3vw,28px);font-weight:900;letter-spacing:-1px;margin-bottom:12px"
+      >
+        Like njX? Star it on GitHub ⭐
+      </h3>
+      <p
+        style="font-size:15px;color:var(--color-muted);line-height:1.65;margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto"
+      >
+        Free, open-source, MIT licensed. A GitHub star helps others discover the
+        project and keeps development going.
+      </p>
+      <a
+        href="https://github.com/njbSaab/njx-css-ui"
+        target="_blank"
+        class="sc-btn-primary"
+        style="font-size:15px;padding:14px 36px">★ Star on GitHub</a
+      >
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <PagesFooter activePage="quickstart" />
+  <Bottombar activePage="quickstart" />
+</BaseLayout>
+
+<!-- ══════════════════════ STYLES ══════════════════════ -->
+<style is:global>
+  /* ── Reset ── */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+  }
+  .qs-wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ── HERO ── */
+  .qs-hero {
+    padding: 80px 32px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .qs-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        ellipse 70% 60% at 30% 20%,
+        color-mix(in srgb, var(--color-primary) 22%, transparent),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 50% 50% at 80% 80%,
+        color-mix(in srgb, var(--color-accent) 12%, transparent),
+        transparent
+      );
+    pointer-events: none;
+  }
+  .qs-hero > * {
+    position: relative;
+    z-index: 2;
+  }
+  .qs-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+  .qs-h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    line-height: 0.95;
+    margin-bottom: 14px;
+  }
+  .qs-grad {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .qs-sub {
+    font-size: 18px;
+    color: var(--color-muted);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* ── PATH SELECTOR ── */
+  .qs-paths {
+    padding: 32px 32px 8px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .qs-paths-row {
+    display: flex;
+    gap: 8px;
+    background: color-mix(in srgb, var(--color-neutral-600) 10%, transparent);
+    padding: 6px;
+    border-radius: 9999px;
+    width: fit-content;
+    margin: 0 auto;
+  }
+  .qs-paths-row button {
+    padding: 10px 22px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-muted);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .qs-paths-row button.on {
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 6px 20px
+      color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+  .qs-paths-row button .em {
+    font-size: 14px;
+  }
+
+  .demo-ce.ce {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 24px;
+    background:
+      linear-gradient(var(--color-dark-secondary), var(--color-dark-secondary))
+        padding-box,
+      linear-gradient(135deg, var(--color-primary), var(--color-accent))
+        border-box;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    padding: 24px;
+    height: 700px;
+    min-height: 35dvh;
+    margin-top: 0;
+    overflow: hidden;
+  }
+
+  /* ── TIMER ── */
+  .qs-timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 24px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    color: var(--color-muted);
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .qs-timer-bar {
+    flex: 1;
+    max-width: 420px;
+    height: 6px;
+    background: color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+  .qs-timer-bar > div {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(
+      90deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
+    border-radius: 9999px;
+    transition: width 0.6s ease-out;
+  }
+  .qs-clock {
+    font-weight: 700;
+    color: var(--color-primary);
+    min-width: 60px;
+    text-align: right;
+    font-size: 18px;
+  }
+
+  /* ── TRACK ── */
+  .qs-track {
+    padding: 32px 32px 80px;
+    max-width: 1080px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .qs-track::before {
+    content: '';
+    position: absolute;
+    left: 72px;
+    top: 80px;
+    bottom: 80px;
+    width: 2px;
+    background: color-mix(in srgb, var(--color-primary) 18%, transparent);
+  }
+  @media (max-width: 700px) {
+    .qs-track::before {
+      left: 30px;
+    }
+  }
+  .qs-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  @media (max-width: 700px) {
+    .qs-step {
+      grid-template-columns: 60px 1fr;
+      gap: 14px;
+    }
+  }
+  .qs-step .num {
+    position: relative;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-dark);
+    border: 2px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+    display: grid;
+    place-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    color: var(--color-primary);
+    font-size: 18px;
+    margin: 18px 18px 0 18px;
+    transition: all 0.2s;
+  }
+  @media (max-width: 700px) {
+    .qs-step .num {
+      margin: 18px 0 0 0;
+    }
+  }
+  .qs-step.done .num {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+  }
+  .qs-step.done .num::after {
+    content: '✓';
+    position: absolute;
+    font-size: 20px;
+  }
+  .qs-step.done .num span {
+    display: none;
+  }
+  .qs-step .body {
+    background: var(--color-dark-secondary);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 18%, transparent);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s;
+  }
+  .qs-step.active .body {
+    border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+    box-shadow: 0 8px 30px
+      color-mix(in srgb, var(--color-primary) 12%, transparent);
+  }
+  .qs-step .h {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .qs-step .h .meta {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .qs-step .d {
+    font-size: 14px;
+    color: var(--color-muted);
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+  .qs-step .d code {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--color-primary);
+  }
+  .qs-step .code {
+    background: #050505;
+    border: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+    border-radius: 12px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #e0e0e0;
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .qs-step .code .com {
+    color: #6a6a6a;
+  }
+  .qs-step .code .sh-tag {
+    color: var(--color-primary);
+  }
+  .qs-step .code .attr {
+    color: var(--color-accent);
+  }
+  .qs-step .code .str {
+    color: #9ce700;
+  }
+  .qs-step .copy {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 5px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+    color: var(--color-primary);
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+  }
+  .qs-step .copy:hover {
+    background: color-mix(in srgb, var(--color-primary) 24%, transparent);
+  }
+  .qs-step .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .qs-step .check {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--color-primary);
+    color: #fff;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .qs-step .check:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px
+      color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+  .qs-step.done .check {
+    background: transparent;
+    color: #9ce700;
+    border: 1.5px solid #9ce700;
+    box-shadow: none;
+  }
+  .qs-step.done .check::before {
+    content: '✓ ';
+  }
+  .qs-step .skip {
+    padding: 10px 18px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-muted);
+    cursor: pointer;
+  }
+  .qs-step .skip:hover {
+    color: var(--color-light);
+  }
+
+  /* ── Download button ── */
+  .qs-dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0 4px;
+    padding: 12px 24px;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 10px;
+    transition:
+      opacity 0.2s,
+      transform 0.2s;
+  }
+  .qs-dl-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+  }
+
+  /* ── SUCCESS ── */
+  .qs-success {
+    padding: 0 32px 80px;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: none;
+  }
+  .qs-success.show {
+    display: block;
+    animation: qs-fi 0.5s ease-out;
+  }
+  @keyframes qs-fi {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .qs-success-card {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-primary) 18%, transparent),
+      color-mix(in srgb, var(--color-accent) 12%, transparent)
+    );
+    border: 1.5px solid var(--color-primary);
+    border-radius: 24px;
+    padding: 48px;
+    text-align: center;
+    box-shadow: 0 20px 60px
+      color-mix(in srgb, var(--color-primary) 25%, transparent);
+  }
+  .qs-success-em {
+    font-size: 64px;
+    margin-bottom: 14px;
+    display: inline-block;
+    animation: qs-bn 1s ease-out;
+  }
+  @keyframes qs-bn {
+    0% {
+      transform: scale(0);
+    }
+    60% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  .qs-success-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    margin-bottom: 14px;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .qs-success-card p {
+    font-size: 16px;
+    color: var(--color-muted);
+    max-width: 440px;
+    margin: 0 auto 28px;
+    line-height: 1.5;
+  }
+  .qs-success-card p code {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--color-primary);
+  }
+  .qs-success-ctas {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .qs-b {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .qs-b-p {
+    background: var(--color-primary);
+    color: #fff;
+  }
+  .qs-b-g {
+    background: transparent;
+    color: var(--color-light);
+    border: 1.5px solid
+      color-mix(in srgb, var(--color-primary) 30%, transparent);
+  }
+  .qs-b:hover {
+    transform: scale(1.03);
+  }
+
+  /* ── PANE LAYOUT ── */
+  .qs3-pane {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0 48px;
+    border-top: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+  }
+  @media (max-width: 960px) {
+    .qs3-pane {
+      grid-template-columns: 1fr;
+      padding: 0 32px;
+    }
+  }
+  .qs3-left {
+    padding: 60px 48px 80px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+  @media (max-width: 960px) {
+    .qs3-left {
+      padding: 48px 0;
+    }
+  }
+  .qs3-block {
+    scroll-margin-top: 120px;
+  }
+  .qs3-n {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .qs3-n::before {
+    content: attr(data-n);
+    display: inline-grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+    color: var(--color-primary);
+    font-size: 12px;
+    font-weight: 900;
+    font-family: 'Poppins', sans-serif;
+  }
+  .qs3-block h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+  .qs3-em {
+    color: var(--color-primary);
+  }
+  .qs3-block p {
+    font-size: 15px;
+    color: var(--color-muted);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .qs3-block p code {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--color-primary);
+    font-size: 0.9em;
+    padding: 1px 6px;
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    border-radius: 6px;
+  }
+  .qs3-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+  }
+  .qs3-block ul li {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+    font-size: 14px;
+    color: var(--color-muted);
+    line-height: 1.5;
+  }
+  .qs3-block ul li:last-child {
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+  }
+  .qs3-block ul li strong {
+    color: var(--color-light);
+    font-weight: 600;
+    min-width: 100px;
+    display: inline-block;
+  }
+  .qs3-tip {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    border-left: 3px solid var(--color-primary);
+    border-radius: 8px;
+    font-size: 13.5px;
+    color: var(--color-light);
+    line-height: 1.5;
+    margin-top: 18px;
+  }
+  .qs3-tip b {
+    color: var(--color-primary);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+  /* ── RIGHT STICKY ── */
+  .qs3-right {
+    position: sticky;
+    top: 76px;
+    align-self: start;
+    padding: 60px 0 80px 48px;
+    height: calc(100vh - 60px);
+  }
+  @media (max-width: 960px) {
+    .qs3-right {
+      position: static;
+      padding: 0 0 48px;
+      height: auto;
+    }
+  }
+  .qs3-code-card {
+    background: #050505;
+    border: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 640px;
+    transition: all 0.3s;
+  }
+  @media (max-width: 960px) {
+    .qs3-code-card {
+      max-height: none;
+    }
+  }
+  .qs3-code-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+    background: #0a0a0a;
+  }
+  .qs3-code-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .qs3-d {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .qs3-code-fname {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: var(--color-muted);
+  }
+  .qs3-code-lang {
+    padding: 3px 10px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+    color: var(--color-primary);
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .qs3-code-tabs {
+    display: flex;
+    gap: 2px;
+    padding: 8px 8px 0;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+    background: #0a0a0a;
+    overflow-x: auto;
+  }
+  .qs3-code-tabs button {
+    padding: 8px 14px;
+    border-radius: 8px 8px 0 0;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'Roboto Mono', monospace;
+    color: var(--color-muted);
+    margin-bottom: -1px;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .qs3-code-tabs button.on {
+    color: var(--color-primary);
+    background: #050505;
+    border-bottom-color: var(--color-primary);
+  }
+  .qs3-code-body {
+    flex: 1;
+    overflow: auto;
+    padding: 20px 22px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #e0e0e0;
+    position: relative;
+  }
+  .qs3-code-body .com {
+    color: #6a6a6a;
+  }
+  .qs3-code-body .sh-tag {
+    color: var(--color-primary);
+  }
+  .qs3-code-body .attr {
+    color: var(--color-accent);
+  }
+  .qs3-code-body .str {
+    color: #9ce700;
+  }
+  .qs3-code-body .kw {
+    color: #ec4899;
+  }
+  .qs3-code-body .hi {
+    background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+    display: block;
+    margin: 0 -22px;
+    padding: 0 22px;
+  }
+  .qs3-code-copy {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 5px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+    color: var(--color-primary);
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+  }
+  .qs3-code-copy:hover {
+    background: color-mix(in srgb, var(--color-primary) 24%, transparent);
+  }
+  .qs3-preview-toggle {
+    display: flex;
+    gap: 4px;
+    padding: 8px 10px;
+    border-top: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+    background: #0a0a0a;
+  }
+  .qs3-preview-toggle button {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'Roboto Mono', monospace;
+    color: var(--color-muted);
+  }
+  .qs3-preview-toggle button.on {
+    background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+    color: var(--color-primary);
+  }
+  .qs3-preview-body {
+    display: none;
+    padding: 24px;
+    border-top: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+    background: var(--сolor-dark);
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 140px;
+  }
+  .qs3-code-card.show-preview .qs3-preview-body {
+    display: flex;
+  }
+  .qs3-code-card.show-preview .qs3-code-body {
+    max-height: 240px;
+  }
+  /* ── CALLOUT ── */
+  .qs3-callout {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 40px 48px 80px;
+    border-top: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+  }
+  .qs3-callout-card {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-primary) 14%, transparent),
+      color-mix(in srgb, var(--color-accent) 8%, transparent)
+    );
+    border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .qs3-callout-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .qs3-callout-card p {
+    font-size: 15px;
+    color: var(--color-muted);
+    max-width: 420px;
+    line-height: 1.5;
+  }
+  .qs3-ctas {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .qs3-btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+    border: 1.5px solid transparent;
+    text-decoration: none;
+  }
+  .qs3-btn-pill.qs3-p {
+    background: var(--color-primary);
+    color: #fff;
+  }
+  .qs3-btn-pill.qs3-p:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px
+      color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+  .qs3-btn-pill.qs3-g {
+    color: var(--color-light);
+    border-color: color-mix(in srgb, var(--color-neutral-600) 30%, transparent);
+  }
+  .qs3-btn-pill.qs3-g:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  /* ── Two-col layout ── */
+  .sc-two-col {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: start;
+  }
+  @media (max-width: 800px) {
+    .sc-two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Steps ── */
+  .sc-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .sc-step {
+    display: flex;
+    gap: 0;
+    position: relative;
+  }
+  .sc-step-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 56px;
+    flex-shrink: 0;
+  }
+  .sc-step-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+    border: 1.5px solid var(--color-primary);
+    color: var(--color-primary);
+    font-weight: 800;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  .sc-step-line {
+    flex: 1;
+    width: 1.5px;
+    background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    margin: 6px 0;
+  }
+  .sc-step:last-child .sc-step-line {
+    display: none;
+  }
+  .sc-step-body {
+    padding: 4px 0 40px 24px;
+    flex: 1;
+    min-width: 0;
+  }
+  .sc-step-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .sc-step-desc {
+    font-size: 14px;
+    color: var(--color-muted);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+  .sc-step-desc code {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--color-primary);
+    font-size: 0.9em;
+    padding: 1px 5px;
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    border-radius: 4px;
+  }
+
+  /* ── Code block ── */
+  .sc-code-wrap {
+    background: #0d0d0d;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #222;
+    position: relative;
+  }
+  .sc-code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #111;
+    border-bottom: 1px solid #222;
+  }
+  .sc-code-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .sc-code-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .sc-code-filename {
+    font-size: 12px;
+    font-family: 'Roboto Mono', monospace;
+    color: #555;
+  }
+  .sc-code-copy {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: #222;
+    border: 1px solid #333;
+    color: #888;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .sc-code-copy:hover {
+    background: #333;
+    color: #fff;
+  }
+  .sc-code-body {
+    padding: 24px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    overflow-x: auto;
+    color: #e0e0e0;
+    white-space: pre;
+  }
+  .sc-code-body .k {
+    color: var(--color-primary);
+  }
+  .sc-code-body .t {
+    color: var(--color-accent);
+  }
+  .sc-code-body .s {
+    color: #9ce700;
+  }
+  .sc-code-body .c {
+    color: #555;
+    font-style: italic;
+  }
+
+  /* ── Component shelf ── */
+  .shelf {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 900px) {
+    .shelf {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 560px) {
+    .shelf {
+      grid-template-columns: 1fr;
+    }
+  }
+  .shelf-card {
+    background: var(--color-dark-secondary);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 18%, transparent);
+    border-radius: 18px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: all 0.3s;
+  }
+  .shelf-card:hover {
+    border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+    transform: translateY(-3px);
+  }
+  .shelf-card .lab {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .shelf-card .demo {
+    flex: 1;
+    min-height: 120px;
+    background: var(--сolor-dark);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .shelf-card .sname {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .shelf-card .smeta {
+    font-size: 12px;
+    color: var(--color-muted);
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  /* ── Next steps ── */
+  .qs-next-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .qs-next-card {
+    padding: 24px;
+    border-radius: 16px;
+    border: 1.5px solid
+      color-mix(in srgb, var(--color-neutral-600) 28%, transparent);
+    background: var(--color-dark-secondary);
+    text-decoration: none;
+    transition: all 0.25s;
+    display: block;
+  }
+  .qs-next-card:hover {
+    border-color: var(--color-primary);
+    background: color-mix(
+      in srgb,
+      var(--color-primary) 6%,
+      var(--color-dark-secondary)
+    );
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px
+      color-mix(in srgb, var(--color-primary) 15%, transparent);
+  }
+  .qs-next-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .qs-next-title {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 5px;
+    color: var(--color-light);
+  }
+  .qs-next-desc {
+    font-size: 13px;
+    color: var(--color-muted);
+    line-height: 1.55;
+  }
+  .qs-next-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  /* ── Mode bar ── */
+  .doc-mode-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    flex-wrap: wrap;
+  }
+  /* Higher specificity to override docs page global .doc-mode-bar styles */
+  #qs-mode-bar {
+    position: sticky;
+    top: 60px;
+    z-index: 91;
+    background: color-mix(
+      in srgb,
+      var(--color-dark-secondary) 95%,
+      transparent
+    );
+    border-radius: 0;
+  }
+  .doc-mode-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-muted);
+    flex-shrink: 0;
+  }
+  .doc-mode-tabs {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+  }
+  .doc-mode-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-muted);
+    background: color-mix(in srgb, var(--color-neutral-600) 15%, transparent);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .doc-mode-tab:hover {
+    color: var(--color-light);
+  }
+  .doc-mode-tab.active {
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+    color: var(--color-primary);
+  }
+  .doc-mode-icon {
+    font-size: 12px;
+    font-weight: 900;
+    font-family: 'Roboto Mono', monospace;
+    opacity: 0.8;
+  }
+  .doc-mode-default {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 1px 6px;
+    border-radius: 10px;
+    background: var(--color-primary);
+    color: #000;
+    text-transform: uppercase;
+  }
+  .doc-mode-size {
+    font-size: 11px;
+    font-family: 'Roboto Mono', monospace;
+    opacity: 0.5;
+  }
+  .doc-mode-hint {
+    font-size: 12px;
+    color: var(--color-muted);
+    margin-left: auto;
+    white-space: nowrap;
+    opacity: 0.8;
+  }
+  @media (max-width: 860px) {
+    .doc-mode-hint {
+      display: none;
+    }
+    .doc-mode-bar {
+      padding: 8px 12px;
+    }
+  }
+  @media (max-width: 540px) {
+    .doc-mode-tab {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+    .doc-mode-default {
+      display: none;
+    }
+    .doc-mode-size {
+      display: none;
+    }
+  }
+</style>
+
+<!-- ══════════════════════ PAGE JS ══════════════════════ -->
+<script is:inline>
+  (function initQsNew() {
+    var track = document.getElementById('qs-track');
+    if (!track) return;
+
+    window._qsCssFile = window._qsCssFile || 'style.min.css';
+    window._qsMode = window._qsMode || 'full';
+
+    var PATHS = {
+      cdn: [
+        {
+          h: 'Drop the link',
+          meta: '~10s',
+          d: "Paste this single &lt;link&gt; into your &lt;head&gt;. That's the whole library.",
+          get code() {
+            return (
+              '&lt;<span class="sh-tag">link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"https://cdn.jsdelivr.net/npm/njx-css-ui@1.1.0/css/' +
+              window._qsCssFile +
+              '"</span>&gt;'
+            );
+          },
+          check: 'Pasted',
+        },
+        {
+          h: 'Pick a theme',
+          meta: '~5s',
+          d: 'Set <code>data-theme</code> on &lt;html&gt;. 9 options: dark, light, red, blue, green, cyan, yellow, pink, purple.',
+          code: '&lt;<span class="sh-tag">html</span> <span class="attr">lang</span>=<span class="str">"en"</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;',
+          check: 'Themed',
+        },
+        {
+          h: 'Use a class',
+          meta: '~10s',
+          d: 'Any <code>.btn</code>, <code>.inp</code>, <code>.tag</code> on the page now styles itself. No imports.',
+          code: '&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Ship it&lt;/<span class="sh-tag">button</span>&gt;\n&lt;<span class="sh-tag">input</span>  <span class="attr">class</span>=<span class="str">"inp inp-primary"</span> <span class="attr">placeholder</span>=<span class="str">"email"</span>&gt;\n&lt;<span class="sh-tag">span</span>   <span class="attr">class</span>=<span class="str">"tag tag-success"</span>&gt;live&lt;/<span class="sh-tag">span</span>&gt;',
+          check: 'Used',
+        },
+        {
+          h: 'Customize a token',
+          meta: '~5s',
+          d: 'Override one variable to brand your build. Everything that uses <code>--color-primary</code> retints.',
+          code: '&lt;<span class="sh-tag">style</span>&gt;\n  <span class="sh-tag">:root</span> &#123; <span class="attr">--color-primary</span>: <span class="str">#ff6b35</span>; &#125;\n&lt;/<span class="sh-tag">style</span>&gt;',
+          check: 'Branded',
+        },
+      ],
+      npm: [
+        {
+          h: 'Install package',
+          meta: '~30s',
+          d: 'Add the package. Works with npm, pnpm, yarn or bun.',
+          code: '<span class="com"># pick your manager</span>\nnpm  install njx-css-ui\npnpm add     njx-css-ui\nbun  add     njx-css-ui',
+          check: 'Installed',
+        },
+        {
+          h: 'Import CSS',
+          meta: '~5s',
+          d: 'Pull the stylesheet into your entry file. Vite, webpack, esbuild — all fine.',
+          get code() {
+            return (
+              '<span class="com">// src/main.ts (or main.js)</span>\n<span class="sh-tag">import</span> <span class="str">"njx-css-ui/css/' +
+              window._qsCssFile +
+              '"</span>;'
+            );
+          },
+          check: 'Imported',
+        },
+        {
+          h: 'Set theme attribute',
+          meta: '~5s',
+          d: 'Set on &lt;html&gt; for the whole app, or any wrapper for a scoped theme.',
+          code: '<span class="com">&lt;!-- index.html --&gt;</span>\n&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;',
+          check: 'Themed',
+        },
+        {
+          h: 'Use in a component',
+          meta: '~10s',
+          d: 'Apply utility classes anywhere. React, Vue, Svelte — same string.',
+          code: '<span class="sh-tag">export</span> <span class="sh-tag">function</span> <span class="attr">Login</span>() &#123;\n  <span class="sh-tag">return</span> (\n    &lt;<span class="sh-tag">form</span> <span class="attr">className</span>=<span class="str">"card"</span>&gt;\n      &lt;<span class="sh-tag">input</span> <span class="attr">className</span>=<span class="str">"inp inp-primary"</span> /&gt;\n      &lt;<span class="sh-tag">button</span> <span class="attr">className</span>=<span class="str">"btn btn-primary"</span>&gt;Sign in&lt;/<span class="sh-tag">button</span>&gt;\n    &lt;/<span class="sh-tag">form</span>&gt;\n  );\n&#125;',
+          check: 'Used',
+        },
+      ],
+      zip: [
+        {
+          h: 'Download release',
+          meta: '~20s',
+          d: 'Grab the latest ZIP from GitHub releases.',
+          dl: 'https://github.com/njbSaab/njx-css-ui/releases/latest/download/njx-css-ui.zip',
+          check: 'Downloaded',
+        },
+        {
+          h: 'Copy into project',
+          meta: '~10s',
+          get d() {
+            return (
+              'Drop the <code>' +
+              window._qsCssFile +
+              '</code> file anywhere your server can serve it from.'
+            );
+          },
+          get code() {
+            return (
+              '<span class="com"># tree</span>\nyour-project/\n&#x251C;&#x2500; index.html\n&#x2514;&#x2500; vendor/\n   &#x2514;&#x2500; njx-css-ui/\n      &#x2514;&#x2500; ' +
+              window._qsCssFile
+            );
+          },
+          check: 'Copied',
+        },
+        {
+          h: 'Link the file',
+          meta: '~10s',
+          d: 'Reference it from your &lt;head&gt;. Relative path is fine.',
+          get code() {
+            return (
+              '&lt;<span class="sh-tag">link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span>\n      <span class="attr">href</span>=<span class="str">"./vendor/njx-css-ui/' +
+              window._qsCssFile +
+              '"</span>&gt;\n&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;'
+            );
+          },
+          check: 'Linked',
+        },
+        {
+          h: 'Use the classes',
+          meta: '~10s',
+          d: 'Same classes as the CDN path. No build, no bundler — just HTML.',
+          code: '&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Ship it&lt;/<span class="sh-tag">button</span>&gt;',
+          check: 'Used',
+        },
+      ],
+    };
+
+    // Classless-specific path steps
+    var CLASSLESS_PATHS = {
+      cdn: [
+        {
+          h: 'Drop the link',
+          meta: '~10s',
+          d: 'Paste this single &lt;link&gt; into your &lt;head&gt;. One file — 47 KB standalone.',
+          get code() {
+            return '&lt;<span class="sh-tag">link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"https://cdn.jsdelivr.net/npm/njx-css-ui@1.1.0/css/classless.min.css"</span>&gt;';
+          },
+          check: 'Pasted',
+        },
+        {
+          h: 'Pick a theme',
+          meta: '~5s',
+          d: 'Set <code>data-theme</code> on &lt;html&gt;. 9 built-in themes, all work in classless mode.',
+          code: '&lt;<span class="sh-tag">html</span> <span class="attr">lang</span>=<span class="str">"en"</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;',
+          check: 'Themed',
+        },
+        {
+          h: 'Write HTML',
+          meta: '~5s',
+          d: 'No class names needed. Every native element is styled automatically.',
+          code: '&lt;<span class="sh-tag">button</span>&gt;Click me&lt;/<span class="sh-tag">button</span>&gt;\n&lt;<span class="sh-tag">input</span> <span class="attr">type</span>=<span class="str">"text"</span> <span class="attr">placeholder</span>=<span class="str">"email"</span>&gt;\n&lt;<span class="sh-tag">details</span>&gt;&lt;<span class="sh-tag">summary</span>&gt;FAQ&lt;/<span class="sh-tag">summary</span>&gt;Answer&lt;/<span class="sh-tag">details</span>&gt;',
+          check: 'Done!',
+        },
+      ],
+      npm: [
+        {
+          h: 'Install package',
+          meta: '~30s',
+          d: 'Add the package. Works with npm, pnpm, yarn or bun.',
+          code: '<span class="com"># pick your manager</span>\nnpm  install njx-css-ui\npnpm add     njx-css-ui',
+          check: 'Installed',
+        },
+        {
+          h: 'Import classless CSS',
+          meta: '~5s',
+          d: 'Import only the classless file — 47 KB, no component classes.',
+          code: '<span class="com">// src/main.ts (or main.js)</span>\n<span class="sh-tag">import</span> <span class="str">"njx-css-ui/css/classless.min.css"</span>;',
+          check: 'Imported',
+        },
+        {
+          h: 'Write HTML',
+          meta: '~5s',
+          d: 'No class names needed. Semantic HTML is styled automatically.',
+          code: '<span class="com">&lt;!-- Just write HTML --&gt;</span>\n&lt;<span class="sh-tag">h1</span>&gt;Hello&lt;/<span class="sh-tag">h1</span>&gt;\n&lt;<span class="sh-tag">button</span>&gt;Action&lt;/<span class="sh-tag">button</span>&gt;',
+          check: 'Done!',
+        },
+      ],
+      zip: [
+        {
+          h: 'Download release',
+          meta: '~20s',
+          d: 'Grab the latest ZIP from GitHub releases.',
+          dl: 'https://github.com/njbSaab/njx-css-ui/releases/latest/download/njx-css-ui.zip',
+          check: 'Downloaded',
+        },
+        {
+          h: 'Copy the file',
+          meta: '~10s',
+          d: 'Drop <code>classless.min.css</code> into your project.',
+          code: '<span class="com"># tree</span>\nyour-project/\n&#x251C;&#x2500; index.html\n&#x2514;&#x2500; vendor/\n   &#x2514;&#x2500; classless.min.css',
+          check: 'Copied',
+        },
+        {
+          h: 'Link the file',
+          meta: '~10s',
+          d: "One link tag. That's it.",
+          code: '&lt;<span class="sh-tag">link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span>\n      <span class="attr">href</span>=<span class="str">"./vendor/classless.min.css"</span>&gt;',
+          check: 'Done!',
+        },
+      ],
+    };
+
+    var curP = 'cdn';
+    var done = {};
+
+    function render() {
+      var activePaths =
+        window._qsMode === 'classless' ? CLASSLESS_PATHS : PATHS;
+      var steps = activePaths[curP] || activePaths['cdn'];
+      track.innerHTML = '';
+      steps.forEach(function (st, i) {
+        var isDone = !!done[curP + '-' + i];
+        var isActive = !isDone && (i === 0 || !!done[curP + '-' + (i - 1)]);
+        var el = document.createElement('div');
+        el.className =
+          'qs-step' + (isDone ? ' done' : '') + (isActive ? ' active' : '');
+        el.innerHTML =
+          '<div class="num"><span>' +
+          (i + 1) +
+          '</span></div>' +
+          '<div class="body">' +
+          '<div class="h">' +
+          st.h +
+          '<span class="meta">' +
+          st.meta +
+          '</span></div>' +
+          '<div class="d">' +
+          st.d +
+          '</div>' +
+          (st.dl
+            ? '<a class="qs-dl-btn" href="' +
+              st.dl +
+              '" download>⬇ Download njx-css-ui.zip</a>'
+            : '<div class="code"><button class="copy">Copy</button><pre>' +
+              st.code +
+              '</pre></div>') +
+          '<div class="actions">' +
+          '<button class="check" data-i="' +
+          i +
+          '">' +
+          (isDone ? st.check : 'I did this →') +
+          '</button>' +
+          (isDone
+            ? ''
+            : '<button class="skip" data-i="' + i + '">Skip</button>') +
+          '</div>' +
+          '</div>';
+        track.appendChild(el);
+      });
+
+      track.querySelectorAll('.check, .skip').forEach(function (b) {
+        b.onclick = function () {
+          done[curP + '-' + b.dataset.i] = true;
+          updateProgress();
+        };
+      });
+      track.querySelectorAll('.copy').forEach(function (b) {
+        b.onclick = function () {
+          var txt = this.parentElement.querySelector('pre').innerText;
+          if (navigator.clipboard) navigator.clipboard.writeText(txt);
+          this.textContent = 'Copied!';
+          var self = this;
+          setTimeout(function () {
+            self.textContent = 'Copy';
+          }, 1500);
+        };
+      });
+      updateProgress();
+    }
+
+    function updateProgress() {
+      var activePaths =
+        window._qsMode === 'classless' ? CLASSLESS_PATHS : PATHS;
+      var steps = activePaths[curP] || activePaths['cdn'];
+      var completed = steps.reduce(function (n, _, i) {
+        return n + (done[curP + '-' + i] ? 1 : 0);
+      }, 0);
+      var prog = document.getElementById('qs-prog');
+      var clock = document.getElementById('qs-clock');
+      var success = document.getElementById('qs-success');
+      if (prog) prog.style.width = (completed / steps.length) * 100 + '%';
+      if (clock) clock.textContent = completed + '/' + steps.length;
+      if (success) success.classList.toggle('show', completed === steps.length);
+
+      track.querySelectorAll('.qs-step').forEach(function (el, i) {
+        var isDone = !!done[curP + '-' + i];
+        var isActive = !isDone && (i === 0 || !!done[curP + '-' + (i - 1)]);
+        el.classList.toggle('done', isDone);
+        el.classList.toggle('active', isActive);
+        var cb = el.querySelector('.check');
+        if (cb) cb.textContent = isDone ? steps[i].check : 'I did this →';
+        var sk = el.querySelector('.skip');
+        if (sk && isDone) sk.remove();
+      });
+    }
+
+    document.querySelectorAll('#qs-paths button').forEach(function (b) {
+      b.onclick = function () {
+        document.querySelectorAll('#qs-paths button').forEach(function (x) {
+          x.classList.remove('on');
+        });
+        b.classList.add('on');
+        curP = b.dataset.p;
+        done = {};
+        render();
+      };
+    });
+
+    render();
+    window._qsRender = function () {
+      done = {};
+      render();
+    };
+    window._qsClasslessPaths = CLASSLESS_PATHS;
+
+    // ── Boilerplate copy ──
+    var bpCopy = document.getElementById('qs-boilerplate-copy');
+    if (bpCopy)
+      bpCopy.onclick = function () {
+        var el = document.getElementById('qs-boilerplate-code');
+        if (el && navigator.clipboard) {
+          var children = el.querySelectorAll('[data-qs-mode]');
+          var src = el;
+          for (var i = 0; i < children.length; i++) {
+            if (children[i].style.display !== 'none') {
+              src = children[i];
+              break;
+            }
+          }
+          navigator.clipboard.writeText(src.innerText);
+        }
+        bpCopy.textContent = 'Copied!';
+        setTimeout(function () {
+          bpCopy.textContent = 'Copy';
+        }, 1500);
+      };
+  })();
+
+  (function initQs3Pane() {
+    var tabsEl = document.getElementById('qs3-ctabs');
+    if (!tabsEl) return;
+
+    var BLOCKS = {
+      b1: {
+        title: 'Install',
+        fname: 'index.html',
+        tabs: [
+          {
+            k: 'cdn',
+            name: 'CDN',
+            lang: 'HTML',
+            code: `<span class="com">&lt;!-- index.html --&gt;</span>
+&lt;<span class="sh-tag">!DOCTYPE</span> html&gt;
+&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;
+&lt;<span class="sh-tag">head</span>&gt;
+  <span class="hi">&lt;<span class="sh-tag">link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"https://cdn.jsdelivr.net/npm/njx-css-ui@1.1.0/css/style.min.css"</span>&gt;
+</span>&lt;/<span class="sh-tag">head</span>&gt;
+&lt;<span class="sh-tag">body</span>&gt;
+  &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Ship it&lt;/<span class="sh-tag">button</span>&gt;
+&lt;/<span class="sh-tag">body</span>&gt;
+&lt;/<span class="sh-tag">html</span>&gt;`,
+            classlessCode: `<span class="com">&lt;!-- index.html --&gt;</span>
+&lt;<span class="sh-tag">!DOCTYPE</span> html&gt;
+&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;
+&lt;<span class="sh-tag">head</span>&gt;
+  <span class="hi">&lt;<span class="sh-tag">link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"https://cdn.jsdelivr.net/npm/njx-css-ui@1.1.0/css/classless.min.css"</span>&gt;
+</span>&lt;/<span class="sh-tag">head</span>&gt;
+&lt;<span class="sh-tag">body</span>&gt;
+  &lt;<span class="sh-tag">button</span>&gt;Ship it&lt;/<span class="sh-tag">button</span>&gt;
+&lt;/<span class="sh-tag">body</span>&gt;
+&lt;/<span class="sh-tag">html</span>&gt;`,
+            preview: `<button class="btn btn-primary">Ship it</button>`,
+            classlessPreview: `<button>Ship it</button>`,
+          },
+          {
+            k: 'npm',
+            name: 'npm',
+            lang: 'JS',
+            fname: 'main.ts',
+            code: `<span class="com">// terminal</span>
+<span class="kw">$</span> npm install njx-css-ui
+
+<span class="com">// src/main.ts</span>
+<span class="hi"><span class="kw">import</span> <span class="str">"njx-css-ui/css/style.min.css"</span>;
+</span>
+<span class="kw">import</span> { createApp } <span class="kw">from</span> <span class="str">"vue"</span>;
+<span class="kw">import</span> App <span class="kw">from</span> <span class="str">"./App.vue"</span>;
+
+createApp(App).mount(<span class="str">"#app"</span>);`,
+            preview: `<button class="btn btn-primary">Ship it</button>`,
+          },
+          {
+            k: 'zip',
+            name: 'ZIP',
+            lang: 'SH',
+            fname: 'terminal',
+            code: `<span class="com"># download latest release</span>
+<span class="kw">$</span> curl -L https://github.com/njbSaab/njx-css-ui/releases/latest/download/njx-css-ui.zip -o njx.zip
+<span class="kw">$</span> unzip njx.zip -d ./vendor
+
+<span class="com"># link it</span>
+<span class="hi">&lt;<span class="sh-tag">link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"./vendor/njx-css-ui/style.min.css"</span>&gt;
+</span>`,
+            preview: `<button class="btn btn-primary">Ship it</button>`,
+          },
+        ],
+      },
+      b2: {
+        title: 'Theme',
+        fname: 'index.html',
+        tabs: [
+          {
+            k: 'dark',
+            name: 'dark',
+            lang: 'HTML',
+            code: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;
+</span>  &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
+  &lt;<span class="sh-tag">span</span> <span class="attr">class</span>=<span class="str">"tag tag-primary"</span>&gt;live&lt;/<span class="sh-tag">span</span>&gt;
+&lt;/<span class="sh-tag">html</span>&gt;`,
+            classlessCode: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;
+</span>  &lt;<span class="sh-tag">button</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
+  &lt;<span class="sh-tag">p</span>&gt;Styled automatically.&lt;/<span class="sh-tag">p</span>&gt;
+&lt;/<span class="sh-tag">html</span>&gt;`,
+            themePreview: 'dark',
+          },
+          {
+            k: 'purple',
+            name: 'purple',
+            lang: 'HTML',
+            code: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"purple"</span>&gt;
+</span>  &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
+  &lt;<span class="sh-tag">span</span> <span class="attr">class</span>=<span class="str">"tag tag-primary"</span>&gt;live&lt;/<span class="sh-tag">span</span>&gt;
+&lt;/<span class="sh-tag">html</span>&gt;`,
+            classlessCode: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"purple"</span>&gt;
+</span>  &lt;<span class="sh-tag">button</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
+  &lt;<span class="sh-tag">p</span>&gt;Styled automatically.&lt;/<span class="sh-tag">p</span>&gt;
+&lt;/<span class="sh-tag">html</span>&gt;`,
+            themePreview: 'purple',
+          },
+          {
+            k: 'green',
+            name: 'green',
+            lang: 'HTML',
+            code: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"green"</span>&gt;
+</span>  &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
+  &lt;<span class="sh-tag">span</span> <span class="attr">class</span>=<span class="str">"tag tag-primary"</span>&gt;live&lt;/<span class="sh-tag">span</span>&gt;
+&lt;/<span class="sh-tag">html</span>&gt;`,
+            classlessCode: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"green"</span>&gt;
+</span>  &lt;<span class="sh-tag">button</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
+  &lt;<span class="sh-tag">p</span>&gt;Styled automatically.&lt;/<span class="sh-tag">p</span>&gt;
+&lt;/<span class="sh-tag">html</span>&gt;`,
+            themePreview: 'green',
+          },
+          {
+            k: 'persist',
+            name: 'Persist',
+            lang: 'JS',
+            fname: 'theme.js',
+            code: `<span class="com">// before the library loads</span>
+<span class="kw">const</span> saved = localStorage.getItem(<span class="str">'theme'</span>);
+<span class="kw">if</span> (saved) {
+  document.documentElement.setAttribute(<span class="str">'data-theme'</span>, saved);
+}
+
+<span class="com">// whenever the user picks one</span>
+<span class="kw">function</span> setTheme(t) {
+  document.documentElement.setAttribute(<span class="str">'data-theme'</span>, t);
+  localStorage.setItem(<span class="str">'theme'</span>, t);
+}`,
+            preview: `<button class="btn btn-primary btn-sm">Primary</button> <span class="tag tag-primary">live</span>`,
+          },
+        ],
+      },
+      b3: {
+        title: 'Compose',
+        fname: 'buttons.html',
+        tabs: [
+          {
+            k: 'color',
+            name: 'Color',
+            lang: 'HTML',
+            code: `&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
+&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-accent"</span>&gt;Accent&lt;/<span class="sh-tag">button</span>&gt;
+&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-ghost"</span>&gt;Ghost&lt;/<span class="sh-tag">button</span>&gt;
+&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-outline"</span>&gt;Outline&lt;/<span class="sh-tag">button</span>&gt;
+&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-success"</span>&gt;Done&lt;/<span class="sh-tag">button</span>&gt;
+&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-error"</span>&gt;Cancel&lt;/<span class="sh-tag">button</span>&gt;`,
+            preview: `<button class="btn btn-primary btn-sm">Primary</button> <button class="btn btn-accent btn-sm">Accent</button> <button class="btn btn-ghost btn-sm">Ghost</button> <button class="btn btn-outline btn-sm">Outline</button> <button class="btn btn-success btn-sm">Done</button> <button class="btn btn-error btn-sm">Cancel</button>`,
+          },
+          {
+            k: 'size',
+            name: 'Size',
+            lang: 'HTML',
+            code: `&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary btn-xs"</span>&gt;XS&lt;/<span class="sh-tag">button</span>&gt;
+&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary btn-sm"</span>&gt;SM&lt;/<span class="sh-tag">button</span>&gt;
+&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;MD&lt;/<span class="sh-tag">button</span>&gt;
+&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary btn-lg"</span>&gt;LG&lt;/<span class="sh-tag">button</span>&gt;`,
+            preview: `<button class="btn btn-primary btn-xs">XS</button> <button class="btn btn-primary btn-sm">SM</button> <button class="btn btn-primary">MD</button> <button class="btn btn-primary btn-lg">LG</button>`,
+          },
+          {
+            k: 'hover',
+            name: 'Hover',
+            lang: 'HTML',
+            code: `&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary hover-grow"</span>&gt;Grow&lt;/<span class="sh-tag">button</span>&gt;
+&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary hover-lift"</span>&gt;Lift&lt;/<span class="sh-tag">button</span>&gt;
+&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary hover-glow"</span>&gt;Glow&lt;/<span class="sh-tag">button</span>&gt;
+&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary hover-shimmer"</span>&gt;Shimmer&lt;/<span class="sh-tag">button</span>&gt;`,
+            preview: `<button class="btn btn-primary btn-sm hover-grow">Grow</button> <button class="btn btn-primary btn-sm hover-lift">Lift</button> <button class="btn btn-primary btn-sm hover-glow">Glow</button>`,
+          },
+        ],
+        classlessTabs: [
+          {
+            k: 'text',
+            name: 'Text',
+            lang: 'HTML',
+            fname: 'index.html',
+            code: `&lt;<span class="sh-tag">h1</span>&gt;Heading&lt;/<span class="sh-tag">h1</span>&gt;
+&lt;<span class="sh-tag">h2</span>&gt;Subheading&lt;/<span class="sh-tag">h2</span>&gt;
+&lt;<span class="sh-tag">p</span>&gt;A paragraph of text.&lt;/<span class="sh-tag">p</span>&gt;
+&lt;<span class="sh-tag">blockquote</span>&gt;A notable quote.&lt;/<span class="sh-tag">blockquote</span>&gt;
+&lt;<span class="sh-tag">code</span>&gt;inline code&lt;/<span class="sh-tag">code</span>&gt;`,
+            preview: `<h2 style="margin:0 0 4px;font-size:1em">Heading</h2><p style="margin:0 0 4px">A paragraph.</p><code>inline code</code>`,
+          },
+          {
+            k: 'forms',
+            name: 'Forms',
+            lang: 'HTML',
+            fname: 'index.html',
+            code: `&lt;<span class="sh-tag">input</span> <span class="attr">type</span>=<span class="str">"text"</span> <span class="attr">placeholder</span>=<span class="str">"Name"</span>&gt;
+&lt;<span class="sh-tag">input</span> <span class="attr">type</span>=<span class="str">"email"</span> <span class="attr">placeholder</span>=<span class="str">"Email"</span>&gt;
+&lt;<span class="sh-tag">button</span>&gt;Submit&lt;/<span class="sh-tag">button</span>&gt;
+&lt;<span class="sh-tag">select</span>&gt;
+  &lt;<span class="sh-tag">option</span>&gt;Option 1&lt;/<span class="sh-tag">option</span>&gt;
+&lt;/<span class="sh-tag">select</span>&gt;`,
+            preview: `<input type="text" placeholder="Name" style="max-width:110px;margin:2px"> <button style="margin:2px">Submit</button>`,
+          },
+          {
+            k: 'layout',
+            name: 'Layout',
+            lang: 'HTML',
+            fname: 'index.html',
+            code: `&lt;<span class="sh-tag">details</span>&gt;
+  &lt;<span class="sh-tag">summary</span>&gt;FAQ item&lt;/<span class="sh-tag">summary</span>&gt;
+  Answer text here.
+&lt;/<span class="sh-tag">details</span>&gt;
+&lt;<span class="sh-tag">table</span>&gt;
+  &lt;<span class="sh-tag">tr</span>&gt;&lt;<span class="sh-tag">th</span>&gt;Name&lt;/<span class="sh-tag">th</span>&gt;&lt;<span class="sh-tag">th</span>&gt;Role&lt;/<span class="sh-tag">th</span>&gt;&lt;/<span class="sh-tag">tr</span>&gt;
+  &lt;<span class="sh-tag">tr</span>&gt;&lt;<span class="sh-tag">td</span>&gt;Alice&lt;/<span class="sh-tag">td</span>&gt;&lt;<span class="sh-tag">td</span>&gt;Dev&lt;/<span class="sh-tag">td</span>&gt;&lt;/<span class="sh-tag">tr</span>&gt;
+&lt;/<span class="sh-tag">table</span>&gt;`,
+            preview: `<details><summary>FAQ item</summary><p style="margin:4px 0">Answer text.</p></details>`,
+          },
+        ],
+      },
+      b4: {
+        title: 'Brand it',
+        fname: 'brand.css',
+        tabs: [
+          {
+            k: 'root',
+            name: ':root',
+            lang: 'CSS',
+            code: `<span class="com">/* override after njx-ui loads */</span>
+<span class="sh-tag">:root</span> {
+  <span class="attr">--color-primary</span>: <span class="str">#ff6b35</span>;
+  <span class="attr">--color-accent</span>:  <span class="str">#0a84ff</span>;
+  <span class="attr">--radius-md</span>:     <span class="str">8px</span>;
+}`,
+            preview: `<div style="--color-primary:#ff6b35;display:flex;gap:8px"><button class="btn btn-primary btn-sm">Primary</button> <span class="tag tag-primary">live</span></div>`,
+          },
+          {
+            k: 'scoped',
+            name: 'Scoped',
+            lang: 'HTML',
+            code: `<span class="com">&lt;!-- default theme outside --&gt;</span>
+&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Default&lt;/<span class="sh-tag">button</span>&gt;
+
+<span class="com">&lt;!-- custom brand inside --&gt;</span>
+<span class="hi">&lt;<span class="sh-tag">section</span> <span class="attr">style</span>=<span class="str">"--color-primary:#ff6b35"</span>&gt;
+</span>  &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Branded&lt;/<span class="sh-tag">button</span>&gt;
+&lt;/<span class="sh-tag">section</span>&gt;`,
+            preview: `<button class="btn btn-primary btn-sm">Default</button> <span style="--color-primary:#ff6b35"><button class="btn btn-primary btn-sm">Branded</button></span>`,
+          },
+          {
+            k: 'tokens',
+            name: 'All tokens',
+            lang: 'CSS',
+            code: `<span class="sh-tag">:root</span> {
+  <span class="attr">--color-primary</span>:  <span class="str">#14a0ff</span>;
+  <span class="attr">--color-accent</span>:   <span class="str">#f9063f</span>;
+  <span class="attr">--success</span>:        <span class="str">#9ce700</span>;
+  <span class="attr">--warning</span>:        <span class="str">#ffdd00</span>;
+  <span class="attr">--error</span>:          <span class="str">#d43939</span>;
+  <span class="attr">--radius-sm</span>:      <span class="str">6px</span>;
+  <span class="attr">--radius-md</span>:      <span class="str">12px</span>;
+  <span class="attr">--radius-full</span>:    <span class="str">9999px</span>;
+}`,
+            preview: `<div style="font-family:'Roboto Mono',monospace;font-size:12px;color:var(--color-muted)">60+ tokens in <code style="color:var(--color-primary)">_base.css</code></div>`,
+          },
+        ],
+      },
+    };
+
+    var preEl = document.getElementById('qs3-cpre');
+    var previewEl = document.getElementById('qs3-cpreview');
+    var fnameEl = document.getElementById('qs3-cfname');
+    var langEl = document.getElementById('qs3-clang');
+    var card = document.getElementById('qs3-ccard');
+    var curBlock = 'b1';
+    var curTab = 0;
+
+    function renderTabs() {
+      var b = BLOCKS[curBlock];
+      var useClassless = window._qsMode === 'classless';
+      var tabs = useClassless && b.classlessTabs ? b.classlessTabs : b.tabs;
+      tabsEl.innerHTML = '';
+      tabs.forEach(function (t, i) {
+        var btn = document.createElement('button');
+        btn.className = i === curTab ? 'on' : '';
+        btn.textContent = t.name;
+        btn.onclick = function () {
+          curTab = i;
+          renderTab();
+        };
+        tabsEl.appendChild(btn);
+      });
+      renderTab();
+    }
+    function renderTab() {
+      var b = BLOCKS[curBlock];
+      var useClassless = window._qsMode === 'classless';
+      var tabs = useClassless && b.classlessTabs ? b.classlessTabs : b.tabs;
+      var t = tabs[curTab] || tabs[0];
+      preEl.innerHTML =
+        useClassless && t.classlessCode ? t.classlessCode : t.code;
+      if (window._qsApplyModeToCode) window._qsApplyModeToCode(preEl);
+      fnameEl.textContent = t.fname || b.fname;
+      langEl.textContent = t.lang || 'HTML';
+      previewEl.innerHTML =
+        useClassless && t.classlessPreview
+          ? t.classlessPreview
+          : t.preview || '';
+      if (t.themePreview) {
+        previewEl.innerHTML =
+          '<button class="btn btn-primary btn-sm">Primary</button> <span class="tag tag-primary">live</span>';
+        previewEl.setAttribute('data-theme', t.themePreview);
+      } else {
+        previewEl.removeAttribute('data-theme');
+      }
+      Array.from(tabsEl.children).forEach(function (c, i) {
+        c.classList.toggle('on', i === curTab);
+      });
+    }
+
+    // Scroll-spy
+    var blocks = Array.from(document.querySelectorAll('.qs3-block'));
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && e.intersectionRatio > 0.3) {
+            if (curBlock !== e.target.id.replace('qs3-', '')) {
+              curBlock = e.target.id.replace('qs3-', '');
+              curTab = 0;
+              renderTabs();
+            }
+          }
+        });
+      },
+      { threshold: [0.3, 0.6], rootMargin: '-80px 0px -50% 0px' },
+    );
+    blocks.forEach(function (b) {
+      io.observe(b);
+    });
+
+    // Preview toggle
+    var tbCode = document.getElementById('qs3-tb-code');
+    var tbBoth = document.getElementById('qs3-tb-both');
+    if (tbCode)
+      tbCode.onclick = function () {
+        card.classList.remove('show-preview');
+        tbCode.classList.add('on');
+        tbBoth.classList.remove('on');
+      };
+    if (tbBoth)
+      tbBoth.onclick = function () {
+        card.classList.add('show-preview');
+        tbBoth.classList.add('on');
+        tbCode.classList.remove('on');
+      };
+
+    // Copy
+    var ccopy = document.getElementById('qs3-ccopy');
+    if (ccopy)
+      ccopy.onclick = function () {
+        if (navigator.clipboard) navigator.clipboard.writeText(preEl.innerText);
+        ccopy.textContent = 'Copied!';
+        setTimeout(function () {
+          ccopy.textContent = 'Copy';
+        }, 1500);
+      };
+
+    renderTabs();
+    window._qsRenderTab = renderTabs;
+  })();
+
+  document.addEventListener('astro:page-load', function () {
+    (function () {
+      var track = document.getElementById('qs-track');
+      if (!track || track.children.length > 0) return;
+
+      var PATHS = {
+        cdn: [
+          {
+            h: 'Drop the link',
+            meta: '~10s',
+            d: "Paste this single &lt;link&gt; into your &lt;head&gt;. That's the whole library.",
+            code: '&lt;<span class="sh-tag">link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"https://cdn.jsdelivr.net/npm/njx-css-ui@1.1.0/css/style.min.css"</span>&gt;',
+            check: 'Pasted',
+          },
+          {
+            h: 'Pick a theme',
+            meta: '~5s',
+            d: 'Set <code>data-theme</code> on &lt;html&gt;. 9 options: dark, light, red, blue, green, cyan, yellow, pink, purple.',
+            code: '&lt;<span class="sh-tag">html</span> <span class="attr">lang</span>=<span class="str">"en"</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;',
+            check: 'Themed',
+          },
+          {
+            h: 'Use a class',
+            meta: '~10s',
+            d: 'Any <code>.btn</code>, <code>.inp</code>, <code>.tag</code> on the page now styles itself. No imports.',
+            code: '&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Ship it&lt;/<span class="sh-tag">button</span>&gt;\n&lt;<span class="sh-tag">input</span>  <span class="attr">class</span>=<span class="str">"inp inp-primary"</span> <span class="attr">placeholder</span>=<span class="str">"email"</span>&gt;\n&lt;<span class="sh-tag">span</span>   <span class="attr">class</span>=<span class="str">"tag tag-success"</span>&gt;live&lt;/<span class="sh-tag">span</span>&gt;',
+            check: 'Used',
+          },
+          {
+            h: 'Customize a token',
+            meta: '~5s',
+            d: 'Override one variable to brand your build. Everything that uses <code>--color-primary</code> retints.',
+            code: '&lt;<span class="sh-tag">style</span>&gt;\n  <span class="sh-tag">:root</span> &#123; <span class="attr">--color-primary</span>: <span class="str">#ff6b35</span>; &#125;\n&lt;/<span class="sh-tag">style</span>&gt;',
+            check: 'Branded',
+          },
+        ],
+        npm: [
+          {
+            h: 'Install package',
+            meta: '~30s',
+            d: 'Add the package. Works with npm, pnpm, yarn or bun.',
+            code: '<span class="com"># pick your manager</span>\nnpm  install njx-css-ui\npnpm add     njx-css-ui\nbun  add     njx-css-ui',
+            check: 'Installed',
+          },
+          {
+            h: 'Import CSS',
+            meta: '~5s',
+            d: 'Pull the stylesheet into your entry file. Vite, webpack, esbuild — all fine.',
+            code: '<span class="com">// src/main.ts (or main.js)</span>\n<span class="sh-tag">import</span> <span class="str">"njx-css-ui/css/style.min.css"</span>;',
+            check: 'Imported',
+          },
+          {
+            h: 'Set theme attribute',
+            meta: '~5s',
+            d: 'Set on &lt;html&gt; for the whole app, or any wrapper for a scoped theme.',
+            code: '<span class="com">&lt;!-- index.html --&gt;</span>\n&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;',
+            check: 'Themed',
+          },
+          {
+            h: 'Use in a component',
+            meta: '~10s',
+            d: 'Apply utility classes anywhere. React, Vue, Svelte — same string.',
+            code: '<span class="sh-tag">export</span> <span class="sh-tag">function</span> <span class="attr">Login</span>() &#123;\n  <span class="sh-tag">return</span> (\n    &lt;<span class="sh-tag">form</span> <span class="attr">className</span>=<span class="str">"card"</span>&gt;\n      &lt;<span class="sh-tag">input</span> <span class="attr">className</span>=<span class="str">"inp inp-primary"</span> /&gt;\n      &lt;<span class="sh-tag">button</span> <span class="attr">className</span>=<span class="str">"btn btn-primary"</span>&gt;Sign in&lt;/<span class="sh-tag">button</span>&gt;\n    &lt;/<span class="sh-tag">form</span>&gt;\n  );\n&#125;',
+            check: 'Used',
+          },
+        ],
+        zip: [
+          {
+            h: 'Download release',
+            meta: '~20s',
+            d: 'Grab the latest ZIP from GitHub releases.',
+            dl: 'https://github.com/njbSaab/njx-css-ui/releases/latest/download/njx-css-ui.zip',
+            check: 'Downloaded',
+          },
+          {
+            h: 'Copy into project',
+            meta: '~10s',
+            d: 'Drop the <code>style.min.css</code> file anywhere your server can serve it from.',
+            code: '<span class="com"># tree</span>\nyour-project/\n&#x251C;&#x2500; index.html\n&#x2514;&#x2500; vendor/\n   &#x2514;&#x2500; njx-css-ui/\n      &#x2514;&#x2500; style.min.css',
+            check: 'Copied',
+          },
+          {
+            h: 'Link the file',
+            meta: '~10s',
+            d: 'Reference it from your &lt;head&gt;. Relative path is fine.',
+            code: '&lt;<span class="sh-tag">link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span>\n      <span class="attr">href</span>=<span class="str">"./vendor/njx-css-ui/style.min.css"</span>&gt;\n&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;',
+            check: 'Linked',
+          },
+          {
+            h: 'Use the classes',
+            meta: '~10s',
+            d: 'Same classes as the CDN path. No build, no bundler — just HTML.',
+            code: '&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Ship it&lt;/<span class="sh-tag">button</span>&gt;',
+            check: 'Used',
+          },
+        ],
+      };
+
+      var curP = 'cdn';
+      var done = {};
+
+      function render() {
+        var activePaths =
+          window._qsMode === 'classless'
+            ? window._qsClasslessPaths || CLASSLESS_PATHS || PATHS
+            : PATHS;
+        var steps = activePaths[curP] || activePaths['cdn'];
+        track.innerHTML = '';
+        steps.forEach(function (st, i) {
+          var isDone = !!done[curP + '-' + i];
+          var isActive = !isDone && (i === 0 || !!done[curP + '-' + (i - 1)]);
+          var el = document.createElement('div');
+          el.className =
+            'qs-step' + (isDone ? ' done' : '') + (isActive ? ' active' : '');
+          el.innerHTML =
+            '<div class="num"><span>' +
+            (i + 1) +
+            '</span></div>' +
+            '<div class="body">' +
+            '<div class="h">' +
+            st.h +
+            '<span class="meta">' +
+            st.meta +
+            '</span></div>' +
+            '<div class="d">' +
+            st.d +
+            '</div>' +
+            '<div class="code"><button class="copy">Copy</button><pre>' +
+            st.code +
+            '</pre></div>' +
+            '<div class="actions">' +
+            '<button class="check" data-i="' +
+            i +
+            '">' +
+            (isDone ? st.check : 'I did this →') +
+            '</button>' +
+            (isDone
+              ? ''
+              : '<button class="skip" data-i="' + i + '">Skip</button>') +
+            '</div>' +
+            '</div>';
+          track.appendChild(el);
+        });
+
+        track.querySelectorAll('.check, .skip').forEach(function (b) {
+          b.onclick = function () {
+            done[curP + '-' + b.dataset.i] = true;
+            updateProgress();
+          };
+        });
+        track.querySelectorAll('.copy').forEach(function (b) {
+          b.onclick = function () {
+            var txt = this.parentElement.querySelector('pre').innerText;
+            if (navigator.clipboard) navigator.clipboard.writeText(txt);
+            this.textContent = 'Copied!';
+            var self = this;
+            setTimeout(function () {
+              self.textContent = 'Copy';
+            }, 1500);
+          };
+        });
+        updateProgress();
+      }
+
+      function updateProgress() {
+        var activePaths =
+          window._qsMode === 'classless'
+            ? window._qsClasslessPaths || CLASSLESS_PATHS || PATHS
+            : PATHS;
+        var steps = activePaths[curP] || activePaths['cdn'];
+        var completed = steps.reduce(function (n, _, i) {
+          return n + (done[curP + '-' + i] ? 1 : 0);
+        }, 0);
+        var prog = document.getElementById('qs-prog');
+        var clock = document.getElementById('qs-clock');
+        var success = document.getElementById('qs-success');
+        if (prog) prog.style.width = (completed / steps.length) * 100 + '%';
+        if (clock) clock.textContent = completed + '/' + steps.length;
+        if (success)
+          success.classList.toggle('show', completed === steps.length);
+
+        track.querySelectorAll('.qs-step').forEach(function (el, i) {
+          var isDone = !!done[curP + '-' + i];
+          var isActive = !isDone && (i === 0 || !!done[curP + '-' + (i - 1)]);
+          el.classList.toggle('done', isDone);
+          el.classList.toggle('active', isActive);
+          var cb = el.querySelector('.check');
+          if (cb) cb.textContent = isDone ? steps[i].check : 'I did this →';
+          var sk = el.querySelector('.skip');
+          if (sk && isDone) sk.remove();
+        });
+      }
+
+      document.querySelectorAll('#qs-paths button').forEach(function (b) {
+        b.onclick = function () {
+          document.querySelectorAll('#qs-paths button').forEach(function (x) {
+            x.classList.remove('on');
+          });
+          b.classList.add('on');
+          curP = b.dataset.p;
+          done = {};
+          render();
+        };
+      });
+
+      render();
+    })();
+
+    // ── Pane block (VT re-init) ──
+    (function () {
+      var tabsEl2 = document.getElementById('qs3-ctabs');
+      if (!tabsEl2 || tabsEl2.children.length > 0) return;
+
+      var BLOCKS2 = {
+        b1: {
+          title: 'Install',
+          fname: 'index.html',
+          tabs: [
+            {
+              k: 'cdn',
+              name: 'CDN',
+              lang: 'HTML',
+              code: `<span class="com">&lt;!-- index.html --&gt;</span>
+&lt;<span class="sh-tag">!DOCTYPE</span> html&gt;
+&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;
+&lt;<span class="sh-tag">head</span>&gt;
+  <span class="hi">&lt;<span class="sh-tag">link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"https://cdn.jsdelivr.net/npm/njx-css-ui@1.1.0/css/style.min.css"</span>&gt;
+</span>&lt;/<span class="sh-tag">head</span>&gt;
+&lt;<span class="sh-tag">body</span>&gt;
+  &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Ship it&lt;/<span class="sh-tag">button</span>&gt;
+&lt;/<span class="sh-tag">body</span>&gt;
+&lt;/<span class="sh-tag">html</span>&gt;`,
+              classlessCode: `<span class="com">&lt;!-- index.html --&gt;</span>
+&lt;<span class="sh-tag">!DOCTYPE</span> html&gt;
+&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;
+&lt;<span class="sh-tag">head</span>&gt;
+  <span class="hi">&lt;<span class="sh-tag">link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"https://cdn.jsdelivr.net/npm/njx-css-ui@1.1.0/css/classless.min.css"</span>&gt;
+</span>&lt;/<span class="sh-tag">head</span>&gt;
+&lt;<span class="sh-tag">body</span>&gt;
+  &lt;<span class="sh-tag">button</span>&gt;Ship it&lt;/<span class="sh-tag">button</span>&gt;
+&lt;/<span class="sh-tag">body</span>&gt;
+&lt;/<span class="sh-tag">html</span>&gt;`,
+              preview: `<button class="btn btn-primary">Ship it</button>`,
+              classlessPreview: `<button>Ship it</button>`,
+            },
+            {
+              k: 'npm',
+              name: 'npm',
+              lang: 'JS',
+              fname: 'main.ts',
+              code: `<span class="kw">import</span> <span class="str">"njx-css-ui/css/style.min.css"</span>;`,
+              preview: `<button class="btn btn-primary">Ship it</button>`,
+            },
+            {
+              k: 'zip',
+              name: 'ZIP',
+              lang: 'SH',
+              fname: 'terminal',
+              code: `<span class="kw">$</span> curl -L .../njx-css-ui.zip -o njx.zip && unzip njx.zip -d ./vendor`,
+              preview: `<button class="btn btn-primary">Ship it</button>`,
+            },
+          ],
+        },
+        b2: {
+          title: 'Theme',
+          fname: 'index.html',
+          tabs: [
+            {
+              k: 'dark',
+              name: 'dark',
+              lang: 'HTML',
+              code: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;</span>`,
+              classlessCode: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;
+</span>  &lt;<span class="sh-tag">button</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
+  &lt;<span class="sh-tag">p</span>&gt;Styled automatically.&lt;/<span class="sh-tag">p</span>&gt;
+&lt;/<span class="sh-tag">html</span>&gt;`,
+              themePreview: 'dark',
+            },
+            {
+              k: 'purple',
+              name: 'purple',
+              lang: 'HTML',
+              code: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"purple"</span>&gt;</span>`,
+              classlessCode: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"purple"</span>&gt;
+</span>  &lt;<span class="sh-tag">button</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
+  &lt;<span class="sh-tag">p</span>&gt;Styled automatically.&lt;/<span class="sh-tag">p</span>&gt;
+&lt;/<span class="sh-tag">html</span>&gt;`,
+              themePreview: 'purple',
+            },
+            {
+              k: 'green',
+              name: 'green',
+              lang: 'HTML',
+              code: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"green"</span>&gt;</span>`,
+              classlessCode: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"green"</span>&gt;
+</span>  &lt;<span class="sh-tag">button</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
+  &lt;<span class="sh-tag">p</span>&gt;Styled automatically.&lt;/<span class="sh-tag">p</span>&gt;
+&lt;/<span class="sh-tag">html</span>&gt;`,
+              themePreview: 'green',
+            },
+            {
+              k: 'persist',
+              name: 'Persist',
+              lang: 'JS',
+              fname: 'theme.js',
+              code: `<span class="kw">const</span> saved = localStorage.getItem(<span class="str">'theme'</span>);\n<span class="kw">if</span> (saved) document.documentElement.setAttribute(<span class="str">'data-theme'</span>, saved);`,
+              preview: `<button class="btn btn-primary btn-sm">Primary</button>`,
+            },
+          ],
+        },
+        b3: {
+          title: 'Compose',
+          fname: 'buttons.html',
+          tabs: [
+            {
+              k: 'color',
+              name: 'Color',
+              lang: 'HTML',
+              code: `&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;`,
+              preview: `<button class="btn btn-primary btn-sm">Primary</button> <button class="btn btn-accent btn-sm">Accent</button> <button class="btn btn-ghost btn-sm">Ghost</button>`,
+            },
+            {
+              k: 'size',
+              name: 'Size',
+              lang: 'HTML',
+              code: `&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary btn-sm"</span>&gt;SM&lt;/<span class="sh-tag">button</span>&gt;`,
+              preview: `<button class="btn btn-primary btn-xs">XS</button> <button class="btn btn-primary btn-sm">SM</button> <button class="btn btn-primary">MD</button> <button class="btn btn-primary btn-lg">LG</button>`,
+            },
+            {
+              k: 'hover',
+              name: 'Hover',
+              lang: 'HTML',
+              code: `&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary hover-glow"</span>&gt;Glow&lt;/<span class="sh-tag">button</span>&gt;`,
+              preview: `<button class="btn btn-primary btn-sm hover-grow">Grow</button> <button class="btn btn-primary btn-sm hover-lift">Lift</button> <button class="btn btn-primary btn-sm hover-glow">Glow</button>`,
+            },
+          ],
+          classlessTabs: [
+            {
+              k: 'text',
+              name: 'Text',
+              lang: 'HTML',
+              fname: 'index.html',
+              code: `&lt;<span class="sh-tag">h1</span>&gt;Heading&lt;/<span class="sh-tag">h1</span>&gt;
+&lt;<span class="sh-tag">h2</span>&gt;Subheading&lt;/<span class="sh-tag">h2</span>&gt;
+&lt;<span class="sh-tag">p</span>&gt;A paragraph of text.&lt;/<span class="sh-tag">p</span>&gt;
+&lt;<span class="sh-tag">blockquote</span>&gt;A notable quote.&lt;/<span class="sh-tag">blockquote</span>&gt;
+&lt;<span class="sh-tag">code</span>&gt;inline code&lt;/<span class="sh-tag">code</span>&gt;`,
+              preview: `<h2 style="margin:0 0 4px;font-size:1em">Heading</h2><p style="margin:0 0 4px">A paragraph.</p><code>inline code</code>`,
+            },
+            {
+              k: 'forms',
+              name: 'Forms',
+              lang: 'HTML',
+              fname: 'index.html',
+              code: `&lt;<span class="sh-tag">input</span> <span class="attr">type</span>=<span class="str">"text"</span> <span class="attr">placeholder</span>=<span class="str">"Name"</span>&gt;
+&lt;<span class="sh-tag">input</span> <span class="attr">type</span>=<span class="str">"email"</span> <span class="attr">placeholder</span>=<span class="str">"Email"</span>&gt;
+&lt;<span class="sh-tag">button</span>&gt;Submit&lt;/<span class="sh-tag">button</span>&gt;
+&lt;<span class="sh-tag">select</span>&gt;
+  &lt;<span class="sh-tag">option</span>&gt;Option 1&lt;/<span class="sh-tag">option</span>&gt;
+&lt;/<span class="sh-tag">select</span>&gt;`,
+              preview: `<input type="text" placeholder="Name" style="max-width:110px;margin:2px"> <button style="margin:2px">Submit</button>`,
+            },
+            {
+              k: 'layout',
+              name: 'Layout',
+              lang: 'HTML',
+              fname: 'index.html',
+              code: `&lt;<span class="sh-tag">details</span>&gt;
+  &lt;<span class="sh-tag">summary</span>&gt;FAQ item&lt;/<span class="sh-tag">summary</span>&gt;
+  Answer text here.
+&lt;/<span class="sh-tag">details</span>&gt;
+&lt;<span class="sh-tag">table</span>&gt;
+  &lt;<span class="sh-tag">tr</span>&gt;&lt;<span class="sh-tag">th</span>&gt;Name&lt;/<span class="sh-tag">th</span>&gt;&lt;<span class="sh-tag">th</span>&gt;Role&lt;/<span class="sh-tag">th</span>&gt;&lt;/<span class="sh-tag">tr</span>&gt;
+  &lt;<span class="sh-tag">tr</span>&gt;&lt;<span class="sh-tag">td</span>&gt;Alice&lt;/<span class="sh-tag">td</span>&gt;&lt;<span class="sh-tag">td</span>&gt;Dev&lt;/<span class="sh-tag">td</span>&gt;&lt;/<span class="sh-tag">tr</span>&gt;
+&lt;/<span class="sh-tag">table</span>&gt;`,
+              preview: `<details><summary>FAQ item</summary><p style="margin:4px 0">Answer text.</p></details>`,
+            },
+          ],
+        },
+        b4: {
+          title: 'Brand it',
+          fname: 'brand.css',
+          tabs: [
+            {
+              k: 'root',
+              name: ':root',
+              lang: 'CSS',
+              code: `<span class="sh-tag">:root</span> { <span class="attr">--color-primary</span>: <span class="str">#ff6b35</span>; }`,
+              preview: `<div style="--color-primary:#ff6b35;display:flex;gap:8px"><button class="btn btn-primary btn-sm">Primary</button></div>`,
+            },
+            {
+              k: 'scoped',
+              name: 'Scoped',
+              lang: 'HTML',
+              code: `&lt;<span class="sh-tag">section</span> <span class="attr">style</span>=<span class="str">"--color-primary:#ff6b35"</span>&gt;&lt;/<span class="sh-tag">section</span>&gt;`,
+              preview: `<button class="btn btn-primary btn-sm">Default</button> <span style="--color-primary:#ff6b35"><button class="btn btn-primary btn-sm">Branded</button></span>`,
+            },
+            {
+              k: 'tokens',
+              name: 'All tokens',
+              lang: 'CSS',
+              code: `<span class="com">/* 60+ tokens in _base.css */</span>`,
+              preview: `<div style="font-family:'Roboto Mono',monospace;font-size:12px;color:var(--color-muted)">60+ tokens</div>`,
+            },
+          ],
+        },
+      };
+
+      var preEl2 = document.getElementById('qs3-cpre');
+      var previewEl2 = document.getElementById('qs3-cpreview');
+      var fnameEl2 = document.getElementById('qs3-cfname');
+      var langEl2 = document.getElementById('qs3-clang');
+      var card2 = document.getElementById('qs3-ccard');
+      var curBlock2 = 'b1',
+        curTab2 = 0;
+
+      function renderTabs2() {
+        var b = BLOCKS2[curBlock2];
+        var useClassless = window._qsMode === 'classless';
+        var tabs2 = useClassless && b.classlessTabs ? b.classlessTabs : b.tabs;
+        tabsEl2.innerHTML = '';
+        tabs2.forEach(function (t, i) {
+          var btn = document.createElement('button');
+          btn.className = i === curTab2 ? 'on' : '';
+          btn.textContent = t.name;
+          btn.onclick = function () {
+            curTab2 = i;
+            renderTab2();
+          };
+          tabsEl2.appendChild(btn);
+        });
+        renderTab2();
+      }
+      function renderTab2() {
+        var b = BLOCKS2[curBlock2];
+        var useClassless = window._qsMode === 'classless';
+        var tabs2 = useClassless && b.classlessTabs ? b.classlessTabs : b.tabs;
+        var t = tabs2[curTab2] || tabs2[0];
+        preEl2.innerHTML =
+          useClassless && t.classlessCode ? t.classlessCode : t.code;
+        if (window._qsApplyModeToCode) window._qsApplyModeToCode(preEl2);
+        fnameEl2.textContent = t.fname || b.fname;
+        langEl2.textContent = t.lang || 'HTML';
+        previewEl2.innerHTML =
+          useClassless && t.classlessPreview
+            ? t.classlessPreview
+            : t.preview || '';
+        if (t.themePreview) {
+          previewEl2.innerHTML =
+            '<button class="btn btn-primary btn-sm">Primary</button> <span class="tag tag-primary">live</span>';
+          previewEl2.setAttribute('data-theme', t.themePreview);
+        } else {
+          previewEl2.removeAttribute('data-theme');
+        }
+        Array.from(tabsEl2.children).forEach(function (c, i) {
+          c.classList.toggle('on', i === curTab2);
+        });
+      }
+
+      var blocks2 = Array.from(document.querySelectorAll('.qs3-block'));
+      var io2 = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting && e.intersectionRatio > 0.3) {
+              var id = e.target.id.replace('qs3-', '');
+              if (curBlock2 !== id) {
+                curBlock2 = id;
+                curTab2 = 0;
+                renderTabs2();
+              }
+            }
+          });
+        },
+        { threshold: [0.3, 0.6], rootMargin: '-80px 0px -50% 0px' },
+      );
+      blocks2.forEach(function (b) {
+        io2.observe(b);
+      });
+
+      var tbCode2 = document.getElementById('qs3-tb-code');
+      var tbBoth2 = document.getElementById('qs3-tb-both');
+      if (tbCode2)
+        tbCode2.onclick = function () {
+          card2.classList.remove('show-preview');
+          tbCode2.classList.add('on');
+          tbBoth2.classList.remove('on');
+        };
+      if (tbBoth2)
+        tbBoth2.onclick = function () {
+          card2.classList.add('show-preview');
+          tbBoth2.classList.add('on');
+          tbCode2.classList.remove('on');
+        };
+
+      var ccopy2 = document.getElementById('qs3-ccopy');
+      if (ccopy2)
+        ccopy2.onclick = function () {
+          if (navigator.clipboard)
+            navigator.clipboard.writeText(preEl2.innerText);
+          ccopy2.textContent = 'Copied!';
+          setTimeout(function () {
+            ccopy2.textContent = 'Copy';
+          }, 1500);
+        };
+
+      renderTabs2();
+      window._qsRenderTab2 = renderTabs2;
+    })();
+  });
+
+  // ══════════════════════ MODE BAR ══════════════════════
+  var QS_MODE_HINTS = {
+    full: 'Classless built-in — your HTML is styled automatically',
+    classless: 'Standalone — no component classes, 47 KB',
+    interactive: 'Full library + JS: modals, tabs, toasts and more',
+  };
+  var QS_CSS_FILE = {
+    full: 'style.min.css',
+    classless: 'classless.min.css',
+    interactive: 'style.min.css',
+  };
+
+  function qsSyncMode(flavor) {
+    // 1. Sync mode bar tabs
+    document
+      .querySelectorAll('#qs-mode-bar .doc-mode-tab')
+      .forEach(function (b) {
+        b.classList.toggle('active', b.dataset.mode === flavor);
+      });
+    // 2. Update hint
+    var hint = document.getElementById('qs-mode-hint');
+    if (hint) hint.textContent = QS_MODE_HINTS[flavor] || QS_MODE_HINTS.full;
+
+    // 3. Update global mode + css file vars (used by PATHS getters and render hooks)
+    window._qsMode = flavor;
+    window._qsCssFile = QS_CSS_FILE[flavor] || 'style.min.css';
+
+    // 4. Define code transformation hook (used by renderTab / renderTab2)
+    var _cssFile = window._qsCssFile;
+    window._qsApplyModeToCode = function (el) {
+      if (!el) return;
+      el.innerHTML = el.innerHTML.replace(/style\.min\.css/g, _cssFile);
+    };
+
+    // 5. Re-render the progress tracker with correct PATHS
+    if (window._qsRender) window._qsRender();
+
+    // 6. Re-render code card (applies hook automatically via renderTab/renderTab2)
+    if (window._qsRenderTab) window._qsRenderTab();
+    if (window._qsRenderTab2) window._qsRenderTab2();
+
+    // 7. Update static data-qs-cssfile spans
+    document.querySelectorAll('[data-qs-cssfile]').forEach(function (el) {
+      el.textContent = window._qsCssFile;
+    });
+
+    // 8. Show/hide data-qs-mode blocks (static HTML sections)
+    document.querySelectorAll('[data-qs-mode]').forEach(function (el) {
+      var modes = el.dataset.qsMode.split(' ');
+      el.style.display = modes.indexOf(flavor) !== -1 ? '' : 'none';
+    });
+
+    // 9. Show/hide JS step (interactive only)
+    document.querySelectorAll('[data-qs-jsonly]').forEach(function (el) {
+      el.style.display = flavor === 'interactive' ? '' : 'none';
+    });
+
+    // 10. Save
+    try {
+      localStorage.setItem('njx-flavor', flavor);
+    } catch (e) {}
+  }
+
+  // Init from localStorage (shared with docs page)
+  (function () {
+    var saved = 'full';
+    try {
+      saved = localStorage.getItem('njx-flavor') || 'full';
+    } catch (e) {}
+    if (saved !== 'full') qsSyncMode(saved);
+  })();
+  document.addEventListener('astro:page-load', function () {
+    var saved = 'full';
+    try {
+      saved = localStorage.getItem('njx-flavor') || 'full';
+    } catch (e) {}
+    qsSyncMode(saved);
+  });
+</script>

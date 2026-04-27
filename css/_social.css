@@ -1,0 +1,144 @@
+/* ============================================================
+   _social.css — Social List component
+   Variants: default, glass, pills, colored, minimal, vertical, outlined
+   ============================================================ */
+
+/* ── Base ── */
+.social-list {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.social-list a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-2, rgba(255,255,255,0.06));
+  border: 1px solid var(--color-border, rgba(255,255,255,0.12));
+  color: var(--color-text);
+  text-decoration: none;
+  transition: transform .2s, background .2s, border-color .2s, color .2s, box-shadow .2s;
+  flex-shrink: 0;
+}
+.social-list a:hover {
+  transform: translateY(-3px);
+  background: var(--color-accent);
+  color: #000;
+  border-color: var(--color-accent);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+.social-list a svg { pointer-events: none; }
+
+/* ── Glass ── */
+.social-list-glass {
+  padding: var(--space-5) var(--space-6);
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-2xl);
+  gap: var(--space-3);
+  flex-wrap: nowrap;
+}
+.social-list-glass a {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.1);
+  color: #fff;
+  width: 48px;
+  height: 48px;
+}
+.social-list-glass a:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #000;
+}
+
+/* ── Pills (icon + label) ── */
+.social-list-pills {
+  gap: var(--space-2);
+}
+.social-list-pills a {
+  width: auto;
+  height: 38px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-full);
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+.social-list-pills a:hover {
+  transform: translateY(-2px);
+}
+
+/* ── Colored hover (brand colors via data-net) ── */
+.social-list-colored a[data-net="github"]:hover     { background:#24292e; border-color:#24292e; color:#fff; }
+.social-list-colored a[data-net="twitter"]:hover    { background:#1d9bf0; border-color:#1d9bf0; color:#fff; }
+.social-list-colored a[data-net="instagram"]:hover  { background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); border-color:#e6683c; color:#fff; }
+.social-list-colored a[data-net="youtube"]:hover    { background:#ff0000; border-color:#ff0000; color:#fff; }
+.social-list-colored a[data-net="discord"]:hover    { background:#5865f2; border-color:#5865f2; color:#fff; }
+.social-list-colored a[data-net="telegram"]:hover   { background:#2aabee; border-color:#2aabee; color:#fff; }
+.social-list-colored a[data-net="linkedin"]:hover   { background:#0a66c2; border-color:#0a66c2; color:#fff; }
+.social-list-colored a[data-net="tiktok"]:hover     { background:#010101; border-color:#69c9d0; color:#69c9d0; }
+.social-list-colored a[data-net="github"]:hover,
+.social-list-colored a[data-net="twitter"]:hover,
+.social-list-colored a[data-net="instagram"]:hover,
+.social-list-colored a[data-net="youtube"]:hover,
+.social-list-colored a[data-net="discord"]:hover,
+.social-list-colored a[data-net="telegram"]:hover,
+.social-list-colored a[data-net="linkedin"]:hover,
+.social-list-colored a[data-net="tiktok"]:hover    { box-shadow: none; }
+
+/* ── Minimal / Ghost ── */
+.social-list-minimal a {
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-text-muted, #888);
+}
+.social-list-minimal a:hover {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  color: var(--color-accent);
+  transform: scale(1.25);
+}
+
+/* ── Vertical stack ── */
+.social-list-vertical {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-2);
+  min-width: 200px;
+}
+.social-list-vertical a {
+  width: 100%;
+  height: 42px;
+  justify-content: flex-start;
+  gap: var(--space-3);
+  padding: 0 var(--space-3);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  border-radius: var(--radius-lg);
+}
+.social-list-vertical a:hover {
+  transform: translateX(4px);
+}
+
+/* ── Outlined ── */
+.social-list-outlined a {
+  background: transparent;
+  border: 1.5px solid var(--color-border, rgba(255,255,255,0.15));
+}
+.social-list-outlined a:hover {
+  background: transparent;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: inset 0 0 0 1px var(--color-accent);
+  transform: translateY(-3px);
+}

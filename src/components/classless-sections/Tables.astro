@@ -1,0 +1,87 @@
+<section class="lib-section cl-section" id="tables">
+    <div class="lib-section-title">📊 Tables</div>
+    <div class="lib-section-desc">
+        Native <code>&lt;table&gt;</code> with <code>thead</code>, <code>tbody</code>, <code>tfoot</code> and <code>caption</code> — all styled by <code>_native.css</code>.
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Full table with thead / tbody / tfoot</div>
+        <div class="lib-preview">
+            <article>
+                <table>
+                    <caption>Team Members</caption>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Alice Chen</td>
+                            <td>Lead Developer</td>
+                            <td>San Francisco</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>Bob Kline</td>
+                            <td>Designer</td>
+                            <td>Berlin</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>Carol Davis</td>
+                            <td>DevOps</td>
+                            <td>London</td>
+                            <td>Away</td>
+                        </tr>
+                        <tr>
+                            <td>Dan Park</td>
+                            <td>QA Engineer</td>
+                            <td>Seoul</td>
+                            <td>Active</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">Total members</td>
+                            <td>4</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </article>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div class="lib-code" data-raw='<table>
+  <caption>Team Members</caption>
+  <thead>
+    <tr><th>Name</th><th>Role</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Alice Chen</td><td>Developer</td><td>Active</td></tr>
+    <tr><td>Bob Kline</td><td>Designer</td><td>Active</td></tr>
+  </tbody>
+  <tfoot>
+    <tr><td colspan="2">Total</td><td>2</td></tr>
+  </tfoot>
+</table>'>
+                    <span class="k">&lt;table&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;caption&gt;</span><span class="t">Team Members</span><span class="k">&lt;/caption&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;thead&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;tr&gt;&lt;th&gt;</span><span class="t">Name</span><span class="k">&lt;/th&gt;&lt;th&gt;</span><span class="t">Role</span><span class="k">&lt;/th&gt;&lt;th&gt;</span><span class="t">Status</span><span class="k">&lt;/th&gt;&lt;/tr&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/thead&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;tbody&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;tr&gt;&lt;td&gt;</span><span class="t">Alice</span><span class="k">&lt;/td&gt;&lt;td&gt;</span><span class="t">Developer</span><span class="k">&lt;/td&gt;&lt;td&gt;</span><span class="t">Active</span><span class="k">&lt;/td&gt;&lt;/tr&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/tbody&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;tfoot&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;tr&gt;&lt;td</span> <span class="s">colspan</span>=<span class="cn">"2"</span><span class="k">&gt;</span><span class="t">Total</span><span class="k">&lt;/td&gt;&lt;td&gt;</span><span class="t">2</span><span class="k">&lt;/td&gt;&lt;/tr&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/tfoot&gt;</span><br />
+                    <span class="k">&lt;/table&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

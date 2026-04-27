@@ -1,0 +1,386 @@
+<section class="lib-section" id="nav">
+    <div class="lib-section-title">📌 Nav</div>
+    <div class="lib-section-desc">
+        From <code>_nav.css</code>. Sections <code>.nav-left</code>
+        <code>.nav-center</code>
+        <code>.nav-right</code>. Variants: <code>.nav-solid</code>
+        <code>.nav-glass</code>
+        <code>.nav-primary</code>
+        <code>.nav-dark</code>
+        <code>.nav-floating</code>
+        <code>.nav-underline</code>. Sizes: <code>.nav-sm</code>
+        <code>.nav-lg</code>.
+    </div>
+
+    <!-- Solid -->
+    <div class="lib-component">
+        <div class="lib-component-label">Solid — background + border</div>
+        <div class="lib-preview col" style="align-items:stretch">
+            <nav class="nav nav-solid">
+                <div class="nav-left">
+                    <a class="nav-brand" href="#">⚡ njX</a>
+                </div>
+                <div class="nav-center">
+                    <a href="#" class="nav-link is-active">Home</a>
+                    <a href="#" class="nav-link">Components</a>
+                    <a href="#" class="nav-link">Themes</a>
+                    <a href="#" class="nav-link">Docs</a>
+                </div>
+                <div class="nav-right">
+                    <a href="#" class="nav-link">GitHub</a>
+                    <a class="btn btn-primary btn-sm" href="#">Get Started</a>
+                </div>
+            </nav>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<nav class="nav nav-solid">
+  <div class="nav-left">
+    <a class="nav-brand" href="#">⚡ Brand</a>
+  </div>
+  <div class="nav-center">
+    <a href="#" class="nav-link is-active">Home</a>
+    <a href="#" class="nav-link">About</a>
+    <a href="#" class="nav-link">Docs</a>
+  </div>
+  <div class="nav-right">
+    <a class="btn btn-primary btn-sm" href="#">Sign in</a>
+  </div>
+</nav>'
+                >
+                    <span class="k">&lt;nav</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav nav-solid"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav-left"</span
+                    ><span class="k">&gt;</span><span class="k">&lt;a</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav-brand"</span
+                    ><span class="k">&gt;</span>⚡ Brand<span class="k"
+                        >&lt;/a&gt;&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav-center"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;a</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav-link is-active"</span
+                    ><span class="k">&gt;</span>Home<span class="k"
+                        >&lt;/a&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;a</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav-link"</span
+                    ><span class="k">&gt;</span>About<span class="k"
+                        >&lt;/a&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav-right"</span
+                    ><span class="k">&gt;</span><span class="k">&lt;a</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-primary btn-sm"</span
+                    ><span class="k">&gt;</span>Sign in<span class="k"
+                        >&lt;/a&gt;&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;/nav&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Glass -->
+    <div class="lib-component">
+        <div class="lib-component-label">Glass — frosted backdrop</div>
+        <div
+            class="lib-preview col"
+            style="align-items:stretch;padding:0;overflow:hidden;border-radius:var(--radius-lg)"
+        >
+            <div
+                style="padding:24px 0 0;background:linear-gradient(135deg,color-mix(in srgb,var(--color-primary) 18%,transparent),color-mix(in srgb,var(--color-accent,#06b6d4) 10%,transparent))"
+            >
+                <nav
+                    class="nav nav-glass"
+                    style="margin:0 16px;border-radius:var(--radius-lg)"
+                >
+                    <div class="nav-left">
+                        <a class="nav-brand" href="#">🎨 Studio</a>
+                    </div>
+                    <div class="nav-center">
+                        <a href="#" class="nav-link is-active">Dashboard</a>
+                        <a href="#" class="nav-link">Projects</a>
+                        <a href="#" class="nav-link">Analytics</a>
+                    </div>
+                    <div class="nav-right">
+                        <a class="btn btn-ghost btn-sm" href="#">Settings</a>
+                        <a class="btn btn-primary btn-sm" href="#"
+                            >New project</a
+                        >
+                    </div>
+                </nav>
+                <div style="height:32px"></div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<nav class="nav nav-glass">
+  <!-- backdrop-filter: blur(20px), semi-transparent background -->
+</nav>'
+                >
+                    <span class="k">&lt;nav</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav nav-glass"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="c"
+                        >&lt;!-- backdrop-filter: blur(20px) --&gt;</span
+                    ><br />
+                    <span class="k">&lt;/nav&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Primary -->
+    <div class="lib-component">
+        <div class="lib-component-label">Primary — themed accent</div>
+        <div class="lib-preview col" style="align-items:stretch">
+            <nav class="nav nav-primary nav-solid">
+                <div class="nav-left">
+                    <a class="nav-brand" href="#">🚀 App</a>
+                </div>
+                <div class="nav-center">
+                    <a href="#" class="nav-link is-active">Home</a>
+                    <a href="#" class="nav-link">Features</a>
+                    <a href="#" class="nav-link">Pricing</a>
+                </div>
+                <div class="nav-right">
+                    <a class="btn btn-primary btn-sm" href="#">Start free</a>
+                </div>
+            </nav>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<nav class="nav nav-primary nav-solid">...</nav>'
+                >
+                    <span class="k">&lt;nav</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav nav-primary nav-solid"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/nav&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dark -->
+    <div class="lib-component">
+        <div class="lib-component-label">Dark — always dark</div>
+        <div class="lib-preview col" style="align-items:stretch">
+            <nav class="nav nav-dark">
+                <div class="nav-left">
+                    <a class="nav-brand" href="#">⚫ Dark Nav</a>
+                </div>
+                <div class="nav-center">
+                    <a href="#" class="nav-link is-active">Overview</a>
+                    <a href="#" class="nav-link">Docs</a>
+                    <a href="#" class="nav-link">Blog</a>
+                    <a href="#" class="nav-link">Community</a>
+                </div>
+                <div class="nav-right">
+                    <a href="#" class="nav-link">Log in</a>
+                    <a class="btn btn-primary btn-sm" href="#">Sign up</a>
+                </div>
+            </nav>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<nav class="nav nav-dark">...</nav>
+<!-- #0f0f0f background regardless of data-theme -->'
+                >
+                    <span class="k">&lt;nav</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav nav-dark"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/nav&gt;</span
+                    ><br />
+                    <span class="c"
+                        >&lt;!-- Always #0f0f0f regardless of data-theme --&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating -->
+    <div class="lib-component">
+        <div class="lib-component-label">Floating — pill-shape</div>
+        <div class="lib-preview col" style="align-items:center;padding:20px">
+            <nav class="nav nav-floating" style="width:100%;max-width:620px">
+                <div class="nav-left">
+                    <a class="nav-brand" href="#">💫 Float</a>
+                </div>
+                <div class="nav-center">
+                    <a href="#" class="nav-link is-active">Home</a>
+                    <a href="#" class="nav-link">Work</a>
+                    <a href="#" class="nav-link">About</a>
+                </div>
+                <div class="nav-right">
+                    <a
+                        class="btn btn-primary btn-sm"
+                        style="border-radius:99px"
+                        href="#">Hire me</a
+                    >
+                </div>
+            </nav>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<nav class="nav nav-floating">
+  <!-- border-radius: 99px, backdrop-filter, box-shadow -->
+</nav>'
+                >
+                    <span class="k">&lt;nav</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav nav-floating"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="c"
+                        >&lt;!-- border-radius:99px + backdrop-filter +
+                        box-shadow --&gt;</span
+                    ><br />
+                    <span class="k">&lt;/nav&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Underline -->
+    <div class="lib-component">
+        <div class="lib-component-label">
+            Underline — active link with underline
+        </div>
+        <div class="lib-preview col" style="align-items:stretch">
+            <nav class="nav nav-solid nav-underline">
+                <div class="nav-left">
+                    <a class="nav-brand" href="#">📐 Design</a>
+                </div>
+                <div class="nav-center">
+                    <a href="#" class="nav-link is-active">Components</a>
+                    <a href="#" class="nav-link">Tokens</a>
+                    <a href="#" class="nav-link">Icons</a>
+                    <a href="#" class="nav-link">Templates</a>
+                </div>
+                <div class="nav-right">
+                    <a class="btn btn-ghost btn-sm" href="#">v1.3</a>
+                </div>
+            </nav>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<nav class="nav nav-solid nav-underline">...</nav>'
+                >
+                    <span class="k">&lt;nav</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav nav-solid nav-underline"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/nav&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="lib-component">
+        <div class="lib-component-label">Sizes — sm / default / lg</div>
+        <div class="lib-preview col" style="align-items:stretch;gap:8px">
+            <nav class="nav nav-solid nav-sm">
+                <div class="nav-left">
+                    <a class="nav-brand" href="#">Brand</a>
+                </div>
+                <div class="nav-center">
+                    <a href="#" class="nav-link is-active">Home</a><a
+                        href="#"
+                        class="nav-link">About</a>
+                </div>
+                <div class="nav-right">
+                    <span class="text-xs text-muted">.nav-sm — 48px</span>
+                </div>
+            </nav>
+            <nav class="nav nav-solid">
+                <div class="nav-left">
+                    <a class="nav-brand" href="#">Brand</a>
+                </div>
+                <div class="nav-center">
+                    <a href="#" class="nav-link is-active">Home</a><a
+                        href="#"
+                        class="nav-link">About</a>
+                </div>
+                <div class="nav-right">
+                    <span class="text-xs text-muted">default — 60px</span>
+                </div>
+            </nav>
+            <nav class="nav nav-solid nav-lg">
+                <div class="nav-left">
+                    <a class="nav-brand" href="#">Brand</a>
+                </div>
+                <div class="nav-center">
+                    <a href="#" class="nav-link is-active">Home</a><a
+                        href="#"
+                        class="nav-link">About</a>
+                </div>
+                <div class="nav-right">
+                    <span class="text-xs text-muted">.nav-lg — 72px</span>
+                </div>
+            </nav>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<nav class="nav nav-solid nav-sm">...</nav>   <!-- 48px -->
+<nav class="nav nav-solid">...</nav>          <!-- 60px default -->
+<nav class="nav nav-solid nav-lg">...</nav>   <!-- 72px -->'
+                >
+                    <span class="k">&lt;nav</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav nav-solid nav-sm"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/nav&gt;</span
+                    >
+                    <span class="c">&lt;!-- 48px --&gt;</span><br />
+                    <span class="k">&lt;nav</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav nav-solid"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/nav&gt;</span
+                    >
+                    <span class="c">&lt;!-- 60px --&gt;</span><br />
+                    <span class="k">&lt;nav</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"nav nav-solid nav-lg"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/nav&gt;</span
+                    >
+                    <span class="c">&lt;!-- 72px --&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

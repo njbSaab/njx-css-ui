@@ -1,0 +1,1363 @@
+<section class="lib-section" id="hovers">
+  <div class="lib-section-title">🎭 Hover Effects</div>
+  <div class="lib-section-desc">
+    From <code>_hovers.css</code>. Hover your mouse over elements.
+  </div>
+
+  <!-- Scale Effects -->
+  <div class="lib-component">
+    <div class="lib-component-label">📏 Scale Effects</div>
+    <div class="lib-preview">
+      <div
+        class="card-dark p-4 hover-scale-sm"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🔲</div>
+        <div class="text-xs">.hover-scale-sm</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          scale(1.02)
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-scale"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🔳</div>
+        <div class="text-xs">.hover-scale</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          scale(1.05)
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-scale-lg"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">⬛</div>
+        <div class="text-xs">.hover-scale-lg</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          scale(1.1)
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-scale-xl"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🟫</div>
+        <div class="text-xs">.hover-scale-xl</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          scale(1.15)
+        </div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- _hovers.css: hover-scale-sm | hover-scale | hover-scale-lg | hover-scale-xl -->
+<div class="card hover-scale-sm">...</div>   <!-- scale(1.02) -->
+<div class="card hover-scale">...</div>      <!-- scale(1.04) -->
+<div class="card hover-scale-lg">...</div>   <!-- scale(1.07) -->
+<div class="card hover-scale-xl">...</div>   <!-- scale(1.12) -->'
+        >
+          <span class="c"
+            >/* _hovers.css: hover-scale-sm | hover-scale | hover-scale-lg |
+            hover-scale-xl */</span
+          ><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-scale-sm"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* scale(1.02) */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"card hover-scale"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* scale(1.04) */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-scale-lg"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* scale(1.07) */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-scale-xl"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* scale(1.12) */</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lift Effects -->
+  <div class="lib-component">
+    <div class="lib-component-label">⬆️ Lift Effects (translateY)</div>
+    <div class="lib-preview">
+      <div
+        class="card-dark p-4 hover-lift-sm"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🪶</div>
+        <div class="text-xs">.hover-lift-sm</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          −2px
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-lift"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🚀</div>
+        <div class="text-xs">.hover-lift</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          −4px
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-lift-lg"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">✈️</div>
+        <div class="text-xs">.hover-lift-lg</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          −8px
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-lift-xl"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🛸</div>
+        <div class="text-xs">.hover-lift-xl</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          −12px
+        </div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- _hovers.css: hover-lift-sm | hover-lift | hover-lift-lg | hover-lift-xl -->
+<div class="card hover-lift-sm">...</div>   <!-- translateY(-2px) -->
+<div class="card hover-lift">...</div>      <!-- translateY(-4px) -->
+<div class="card hover-lift-lg">...</div>   <!-- translateY(-8px) -->
+<div class="card hover-lift-xl">...</div>   <!-- translateY(-14px) -->'
+        >
+          <span class="c">/* _hovers.css: hover-lift variants */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-lift-sm"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* -2px */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"card hover-lift"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* -4px */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-lift-lg"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* -8px */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-lift-xl"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* -14px */</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Glow Effects -->
+  <div class="lib-component">
+    <div class="lib-component-label">✨ Glow Effects (box-shadow)</div>
+    <div class="lib-preview">
+      <div
+        class="card-dark p-4 hover-glow"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">💜</div>
+        <div class="text-xs">.hover-glow</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-glow-accent"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">💙</div>
+        <div class="text-xs">.hover-glow-accent</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-glow-success"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">💚</div>
+        <div class="text-xs">.hover-glow-success</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-glow-error"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">❤️</div>
+        <div class="text-xs">.hover-glow-error</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-glow-white"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🤍</div>
+        <div class="text-xs">.hover-glow-white</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-glow-intense"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🔥</div>
+        <div class="text-xs">.hover-glow-intense</div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- hover-glow | hover-glow-accent | hover-glow-success | hover-glow-error | hover-glow-white | hover-glow-intense -->
+<div class="card hover-glow">...</div>
+<div class="card hover-glow-accent">...</div>
+<div class="card hover-glow-success">...</div>
+<div class="card hover-glow-error">...</div>
+<div class="card hover-glow-white">...</div>
+<div class="card hover-glow-intense">...</div>'
+        >
+          <span class="c">/* glow variants — all use CSS variables */</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"card hover-glow"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-glow-accent"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-glow-success"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-glow-error"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-glow-white"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-glow-intense"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Brightness & Filter -->
+  <div class="lib-component">
+    <div class="lib-component-label">🌈 Brightness & Filter</div>
+    <div class="lib-preview">
+      <div
+        class="card-dark p-4 hover-bright"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">☀️</div>
+        <div class="text-xs">.hover-bright</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          ×1.15
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-bright-strong"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">💡</div>
+        <div class="text-xs">.hover-bright-strong</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          ×1.3
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-dim"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🌒</div>
+        <div class="text-xs">.hover-dim</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          ×0.85
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-dim-strong"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🌑</div>
+        <div class="text-xs">.hover-dim-strong</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          ×0.7
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-grayscale"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🖤</div>
+        <div class="text-xs">.hover-grayscale</div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- _hovers.css: brightness & filter -->
+<div class="card hover-bright">...</div>         <!-- brightness(1.15) -->
+<div class="card hover-bright-strong">...</div>  <!-- brightness(1.3) -->
+<div class="card hover-dim">...</div>           <!-- brightness(0.8) -->
+<div class="card hover-grayscale">...</div>     <!-- grayscale(100%) -->'
+        >
+          <span class="c">/* _hovers.css: brightness &amp; filter */</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-bright"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* ×1.15 */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-bright-strong"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* ×1.3 */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"card hover-dim"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* ×0.8 */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-grayscale"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* grayscale */</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Opacity -->
+  <div class="lib-component">
+    <div class="lib-component-label">👁️ Opacity Effects</div>
+    <div class="lib-preview">
+      <div
+        class="card-dark p-4 hover-opacity-sm"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🌫️</div>
+        <div class="text-xs">.hover-opacity-sm</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          0.9
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-opacity"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🌁</div>
+        <div class="text-xs">.hover-opacity</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          0.8
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-opacity-lg"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🌬️</div>
+        <div class="text-xs">.hover-opacity-lg</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          0.6
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-fade"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">👻</div>
+        <div class="text-xs">.hover-fade</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          0.7 + shrink
+        </div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- _hovers.css: opacity effects -->
+<div class="card hover-opacity-sm">...</div>  <!-- opacity: 0.85 -->
+<div class="card hover-opacity">...</div>     <!-- opacity: 0.7 -->
+<div class="card hover-opacity-lg">...</div>  <!-- opacity: 0.5 -->
+<div class="card hover-fade">...</div>        <!-- opacity: 0.3 -->'
+        >
+          <span class="c">/* _hovers.css: opacity effects */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-opacity-sm"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* 0.85 */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-opacity"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* 0.7 */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-opacity-lg"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* 0.5 */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"card hover-fade"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* 0.3 */</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Border Effects -->
+  <div class="lib-component">
+    <div class="lib-component-label">🔲 Border Effects</div>
+    <div class="lib-preview">
+      <div
+        class="card-dark p-4 hover-border"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">⬜</div>
+        <div class="text-xs">.hover-border</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          primary
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-border-accent"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🔷</div>
+        <div class="text-xs">.hover-border-accent</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          accent
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-border-success"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🟩</div>
+        <div class="text-xs">.hover-border-success</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          success
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-border-glow"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🌟</div>
+        <div class="text-xs">.hover-border-glow</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          border + glow
+        </div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- _hovers.css: border effects -->
+<div class="card hover-border">...</div>         <!-- border primary -->
+<div class="card hover-border-accent">...</div>  <!-- border accent -->
+<div class="card hover-border-success">...</div> <!-- border success -->
+<div class="card hover-border-glow">...</div>   <!-- border + glow -->'
+        >
+          <span class="c">/* _hovers.css: border effects */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-border"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* primary */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-border-accent"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-border-success"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-border-glow"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* + glow */</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rotate Effects -->
+  <div class="lib-component">
+    <div class="lib-component-label">🔄 Rotate Effects</div>
+    <div class="lib-preview">
+      <div
+        class="card-dark p-4 hover-rotate"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🔁</div>
+        <div class="text-xs">.hover-rotate</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          +5deg
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-rotate-neg"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🔃</div>
+        <div class="text-xs">.hover-rotate-neg</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          −5deg
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-rotate-180"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🔽</div>
+        <div class="text-xs">.hover-rotate-180</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          180deg
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-rotate-360"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div style="font-size:1.5rem;margin-bottom:6px">🌀</div>
+        <div class="text-xs">.hover-rotate-360</div>
+        <div style="font-size:9px;color:var(--color-muted);margin-top:2px">
+          full spin
+        </div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- _hovers.css: rotate effects -->
+<div class="card hover-rotate">...</div>      <!-- rotate(3deg) -->
+<div class="card hover-rotate-neg">...</div>  <!-- rotate(-3deg) -->
+<div class="card hover-rotate-180">...</div> <!-- rotate(180deg) -->
+<div class="card hover-rotate-360">...</div> <!-- rotate(360deg) -->'
+        >
+          <span class="c">/* _hovers.css: rotate effects */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-rotate"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* 3deg */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-rotate-neg"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* -3deg */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-rotate-180"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* 180deg */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-rotate-360"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+          <span class="c">/* 360deg */</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Combo Effects -->
+  <div class="lib-component">
+    <div class="lib-component-label">🃏 Card Combo Effects</div>
+    <div class="lib-preview">
+      <div
+        class="card-dark p-4 hover-card"
+        style="min-width:140px;text-align:center;cursor:pointer"
+      >
+        <div class="text-xs">.hover-card</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-card-glow"
+        style="min-width:140px;text-align:center;cursor:pointer"
+      >
+        <div class="text-xs">.hover-card-glow</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-card-slide"
+        style="min-width:140px;text-align:center;cursor:pointer"
+      >
+        <div class="text-xs">.hover-card-slide</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-mega"
+        style="min-width:140px;text-align:center;cursor:pointer"
+      >
+        <div class="text-xs">.hover-mega</div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- Combo: hover-card (lift+border+shadow), hover-card-glow, hover-mega -->
+<div class="card hover-card">...</div>
+<div class="card hover-card-glow">...</div>
+<div class="card hover-card-slide">...</div>
+<div class="card hover-mega">...</div>
+
+<!-- Can be combined -->
+<div class="card hover-scale hover-glow">...</div>'
+        >
+          <span class="c"
+            >/* Combo: hover-card | hover-card-glow | hover-mega */</span
+          ><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"card hover-card"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-card-glow"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"card hover-mega"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="c">/* Combine */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-scale hover-glow"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button Effects -->
+  <div class="lib-component">
+    <div class="lib-component-label">🔘 Button Effects</div>
+    <div class="lib-preview">
+      <button class="btn btn-primary hover-btn">.hover-btn</button>
+      <button class="btn btn-primary hover-btn-press">.hover-btn-press</button>
+      <button class="btn btn-primary hover-btn-glow">.hover-btn-glow</button>
+      <button
+        class="btn btn-outline hover-shimmer"
+        style="position:relative;overflow:hidden">.hover-shimmer</button
+      >
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- hover-btn | hover-btn-press | hover-btn-glow | hover-shimmer -->
+<button class="btn btn-primary hover-btn">Button</button>
+<button class="btn btn-primary hover-btn-press">Press</button>
+<button class="btn btn-primary hover-btn-glow">Glow</button>
+<!-- hover-shimmer requires overflow:hidden -->
+<button class="btn btn-outline hover-shimmer" style="position:relative;overflow:hidden">Shimmer</button>'
+        >
+          <span class="c"
+            >/* hover-btn | hover-btn-press | hover-btn-glow | hover-shimmer */</span
+          ><br />
+          <span class="k">&lt;button</span>
+          <span class="s">class</span>=<span class="cn"
+            >"btn btn-primary hover-btn"</span
+          ><span class="k">&gt;</span>Button<span class="k"
+            >&lt;/button&gt;</span
+          ><br />
+          <span class="k">&lt;button</span>
+          <span class="s">class</span>=<span class="cn"
+            >"btn btn-primary hover-btn-press"</span
+          ><span class="k">&gt;</span>Press<span class="k">&lt;/button&gt;</span
+          ><br />
+          <span class="k">&lt;button</span>
+          <span class="s">class</span>=<span class="cn"
+            >"btn btn-primary hover-btn-glow"</span
+          ><span class="k">&gt;</span>Glow<span class="k">&lt;/button&gt;</span
+          ><br />
+          <span class="c">/* hover-shimmer requires overflow:hidden */</span><br
+          />
+          <span class="k">&lt;button</span>
+          <span class="s">class</span>=<span class="cn"
+            >"btn btn-outline hover-shimmer"</span
+          >
+          <span class="s">style</span>=<span class="cn"
+            >"position:relative;overflow:hidden"</span
+          ><span class="k">&gt;</span>Shimmer<span class="k"
+            >&lt;/button&gt;</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Special Effects -->
+  <div class="lib-component">
+    <div class="lib-component-label">🎆 Special Effects</div>
+    <div class="lib-preview">
+      <div
+        class="card-dark p-4 hover-pulse"
+        style="min-width:120px;text-align:center;cursor:pointer"
+      >
+        <div class="text-xs">.hover-pulse</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-shimmer"
+        style="min-width:120px;text-align:center;cursor:pointer;position:relative;overflow:hidden"
+      >
+        <div class="text-xs">.hover-shimmer</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-backdrop-blur"
+        style="min-width:120px;text-align:center;cursor:pointer"
+      >
+        <div class="text-xs">.hover-backdrop-blur</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-gradient"
+        style="min-width:120px;text-align:center;cursor:pointer;background:linear-gradient(90deg, var(--color-primary), var(--color-accent))"
+      >
+        <div class="text-xs" style="color:#fff">.hover-gradient</div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<div class="card hover-pulse">...</div>
+<!-- hover-shimmer requires position:relative + overflow:hidden -->
+<div class="card hover-shimmer" style="position:relative;overflow:hidden">...</div>
+<div class="card hover-backdrop-blur">...</div>
+<div class="card hover-gradient">...</div>'
+        >
+          <span class="c">/* special effects */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"card hover-pulse"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="c">/* hover-shimmer: overflow:hidden needed */</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-shimmer"</span
+          >
+          <span class="s">style</span>=<span class="cn"
+            >"position:relative;overflow:hidden"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-backdrop-blur"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-gradient"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Text / Link Effects -->
+  <div class="lib-component">
+    <div class="lib-component-label">✏️ Text &amp; Link Effects</div>
+    <div class="lib-preview" style="align-items:stretch">
+      <!-- Animated underline left→right -->
+      <div
+        style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;padding:16px 20px;background:var(--color-primary-opacity);border-radius:var(--radius-md);border:1px solid color-mix(in srgb,var(--color-neutral-600) 20%,transparent);min-width:220px"
+      >
+        <div
+          style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--color-muted);margin-bottom:4px"
+        >
+          hover-underline-animated
+        </div>
+        <a
+          href="#"
+          class="hover-underline-animated"
+          style="font-size:16px;font-weight:600;color:var(--color-light);text-decoration:none;padding-bottom:3px"
+          >Hover me</a
+        >
+        <a
+          href="#"
+          class="hover-underline-animated"
+          style="font-size:15px;color:var(--color-primary);text-decoration:none;padding-bottom:3px"
+          >Products</a
+        >
+        <a
+          href="#"
+          class="hover-underline-animated"
+          style="font-size:15px;color:var(--color-primary);text-decoration:none;padding-bottom:3px"
+          >About us</a
+        >
+        <div style="font-size:10px;color:var(--color-muted);margin-top:4px">
+          underline slides left → right
+        </div>
+      </div>
+
+      <!-- Underline from center -->
+      <div
+        style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;padding:16px 20px;background:var(--color-primary-opacity);border-radius:var(--radius-md);border:1px solid color-mix(in srgb,var(--color-neutral-600) 20%,transparent);min-width:220px"
+      >
+        <div
+          style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--color-muted);margin-bottom:4px"
+        >
+          hover-underline-center
+        </div>
+        <a
+          href="#"
+          class="hover-underline-center"
+          style="font-size:16px;font-weight:600;color:var(--color-light);text-decoration:none;padding-bottom:3px"
+          >Hover me</a
+        >
+        <a
+          href="#"
+          class="hover-underline-center"
+          style="font-size:15px;color:var(--color-accent);text-decoration:none;padding-bottom:3px"
+          >Portfolio</a
+        >
+        <a
+          href="#"
+          class="hover-underline-center"
+          style="font-size:15px;color:var(--color-accent);text-decoration:none;padding-bottom:3px"
+          >Contact</a
+        >
+        <div style="font-size:10px;color:var(--color-muted);margin-top:4px">
+          underline expands from center
+        </div>
+      </div>
+
+      <!-- Strikethrough + color shift -->
+      <div
+        style="display:flex;flex-direction:column;gap:10px;align-items:flex-start;padding:16px 20px;background:var(--color-primary-opacity);border-radius:var(--radius-md);border:1px solid color-mix(in srgb,var(--color-neutral-600) 20%,transparent);min-width:220px"
+      >
+        <div
+          style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--color-muted)"
+        >
+          color &amp; strikethrough
+        </div>
+        <a
+          href="#"
+          class="hover-strikethrough"
+          style="font-size:15px;color:var(--color-light);text-decoration:none;padding-bottom:2px"
+          >hover-strikethrough</a
+        >
+        <a
+          href="#"
+          class="hover-primary"
+          style="font-size:15px;color:var(--color-muted);text-decoration:none"
+          >hover-primary</a
+        >
+        <a
+          href="#"
+          class="hover-accent"
+          style="font-size:15px;color:var(--color-muted);text-decoration:none"
+          >hover-accent</a
+        >
+        <div style="font-size:10px;color:var(--color-muted)">
+          accent line / color shift
+        </div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- Underline slides left→right -->
+<a class="hover-underline-animated" href="#">About</a>
+
+<!-- Underline expands from center -->
+<a class="hover-underline-center" href="#">Contact</a>
+
+<!-- Strikethrough line on hover -->
+<a class="hover-strikethrough" href="#">Old price</a>
+
+<!-- Text color changes -->
+<a class="hover-primary" href="#">Link</a>
+<a class="hover-accent" href="#">Link</a>'
+        >
+          <span class="c">/* underline slides left → right */</span><br />
+          <span class="k">&lt;a</span>
+          <span class="s">class</span>=<span class="cn"
+            >"hover-underline-animated"</span
+          ><span class="k">&gt;</span>About<span class="k">&lt;/a&gt;</span><br
+          /><br />
+          <span class="c">/* underline expands from center */</span><br />
+          <span class="k">&lt;a</span>
+          <span class="s">class</span>=<span class="cn"
+            >"hover-underline-center"</span
+          ><span class="k">&gt;</span>Contact<span class="k">&lt;/a&gt;</span
+          ><br /><br />
+          <span class="c">/* strikethrough line on hover */</span><br />
+          <span class="k">&lt;a</span>
+          <span class="s">class</span>=<span class="cn"
+            >"hover-strikethrough"</span
+          ><span class="k">&gt;</span>Old price<span class="k">&lt;/a&gt;</span
+          ><br /><br />
+          <span class="c">/* text color shift */</span><br />
+          <span class="k">&lt;a</span>
+          <span class="s">class</span>=<span class="cn">"hover-primary"</span
+          ><span class="k">&gt;</span>Link<span class="k">&lt;/a&gt;</span><br
+          />
+          <span class="k">&lt;a</span>
+          <span class="s">class</span>=<span class="cn">"hover-accent"</span
+          ><span class="k">&gt;</span>Link<span class="k">&lt;/a&gt;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fill from bottom -->
+  <div class="lib-component">
+    <div class="lib-component-label">🎨 Fill from Bottom</div>
+    <div class="lib-preview">
+      <div
+        class="card-dark p-4 hover-fill"
+        style="min-width:130px;text-align:center;cursor:pointer;border:1px solid color-mix(in srgb,var(--color-primary) 40%,transparent)"
+      >
+        <div class="text-xs">.hover-fill</div>
+        <div style="font-size:10px;color:var(--color-muted);margin-top:4px">
+          fills with primary
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-fill hover-fill-accent"
+        style="min-width:130px;text-align:center;cursor:pointer;border:1px solid color-mix(in srgb,var(--color-accent) 40%,transparent)"
+      >
+        <div class="text-xs">.hover-fill-accent</div>
+        <div style="font-size:10px;color:var(--color-muted);margin-top:4px">
+          fills with accent
+        </div>
+      </div>
+      <div
+        class="card-dark p-4 hover-fill hover-fill-success"
+        style="min-width:130px;text-align:center;cursor:pointer;border:1px solid color-mix(in srgb,var(--color-success) 40%,transparent)"
+      >
+        <div class="text-xs">.hover-fill-success</div>
+      </div>
+      <div
+        class="p-4 hover-primary-bg"
+        style="min-width:130px;text-align:center;cursor:pointer;border:1px solid var(--color-primary);border-radius:var(--radius-md);color:var(--color-primary);transition:all var(--ease)"
+      >
+        <div class="text-xs">.hover-primary-bg</div>
+        <div style="font-size:10px;margin-top:4px">instant fill</div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- hover-fill — sliding fill from bottom -->
+<div class="hover-fill">Fill Primary</div>
+<div class="hover-fill hover-fill-accent">Fill Accent</div>
+<div class="hover-fill hover-fill-success">Fill Success</div>
+
+<!-- hover-primary-bg — instant color fill -->
+<div class="hover-primary-bg">BG Fill</div>
+<div class="hover-accent-bg">Accent BG</div>
+<div class="hover-success-bg">Success BG</div>
+<div class="hover-error-bg">Error BG</div>'
+        >
+          <span class="c">/* hover-fill — slides from bottom */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"hover-fill"</span><span
+            class="k">&gt;</span
+          >Primary<span class="k">&lt;/div&gt;</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"hover-fill hover-fill-accent"</span
+          ><span class="k">&gt;</span>Accent<span class="k">&lt;/div&gt;</span
+          ><br />
+          <span class="c">/* instant bg fill */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"hover-primary-bg"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"hover-accent-bg"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3D Tilt -->
+  <div class="lib-component">
+    <div class="lib-component-label">🔮 3D Tilt — hover to see perspective</div>
+    <div class="lib-preview" style="align-items:stretch;gap:20px">
+      <!-- hover-tilt -->
+      <div
+        class="hover-tilt"
+        style="width:180px;border-radius:12px;overflow:hidden;background:var(--color-primary-opacity);border:1px solid var(--border-color);cursor:pointer;flex-shrink:0"
+      >
+        <div
+          style="height:90px;background:linear-gradient(135deg,var(--color-primary),var(--color-accent));display:flex;align-items:center;justify-content:center;font-size:32px"
+        >
+          🚀
+        </div>
+        <div style="padding:12px 14px">
+          <div style="font-weight:600;font-size:14px;color:var(--text-primary)">
+            .hover-tilt
+          </div>
+          <div style="font-size:11px;color:var(--color-muted);margin-top:4px">
+            tilts left on hover
+          </div>
+        </div>
+      </div>
+      <!-- hover-tilt-r -->
+      <div
+        class="hover-tilt hover-tilt-r"
+        style="width:180px;border-radius:12px;overflow:hidden;background:var(--color-primary-opacity);border:1px solid var(--border-color);cursor:pointer;flex-shrink:0"
+      >
+        <div
+          style="height:90px;background:linear-gradient(135deg,var(--color-accent),var(--color-success));display:flex;align-items:center;justify-content:center;font-size:32px"
+        >
+          💎
+        </div>
+        <div style="padding:12px 14px">
+          <div style="font-weight:600;font-size:14px;color:var(--text-primary)">
+            .hover-tilt-r
+          </div>
+          <div style="font-size:11px;color:var(--color-muted);margin-top:4px">
+            tilts right on hover
+          </div>
+        </div>
+      </div>
+      <!-- tilt on image card -->
+      <div
+        class="hover-tilt"
+        style="width:180px;border-radius:12px;overflow:hidden;background:var(--color-primary-opacity);border:1px solid var(--border-color);cursor:pointer;flex-shrink:0"
+      >
+        <div
+          style="height:90px;background:linear-gradient(135deg,#6366f1,#ec4899);display:flex;align-items:center;justify-content:center;font-size:32px"
+        >
+          🎨
+        </div>
+        <div style="padding:12px 14px">
+          <div style="font-weight:600;font-size:14px;color:var(--text-primary)">
+            Product Card
+          </div>
+          <div style="font-size:11px;color:var(--color-muted);margin-top:4px">
+            use on any card element
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- tilt left -->
+<div class="card hover-tilt">...</div>
+
+<!-- tilt right -->
+<div class="card hover-tilt hover-tilt-r">...</div>'
+        >
+          <span class="c">&lt;!-- tilt left --&gt;</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"card hover-tilt"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          /><br />
+          <span class="c">&lt;!-- tilt right --&gt;</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-tilt hover-tilt-r"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Border Draw -->
+  <div class="lib-component">
+    <div class="lib-component-label">
+      ✏️ Border Draw — lines animate in on hover
+    </div>
+    <div class="lib-preview" style="align-items:stretch;gap:20px">
+      <!-- on a nav-item style button -->
+      <div
+        style="display:flex;flex-direction:column;gap:8px;justify-content:center"
+      >
+        <div
+          style="font-size:10px;color:var(--color-muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em"
+        >
+          On navigation items
+        </div>
+        <a
+          href="#"
+          class="hover-border-draw"
+          style="display:block;padding:10px 20px;color:var(--text-primary);text-decoration:none;font-size:14px;font-weight:500;background:var(--color-primary-opacity);border-radius:4px"
+          >Home</a
+        >
+        <a
+          href="#"
+          class="hover-border-draw"
+          style="display:block;padding:10px 20px;color:var(--text-primary);text-decoration:none;font-size:14px;font-weight:500;background:var(--color-primary-opacity);border-radius:4px"
+          >Products</a
+        >
+        <a
+          href="#"
+          class="hover-border-draw"
+          style="display:block;padding:10px 20px;color:var(--text-primary);text-decoration:none;font-size:14px;font-weight:500;background:var(--color-primary-opacity);border-radius:4px"
+          >Contact</a
+        >
+      </div>
+      <!-- on a card panel -->
+      <div
+        class="hover-border-draw"
+        style="width:200px;padding:20px;background:var(--color-primary-opacity);border-radius:8px;cursor:pointer;flex-shrink:0"
+      >
+        <div style="font-size:24px;margin-bottom:8px">📦</div>
+        <div
+          style="font-weight:600;font-size:14px;color:var(--text-primary);margin-bottom:4px"
+        >
+          Feature Card
+        </div>
+        <div style="font-size:12px;color:var(--color-muted)">
+          Top & bottom lines draw in from opposite sides on hover
+        </div>
+      </div>
+      <!-- on a button row -->
+      <div
+        style="display:flex;flex-direction:column;gap:8px;justify-content:center"
+      >
+        <div
+          style="font-size:10px;color:var(--color-muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em"
+        >
+          On buttons
+        </div>
+        <button
+          class="btn btn-ghost hover-border-draw"
+          style="justify-content:flex-start">Dashboard</button
+        >
+        <button
+          class="btn btn-ghost hover-border-draw"
+          style="justify-content:flex-start">Analytics</button
+        >
+        <button
+          class="btn btn-ghost hover-border-draw"
+          style="justify-content:flex-start">Settings</button
+        >
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- border lines draw top+bottom on hover -->
+<a class="hover-border-draw" href="#">Nav link</a>
+<div class="card hover-border-draw">...</div>
+<button class="btn btn-ghost hover-border-draw">...</button>'
+        >
+          <span class="c">&lt;!-- top+bottom lines draw in on hover --&gt;</span
+          ><br />
+          <span class="k">&lt;a</span>
+          <span class="s">class</span>=<span class="cn"
+            >"hover-border-draw"</span
+          >
+          <span class="s">href</span>=<span class="cn">"#"</span><span class="k"
+            >&gt;</span
+          >Nav link<span class="k">&lt;/a&gt;</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn"
+            >"card hover-border-draw"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br
+          />
+          <span class="k">&lt;button</span>
+          <span class="s">class</span>=<span class="cn"
+            >"btn btn-ghost hover-border-draw"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/button&gt;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image zoom effects -->
+  <div class="lib-component">
+    <div class="lib-component-label">🖼 Image Zoom (hover-zoom)</div>
+    <div class="lib-preview">
+      <div
+        class="hover-zoom"
+        style="width:150px;height:100px;border-radius:var(--radius-md);overflow:hidden;cursor:pointer"
+      >
+        <div
+          style="width:100%;height:100%;background:linear-gradient(135deg,var(--color-primary),var(--color-accent));transition:transform var(--ease-slow);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:700"
+        >
+          hover-zoom
+        </div>
+      </div>
+      <div
+        class="hover-zoom-lg"
+        style="width:150px;height:100px;border-radius:var(--radius-md);overflow:hidden;cursor:pointer"
+      >
+        <div
+          style="width:100%;height:100%;background:linear-gradient(135deg,var(--color-accent),#f59e0b);transition:transform var(--ease-slow);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:700"
+        >
+          hover-zoom-lg
+        </div>
+      </div>
+      <div
+        class="hover-zoom-out"
+        style="width:150px;height:100px;border-radius:var(--radius-md);overflow:hidden;cursor:pointer"
+      >
+        <div
+          style="width:100%;height:100%;background:linear-gradient(135deg,#22c55e,#0ea5e9);transition:transform var(--ease-slow);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:700"
+        >
+          hover-zoom-out
+        </div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- hover-zoom: overflow:hidden on parent, img scales inside -->
+<div class="hover-zoom">
+  <img src="photo.jpg" alt="">
+</div>
+<div class="hover-zoom-sm"><img ...></div>  <!-- scale(1.05) -->
+<div class="hover-zoom-lg"><img ...></div>  <!-- scale(1.15) -->
+<div class="hover-zoom-out"><img ...></div> <!-- scale(0.95) -->'
+        >
+          <span class="c">/* hover-zoom — parent clips, img scales */</span><br
+          />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"hover-zoom"</span><span
+            class="k">&gt;</span
+          ><br />
+          &nbsp;&nbsp;<span class="k">&lt;img</span>
+          <span class="s">src</span>=<span class="cn">"photo.jpg"</span><span
+            class="k">&gt;</span
+          ><br />
+          <span class="k">&lt;/div&gt;</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"hover-zoom-sm"</span
+          ><span class="k">&gt;</span>&lt;img&gt;<span class="k"
+            >&lt;/div&gt;</span
+          >
+          <span class="c">/* ×1.05 */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"hover-zoom-lg"</span
+          ><span class="k">&gt;</span>&lt;img&gt;<span class="k"
+            >&lt;/div&gt;</span
+          >
+          <span class="c">/* ×1.15 */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">class</span>=<span class="cn">"hover-zoom-out"</span
+          ><span class="k">&gt;</span>&lt;img&gt;<span class="k"
+            >&lt;/div&gt;</span
+          >
+          <span class="c">/* ×0.95 */</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Effects -->
+  <div class="lib-component">
+    <div class="lib-component-label">🔬 Filter Effects</div>
+    <div class="lib-preview">
+      <div
+        class="card-dark p-4 hover-grayscale"
+        style="min-width:110px;text-align:center;cursor:pointer;background:linear-gradient(135deg,var(--color-primary),var(--color-accent));color:#fff"
+      >
+        <div class="text-xs">.hover-grayscale</div>
+        <div style="font-size:10px;opacity:0.8;margin-top:4px">gray→color</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-sepia"
+        style="min-width:110px;text-align:center;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff"
+      >
+        <div class="text-xs">.hover-sepia</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-invert"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div class="text-xs">.hover-invert</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-bright-strong"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div class="text-xs">.hover-bright-strong</div>
+      </div>
+      <div
+        class="card-dark p-4 hover-dim"
+        style="min-width:110px;text-align:center;cursor:pointer"
+      >
+        <div class="text-xs">.hover-dim</div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- Filter effects (great for images) -->
+<img class="hover-grayscale" src="...">  <!-- starts gray, hover reveals color -->
+<img class="hover-sepia" src="...">
+<img class="hover-invert" src="...">
+<img class="hover-bright-strong" src="..."> <!-- brightness(1.3) -->
+<img class="hover-dim" src="...">           <!-- brightness(0.85) -->
+<img class="hover-blur" src="...">          <!-- blur(2px) on hover -->'
+        >
+          <span class="c">/* filter effects — great for images */</span><br />
+          <span class="k">&lt;img</span>
+          <span class="s">class</span>=<span class="cn">"hover-grayscale"</span>
+          <span class="s">src</span>=<span class="cn">"..."</span><span
+            class="k">&gt;</span
+          >
+          <span class="c">/* gray→color */</span><br />
+          <span class="k">&lt;img</span>
+          <span class="s">class</span>=<span class="cn">"hover-sepia"</span>
+          <span class="s">src</span>=<span class="cn">"..."</span><span
+            class="k">&gt;</span
+          ><br />
+          <span class="k">&lt;img</span>
+          <span class="s">class</span>=<span class="cn">"hover-invert"</span>
+          <span class="s">src</span>=<span class="cn">"..."</span><span
+            class="k">&gt;</span
+          ><br />
+          <span class="k">&lt;img</span>
+          <span class="s">class</span>=<span class="cn"
+            >"hover-bright-strong"</span
+          >
+          <span class="s">src</span>=<span class="cn">"..."</span><span
+            class="k">&gt;</span
+          ><br />
+          <span class="k">&lt;img</span>
+          <span class="s">class</span>=<span class="cn">"hover-blur"</span>
+          <span class="s">src</span>=<span class="cn">"..."</span><span
+            class="k">&gt;</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

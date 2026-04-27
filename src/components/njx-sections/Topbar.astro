@@ -1,0 +1,1326 @@
+<section class="lib-section" id="sidebar">
+    <div class="lib-section-title">🗂 Sidebar</div>
+    <div class="lib-section-desc">
+        Drawer/sidebar panel — 4 variants: left overlay, right overlay, left
+        push, fullpage. Controlled via <code>sidebarOpen(id)</code> / <code
+            >sidebarClose(id)</code
+        > / <code>sidebarToggle(id)</code>.
+    </div>
+
+    <!-- ── Variant 1: Left Overlay ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Left — overlay (default)</div>
+        <div class="lib-preview" style="gap:12px;flex-wrap:wrap;">
+            <button
+                class="btn btn-primary"
+                onclick="sidebarOpen('demo-sidebar-left')"
+                >Open Left Sidebar</button
+            >
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Trigger -->
+<button class="btn btn-primary" onclick="sidebarOpen(&apos;my-sidebar&apos;)">Open</button>
+
+<!-- Backdrop -->
+<div class="sidebar-backdrop" id="my-sidebar-backdrop" onclick="sidebarClose(&apos;my-sidebar&apos;)"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="my-sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">Menu</span>
+    <button class="sidebar-close" onclick="sidebarClose(&apos;my-sidebar&apos;)">✕</button>
+  </div>
+  <div class="sidebar-body">
+    <nav class="sidebar-nav">
+      <a class="sidebar-link is-active" href="#">Dashboard</a>
+      <a class="sidebar-link" href="#">Profile</a>
+      <a class="sidebar-link" href="#">Settings</a>
+    </nav>
+  </div>
+</aside>'
+                >
+                    <span class="c">&lt;!-- Trigger --&gt;</span><br />
+                    <span class="k">&lt;button</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-primary"</span
+                    >
+                    <span class="s">onclick</span>=<span class="cn"
+                        >"sidebarOpen('my-sidebar')"</span
+                    ><span class="k">&gt;</span>Open<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br /><br />
+                    <span class="c">&lt;!-- Backdrop --&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar-backdrop"</span
+                    >
+                    <span class="s">id</span>=<span class="cn"
+                        >"my-sidebar-backdrop"</span
+                    >
+                    <span class="s">onclick</span>=<span class="cn"
+                        >"sidebarClose('my-sidebar')"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br /><br />
+                    <span class="k">&lt;aside</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar"</span
+                    >
+                    <span class="s">id</span>=<span class="cn"
+                        >"my-sidebar"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar-header"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar-body"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;/aside&gt;</span>
+                </div>
+                <button class="lib-copy-btn" onclick="copyCode(this)"
+                    >Copy</button
+                >
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Variant 2: Right Overlay ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Right — overlay</div>
+        <div class="lib-preview" style="gap:12px;flex-wrap:wrap;">
+            <button
+                class="btn btn-outline"
+                onclick="sidebarOpen('demo-sidebar-right')"
+                >Open Right Sidebar</button
+            >
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<aside class="sidebar sidebar-right" id="my-sidebar-right">
+  ...
+</aside>'
+                >
+                    <span class="k">&lt;aside</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar sidebar-right"</span
+                    >
+                    <span class="s">id</span>=<span class="cn"
+                        >"my-sidebar-right"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;...<br />
+                    <span class="k">&lt;/aside&gt;</span>
+                </div>
+                <button class="lib-copy-btn" onclick="copyCode(this)"
+                    >Copy</button
+                >
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Variant 3: Push left ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Left — push content</div>
+        <div
+            class="lib-preview"
+            style="padding:0;overflow:hidden;border-radius:var(--radius-lg)"
+        >
+            <!-- Live push demo inside a contained box -->
+            <div
+                class="sidebar-layout"
+                id="push-demo-layout"
+                style="height:260px;min-height:0;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--sidebar-border)"
+            >
+                <aside
+                    class="sidebar sidebar-push is-open"
+                    id="demo-sidebar-push"
+                >
+                    <div class="sidebar-header">
+                        <span class="sidebar-title">Sidebar</span>
+                        <button
+                            class="sidebar-close"
+                            onclick="sidebarToggle('demo-sidebar-push')"
+                            aria-label="Close"
+                        >
+                            <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.2"
+                                stroke-linecap="round"
+                                ><path d="M3 3l10 10M13 3L3 13"></path></svg
+                            >
+                        </button>
+                    </div>
+                    <div class="sidebar-body">
+                        <nav class="sidebar-nav">
+                            <a class="sidebar-link is-active" href="#">
+                                <svg
+                                    width="15"
+                                    height="15"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    ><path d="M8 2L2 7v7h4v-4h4v4h4V7z"
+                                    ></path></svg
+                                >
+                                Home
+                            </a>
+                            <a class="sidebar-link" href="#">
+                                <svg
+                                    width="15"
+                                    height="15"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    ><circle cx="8" cy="6" r="3"></circle><path
+                                        d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"
+                                    ></path></svg
+                                >
+                                Profile
+                            </a>
+                            <a class="sidebar-link" href="#">
+                                <svg
+                                    width="15"
+                                    height="15"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    ><circle cx="8" cy="8" r="2"></circle><path
+                                        d="M8 1v2M8 13v2M1 8h2M13 8h2"
+                                    ></path></svg
+                                >
+                                Settings
+                            </a>
+                        </nav>
+                    </div>
+                </aside>
+                <div
+                    class="sidebar-content"
+                    style="padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-4);overflow:hidden"
+                >
+                    <div
+                        style="display:flex;align-items:center;gap:var(--space-3)"
+                    >
+                        <button
+                            class="btn btn-primary btn-sm"
+                            onclick="sidebarToggle('demo-sidebar-push')"
+                            >☰ Toggle Sidebar</button
+                        >
+                        <span
+                            style="font-size:var(--fs-sm);color:var(--color-muted)"
+                            >Content shifts — no overlay</span
+                        >
+                    </div>
+                    <div
+                        style="display:flex;flex-direction:column;gap:var(--space-3)"
+                    >
+                        <div
+                            style="height:14px;border-radius:4px;background:color-mix(in srgb,var(--color-neutral-600) 18%,transparent);width:70%"
+                        >
+                        </div>
+                        <div
+                            style="height:14px;border-radius:4px;background:color-mix(in srgb,var(--color-neutral-600) 12%,transparent);width:90%"
+                        >
+                        </div>
+                        <div
+                            style="height:14px;border-radius:4px;background:color-mix(in srgb,var(--color-neutral-600) 12%,transparent);width:55%"
+                        >
+                        </div>
+                        <div
+                            style="height:80px;border-radius:var(--radius-md);background:color-mix(in srgb,var(--color-primary) 8%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 20%,transparent)"
+                        >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Wrap page in .sidebar-layout -->
+<div class="sidebar-layout">
+  <aside class="sidebar sidebar-push" id="push-sidebar">
+    <div class="sidebar-header">...</div>
+    <div class="sidebar-body">...</div>
+  </aside>
+  <div class="sidebar-content">
+    <!-- page content -->
+  </div>
+</div>'
+                >
+                    <span class="c"
+                        >&lt;!-- Wrap page in .sidebar-layout --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar-layout"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;aside</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar sidebar-push"</span
+                    >
+                    <span class="s">id</span>=<span class="cn"
+                        >"push-sidebar"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/aside&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar-content"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;/div&gt;</span>
+                </div>
+                <button class="lib-copy-btn" onclick="copyCode(this)"
+                    >Copy</button
+                >
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Variant 4: Fullpage ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Fullpage — full viewport</div>
+        <div class="lib-preview" style="gap:12px;flex-wrap:wrap;">
+            <button
+                class="btn btn-primary btn-outline"
+                onclick="sidebarOpen('demo-sidebar-full')"
+                >Open Fullpage Menu</button
+            >
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<aside class="sidebar sidebar-fullpage" id="fullpage-menu">
+  <div class="sidebar-header">...</div>
+  <div class="sidebar-body">...</div>
+</aside>'
+                >
+                    <span class="k">&lt;aside</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar sidebar-fullpage"</span
+                    >
+                    <span class="s">id</span>=<span class="cn"
+                        >"fullpage-menu"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar-header"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar-body"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;/aside&gt;</span>
+                </div>
+                <button class="lib-copy-btn" onclick="copyCode(this)"
+                    >Copy</button
+                >
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Variant 5: Push Right ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Right — push content</div>
+        <div
+            class="lib-preview"
+            style="padding:0;overflow:hidden;border-radius:var(--radius-lg)"
+        >
+            <div
+                class="sidebar-layout"
+                style="height:260px;min-height:0;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--sidebar-border)"
+            >
+                <div
+                    class="sidebar-content"
+                    style="padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-4);overflow:hidden"
+                >
+                    <div
+                        style="display:flex;align-items:center;gap:var(--space-3)"
+                    >
+                        <button
+                            class="btn btn-outline btn-sm"
+                            onclick="sidebarToggle('demo-sidebar-push-right')"
+                            >Toggle Right Sidebar →</button
+                        >
+                        <span
+                            style="font-size:var(--fs-sm);color:var(--color-muted)"
+                            >Content shifts left</span
+                        >
+                    </div>
+                    <div
+                        style="display:flex;flex-direction:column;gap:var(--space-3)"
+                    >
+                        <div
+                            style="height:14px;border-radius:4px;background:color-mix(in srgb,var(--color-neutral-600) 18%,transparent);width:80%"
+                        >
+                        </div>
+                        <div
+                            style="height:14px;border-radius:4px;background:color-mix(in srgb,var(--color-neutral-600) 12%,transparent);width:55%"
+                        >
+                        </div>
+                        <div
+                            style="height:80px;border-radius:var(--radius-md);background:color-mix(in srgb,var(--color-accent) 8%,transparent);border:1px solid color-mix(in srgb,var(--color-accent) 20%,transparent)"
+                        >
+                        </div>
+                    </div>
+                </div>
+                <aside
+                    class="sidebar sidebar-push sidebar-right is-open"
+                    id="demo-sidebar-push-right"
+                >
+                    <div class="sidebar-header">
+                        <button
+                            class="sidebar-close"
+                            onclick="sidebarToggle('demo-sidebar-push-right')"
+                            aria-label="Close"
+                            style="margin-right:auto"
+                        >
+                            <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.2"
+                                stroke-linecap="round"
+                                ><path d="M3 3l10 10M13 3L3 13"></path></svg
+                            >
+                        </button>
+                        <span class="sidebar-title">Settings</span>
+                    </div>
+                    <div class="sidebar-body">
+                        <nav class="sidebar-nav">
+                            <a class="sidebar-link is-active" href="#">
+                                <svg
+                                    width="15"
+                                    height="15"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    ><circle cx="8" cy="8" r="2"></circle><path
+                                        d="M8 1v2M8 13v2M1 8h2M13 8h2M3.5 3.5l1.4 1.4M11.1 11.1l1.4 1.4"
+                                    ></path></svg
+                                >
+                                <span class="sidebar-link-text">General</span>
+                            </a>
+                            <a class="sidebar-link" href="#">
+                                <svg
+                                    width="15"
+                                    height="15"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    ><circle cx="8" cy="6" r="3"></circle><path
+                                        d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"
+                                    ></path></svg
+                                >
+                                <span class="sidebar-link-text">Account</span>
+                            </a>
+                            <a class="sidebar-link" href="#">
+                                <svg
+                                    width="15"
+                                    height="15"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    ><rect
+                                        x="2"
+                                        y="2"
+                                        width="12"
+                                        height="12"
+                                        rx="2"></rect><path d="M8 6v4M6 8h4"
+                                    ></path></svg
+                                >
+                                <span class="sidebar-link-text"
+                                    >Integrations</span
+                                >
+                            </a>
+                        </nav>
+                    </div>
+                </aside>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<div class="sidebar-layout">
+  <div class="sidebar-content"><!-- page --></div>
+  <aside class="sidebar sidebar-push sidebar-right" id="right-panel">
+    ...
+  </aside>
+</div>'
+                >
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar-layout"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar-content"</span
+                    ><span class="k">&gt;</span><span class="c"
+                        >&lt;!-- page --&gt;</span
+                    ><span class="k">&lt;/div&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;aside</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar sidebar-push sidebar-right"</span
+                    >
+                    <span class="s">id</span>=<span class="cn"
+                        >"right-panel"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/aside&gt;</span
+                    ><br />
+                    <span class="k">&lt;/div&gt;</span>
+                </div>
+                <button class="lib-copy-btn" onclick="copyCode(this)"
+                    >Copy</button
+                >
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Variant 6: Mini / Icon Rail ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Mini — icon rail (collapsible)</div>
+        <div
+            class="lib-preview"
+            style="padding:0;overflow:hidden;border-radius:var(--radius-lg)"
+        >
+            <div
+                class="sidebar-layout"
+                style="height:300px;min-height:0;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--sidebar-border)"
+            >
+                <aside
+                    class="sidebar sidebar-push sidebar-mini is-open is-expanded"
+                    id="demo-sidebar-mini"
+                >
+                    <div class="sidebar-header">
+                        <div
+                            class="sidebar-brand"
+                            onclick="sidebarExpandToggle('demo-sidebar-mini')"
+                            style="cursor:pointer"
+                            title="Toggle sidebar"
+                        >
+                            <span
+                                class="sidebar-brand-logo"
+                                style="font-size:var(--fs-lg)">N</span
+                            >
+                            <span class="sidebar-brand-text sidebar-link-text"
+                                >njX UI</span
+                            >
+                        </div>
+                        <button
+                            class="sidebar-mini-toggle"
+                            onclick="sidebarExpandToggle('demo-sidebar-mini')"
+                            aria-label="Collapse"
+                        >
+                            <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                ><path d="M10 4l-4 4 4 4"></path></svg
+                            >
+                        </button>
+                    </div>
+                    <div class="sidebar-body">
+                        <span class="sidebar-label sidebar-link-text">Menu</span
+                        >
+                        <nav class="sidebar-nav">
+                            <a class="sidebar-link is-active" href="#">
+                                <svg
+                                    width="17"
+                                    height="17"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    ><rect
+                                        x="2"
+                                        y="2"
+                                        width="5"
+                                        height="5"
+                                        rx="1"></rect><rect
+                                        x="9"
+                                        y="2"
+                                        width="5"
+                                        height="5"
+                                        rx="1"></rect><rect
+                                        x="2"
+                                        y="9"
+                                        width="5"
+                                        height="5"
+                                        rx="1"></rect><rect
+                                        x="9"
+                                        y="9"
+                                        width="5"
+                                        height="5"
+                                        rx="1"></rect></svg
+                                >
+                                <span class="sidebar-link-text">Dashboard</span>
+                            </a>
+                            <a class="sidebar-link" href="#">
+                                <svg
+                                    width="17"
+                                    height="17"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    ><circle cx="8" cy="6" r="3"></circle><path
+                                        d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"
+                                    ></path></svg
+                                >
+                                <span class="sidebar-link-text">Users</span>
+                            </a>
+                            <a class="sidebar-link" href="#">
+                                <svg
+                                    width="17"
+                                    height="17"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    ><path d="M2 12l3-3 3 2 3-4 3 3"
+                                    ></path><rect
+                                        x="1"
+                                        y="1"
+                                        width="14"
+                                        height="14"
+                                        rx="2"></rect></svg
+                                >
+                                <span class="sidebar-link-text">Analytics</span>
+                            </a>
+                            <a class="sidebar-link" href="#">
+                                <svg
+                                    width="17"
+                                    height="17"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    ><rect
+                                        x="1"
+                                        y="3"
+                                        width="14"
+                                        height="10"
+                                        rx="2"></rect><path d="M4 7h8M4 10h5"
+                                    ></path></svg
+                                >
+                                <span class="sidebar-link-text">Messages</span>
+                            </a>
+                            <a class="sidebar-link" href="#">
+                                <svg
+                                    width="17"
+                                    height="17"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    ><circle cx="8" cy="8" r="2"></circle><path
+                                        d="M8 1v2M8 13v2M1 8h2M13 8h2M3.5 3.5l1.4 1.4M11.1 11.1l1.4 1.4"
+                                    ></path></svg
+                                >
+                                <span class="sidebar-link-text">Settings</span>
+                            </a>
+                        </nav>
+                    </div>
+                    <div class="sidebar-footer">
+                        <a
+                            class="sidebar-link"
+                            href="#"
+                            style="color:var(--color-error)"
+                        >
+                            <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                ><path
+                                    d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3M10 11l3-3-3-3M13 8H6"
+                                ></path></svg
+                            >
+                            <span class="sidebar-link-text">Log out</span>
+                        </a>
+                    </div>
+                </aside>
+                <div
+                    class="sidebar-content"
+                    style="padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-3);overflow:hidden"
+                >
+                    <span
+                        style="font-size:var(--fs-sm);color:var(--color-muted)"
+                        >← click logo or arrow to collapse</span
+                    >
+                    <div
+                        style="display:flex;flex-direction:column;gap:var(--space-3)"
+                    >
+                        <div
+                            style="height:14px;border-radius:4px;background:color-mix(in srgb,var(--color-neutral-600) 18%,transparent);width:75%"
+                        >
+                        </div>
+                        <div
+                            style="height:14px;border-radius:4px;background:color-mix(in srgb,var(--color-neutral-600) 12%,transparent);width:90%"
+                        >
+                        </div>
+                        <div
+                            style="height:100px;border-radius:var(--radius-md);background:color-mix(in srgb,var(--color-primary) 7%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 18%,transparent)"
+                        >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<div class="sidebar-layout">
+  <aside class="sidebar sidebar-push sidebar-mini is-open" id="mini-rail">
+    <!-- header: brand logo + sidebar-mini-toggle button -->
+    <!-- body: sidebar-link with <span class="sidebar-link-text">Label</span> -->
+  </aside>
+  <div class="sidebar-content">...</div>
+</div>
+
+<!-- Expand/collapse -->
+sidebarExpandToggle(&apos;mini-rail&apos;)'
+                >
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar-layout"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;aside</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar sidebar-push sidebar-mini is-open"</span
+                    >
+                    <span class="s">id</span>=<span class="cn">"mini-rail"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="c"
+                        >&lt;!-- wrap text in &lt;span
+                        class="sidebar-link-text"&gt; --&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/aside&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar-content"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;/div&gt;</span><br /><br />
+                    <span class="fn">sidebarExpandToggle</span>(<span class="cn"
+                        >'mini-rail'</span
+                    >) <span class="c">// expand / collapse</span>
+                </div>
+                <button class="lib-copy-btn" onclick="copyCode(this)"
+                    >Copy</button
+                >
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Variant 7: Floating ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Floating — detached, glass blur</div>
+        <div class="lib-preview" style="gap:12px;flex-wrap:wrap;">
+            <button
+                class="btn btn-primary"
+                onclick="sidebarOpen('demo-sidebar-float')"
+                >Open Floating Sidebar</button
+            >
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<aside class="sidebar sidebar-floating" id="my-float">
+  ...
+</aside>
+<div class="sidebar-backdrop" id="my-float-backdrop"></div>'
+                >
+                    <span class="k">&lt;aside</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar sidebar-floating"</span
+                    >
+                    <span class="s">id</span>=<span class="cn">"my-float"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;...<br />
+                    <span class="k">&lt;/aside&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"sidebar-backdrop"</span
+                    >
+                    <span class="s">id</span>=<span class="cn"
+                        >"my-float-backdrop"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span>
+                </div>
+                <button class="lib-copy-btn" onclick="copyCode(this)"
+                    >Copy</button
+                >
+            </div>
+        </div>
+    </div>
+
+    <!-- ── JS API ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">JS API</div>
+        <div class="lib-preview" style="gap:10px;flex-wrap:wrap;">
+            <code style="font-size:13px">sidebarOpen('id')</code>
+            <code style="font-size:13px">sidebarClose('id')</code>
+            <code style="font-size:13px">sidebarToggle('id')</code>
+            <code style="font-size:13px">sidebarExpandToggle('id')</code>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw="sidebarOpen('my-sidebar')         // open overlay
+sidebarClose('my-sidebar')        // close overlay
+sidebarToggle('my-sidebar')       // toggle open/close
+sidebarExpandToggle('mini-rail')  // expand/collapse mini sidebar"
+                >
+                    <span class="fn">sidebarOpen</span>(<span class="cn"
+                        >'my-sidebar'</span
+                    >)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                        class="c">// open overlay</span
+                    ><br />
+                    <span class="fn">sidebarClose</span>(<span class="cn"
+                        >'my-sidebar'</span
+                    >)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                        class="c">// close overlay</span
+                    ><br />
+                    <span class="fn">sidebarToggle</span>(<span class="cn"
+                        >'my-sidebar'</span
+                    >)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c"
+                        >// toggle open/close</span
+                    ><br />
+                    <span class="fn">sidebarExpandToggle</span>(<span class="cn"
+                        >'mini-rail'</span
+                    >)&nbsp;&nbsp;<span class="c">// expand/collapse mini</span>
+                </div>
+                <button class="lib-copy-btn" onclick="copyCode(this)"
+                    >Copy</button
+                >
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ DEMO SIDEBARS (rendered outside section flow) ══ -->
+
+<!-- Left overlay backdrop -->
+<div class="sidebar-backdrop" id="demo-sidebar-left-backdrop"></div>
+
+<!-- Right overlay backdrop -->
+<div class="sidebar-backdrop" id="demo-sidebar-right-backdrop"></div>
+
+<!-- Fullpage backdrop (not needed visually but keeps JS consistent) -->
+<div class="sidebar-backdrop" id="demo-sidebar-full-backdrop"></div>
+
+<!-- ── Left overlay ── -->
+<aside class="sidebar" id="demo-sidebar-left">
+    <div class="sidebar-header">
+        <div class="sidebar-brand">
+            <span class="sidebar-brand-logo">njX</span>
+            <span class="sidebar-brand-text">Dashboard</span>
+        </div>
+        <button
+            class="sidebar-close"
+            onclick="sidebarClose('demo-sidebar-left')"
+            aria-label="Close"
+        >
+            <svg
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                ><path d="M3 3l10 10M13 3L3 13"></path></svg
+            >
+        </button>
+    </div>
+    <div class="sidebar-body">
+        <span class="sidebar-label">Navigation</span>
+        <nav class="sidebar-nav">
+            <a class="sidebar-link is-active" href="#">
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    ><rect x="2" y="2" width="5" height="5" rx="1"></rect><rect
+                        x="9"
+                        y="2"
+                        width="5"
+                        height="5"
+                        rx="1"></rect><rect
+                        x="2"
+                        y="9"
+                        width="5"
+                        height="5"
+                        rx="1"></rect><rect
+                        x="9"
+                        y="9"
+                        width="5"
+                        height="5"
+                        rx="1"></rect></svg
+                >
+                Dashboard
+            </a>
+            <a class="sidebar-link" href="#">
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    ><circle cx="8" cy="6" r="3"></circle><path
+                        d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"></path></svg
+                >
+                Profile
+            </a>
+            <a class="sidebar-link" href="#">
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    ><rect x="1" y="3" width="14" height="10" rx="2"
+                    ></rect><path d="M4 7h8M4 10h5"></path></svg
+                >
+                Messages
+                <span
+                    style="margin-left:auto;background:var(--color-primary);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:20px"
+                    >3</span
+                >
+            </a>
+            <a class="sidebar-link" href="#">
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    ><circle cx="8" cy="8" r="2"></circle><path
+                        d="M8 1v2M8 13v2M1 8h2M13 8h2M3.5 3.5l1.4 1.4M11.1 11.1l1.4 1.4M3.5 12.5l1.4-1.4M11.1 4.9l1.4-1.4"
+                    ></path></svg
+                >
+                Settings
+            </a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <span class="sidebar-label">Projects</span>
+        <nav class="sidebar-nav">
+            <a class="sidebar-link" href="#">
+                <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="var(--color-primary)"
+                    stroke="none"><circle cx="6" cy="6" r="4"></circle></svg
+                >
+                Project Alpha
+            </a>
+            <a class="sidebar-link" href="#">
+                <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="var(--color-accent)"
+                    stroke="none"><circle cx="6" cy="6" r="4"></circle></svg
+                >
+                Project Beta
+            </a>
+            <a class="sidebar-link" href="#">
+                <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="var(--color-muted)"
+                    stroke="none"><circle cx="6" cy="6" r="4"></circle></svg
+                >
+                Archive
+            </a>
+        </nav>
+    </div>
+    <div class="sidebar-footer">
+        <a class="sidebar-link" href="#" style="color:var(--color-error)">
+            <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                ><path
+                    d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3M10 11l3-3-3-3M13 8H6"
+                ></path></svg
+            >
+            Log out
+        </a>
+    </div>
+</aside>
+
+<!-- ── Right overlay ── -->
+<aside class="sidebar sidebar-right" id="demo-sidebar-right">
+    <div class="sidebar-header">
+        <button
+            class="sidebar-close"
+            onclick="sidebarClose('demo-sidebar-right')"
+            aria-label="Close"
+            style="margin-right:auto"
+        >
+            <svg
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                ><path d="M3 3l10 10M13 3L3 13"></path></svg
+            >
+        </button>
+        <span class="sidebar-title">Filters</span>
+    </div>
+    <div class="sidebar-body">
+        <span class="sidebar-label">Status</span>
+        <nav class="sidebar-nav">
+            <a class="sidebar-link is-active" href="#">All items</a>
+            <a class="sidebar-link" href="#">Active</a>
+            <a class="sidebar-link" href="#">Archived</a>
+            <a class="sidebar-link" href="#">Drafts</a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <span class="sidebar-label">Sort by</span>
+        <nav class="sidebar-nav">
+            <a class="sidebar-link is-active" href="#">Date created</a>
+            <a class="sidebar-link" href="#">Alphabetical</a>
+            <a class="sidebar-link" href="#">Last modified</a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <span class="sidebar-label">Tags</span>
+        <nav class="sidebar-nav">
+            <a class="sidebar-link" href="#">Design</a>
+            <a class="sidebar-link" href="#">Development</a>
+            <a class="sidebar-link" href="#">Marketing</a>
+        </nav>
+    </div>
+    <div class="sidebar-footer">
+        <button
+            class="btn btn-primary"
+            style="width:100%"
+            onclick="sidebarClose('demo-sidebar-right')">Apply Filters</button
+        >
+    </div>
+</aside>
+
+<!-- ── Fullpage ── -->
+<aside class="sidebar sidebar-fullpage" id="demo-sidebar-full">
+    <div class="sidebar-header">
+        <div class="sidebar-brand">
+            <span class="sidebar-brand-logo">njX</span>
+            <span class="sidebar-brand-text">UI Library</span>
+        </div>
+        <button
+            class="sidebar-close sidebar-close-lg"
+            onclick="sidebarClose('demo-sidebar-full')"
+            aria-label="Close"
+        >
+            <svg
+                width="20"
+                height="20"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                ><path d="M3 3l10 10M13 3L3 13"></path></svg
+            >
+        </button>
+    </div>
+    <div class="sidebar-fullpage-body">
+        <nav class="sidebar-fullpage-nav">
+            <a class="sidebar-fullpage-link" href="#">
+                <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    ><path d="M8 2L2 7v7h4v-4h4v4h4V7z"></path></svg
+                >
+                Home
+            </a>
+            <a class="sidebar-fullpage-link" href="#">
+                <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    ><rect x="2" y="2" width="5" height="5" rx="1"></rect><rect
+                        x="9"
+                        y="2"
+                        width="5"
+                        height="5"
+                        rx="1"></rect><rect
+                        x="2"
+                        y="9"
+                        width="5"
+                        height="5"
+                        rx="1"></rect><rect
+                        x="9"
+                        y="9"
+                        width="5"
+                        height="5"
+                        rx="1"></rect></svg
+                >
+                Components
+            </a>
+            <a class="sidebar-fullpage-link" href="#">
+                <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    ><path
+                        d="M3 2h10a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1zM5 6h6M5 9h4"
+                    ></path></svg
+                >
+                Docs
+            </a>
+            <a class="sidebar-fullpage-link" href="#">
+                <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"><path d="M13 4l-7 7-3-3"></path></svg
+                >
+                Quick Start
+            </a>
+            <a class="sidebar-fullpage-link" href="#">
+                <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    ><circle cx="8" cy="8" r="6"></circle><path d="M8 5v4l2 2"
+                    ></path></svg
+                >
+                Changelog
+            </a>
+        </nav>
+    </div>
+    <div class="sidebar-fullpage-footer">
+        <span style="font-size:var(--fs-sm);color:var(--color-muted)"
+            >© 2025 njX UI — MIT License</span
+        >
+        <div class="sidebar-social-links">
+            <a
+                class="sidebar-social-link"
+                href="https://github.com/njbSaab/njx-css-ui"
+                target="_blank"
+                rel="noopener"
+                aria-label="GitHub"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    ><path
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38l-.01-1.49c-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.2c0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                    ></path></svg
+                >
+            </a>
+            <a
+                class="sidebar-social-link"
+                href="https://npmjs.com/package/njx-css-ui"
+                target="_blank"
+                rel="noopener"
+                aria-label="npm"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    ><path d="M0 0v16h16V0H0zm14 14H8v-2H6v2H2V2h12v12z"
+                    ></path></svg
+                >
+            </a>
+        </div>
+    </div>
+</aside>
+
+<!-- ── Floating sidebar demo ── -->
+<div class="sidebar-backdrop" id="demo-sidebar-float-backdrop"></div>
+<aside class="sidebar sidebar-floating" id="demo-sidebar-float">
+    <div class="sidebar-header">
+        <div class="sidebar-brand">
+            <span class="sidebar-brand-logo">N</span>
+            <span class="sidebar-brand-text">Menu</span>
+        </div>
+        <button
+            class="sidebar-close"
+            onclick="sidebarClose('demo-sidebar-float')"
+            aria-label="Close"
+        >
+            <svg
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                ><path d="M3 3l10 10M13 3L3 13"></path></svg
+            >
+        </button>
+    </div>
+    <div class="sidebar-body">
+        <span class="sidebar-label">Navigation</span>
+        <nav class="sidebar-nav">
+            <a class="sidebar-link is-active" href="#">
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    ><path d="M8 2L2 7v7h4v-4h4v4h4V7z"></path></svg
+                >
+                Home
+            </a>
+            <a class="sidebar-link" href="#">
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    ><rect x="2" y="2" width="5" height="5" rx="1"></rect><rect
+                        x="9"
+                        y="2"
+                        width="5"
+                        height="5"
+                        rx="1"></rect><rect
+                        x="2"
+                        y="9"
+                        width="5"
+                        height="5"
+                        rx="1"></rect><rect
+                        x="9"
+                        y="9"
+                        width="5"
+                        height="5"
+                        rx="1"></rect></svg
+                >
+                Components
+            </a>
+            <a class="sidebar-link" href="#">
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    ><path
+                        d="M3 2h10a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1zM5 6h6M5 9h4"
+                    ></path></svg
+                >
+                Docs
+            </a>
+            <a class="sidebar-link" href="#">
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"><path d="M13 4l-7 7-3-3"></path></svg
+                >
+                Quick Start
+            </a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <span class="sidebar-label">Themes</span>
+        <nav class="sidebar-nav">
+            <a
+                class="sidebar-link"
+                href="#"
+                onclick="njxSetTheme('dark');return false">Dark</a
+            >
+            <a
+                class="sidebar-link"
+                href="#"
+                onclick="njxSetTheme('light');return false">Light</a
+            >
+            <a
+                class="sidebar-link"
+                href="#"
+                onclick="njxSetTheme('blue');return false">Blue</a
+            >
+            <a
+                class="sidebar-link"
+                href="#"
+                onclick="njxSetTheme('purple');return false">Purple</a
+            >
+        </nav>
+    </div>
+    <div class="sidebar-footer">
+        <span style="font-size:var(--fs-xs);color:var(--color-muted)"
+            >njX UI v1.0.5</span
+        >
+    </div>
+</aside>

@@ -1,0 +1,29 @@
+<section class="lib-section" id="utils">
+    <div class="lib-section-header">
+        <div class="lib-section-title">⚡ Utils</div>
+        <div class="lib-section-badge">_utils.css</div>
+    </div>
+    <div class="lib-section-desc">
+        Tailwind-style utilities — all via CSS variables. Unified file <code
+            >_utils.css</code
+        >
+        (former <code>_util.css</code> removed). Click a class — it copies to clipboard.
+    </div>
+
+    <!-- Search -->
+    <div style="margin-bottom:20px;display:flex;gap:10px;align-items:center">
+        <input
+            id="utils-search"
+            class="inp"
+            style="max-width:320px"
+            placeholder="🔍 Search class..."
+            oninput="filterUtils()"
+        />
+        <span id="utils-count" style="font-size:12px;color:var(--color-muted)"
+        ></span>
+    </div>
+
+    <!-- All classes grid — always visible -->
+    <div id="utils-all" style="display:flex;flex-direction:column;gap:24px">
+    </div>
+</section>

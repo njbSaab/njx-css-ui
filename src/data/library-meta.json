@@ -1,0 +1,10 @@
+{
+  "name": "njX UI",
+  "npmPackage": "njx-ui",
+  "githubPackage": "njbSaab/njx-css-ui",
+  "version": "1.1.0",
+  "files": {
+    "full": "public/css/style.min.css",
+    "classless": "public/css/classless.min.css"
+  }
+}

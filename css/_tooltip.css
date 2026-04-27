@@ -1,0 +1,89 @@
+/* ============================================================
+   _tooltip.css — Pure CSS tooltips via [data-tip] attribute
+   Usage: <button data-tip="Hello">Hover me</button>
+   Positions: top (default) | bottom | left | right
+   Colors: primary | success | warning | danger
+   ============================================================ */
+
+[data-tip] {
+  position: relative;
+  cursor: default;
+  /* Fix for elements with overflow:hidden (e.g. .btn) */
+  overflow: visible !important;
+}
+
+/* ── Tooltip bubble ── */
+[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--tooltip-bg, rgba(12, 12, 16, .94));
+  color: var(--tooltip-fg, #f0f0f0);
+  padding: 5px 10px;
+  border-radius: var(--radius-sm, 4px);
+  font-size: var(--fs-xs, 11px);
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s ease, transform .15s ease;
+  z-index: var(--z-tooltip, 1000);
+}
+
+/* ── Show on hover / focus ── */
+[data-tip]:hover::after,
+[data-tip]:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ────────────────────────────
+   Positions
+──────────────────────────── */
+
+/* bottom */
+[data-tip][data-tip-pos="bottom"]::after {
+  bottom: auto;
+  top: calc(100% + 8px);
+  transform: translateX(-50%) translateY(-4px);
+}
+[data-tip][data-tip-pos="bottom"]:hover::after,
+[data-tip][data-tip-pos="bottom"]:focus-visible::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* left */
+[data-tip][data-tip-pos="left"]::after {
+  bottom: auto;
+  top: 50%;
+  left: auto;
+  right: calc(100% + 8px);
+  transform: translateY(-50%) translateX(4px);
+}
+[data-tip][data-tip-pos="left"]:hover::after,
+[data-tip][data-tip-pos="left"]:focus-visible::after {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* right */
+[data-tip][data-tip-pos="right"]::after {
+  bottom: auto;
+  top: 50%;
+  left: calc(100% + 8px);
+  transform: translateY(-50%) translateX(-4px);
+}
+[data-tip][data-tip-pos="right"]:hover::after,
+[data-tip][data-tip-pos="right"]:focus-visible::after {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ────────────────────────────
+   Color variants
+──────────────────────────── */
+[data-tip][data-tip-color="primary"]::after { background: var(--color-primary); color: #fff; }
+[data-tip][data-tip-color="success"]::after { background: var(--color-success); color: #000; }
+[data-tip][data-tip-color="warning"]::after { background: var(--color-warning); color: #000; }
+[data-tip][data-tip-color="danger"]::after  { background: var(--color-error);   color: #fff; }

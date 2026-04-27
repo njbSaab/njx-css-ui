@@ -1,0 +1,1401 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PagesTopbar from '../components/PagesTopbar.astro';
+import PagesFooter from '../components/PagesFooter.astro';
+import Bottombar from '../components/Bottombar.astro';
+import Demo from '../components/demo/Demo.astro';
+import { LIB_VERSION, SIZE_FULL } from '../lib/meta';
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="njX UI — 308 KB CSS library. 9 themes. Zero dependencies."
+  description="A modern CSS component library — 308 KB, zero dependencies, zero build step. Switch the entire UI theme with a single HTML attribute."
+>
+  <!-- ══ NAV ══ -->
+  <PagesTopbar activePage="overview" />
+
+  <!-- ══════════════════════ HERO ══════════════════════ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <!-- Left: copy + CTAs + stats -->
+        <div class="hero-left">
+          <div class="label">
+            <span class="pulse"></span>
+            Open Source · MIT License · v{LIB_VERSION}
+          </div>
+          <h1>
+            <span class="grad">Pure CSS.</span><br />
+            Nine&nbsp;themes.<br />
+            <span class="dim">Zero&nbsp;build.</span>
+          </h1>
+          <p class="sub">
+            A 40&nbsp;KB CSS library that flips themes with one HTML attribute.
+            Every demo on this page is live — change the theme and watch every
+            component re-tint instantly.
+          </p>
+          <div class="hero-cta">
+            <a href={`${base}quickstart`} class="btn-pill primary"
+              >↓ Get Started</a
+            >
+            <a href={`${base}`} class="btn-pill ghost">Try it live</a>
+          </div>
+          <div class="stats-inline">
+            <div><div class="v">{SIZE_FULL}</div><div class="l">Bundle</div></div>
+            <div><div class="v">9</div><div class="l">Themes</div></div>
+            <div><div class="v">30+</div><div class="l">Components</div></div>
+            <div><div class="v">0</div><div class="l">Deps</div></div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Playground -->
+        <div class="playground">
+          <div class="pg-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <div class="url">
+              &lt;html <span style="color:var(--color-primary)" id="ov-attr"
+                >data-theme="dark"</span
+              >&gt;
+            </div>
+          </div>
+          <div class="pg-controls">
+            <div class="seg" id="ov-modeseg">
+              <button class="on" data-m="auth">Auth</button>
+              <button data-m="dash">Dashboard</button>
+              <button data-m="form">Form</button>
+            </div>
+            <div class="pg-tswatches" id="ov-tswatches"></div>
+          </div>
+          <div class="pg-body" id="ov-pgbody"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <Demo />
+  </div>
+
+  <!-- ══════════════════════ THEME SYSTEM ══════════════════════ -->
+  <div class="sc-section sc-section-center" style="padding-top:100px">
+    <span class="sc-eyebrow">Theme system</span>
+    <h2 class="sc-heading">
+      Switch the entire UI<br />with one HTML attribute
+    </h2>
+    <p class="sc-subheading center">
+      No CSS overrides. No JavaScript required. Every component adapts
+      automatically through CSS custom properties inherited from <code
+        style="color:var(--color-primary);font-family:'Roboto Mono',monospace"
+        >data-theme</code
+      >.
+    </p>
+    <div class="sc-theme-pills">
+      <div class="sc-tpill active" style="--pill-color:#14a0ff" data-t="dark">
+        <span class="dot"></span>Dark
+      </div>
+      <div class="sc-tpill" style="--pill-color:#94a3b8" data-t="light">
+        <span class="dot"></span>Light
+      </div>
+      <div class="sc-tpill" style="--pill-color:#f43f5e" data-t="red">
+        <span class="dot"></span>Red
+      </div>
+      <div class="sc-tpill" style="--pill-color:#3b82f6" data-t="blue">
+        <span class="dot"></span>Blue
+      </div>
+      <div class="sc-tpill" style="--pill-color:#22c55e" data-t="green">
+        <span class="dot"></span>Green
+      </div>
+      <div class="sc-tpill" style="--pill-color:#00e5ff" data-t="cyan">
+        <span class="dot"></span>Cyan
+      </div>
+      <div class="sc-tpill" style="--pill-color:#facc15" data-t="yellow">
+        <span class="dot"></span>Yellow
+      </div>
+      <div class="sc-tpill" style="--pill-color:#ec4899" data-t="pink">
+        <span class="dot"></span>Pink
+      </div>
+      <div class="sc-tpill" style="--pill-color:#a855f7" data-t="purple">
+        <span class="dot"></span>Purple
+      </div>
+    </div>
+    <div class="sc-theme-preview">
+      <div class="sc-theme-preview-bar">
+        <div class="sc-tpbar-dot" style="background:#ff5f57"></div>
+        <div class="sc-tpbar-dot" style="background:#febc2e"></div>
+        <div class="sc-tpbar-dot" style="background:#28c840"></div>
+        <div class="sc-tpbar-url">
+          &lt;html <span style="color:var(--color-primary)" id="ov-attr2"
+            >data-theme="dark"</span
+          >&gt;
+        </div>
+      </div>
+      <div class="sc-theme-preview-body">
+        <div class="sc-demo-card">
+          <div class="sc-demo-card-title" style="color:var(--color-primary)">
+            Dashboard
+          </div>
+          <div class="sc-demo-card-text">
+            Real-time analytics overview with live metrics and trend data.
+          </div>
+          <button class="btn btn-primary btn-sm">View Stats</button>
+        </div>
+        <div class="sc-demo-card">
+          <div class="sc-demo-card-title">Sign in</div>
+          <div
+            style="display:flex;flex-direction:column;gap:10px;margin-top:10px"
+          >
+            <input
+              class="inp inp-sm"
+              placeholder="Email"
+              type="email"
+              style="font-size:12px"
+            />
+            <input
+              class="inp inp-sm"
+              placeholder="Password"
+              type="password"
+              style="font-size:12px"
+            />
+            <button class="btn btn-primary btn-sm" style="width:100%"
+              >Login</button
+            >
+          </div>
+        </div>
+        <div class="sc-demo-card">
+          <div class="sc-demo-card-title">Components</div>
+          <div class="sc-demo-card-text">Mix and match freely.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+            <span class="tag tag-primary" style="font-size:11px">primary</span>
+            <span class="tag tag-success" style="font-size:11px">success</span>
+            <span class="tag tag-filled-primary" style="font-size:11px"
+              >filled</span
+            >
+            <span class="badge badge-error" style="font-size:11px">3</span>
+          </div>
+          <div style="margin-top:10px">
+            <div
+              style="height:6px;background:color-mix(in srgb,var(--color-primary) 20%,transparent);border-radius:4px"
+            >
+              <div
+                style="height:100%;width:65%;background:var(--color-primary);border-radius:4px;transition:width 0.6s"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="margin-top:24px;font-family:'Roboto Mono',monospace;font-size:13px;color:var(--color-muted)"
+    >
+      That's literally it →
+      <span
+        style="color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 10%,transparent);padding:3px 10px;border-radius:6px"
+        >&lt;html data-theme="purple"&gt;</span
+      >
+    </div>
+  </div>
+
+  <!-- ══════════════════════ FEATURES ══════════════════════ -->
+  <div class="sc-section" style="padding-top:40px; padding-bottom: 0;">
+    <div style="margin-bottom:40px">
+      <span class="sc-eyebrow">Why njX</span>
+      <h2 class="sc-heading">Everything you need.<br />Nothing you don't.</h2>
+      <p class="sc-subheading">
+        Built on CSS custom properties from the ground up. No preprocessors, no
+        PostCSS, no config files.
+      </p>
+    </div>
+    <div class="sc-features">
+      <div class="sc-feat">
+        <span class="sc-feat-icon">🎨</span><div class="sc-feat-title">
+          9 Themes, one attribute
+        </div><div class="sc-feat-desc">
+          Dark, Light, Red, Blue, Green, Cyan, Yellow, Pink, Purple. Every
+          component adapts automatically. No extra CSS needed.
+        </div><span class="sc-feat-tag">data-theme="purple"</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">⚡</span><div class="sc-feat-title">
+          Zero build step
+        </div><div class="sc-feat-desc">
+          One CDN link and you're running. No npm, no webpack, no PostCSS
+          config. Works in any HTML file, today.
+        </div><span class="sc-feat-tag">CDN ready</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">🔑</span><div class="sc-feat-title">
+          CSS Variables First
+        </div><div class="sc-feat-desc">
+          60+ design tokens. Change <code style="color:var(--color-primary)"
+            >--color-primary</code
+          > once and it ripples through every component.
+        </div><span class="sc-feat-tag">60+ tokens</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">✨</span><div class="sc-feat-title">
+          Hover effects built in
+        </div><div class="sc-feat-desc">
+          30+ hover classes: scale, lift, glow, rotate, shimmer, blur,
+          brightness. Effects that usually need custom CSS — already here.
+        </div><span class="sc-feat-tag">30+ effects</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">🌈</span><div class="sc-feat-title">
+          Gradients out of the box
+        </div><div class="sc-feat-desc">
+          15+ background gradients, 8 text gradients, gradient borders, animated
+          gradients. Design-ready without a single line of custom CSS.
+        </div><span class="sc-feat-tag">_gradients.css</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">🎭</span><div class="sc-feat-title">
+          Animations included
+        </div><div class="sc-feat-desc">
+          Float, pulse, bounce, spin, heartbeat, wiggle, glow, neon text,
+          rainbow, fade-in variants. Add a class, get an animation.
+        </div><span class="sc-feat-tag">_animations.css</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">♻️</span><div class="sc-feat-title">
+          Bulma compatible
+        </div><div class="sc-feat-desc">
+          Already using Bulma? Classes like <code
+            style="color:var(--color-primary)">.button.is-primary</code
+          > work without changes. Migrate progressively, zero rewrites.
+        </div><span class="sc-feat-tag">Drop-in replacement</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">📐</span><div class="sc-feat-title">
+          Two grid systems
+        </div><div class="sc-feat-desc">
+          Classic 12-col flex grid (<code style="color:var(--color-primary)"
+            >.row</code
+          > + <code style="color:var(--color-primary)">.col-*</code>) and modern
+          CSS Grid helpers. Pick what fits.
+        </div><span class="sc-feat-tag">_grid.css</span>
+      </div>
+      <div class="sc-feat">
+        <span class="sc-feat-icon">🎯</span><div class="sc-feat-title">
+          Tailwind-compatible utils
+        </div><div class="sc-feat-desc">
+          Same class names as Tailwind — <code
+            style="color:var(--color-primary)"
+            >flex gap-4 mt-6 px-4 rounded-lg</code
+          > work out of the box. Zero PostCSS, zero build step, 40&nbsp;KB instead
+          of 3&nbsp;MB.
+        </div><span class="sc-feat-tag">_utils.css</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ COMPARISON ══════════════════════ -->
+  <div class="sc-section" style="padding-top:40px padding-bottom: 0;">
+    <div style="margin-bottom:40px">
+      <span class="sc-eyebrow">Comparison</span>
+      <h2 class="sc-heading">
+        Heavier than chota.<br />Lighter than everything else.
+      </h2>
+      <p class="sc-subheading">
+        308 KB gets you themes, animations, hover effects and gradients — features
+        that don't exist anywhere else at this weight.
+      </p>
+    </div>
+    <div class="sc-table-wrap">
+      <table class="sc-table">
+        <thead>
+          <tr>
+            <th style="text-align:left">Feature</th>
+            <th>chota</th>
+            <th>Pico CSS</th>
+            <th>Bulma</th>
+            <th style="color:var(--color-primary)">njX ✦</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            ><td>Bundle size</td><td>3 KB</td><td>9 KB</td><td>78 KB</td><td
+              style="color:var(--color-primary);font-weight:700">~308 KB</td
+            ></tr
+          >
+          <tr
+            ><td>Built-in themes</td><td><span class="sc-cross">—</span></td><td
+              >2</td
+            ><td><span class="sc-cross">—</span></td><td
+              style="color:var(--color-primary);font-weight:700">9</td
+            ></tr
+          >
+          <tr
+            ><td>CSS Custom Properties</td><td>partial</td><td
+              ><span class="sc-check">✓</span></td
+            ><td><span class="sc-cross">—</span></td><td
+              style="color:var(--color-primary);font-weight:700">✓ full</td
+            ></tr
+          >
+          <tr
+            ><td>Hover effects</td><td><span class="sc-cross">—</span></td><td
+              ><span class="sc-cross">—</span></td
+            ><td><span class="sc-cross">—</span></td><td
+              style="color:var(--color-primary);font-weight:700">30+</td
+            ></tr
+          >
+          <tr
+            ><td>Gradients</td><td><span class="sc-cross">—</span></td><td
+              ><span class="sc-cross">—</span></td
+            ><td><span class="sc-cross">—</span></td><td
+              style="color:var(--color-primary);font-weight:700">15+</td
+            ></tr
+          >
+          <tr
+            ><td>Animations</td><td><span class="sc-cross">—</span></td><td
+              ><span class="sc-cross">—</span></td
+            ><td><span class="sc-cross">—</span></td><td
+              style="color:var(--color-primary);font-weight:700">✓</td
+            ></tr
+          >
+          <tr
+            ><td>Text gradients</td><td><span class="sc-cross">—</span></td><td
+              ><span class="sc-cross">—</span></td
+            ><td><span class="sc-cross">—</span></td><td
+              style="color:var(--color-primary);font-weight:700">8 styles</td
+            ></tr
+          >
+          <tr
+            ><td>Bulma compatible</td><td><span class="sc-cross">—</span></td
+            ><td><span class="sc-cross">—</span></td><td>—</td><td
+              style="color:var(--color-primary);font-weight:700">✓</td
+            ></tr
+          >
+          <tr
+            ><td>Build step required</td><td>No</td><td>No</td><td>No</td><td
+              style="color:var(--color-success);font-weight:700">No</td
+            ></tr
+          >
+          <tr
+            ><td>Tailwind-compatible utils</td><td
+              ><span class="sc-cross">—</span></td
+            ><td><span class="sc-cross">—</span></td><td
+              ><span class="sc-cross">—</span></td
+            ><td style="color:var(--color-primary);font-weight:700"
+              >✓ same API</td
+            ></tr
+          >
+          <tr style="border-bottom:none"
+            ><td>JS required</td><td>No</td><td>No</td><td>No</td><td
+              style="color:var(--color-success);font-weight:700">No</td
+            ></tr
+          >
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ PHILOSOPHY ══════════════════════ -->
+  <div class="sc-section" style="padding-top:40px; padding-bottom: 0;">
+    <div class="sc-manifesto">
+      <span class="sc-eyebrow" style="display:block;margin-bottom:16px"
+        >Philosophy</span
+      >
+      <p class="sc-manifesto-quote">
+        "CSS has everything you need to build a <em>great UI</em>.<br />
+        You just shouldn't have to write it <em>every time</em>."
+      </p>
+      <p
+        style="font-size:15px;color:var(--color-muted);max-width:560px;margin:0 auto;line-height:1.7"
+      >
+        njX is built on the belief that a CSS library should be <strong
+          style="color:var(--color-light)">invisible</strong
+        > — no framework lock-in, no class name memorisation marathons, no config
+        files. Just CSS custom properties doing what they were designed to do.
+      </p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ CTA ══════════════════════ -->
+  <div class="sc-section" style="padding-top:0px;padding-bottom:20px">
+    <div
+      style="margin-top:56px;padding:40px;border-radius:20px;background:radial-gradient(ellipse 80% 100% at 50% 50%,color-mix(in srgb,var(--color-primary) 10%,transparent),transparent);border:1px solid color-mix(in srgb,var(--color-primary) 18%,transparent);text-align:center;max-width:1200px;margin-left:auto;margin-right:auto"
+    >
+      <h2 class="sc-heading" style="margin-bottom:16px">Ready to build?</h2>
+      <p class="sc-subheading center" style="margin-bottom:40px">
+        One line. Any HTML file. Any project. Start in under a minute.
+      </p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a
+          href={`${base}quickstart`}
+          class="sc-btn-primary"
+          style="font-size:16px;padding:16px 40px">Get Started — it's free</a
+        >
+        <a
+          href={`${base}documentation`}
+          class="sc-btn-ghost"
+          style="font-size:16px;padding:16px 40px">Browse all components →</a
+        >
+      </div>
+    </div>
+  </div>
+  <!-- ══ FOOTER ══ -->
+  <PagesFooter activePage="overview" />
+  <Bottombar activePage="overview" />
+</BaseLayout>
+
+<!-- ══════════════════════ STYLES ══════════════════════ -->
+<style is:global>
+  /* ── Reset ── */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+  }
+  .wrap {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    padding: 80px 0 80px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        ellipse 70% 60% at 30% 20%,
+        color-mix(in srgb, var(--color-primary) 22%, transparent),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 50% 50% at 80% 80%,
+        color-mix(in srgb, var(--color-accent) 12%, transparent),
+        transparent
+      );
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+  .hero-left .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+  }
+  .hero-left .label .pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow: 0 0 10px var(--color-primary);
+    animation: ov-pulse 1.8s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes ov-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+  .hero-left h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(48px, 6vw, 84px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    margin-bottom: 24px;
+  }
+  .hero-left h1 .grad {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-left h1 .dim {
+    color: var(--color-muted);
+  }
+  .hero-left .sub {
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--color-muted);
+    max-width: 480px;
+    margin-bottom: 28px;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+    border: 1.5px solid transparent;
+  }
+  .btn-pill.primary {
+    background: var(--color-primary);
+    color: #fff;
+  }
+  .btn-pill.primary:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px
+      color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+  .btn-pill.ghost {
+    border-color: color-mix(in srgb, var(--color-neutral-600) 40%, transparent);
+    color: var(--color-light);
+  }
+  .btn-pill.ghost:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  }
+  .stats-inline {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .stats-inline > div {
+    display: flex;
+    flex-direction: column;
+  }
+  .stats-inline .v {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+  .stats-inline .l {
+    font-size: 11px;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+
+  /* ── PLAYGROUND ── */
+  .playground {
+    background: var(--color-dark-secondary);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+  .pg-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+    background: color-mix(in srgb, var(--сolor-dark) 50%, transparent);
+  }
+  .pg-bar .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .pg-bar .url {
+    flex: 1;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: var(--color-muted);
+    padding: 4px 12px;
+    background: color-mix(in srgb, var(--color-neutral-600) 12%, transparent);
+    border-radius: 9999px;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .pg-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 15%, transparent);
+    font-size: 11px;
+    font-family: 'Roboto Mono', monospace;
+    color: var(--color-muted);
+  }
+  .pg-controls .seg {
+    display: flex;
+    background: color-mix(in srgb, var(--color-neutral-600) 12%, transparent);
+    border-radius: 9999px;
+    padding: 2px;
+  }
+  .pg-controls .seg button {
+    padding: 5px 12px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-muted);
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: all 0.15s;
+  }
+  .pg-controls .seg button.on {
+    background: var(--color-primary);
+    color: #fff;
+  }
+  .pg-tswatches {
+    display: flex;
+    gap: 5px;
+  }
+  .pg-tswatches .s {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.15s;
+    display: inline-block;
+  }
+  .pg-tswatches .s.on {
+    border-color: var(--color-light);
+    transform: scale(1.15);
+  }
+  .pg-tswatches .s:hover {
+    transform: scale(1.2);
+  }
+  .pg-body {
+    padding: 24px;
+    background: var(--сolor-dark);
+    min-height: 340px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    align-content: start;
+  }
+  .pg-card {
+    padding: 14px;
+    background: var(--color-dark-secondary);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 18%, transparent);
+    border-radius: 12px;
+  }
+  .pg-card .t {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--color-primary);
+    margin-bottom: 4px;
+  }
+  .pg-card .x {
+    font-size: 11px;
+    color: var(--color-muted);
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .pg-card.full {
+    grid-column: span 2;
+  }
+  .pg-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 6px;
+  }
+  .pg-tags .tag {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+  .pg-progress {
+    height: 4px;
+    background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border-radius: 9999px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .pg-progress > div {
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: 9999px;
+    transition: width 0.6s;
+  }
+  @media (max-width: 600px) {
+    .pg-body {
+      grid-template-columns: 1fr;
+    }
+    .pg-card.full {
+      grid-column: span 1;
+    }
+  }
+
+  /* ── SECTION wrapper ── */
+  .section {
+    padding: 80px 0;
+    position: relative;
+  }
+  .section.alt {
+    background: color-mix(in srgb, var(--color-primary) 3%, transparent);
+  }
+  .section-head {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+  }
+  .heading {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+  .subheading {
+    font-size: 17px;
+    color: var(--color-muted);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* ── COMPONENT EXPLORER ── */
+  /* .ce {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 24px;
+    background: var(--color-dark-secondary);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 18%, transparent);
+    border-radius: 20px;
+    padding: 24px;
+    min-height: 520px;
+  }
+  @media (max-width: 800px) {
+    .ce {
+      grid-template-columns: 1fr;
+    }
+  }
+  .ce-side {
+    border-right: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+    padding-right: 16px;
+  }
+  @media (max-width: 800px) {
+    .ce-side {
+      border-right: none;
+      border-bottom: 1px solid
+        color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+      padding-right: 0;
+      padding-bottom: 16px;
+    }
+  }
+  .ce-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: color-mix(in srgb, var(--color-neutral-600) 10%, transparent);
+    border-radius: 9999px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: var(--color-muted);
+  }
+  .ce-search input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-light);
+    font: inherit;
+  }
+  .ce-cat {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+    margin: 14px 0 6px;
+    padding: 0 10px;
+  }
+  .ce-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ce-item:hover {
+    color: var(--color-light);
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  }
+  .ce-item.on {
+    color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+  }
+  .ce-item .ct {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    opacity: 0.6;
+  }
+  .ce-main {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .ce-tabs {
+    display: flex;
+    gap: 2px;
+    background: color-mix(in srgb, var(--color-neutral-600) 10%, transparent);
+    padding: 3px;
+    border-radius: 9999px;
+    width: fit-content;
+  }
+  .ce-tabs button {
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-muted);
+  }
+  .ce-tabs button.on {
+    background: var(--color-primary);
+    color: #fff;
+  }
+  .ce-canvas {
+    flex: 1;
+    border: 1.5px dashed
+      color-mix(in srgb, var(--color-primary) 25%, transparent);
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-height: 200px;
+    background: color-mix(in srgb, var(--сolor-dark) 60%, transparent);
+  }
+  .ce-code {
+    background: #0a0a0a;
+    border: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #e0e0e0;
+    overflow-x: auto;
+    position: relative;
+  }
+  .ce-code .com {
+    color: #6a6a6a;
+  }
+  .ce-code .sh-tag {
+    color: var(--color-primary);
+  }
+  .ce-code .attr {
+    color: var(--color-accent);
+  }
+  .ce-code .str {
+    color: #9ce700;
+  }
+  .ce-copy {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+    color: var(--color-primary);
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+  }
+  .ce-copy:hover {
+    background: color-mix(in srgb, var(--color-primary) 24%, transparent);
+  } */
+
+  /* ── Theme pills ── */
+  .sc-theme-pills {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 32px 0;
+  }
+  .sc-tpill {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-muted);
+    border: 1.5px solid
+      color-mix(in srgb, var(--color-neutral-600) 35%, transparent);
+    background: var(--color-dark-secondary);
+    transition: all 0.2s;
+  }
+  .sc-tpill:hover {
+    color: var(--color-light);
+    transform: translateY(-2px);
+  }
+  .sc-tpill.active {
+    border-color: var(--pill-color);
+    background: color-mix(
+      in srgb,
+      var(--pill-color) 14%,
+      var(--color-dark-secondary)
+    );
+    color: var(--color-light);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--pill-color) 30%, transparent);
+  }
+  .sc-tpill .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--pill-color);
+    flex-shrink: 0;
+  }
+
+  /* ── Theme preview ── */
+  .sc-theme-preview {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 28%, transparent);
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
+  }
+  .sc-theme-preview-bar {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: color-mix(
+      in srgb,
+      var(--color-dark-secondary) 95%,
+      transparent
+    );
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+  }
+  .sc-tpbar-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .sc-tpbar-url {
+    flex: 1;
+    height: 28px;
+    border-radius: 8px;
+    margin: 0 12px;
+    background: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 12px;
+    color: var(--color-muted);
+    font-family: 'Roboto Mono', monospace;
+  }
+  .sc-theme-preview-body {
+    background: var(--сolor-dark);
+    padding: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    min-height: 280px;
+    transition: background 0.35s;
+  }
+  @media (max-width: 700px) {
+    .sc-theme-preview-body {
+      grid-template-columns: 1fr;
+    }
+  }
+  .sc-demo-card {
+    background: var(--color-dark-secondary);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+    transition: all 0.35s;
+  }
+  .sc-demo-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .sc-demo-card-text {
+    font-size: 12px;
+    color: var(--color-muted);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+
+  /* ── Features grid ── */
+  .sc-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    border: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+    border-radius: 20px;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+  }
+  .sc-feat {
+    background: var(--сolor-dark);
+    padding: 32px;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .sc-feat:hover {
+    background: color-mix(in srgb, var(--color-primary) 5%, var(--сolor-dark));
+  }
+  .sc-feat-icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .sc-feat-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .sc-feat-desc {
+    font-size: 14px;
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+  .sc-feat-tag {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    color: var(--color-primary);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+  }
+
+  /* ── Comparison table ── */
+  .sc-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .sc-table th,
+  .sc-table td {
+    padding: 14px 20px;
+    text-align: center;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+    font-size: 14px;
+  }
+  .sc-table th {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-muted);
+    padding-bottom: 16px;
+  }
+  .sc-table td:first-child {
+    text-align: left;
+    font-weight: 600;
+    color: var(--color-muted);
+  }
+  .sc-table-wrap {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+  }
+  .sc-check {
+    color: var(--color-success);
+    font-size: 16px;
+  }
+  .sc-cross {
+    color: var(--color-muted);
+    font-size: 16px;
+    opacity: 0.4;
+  }
+
+  /* ── Manifesto ── */
+  .sc-manifesto {
+    padding: 80px 32px;
+    text-align: center;
+    inset: 0;
+    background:
+      radial-gradient(
+        ellipse 70% 60% at 30% 20%,
+        color-mix(in srgb, var(--color-primary) 22%, transparent),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 50% 50% at 80% 80%,
+        color-mix(in srgb, var(--color-accent) 12%, transparent),
+        transparent
+      );
+    border-radius: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .sc-manifesto-quote {
+    font-size: clamp(20px, 3vw, 30px);
+    font-weight: 700;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto 24px;
+    color: var(--color-light);
+    letter-spacing: -0.5px;
+  }
+  .sc-manifesto-quote em {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>
+
+<!-- ══════════════════════ PAGE JS ══════════════════════ -->
+<script is:inline>
+  (function initOvNew() {
+    var tsw = document.getElementById('ov-tswatches');
+    if (!tsw) return;
+
+    // ── Central theme setter ──
+    function ovnApplyTheme(t) {
+      document.documentElement.setAttribute('data-theme', t);
+      try {
+        localStorage.setItem('njx-theme', t);
+      } catch (e) {}
+      var a1 = document.getElementById('ov-attr');
+      if (a1) a1.textContent = 'data-theme="' + t + '"';
+      var a2 = document.getElementById('ov-attr2');
+      if (a2) a2.textContent = 'data-theme="' + t + '"';
+      tsw.querySelectorAll('.s').forEach(function (el) {
+        el.classList.toggle('on', el.dataset.t === t);
+      });
+      document.querySelectorAll('.sc-tpill').forEach(function (p) {
+        p.classList.toggle('active', p.dataset.t === t);
+      });
+    }
+
+    // ── Theme swatches ──
+    var OV_THEMES = [
+      ['dark', '#14a0ff'],
+      ['light', '#94a3b8'],
+      ['red', '#f43f5e'],
+      ['blue', '#3b82f6'],
+      ['green', '#22c55e'],
+      ['cyan', '#00e5ff'],
+      ['yellow', '#facc15'],
+      ['pink', '#ec4899'],
+      ['purple', '#a855f7'],
+    ];
+    var curTheme = (function () {
+      try {
+        return localStorage.getItem('njx-theme') || 'dark';
+      } catch (e) {
+        return 'dark';
+      }
+    })();
+
+    OV_THEMES.forEach(function (pair) {
+      var t = pair[0],
+        c = pair[1];
+      var s = document.createElement('span');
+      s.className = 's' + (t === curTheme ? ' on' : '');
+      s.style.background = c;
+      s.dataset.t = t;
+      s.title = t;
+      s.onclick = function () {
+        ovnApplyTheme(t);
+      };
+      tsw.appendChild(s);
+    });
+
+    // Sync attr labels to current theme
+    var attrEl = document.getElementById('ov-attr');
+    if (attrEl) attrEl.textContent = 'data-theme="' + curTheme + '"';
+    var attrEl2 = document.getElementById('ov-attr2');
+    if (attrEl2) attrEl2.textContent = 'data-theme="' + curTheme + '"';
+
+    // Sync pills to current theme
+    document.querySelectorAll('.sc-tpill').forEach(function (p) {
+      p.classList.toggle('active', p.dataset.t === curTheme);
+      p.onclick = function () {
+        ovnApplyTheme(p.dataset.t);
+      };
+    });
+
+    // ── Playground modes ──
+    var PG_MODES = {
+      auth: '<div class="pg-card full"><div class="t">Sign in</div><div class="x">Welcome back. Two-factor enabled.</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><input class="inp inp-sm" placeholder="email@team.dev" style="font-size:12px"><input class="inp inp-sm" placeholder="••••••••" type="password" style="font-size:12px"><button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;margin-top:4px">Continue</button></div></div><div class="pg-card"><div class="t">SSO</div><button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-top:6px">Google</button><button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-top:6px">GitHub</button></div><div class="pg-card"><div class="t">Status</div><div class="pg-tags"><span class="tag tag-primary">primary</span><span class="tag tag-success">live</span><span class="badge badge-error">3</span></div></div>',
+      dash: '<div class="pg-card full"><div class="t">Revenue · 7d</div><div class="x">+12.4% vs last week</div><div class="pg-progress"><div style="width:72%"></div></div><div class="pg-progress" style="margin-top:6px"><div style="width:48%"></div></div><div class="pg-progress" style="margin-top:6px"><div style="width:88%"></div></div></div><div class="pg-card"><div class="t">Users</div><div style="font-family:Poppins,sans-serif;font-size:24px;font-weight:900;color:var(--color-light);margin-top:4px">12,401</div><span class="tag tag-success" style="font-size:10px;margin-top:4px;display:inline-block">+4.2%</span></div><div class="pg-card"><div class="t">Errors</div><div style="font-family:Poppins,sans-serif;font-size:24px;font-weight:900;color:var(--color-light);margin-top:4px">0</div><span class="tag tag-primary" style="font-size:10px;margin-top:4px;display:inline-block">healthy</span></div>',
+      form: '<div class="pg-card full"><div class="t">New project</div><div class="x">Set the basics, you can change anything later.</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><input class="inp inp-sm" placeholder="Project name" style="font-size:12px"><input class="inp inp-sm" placeholder="Slug · auto" style="font-size:12px"><div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap"><span class="tag tag-primary">web</span><span class="tag tag-filled-primary">api</span></div><div style="display:flex;gap:6px;margin-top:6px"><button class="btn btn-ghost btn-sm" style="flex:1;justify-content:center">Cancel</button><button class="btn btn-primary btn-sm" style="flex:1;justify-content:center">Create</button></div></div></div>',
+    };
+    function setMode(m) {
+      var body = document.getElementById('ov-pgbody');
+      if (body) body.innerHTML = PG_MODES[m] || '';
+      document.querySelectorAll('#ov-modeseg button').forEach(function (b) {
+        b.classList.toggle('on', b.dataset.m === m);
+      });
+    }
+    document.querySelectorAll('#ov-modeseg button').forEach(function (b) {
+      b.onclick = function () {
+        setMode(b.dataset.m);
+      };
+    });
+    setMode('auth');
+
+  })();
+
+  document.addEventListener('astro:page-load', function () {
+    (function initOvNew() {
+      var tsw = document.getElementById('ov-tswatches');
+      if (!tsw || tsw.children.length > 0) return; // already populated
+
+      var OV_THEMES = [
+        ['dark', '#14a0ff'],
+        ['light', '#94a3b8'],
+        ['red', '#f43f5e'],
+        ['blue', '#3b82f6'],
+        ['green', '#22c55e'],
+        ['cyan', '#00e5ff'],
+        ['yellow', '#facc15'],
+        ['pink', '#ec4899'],
+        ['purple', '#a855f7'],
+      ];
+      var curTheme = (function () {
+        try {
+          return localStorage.getItem('njx-theme') || 'dark';
+        } catch (e) {
+          return 'dark';
+        }
+      })();
+
+      OV_THEMES.forEach(function (pair) {
+        var t = pair[0],
+          c = pair[1];
+        var s = document.createElement('span');
+        s.className = 's' + (t === curTheme ? ' on' : '');
+        s.style.background = c;
+        s.dataset.t = t;
+        s.title = t;
+        s.onclick = function () {
+          document.documentElement.setAttribute('data-theme', t);
+          try {
+            localStorage.setItem('njx-theme', t);
+          } catch (e) {}
+          var attrEl = document.getElementById('ov-attr');
+          if (attrEl) attrEl.textContent = 'data-theme="' + t + '"';
+          tsw.querySelectorAll('.s').forEach(function (el) {
+            el.classList.toggle('on', el.dataset.t === t);
+          });
+        };
+        tsw.appendChild(s);
+      });
+
+      var attrEl = document.getElementById('ov-attr');
+      if (attrEl) attrEl.textContent = 'data-theme="' + curTheme + '"';
+
+      var PG_MODES = {
+        auth: '<div class="pg-card full"><div class="t">Sign in</div><div class="x">Welcome back. Two-factor enabled.</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><input class="inp inp-sm" placeholder="email@team.dev" style="font-size:12px"><input class="inp inp-sm" placeholder="••••••••" type="password" style="font-size:12px"><button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;margin-top:4px">Continue</button></div></div><div class="pg-card"><div class="t">SSO</div><button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-top:6px">Google</button><button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-top:6px">GitHub</button></div><div class="pg-card"><div class="t">Status</div><div class="pg-tags"><span class="tag tag-primary">primary</span><span class="tag tag-success">live</span><span class="badge badge-error">3</span></div></div>',
+        dash: '<div class="pg-card full"><div class="t">Revenue · 7d</div><div class="x">+12.4% vs last week</div><div class="pg-progress"><div style="width:72%"></div></div><div class="pg-progress" style="margin-top:6px"><div style="width:48%"></div></div><div class="pg-progress" style="margin-top:6px"><div style="width:88%"></div></div></div><div class="pg-card"><div class="t">Users</div><div style="font-family:Poppins,sans-serif;font-size:24px;font-weight:900;color:var(--color-light);margin-top:4px">12,401</div><span class="tag tag-success" style="font-size:10px;margin-top:4px;display:inline-block">+4.2%</span></div><div class="pg-card"><div class="t">Errors</div><div style="font-family:Poppins,sans-serif;font-size:24px;font-weight:900;color:var(--color-light);margin-top:4px">0</div><span class="tag tag-primary" style="font-size:10px;margin-top:4px;display:inline-block">healthy</span></div>',
+        form: '<div class="pg-card full"><div class="t">New project</div><div class="x">Set the basics, you can change anything later.</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><input class="inp inp-sm" placeholder="Project name" style="font-size:12px"><input class="inp inp-sm" placeholder="Slug · auto" style="font-size:12px"><div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap"><span class="tag tag-primary">web</span><span class="tag tag-filled-primary">api</span></div><div style="display:flex;gap:6px;margin-top:6px"><button class="btn btn-ghost btn-sm" style="flex:1;justify-content:center">Cancel</button><button class="btn btn-primary btn-sm" style="flex:1;justify-content:center">Create</button></div></div></div>',
+      };
+      function setMode(m) {
+        var body = document.getElementById('ov-pgbody');
+        if (body) body.innerHTML = PG_MODES[m] || '';
+        document.querySelectorAll('#ov-modeseg button').forEach(function (b) {
+          b.classList.toggle('on', b.dataset.m === m);
+        });
+      }
+      document.querySelectorAll('#ov-modeseg button').forEach(function (b) {
+        b.onclick = function () {
+          setMode(b.dataset.m);
+        };
+      });
+      setMode('auth');
+
+    })();
+  });
+</script>

@@ -1,0 +1,1383 @@
+<section class="lib-section" id="forms">
+    <div class="lib-section-title">📋 Forms & Inputs</div>
+    <div class="lib-section-desc">
+        Classes <code>.inp</code>, <code>.field</code>, <code>.inp-success</code
+        >,
+        <code>.inp-error</code>, <code>.float-field</code>, <code
+            >.inp-wrap</code
+        >. All via CSS variables.
+    </div>
+
+    <!-- Base inputs -->
+    <div class="lib-component">
+        <div class="lib-component-label">Base sizes</div>
+        <div class="lib-preview col" style="max-width:440px">
+            <input
+                class="inp inp-sm"
+                type="text"
+                placeholder="Small input — .inp-sm"
+            />
+            <input class="inp" type="text" placeholder="Default input — .inp" />
+            <input
+                class="inp inp-lg"
+                type="text"
+                placeholder="Large input — .inp-lg"
+            />
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- _form.css — sizes -->
+<input class="inp inp-sm" type="text" placeholder="Small">
+<input class="inp" type="text" placeholder="Default">
+<input class="inp inp-lg" type="text" placeholder="Large">'
+                >
+                    <span class="c">/* _form.css — sizes */</span><br />
+                    <span class="k">&lt;input</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp inp-sm"</span
+                    >
+                    <span class="s">type</span>=<span class="cn">"text"</span>
+                    <span class="s">placeholder</span>=<span class="cn"
+                        >"Small"</span
+                    ><span class="k">&gt;</span><br />
+                    <span class="k">&lt;input</span>
+                    <span class="s">class</span>=<span class="cn">"inp"</span>
+                    <span class="s">type</span>=<span class="cn">"text"</span>
+                    <span class="s">placeholder</span>=<span class="cn"
+                        >"Default"</span
+                    ><span class="k">&gt;</span><br />
+                    <span class="k">&lt;input</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp inp-lg"</span
+                    >
+                    <span class="s">type</span>=<span class="cn">"text"</span>
+                    <span class="s">placeholder</span>=<span class="cn"
+                        >"Large"</span
+                    ><span class="k">&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- State variants -->
+    <div class="lib-component">
+        <div class="lib-component-label">
+            States — primary / success / error / disabled
+        </div>
+        <div class="lib-preview col" style="max-width:440px">
+            <div class="field">
+                <div class="field-label">Primary (focused)</div>
+                <input
+                    class="inp inp-primary"
+                    type="text"
+                    placeholder="Primary input — :focus glow"
+                />
+            </div>
+            <div class="field">
+                <div class="field-label">Success</div>
+                <input class="inp inp-success" type="text" value="All good!" />
+                <div class="field-success-msg">✓ Value is correct</div>
+            </div>
+            <div class="field">
+                <div class="field-label">Error</div>
+                <input class="inp inp-error" type="text" value="wrong@" />
+                <div class="field-error-msg">✕ Enter a valid email</div>
+            </div>
+            <div class="field">
+                <div class="field-label">Disabled</div>
+                <input
+                    class="inp"
+                    type="text"
+                    placeholder="Disabled input"
+                    disabled
+                />
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- inp-primary | inp-success | inp-error | disabled -->
+<div class="field">
+  <div class="field-label">Email</div>
+  <input class="inp inp-success" type="text" value="ok@email.com">
+  <div class="field-success-msg">✓ Value is correct</div>
+</div>
+
+<div class="field">
+  <div class="field-label">Password</div>
+  <input class="inp inp-error" type="text" value="wrong">
+  <div class="field-error-msg">✕ Minimum 8 characters</div>
+</div>
+
+<input class="inp" type="text" placeholder="Disabled" disabled>'
+                >
+                    <span class="c"
+                        >/* inp-primary | inp-success | inp-error | disabled */</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn">"field"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"field-label"</span
+                    ><span class="k">&gt;</span>Email<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;input</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp inp-success"</span
+                    >
+                    <span class="s">type</span>=<span class="cn">"text"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"field-success-msg"</span
+                    ><span class="k">&gt;</span>✓ Valid<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;/div&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn">"field"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;input</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp inp-error"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"field-error-msg"</span
+                    ><span class="k">&gt;</span>✕ Error<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;/div&gt;</span><br />
+                    <span class="k">&lt;input</span>
+                    <span class="s">class</span>=<span class="cn">"inp"</span>
+                    <span class="s">disabled</span><span class="k">&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Icon inputs -->
+    <div class="lib-component">
+        <div class="lib-component-label">Input with icon</div>
+        <div class="lib-preview col" style="max-width:440px">
+            <div class="inp-wrap">
+                <span class="inp-icon-left">🔍</span>
+                <input class="inp" type="text" placeholder="Search..." />
+            </div>
+            <div class="inp-wrap">
+                <span class="inp-icon-left">📧</span>
+                <input class="inp" type="email" placeholder="Email" />
+                <span
+                    class="inp-icon-right"
+                    style="pointer-events:auto;cursor:pointer;color:#14a0ff"
+                    >✓</span
+                >
+            </div>
+            <div class="inp-wrap">
+                <span class="inp-icon-left">🔒</span>
+                <input
+                    class="inp inp-suffix"
+                    type="password"
+                    placeholder="Password"
+                />
+                <span
+                    class="inp-icon-right"
+                    style="pointer-events:auto;cursor:pointer">👁</span
+                >
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- .inp-wrap is required for icons -->
+<div class="inp-wrap">
+  <span class="inp-icon-left">🔍</span>
+  <input class="inp" type="text" placeholder="Search...">
+</div>
+
+<!-- icon on the right -->
+<div class="inp-wrap">
+  <span class="inp-icon-left">🔒</span>
+  <input class="inp inp-suffix" type="password" placeholder="Password">
+  <span class="inp-icon-right">👁</span>
+</div>'
+                >
+                    <span class="c">/* .inp-wrap is required for icons */</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp-wrap"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp-icon-left"</span
+                    ><span class="k">&gt;</span>🔍<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;input</span>
+                    <span class="s">class</span>=<span class="cn">"inp"</span>
+                    <span class="s">type</span>=<span class="cn">"text"</span>
+                    <span class="s">placeholder</span>=<span class="cn"
+                        >"Search..."</span
+                    ><span class="k">&gt;</span><br />
+                    <span class="k">&lt;/div&gt;</span><br />
+                    <span class="c"
+                        >/* right icon — add .inp-suffix to input */</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp-wrap"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp-icon-left"</span
+                    ><span class="k">&gt;</span>🔒<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;input</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp inp-suffix"</span
+                    >
+                    <span class="s">type</span>=<span class="cn"
+                        >"password"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp-icon-right"</span
+                    ><span class="k">&gt;</span>👁<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br />
+                    <span class="k">&lt;/div&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Float label -->
+    <div class="lib-component">
+        <div class="lib-component-label">Float label</div>
+        <div class="lib-preview col" style="max-width:440px">
+            <div class="float-field">
+                <input class="inp" type="text" placeholder=" " id="fl1" />
+                <label class="float-label" for="fl1">Username</label>
+            </div>
+            <div class="float-field">
+                <input class="inp" type="email" placeholder=" " id="fl2" />
+                <label class="float-label" for="fl2">Email</label>
+            </div>
+            <div class="float-field">
+                <input
+                    class="inp inp-success"
+                    type="text"
+                    placeholder=" "
+                    id="fl3"
+                    value="Aviator"
+                />
+                <label
+                    class="float-label"
+                    for="fl3"
+                    style="top:10px;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#9ce700"
+                    >Nickname</label
+                >
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- placeholder=" " is required (space) -->
+<div class="float-field">
+  <input class="inp" type="text" placeholder=" " id="f1">
+  <label class="float-label" for="f1">Username</label>
+</div>
+
+<div class="float-field">
+  <input class="inp inp-success" type="email" placeholder=" " id="f2" value="user@site.com">
+  <label class="float-label" for="f2">Email</label>
+</div>'
+                >
+                    <span class="c"
+                        >/* placeholder=" " is required (space) */</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"float-field"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;input</span>
+                    <span class="s">class</span>=<span class="cn">"inp"</span>
+                    <span class="s">type</span>=<span class="cn">"text"</span>
+                    <span class="s">placeholder</span>=<span class="cn"
+                        >" "</span
+                    >
+                    <span class="s">id</span>=<span class="cn">"f1"</span><span
+                        class="k">&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;label</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"float-label"</span
+                    >
+                    <span class="s">for</span>=<span class="cn">"f1"</span><span
+                        class="k">&gt;</span
+                    >Username<span class="k">&lt;/label&gt;</span><br />
+                    <span class="k">&lt;/div&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Glass input -->
+    <div class="lib-component">
+        <div class="lib-component-label">Glass / dark variants</div>
+        <div
+            class="lib-preview col"
+            style="max-width:440px;background:linear-gradient(135deg,#0a1628,#1a0a28)"
+            class="lib-preview"
+        >
+            <input
+                class="inp inp-glass"
+                type="text"
+                placeholder="Glass input — .inp-glass"
+                style="color:#fff"
+            />
+            <select class="inp inp-glass inp-select" style="color:#fff">
+                <option style="background:#1a1a1a">Choose option</option>
+                <option style="background:#1a1a1a">Aviator</option>
+                <option style="background:#1a1a1a">Crash</option>
+                <option style="background:#1a1a1a">Mines</option>
+            </select>
+            <textarea
+                class="inp inp-glass inp-area"
+                placeholder="Textarea — .inp-glass .inp-area"
+                style="color:#fff"></textarea>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- .inp-glass — glassmorphism variant (for gradient backgrounds) -->
+<input class="inp inp-glass" type="text" placeholder="Glass input">
+
+<select class="inp inp-glass inp-select">
+  <option>Choose option</option>
+  <option>Aviator</option>
+</select>
+
+<textarea class="inp inp-glass inp-area" placeholder="Textarea..."></textarea>'
+                >
+                    <span class="c"
+                        >/* .inp-glass — glassmorphism variant (for gradient
+                        backgrounds) */</span
+                    ><br />
+                    <span class="k">&lt;input</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp inp-glass"</span
+                    >
+                    <span class="s">type</span>=<span class="cn">"text"</span>
+                    <span class="s">placeholder</span>=<span class="cn"
+                        >"Glass input"</span
+                    ><span class="k">&gt;</span><br /><br />
+                    <span class="k">&lt;select</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp inp-glass inp-select"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;option&gt;</span>Choose
+                    option<span class="k">&lt;/option&gt;</span><br />
+                    <span class="k">&lt;/select&gt;</span><br /><br />
+                    <span class="k">&lt;textarea</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp inp-glass inp-area"</span
+                    ><span class="k">&gt;&lt;/textarea&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkbox / Toggle -->
+    <div class="lib-component">
+        <div class="lib-component-label">Checkbox & Toggle</div>
+        <div class="lib-preview" style="gap:20px;flex-wrap:wrap">
+            <label class="check"
+                ><input type="checkbox" checked /> Primary</label
+            >
+            <label class="check is-success"
+                ><input type="checkbox" checked /> Success</label
+            >
+            <label class="check is-error"
+                ><input type="checkbox" checked /> Error</label
+            >
+            <label class="check"><input type="checkbox" /> Unchecked</label>
+            <label class="check"
+                ><input type="checkbox" disabled /> Disabled</label
+            >
+            <div style="width:100%;height:1px;background:#1a1a1a"></div>
+            <label class="toggle"
+                ><input type="checkbox" checked /><span class="toggle-track"
+                ></span><span class="toggle-label">Toggle ON</span></label
+            >
+            <label class="toggle"
+                ><input type="checkbox" /><span class="toggle-track"
+                ></span><span class="toggle-label">Toggle OFF</span></label
+            >
+            <label class="toggle"
+                ><input type="checkbox" disabled /><span class="toggle-track"
+                ></span><span class="toggle-label">Disabled</span></label
+            >
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Checkboxes: .check + is-success | is-error -->
+<label class="check"><input type="checkbox" checked> Primary</label>
+<label class="check is-success"><input type="checkbox" checked> Success</label>
+<label class="check is-error"><input type="checkbox"> Error</label>
+
+<!-- Toggle: toggle-track + toggle-label are required -->
+<label class="toggle">
+  <input type="checkbox" checked>
+  <span class="toggle-track"></span>
+  <span class="toggle-label">Toggle ON</span>
+</label>'
+                >
+                    <span class="c"
+                        >/* Checkboxes: .check + is-success | is-error */</span
+                    ><br />
+                    <span class="k">&lt;label</span>
+                    <span class="s">class</span>=<span class="cn">"check"</span
+                    ><span class="k">&gt;&lt;input</span>
+                    <span class="s">type</span>=<span class="cn"
+                        >"checkbox"</span
+                    >
+                    <span class="s">checked</span><span class="k">&gt;</span> Primary<span
+                        class="k">&lt;/label&gt;</span
+                    ><br />
+                    <span class="k">&lt;label</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"check is-success"</span
+                    ><span class="k">&gt;&lt;input</span>
+                    <span class="s">type</span>=<span class="cn"
+                        >"checkbox"</span
+                    >
+                    <span class="s">checked</span><span class="k">&gt;</span> Success<span
+                        class="k">&lt;/label&gt;</span
+                    ><br />
+                    <span class="k">&lt;label</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"check is-error"</span
+                    ><span class="k">&gt;&lt;input</span>
+                    <span class="s">type</span>=<span class="cn"
+                        >"checkbox"</span
+                    ><span class="k">&gt;</span> Error<span class="k"
+                        >&lt;/label&gt;</span
+                    ><br />
+                    <span class="c"
+                        >/* Toggle: toggle-track + toggle-label are required */</span
+                    ><br />
+                    <span class="k">&lt;label</span>
+                    <span class="s">class</span>=<span class="cn">"toggle"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;input</span>
+                    <span class="s">type</span>=<span class="cn"
+                        >"checkbox"</span
+                    >
+                    <span class="s">checked</span><span class="k">&gt;</span><br
+                    />
+                    &nbsp;&nbsp;<span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"toggle-track"</span
+                    ><span class="k">&gt;&lt;/span&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"toggle-label"</span
+                    ><span class="k">&gt;</span>Toggle ON<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br />
+                    <span class="k">&lt;/label&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form cards Enhanced -->
+    <div class="lib-component">
+        <div class="lib-component-label">
+            📝 Enhanced Form Cards — Login / Register / States
+        </div>
+        <div
+            class="lib-preview"
+            style="align-items:flex-start;gap:24px;flex-wrap:wrap"
+        >
+            <!-- Login Form -->
+            <div
+                class="form-card is-primary"
+                style="max-width:420px;width:100%;padding:32px;border-radius:20px;"
+            >
+                <div
+                    class="form-card-title"
+                    style="color:#14a0ff;font-size:18px;font-weight:800;margin-bottom:24px;"
+                >
+                    🔐 Login Form
+                </div>
+
+                <div class="field" style="margin-bottom:16px">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        Email
+                    </div>
+                    <div class="inp-wrap">
+                        <span
+                            class="inp-icon-left"
+                            style="font-size:18px;left:16px;">✉️</span
+                        >
+                        <input
+                            class="inp inp-primary"
+                            type="email"
+                            placeholder="user@example.com"
+                            style="padding-left:48px;padding:14px 16px;border-radius:12px;border:2px solid color-mix(in srgb, var(--color-neutral-600) 40%, transparent);"
+                        />
+                    </div>
+                </div>
+
+                <div class="field" style="margin-bottom:16px">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        Password
+                    </div>
+                    <div class="inp-wrap">
+                        <span
+                            class="inp-icon-left"
+                            style="font-size:18px;left:16px;">🔒</span
+                        >
+                        <input
+                            class="inp inp-primary"
+                            type="password"
+                            placeholder="••••••••"
+                            style="padding-left:48px;padding:14px 16px;border-radius:12px;border:2px solid color-mix(in srgb, var(--color-neutral-600) 40%, transparent);"
+                        />
+                    </div>
+                </div>
+
+                <div class="field" style="margin-bottom:20px">
+                    <label
+                        class="check"
+                        style="font-size:14px;color:var(--color-muted);padding:10px 0;"
+                    >
+                        <input
+                            type="checkbox"
+                            checked
+                            style="width:22px;height:22px;border-radius:8px;"
+                        />
+                        <span>Remember me</span>
+                    </label>
+                </div>
+
+                <div
+                    style="height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb, var(--color-neutral-600) 40%, transparent),transparent);margin:20px 0;"
+                >
+                </div>
+
+                <button
+                    class="btn btn-primary"
+                    style="width:100%;padding:16px;font-size:15px;font-weight:700;border-radius:12px;"
+                >
+                    Sign In
+                </button>
+
+                <p
+                    style="text-align:center;margin-top:20px;font-size:13px;color:var(--color-muted);"
+                >
+                    No account? <a
+                        href="#"
+                        style="color:var(--color-primary);font-weight:600;text-decoration:none;"
+                        >Create account</a
+                    >
+                </p>
+            </div>
+
+            <!-- Registration Form -->
+            <div
+                class="form-card is-success"
+                style="max-width:420px;width:100%;padding:32px;border-radius:20px;"
+            >
+                <div
+                    class="form-card-title"
+                    style="color:#9ce700;font-size:18px;font-weight:800;margin-bottom:24px;"
+                >
+                    📋 Registration
+                </div>
+
+                <div
+                    style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;"
+                >
+                    <div class="field">
+                        <div
+                            class="field-label"
+                            style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                        >
+                            First name
+                        </div>
+                        <input
+                            class="inp inp-success"
+                            type="text"
+                            placeholder="John"
+                            style="padding:14px 16px;border-radius:12px;border:2px solid color-mix(in srgb, var(--color-neutral-600) 40%, transparent);"
+                        />
+                    </div>
+                    <div class="field">
+                        <div
+                            class="field-label"
+                            style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                        >
+                            Last name
+                        </div>
+                        <input
+                            class="inp inp-success"
+                            type="text"
+                            placeholder="Smith"
+                            style="padding:14px 16px;border-radius:12px;border:2px solid color-mix(in srgb, var(--color-neutral-600) 40%, transparent);"
+                        />
+                    </div>
+                </div>
+
+                <div class="field" style="margin-bottom:16px">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        Phone
+                    </div>
+                    <div class="inp-wrap">
+                        <span
+                            class="inp-icon-left"
+                            style="font-size:18px;left:16px;">📱</span
+                        >
+                        <input
+                            class="inp inp-success"
+                            type="tel"
+                            placeholder="+1 (999) 000-00-00"
+                            style="padding-left:48px;padding:14px 16px;border-radius:12px;border:2px solid color-mix(in srgb, var(--color-neutral-600) 40%, transparent);"
+                        />
+                    </div>
+                </div>
+
+                <div class="field" style="margin-bottom:16px">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        Date of birth
+                    </div>
+                    <input
+                        class="inp inp-success"
+                        type="date"
+                        style="padding:14px 16px;border-radius:12px;border:2px solid color-mix(in srgb, var(--color-neutral-600) 40%, transparent);"
+                    />
+                </div>
+
+                <div
+                    style="height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb, var(--color-neutral-600) 40%, transparent),transparent);margin:20px 0;"
+                >
+                </div>
+
+                <div class="field" style="margin-bottom:20px">
+                    <label
+                        class="check"
+                        style="font-size:14px;color:var(--color-muted);padding:10px 0;"
+                    >
+                        <input
+                            type="checkbox"
+                            style="width:22px;height:22px;border-radius:8px;"
+                        />
+                        <span
+                            >I agree to the <a href="#" style="color:#9ce700;"
+                                >terms of use</a
+                            ></span
+                        >
+                    </label>
+                </div>
+
+                <button
+                    class="btn btn-success"
+                    style="width:100%;padding:16px;font-size:15px;font-weight:700;border-radius:12px;"
+                >
+                    Create account
+                </button>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- form-card is-primary | is-success | is-error | is-warning -->
+<div class="form-card is-primary">
+  <div class="form-card-title">🔐 Sign In</div>
+
+  <div class="field">
+    <div class="field-label">Email</div>
+    <div class="inp-wrap">
+      <span class="inp-icon-left">✉️</span>
+      <input class="inp inp-primary" type="email" placeholder="user@example.com">
+    </div>
+  </div>
+
+  <button class="btn btn-primary" style="width:100%">Login</button>
+</div>'
+                >
+                    <span class="c"
+                        >/* form-card is-primary | is-success | is-error |
+                        is-warning */</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"form-card is-primary"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"form-card-title"</span
+                    ><span class="k">&gt;</span>🔐 Sign In<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn">"field"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"field-label"</span
+                    ><span class="k">&gt;</span>Email<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp-wrap"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
+                        >&lt;span</span
+                    >
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp-icon-left"</span
+                    ><span class="k">&gt;</span>✉️<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
+                        >&lt;input</span
+                    >
+                    <span class="s">class</span>=<span class="cn"
+                        >"inp inp-primary"</span
+                    >
+                    <span class="s">type</span>=<span class="cn">"email"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;button</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-primary"</span
+                    ><span class="k">&gt;</span>Login<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    <span class="k">&lt;/div&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form States & Input Groups -->
+    <div class="lib-component">
+        <div class="lib-component-label">✅ Form States & Input Groups</div>
+        <div
+            class="lib-preview"
+            style="align-items:flex-start;gap:24px;flex-wrap:wrap"
+        >
+            <!-- Validation States -->
+            <div
+                class="form-card"
+                style="max-width:420px;width:100%;padding:32px;border-radius:20px;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb, var(--color-neutral-600) 30%, transparent);"
+            >
+                <div
+                    class="form-card-title"
+                    style="font-size:18px;font-weight:800;margin-bottom:24px;"
+                >
+                    ✅ Validation States
+                </div>
+
+                <div class="field" style="margin-bottom:20px">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        Successful validation
+                    </div>
+                    <input
+                        class="inp inp-success"
+                        type="text"
+                        value="valid@email.com"
+                        style="padding:14px 16px;border-radius:12px;"
+                    />
+                    <div
+                        class="field-success-msg"
+                        style="font-size:12px;color:var(--color-success);margin-top:8px;display:flex;align-items:center;gap:6px;font-weight:500;"
+                    >
+                        <span style="font-size:16px;">✓</span> This email is available
+                    </div>
+                </div>
+
+                <div class="field" style="margin-bottom:20px">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        Validation error
+                    </div>
+                    <input
+                        class="inp inp-error"
+                        type="text"
+                        value="invalid"
+                        style="padding:14px 16px;border-radius:12px;"
+                    />
+                    <div
+                        class="field-error-msg"
+                        style="font-size:12px;color:var(--color-error);margin-top:8px;display:flex;align-items:center;gap:6px;font-weight:500;"
+                    >
+                        <span style="font-size:16px;">✕</span> Minimum 6 characters
+                    </div>
+                </div>
+
+                <div
+                    style="height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb, var(--color-neutral-600) 40%, transparent),transparent);margin:20px 0;"
+                >
+                </div>
+
+                <div class="field">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        Floating Label
+                    </div>
+                    <div class="float-field" style="position:relative;">
+                        <input
+                            class="inp"
+                            type="text"
+                            placeholder=" "
+                            style="padding-top:24px;padding-bottom:12px;padding:14px 16px;border-radius:12px;"
+                        />
+                        <label
+                            style="position:absolute;left:16px;top:10px;font-size:11px;font-weight:700;color:var(--color-primary);text-transform:uppercase;letter-spacing:0.8px;background:var(--color-dark-secondary);padding:0 4px;"
+                            >Enter your name</label
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Groups -->
+            <div
+                class="form-card"
+                style="max-width:420px;width:100%;padding:32px;border-radius:20px;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb, var(--color-neutral-600) 30%, transparent);"
+            >
+                <div
+                    class="form-card-title"
+                    style="font-size:18px;font-weight:800;margin-bottom:24px;"
+                >
+                    🔗 Field Groups
+                </div>
+
+                <div class="field" style="margin-bottom:16px">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        🔍 Search
+                    </div>
+                    <div
+                        style="display:flex;border-radius:12px;overflow:hidden;border:2px solid color-mix(in srgb, var(--color-neutral-600) 40%, transparent);"
+                    >
+                        <input
+                            type="text"
+                            class="inp"
+                            placeholder="Find products..."
+                            style="flex:1;border:none;border-radius:0;padding:14px 16px;"
+                        />
+                        <button
+                            class="btn btn-primary"
+                            style="padding:14px 24px;font-weight:600;border-radius:0;"
+                        >
+                            <span style="margin-right:6px;">🔍</span>Search
+                        </button>
+                    </div>
+                </div>
+
+                <div class="field" style="margin-bottom:16px">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        🌐 Website
+                    </div>
+                    <div
+                        style="display:flex;border-radius:12px;overflow:hidden;border:2px solid color-mix(in srgb, var(--color-neutral-600) 40%, transparent);"
+                    >
+                        <span
+                            style="display:flex;align-items:center;padding:0 16px;background:color-mix(in srgb, var(--color-primary) 15%, var(--сolor-dark));color:var(--color-primary);font-weight:700;font-size:14px;"
+                            >https://</span
+                        >
+                        <input
+                            type="url"
+                            class="inp"
+                            placeholder="yoursite.com"
+                            style="flex:1;border:none;border-radius:0;padding:14px 16px;"
+                        />
+                    </div>
+                </div>
+
+                <div class="field" style="margin-bottom:16px">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        💰 Amount
+                    </div>
+                    <div
+                        style="display:flex;border-radius:12px;overflow:hidden;border:2px solid color-mix(in srgb, var(--color-neutral-600) 40%, transparent);"
+                    >
+                        <input
+                            type="number"
+                            class="inp"
+                            placeholder="5000"
+                            style="flex:1;border:none;border-radius:0;padding:14px 16px;font-weight:600;font-size:16px;"
+                        />
+                        <span
+                            style="display:flex;align-items:center;padding:0 16px;background:color-mix(in srgb, var(--color-success) 15%, var(--сolor-dark));color:var(--color-success);font-weight:700;font-size:14px;min-width:100px;justify-content:center;"
+                            >$</span
+                        >
+                    </div>
+                </div>
+
+                <div
+                    style="height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb, var(--color-neutral-600) 40%, transparent),transparent);margin:20px 0;"
+                >
+                </div>
+
+                <div class="field">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        🏷️ Promo code
+                    </div>
+                    <div
+                        style="display:flex;border-radius:12px;overflow:hidden;border:2px solid color-mix(in srgb, var(--color-neutral-600) 40%, transparent);"
+                    >
+                        <input
+                            type="text"
+                            class="inp"
+                            placeholder="PROMO2025"
+                            style="flex:1;border:none;border-radius:0;padding:14px 16px;text-transform:uppercase;font-weight:600;letter-spacing:0.5px;"
+                        />
+                        <button
+                            class="btn"
+                            style="padding:14px 24px;font-weight:600;border-radius:0;background:linear-gradient(135deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 70%, #000));color:#fff;border:none;"
+                        >
+                            Apply
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Input Group: flex + overflow:hidden -->
+<div style="display:flex;border-radius:12px;overflow:hidden;border:2px solid var(--lib-comp-brd)">
+  <input type="text" class="inp" placeholder="Search..." style="flex:1;border:none;border-radius:0">
+  <button class="btn btn-primary" style="border-radius:0">🔍 Find</button>
+</div>
+
+<!-- with prefix -->
+<div style="display:flex;border-radius:12px;overflow:hidden;border:2px solid var(--lib-comp-brd)">
+  <span style="padding:0 16px;display:flex;align-items:center;background:var(--color-dark-secondary);color:var(--color-primary);font-weight:700">https://</span>
+  <input type="url" class="inp" placeholder="yoursite.com" style="flex:1;border:none;border-radius:0">
+</div>'
+                >
+                    <span class="c"
+                        >/* Input Group: flex + overflow:hidden */</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">style</span>=<span class="cn"
+                        >"display:flex;border-radius:12px;overflow:hidden;border:2px
+                        solid var(--lib-comp-brd)"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;input</span>
+                    <span class="s">type</span>=<span class="cn">"text"</span>
+                    <span class="s">class</span>=<span class="cn">"inp"</span>
+                    <span class="s">style</span>=<span class="cn"
+                        >"flex:1;border:none;border-radius:0"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;button</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-primary"</span
+                    >
+                    <span class="s">style</span>=<span class="cn"
+                        >"border-radius:0"</span
+                    ><span class="k">&gt;</span>🔍 Find<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    <span class="k">&lt;/div&gt;</span><br />
+                    <span class="c">/* with prefix */</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">style</span>=<span class="cn"
+                        >"display:flex;border-radius:12px;overflow:hidden;border:2px
+                        solid var(--lib-comp-brd)"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;span</span>
+                    <span class="s">style</span>=<span class="cn"
+                        >"padding:0
+                        16px;display:flex;align-items:center;color:var(--color-primary);font-weight:700"</span
+                    ><span class="k">&gt;</span>https://<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;input</span>
+                    <span class="s">type</span>=<span class="cn">"url"</span>
+                    <span class="s">class</span>=<span class="cn">"inp"</span>
+                    <span class="s">style</span>=<span class="cn"
+                        >"flex:1;border:none;border-radius:0"</span
+                    ><span class="k">&gt;</span><br />
+                    <span class="k">&lt;/div&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkboxes, Radios & Toggles -->
+    <div class="lib-component">
+        <div class="lib-component-label">☑️ Checkboxes, Radios & Toggles</div>
+        <div
+            class="lib-preview"
+            style="align-items:flex-start;gap:24px;flex-wrap:wrap"
+        >
+            <!-- Checkboxes & Radios -->
+            <div
+                class="form-card"
+                style="max-width:420px;width:100%;padding:32px;border-radius:20px;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb, var(--color-neutral-600) 30%, transparent);"
+            >
+                <div
+                    class="form-card-title"
+                    style="font-size:18px;font-weight:800;margin-bottom:24px;"
+                >
+                    ☑️ Option Selection
+                </div>
+
+                <div class="field" style="margin-bottom:20px">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        Interests
+                    </div>
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;"
+                    >
+                        <label
+                            class="check"
+                            style="font-size:14px;color:var(--color-muted);padding:10px 0;"
+                        >
+                            <input
+                                type="checkbox"
+                                checked
+                                style="width:22px;height:22px;border-radius:8px;"
+                            />
+                            <span>💻 Development</span>
+                        </label>
+                        <label
+                            class="check"
+                            style="font-size:14px;color:var(--color-muted);padding:10px 0;"
+                        >
+                            <input
+                                type="checkbox"
+                                style="width:22px;height:22px;border-radius:8px;"
+                            />
+                            <span>🎨 Design</span>
+                        </label>
+                        <label
+                            class="check"
+                            style="font-size:14px;color:var(--color-muted);padding:10px 0;"
+                        >
+                            <input
+                                type="checkbox"
+                                checked
+                                style="width:22px;height:22px;border-radius:8px;"
+                            />
+                            <span>📊 Marketing</span>
+                        </label>
+                        <label
+                            class="check"
+                            style="font-size:14px;color:var(--color-muted);padding:10px 0;"
+                        >
+                            <input
+                                type="checkbox"
+                                style="width:22px;height:22px;border-radius:8px;"
+                            />
+                            <span>💼 Sales</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div
+                    style="height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb, var(--color-neutral-600) 40%, transparent),transparent);margin:20px 0;"
+                >
+                </div>
+
+                <div class="field">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        Payment method
+                    </div>
+                    <div
+                        style="display:flex;flex-direction:column;gap:8px;margin-top:12px;"
+                    >
+                        <label
+                            class="check"
+                            style="font-size:14px;color:var(--color-muted);padding:10px 0;"
+                        >
+                            <input
+                                type="radio"
+                                name="payment"
+                                checked
+                                style="width:22px;height:22px;border-radius:50%;"
+                            />
+                            <span>💳 Bank card</span>
+                        </label>
+                        <label
+                            class="check"
+                            style="font-size:14px;color:var(--color-muted);padding:10px 0;"
+                        >
+                            <input
+                                type="radio"
+                                name="payment"
+                                style="width:22px;height:22px;border-radius:50%;"
+                            />
+                            <span>🏦 Bank transfer</span>
+                        </label>
+                        <label
+                            class="check"
+                            style="font-size:14px;color:var(--color-muted);padding:10px 0;"
+                        >
+                            <input
+                                type="radio"
+                                name="payment"
+                                style="width:22px;height:22px;border-radius:50%;"
+                            />
+                            <span>💰 Cash</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toggle Switches -->
+            <div
+                class="form-card"
+                style="max-width:420px;width:100%;padding:32px;border-radius:20px;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb, var(--color-neutral-600) 30%, transparent);"
+            >
+                <div
+                    class="form-card-title"
+                    style="font-size:18px;font-weight:800;margin-bottom:24px;"
+                >
+                    🎛 Toggle Switches
+                </div>
+
+                <div class="field" style="margin-bottom:16px">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        Notification Settings
+                    </div>
+                    <div
+                        style="display:flex;flex-direction:column;gap:4px;margin-top:12px;"
+                    >
+                        <label
+                            class="toggle"
+                            style="font-size:14px;color:var(--color-muted);padding:8px 0;align-items:center;gap:14px;"
+                        >
+                            <input
+                                type="checkbox"
+                                checked
+                                style="width:0;height:0;opacity:0;position:absolute;"
+                            />
+                            <span
+                                class="toggle-track"
+                                style="width:56px;height:32px;background:color-mix(in srgb, var(--color-neutral-600) 40%, var(--сolor-dark));border-radius:20px;border:2px solid color-mix(in srgb, var(--color-neutral-500) 30%, transparent);position:relative;display:inline-block;transition:all 0.35s;"
+                            ></span>
+                            <span>Public profile</span>
+                        </label>
+                        <label
+                            class="toggle"
+                            style="font-size:14px;color:var(--color-muted);padding:8px 0;align-items:center;gap:14px;"
+                        >
+                            <input
+                                type="checkbox"
+                                style="width:0;height:0;opacity:0;position:absolute;"
+                            />
+                            <span
+                                class="toggle-track"
+                                style="width:56px;height:32px;background:color-mix(in srgb, var(--color-neutral-600) 40%, var(--сolor-dark));border-radius:20px;border:2px solid color-mix(in srgb, var(--color-neutral-500) 30%, transparent);position:relative;display:inline-block;transition:all 0.35s;"
+                            ></span>
+                            <span>Email notifications</span>
+                        </label>
+                        <label
+                            class="toggle"
+                            style="font-size:14px;color:var(--color-muted);padding:8px 0;align-items:center;gap:14px;"
+                        >
+                            <input
+                                type="checkbox"
+                                checked
+                                style="width:0;height:0;opacity:0;position:absolute;"
+                            />
+                            <span
+                                class="toggle-track"
+                                style="width:56px;height:32px;background:color-mix(in srgb, var(--color-neutral-600) 40%, var(--сolor-dark));border-radius:20px;border:2px solid color-mix(in srgb, var(--color-neutral-500) 30%, transparent);position:relative;display:inline-block;transition:all 0.35s;"
+                            ></span>
+                            <span>Push notifications</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div
+                    style="height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb, var(--color-neutral-600) 40%, transparent),transparent);margin:20px 0;"
+                >
+                </div>
+
+                <div class="field">
+                    <div
+                        class="field-label"
+                        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-muted);margin-bottom:8px;"
+                    >
+                        Privacy
+                    </div>
+                    <div
+                        style="display:flex;flex-direction:column;gap:4px;margin-top:12px;"
+                    >
+                        <label
+                            class="toggle"
+                            style="font-size:14px;color:var(--color-muted);padding:8px 0;align-items:center;gap:14px;"
+                        >
+                            <input
+                                type="checkbox"
+                                checked
+                                style="width:0;height:0;opacity:0;position:absolute;"
+                            />
+                            <span
+                                class="toggle-track"
+                                style="width:56px;height:32px;background:color-mix(in srgb, var(--color-neutral-600) 40%, var(--сolor-dark));border-radius:20px;border:2px solid color-mix(in srgb, var(--color-neutral-500) 30%, transparent);position:relative;display:inline-block;transition:all 0.35s;"
+                            ></span>
+                            <span>Show online status</span>
+                        </label>
+                        <label
+                            class="toggle"
+                            style="font-size:14px;color:var(--color-muted);padding:8px 0;align-items:center;gap:14px;"
+                        >
+                            <input
+                                type="checkbox"
+                                style="width:0;height:0;opacity:0;position:absolute;"
+                            />
+                            <span
+                                class="toggle-track"
+                                style="width:56px;height:32px;background:color-mix(in srgb, var(--color-neutral-600) 40%, var(--сolor-dark));border-radius:20px;border:2px solid color-mix(in srgb, var(--color-neutral-500) 30%, transparent);position:relative;display:inline-block;transition:all 0.35s;"
+                            ></span>
+                            <span>Allow messages</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Checkbox -->
+<label class="check">
+  <input type="checkbox" checked>
+  <span>💻 Development</span>
+</label>
+
+<!-- Radio -->
+<label class="check">
+  <input type="radio" name="plan" checked>
+  <span>💳 Bank card</span>
+</label>
+<label class="check">
+  <input type="radio" name="plan">
+  <span>🏦 Transfer</span>
+</label>
+
+<!-- Toggle -->
+<label class="toggle">
+  <input type="checkbox" checked>
+  <span class="toggle-track"></span>
+  <span class="toggle-label">Notifications</span>
+</label>'
+                >
+                    <span class="c">/* Checkbox */</span><br />
+                    <span class="k">&lt;label</span>
+                    <span class="s">class</span>=<span class="cn">"check"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;input</span>
+                    <span class="s">type</span>=<span class="cn"
+                        >"checkbox"</span
+                    >
+                    <span class="s">checked</span><span class="k">&gt;</span><br
+                    />
+                    &nbsp;&nbsp;<span class="k">&lt;span&gt;</span>💻
+                    Development<span class="k">&lt;/span&gt;</span><br />
+                    <span class="k">&lt;/label&gt;</span><br />
+                    <span class="c">/* Radio */</span><br />
+                    <span class="k">&lt;label</span>
+                    <span class="s">class</span>=<span class="cn">"check"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;input</span>
+                    <span class="s">type</span>=<span class="cn">"radio"</span>
+                    <span class="s">name</span>=<span class="cn">"plan"</span>
+                    <span class="s">checked</span><span class="k">&gt;</span><br
+                    />
+                    &nbsp;&nbsp;<span class="k">&lt;span&gt;</span>💳 Bank card<span
+                        class="k">&lt;/span&gt;</span
+                    ><br />
+                    <span class="k">&lt;/label&gt;</span><br />
+                    <span class="c">/* Toggle */</span><br />
+                    <span class="k">&lt;label</span>
+                    <span class="s">class</span>=<span class="cn">"toggle"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;input</span>
+                    <span class="s">type</span>=<span class="cn"
+                        >"checkbox"</span
+                    >
+                    <span class="s">checked</span><span class="k">&gt;</span><br
+                    />
+                    &nbsp;&nbsp;<span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"toggle-track"</span
+                    ><span class="k">&gt;&lt;/span&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"toggle-label"</span
+                    ><span class="k">&gt;</span>Notifications<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br />
+                    <span class="k">&lt;/label&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

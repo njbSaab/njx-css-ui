@@ -1,0 +1,231 @@
+/* ─────────────────────────────────────────────
+   _tab.css — Tabs
+   ─────────────────────────────────────────────
+   API:
+     <div class="tab-wrap">
+       <div class="tab-nav">
+         <button class="tab-btn is-active" onclick="tabSwitch(this)">Tab 1</button>
+         <button class="tab-btn" onclick="tabSwitch(this)">Tab 2</button>
+       </div>
+       <div class="tab-content">
+         <div class="tab-panel is-active">Content 1</div>
+         <div class="tab-panel">Content 2</div>
+       </div>
+     </div>
+
+   Nav variants:   .tab-nav-pills   .tab-nav-boxed   .tab-nav-card
+   Nav modifiers:  .tab-nav.is-full
+   Size:           .tab-nav-sm  .tab-nav-lg
+───────────────────────────────────────────── */
+
+/* ═══════════════════════════════
+   WRAPPER
+═══════════════════════════════ */
+.tab-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ═══════════════════════════════
+   NAV BAR — base
+═══════════════════════════════ */
+.tab-nav {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tab-nav::-webkit-scrollbar { display: none; }
+
+/* ═══════════════════════════════
+   TAB BUTTON — base (underline style)
+═══════════════════════════════ */
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.18s, border-color 0.18s;
+  user-select: none;
+  line-height: 1.4;
+}
+
+.tab-btn:hover {
+  color: var(--color-light);
+}
+
+.tab-btn.is-active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Badge inside tab */
+.tab-btn .tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  color: var(--color-primary);
+  transition: background 0.18s, color 0.18s;
+}
+
+.tab-btn.is-active .tab-badge {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* Full width */
+.tab-nav.is-full .tab-btn {
+  flex: 1;
+  justify-content: center;
+}
+
+/* Sizes */
+.tab-nav-sm .tab-btn {
+  padding: 7px 14px;
+  font-size: 13px;
+}
+
+.tab-nav-lg .tab-btn {
+  padding: 13px 24px;
+  font-size: 15px;
+}
+
+/* ═══════════════════════════════
+   VARIANT: PILLS
+═══════════════════════════════ */
+.tab-nav-pills {
+  border-bottom: none;
+  gap: 4px;
+  padding: 4px;
+  background: color-mix(in srgb, var(--color-neutral-600) 10%, transparent);
+  border-radius: var(--radius-lg, 12px);
+  align-items: center;
+}
+
+.tab-nav-pills .tab-btn {
+  border-bottom: none;
+  margin-bottom: 0;
+  border-radius: var(--radius-md, 8px);
+  padding: 8px 16px;
+}
+
+.tab-nav-pills .tab-btn.is-active {
+  background: var(--color-dark-secondary);
+  color: var(--color-light);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+  border-bottom: none;
+}
+
+.tab-nav-pills .tab-btn:hover:not(.is-active) {
+  background: color-mix(in srgb, var(--color-neutral-600) 10%, transparent);
+}
+
+/* ═══════════════════════════════
+   VARIANT: BOXED (bordered tabs)
+═══════════════════════════════ */
+.tab-nav-boxed {
+  gap: 4px;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+  align-items: flex-end;
+}
+
+.tab-nav-boxed .tab-btn {
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: var(--radius-md, 8px) var(--radius-md, 8px) 0 0;
+  margin-bottom: -1px;
+  padding: 9px 18px;
+}
+
+.tab-nav-boxed .tab-btn:hover:not(.is-active) {
+  border-color: color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+  background: color-mix(in srgb, var(--color-neutral-600) 5%, transparent);
+}
+
+.tab-nav-boxed .tab-btn.is-active {
+  color: var(--color-light);
+  border-color: color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+  border-bottom-color: var(--сolor-dark);
+  background: var(--сolor-dark);
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════
+   VARIANT: CARD (top-border, VS Code style)
+═══════════════════════════════ */
+.tab-nav-card {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+  gap: 0;
+  align-items: flex-end;
+}
+
+.tab-nav-card .tab-btn {
+  border-top: 2px solid transparent;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+  margin-bottom: -1px;
+  padding: 10px 20px;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--color-neutral-600) 8%, transparent);
+}
+
+.tab-nav-card .tab-btn:first-child { border-radius: var(--radius-md, 8px) 0 0 0; }
+.tab-nav-card .tab-btn:last-child  { border-radius: 0 var(--radius-md, 8px) 0 0; }
+
+.tab-nav-card .tab-btn.is-active {
+  background: var(--сolor-dark);
+  color: var(--color-light);
+  border-top-color: var(--color-primary);
+  border-bottom-color: var(--сolor-dark);
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════
+   TAB CONTENT & PANELS
+═══════════════════════════════ */
+.tab-content {
+  padding-top: 20px;
+}
+
+.tab-panel {
+  display: none;
+  animation: tabFadeIn 0.2s ease;
+}
+
+.tab-panel.is-active {
+  display: block;
+}
+
+@keyframes tabFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Bordered content area */
+.tab-content-bordered {
+  border: 1px solid color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg, 12px) var(--radius-lg, 12px);
+  padding: 20px;
+}

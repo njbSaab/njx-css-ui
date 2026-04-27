@@ -1,0 +1,1309 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LibsTopbar from '../components/LibsTopbar.astro';
+import Sidebar from '../components/Sidebar.astro';
+import DownloadModal from '../components/DownloadModal.astro';
+import LibsFooter from '../components/LibsFooter.astro';
+import Bottombar from '../components/Bottombar.astro';
+import ClasslessSidebarNav from '../components/ClasslessSidebarNav.astro';
+
+import Themes from '../components/classless-sections/Themes.astro';
+import DesignTokens from '../components/classless-sections/DesignTokens.astro';
+import Additions from '../components/classless-sections/Additions.astro';
+import Typography from '../components/classless-sections/Typography.astro';
+import Links from '../components/classless-sections/Links.astro';
+import Grid from '../components/classless-sections/Grid.astro';
+import Accordion from '../components/classless-sections/Accordion.astro';
+import Tables from '../components/classless-sections/Tables.astro';
+import Forms from '../components/classless-sections/Forms.astro';
+import Buttons from '../components/classless-sections/Buttons.astro';
+import Modal from '../components/classless-sections/Modal.astro';
+import Navigation from '../components/classless-sections/Navigation.astro';
+import Footer from '../components/classless-sections/Footer.astro';
+import Media from '../components/classless-sections/Media.astro';
+import Details from '../components/classless-sections/Details.astro';
+import Progress from '../components/classless-sections/Progress.astro';
+import Dialog from '../components/classless-sections/Dialog.astro';
+import Loading from '../components/classless-sections/Loading.astro';
+---
+
+<BaseLayout
+    title="njX UI — Lightweight CSS Component Library (30+ components, 9 themes, 308 KB)"
+    description="njX UI is a lightweight, dependency-free CSS component library."
+    withDocsCss={true}
+    withDocsScripts={true}
+>
+    <!-- Слот head: page-specific мета -->
+    <Fragment slot="head">
+        <link rel="canonical" href="https://njxui.dev/" />
+        <meta name="keywords" content="css component library, ..." />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="njX UI" />
+
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="njX UI — Lightweight CSS Component Library"
+        />
+        <meta
+            property="og:description"
+            content="30+modern CSS components, 9 themes, zero dependencies."
+        />
+        <meta
+            property="og:image"
+            content="https://njxui.dev/img/og-image.png"
+        />
+        <meta property="og:url" content="https://njxui.dev/" />
+        <meta property="og:site_name" content="njX UI" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="njX UI — Lightweight CSS Component Library"
+        />
+        <meta
+            name="twitter:description"
+            content="30+ components • 9 themes • 308 KB • Zero dependencies"
+        />
+        <meta
+            name="twitter:image"
+            content="https://njxui.dev/img/og-image.png"
+        />
+
+        <!-- classless-components page: section + component card UI styles -->
+        <style is:global>
+            .cl-page {
+                position: relative;
+                padding-bottom: 56px;
+            }
+            .cl-page::before {
+                content: '';
+                border-radius: 30px;
+                position: absolute;
+                inset: 0 0 auto 0;
+                height: 420px;
+                background:
+                    radial-gradient(
+                        circle at 15% 15%,
+                        color-mix(
+                            in srgb,
+                            var(--color-primary) 14%,
+                            transparent
+                        ),
+                        transparent 34%
+                    ),
+                    radial-gradient(
+                        circle at 85% 5%,
+                        color-mix(
+                            in srgb,
+                            var(--color-accent) 10%,
+                            transparent
+                        ),
+                        transparent 30%
+                    ),
+                    linear-gradient(
+                        180deg,
+                        color-mix(
+                            in srgb,
+                            var(--color-dark-secondary) 55%,
+                            transparent
+                        ),
+                        transparent
+                    );
+                pointer-events: none;
+            }
+            .cl-page > * {
+                position: relative;
+                z-index: 1;
+            }
+
+            .cl-hero-shell {
+                position: relative;
+                overflow: hidden;
+                border: 1px solid
+                    color-mix(
+                        in srgb,
+                        var(--color-neutral-600) 22%,
+                        transparent
+                    );
+                border-radius: 28px;
+                background: linear-gradient(
+                    145deg,
+                    color-mix(
+                        in srgb,
+                        var(--color-dark-secondary) 86%,
+                        var(--сolor-dark)
+                    ),
+                    color-mix(
+                        in srgb,
+                        var(--сolor-dark) 82%,
+                        var(--color-dark-secondary)
+                    )
+                );
+                box-shadow:
+                    0 22px 60px color-mix(in srgb, #000 22%, transparent),
+                    inset 0 1px 0 color-mix(in srgb, #fff 4%, transparent);
+            }
+            .cl-hero-shell::before,
+            .cl-hero-shell::after {
+                content: '';
+                position: absolute;
+                border-radius: 999px;
+                filter: blur(12px);
+                pointer-events: none;
+            }
+            .cl-hero-shell::before {
+                width: 260px;
+                height: 260px;
+                top: -90px;
+                right: -70px;
+                background: radial-gradient(
+                    circle,
+                    color-mix(in srgb, var(--color-primary) 24%, transparent),
+                    transparent 70%
+                );
+            }
+            .cl-hero-shell::after {
+                width: 220px;
+                height: 220px;
+                bottom: -100px;
+                left: -60px;
+                background: radial-gradient(
+                    circle,
+                    color-mix(in srgb, var(--color-accent) 18%, transparent),
+                    transparent 72%
+                );
+            }
+            .cl-hero-grid {
+                display: grid;
+                grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.9fr);
+                gap: 24px;
+                padding: 28px;
+            }
+            .cl-hero-copy {
+                max-width: 720px;
+            }
+            .cl-hero-kicker {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 8px 14px;
+                border-radius: 999px;
+                border: 1px solid
+                    color-mix(in srgb, var(--color-primary) 22%, transparent);
+                background: color-mix(
+                    in srgb,
+                    var(--color-primary) 9%,
+                    transparent
+                );
+                color: var(--color-primary);
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 1.4px;
+                text-transform: uppercase;
+                margin-bottom: 18px;
+            }
+            .cl-hero-kicker::before {
+                content: '';
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: currentColor;
+                box-shadow: 0 0 14px currentColor;
+            }
+            .cl-hero-title {
+                font-family: 'Space Grotesk', 'Roboto', sans-serif;
+                font-size: clamp(34px, 5vw, 58px);
+                line-height: 0.95;
+                letter-spacing: -2px;
+                margin: 0 0 16px;
+                color: var(--color-light);
+            }
+            .cl-hero-title strong {
+                display: inline-block;
+                color: var(--color-primary);
+            }
+            .cl-hero-text {
+                max-width: 620px;
+                font-size: 15px;
+                line-height: 1.72;
+                color: var(--color-muted);
+                margin: 0 0 22px;
+            }
+            .cl-hero-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-bottom: 18px;
+            }
+            .cl-hero-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                min-height: 42px;
+                padding: 0 16px;
+                border-radius: 12px;
+                text-decoration: none;
+                font-size: 13px;
+                font-weight: 700;
+                transition:
+                    transform 0.18s ease,
+                    border-color 0.18s ease,
+                    background 0.18s ease,
+                    color 0.18s ease;
+            }
+            .cl-hero-btn:hover {
+                transform: translateY(-1px);
+            }
+            .cl-hero-btn-primary {
+                background: linear-gradient(
+                    135deg,
+                    var(--color-primary),
+                    color-mix(
+                        in srgb,
+                        var(--color-accent) 85%,
+                        var(--color-primary)
+                    )
+                );
+                color: #fff;
+                box-shadow: 0 12px 30px
+                    color-mix(in srgb, var(--color-primary) 28%, transparent);
+            }
+            .cl-hero-btn-secondary {
+                border: 1px solid
+                    color-mix(
+                        in srgb,
+                        var(--color-neutral-600) 26%,
+                        transparent
+                    );
+                background: color-mix(
+                    in srgb,
+                    var(--сolor-dark) 35%,
+                    transparent
+                );
+                color: var(--color-light);
+            }
+            .cl-hero-meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .cl-hero-pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                min-height: 34px;
+                padding: 0 12px;
+                border-radius: 999px;
+                border: 1px solid
+                    color-mix(
+                        in srgb,
+                        var(--color-neutral-600) 18%,
+                        transparent
+                    );
+                background: color-mix(
+                    in srgb,
+                    var(--сolor-dark) 26%,
+                    transparent
+                );
+                color: var(--color-muted);
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.2px;
+            }
+            .cl-hero-pill strong {
+                color: var(--color-light);
+            }
+
+            .cl-summary {
+                display: grid;
+                gap: 14px;
+                align-content: start;
+            }
+            .cl-summary-card {
+                position: relative;
+                overflow: hidden;
+                border-radius: 22px;
+                border: 1px solid
+                    color-mix(
+                        in srgb,
+                        var(--color-neutral-600) 20%,
+                        transparent
+                    );
+                background: linear-gradient(
+                    180deg,
+                    color-mix(in srgb, var(--сolor-dark) 12%, transparent),
+                    color-mix(
+                        in srgb,
+                        var(--color-dark-secondary) 88%,
+                        var(--сolor-dark)
+                    )
+                );
+                padding: 18px;
+            }
+            .cl-summary-card::before {
+                content: '';
+                position: absolute;
+                inset: auto -40px -80px auto;
+                width: 160px;
+                height: 160px;
+                border-radius: 50%;
+                background: radial-gradient(
+                    circle,
+                    color-mix(in srgb, var(--color-primary) 18%, transparent),
+                    transparent 72%
+                );
+                pointer-events: none;
+            }
+            .cl-summary-label {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 14px;
+                color: var(--color-primary);
+                font-size: 11px;
+                font-weight: 800;
+                letter-spacing: 1.2px;
+                text-transform: uppercase;
+            }
+            .cl-summary-label::before {
+                content: '';
+                width: 24px;
+                height: 1px;
+                background: currentColor;
+            }
+            .cl-summary-code {
+                display: block;
+                margin-bottom: 12px;
+                padding: 16px;
+                border-radius: 16px;
+                background: color-mix(
+                    in srgb,
+                    var(--сolor-dark) 72%,
+                    transparent
+                );
+                border: 1px solid
+                    color-mix(
+                        in srgb,
+                        var(--color-neutral-600) 16%,
+                        transparent
+                    );
+                color: #d7e0ea;
+                font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+                font-size: 12px;
+                line-height: 1.7;
+                overflow: auto;
+            }
+            .cl-summary-note {
+                font-size: 13px;
+                line-height: 1.68;
+                color: var(--color-muted);
+            }
+            .cl-summary-note strong {
+                color: var(--color-light);
+            }
+            .cl-stats {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 10px;
+            }
+            .cl-stat {
+                padding: 14px 12px;
+                border-radius: 16px;
+                border: 1px solid
+                    color-mix(
+                        in srgb,
+                        var(--color-neutral-600) 14%,
+                        transparent
+                    );
+                background: color-mix(
+                    in srgb,
+                    var(--сolor-dark) 32%,
+                    transparent
+                );
+            }
+            .cl-stat-value {
+                display: block;
+                margin-bottom: 4px;
+                color: var(--color-light);
+                font-size: 22px;
+                font-weight: 900;
+                letter-spacing: -0.8px;
+            }
+            .cl-stat-label {
+                color: var(--color-muted);
+                font-size: 11px;
+                line-height: 1.4;
+            }
+
+            .cl-quick-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 14px;
+                margin: 18px 0 30px;
+            }
+            .cl-quick-card {
+                display: block;
+                padding: 18px 18px 16px;
+                border-radius: 20px;
+                text-decoration: none;
+                border: 1px solid
+                    color-mix(
+                        in srgb,
+                        var(--color-neutral-600) 18%,
+                        transparent
+                    );
+                background: linear-gradient(
+                    180deg,
+                    color-mix(
+                        in srgb,
+                        var(--color-dark-secondary) 92%,
+                        var(--сolor-dark)
+                    ),
+                    color-mix(
+                        in srgb,
+                        var(--сolor-dark) 14%,
+                        var(--color-dark-secondary)
+                    )
+                );
+                transition:
+                    transform 0.2s ease,
+                    border-color 0.2s ease,
+                    box-shadow 0.2s ease;
+            }
+            .cl-quick-card:hover {
+                transform: translateY(-2px);
+                border-color: color-mix(
+                    in srgb,
+                    var(--color-primary) 26%,
+                    transparent
+                );
+                box-shadow: 0 16px 36px
+                    color-mix(in srgb, #000 18%, transparent);
+            }
+            .cl-quick-icon {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 14px;
+                margin-bottom: 14px;
+                background: color-mix(
+                    in srgb,
+                    var(--color-primary) 10%,
+                    transparent
+                );
+                color: var(--color-primary);
+            }
+            .cl-quick-card strong {
+                display: block;
+                margin-bottom: 8px;
+                color: var(--color-light);
+                font-size: 15px;
+                letter-spacing: -0.2px;
+            }
+            .cl-quick-card span {
+                display: block;
+                color: var(--color-muted);
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            /* ── Section layout ── */
+            .cl-section {
+                position: relative;
+                padding: 46px 0 12px;
+                scroll-margin-top: 92px;
+            }
+            .cl-section + hr.doc-divider {
+                margin: 14px 0 0;
+            }
+            hr.doc-divider {
+                border: none;
+                border-top: 1px solid
+                    color-mix(
+                        in srgb,
+                        var(--color-neutral-600) 15%,
+                        transparent
+                    );
+                margin: 0;
+            }
+            .lib-main .lib-section {
+                margin-bottom: 40px;
+            }
+            .lib-main .lib-section artcal {
+            }
+            /* ── lib-section title + desc ── */
+            .cl-section .lib-section-title {
+                font-size: clamp(22px, 3vw, 30px);
+                font-weight: 800;
+                letter-spacing: -0.8px;
+                line-height: 1.15;
+                margin-bottom: 8px;
+                color: var(--color-light);
+            }
+            .cl-section .lib-section-desc {
+                font-size: 14px;
+                color: var(--color-muted);
+                line-height: 1.65;
+                max-width: 600px;
+                margin-bottom: 28px;
+            }
+            .cl-section .lib-section-desc code {
+                font-size: 12px;
+            }
+
+            /* ── Component card ── */
+            .lib-main-content .lib-component {
+                position: relative;
+                margin-bottom: 20px;
+                border-radius: 24px;
+                overflow: hidden;
+                border: 1px solid
+                    color-mix(
+                        in srgb,
+                        var(--color-neutral-600) 18%,
+                        transparent
+                    );
+                background: linear-gradient(
+                    180deg,
+                    color-mix(
+                        in srgb,
+                        var(--color-dark-secondary) 96%,
+                        var(--сolor-dark)
+                    ),
+                    color-mix(
+                        in srgb,
+                        var(--сolor-dark) 12%,
+                        var(--color-dark-secondary)
+                    )
+                );
+                box-shadow:
+                    0 20px 46px color-mix(in srgb, #000 18%, transparent),
+                    inset 0 1px 0 color-mix(in srgb, #fff 3%, transparent);
+                transition:
+                    border-color 0.22s ease,
+                    transform 0.22s ease,
+                    box-shadow 0.22s ease;
+            }
+            .lib-main-content .lib-component:hover {
+                border-color: color-mix(
+                    in srgb,
+                    var(--color-primary) 24%,
+                    transparent
+                );
+                transform: translateY(-2px);
+                box-shadow:
+                    0 26px 54px color-mix(in srgb, #000 24%, transparent),
+                    0 0 0 1px
+                        color-mix(
+                            in srgb,
+                            var(--color-primary) 10%,
+                            transparent
+                        );
+            }
+            .lib-main-content .lib-component-label {
+                position: relative;
+                z-index: 1;
+                font-size: 11px;
+                font-weight: 800;
+                letter-spacing: 0.9px;
+                text-transform: uppercase;
+                color: var(--color-muted);
+                background: linear-gradient(
+                    180deg,
+                    color-mix(in srgb, var(--сolor-dark) 34%, transparent),
+                    color-mix(
+                        in srgb,
+                        var(--сolor-dark) 58%,
+                        var(--color-dark-secondary)
+                    )
+                );
+                padding: 14px 18px;
+                border-bottom: 1px solid
+                    color-mix(
+                        in srgb,
+                        var(--color-neutral-600) 14%,
+                        transparent
+                    );
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            /* ── Preview area ── */
+            .lib-main-content .lib-preview {
+                padding: 28px 32px;
+                position: relative;
+                overflow: auto;
+                min-height: 80px;
+                justify-content: center;
+            }
+
+            /* Reset article card styling from _native.css — we just need the scope */
+            .lib-main-content .lib-preview > article {
+                border: none !important;
+                background: transparent !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            /* But keep card for article demo */
+            .lib-main-content .lib-preview > article:has(header) {
+                border: 1px solid var(--color-neutral-700) !important;
+                background: var(--color-dark-secondary) !important;
+                border-radius: 14px !important;
+                padding: 0 !important;
+                overflow: hidden;
+            }
+
+            .lib-main-content .lib-preview article {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 14px;
+                align-items: flex-start;
+            }
+            /* Block-level article layout */
+            .lib-main-content .lib-preview article:has(table),
+            .lib-main-content .lib-preview article:has(form),
+            .lib-main-content .lib-preview article:has(dl),
+            .lib-main-content .lib-preview article:has(figure),
+            .lib-main-content .lib-preview article:has(details),
+            .lib-main-content .lib-preview article:has(dialog),
+            .lib-main-content .lib-preview article:has(section),
+            .lib-main-content .lib-preview article:has(header),
+            .lib-main-content .lib-preview article:has(aside),
+            .lib-main-content .lib-preview article:has(address),
+            .lib-main-content .lib-preview article[aria-busy],
+            .lib-main-content .lib-preview article:has([role='alert']),
+            .lib-main-content .lib-preview article:has([role='status']),
+            .lib-main-content .lib-preview article:has([role='note']),
+            .lib-main-content .lib-preview article:has(blockquote),
+            .lib-main-content .lib-preview article:has(pre),
+            .lib-main-content .lib-preview article:has(progress),
+            .lib-main-content .lib-preview article:has(meter) {
+                display: block;
+                width: 100%;
+            }
+            /* Checkbox/radio column stacking */
+            .lib-main-content
+                .lib-preview
+                article:has(input[type='checkbox']:not([role])),
+            .lib-main-content .lib-preview article:has(input[type='radio']) {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            /* Switch stays in row */
+            .lib-main-content .lib-preview article:has(input[role='switch']) {
+                flex-direction: column;
+                gap: 12px;
+            }
+            /* Input variants — column */
+            .lib-main-content .lib-preview article:has(input[data-variant]),
+            .lib-main-content .lib-preview article:has(input[placeholder]) {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            /* Form inside article — max-width */
+            .lib-main-content .lib-preview form {
+                max-width: 380px;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            /* ── Code toggle ── (handled by lib-docs.js + lib-docs.css grid animation) */
+            .lib-main-content .lib-code {
+                padding: 18px 20px 20px;
+                font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+                font-size: 12.5px;
+                line-height: 1.72;
+                color: #abb2bf;
+                white-space: pre-wrap;
+                word-break: break-all;
+            }
+            .lib-main-content .lib-code .k {
+                color: #e06c75;
+            }
+            .lib-main-content .lib-code .s {
+                color: #d19a66;
+            }
+            .lib-main-content .lib-code .cn {
+                color: #98c379;
+            }
+            .lib-main-content .lib-code .c {
+                color: #5c6370;
+                font-style: italic;
+            }
+            .lib-main-content .lib-code .t {
+                color: #abb2bf;
+            }
+
+            /* themes-grid */
+            .themes-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 10px;
+                width: 100%;
+            }
+            .theme-card {
+                padding: 12px;
+                border-radius: 14px;
+                border: 2px solid transparent;
+                cursor: pointer;
+                transition:
+                    border-color 0.2s,
+                    transform 0.2s;
+                user-select: none;
+            }
+            .theme-card:hover,
+            .theme-card.active {
+                border-color: var(--color-primary, #14a0ff);
+                transform: translateY(-2px);
+            }
+            .theme-card-name {
+                font-size: 13px;
+                font-weight: 800;
+                margin-bottom: 8px;
+                letter-spacing: -0.2px;
+            }
+            .theme-card-dots {
+                display: flex;
+                gap: 5px;
+                margin-bottom: 8px;
+            }
+            .theme-card-dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+            }
+            .theme-card-label {
+                font-size: 9px;
+                font-weight: 700;
+                letter-spacing: 0.4px;
+                opacity: 0.6;
+                font-family: 'JetBrains Mono', monospace;
+            }
+
+            @media (max-width: 1100px) {
+                .cl-hero-grid {
+                    grid-template-columns: 1fr;
+                }
+                .cl-summary {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+                .cl-summary-card:first-child {
+                    grid-column: 1 / -1;
+                }
+                .cl-quick-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+            @media (max-width: 720px) {
+                .cl-page {
+                    padding-bottom: 40px;
+                }
+                .cl-hero-shell {
+                    border-radius: 22px;
+                }
+                .cl-hero-grid {
+                    gap: 18px;
+                    padding: 20px;
+                }
+                .cl-hero-title {
+                    letter-spacing: -1.4px;
+                }
+                .cl-hero-text {
+                    font-size: 14px;
+                }
+                .cl-hero-actions {
+                    flex-direction: column;
+                }
+                .cl-hero-btn {
+                    justify-content: center;
+                    width: 100%;
+                }
+                .cl-summary {
+                    grid-template-columns: 1fr;
+                }
+                .cl-stats {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+
+        <script is:inline type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "njX UI",
+                "url": "https://njxui.dev/"
+            }
+        </script>
+    </Fragment>
+
+    <!-- Body content -->
+    <div id="lib-toast-container"></div>
+
+    <LibsTopbar />
+
+    <div class="lib-wrap">
+        <Sidebar><ClasslessSidebarNav /></Sidebar>
+        <main class="lib-main">
+            <div class="cl-page">
+                <section class="cl-hero" style="padding: 0;">
+                    <div class="cl-hero-shell">
+                        <div class="cl-hero-grid">
+                            <div class="cl-hero-copy">
+                                <div class="cl-hero-kicker">
+                                    Classless Mode Preview
+                                </div>
+                                <h1 class="cl-hero-title">
+                                    Semantic HTML.
+                                    <strong>Polished UI.</strong>
+                                </h1>
+                                <p class="cl-hero-text">
+                                    This page shows how <code
+                                        >classless.css</code
+                                    >
+                                    styles native HTML elements without class names.
+                                    Wrap content in <code>&lt;article&gt;</code> —
+                                    everything looks great out of the box.
+                                </p>
+                                <div class="cl-hero-actions">
+                                    <a
+                                        class="cl-hero-btn cl-hero-btn-primary"
+                                        href="#headings"
+                                    >
+                                        Start With Typography
+                                    </a>
+                                    <a
+                                        class="cl-hero-btn cl-hero-btn-secondary"
+                                        href="#themes"
+                                    >
+                                        Explore Themes
+                                    </a>
+                                </div>
+                                <div class="cl-hero-meta">
+                                    <div class="cl-hero-pill">
+                                        <strong>Zero classes</strong> Native tags
+                                        first
+                                    </div>
+                                    <div class="cl-hero-pill">
+                                        <strong>article</strong> scopes the styles
+                                    </div>
+                                    <div class="cl-hero-pill">
+                                        <strong>9 themes</strong> via data-theme
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cl-summary">
+                                <div class="cl-summary-card">
+                                    <div class="cl-summary-label">
+                                        How It Feels
+                                    </div>
+                                    <code class="cl-summary-code"
+                                        >&lt;article&gt; &lt;h2&gt;Launch
+                                        faster&lt;/h2&gt; &lt;p&gt;Write plain
+                                        markup.&lt;/p&gt;
+                                        &lt;button&gt;Ship&lt;/button&gt;
+                                        &lt;/article&gt;</code
+                                    >
+                                    <p class="cl-summary-note">
+                                        <strong>Mode idea:</strong> semantic markup
+                                        gets a readable visual layer right away, without
+                                        manually stacking utility classes.
+                                    </p>
+                                </div>
+
+                                <div class="cl-summary-card">
+                                    <div class="cl-summary-label">
+                                        Use Cases
+                                    </div>
+                                    <p class="cl-summary-note">
+                                        Documentation, blogs, admin pages, MVPs,
+                                        articles, and internal panels where
+                                        speed and consistency matter.
+                                    </p>
+                                </div>
+
+                                <div class="cl-summary-card">
+                                    <div class="cl-summary-label">
+                                        At A Glance
+                                    </div>
+                                    <div class="cl-stats">
+                                        <div class="cl-stat">
+                                            <span class="cl-stat-value"
+                                                >17+</span
+                                            >
+                                            <span class="cl-stat-label"
+                                                >element groups</span
+                                            >
+                                        </div>
+                                        <div class="cl-stat">
+                                            <span class="cl-stat-value"
+                                                >100%</span
+                                            >
+                                            <span class="cl-stat-label"
+                                                >semantic-first</span
+                                            >
+                                        </div>
+                                        <div class="cl-stat">
+                                            <span class="cl-stat-value"
+                                                >58 KB</span
+                                            >
+                                            <span class="cl-stat-label"
+                                                >minified classless.css</span
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="cl-quick-grid" aria-label="Quick navigation">
+                    <a class="cl-quick-card" href="#headings">
+                        <div class="cl-quick-icon">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path d="M2 4h12M8 4v9M5 13h6"></path>
+                            </svg>
+                        </div>
+                        <strong>Foundation First</strong>
+                        <span
+                            >Start with typography, inline content and tables to
+                            evaluate default reading rhythm.</span
+                        >
+                    </a>
+                    <a class="cl-quick-card" href="#inputs">
+                        <div class="cl-quick-icon">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <rect x="2" y="3" width="12" height="10" rx="2"
+                                ></rect>
+                                <path d="M5 6.5h6M5 9.5h4"></path>
+                            </svg>
+                        </div>
+                        <strong>Interactive Elements</strong>
+                        <span
+                            >Jump to forms, buttons and dialogs to inspect
+                            native controls and affordances.</span
+                        >
+                    </a>
+                    <a class="cl-quick-card" href="#themes">
+                        <div class="cl-quick-icon">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <circle cx="8" cy="8" r="5"></circle>
+                                <path d="M8 3v2M8 11v2M3 8h2M11 8h2"></path>
+                            </svg>
+                        </div>
+                        <strong>Theme System</strong>
+                        <span
+                            >Review how the same semantic markup responds to
+                            theme tokens without changing HTML.</span
+                        >
+                    </a>
+                </section>
+            </div>
+
+            <div class="lib-main-content">
+                <Themes />
+                <hr class="doc-divider" />
+                <DesignTokens />
+                <hr class="doc-divider" />
+                <Additions />
+                <hr class="doc-divider" />
+                <Typography />
+                <hr class="doc-divider" />
+                <Links />
+                <hr class="doc-divider" />
+                <Grid />
+                <hr class="doc-divider" />
+                <Accordion />
+                <hr class="doc-divider" />
+                <Tables />
+                <hr class="doc-divider" />
+                <Forms />
+                <hr class="doc-divider" />
+                <Buttons />
+                <hr class="doc-divider" />
+                <Modal />
+                <hr class="doc-divider" />
+                <Navigation />
+                <hr class="doc-divider" />
+                <Footer />
+                <hr class="doc-divider" />
+                <Media />
+                <hr class="doc-divider" />
+                <Details />
+                <hr class="doc-divider" />
+                <Progress />
+                <hr class="doc-divider" />
+                <Dialog />
+                <hr class="doc-divider" />
+                <Loading />
+            </div>
+        </main>
+    </div>
+
+    <DownloadModal />
+
+    <script
+        is:inline
+        src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"
+    ></script>
+
+    <LibsFooter activePage="classless" />
+
+    <script is:inline>
+        // ── Theme switching ──
+        function syncThemeCards(theme) {
+            document
+                .querySelectorAll('.theme-card[data-theme]')
+                .forEach((card) =>
+                    card.classList.toggle(
+                        'active',
+                        card.dataset.theme === theme,
+                    ),
+                );
+        }
+
+        const initialTheme =
+            document.documentElement.getAttribute('data-theme') || 'dark';
+        syncThemeCards(initialTheme);
+
+        document.querySelectorAll('.theme-card[data-theme]').forEach((card) =>
+            card.addEventListener('click', () => {
+                const theme = card.dataset.theme;
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('njx-theme', theme);
+                syncThemeCards(theme);
+                document
+                    .querySelectorAll('.lib-theme-pill')
+                    .forEach((p) =>
+                        p.classList.toggle(
+                            'active',
+                            p.title && p.title.toLowerCase() === theme,
+                        ),
+                    );
+            }),
+        );
+
+        // ── Search ──
+        (function () {
+            const input = document.getElementById('libSearchInput');
+            const dropdown = document.getElementById('libSearchDropdown');
+            if (!input || !dropdown) return;
+
+            const ICONS = {
+                themes: '🎨',
+                variants: '⚡',
+                headings: '𝐓',
+                inline: '🔗',
+                lists: '≡',
+                'code-block': '⌨',
+                tables: '📊',
+                inputs: '📋',
+                controls: '🎛',
+                buttons: '🔲',
+                article: '📄',
+                semantic: '🏗',
+                dl: '🖼',
+                details: '🔽',
+                progress: '▮',
+                dialog: '💬',
+                loading: '⏳',
+            };
+
+            const index = [];
+            document.querySelectorAll('.cl-section[id]').forEach((section) => {
+                const id = section.id;
+                const titleEl = section.querySelector('.lib-section-title');
+                const title = titleEl ? titleEl.textContent.trim() : id;
+                const icon = ICONS[id] || '◻';
+                index.push({
+                    label: title,
+                    section: 'Section',
+                    icon,
+                    el: section,
+                });
+                section
+                    .querySelectorAll('.lib-component-label')
+                    .forEach((lbl) => {
+                        const t = lbl.textContent.trim();
+                        if (t)
+                            index.push({
+                                label: t,
+                                section: title,
+                                icon: '◈',
+                                el: lbl.closest('.lib-component') || section,
+                            });
+                    });
+            });
+
+            let focusedIdx = -1,
+                currentItems = [];
+
+            function hl(text, q) {
+                if (!q) return text;
+                return text.replace(
+                    new RegExp(
+                        `(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`,
+                        'gi',
+                    ),
+                    '<mark>$1</mark>',
+                );
+            }
+
+            function render(query) {
+                const q = query.trim().toLowerCase();
+                dropdown.innerHTML = '';
+                focusedIdx = -1;
+                if (!q) {
+                    dropdown.classList.remove('open');
+                    return;
+                }
+
+                const results = index.filter(
+                    (i) =>
+                        i.label.toLowerCase().includes(q) ||
+                        i.section.toLowerCase().includes(q),
+                );
+
+                if (!results.length) {
+                    dropdown.innerHTML = `<div class="lib-search-empty">No results for "<strong>${query}</strong>"</div>`;
+                    dropdown.classList.add('open');
+                    currentItems = [];
+                    return;
+                }
+
+                const groups = {};
+                results.forEach((i) => {
+                    const g = i.section;
+                    if (!groups[g]) groups[g] = [];
+                    groups[g].push(i);
+                });
+
+                currentItems = [];
+                Object.entries(groups).forEach(([grp, items]) => {
+                    const lbl = document.createElement('div');
+                    lbl.className = 'lib-search-group-label';
+                    lbl.textContent = grp;
+                    dropdown.appendChild(lbl);
+                    items.forEach((item) => {
+                        const row = document.createElement('div');
+                        row.className = 'lib-search-item';
+                        row.innerHTML = `<div class="lib-search-item-icon">${item.icon}</div><div class="lib-search-item-body"><div class="lib-search-item-name">${hl(item.label, q)}</div><div class="lib-search-item-section">${item.section}</div></div>`;
+                        row.addEventListener('click', () => select(item));
+                        dropdown.appendChild(row);
+                        currentItems.push({ el: row, item });
+                    });
+                });
+                dropdown.classList.add('open');
+            }
+
+            function select(item) {
+                item.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                input.value = '';
+                dropdown.classList.remove('open');
+                input.blur();
+            }
+
+            function moveFocus(dir) {
+                if (!currentItems.length) return;
+                currentItems[focusedIdx]?.el.classList.remove('focused');
+                focusedIdx =
+                    (focusedIdx + dir + currentItems.length) %
+                    currentItems.length;
+                currentItems[focusedIdx].el.classList.add('focused');
+                currentItems[focusedIdx].el.scrollIntoView({
+                    block: 'nearest',
+                });
+            }
+
+            input.addEventListener('input', () => render(input.value));
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    moveFocus(1);
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    moveFocus(-1);
+                } else if (e.key === 'Enter' && focusedIdx >= 0)
+                    select(currentItems[focusedIdx].item);
+                else if (e.key === 'Escape') {
+                    dropdown.classList.remove('open');
+                    input.blur();
+                }
+            });
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#libSearch'))
+                    dropdown.classList.remove('open');
+            });
+            document.addEventListener('keydown', (e) => {
+                if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                    e.preventDefault();
+                    input.focus();
+                    input.select();
+                }
+            });
+        })();
+
+        // ── Sidebar active section ──
+        const sidebarLinks = document.querySelectorAll(
+            '.lib-sidebar a[href^="#"]',
+        );
+        const sectionObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((e) => {
+                    if (e.isIntersecting) {
+                        sidebarLinks.forEach((a) =>
+                            a.classList.toggle(
+                                'active',
+                                a.getAttribute('href') === '#' + e.target.id,
+                            ),
+                        );
+                    }
+                });
+            },
+            { rootMargin: '-15% 0px -70% 0px' },
+        );
+        document
+            .querySelectorAll('.cl-section[id]')
+            .forEach((s) => sectionObserver.observe(s));
+
+        // Trigger lib-docs.js initialization
+        document.dispatchEvent(new Event('components-loaded'));
+    </script>
+    <Bottombar activePage="classless" />
+</BaseLayout>

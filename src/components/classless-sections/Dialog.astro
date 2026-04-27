@@ -1,0 +1,49 @@
+<section class="lib-section cl-section" id="dialog">
+    <div class="lib-section-title">💬 Dialog</div>
+    <div class="lib-section-desc">
+        Native <code>&lt;dialog&gt;</code> element styled by <code>_native.css</code>. Uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API" target="_blank" rel="noopener">Popover API</a> for zero-JS open/close.
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Dialog via Popover API</div>
+        <div class="lib-preview">
+            <article>
+                <button popovertarget="cl-dialog-demo">Open dialog</button>
+                <dialog id="cl-dialog-demo" popover>
+                    <h3>Dialog Title</h3>
+                    <p>This is a native <code>&lt;dialog&gt;</code> using the Popover API — no JavaScript required to open or close.</p>
+                    <footer>
+                        <button popovertarget="cl-dialog-demo" popovertargetaction="hide">Close</button>
+                        <button data-variant="success" popovertarget="cl-dialog-demo" popovertargetaction="hide">Confirm</button>
+                    </footer>
+                </dialog>
+            </article>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div class="lib-code" data-raw='<button popovertarget="my-dialog">Open dialog</button>
+
+<dialog id="my-dialog" popover>
+  <h3>Dialog Title</h3>
+  <p>Dialog content goes here.</p>
+  <footer>
+    <button popovertarget="my-dialog" popovertargetaction="hide">Close</button>
+    <button data-variant="success"
+            popovertarget="my-dialog"
+            popovertargetaction="hide">Confirm</button>
+  </footer>
+</dialog>'>
+                    <span class="k">&lt;button</span> <span class="s">popovertarget</span>=<span class="cn">"my-dialog"</span><span class="k">&gt;</span><span class="t">Open dialog</span><span class="k">&lt;/button&gt;</span><br /><br />
+                    <span class="k">&lt;dialog</span> <span class="s">id</span>=<span class="cn">"my-dialog"</span> <span class="s">popover</span><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;h3&gt;</span><span class="t">Dialog Title</span><span class="k">&lt;/h3&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;p&gt;</span><span class="t">Dialog content goes here.</span><span class="k">&lt;/p&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;footer&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">popovertarget</span>=<span class="cn">"my-dialog"</span> <span class="s">popovertargetaction</span>=<span class="cn">"hide"</span><span class="k">&gt;</span><span class="t">Close</span><span class="k">&lt;/button&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">data-variant</span>=<span class="cn">"success"</span> <span class="s">popovertarget</span>=<span class="cn">"my-dialog"</span> <span class="s">popovertargetaction</span>=<span class="cn">"hide"</span><span class="k">&gt;</span><span class="t">Confirm</span><span class="k">&lt;/button&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/footer&gt;</span><br />
+                    <span class="k">&lt;/dialog&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

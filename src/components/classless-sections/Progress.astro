@@ -1,0 +1,100 @@
+<section class="lib-section cl-section" id="progress">
+    <div class="lib-section-title">▮ Progress &amp; Meter</div>
+    <div class="lib-section-desc">
+        Native <code>&lt;progress&gt;</code>, <code>&lt;meter&gt;</code>, and <code>&lt;output&gt;</code> elements styled by <code>_native.css</code>.
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Progress bar</div>
+        <div class="lib-preview">
+            <article>
+                <label>Upload progress
+                    <progress value="40" max="100"></progress>
+                </label>
+                <label>Almost done
+                    <progress value="75" max="100"></progress>
+                </label>
+                <label>Indeterminate
+                    <progress></progress>
+                </label>
+            </article>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div class="lib-code" data-raw='<label>Upload progress
+  <progress value="40" max="100"></progress>
+</label>
+<label>Almost done
+  <progress value="75" max="100"></progress>
+</label>
+<label>Indeterminate
+  <progress></progress>
+</label>'>
+                    <span class="k">&lt;label&gt;</span><span class="t">Upload progress</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;progress</span> <span class="s">value</span>=<span class="cn">"40"</span> <span class="s">max</span>=<span class="cn">"100"</span><span class="k">&gt;&lt;/progress&gt;</span><br />
+                    <span class="k">&lt;/label&gt;</span><br />
+                    <span class="k">&lt;label&gt;</span><span class="t">Indeterminate</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;progress&gt;&lt;/progress&gt;</span><br />
+                    <span class="k">&lt;/label&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Meter</div>
+        <div class="lib-preview">
+            <article>
+                <label>Disk usage (60%)
+                    <meter value="0.6" min="0" max="1" low="0.25" high="0.75" optimum="0.5"></meter>
+                </label>
+                <label>Battery (90%)
+                    <meter value="9" min="0" max="10" low="3" high="7" optimum="10"></meter>
+                </label>
+                <label>Score (low — 1/10)
+                    <meter value="1" min="0" max="10" low="3" high="7" optimum="10"></meter>
+                </label>
+            </article>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div class="lib-code" data-raw='<label>Disk usage (60%)
+  <meter value="0.6" min="0" max="1" low="0.25" high="0.75" optimum="0.5"></meter>
+</label>
+<label>Battery (90%)
+  <meter value="9" min="0" max="10" low="3" high="7" optimum="10"></meter>
+</label>'>
+                    <span class="k">&lt;meter</span> <span class="s">value</span>=<span class="cn">"0.6"</span> <span class="s">min</span>=<span class="cn">"0"</span> <span class="s">max</span>=<span class="cn">"1"</span> <span class="s">low</span>=<span class="cn">"0.25"</span> <span class="s">high</span>=<span class="cn">"0.75"</span><span class="k">&gt;&lt;/meter&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Output</div>
+        <div class="lib-preview">
+            <article>
+                <form oninput="result.value = parseInt(a.value) + parseInt(b.value)">
+                    <label>A: <input type="range" id="a" value="50" min="0" max="100" /></label>
+                    <label>B: <input type="number" id="b" value="30" min="0" max="100" /></label>
+                    <label>Sum: <output name="result" for="a b">80</output></label>
+                </form>
+            </article>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div class="lib-code" data-raw='<form oninput="result.value = parseInt(a.value) + parseInt(b.value)">
+  <label>A: <input type="range" id="a" value="50"></label>
+  <label>B: <input type="number" id="b" value="30"></label>
+  <label>Sum: <output name="result" for="a b">80</output></label>
+</form>'>
+                    <span class="k">&lt;form</span> <span class="s">oninput</span>=<span class="cn">"result.value = parseInt(a.value) + parseInt(b.value)"</span><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;label&gt;</span><span class="t">A: </span><span class="k">&lt;input</span> <span class="s">type</span>=<span class="cn">"range"</span> <span class="s">id</span>=<span class="cn">"a"</span><span class="k">&gt;&lt;/label&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;label&gt;</span><span class="t">B: </span><span class="k">&lt;input</span> <span class="s">type</span>=<span class="cn">"number"</span> <span class="s">id</span>=<span class="cn">"b"</span><span class="k">&gt;&lt;/label&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;output</span> <span class="s">name</span>=<span class="cn">"result"</span> <span class="s">for</span>=<span class="cn">"a b"</span><span class="k">&gt;</span><span class="t">80</span><span class="k">&lt;/output&gt;</span><br />
+                    <span class="k">&lt;/form&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

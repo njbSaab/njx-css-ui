@@ -1,0 +1,265 @@
+<section class="lib-section" id="hover-tips">
+  <div class="lib-section-title">💬 Hover Tips</div>
+  <div class="lib-section-desc">
+    Pure CSS tooltips via <code>data-tip</code> attribute — works on any element.
+    No JS, no wrappers.
+  </div>
+
+  <!-- Positions -->
+  <div class="lib-component">
+    <div class="lib-component-label">Positions</div>
+    <div
+      class="lib-preview"
+      style="gap:32px;padding:48px 24px;justify-content:center"
+    >
+      <button class="btn btn-outline" data-tip="Tooltip on top"
+        >Top (default)</button
+      >
+      <button
+        class="btn btn-outline"
+        data-tip="Tooltip on bottom"
+        data-tip-pos="bottom">Bottom</button
+      >
+      <button
+        class="btn btn-outline"
+        data-tip="Tooltip on left"
+        data-tip-pos="left">Left</button
+      >
+      <button
+        class="btn btn-outline"
+        data-tip="Tooltip on right"
+        data-tip-pos="right">Right</button
+      >
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- default: top -->
+<button data-tip="Tooltip on top">Top</button>
+
+<button data-tip="Tooltip on bottom" data-tip-pos="bottom">Bottom</button>
+<button data-tip="Tooltip on left"   data-tip-pos="left">Left</button>
+<button data-tip="Tooltip on right"  data-tip-pos="right">Right</button>'
+        >
+          <span class="c">/* default: top */</span><br />
+          <span class="k">&lt;button</span>
+          <span class="s">data-tip</span>=<span class="cn"
+            >"Tooltip on top"</span
+          ><span class="k">&gt;</span>Top<span class="k">&lt;/button&gt;</span
+          ><br /><br />
+          <span class="k">&lt;button</span>
+          <span class="s">data-tip</span>=<span class="cn"
+            >"Tooltip on bottom"</span
+          >
+          <span class="s">data-tip-pos</span>=<span class="cn">"bottom"</span
+          ><span class="k">&gt;</span>Bottom<span class="k"
+            >&lt;/button&gt;</span
+          ><br />
+          <span class="k">&lt;button</span>
+          <span class="s">data-tip</span>=<span class="cn"
+            >"Tooltip on left"</span
+          > &nbsp;&nbsp;<span class="s">data-tip-pos</span>=<span class="cn"
+            >"left"</span
+          ><span class="k">&gt;</span>Left<span class="k">&lt;/button&gt;</span
+          ><br />
+          <span class="k">&lt;button</span>
+          <span class="s">data-tip</span>=<span class="cn"
+            >"Tooltip on right"</span
+          > &nbsp;<span class="s">data-tip-pos</span>=<span class="cn"
+            >"right"</span
+          ><span class="k">&gt;</span>Right<span class="k">&lt;/button&gt;</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Color variants -->
+  <div class="lib-component">
+    <div class="lib-component-label">Color variants</div>
+    <div
+      class="lib-preview"
+      style="gap:16px;padding:48px 24px;justify-content:center;flex-wrap:wrap"
+    >
+      <button class="btn btn-outline" data-tip="Default — dark bubble"
+        >Default</button
+      >
+      <button
+        class="btn btn-primary"
+        data-tip="Primary tooltip"
+        data-tip-color="primary">Primary</button
+      >
+      <button
+        class="btn"
+        style="background:var(--color-success);color:#000"
+        data-tip="Operation successful!"
+        data-tip-color="success">Success</button
+      >
+      <button
+        class="btn"
+        style="background:var(--color-warning);color:#000"
+        data-tip="Proceed with caution"
+        data-tip-color="warning">Warning</button
+      >
+      <button
+        class="btn"
+        style="background:var(--color-error)"
+        data-tip="This cannot be undone"
+        data-tip-color="danger">Danger</button
+      >
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- no data-tip-color = dark bubble -->
+<button data-tip="Default bubble">Default</button>
+
+<button data-tip="Primary"  data-tip-color="primary">...</button>
+<button data-tip="Success!"  data-tip-color="success">...</button>
+<button data-tip="Caution"   data-tip-color="warning">...</button>
+<button data-tip="Danger!"   data-tip-color="danger">...</button>'
+        >
+          <span class="c">/* no data-tip-color = dark bubble */</span><br />
+          <span class="k">&lt;button</span>
+          <span class="s">data-tip</span>=<span class="cn"
+            >"Default bubble"</span
+          ><span class="k">&gt;</span>Default<span class="k"
+            >&lt;/button&gt;</span
+          ><br /><br />
+          <span class="k">&lt;button</span>
+          <span class="s">data-tip</span>=<span class="cn">"Primary"</span> &nbsp;<span
+            class="s">data-tip-color</span
+          >=<span class="cn">"primary"</span><span class="k">&gt;</span>...<span
+            class="k">&lt;/button&gt;</span
+          ><br />
+          <span class="k">&lt;button</span>
+          <span class="s">data-tip</span>=<span class="cn">"Success!"</span>
+          <span class="s">data-tip-color</span>=<span class="cn">"success"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/button&gt;</span
+          ><br />
+          <span class="k">&lt;button</span>
+          <span class="s">data-tip</span>=<span class="cn">"Caution"</span> &nbsp;<span
+            class="s">data-tip-color</span
+          >=<span class="cn">"warning"</span><span class="k">&gt;</span>...<span
+            class="k">&lt;/button&gt;</span
+          ><br />
+          <span class="k">&lt;button</span>
+          <span class="s">data-tip</span>=<span class="cn">"Danger!"</span> &nbsp;<span
+            class="s">data-tip-color</span
+          >=<span class="cn">"danger"</span><span class="k">&gt;</span>...<span
+            class="k">&lt;/button&gt;</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- On any element -->
+  <div class="lib-component">
+    <div class="lib-component-label">Works on any element</div>
+    <div
+      class="lib-preview"
+      style="gap:28px;padding:48px 24px;align-items:center;flex-wrap:wrap"
+    >
+      <!-- text -->
+      <span
+        data-tip="I'm a tooltip on plain text"
+        style="cursor:default;border-bottom:1px dashed var(--color-muted)"
+      >
+        Hover over text
+      </span>
+
+      <!-- tag -->
+      <span class="tag tag-primary" data-tip=".tag-primary">tag-primary</span>
+
+      <!-- icon -->
+      <span
+        data-tip="Settings"
+        data-tip-color="primary"
+        style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--color-primary-opacity);border:1px solid var(--border-card);cursor:default"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        >
+          <circle cx="12" cy="12" r="3"></circle>
+          <path
+            d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"
+          ></path>
+        </svg>
+      </span>
+
+      <!-- color swatch -->
+      <span
+        data-tip="var(--color-primary)"
+        data-tip-color="primary"
+        style="display:inline-block;width:40px;height:40px;border-radius:8px;background:var(--color-primary);cursor:default"
+      ></span>
+      <span
+        data-tip="var(--color-success)"
+        data-tip-color="success"
+        style="display:inline-block;width:40px;height:40px;border-radius:8px;background:var(--color-success);cursor:default"
+      ></span>
+      <span
+        data-tip="var(--color-error)"
+        data-tip-color="danger"
+        style="display:inline-block;width:40px;height:40px;border-radius:8px;background:var(--color-error);cursor:default"
+      ></span>
+      <span
+        data-tip="var(--color-warning)"
+        data-tip-color="warning"
+        style="display:inline-block;width:40px;height:40px;border-radius:8px;background:var(--color-warning);cursor:default"
+      ></span>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- on any HTML element -->
+
+<span data-tip="Plain text tooltip">Hover me</span>
+
+<span class="tag tag-primary" data-tip=".tag-primary">tag</span>
+
+<img data-tip="Image tooltip" src="..." />
+
+<div data-tip="var(--color-primary)" data-tip-color="primary"
+     style="width:40px;height:40px;background:var(--color-primary)">
+</div>'
+        >
+          <span class="c">/* works on any HTML element */</span><br /><br />
+          <span class="k">&lt;span</span>
+          <span class="s">data-tip</span>=<span class="cn"
+            >"Plain text tooltip"</span
+          ><span class="k">&gt;</span>Hover me<span class="k"
+            >&lt;/span&gt;</span
+          ><br /><br />
+          <span class="k">&lt;span</span>
+          <span class="s">class</span>=<span class="cn">"tag tag-primary"</span>
+          <span class="s">data-tip</span>=<span class="cn">".tag-primary"</span
+          ><span class="k">&gt;</span>tag<span class="k">&lt;/span&gt;</span><br
+          /><br />
+          <span class="k">&lt;img</span>
+          <span class="s">data-tip</span>=<span class="cn">"Image tooltip"</span
+          >
+          <span class="s">src</span>=<span class="cn">"..."</span>
+          <span class="k">/&gt;</span><br /><br />
+          <span class="k">&lt;div</span>
+          <span class="s">data-tip</span>=<span class="cn"
+            >"var(--color-primary)"</span
+          ><br />
+          &nbsp;&nbsp;&nbsp;&nbsp; <span class="s">data-tip-color</span>=<span
+            class="cn">"primary"</span
+          ><span class="k">&gt;&lt;/div&gt;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

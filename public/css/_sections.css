@@ -1,0 +1,185 @@
+/* ============================================================
+   _sections.css — Global sections and layout
+   Content moved from _global.css
+   ============================================================ */
+
+/* ── Container ── */
+.container {
+  max-width: var(--container-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+.container-sm  { max-width: 640px;  width: 100%; margin: 0 auto; padding: 0 var(--space-4); }
+.container-md  { max-width: 960px;  width: 100%; margin: 0 auto; padding: 0 var(--space-4); }
+.container-lg  { max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 var(--space-4); }
+.container-xl  { max-width: 1400px; width: 100%; margin: 0 auto; padding: 0 var(--space-4); }
+.container-fluid { width: 100%; padding: 0 var(--space-4); }
+
+/* ── Wrapper ── */
+.wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ── Section ── */
+.section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: var(--space-16) 0;
+}
+.section-sm { padding: var(--space-8) 0; }
+.section-lg { padding: var(--space-24) 0; }
+.section.bg {
+  background-size: cover;
+  background-position: center;
+}
+
+/* ── Banner section ── */
+.section-banner {
+  background-size: cover;
+  background-position: center;
+  min-height: 100dvh;
+  width: 100%;
+  padding: var(--space-12) 0 var(--space-8);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Image backgrounds ── */
+.bg { width: 100%; height: 100%; overflow: hidden; background-repeat: no-repeat; background-position: center; background-size: cover; }
+.img-bg img {
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  width: 100%; height: 100%;
+  top: 0; left: 0;
+  z-index: -1;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Logo box ── */
+.logo-box { position: relative; }
+.logo-box img {
+  position: absolute;
+  top: 2.5vw;
+  max-width: 150px;
+  width: 100%;
+  height: auto;
+  left: 50%;
+  animation: moveAndRotate 2s linear forwards;
+  animation-delay: 1s;
+  transform: translateX(110vw) rotate(0deg);
+}
+
+/* ── Items wrappers ── */
+.items-wrapper-col { display: flex; flex-direction: column; }
+
+.list-items-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-5);
+}
+.list-items-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-5);
+}
+
+/* ── Decorative line ── */
+.line {
+  position: relative;
+  padding-bottom: 100px;
+}
+.line::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 80%;
+  height: 100px;
+  background-image: url(../img/social/line.svg);
+  z-index: 0;
+  transform: translateX(-50%);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* ── Hero ── */
+.hero-layout {
+  display: flex;
+  align-items: flex-start;
+  left: -10%;
+  top: 0;
+}
+.hero-agent {
+  left: 5%;
+  bottom: 20%;
+}
+
+/* ── Skeleton loader ── */
+.skeleton {
+  width: 100%;
+  height: 100dvh;
+  position: fixed;
+  z-index: calc(var(--z-modal) + 100);
+  background-image: url(../img/pg-1/bg1-d.webp);
+  background-size: cover;
+  background-position: center;
+  left: 0;
+  top: 0;
+}
+
+/* ── Form ── */
+.form { position: relative; z-index: var(--z-1); }
+
+/* ── Agent ── */
+.agent { max-width: 100%; }
+
+/* ── Responsive ── */
+@media (max-width: 1440px) {
+  .gap-xxl { gap: var(--space-4) !important; }
+}
+
+@media (max-width: 1024px) {
+  .section-banner { min-height: 1055px; }
+  .gap-xxl { gap: var(--space-5) !important; }
+  .details-img { display: none; }
+  .container.flex-center-right { flex-direction: column; justify-content: flex-start; height: 100%; }
+  .hero-layout { bottom: -10%; top: auto; left: -20%; }
+}
+
+@media (max-width: 768px) {
+  .logo { max-width: 148px; }
+  .items-wrapper-col.gap-50 { gap: var(--space-8) !important; }
+  .hero-layout { bottom: -5%; top: auto; left: -20%; z-index: 1; }
+  .hero-agent.translate-center {
+    transform: translate(0, 0);
+    right: -50% !important;
+    bottom: -10% !important;
+    left: auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    z-index: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .section-banner { min-height: 990px; padding: var(--space-8) 0; }
+  .container { padding: 0 var(--space-2); }
+}
+
+@media screen and (max-width: 390px) {
+  .section-banner { padding-bottom: 0 !important; }
+}

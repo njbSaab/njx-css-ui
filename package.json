@@ -1,0 +1,63 @@
+{
+  "name": "njx-css-ui",
+  "version": "1.1.0",
+  "description": "Lightweight CSS component library — 30+ components, 9 themes, zero dependencies. ~59KB.",
+  "main": "css/style.css",
+  "style": "css/style.min.css",
+  "type": "module",
+  "files": [
+    "css/",
+    "js/njx.js",
+    "README.md",
+    "LICENSE",
+    "classless.md"
+  ],
+  "keywords": [
+    "css",
+    "ui-library",
+    "css-framework",
+    "dark-theme",
+    "themes",
+    "css-variables",
+    "zero-dependencies",
+    "tailwind-alternative",
+    "bulma-compatible",
+    "frontend",
+    "web",
+    "components",
+    "design-system"
+  ],
+  "author": "njbSaab",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/njbSaab/njx-css-ui.git"
+  },
+  "homepage": "https://njbSaab.github.io/njx-css-ui",
+  "bugs": {
+    "url": "https://github.com/njbSaab/njx-css-ui/issues"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "sync:meta": "node ./src/scripts/sync-library-meta.mjs",
+
+    "css:minify": "node scripts/build-style.cjs",
+    "css:classless": "node scripts/build-classless.cjs",
+    "css:header": "node -e \"const fs=require('fs');const m=fs.readFileSync('./src/lib/meta.ts','utf8').match(/LIB_VERSION\\s*=\\s*'([^']+)'/);const v=m?m[1]:'1.0.5';const f='public/css/style.min.css';const h='/* njX UI v'+v+' | MIT License | github.com/njbSaab/njx-css-ui */\\n';fs.writeFileSync(f,h+fs.readFileSync(f,'utf8'));\"",
+    "css:build": "npm run css:minify && npm run css:classless && npm run css:header",
+
+    "prebuild": "npm run css:build && mkdir -p ./public/scripts ./public/styles && cp ./src/scripts/lib-docs.js ./public/scripts/lib-docs.js && cp ./src/styles/lib-docs.css ./public/styles/lib-docs.css && node -e \"const fs=require('fs');const css=fs.readFileSync('./public/css/classless.css','utf8');fs.writeFileSync('./public/css/classless-scoped.css','@scope (.cl-scope){\\n'+css+'\\n}');\"",
+    "dev": "npm run prebuild && astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^6.1.7"
+  },
+  "devDependencies": {
+    "lightningcss-cli": "^1.32.0"
+  }
+}

@@ -1,0 +1,343 @@
+---
+interface Props {
+  activePage?:
+    | 'njxUIComponents'
+    | 'classlessComponents'
+    | 'documentation'
+    | 'quickstart'
+    | 'overview'
+    | 'donate';
+}
+import { LIB_VERSION } from '../lib/meta';
+const { activePage } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<style is:global>
+  /* ── PagesTopbar shared styles ── */
+  .sc-nav {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    height: 60px;
+    background: color-mix(in srgb, var(--сolor-dark) 85%, transparent);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+    gap: 24px;
+    transition:
+      background 0.35s,
+      border-color 0.35s;
+  }
+  .sc-nav-logo {
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .sc-nav-ver {
+    font-size: 11px;
+    font-family: 'Roboto Mono', monospace;
+    color: var(--color-muted);
+    opacity: 0.5;
+  }
+  .sc-nav-links {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  .sc-nav-links a {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .sc-nav-links a:hover {
+    color: var(--color-light);
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  }
+  .sc-nav-links a.active {
+    color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  }
+  .sc-nav-spacer {
+    flex: 1;
+  }
+  .sc-nav-themes {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .sc-theme-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .sc-theme-dot:hover {
+    transform: scale(1.2);
+  }
+  .sc-theme-dot.active {
+    border-color: var(--color-light);
+    transform: scale(1.15);
+  }
+  .sc-nav-github {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--color-primary);
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px
+      color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+  .sc-nav-github:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px
+      color-mix(in srgb, var(--color-primary) 50%, transparent);
+  }
+  @media (max-width: 900px) {
+    .sc-nav-links {
+      display: none;
+    }
+  }
+
+  /* ── Shared section layout ── */
+  .sc-section {
+    padding: 80px 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .sc-section-center {
+    text-align: center;
+  }
+  .sc-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+    margin-bottom: 12px;
+  }
+  .sc-heading {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .sc-subheading {
+    font-size: 16px;
+    color: var(--color-muted);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+  .sc-subheading.center {
+    margin: 0 auto;
+  }
+
+  /* ── Shared CTA buttons ── */
+  .sc-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    background: var(--color-primary);
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 28px
+      color-mix(in srgb, var(--color-primary) 40%, transparent);
+    transition: all 0.25s;
+  }
+  .sc-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px
+      color-mix(in srgb, var(--color-primary) 55%, transparent);
+  }
+  .sc-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    background: color-mix(in srgb, var(--color-neutral-600) 12%, transparent);
+    border: 1.5px solid
+      color-mix(in srgb, var(--color-neutral-600) 35%, transparent);
+    color: var(--color-light);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .sc-btn-ghost:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  }
+</style>
+
+<script is:inline>
+  // ── Global theme setter (called by topbar dots) ──
+  function setTheme(dot, theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem('njx-theme', theme);
+    } catch (e) {}
+    document.querySelectorAll('.sc-theme-dot').forEach(function (d) {
+      d.classList.toggle('active', d.dataset.t === theme);
+    });
+  }
+  // Sync active dot with saved theme
+  (function () {
+    var saved;
+    try {
+      saved = localStorage.getItem('njx-theme');
+    } catch (e) {}
+    if (!saved) saved = document.documentElement.getAttribute('data-theme');
+    if (saved) {
+      document.querySelectorAll('.sc-theme-dot').forEach(function (d) {
+        d.classList.toggle('active', d.dataset.t === saved);
+      });
+    }
+  })();
+</script>
+
+<nav class="sc-nav">
+  <a class="sc-nav-logo" href={`${base}overview`}>njX UI</a>
+  <span class="sc-nav-ver">v{LIB_VERSION}</span>
+  <div class="sc-nav-links">
+    <a href={base} class={activePage === 'njxUIComponents' ? 'active' : ''}
+      >njxUI Components</a
+    >
+    <a
+      href={`${base}classless-components`}
+      class={activePage === 'classlessComponents' ? 'active' : ''}
+      >classlessComponents</a
+    >
+    <a
+      href={`${base}documentation`}
+      class={activePage === 'documentation' ? 'active' : ''}>Documentation</a
+    >
+    <a
+      href={`${base}quickstart`}
+      class={activePage === 'quickstart' ? 'active' : ''}>Quick Start</a
+    >
+    <a
+      href={`${base}overview`}
+      class={activePage === 'overview' ? 'active' : ''}>Overview</a
+    >
+    <a href={`${base}donate`} class={activePage === 'donate' ? 'active' : ''}
+      >Donate</a
+    >
+  </div>
+  <div class="sc-nav-spacer"></div>
+  <div class="sc-nav-themes" title="Switch theme">
+    <div
+      class="sc-theme-dot"
+      style="background:#4a4a56"
+      onclick="setTheme(this,'dark')"
+      data-t="dark"
+    >
+    </div>
+    <div
+      class="sc-theme-dot"
+      style="background:#e2e8f0"
+      onclick="setTheme(this,'light')"
+      data-t="light"
+    >
+    </div>
+    <div
+      class="sc-theme-dot"
+      style="background:#f43f5e"
+      onclick="setTheme(this,'red')"
+      data-t="red"
+    >
+    </div>
+    <div
+      class="sc-theme-dot"
+      style="background:#3b82f6"
+      onclick="setTheme(this,'blue')"
+      data-t="blue"
+    >
+    </div>
+    <div
+      class="sc-theme-dot"
+      style="background:#22c55e"
+      onclick="setTheme(this,'green')"
+      data-t="green"
+    >
+    </div>
+    <div
+      class="sc-theme-dot"
+      style="background:#00e5ff"
+      onclick="setTheme(this,'cyan')"
+      data-t="cyan"
+    >
+    </div>
+    <div
+      class="sc-theme-dot"
+      style="background:#facc15"
+      onclick="setTheme(this,'yellow')"
+      data-t="yellow"
+    >
+    </div>
+    <div
+      class="sc-theme-dot"
+      style="background:#ec4899"
+      onclick="setTheme(this,'pink')"
+      data-t="pink"
+    >
+    </div>
+    <div
+      class="sc-theme-dot"
+      style="background:#a855f7"
+      onclick="setTheme(this,'purple')"
+      data-t="purple"
+    >
+    </div>
+  </div>
+  <a
+    class="sc-nav-github"
+    href="https://github.com/njbSaab/njx-css-ui"
+    target="_blank"
+  >
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+      ></path>
+    </svg>
+    GitHub
+  </a>
+</nav>

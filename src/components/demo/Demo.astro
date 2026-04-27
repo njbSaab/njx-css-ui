@@ -1,0 +1,1102 @@
+---
+import Buttons from '../njx-sections/Buttons.astro';
+import Breadcrumb from '../njx-sections/Breadcrumb.astro';
+import Cards from '../njx-sections/Cards.astro';
+import Carousel from '../njx-sections/Carousel.astro';
+import Collapse from '../njx-sections/Collapse.astro';
+import Dropdown from '../njx-sections/Dropdown.astro';
+import Forms from '../njx-sections/Forms.astro';
+import Gradients from '../njx-sections/Gradients.astro';
+import Grid from '../njx-sections/Grid.astro';
+import HoverTips from '../njx-sections/HoverTips.astro';
+import Hovers from '../njx-sections/Hovers.astro';
+import Links from '../njx-sections/Links.astro';
+import Nav from '../njx-sections/Nav.astro';
+import Notifications from '../njx-sections/Notifications.astro';
+import Pagination from '../njx-sections/Pagination.astro';
+import Panel from '../njx-sections/Panel.astro';
+import Popups from '../njx-sections/Popups.astro';
+import Progress from '../njx-sections/Progress.astro';
+import Sections from '../njx-sections/Sections.astro';
+import Skeleton from '../njx-sections/Skeleton.astro';
+import Social from '../njx-sections/Social.astro';
+import Table from '../njx-sections/Table.astro';
+import Tabs from '../njx-sections/Tabs.astro';
+import Tags from '../njx-sections/Tags.astro';
+import Tokens from '../njx-sections/Tokens.astro';
+import Typography from '../njx-sections/Typography.astro';
+import Utils from '../njx-sections/Utils.astro';
+import Animations from '../njx-sections/Animations.astro';
+import '../../styles/lib-docs-demo-scoped.css';
+---
+
+<div class="ce demo-ce" data-demo-ce>
+  <div class="ce-side">
+    <div class="ce-search">
+      &#8981;<input placeholder="Search…" data-ce-search />
+    </div>
+    <div class="ce-cat" data-group="popular">Most popular</div>
+    <div class="ce-item on" data-c="animations" data-group="popular">
+      Animations<span class="ct">anim</span>
+    </div>
+    <div class="ce-item" data-c="button" data-group="popular">
+      Buttons<span class="ct">btn</span>
+    </div>
+    <div class="ce-item" data-c="badge" data-group="popular">
+      Badge<span class="ct">badge</span>
+    </div>
+    <div class="ce-item" data-c="card" data-group="popular">
+      Cards<span class="ct">card</span>
+    </div>
+    <div class="ce-item" data-c="carousel" data-group="popular">
+      Carousel<span class="ct">slide</span>
+    </div>
+    <div class="ce-item" data-c="modal" data-group="popular">
+      Modal<span class="ct">modal</span>
+    </div>
+    <div class="ce-item" data-c="nav" data-group="popular">
+      Nav<span class="ct">nav</span>
+    </div>
+    <div class="ce-item" data-c="hover" data-group="popular">
+      Hover<span class="ct">hover</span>
+    </div>
+
+    <div class="ce-cat" data-group="foundation">Foundation</div>
+    <div class="ce-item" data-c="tokens" data-group="foundation">
+      Tokens<span class="ct">vars</span>
+    </div>
+    <div class="ce-item" data-c="grid" data-group="foundation">
+      Grid System<span class="ct">grid</span>
+    </div>
+    <div class="ce-item" data-c="typography" data-group="foundation">
+      Typography<span class="ct">type</span>
+    </div>
+    <div class="ce-item" data-c="utils" data-group="foundation">
+      Utils<span class="ct">util</span>
+    </div>
+
+    <div class="ce-cat" data-group="visual">Visual</div>
+    <div class="ce-item" data-c="skeleton" data-group="visual">
+      Skeleton<span class="ct">skel</span>
+    </div>
+    <div class="ce-item" data-c="animations" data-group="visual">
+      Animations<span class="ct">anim</span>
+    </div>
+    <div class="ce-item" data-c="gradients" data-group="visual">
+      Gradients<span class="ct">grad</span>
+    </div>
+    <div class="ce-item" data-c="hovers" data-group="visual">
+      Hovers<span class="ct">hover</span>
+    </div>
+    <div class="ce-item" data-c="hover-tips" data-group="visual">
+      Hover Tips<span class="ct">tips</span>
+    </div>
+
+    <div class="ce-cat" data-group="css">Components · CSS only</div>
+    <div class="ce-item" data-c="button" data-group="css">
+      Buttons<span class="ct">btn</span>
+    </div>
+    <div class="ce-item" data-c="card" data-group="css">
+      Cards<span class="ct">card</span>
+    </div>
+    <div class="ce-item" data-c="tags" data-group="css">
+      Tags & Badges<span class="ct">tag</span>
+    </div>
+    <div class="ce-item" data-c="forms" data-group="css">
+      Forms<span class="ct">form</span>
+    </div>
+    <div class="ce-item" data-c="nav" data-group="css">
+      Nav<span class="ct">nav</span>
+    </div>
+    <div class="ce-item" data-c="progress" data-group="css">
+      Progress<span class="ct">bar</span>
+    </div>
+    <div class="ce-item" data-c="table" data-group="css">
+      Table<span class="ct">tbl</span>
+    </div>
+    <div class="ce-item" data-c="breadcrumb" data-group="css">
+      Breadcrumb<span class="ct">path</span>
+    </div>
+    <div class="ce-item" data-c="pagination" data-group="css">
+      Pagination<span class="ct">page</span>
+    </div>
+    <div class="ce-item" data-c="panel" data-group="css">
+      Panel<span class="ct">panel</span>
+    </div>
+    <div class="ce-item" data-c="links" data-group="css">
+      Links<span class="ct">link</span>
+    </div>
+    <div class="ce-item" data-c="sections" data-group="css">
+      Sections<span class="ct">sec</span>
+    </div>
+    <div class="ce-item" data-c="social" data-group="css">
+      Social<span class="ct">social</span>
+    </div>
+
+    <div class="ce-cat" data-group="js">Components · JS</div>
+    <div class="ce-item" data-c="tabs" data-group="js">
+      Tabs<span class="ct">tabs</span>
+    </div>
+    <div class="ce-item" data-c="collapse" data-group="js">
+      Collapse<span class="ct">open</span>
+    </div>
+    <div class="ce-item" data-c="dropdown" data-group="js">
+      Dropdown<span class="ct">menu</span>
+    </div>
+    <div class="ce-item" data-c="popups" data-group="js">
+      Popups<span class="ct">modal</span>
+    </div>
+    <div class="ce-item" data-c="sidebar" data-group="js">
+      Sidebar<span class="ct">side</span>
+    </div>
+    <div class="ce-item" data-c="notifications" data-group="js">
+      Notifications<span class="ct">toast</span>
+    </div>
+    <div class="ce-item" data-c="carousel" data-group="js">
+      Carousel<span class="ct">slide</span>
+    </div>
+  </div>
+  <div class="ce-main">
+    <div class="ce-tabs">
+      <button class="on" data-v="popular">Most popular</button>
+      <button data-v="foundation">Foundation</button>
+      <button data-v="visual">Visual</button>
+      <button data-v="css">Components · CSS only</button>
+      <button data-v="js">Components · JS</button>
+    </div>
+    <div class="ce-code">
+      <button class="ce-copy" data-ce-copy>Copy</button>
+      <pre data-ce-code></pre>
+    </div>
+    <div class="ce-section-preview" data-section-preview="button">
+      <Buttons />
+    </div>
+    <div class="ce-section-preview" data-section-preview="card">
+      <Cards />
+    </div>
+    <div class="ce-section-preview" data-section-preview="badge">
+      <section class="lib-section">
+        <div class="lib-section-title">Badge</div>
+        <div class="lib-section-desc">
+          Badge counters and status marks from <code>_tags.css</code>.
+        </div>
+        <div class="lib-component">
+          <div class="lib-component-label">Badge variants</div>
+          <div class="lib-preview">
+            <span class="badge">5</span>
+            <span class="badge badge-primary">99</span>
+            <span class="badge badge-success">OK</span>
+            <span class="badge badge-error">!</span>
+            <span class="badge badge-warning">3</span>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="ce-section-preview" data-section-preview="modal">
+      <Popups />
+    </div>
+    <div class="ce-section-preview" data-section-preview="hover">
+      <Hovers />
+    </div>
+    <div class="ce-section-preview" data-section-preview="hovers">
+      <Hovers />
+    </div>
+    <div class="ce-section-preview" data-section-preview="skeleton">
+      <Skeleton />
+    </div>
+    <div class="ce-section-preview" data-section-preview="tags">
+      <Tags />
+    </div>
+    <div class="ce-section-preview" data-section-preview="nav">
+      <Nav />
+    </div>
+    <div class="ce-section-preview" data-section-preview="carousel">
+      <Carousel />
+    </div>
+    <div class="ce-section-preview" data-section-preview="social">
+      <Social />
+    </div>
+    <div class="ce-section-preview" data-section-preview="forms">
+      <Forms />
+    </div>
+    <div class="ce-section-preview" data-section-preview="tokens">
+      <Tokens />
+    </div>
+    <div class="ce-section-preview" data-section-preview="grid">
+      <Grid />
+    </div>
+    <div class="ce-section-preview" data-section-preview="typography">
+      <Typography />
+    </div>
+    <div class="ce-section-preview" data-section-preview="utils">
+      <Utils />
+    </div>
+    <div class="ce-section-preview" data-section-preview="animations">
+      <Animations />
+    </div>
+    <div class="ce-section-preview" data-section-preview="gradients">
+      <Gradients />
+    </div>
+    <div class="ce-section-preview" data-section-preview="hover-tips">
+      <HoverTips />
+    </div>
+    <div class="ce-section-preview" data-section-preview="progress">
+      <Progress />
+    </div>
+    <div class="ce-section-preview" data-section-preview="table">
+      <Table />
+    </div>
+    <div class="ce-section-preview" data-section-preview="breadcrumb">
+      <Breadcrumb />
+    </div>
+    <div class="ce-section-preview" data-section-preview="pagination">
+      <Pagination />
+    </div>
+    <div class="ce-section-preview" data-section-preview="panel">
+      <Panel />
+    </div>
+    <div class="ce-section-preview" data-section-preview="links">
+      <Links />
+    </div>
+    <div class="ce-section-preview" data-section-preview="sections">
+      <Sections />
+    </div>
+    <div class="ce-section-preview" data-section-preview="tabs">
+      <Tabs />
+    </div>
+    <div class="ce-section-preview" data-section-preview="collapse">
+      <Collapse />
+    </div>
+    <div class="ce-section-preview" data-section-preview="dropdown">
+      <Dropdown />
+    </div>
+    <div class="ce-section-preview" data-section-preview="popups">
+      <Popups />
+    </div>
+    <div class="ce-section-preview" data-section-preview="sidebar">
+      <section class="lib-section">
+        <div class="lib-section-title">Sidebar</div>
+        <div class="lib-section-desc">
+          <code>components/njx-sections/Sidebar.astro</code> is not present in this
+          project yet.
+        </div>
+      </section>
+    </div>
+    <div class="ce-section-preview" data-section-preview="notifications">
+      <Notifications />
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .demo-ce.ce {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 24px;
+    background:
+      linear-gradient(var(--color-dark-secondary), var(--color-dark-secondary))
+        padding-box,
+      linear-gradient(135deg, var(--color-primary), var(--color-accent))
+        border-box;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    padding: 24px;
+    height: 700px;
+    min-height: 35dvh;
+    margin-top: 0;
+    overflow: hidden;
+  }
+
+  @media (max-width: 800px) {
+    .demo-ce.ce {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .demo-ce .ce-side {
+    border-right: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+    padding-right: 16px;
+    overflow-y: scroll;
+  }
+
+  @media (max-width: 800px) {
+    .demo-ce .ce-side {
+      border-right: none;
+      border-bottom: 1px solid
+        color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+      padding-right: 0;
+      padding-bottom: 16px;
+    }
+  }
+
+  .demo-ce .ce-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: color-mix(in srgb, var(--color-neutral-600) 10%, transparent);
+    border-radius: 9999px;
+    margin-bottom: 14px;
+    font-size: 20px;
+    color: var(--color-muted);
+  }
+
+  .demo-ce .ce-search input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-light);
+    font: inherit;
+    min-width: 0;
+  }
+
+  .demo-ce .ce-cat {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+    margin: 14px 0 6px;
+    padding: 0 10px;
+  }
+
+  .demo-ce .ce-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .demo-ce .ce-item:hover {
+    color: var(--color-light);
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  }
+
+  .demo-ce .ce-item.on {
+    color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+  }
+
+  .demo-ce .ce-item .ct {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    opacity: 0.6;
+  }
+
+  .demo-ce .ce-main {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .demo-ce .ce-tabs {
+    display: flex;
+    gap: 2px;
+    background: color-mix(in srgb, var(--color-neutral-600) 10%, transparent);
+    padding: 3px;
+    border-radius: 9999px;
+    width: fit-content;
+  }
+
+  .demo-ce .ce-tabs button {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 9999px;
+    background: transparent;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-muted);
+    cursor: pointer;
+  }
+
+  .demo-ce .ce-tabs button.on {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  .demo-ce .ce-canvas {
+    flex: 1;
+    border: 1.5px dashed
+      color-mix(in srgb, var(--color-primary) 25%, transparent);
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-height: 200px;
+    background: color-mix(in srgb, var(--color-dark) 60%, transparent);
+  }
+
+  .demo-ce .ce-code {
+    background: #0a0a0a;
+    border: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #e0e0e0;
+    overflow-x: auto;
+    position: relative;
+  }
+
+  .demo-ce .ce-section-preview {
+    display: none;
+    overflow: auto;
+    min-height: 0;
+    max-height: 76dvh;
+    padding-right: 6px;
+  }
+
+  .demo-ce .ce-section-preview.on {
+    display: block;
+  }
+
+  .demo-ce .ce-section-preview .lib-section {
+    padding: 0;
+    margin: 0;
+  }
+
+  .demo-ce .lib-section {
+    margin-bottom: 88px;
+    scroll-margin-top: 80px;
+  }
+
+  .demo-ce .lib-section-eyebrow {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+    opacity: 0.85;
+  }
+
+  .demo-ce .lib-section-title {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--color-light);
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+
+  .demo-ce .lib-section-badge {
+    width: fit-content;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    color: var(--color-primary);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+  }
+
+  .demo-ce .lib-section-desc {
+    font-size: 14px;
+    padding-left: 10px;
+    color: var(--color-muted);
+    margin-bottom: 0;
+    padding-bottom: 24px;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+    line-height: 1.7;
+    max-width: 680px;
+  }
+
+  .demo-ce .lib-section-desc code {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.87em;
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    color: var(--color-primary);
+    padding: 2px 6px;
+    border-radius: 5px;
+  }
+
+  .demo-ce .lib-subsection-title {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 32px 0 4px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+  }
+
+  .demo-ce .lib-subsection-title > span:first-child {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+  }
+
+  .demo-ce .lib-subsection-desc {
+    font-size: 12px;
+    color: var(--color-muted);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .demo-ce .lib-component {
+    margin-bottom: 28px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+    transition: border-color 0.25s;
+    background: var(--color-dark-secondary);
+  }
+
+  .demo-ce .lib-component:hover {
+    border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+  }
+
+  .demo-ce .lib-component-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-muted);
+    background: color-mix(
+      in srgb,
+      var(--color-dark) 40%,
+      var(--color-dark-secondary)
+    );
+    padding: 10px 20px;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .demo-ce .lib-component-label::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-primary) 60%, transparent);
+    flex-shrink: 0;
+  }
+
+  .demo-ce .lib-preview {
+    background: color-mix(
+      in srgb,
+      var(--color-dark-secondary) 70%,
+      var(--color-dark)
+    );
+    padding: 32px 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    position: relative;
+  }
+
+  .demo-ce .lib-preview::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-neutral-600) 22%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
+    pointer-events: none;
+  }
+
+  .demo-ce .lib-preview > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .demo-ce .lib-preview.dark {
+    background: #0a0a0a;
+  }
+
+  .demo-ce .lib-preview.light {
+    background: #f4f4f4;
+  }
+
+  .demo-ce .lib-preview.light::before {
+    background-image: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.07) 1px,
+      transparent 1px
+    );
+  }
+
+  .demo-ce .lib-preview.col {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .demo-ce .lib-preview.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .demo-ce .lib-preview.no-dot::before {
+    display: none;
+  }
+
+  .demo-ce .lib-code-wrapper {
+    display: grid;
+    grid-template-rows: 1fr;
+  }
+
+  .demo-ce .lib-code-inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .demo-ce .lib-code-container {
+    overflow-x: auto;
+  }
+
+  .demo-ce .lib-code {
+    background: #0d0d0d;
+    padding: 18px 22px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12.5px;
+    color: #8b9eb8;
+    line-height: 1.9;
+    overflow-x: auto;
+  }
+
+  .demo-ce .lib-code .k {
+    color: #e06c75;
+  }
+
+  .demo-ce .lib-code .s {
+    color: #98c379;
+  }
+
+  .demo-ce .lib-code .c {
+    color: #555;
+    font-style: italic;
+  }
+
+  .demo-ce .lib-code .cn {
+    color: #61afef;
+  }
+
+  .demo-ce .lib-code .v,
+  .demo-ce .lib-code .t {
+    color: #e5c07b;
+  }
+
+  .demo-ce .lib-code .p {
+    color: #abb2bf;
+  }
+
+  .demo-ce .lib-copy-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    background: color-mix(in srgb, var(--color-neutral-600) 12%, transparent);
+    border: 1px solid
+      color-mix(in srgb, var(--color-neutral-600) 28%, transparent);
+    border-radius: 6px;
+    color: var(--color-muted);
+    font-size: 11px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+
+  .demo-ce .lib-copy-btn:hover {
+    background: color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+    color: var(--color-light);
+    border-color: color-mix(in srgb, var(--color-neutral-600) 45%, transparent);
+  }
+
+  .demo-ce .lib-copy-btn.copied {
+    background: color-mix(in srgb, var(--color-success) 15%, transparent);
+    border-color: color-mix(in srgb, var(--color-success) 35%, transparent);
+    color: var(--color-success);
+  }
+
+  .demo-ce .ce-code .com {
+    color: #6a6a6a;
+  }
+
+  .demo-ce .ce-code .sh-tag {
+    color: var(--color-primary);
+  }
+
+  .demo-ce .ce-code .attr {
+    color: var(--color-accent);
+  }
+
+  .demo-ce .ce-code .str {
+    color: #9ce700;
+  }
+
+  .demo-ce .ce-copy {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border: none;
+    font-size: 10px;
+    font-weight: 700;
+    background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+    color: var(--color-primary);
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+  }
+
+  .demo-ce .ce-copy:hover {
+    background: color-mix(in srgb, var(--color-primary) 24%, transparent);
+  }
+  #carousel .lib-component {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0;
+  }
+</style>
+
+<script>
+  const CE = {
+    button: {
+      default: {
+        html: '<button class="btn btn-primary">Primary</button> <button class="btn btn-accent">Accent</button> <button class="btn btn-ghost">Ghost</button> <button class="btn btn-outline">Outline</button>',
+        code: '<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span><span class="sh-tag">&gt;</span>Primary<span class="sh-tag">&lt;/button&gt;</span>\n<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-accent"</span><span class="sh-tag">&gt;</span>Accent<span class="sh-tag">&lt;/button&gt;</span>\n<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-ghost"</span><span class="sh-tag">&gt;</span>Ghost<span class="sh-tag">&lt;/button&gt;</span>',
+      },
+      hover: {
+        html: '<button class="btn btn-primary hover-lift">Lift</button> <button class="btn btn-primary hover-scale">Scale</button> <button class="btn btn-accent hover-glow">Glow</button>',
+        code: '<span class="com">&lt;!-- mix any hover-* utility --&gt;</span>\n<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary hover-lift"</span><span class="sh-tag">&gt;</span>Lift<span class="sh-tag">&lt;/button&gt;</span>\n<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-accent hover-glow"</span><span class="sh-tag">&gt;</span>Glow<span class="sh-tag">&lt;/button&gt;</span>',
+      },
+      sizes: {
+        html: '<button class="btn btn-primary btn-xs">XS</button> <button class="btn btn-primary btn-sm">SM</button> <button class="btn btn-primary">MD</button> <button class="btn btn-primary btn-lg">LG</button>',
+        code: '<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary btn-xs"</span><span class="sh-tag">&gt;</span>XS<span class="sh-tag">&lt;/button&gt;</span>\n<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary btn-sm"</span><span class="sh-tag">&gt;</span>SM<span class="sh-tag">&lt;/button&gt;</span>\n<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary btn-lg"</span><span class="sh-tag">&gt;</span>LG<span class="sh-tag">&lt;/button&gt;</span>',
+      },
+      states: {
+        html: '<button class="btn btn-primary">Default</button> <button class="btn btn-primary" disabled style="opacity:0.5">Disabled</button> <button class="btn btn-primary is-loading">Loading&hellip;</button>',
+        code: '<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span><span class="sh-tag">&gt;</span>Default<span class="sh-tag">&lt;/button&gt;</span>\n<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span> <span class="attr">disabled</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/button&gt;</span>',
+      },
+    },
+    input: {
+      default: {
+        html: '<div style="display:flex;flex-direction:column;gap:8px;width:240px"><input class="inp" placeholder="default"><input class="inp inp-primary" placeholder="primary focus"></div>',
+        code: '<span class="sh-tag">&lt;input</span> <span class="attr">class</span>=<span class="str">"inp inp-primary"</span> <span class="attr">placeholder</span>=<span class="str">"email"</span><span class="sh-tag">&gt;</span>',
+      },
+      hover: {
+        html: '<input class="inp inp-primary hover-glow" placeholder="hover me" style="width:240px">',
+        code: '<span class="sh-tag">&lt;input</span> <span class="attr">class</span>=<span class="str">"inp inp-primary hover-glow"</span><span class="sh-tag">&gt;</span>',
+      },
+      sizes: {
+        html: '<div style="display:flex;flex-direction:column;gap:8px;width:240px"><input class="inp inp-sm" placeholder="sm"><input class="inp" placeholder="md"><input class="inp inp-lg" placeholder="lg"></div>',
+        code: '<span class="sh-tag">&lt;input</span> <span class="attr">class</span>=<span class="str">"inp inp-sm"</span><span class="sh-tag">&gt;</span>',
+      },
+      states: {
+        html: '<div style="display:flex;flex-direction:column;gap:8px;width:240px"><input class="inp inp-success" value="Valid input"><input class="inp inp-error" value="Invalid input"></div>',
+        code: '<span class="sh-tag">&lt;input</span> <span class="attr">class</span>=<span class="str">"inp inp-error"</span><span class="sh-tag">&gt;</span>',
+      },
+    },
+    tag: {
+      default: {
+        html: '<span class="tag tag-primary">primary</span> <span class="tag tag-success">success</span> <span class="tag tag-warning">warning</span> <span class="tag tag-filled-primary">filled</span>',
+        code: '<span class="sh-tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"tag tag-primary"</span><span class="sh-tag">&gt;</span>primary<span class="sh-tag">&lt;/span&gt;</span>',
+      },
+      hover: {
+        html: '<span class="tag tag-primary hover-lift">hover-lift</span> <span class="tag tag-success hover-scale">hover-scale</span>',
+        code: '<span class="sh-tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"tag tag-primary hover-lift"</span><span class="sh-tag">&gt;</span>tag<span class="sh-tag">&lt;/span&gt;</span>',
+      },
+      sizes: {
+        html: '<span class="tag tag-primary" style="font-size:10px">xs</span> <span class="tag tag-primary">md</span> <span class="tag tag-primary" style="font-size:15px">lg</span>',
+        code: '<span class="sh-tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"tag tag-primary"</span><span class="sh-tag">&gt;</span>md<span class="sh-tag">&lt;/span&gt;</span>',
+      },
+      states: {
+        html: '<span class="tag tag-primary">live</span> <span class="tag tag-error">error</span> <span class="tag tag-warning">warn</span> <span class="tag tag-success">ok</span>',
+        code: '<span class="sh-tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"tag tag-error"</span><span class="sh-tag">&gt;</span>error<span class="sh-tag">&lt;/span&gt;</span>',
+      },
+    },
+    badge: {
+      default: {
+        html: '<span class="badge badge-primary">12</span> <span class="badge badge-error">3</span> <span class="badge badge-success">&#10003;</span> <span class="badge badge-warning">!</span>',
+        code: '<span class="sh-tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"badge badge-primary"</span><span class="sh-tag">&gt;</span>12<span class="sh-tag">&lt;/span&gt;</span>',
+      },
+      hover: {
+        html: '<span class="badge badge-primary hover-scale">12</span> <span class="badge badge-error hover-lift">3</span>',
+        code: '<span class="sh-tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"badge badge-primary hover-scale"</span><span class="sh-tag">&gt;</span>12<span class="sh-tag">&lt;/span&gt;</span>',
+      },
+      sizes: {
+        html: '<span class="badge badge-primary" style="font-size:10px">xs</span> <span class="badge badge-primary">md</span>',
+        code: '<span class="sh-tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"badge badge-primary"</span><span class="sh-tag">&gt;</span>12<span class="sh-tag">&lt;/span&gt;</span>',
+      },
+      states: {
+        html: '<span class="badge badge-error">!</span> <span class="badge badge-success">&#10003;</span> <span class="badge badge-warning">&#9888;</span>',
+        code: '<span class="sh-tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"badge badge-error"</span><span class="sh-tag">&gt;</span>!<span class="sh-tag">&lt;/span&gt;</span>',
+      },
+    },
+    card: {
+      default: {
+        html: '<div class="card" style="padding:18px;width:220px"><div style="font-weight:700;color:var(--color-primary);margin-bottom:6px">Card title</div><div style="font-size:12px;color:var(--color-muted)">Default surface - bg-card + primary border.</div></div>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+      },
+      hover: {
+        html: '<div class="card hover-lift" style="padding:18px;width:200px;transition:all 0.3s;cursor:pointer">hover-lift</div> <div class="card hover-glow" style="padding:18px;width:160px;transition:all 0.3s;cursor:pointer">hover-glow</div>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card hover-lift"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+      },
+      sizes: {
+        html: '<div class="card" style="padding:10px;font-size:12px">sm</div> <div class="card" style="padding:18px">md</div> <div class="card-glass" style="padding:18px;width:150px">card-glass</div>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card-glass"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+      },
+      states: {
+        html: '<div class="card-glow" style="padding:18px;width:200px">card-glow</div> <div class="card-gradient" style="padding:18px;width:150px">card-gradient</div>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card-glow"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+      },
+    },
+    modal: {
+      default: {
+        html: '<div style="background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-primary) 25%,transparent);border-radius:16px;padding:24px;max-width:300px;text-align:center"><div style="font-size:28px;margin-bottom:6px">&#9634;</div><div style="font-weight:700;margin-bottom:6px">Confirm action</div><div style="font-size:12px;color:var(--color-muted);margin-bottom:14px">Standard modal preview.</div><button class="btn btn-primary btn-sm">Confirm</button> <button class="btn btn-ghost btn-sm">Cancel</button></div>',
+        code: 'openModal(<span class="str">\'modal-id\'</span>)',
+      },
+      hover: {
+        html: '<div style="opacity:0.6;font-size:13px">- same as default</div>',
+        code: 'openModal(<span class="str">\'modal-id\'</span>)',
+      },
+      sizes: {
+        html: '<div style="opacity:0.6;font-size:13px">.lib-modal-box.is-sm &nbsp; .lib-modal-box.is-lg</div>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"lib-modal-box is-sm"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+      },
+      states: {
+        html: '<div style="opacity:0.6;font-size:13px">.is-success &nbsp; .is-error &nbsp; .is-warning</div>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"lib-modal-box is-success"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+      },
+    },
+    progress: {
+      default: {
+        html: '<div style="width:280px;height:8px;background:color-mix(in srgb,var(--color-primary) 18%,transparent);border-radius:9999px;overflow:hidden"><div style="height:100%;width:62%;background:var(--color-primary)"></div></div>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"progress"</span><span class="sh-tag">&gt;</span><span class="sh-tag">&lt;div</span> <span class="attr">style</span>=<span class="str">"width:62%"</span><span class="sh-tag">&gt;&lt;/div&gt;&lt;/div&gt;</span>',
+      },
+      hover: {
+        html: '<div style="opacity:0.6;font-size:13px">- shimmer variant</div>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"progress progress-shimmer"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+      },
+      sizes: {
+        html: '<div style="display:flex;flex-direction:column;gap:10px;width:280px"><div style="height:4px;background:color-mix(in srgb,var(--color-primary) 18%,transparent);border-radius:9999px;overflow:hidden"><div style="height:100%;width:40%;background:var(--color-primary)"></div></div><div style="height:8px;background:color-mix(in srgb,var(--color-primary) 18%,transparent);border-radius:9999px;overflow:hidden"><div style="height:100%;width:65%;background:var(--color-primary)"></div></div><div style="height:12px;background:color-mix(in srgb,var(--color-primary) 18%,transparent);border-radius:9999px;overflow:hidden"><div style="height:100%;width:80%;background:var(--color-primary)"></div></div></div>',
+        code: '<span class="com">&lt;!-- height controls size --&gt;</span>',
+      },
+      states: {
+        html: '<div style="display:flex;flex-direction:column;gap:8px;width:280px"><div style="height:6px;background:color-mix(in srgb,var(--color-success) 18%,transparent);border-radius:9999px;overflow:hidden"><div style="height:100%;width:100%;background:var(--color-success)"></div></div><div style="height:6px;background:color-mix(in srgb,var(--color-danger) 18%,transparent);border-radius:9999px;overflow:hidden"><div style="height:100%;width:25%;background:var(--color-danger)"></div></div></div>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"progress progress-success"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+      },
+    },
+    animations: {
+      default: {
+        html: '',
+        code: '<span class="com">/* Rendered from components/njx-sections/Animations.astro */</span>',
+      },
+      hover: {
+        html: '',
+        code: '<span class="com">/* Rendered from components/njx-sections/Animations.astro */</span>',
+      },
+      sizes: {
+        html: '',
+        code: '<span class="com">/* Rendered from components/njx-sections/Animations.astro */</span>',
+      },
+      states: {
+        html: '',
+        code: '<span class="com">/* Rendered from components/njx-sections/Animations.astro */</span>',
+      },
+    },
+    tip: {
+      default: {
+        html: '<div style="display:flex;gap:10px;background:color-mix(in srgb,var(--color-primary) 8%,transparent);border-left:3px solid var(--color-primary);padding:12px 14px;border-radius:8px;font-size:13px;max-width:340px"><div><div style="font-weight:700;color:var(--color-primary);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">Tip</div>Switch themes with one attribute.</div></div>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"tip tip--info"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+      },
+      hover: {
+        html: '<div style="display:flex;gap:10px;background:color-mix(in srgb,var(--color-primary) 8%,transparent);border-left:3px solid var(--color-primary);padding:12px 14px;border-radius:8px;font-size:13px;max-width:340px;transition:background 0.2s;cursor:pointer" onmouseenter="this.style.background=\'color-mix(in srgb,var(--color-primary) 15%,transparent)\'" onmouseleave="this.style.background=\'color-mix(in srgb,var(--color-primary) 8%,transparent)\'"><div><div style="font-weight:700;color:var(--color-primary);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">Tip</div>Hover effect on tip.</div></div>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"tip tip--info hover-bg"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+      },
+      sizes: {
+        html: '<div style="opacity:0.6;font-size:13px">- same shape, padding adjustable</div>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"tip tip--info"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+      },
+      states: {
+        html: '<div style="display:flex;flex-direction:column;gap:8px;max-width:340px"><div style="background:color-mix(in srgb,#9ce700 8%,transparent);border-left:3px solid #9ce700;padding:10px 14px;border-radius:8px;font-size:13px"><b style="color:#9ce700">DONE</b> - Saved successfully</div><div style="background:color-mix(in srgb,#ffdd00 8%,transparent);border-left:3px solid #ffdd00;padding:10px 14px;border-radius:8px;font-size:13px"><b style="color:#ffdd00">WARN</b> - Check your inputs</div><div style="background:color-mix(in srgb,#f43f5e 8%,transparent);border-left:3px solid #f43f5e;padding:10px 14px;border-radius:8px;font-size:13px"><b style="color:#f43f5e">ERROR</b> - Action failed</div></div>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"tip tip--success"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+      },
+    },
+  };
+
+  function writeClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.left = '-9999px';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    textarea.remove();
+    return Promise.resolve();
+  }
+
+  function initComponentExplorer(root) {
+    if (root.dataset.demoCeReady === 'true') return;
+    root.dataset.demoCeReady = 'true';
+
+    let currentComponent = 'animations';
+    let currentVariant = 'default';
+    let currentGroup = 'popular';
+
+    const canvas = root.querySelector('[data-ce-canvas]');
+    const code = root.querySelector('[data-ce-code]');
+    const search = root.querySelector('[data-ce-search]');
+    const copy = root.querySelector('[data-ce-copy]');
+    const items = Array.from(root.querySelectorAll('.ce-item'));
+    const cats = Array.from(root.querySelectorAll('.ce-cat'));
+    const tabsWrap = root.querySelector('.ce-tabs');
+    const tabs = Array.from(root.querySelectorAll('.ce-tabs button'));
+    const previews = Array.from(
+      root.querySelectorAll('[data-section-preview]'),
+    );
+
+    function matchesGroup(el) {
+      return (el.dataset.group || '').split(/\s+/).includes(currentGroup);
+    }
+
+    function itemGroups(el) {
+      return (el.dataset.group || '').split(/\s+/).filter(Boolean);
+    }
+
+    function itemMatchesSearch(el, query) {
+      const haystack =
+        `${el.dataset.c || ''} ${el.textContent || ''}`.toLowerCase();
+      return !query || haystack.includes(query);
+    }
+
+    function applyMenuFilter() {
+      const query = search ? search.value.trim().toLowerCase() : '';
+      const isSearching = query.length > 0;
+
+      items.forEach((item) => {
+        item.hidden = !(
+          (isSearching || matchesGroup(item)) &&
+          itemMatchesSearch(item, query)
+        );
+      });
+
+      cats.forEach((cat) => {
+        const groups = itemGroups(cat);
+        cat.hidden = !items.some((item) => {
+          const sharesGroup = itemGroups(item).some((group) =>
+            groups.includes(group),
+          );
+          return sharesGroup && !item.hidden;
+        });
+      });
+    }
+
+    function setCurrentItem(item) {
+      items.forEach((el) => el.classList.remove('on'));
+      item.classList.add('on');
+      currentComponent = item.dataset.c || 'button';
+      render();
+    }
+
+    function render() {
+      const component = CE[currentComponent] || CE.button;
+      const variant = component[currentVariant] || component.default;
+      const sectionPreview = previews.find(
+        (preview) => preview.dataset.sectionPreview === currentComponent,
+      );
+
+      previews.forEach((preview) => {
+        preview.classList.toggle('on', preview === sectionPreview);
+      });
+
+      if (canvas) {
+        canvas.hidden = Boolean(sectionPreview);
+        canvas.innerHTML = sectionPreview ? '' : variant.html;
+      }
+      if (code) {
+        code.closest('.ce-code').hidden = Boolean(sectionPreview);
+        code.innerHTML = variant.code;
+      }
+      if (tabsWrap) {
+        tabsWrap.hidden = false;
+      }
+    }
+
+    items.forEach((item) => {
+      item.addEventListener('click', () => {
+        setCurrentItem(item);
+      });
+    });
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach((el) => el.classList.remove('on'));
+        tab.classList.add('on');
+        currentGroup = tab.dataset.v || 'popular';
+        if (search) search.value = '';
+        applyMenuFilter();
+
+        const firstVisibleItem = items.find((item) => !item.hidden);
+        if (firstVisibleItem) setCurrentItem(firstVisibleItem);
+      });
+    });
+
+    if (search) {
+      search.addEventListener('input', () => {
+        applyMenuFilter();
+
+        const activeItem = items.find((item) => item.classList.contains('on'));
+        if (!activeItem || activeItem.hidden) {
+          const firstVisibleItem = items.find((item) => !item.hidden);
+          if (firstVisibleItem) setCurrentItem(firstVisibleItem);
+        }
+      });
+    }
+
+    if (copy) {
+      copy.addEventListener('click', () => {
+        const text = code ? code.textContent || '' : '';
+        writeClipboard(text).then(() => {
+          copy.textContent = 'Copied!';
+          window.setTimeout(() => {
+            copy.textContent = 'Copy';
+          }, 1800);
+        });
+      });
+    }
+
+    applyMenuFilter();
+    render();
+  }
+
+  function initDemoExplorers() {
+    document.querySelectorAll('[data-demo-ce]').forEach(initComponentExplorer);
+  }
+
+  initDemoExplorers();
+  document.addEventListener('astro:page-load', initDemoExplorers);
+</script>

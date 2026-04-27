@@ -1,0 +1,629 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PagesTopbar from '../components/PagesTopbar.astro';
+import PagesFooter from '../components/PagesFooter.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+    title="Donate — Support njX UI · Open Source CSS Library"
+    description="Support njX UI development. A free, open-source CSS component library — 9 themes, 30+ components, zero dependencies."
+>
+    <!-- ── OG / Twitter meta → head slot ── -->
+    <meta slot="head" property="og:type" content="website" />
+    <meta slot="head" property="og:title" content="Support njX UI — Donate" />
+    <meta
+        slot="head"
+        property="og:description"
+        content="Help keep njX UI free and open-source. Every contribution matters."
+    />
+    <meta slot="head" property="og:image" content="https://njxui.dev/img/og-image.png" />
+    <meta slot="head" property="og:url" content="https://njxui.dev/donate" />
+    <meta slot="head" name="twitter:card" content="summary_large_image" />
+    <meta slot="head" name="twitter:title" content="Support njX UI — Donate" />
+    <meta
+        slot="head"
+        name="twitter:description"
+        content="Help keep njX UI free and open-source. Every contribution matters."
+    />
+    <meta slot="head" name="twitter:image" content="https://njxui.dev/img/og-image.png" />
+
+    <!-- ══════════════════════ NAV ══════════════════════ -->
+    <PagesTopbar activePage="donate" />
+
+    <!-- PAGE -->
+    <div class="dn-page">
+        <!-- HERO -->
+        <div class="dn-hero">
+            <span class="dn-badge">Support the project</span>
+            <h1>Help keep <em>njX UI</em> alive</h1>
+            <p>
+                njX UI is free and open-source. Your donation helps cover
+                hosting, development time, and keeps new features coming. Every
+                contribution matters&nbsp;💙
+            </p>
+        </div>
+
+        <!-- CARDS -->
+        <div class="dn-grid">
+            <!-- CRYPTO -->
+            <div class="dn-card" id="crypto-card">
+                <div class="dn-card-head">
+                    <div class="dn-card-icon crypto">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M14.5 9h-5l-.5 6h6l-.5 6"></path>
+                            <path d="M9.5 9L10 3"></path>
+                            <path d="M14.5 9L14 3"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="dn-card-title">USDT (TRC-20)</div>
+                        <div class="dn-card-subtitle">
+                            Tether on TRON network
+                        </div>
+                    </div>
+                </div>
+                <p class="dn-card-desc">
+                    Send USDT to this TRC-20 address. Fast, low fees, and the
+                    most convenient way to support with crypto.
+                </p>
+                <div class="dn-addr">
+                    <span class="dn-addr-label">Address</span>
+                    <span class="dn-addr-value" id="crypto-addr"
+                        >TGN3Vuzge2sMcekkwQbAgLtudUzk7oL56F</span
+                    >
+                    <button
+                        class="dn-addr-copy"
+                        onclick="copyAddr('crypto-addr',this)">Copy</button
+                    >
+                </div>
+                <div class="dn-net">
+                    <span class="dn-net-dot"></span>TRON Network · TRC-20 · Send
+                    only USDT
+                </div>
+                <div class="dn-tip">
+                    <span class="dn-tip-icon">⚠️</span>
+                    <div class="dn-tip-text">
+                        <strong>Important:</strong> Send only USDT on the TRC-20 network
+                        to this address. Sending other tokens or using a different
+                        network may result in permanent loss of funds.
+                    </div>
+                </div>
+            </div>
+
+            <!-- BANK CARD -->
+            <div class="dn-card" id="card-card">
+                <div class="dn-card-head">
+                    <div class="dn-card-icon card-ic">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <rect
+                                x="1"
+                                y="4"
+                                width="22"
+                                height="16"
+                                rx="2"
+                                ry="2"></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="dn-card-title">Bank Card</div>
+                        <div class="dn-card-subtitle">Direct card transfer</div>
+                    </div>
+                </div>
+                <p class="dn-card-desc">
+                    Transfer any amount directly via card number. Works with
+                    most online banking apps — just paste the number.
+                </p>
+                <div class="dn-addr">
+                    <span class="dn-addr-label">Card №</span>
+                    <span
+                        class="dn-addr-value"
+                        id="card-num"
+                        style="letter-spacing:2px;font-size:15px"
+                        >4441 1144 8467 3585</span
+                    >
+                    <button
+                        class="dn-addr-copy"
+                        onclick="copyAddr('card-num',this)">Copy</button
+                    >
+                </div>
+            </div>
+
+            <!-- KO-FI -->
+            <div class="dn-card" id="kofi-card">
+                <div class="dn-card-head">
+                    <div class="dn-card-icon kofi">☕</div>
+                    <div>
+                        <div class="dn-card-title">Ko-fi</div>
+                        <div class="dn-card-subtitle">Buy me a coffee</div>
+                    </div>
+                </div>
+                <p class="dn-card-desc">
+                    The easiest way to support — one-time or recurring donation
+                    via Ko-fi. PayPal, Stripe, and cards accepted.
+                </p>
+                <div class="dn-kofi-wrap">
+                    <a
+                        class="dn-kofi-btn"
+                        href="https://ko-fi.com/O5O51XAFMR"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <svg
+                            width="22"
+                            height="22"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                        >
+                            <path
+                                d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.722-.981-1.132-2.168-.832-3.504.414-1.836 2.261-2.676 3.978-1.992 1.166.489 1.643 1.494 1.792 1.755.165-.29.679-1.294 1.859-1.755 1.717-.684 3.562.156 3.978 1.992.3 1.336-.232 2.597-.832 3.504-.079.105-.143.196-.2.271-.016.021-.025.035-.028.039l-.002.002z"
+                            ></path>
+                        </svg>
+                        Support on Ko-fi
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- THANKS -->
+        <div class="dn-thanks">
+            <p><span class="heart">❤️</span></p>
+            <p
+                style="margin-top:12px;font-size:15px;color:var(--color-light);font-weight:600"
+            >
+                Thank you for supporting njX UI!
+            </p>
+            <p style="max-width:480px;margin:8px auto 0">
+                Every donation — big or small — helps keep this project free,
+                maintained, and growing. Your name can be featured in our <a
+                    href="https://github.com/njbSaab/njx-css-ui"
+                    style="color:var(--color-primary);text-decoration:none;font-weight:600"
+                    >Contributors list</a
+                >.
+            </p>
+        </div>
+    </div>
+
+    <!-- ══════════════════════ FOOTER ══════════════════════ -->
+    <PagesFooter activePage="donate" />
+</BaseLayout>
+
+<!-- ── donate-specific styles (is:global = no Astro scoping) ── -->
+<style is:global>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: var(--сolor-dark);
+        color: var(--color-light);
+        font-family: 'Roboto', sans-serif;
+        min-height: 100vh;
+        transition:
+            background 0.35s,
+            color 0.35s;
+        overflow-x: hidden;
+    }
+
+    /* PAGE */
+    .dn-page {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        position: relative;
+        padding-bottom: 50px;
+    }
+    /* HERO */
+    .dn-hero {
+        text-align: center;
+        margin-bottom: 0;
+        width: 100%;
+        position: relative;
+        padding: 60px 24px 80px;
+    }
+    .dn-page::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(
+                ellipse 70% 60% at 30% 20%,
+                color-mix(in srgb, var(--color-primary) 22%, transparent),
+                transparent
+            ),
+            radial-gradient(
+                ellipse 50% 50% at 80% 80%,
+                color-mix(in srgb, var(--color-accent) 12%, transparent),
+                transparent
+            );
+        pointer-events: none;
+        height: 100%;
+    }
+
+    .dn-badge {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        padding: 4px 14px;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+        color: var(--color-primary);
+        border: 1px solid
+            color-mix(in srgb, var(--color-primary) 30%, transparent);
+        margin-bottom: 16px;
+    }
+
+    .dn-hero h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 900;
+        letter-spacing: -1px;
+        margin-bottom: 14px;
+    }
+
+    .dn-hero h1 em {
+        font-style: normal;
+        background: linear-gradient(
+            135deg,
+            var(--color-primary),
+            var(--color-accent)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .dn-hero p {
+        font-size: 1.05rem;
+        color: var(--color-muted);
+        line-height: 1.7;
+        max-width: 560px;
+        margin: 0 auto;
+    }
+
+    /* CARDS GRID */
+    .dn-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin: 0 auto 40px;
+        max-width: 800px;
+    }
+
+    /* CARD */
+    .dn-card {
+        background: var(--color-dark-secondary);
+        border: 1px solid
+            color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+        border-radius: 18px;
+        padding: 32px;
+        transition: all 0.25s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .dn-card:hover {
+        border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .dn-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+            90deg,
+            var(--color-primary),
+            var(--color-accent)
+        );
+        opacity: 0.6;
+        transition: opacity 0.3s;
+    }
+
+    .dn-card:hover::before {
+        opacity: 1;
+    }
+
+    .dn-card-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+
+    .dn-card-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+
+    .dn-card-icon.crypto {
+        background: linear-gradient(135deg, #26a17b 0%, #1a7a5e 100%);
+    }
+
+    .dn-card-icon.card-ic {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    }
+
+    .dn-card-icon.kofi {
+        background: linear-gradient(135deg, #ff5e5b 0%, #d43f3e 100%);
+    }
+
+    .dn-card-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .dn-card-subtitle {
+        font-size: 12px;
+        color: var(--color-muted);
+        margin-top: 2px;
+    }
+
+    .dn-card-desc {
+        font-size: 14px;
+        color: var(--color-muted);
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+
+    /* ADDRESS / NUMBER ROW */
+    .dn-addr {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: color-mix(in srgb, var(--сolor-dark) 80%, transparent);
+        border: 1px solid
+            color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+        border-radius: 12px;
+        padding: 12px 16px;
+        transition: border-color 0.2s;
+    }
+
+    .dn-addr:hover {
+        border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+    }
+
+    .dn-addr-label {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--color-muted);
+        opacity: 0.6;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .dn-addr-value {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 13px;
+        color: var(--color-light);
+        word-break: break-all;
+        flex: 1;
+        user-select: all;
+    }
+
+    .dn-addr-copy {
+        flex-shrink: 0;
+        padding: 6px 14px;
+        border-radius: 8px;
+        font-size: 11px;
+        font-weight: 700;
+        background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+        color: var(--color-primary);
+        border: 1px solid
+            color-mix(in srgb, var(--color-primary) 30%, transparent);
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .dn-addr-copy:hover {
+        background: var(--color-primary);
+        color: #fff;
+    }
+
+    /* NETWORK BADGE */
+    .dn-net {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--color-muted);
+        margin-top: 12px;
+    }
+
+    .dn-net-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #26a17b;
+    }
+
+    /* KOFI */
+    .dn-kofi-wrap {
+        text-align: center;
+        margin-top: 12px;
+    }
+
+    .dn-kofi-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 32px;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        background: linear-gradient(135deg, #ff5e5b 0%, #ff9966 100%);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: all 0.25s;
+        box-shadow: 0 6px 20px rgba(255, 94, 91, 0.3);
+        font-family: inherit;
+    }
+
+    .dn-kofi-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(255, 94, 91, 0.45);
+    }
+
+    .dn-kofi-btn svg {
+        flex-shrink: 0;
+    }
+
+    /* TIP */
+    .dn-tip {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        padding: 16px 20px;
+        border-radius: 12px;
+        background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+        border: 1px solid
+            color-mix(in srgb, var(--color-primary) 22%, transparent);
+        margin-top: 12px;
+    }
+
+    .dn-tip-icon {
+        font-size: 18px;
+        flex-shrink: 0;
+        line-height: 1.4;
+    }
+
+    .dn-tip-text {
+        font-size: 13px;
+        color: var(--color-muted);
+        line-height: 1.65;
+    }
+
+    .dn-tip-text strong {
+        color: var(--color-light);
+    }
+
+    /* DIVIDER */
+    .dn-divider {
+        height: 1px;
+        background: color-mix(
+            in srgb,
+            var(--color-neutral-600) 18%,
+            transparent
+        );
+        margin: 16px 0;
+    }
+
+    /* THANKS */
+    .dn-thanks {
+        text-align: center;
+        padding: 40px 20px 0;
+    }
+
+    .dn-thanks p {
+        font-size: 14px;
+        color: var(--color-muted);
+        line-height: 1.7;
+    }
+
+    .dn-thanks .heart {
+        display: inline-block;
+        font-size: 20px;
+        animation: heartbeat 1.4s infinite;
+    }
+
+    @keyframes heartbeat {
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        14% {
+            transform: scale(1.2);
+        }
+
+        28% {
+            transform: scale(1);
+        }
+    }
+
+    @media (max-width: 640px) {
+        .dn-page {
+            padding: 40px 16px 60px;
+        }
+
+        .dn-card {
+            padding: 24px 20px;
+        }
+
+        .dn-addr {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
+        }
+
+        .dn-addr-copy {
+            align-self: flex-end;
+        }
+
+        .sc-nav-links,
+        .sc-nav-ver {
+            display: none;
+        }
+    }
+</style>
+
+<!-- ── Page JS (is:inline = runs as-is, no bundling) ── -->
+<script is:inline>
+    function copyAddr(id, btn) {
+        const text = document.getElementById(id).innerText.replace(/\s/g, '');
+        navigator.clipboard.writeText(text).then(() => {
+            btn.textContent = 'Copied!';
+            btn.style.background = 'var(--color-primary)';
+            btn.style.color = '#fff';
+            setTimeout(() => {
+                btn.textContent = 'Copy';
+                btn.style.background = '';
+                btn.style.color = '';
+            }, 2500);
+        });
+    }
+</script>

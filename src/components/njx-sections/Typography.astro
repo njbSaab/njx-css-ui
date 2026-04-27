@@ -1,0 +1,1416 @@
+<section class="lib-section" id="typography">
+    <div class="lib-section-title">🔤 Typography</div>
+    <div class="lib-section-desc">
+        Classes from <code>_typography.css</code>. Add <code>.fluid</code> for vw-size.
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Headings</div>
+        <div class="lib-preview col">
+            <div class="typo-row">
+                <span class="typo-class">.title-hero</span><span
+                    class="title-hero"
+                    style="font-size:clamp(32px,5vw,64px)">Hero Title</span
+                ><span class="typo-size">96px / fluid: clamp(60,10vw,120)</span>
+            </div>
+            <div class="typo-row">
+                <span class="typo-class">.title-xl</span><span
+                    class="title-xl"
+                    style="font-size:clamp(28px,4vw,48px)">Title XL</span
+                ><span class="typo-size">72px</span>
+            </div>
+            <div class="typo-row">
+                <span class="typo-class">.title-lg</span><span
+                    class="title-lg"
+                    style="font-size:clamp(24px,3.5vw,40px)">Title LG</span
+                ><span class="typo-size">60px</span>
+            </div>
+            <div class="typo-row">
+                <span class="typo-class">.title-md</span><span
+                    class="title-md"
+                    style="font-size:clamp(22px,3vw,36px)">Title MD</span
+                ><span class="typo-size">48px</span>
+            </div>
+            <div class="typo-row">
+                <span class="typo-class">.title-sm</span><span
+                    class="title-sm"
+                    style="font-size:clamp(18px,2.5vw,28px)">Title SM</span
+                ><span class="typo-size">36px</span>
+            </div>
+            <div class="typo-row">
+                <span class="typo-class">.title-xs</span><span
+                    class="title-xs"
+                    style="font-size:clamp(16px,2vw,24px)">Title XS</span
+                ><span class="typo-size">30px</span>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<h1 class="title-hero">Hero Title</h1>
+<h2 class="title-xl">Title XL</h2>
+<h3 class="title-lg">Title LG</h3>
+<h4 class="title-md">Title MD</h4>
+<h5 class="title-sm">Title SM</h5>
+<h6 class="title-xs">Title XS</h6>
+
+<!-- .fluid — responsive clamp() size -->
+<h1 class="title-hero fluid">Fluid Hero</h1>
+<h2 class="title-xl fluid text-accent">Fluid Accent</h2>'
+                >
+                    <span class="k">&lt;h1</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"title-hero"</span
+                    ><span class="k">&gt;</span>Hero Title<span class="k"
+                        >&lt;/h1&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"title-xl"</span
+                    ><span class="k">&gt;</span>Title XL<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h3</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"title-lg"</span
+                    ><span class="k">&gt;</span>Title LG<span class="k"
+                        >&lt;/h3&gt;</span
+                    ><br />
+                    <span class="k">&lt;h4</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"title-md"</span
+                    ><span class="k">&gt;</span>Title MD<span class="k"
+                        >&lt;/h4&gt;</span
+                    ><br />
+                    <span class="k">&lt;h5</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"title-sm"</span
+                    ><span class="k">&gt;</span>Title SM<span class="k"
+                        >&lt;/h5&gt;</span
+                    ><br />
+                    <span class="k">&lt;h6</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"title-xs"</span
+                    ><span class="k">&gt;</span>Title XS<span class="k"
+                        >&lt;/h6&gt;</span
+                    ><br /><br />
+                    <span class="c">/* .fluid — responsive clamp() size */</span
+                    ><br />
+                    <span class="k">&lt;h1</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"title-hero fluid"</span
+                    ><span class="k">&gt;</span>Fluid Hero<span class="k"
+                        >&lt;/h1&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"title-xl fluid text-accent"</span
+                    ><span class="k">&gt;</span>Fluid Accent<span class="k"
+                        >&lt;/h2&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Text</div>
+        <div class="lib-preview col">
+            <div class="typo-row">
+                <span class="typo-class">.text-lead</span><span
+                    class="text-lead">Lead text — fs-xl / 20px</span
+                ><span class="typo-size">20px, w:500</span>
+            </div>
+            <div class="typo-row">
+                <span class="typo-class">.text-body</span><span
+                    class="text-body">Body text — fs-base / 16px</span
+                ><span class="typo-size">16px, w:400</span>
+            </div>
+            <div class="typo-row">
+                <span class="typo-class">.text-sm</span><span class="text-sm"
+                    >Small text — fs-sm / 14px</span
+                ><span class="typo-size">14px</span>
+            </div>
+            <div class="typo-row">
+                <span class="typo-class">.text-xs</span><span class="text-xs"
+                    >Extra small — fs-xs / 12px</span
+                ><span class="typo-size">12px</span>
+            </div>
+            <div class="typo-row">
+                <span class="typo-class">.text-caption</span><span
+                    class="text-caption">Caption uppercase</span
+                ><span class="typo-size">12px, upper</span>
+            </div>
+            <div class="typo-row">
+                <span class="typo-class">.text-label</span><span
+                    class="text-label">Label text</span
+                ><span class="typo-size">14px, w:600</span>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<p class="text-lead">Lead — intro paragraph</p>
+<p class="text-body">Body — default reading size</p>
+<p class="text-sm">Small text</p>
+<p class="text-xs">Extra small</p>
+<span class="text-caption">CAPTION LABEL</span>
+<span class="text-label">UI Label</span>
+
+<!-- Mix text size + color -->
+<p class="text-lead text-muted">Muted lead</p>
+<p class="text-sm text-primary">Small primary</p>'
+                >
+                    <span class="k">&lt;p</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-lead"</span
+                    ><span class="k">&gt;</span>Lead — intro paragraph<span
+                        class="k">&lt;/p&gt;</span
+                    ><br />
+                    <span class="k">&lt;p</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-body"</span
+                    ><span class="k">&gt;</span>Body — default reading size<span
+                        class="k">&lt;/p&gt;</span
+                    ><br />
+                    <span class="k">&lt;p</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-sm"</span
+                    ><span class="k">&gt;</span>Small text<span class="k"
+                        >&lt;/p&gt;</span
+                    ><br />
+                    <span class="k">&lt;p</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-xs"</span
+                    ><span class="k">&gt;</span>Extra small<span class="k"
+                        >&lt;/p&gt;</span
+                    ><br />
+                    <span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-caption"</span
+                    ><span class="k">&gt;</span>CAPTION LABEL<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br />
+                    <span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-label"</span
+                    ><span class="k">&gt;</span>UI Label<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br /><br />
+                    <span class="c">/* Mix text size + color */</span><br />
+                    <span class="k">&lt;p</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-lead text-muted"</span
+                    ><span class="k">&gt;</span>Muted lead<span class="k"
+                        >&lt;/p&gt;</span
+                    ><br />
+                    <span class="k">&lt;p</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-sm text-primary"</span
+                    ><span class="k">&gt;</span>Small primary<span class="k"
+                        >&lt;/p&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Colors and modifiers</div>
+        <div class="lib-preview">
+            <span class="text-primary text-label">.text-primary</span>
+            <span class="text-accent text-label">.text-accent</span>
+            <span class="text-success text-label">.text-success</span>
+            <span class="text-error text-label">.text-error</span>
+            <span class="text-warning text-label">.text-warning</span>
+            <span class="text-muted text-label">.text-muted</span>
+            <span class="text-white text-label">.text-white</span>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<span class="text-primary">Primary</span>
+<span class="text-accent">Accent</span>
+<span class="text-success">Success</span>
+<span class="text-error">Error</span>
+<span class="text-warning">Warning</span>
+<span class="text-muted">Muted</span>
+<span class="text-white">White</span>
+
+<!-- Combine with any heading or text class -->
+<h2 class="title-lg text-primary">Colored heading</h2>
+<p class="text-sm text-muted">Small muted paragraph</p>
+<span class="text-caption text-accent">ACCENT LABEL</span>'
+                >
+                    <span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-primary"</span
+                    ><span class="k">&gt;</span>Primary<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br />
+                    <span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-accent"</span
+                    ><span class="k">&gt;</span>Accent<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br />
+                    <span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-success"</span
+                    ><span class="k">&gt;</span>Success<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br />
+                    <span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-error"</span
+                    ><span class="k">&gt;</span>Error<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br />
+                    <span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-warning"</span
+                    ><span class="k">&gt;</span>Warning<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br />
+                    <span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-muted"</span
+                    ><span class="k">&gt;</span>Muted<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br />
+                    <span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-white"</span
+                    ><span class="k">&gt;</span>White<span class="k"
+                        >&lt;/span&gt;</span
+                    ><br /><br />
+                    <span class="c"
+                        >/* Combine with any heading or text class */</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"title-lg text-primary"</span
+                    ><span class="k">&gt;</span>Colored heading<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;p</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-sm text-muted"</span
+                    ><span class="k">&gt;</span>Small muted<span class="k"
+                        >&lt;/p&gt;</span
+                    ><br />
+                    <span class="k">&lt;span</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"text-caption text-accent"</span
+                    ><span class="k">&gt;</span>ACCENT LABEL<span class="k"
+                        >&lt;/span&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lib-component">
+        <div class="lib-component-label">Tips / Callouts</div>
+        <div class="lib-section-desc">
+            Use <code>.tip</code> with a variant modifier. Icon slot via <code
+                >.tip-icon</code
+            >, title via <code>.tip-title</code>.
+        </div>
+        <div class="lib-preview col">
+            <div class="tip tip--info">
+                <svg
+                    class="tip-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="12" cy="12" r="10"></circle><path
+                        d="M12 16v-4M12 8h.01"></path>
+                </svg>
+                <div>
+                    <div class="tip-title">Info</div>
+                    <div class="tip-body">
+                        Use <code>.tip--info</code> for general information and neutral
+                        notes.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip tip--success">
+                <svg
+                    class="tip-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="12" cy="12" r="10"></circle><path
+                        d="M9 12l2 2 4-4"></path>
+                </svg>
+                <div>
+                    <div class="tip-title">Success</div>
+                    <div class="tip-body">
+                        Use <code>.tip--success</code> to confirm an action or show
+                        a completed state.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip tip--warning">
+                <svg
+                    class="tip-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path
+                        d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"
+                    ></path><path d="M12 9v4M12 17h.01"></path>
+                </svg>
+                <div>
+                    <div class="tip-title">Warning</div>
+                    <div class="tip-body">
+                        Use <code>.tip--warning</code> to flag something that requires
+                        attention before proceeding.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip tip--danger">
+                <svg
+                    class="tip-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="12" cy="12" r="10"></circle><path
+                        d="M15 9l-6 6M9 9l6 6"></path>
+                </svg>
+                <div>
+                    <div class="tip-title">Danger</div>
+                    <div class="tip-body">
+                        Use <code>.tip--danger</code> for destructive or critical
+                        error messages.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip tip--neutral">
+                <svg
+                    class="tip-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path
+                        d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"
+                    ></path><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path>
+                </svg>
+                <div>
+                    <div class="tip-title">Note</div>
+                    <div class="tip-body">
+                        Use <code>.tip--neutral</code> for side notes or supplementary
+                        context.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Base + variant modifier -->
+<div class="tip tip--info">
+  <svg class="tip-icon">...</svg>
+  <div>
+    <div class="tip-title">Info</div>
+    <div class="tip-body">Message text here.</div>
+  </div>
+</div>
+
+<!-- Without icon -->
+<div class="tip tip--warning">
+  <div>
+    <div class="tip-title">Warning</div>
+    <div class="tip-body">This action cannot be undone.</div>
+  </div>
+</div>
+
+<!-- All variants -->
+<div class="tip tip--info">...</div>
+<div class="tip tip--success">...</div>
+<div class="tip tip--warning">...</div>
+<div class="tip tip--danger">...</div>
+<div class="tip tip--neutral">...</div>'
+                >
+                    <span class="c">/* Base + variant modifier */</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"tip tip--info"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;svg</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"tip-icon"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/svg&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"tip-title"</span
+                    ><span class="k">&gt;</span>Info<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"tip-body"</span
+                    ><span class="k">&gt;</span>Message text.<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
+                    <span class="k">&lt;/div&gt;</span><br /><br />
+                    <span class="c">/* Without icon */</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"tip tip--warning"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"tip-title"</span
+                    ><span class="k">&gt;</span>Warning<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"tip-body"</span
+                    ><span class="k">&gt;</span>Cannot be undone.<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;/div&gt;</span><br /><br />
+                    <span class="c">/* All variants */</span><br />
+                    <span class="k">.tip--info</span> &nbsp;&nbsp;&nbsp;<span
+                        class="c">/* primary color */</span
+                    ><br />
+                    <span class="k">.tip--success</span>
+                    <span class="c">/* green */</span><br />
+                    <span class="k">.tip--warning</span>
+                    <span class="c">/* yellow */</span><br />
+                    <span class="k">.tip--danger</span> &nbsp;<span class="c"
+                        >/* red */</span
+                    ><br />
+                    <span class="k">.tip--neutral</span>
+                    <span class="c">/* muted */</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Font Families ── -->
+    <div class="lib-component" id="font-families">
+        <div class="lib-component-label">
+            Font Families — <code>--font-*</code>
+        </div>
+
+        <div class="tk-fonts-label-row">Sans-serif / Display — 12 families</div>
+        <div class="tk-font-grid px-8">
+            <div class="tk-font-card">
+                <div class="tk-font-big" style="font-family:var(--font-inter)">
+                    Inter
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-inter)"
+                >
+                    Aa Bb 123 &amp;!@
+                </div><code class="tk-font-var">--font-inter</code>
+            </div>
+            <div class="tk-font-card">
+                <div
+                    class="tk-font-big"
+                    style="font-family:var(--font-poppins)"
+                >
+                    Poppins
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-poppins)"
+                >
+                    Aa Bb 123 &amp;!@
+                </div><code class="tk-font-var">--font-poppins</code>
+            </div>
+            <div class="tk-font-card">
+                <div
+                    class="tk-font-big"
+                    style="font-family:var(--font-montserrat)"
+                >
+                    Montserrat
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-montserrat)"
+                >
+                    Aa Bb 123 &amp;!@
+                </div><code class="tk-font-var">--font-montserrat</code>
+            </div>
+            <div class="tk-font-card">
+                <div class="tk-font-big" style="font-family:var(--font-outfit)">
+                    Outfit
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-outfit)"
+                >
+                    Aa Bb 123 &amp;!@
+                </div><code class="tk-font-var">--font-outfit</code>
+            </div>
+            <div class="tk-font-card">
+                <div
+                    class="tk-font-big"
+                    style="font-family:var(--font-jakarta)"
+                >
+                    Jakarta
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-jakarta)"
+                >
+                    Aa Bb 123 &amp;!@
+                </div><code class="tk-font-var">--font-jakarta</code>
+            </div>
+            <div class="tk-font-card">
+                <div
+                    class="tk-font-big"
+                    style="font-family:var(--font-dm-sans)"
+                >
+                    DM Sans
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-dm-sans)"
+                >
+                    Aa Bb 123 &amp;!@
+                </div><code class="tk-font-var">--font-dm-sans</code>
+            </div>
+            <div class="tk-font-card">
+                <div class="tk-font-big" style="font-family:var(--font-nunito)">
+                    Nunito
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-nunito)"
+                >
+                    Aa Bb 123 &amp;!@
+                </div><code class="tk-font-var">--font-nunito</code>
+            </div>
+            <div class="tk-font-card">
+                <div class="tk-font-big" style="font-family:var(--font-space)">
+                    Space Grotesk
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-space)"
+                >
+                    Aa Bb 123 &amp;!@
+                </div><code class="tk-font-var">--font-space</code>
+            </div>
+            <div class="tk-font-card">
+                <div
+                    class="tk-font-big"
+                    style="font-family:var(--font-manrope)"
+                >
+                    Manrope
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-manrope)"
+                >
+                    Aa Bb 123 &amp;!@
+                </div><code class="tk-font-var">--font-manrope</code>
+            </div>
+            <div class="tk-font-card">
+                <div
+                    class="tk-font-big"
+                    style="font-family:var(--font-figtree)"
+                >
+                    Figtree
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-figtree)"
+                >
+                    Aa Bb 123 &amp;!@
+                </div><code class="tk-font-var">--font-figtree</code>
+            </div>
+            <div class="tk-font-card">
+                <div class="tk-font-big" style="font-family:var(--font-sora)">
+                    Sora
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-sora)"
+                >
+                    Aa Bb 123 &amp;!@
+                </div><code class="tk-font-var">--font-sora</code>
+            </div>
+            <div class="tk-font-card">
+                <div class="tk-font-big" style="font-family:var(--font-roboto)">
+                    Roboto
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-roboto)"
+                >
+                    Aa Bb 123 &amp;!@
+                </div><code class="tk-font-var">--font-roboto</code>
+            </div>
+        </div>
+
+        <div class="tk-fonts-label-row tk-fonts-label-mono">
+            Monospace — 3 families
+        </div>
+        <div class="tk-font-grid px-8">
+            <div class="tk-font-card tk-font-card--mono">
+                <div
+                    class="tk-font-big"
+                    style="font-family:var(--font-roboto-mono);font-size:18px"
+                >
+                    Roboto Mono
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-roboto-mono)"
+                >
+                    const x = 42; // 0Oo
+                </div><code class="tk-font-var">--font-roboto-mono</code>
+            </div>
+            <div class="tk-font-card tk-font-card--mono">
+                <div
+                    class="tk-font-big"
+                    style="font-family:var(--font-jetbrains);font-size:18px"
+                >
+                    JetBrains Mono
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-jetbrains)"
+                >
+                    const x = 42; // 0Oo
+                </div><code class="tk-font-var">--font-jetbrains</code>
+            </div>
+            <div class="tk-font-card tk-font-card--mono">
+                <div
+                    class="tk-font-big"
+                    style="font-family:var(--font-fira-code);font-size:18px"
+                >
+                    Fira Code
+                </div><div
+                    class="tk-font-abc"
+                    style="font-family:var(--font-fira-code)"
+                >
+                    const x = 42; // 0Oo
+                </div><code class="tk-font-var">--font-fira-code</code>
+            </div>
+        </div>
+
+        <div class="tk-font-roles">
+            <div class="tk-role-pill">
+                <span class="tk-role-key">--font-sans</span><span
+                    class="tk-role-arrow">→</span
+                ><span class="tk-role-val">var(--font-inter)</span><span
+                    class="tk-role-desc">body text</span
+                >
+            </div>
+            <div class="tk-role-pill">
+                <span class="tk-role-key">--font-heading</span><span
+                    class="tk-role-arrow">→</span
+                ><span class="tk-role-val">var(--font-poppins)</span><span
+                    class="tk-role-desc">headings</span
+                >
+            </div>
+            <div class="tk-role-pill">
+                <span class="tk-role-key">--font-mono</span><span
+                    class="tk-role-arrow">→</span
+                ><span class="tk-role-val">var(--font-roboto-mono)</span><span
+                    class="tk-role-desc">code</span
+                >
+            </div>
+        </div>
+
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw="/* Active roles — change here to restyle entire project */
+--font-sans:    var(--font-inter);       /* body text */
+--font-heading: var(--font-poppins);     /* headings  */
+--font-mono:    var(--font-roboto-mono); /* code      */
+
+/* Usage */
+font-family: var(--font-sans);
+font-family: var(--font-heading);
+font-family: var(--font-mono);
+
+/* Or apply a specific font directly */
+font-family: var(--font-space);"
+                >
+                    <span class="c"
+                        >/* Active roles — change to restyle entire project */</span
+                    ><br /><span class="cn">--font-sans</span>: <span class="v"
+                        >var(--font-inter)</span
+                    >;<br /><span class="cn">--font-heading</span>: <span
+                        class="v">var(--font-poppins)</span
+                    >;<br /><span class="cn">--font-mono</span>: <span class="v"
+                        >var(--font-roboto-mono)</span
+                    >;<br /><br /><span class="c">/* Usage */</span><br /><span
+                        class="v">font-family</span
+                    >: <span class="cn">var(--font-sans)</span>;<br /><span
+                        class="v">font-family</span
+                    >: <span class="cn">var(--font-heading)</span>;<br /><span
+                        class="v">font-family</span
+                    >: <span class="cn">var(--font-mono)</span>;
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Font Sizes ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Font sizes — fixed</div>
+        <div class="lib-preview col" style="gap:0;padding:0">
+            <div class="tk-scale">
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-xs</code><span
+                        class="tk-scale-px">12px</span
+                    ><span class="tk-scale-bar" style="width:6%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-xs)"
+                        >Caption · Label · Helper</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-sm</code><span
+                        class="tk-scale-px">14px</span
+                    ><span class="tk-scale-bar" style="width:10%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-sm)"
+                        >Small text · Button · Badge</span
+                    >
+                </div>
+                <div class="tk-scale-row tk-scale-row--active">
+                    <code class="tk-scale-var">--fs-base</code><span
+                        class="tk-scale-px">16px</span
+                    ><span class="tk-scale-bar" style="width:14%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-base)"
+                        >Body paragraph — default size</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-lg</code><span
+                        class="tk-scale-px">18px</span
+                    ><span class="tk-scale-bar" style="width:18%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-lg)"
+                        >Large body · Lead text</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-xl</code><span
+                        class="tk-scale-px">20px</span
+                    ><span class="tk-scale-bar" style="width:22%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-xl)">Subheading</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-2xl</code><span
+                        class="tk-scale-px">24px</span
+                    ><span class="tk-scale-bar" style="width:27%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-2xl)">Section title</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-3xl</code><span
+                        class="tk-scale-px">30px</span
+                    ><span class="tk-scale-bar" style="width:33%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-3xl)">H3 heading</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-4xl</code><span
+                        class="tk-scale-px">36px</span
+                    ><span class="tk-scale-bar" style="width:40%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-4xl);line-height:1">H2</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-5xl</code><span
+                        class="tk-scale-px">48px</span
+                    ><span class="tk-scale-bar" style="width:48%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-5xl);line-height:1">H1</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-6xl</code><span
+                        class="tk-scale-px">60px</span
+                    ><span class="tk-scale-bar" style="width:56%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-6xl);line-height:1"
+                        >Display</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-hero</code><span
+                        class="tk-scale-px">96px</span
+                    ><span class="tk-scale-bar" style="width:65%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:clamp(28px,5vw,60px);line-height:1;font-family:var(--font-heading);font-weight:800"
+                        >Hero</span
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw="font-size: var(--fs-sm);    /* 14px */
+font-size: var(--fs-base);  /* 16px — default */
+font-size: var(--fs-2xl);   /* 24px */
+font-size: var(--fs-5xl);   /* 48px */
+font-size: var(--fs-hero);  /* 96px */"
+                >
+                    <span class="v">font-size</span>: <span class="cn"
+                        >var(--fs-sm)</span
+                    >; <span class="c">/* 14px */</span><br /><span class="v"
+                        >font-size</span
+                    >: <span class="cn">var(--fs-base)</span>; <span class="c"
+                        >/* 16px */</span
+                    ><br /><span class="v">font-size</span>: <span class="cn"
+                        >var(--fs-2xl)</span
+                    >; <span class="c">/* 24px */</span><br /><span class="v"
+                        >font-size</span
+                    >: <span class="cn">var(--fs-5xl)</span>; <span class="c"
+                        >/* 48px */</span
+                    ><br /><span class="v">font-size</span>: <span class="cn"
+                        >var(--fs-hero)</span
+                    >; <span class="c">/* 96px */</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">
+            Font sizes — fluid <code
+                style="font-size:11px;opacity:0.6;font-family:var(--font-mono)"
+                >clamp(min · vw · max)</code
+            >
+        </div>
+        <div class="lib-preview col" style="gap:0;padding:0">
+            <div class="tk-scale">
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-f-xs</code><span
+                        class="tk-scale-clamp">10 → 12px</span
+                    ><span class="tk-scale-bar" style="width:6%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-f-xs)">Caption · Label</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-f-sm</code><span
+                        class="tk-scale-clamp">12 → 14px</span
+                    ><span class="tk-scale-bar" style="width:10%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-f-sm)">Small helper text</span
+                    >
+                </div>
+                <div class="tk-scale-row tk-scale-row--active">
+                    <code class="tk-scale-var">--fs-f-base</code><span
+                        class="tk-scale-clamp">14 → 16px</span
+                    ><span class="tk-scale-bar" style="width:14%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-f-base)"
+                        >Body — fluid default</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-f-lg</code><span
+                        class="tk-scale-clamp">16 → 20px</span
+                    ><span class="tk-scale-bar" style="width:18%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-f-lg)">Large body</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-f-xl</code><span
+                        class="tk-scale-clamp">18 → 24px</span
+                    ><span class="tk-scale-bar" style="width:24%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-f-xl)">Subheading</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-f-2xl</code><span
+                        class="tk-scale-clamp">20 → 30px</span
+                    ><span class="tk-scale-bar" style="width:30%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-f-2xl)">Section title</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-f-3xl</code><span
+                        class="tk-scale-clamp">24 → 36px</span
+                    ><span class="tk-scale-bar" style="width:38%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-f-3xl);line-height:1">H3</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-f-4xl</code><span
+                        class="tk-scale-clamp">28 → 48px</span
+                    ><span class="tk-scale-bar" style="width:48%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:var(--fs-f-4xl);line-height:1">H2</span
+                    >
+                </div>
+                <div class="tk-scale-row">
+                    <code class="tk-scale-var">--fs-f-hero</code><span
+                        class="tk-scale-clamp">60 → 120px</span
+                    ><span class="tk-scale-bar" style="width:56%"></span><span
+                        class="tk-scale-text"
+                        style="font-size:clamp(28px,5vw,60px);line-height:1;font-family:var(--font-heading);font-weight:800"
+                        >Hero</span
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw="font-size: var(--fs-f-base);  /* clamp(14px,1.4vw,16px) */
+font-size: var(--fs-f-xl);    /* clamp(18px,2vw,24px)   */
+font-size: var(--fs-f-hero);  /* clamp(60px,10vw,120px) */"
+                >
+                    <span class="v">font-size</span>: <span class="cn"
+                        >var(--fs-f-base)</span
+                    >; <span class="c">/* clamp(14px,1.4vw,16px) */</span><br
+                    /><span class="v">font-size</span>: <span class="cn"
+                        >var(--fs-f-xl)</span
+                    >; <span class="c">/* clamp(18px,2vw,24px) */</span><br
+                    /><span class="v">font-size</span>: <span class="cn"
+                        >var(--fs-f-hero)</span
+                    >; <span class="c">/* clamp(60px,10vw,120px) */</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Line Height ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Line height</div>
+        <div
+            class="lib-preview"
+            style="gap:16px;align-items:stretch;flex-wrap:wrap"
+        >
+            <div class="tk-lh-card">
+                <div class="tk-lh-header">
+                    <code class="tk-lh-var">--lh-tight</code><span
+                        class="tk-lh-num">0.9</span
+                    >
+                </div>
+                <div class="tk-lh-body">
+                    <div class="tk-lh-lines" style="--lh:0.9">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <p
+                        style="line-height:0.9;font-size:13px;font-family:var(--font-heading);font-weight:700"
+                    >
+                        Display headline tight leading impact
+                    </p>
+                </div>
+                <div class="tk-lh-tag">Hero · Display</div>
+            </div>
+            <div class="tk-lh-card">
+                <div class="tk-lh-header">
+                    <code class="tk-lh-var">--lh-snug</code><span
+                        class="tk-lh-num">1.2</span
+                    >
+                </div>
+                <div class="tk-lh-body">
+                    <div class="tk-lh-lines" style="--lh:1.2">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <p style="line-height:1.2;font-size:13px">
+                        Compact heading or UI label text stays close together
+                    </p>
+                </div>
+                <div class="tk-lh-tag">Headings · Cards</div>
+            </div>
+            <div class="tk-lh-card tk-lh-card--active">
+                <div class="tk-lh-header">
+                    <code class="tk-lh-var">--lh-normal</code><span
+                        class="tk-lh-num">1.5</span
+                    >
+                </div>
+                <div class="tk-lh-body">
+                    <div class="tk-lh-lines" style="--lh:1.5">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <p style="line-height:1.5;font-size:13px">
+                        Standard body copy reads comfortably at this line height
+                    </p>
+                </div>
+                <div class="tk-lh-tag">Body · Default</div>
+            </div>
+            <div class="tk-lh-card">
+                <div class="tk-lh-header">
+                    <code class="tk-lh-var">--lh-relaxed</code><span
+                        class="tk-lh-num">1.8</span
+                    >
+                </div>
+                <div class="tk-lh-body">
+                    <div class="tk-lh-lines" style="--lh:1.8">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <p style="line-height:1.8;font-size:13px">
+                        Long-form articles and documentation with open spacing
+                    </p>
+                </div>
+                <div class="tk-lh-tag">Articles · Docs</div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw="line-height: var(--lh-tight);    /* 0.9 — hero */
+line-height: var(--lh-snug);     /* 1.2 — headings */
+line-height: var(--lh-normal);   /* 1.5 — body */
+line-height: var(--lh-relaxed);  /* 1.8 — articles */"
+                >
+                    <span class="v">line-height</span>: <span class="cn"
+                        >var(--lh-tight)</span
+                    >; <span class="c">/* 0.9 — hero */</span><br /><span
+                        class="v">line-height</span
+                    >: <span class="cn">var(--lh-snug)</span>; <span class="c"
+                        >/* 1.2 — headings */</span
+                    ><br /><span class="v">line-height</span>: <span class="cn"
+                        >var(--lh-normal)</span
+                    >; <span class="c">/* 1.5 — body */</span><br /><span
+                        class="v">line-height</span
+                    >: <span class="cn">var(--lh-relaxed)</span>; <span
+                        class="c">/* 1.8 — articles */</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .njx-font-card {
+        padding: 12px 14px;
+        background: var(--color-dark-secondary, #151515);
+        border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+        border-radius: 10px;
+        transition: border-color 0.2s;
+    }
+    .njx-font-card:hover {
+        border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+    }
+    .njx-font-sample {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--color-light, #fff);
+        margin-bottom: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .njx-font-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px;
+    }
+    .njx-font-info code {
+        font-size: 9px;
+        color: var(--color-primary);
+        background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+        padding: 2px 5px;
+        border-radius: 4px;
+        white-space: nowrap;
+    }
+    .njx-font-info span {
+        font-size: 10px;
+        color: var(--color-muted, #8a8f99);
+    }
+    .njx-font-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        background: var(--color-dark-secondary, #151515);
+        border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+        border-radius: 7px;
+        font-size: 12px;
+    }
+    .njx-font-chip-var {
+        font-family: 'Roboto Mono', monospace;
+        color: var(--color-primary);
+        font-size: 11px;
+    }
+    .njx-font-chip-val {
+        color: var(--color-muted, #8a8f99);
+    }
+    .njx-font-group-label {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--color-muted, #8a8f99);
+        margin-bottom: 8px;
+    }
+
+    /* ── Font Families (new grid) ── */
+    .tk-fonts-label-row {
+        font-size: 11px;
+        font-family: var(--font-mono);
+        color: var(--color-muted);
+        padding: 10px 16px 8px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+    .tk-fonts-label-mono {
+        margin-top: 4px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 14px;
+    }
+    .tk-font-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 10px;
+        padding: 0 10px 4px;
+    }
+    .tk-font-card {
+        background: var(--color-dark-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: var(--radius-md);
+        padding: 16px 16px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        transition: border-color var(--ease-fast);
+    }
+    .tk-font-card:hover {
+        border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+    }
+    .tk-font-card--mono {
+        background: rgba(20, 160, 255, 0.04);
+        border-color: rgba(20, 160, 255, 0.12);
+    }
+    .tk-font-big {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--color-light);
+        line-height: 1.1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .tk-font-abc {
+        font-size: 12px;
+        color: var(--color-muted);
+        margin-top: 2px;
+    }
+    .tk-font-var {
+        margin-top: 8px;
+        font-size: 10px;
+        color: var(--color-primary);
+        font-family: var(--font-mono);
+        background: rgba(20, 160, 255, 0.08);
+        border: 1px solid rgba(20, 160, 255, 0.15);
+        border-radius: 4px;
+        padding: 2px 6px;
+        display: inline-block;
+        width: fit-content;
+    }
+    .tk-font-roles {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 12px 0 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        margin-top: 4px;
+    }
+    .tk-role-pill {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 9999px;
+        padding: 5px 12px 5px 10px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+    }
+    .tk-role-key {
+        color: var(--color-primary);
+    }
+    .tk-role-arrow {
+        color: var(--color-muted);
+        opacity: 0.5;
+    }
+    .tk-role-val {
+        color: var(--color-light);
+    }
+    .tk-role-desc {
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: 10px;
+        padding: 2px 6px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 3px;
+        margin-left: 2px;
+    }
+
+    /* ── Font Scale ── */
+    .tk-scale {
+        width: 100%;
+        overflow: hidden;
+    }
+    .tk-scale-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 7px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        transition: background var(--ease-fast);
+    }
+    .tk-scale-row:hover {
+        background: rgba(255, 255, 255, 0.02);
+    }
+    .tk-scale-row--active {
+        background: rgba(20, 160, 255, 0.05);
+        border-bottom-color: rgba(20, 160, 255, 0.1);
+    }
+    .tk-scale-var {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--color-primary);
+        min-width: 90px;
+        flex-shrink: 0;
+    }
+    .tk-scale-px,
+    .tk-scale-clamp {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--color-muted);
+        min-width: 70px;
+        flex-shrink: 0;
+    }
+    .tk-scale-clamp {
+        min-width: 84px;
+    }
+    .tk-scale-bar {
+        display: block;
+        height: 3px;
+        background: linear-gradient(
+            90deg,
+            var(--color-primary) 0%,
+            color-mix(in srgb, var(--color-primary) 40%, transparent) 100%
+        );
+        border-radius: 2px;
+        min-width: 4px;
+        flex-shrink: 0;
+    }
+    .tk-scale-text {
+        color: var(--color-light);
+        line-height: 1.1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* ── Line Height ── */
+    .tk-lh-card {
+        flex: 1;
+        min-width: 160px;
+        background: var(--color-dark-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: var(--radius-md);
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .tk-lh-card--active {
+        border-color: color-mix(in srgb, var(--color-primary) 35%, transparent);
+        background: color-mix(
+            in srgb,
+            var(--color-primary) 5%,
+            var(--color-dark-secondary)
+        );
+    }
+    .tk-lh-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .tk-lh-var {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--color-primary);
+    }
+    .tk-lh-num {
+        font-family: var(--font-mono);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--color-light);
+        opacity: 0.25;
+    }
+    .tk-lh-body {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    .tk-lh-lines {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--lh, 1.5) * 13px - 13px);
+        padding-top: 2px;
+    }
+    .tk-lh-lines span {
+        display: block;
+        width: 3px;
+        height: 13px;
+        background: var(--color-primary);
+        border-radius: 2px;
+        opacity: 0.5;
+    }
+    .tk-lh-body p {
+        margin: 0;
+        color: var(--color-light);
+        opacity: 0.85;
+        font-size: 13px;
+    }
+    .tk-lh-tag {
+        font-size: 10px;
+        font-family: var(--font-mono);
+        color: var(--color-muted);
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 4px;
+        padding: 3px 7px;
+        width: fit-content;
+    }
+</style>

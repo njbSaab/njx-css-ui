@@ -1,0 +1,2121 @@
+<section class="lib-section" id="animations">
+    <div class="lib-section-title">✨ Animations</div>
+    <div class="lib-section-desc">
+        Classes from <code>_animations.css</code>. Three categories: <strong
+            >Loop</strong
+        > (always-on), <strong>Hover-triggered</strong> (CSS :hover), <strong
+            >Scroll-triggered</strong
+        > (IntersectionObserver via <code>njx.js</code>). Combine with <code
+            >.anim-fast</code
+        >, <code>.anim-slow</code>, <code>.anim-delay-*</code> modifiers.
+    </div>
+
+    <!-- ── Sub-section: Loop ── -->
+    <div class="lib-subsection-title">
+        <span>Loop — always-on</span>
+        <span class="lib-subsection-desc"
+            >No JS needed. These run continuously as long as the class is
+            applied.</span
+        >
+    </div>
+
+    <!-- ── Fade animations ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Fade animations — hover to replay</div>
+        <div class="lib-preview" style="display:block;padding:20px">
+            <div class="anim-grid">
+                <div class="anim-tile">
+                    <div class="anim-icon animate-fade-in">
+                        <svg viewBox="0 0 24 24"
+                            ><path
+                                d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                            ></path><circle cx="12" cy="12" r="3"></circle></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-fade-in</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-fade-out">
+                        <svg viewBox="0 0 24 24"
+                            ><path
+                                d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
+                            ></path><line x1="1" y1="1" x2="23" y2="23"
+                            ></line></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-fade-out</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-fade-in-up">
+                        <svg viewBox="0 0 24 24"
+                            ><line x1="12" y1="19" x2="12" y2="5"
+                            ></line><polyline points="5 12 12 5 19 12"
+                            ></polyline></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-fade-in-up</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-fade-in-down">
+                        <svg viewBox="0 0 24 24"
+                            ><line x1="12" y1="5" x2="12" y2="19"
+                            ></line><polyline points="19 12 12 19 5 12"
+                            ></polyline></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-fade-in-down</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-fade-in-left">
+                        <svg viewBox="0 0 24 24"
+                            ><line x1="19" y1="12" x2="5" y2="12"
+                            ></line><polyline points="12 19 5 12 12 5"
+                            ></polyline></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-fade-in-left</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-fade-in-right">
+                        <svg viewBox="0 0 24 24"
+                            ><line x1="5" y1="12" x2="19" y2="12"
+                            ></line><polyline points="12 5 19 12 12 19"
+                            ></polyline></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-fade-in-right</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-fade-in-out">
+                        <svg viewBox="0 0 24 24"
+                            ><circle cx="12" cy="12" r="10"></circle><path
+                                d="M12 8v4"></path><path d="M12 16h.01"
+                            ></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-fade-in-out</div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Fade-in from any direction (one-shot, play on load) -->
+<div class="animate-fade-in">Fade in</div>
+<div class="animate-fade-in-up">From below</div>
+<div class="animate-fade-in-down">From above</div>
+<div class="animate-fade-in-left">From left</div>
+<div class="animate-fade-in-right">From right</div>
+<div class="animate-fade-out">Fade out</div>
+<div class="animate-fade-in-out">Fade in/out loop</div>
+
+<!-- Combine with delay + speed -->
+<div class="animate-fade-in-up anim-delay-3 anim-slow">Later, slower</div>'
+                >
+                    <span class="c"
+                        >&lt;!-- Fade-in from any direction (one-shot) --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-fade-in"</span
+                    ><span class="k">&gt;</span>Fade in<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-fade-in-up"</span
+                    ><span class="k">&gt;</span>From below<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-fade-in-down"</span
+                    ><span class="k">&gt;</span>From above<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-fade-in-left"</span
+                    ><span class="k">&gt;</span>From left<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-fade-in-right"</span
+                    ><span class="k">&gt;</span>From right<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="c"
+                        >&lt;!-- Combine with delay + speed --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-fade-in-up anim-delay-3 anim-slow"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/div&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Float & Bounce ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">
+            Float &amp; Bounce — hover to replay
+        </div>
+        <div class="lib-preview" style="display:block;padding:20px">
+            <div class="anim-grid">
+                <div class="anim-tile">
+                    <div class="anim-icon animate-float">
+                        <svg viewBox="0 0 24 24"
+                            ><polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                            ></polygon></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-float</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-float-big">
+                        <svg viewBox="0 0 24 24"
+                            ><polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                            ></polygon></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-float-big</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-bounce">
+                        <svg viewBox="0 0 24 24"
+                            ><circle cx="12" cy="12" r="10"></circle><line
+                                x1="12"
+                                y1="8"
+                                x2="12"
+                                y2="12"></line><line
+                                x1="12"
+                                y1="16"
+                                x2="12.01"
+                                y2="16"></line></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-bounce</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-bounce-in">
+                        <svg viewBox="0 0 24 24"
+                            ><path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                            ></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-bounce-in</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-scale-in">
+                        <svg viewBox="0 0 24 24"
+                            ><polyline points="15 3 21 3 21 9"
+                            ></polyline><polyline points="9 21 3 21 3 15"
+                            ></polyline><line x1="21" y1="3" x2="14" y2="10"
+                            ></line><line x1="3" y1="21" x2="10" y2="14"
+                            ></line></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-scale-in</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-flip">
+                        <svg viewBox="0 0 24 24"
+                            ><path d="M23 4v6h-6"></path><path
+                                d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"
+                            ></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-flip</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-float-x">
+                        <svg viewBox="0 0 24 24"
+                            ><line x1="5" y1="12" x2="19" y2="12"
+                            ></line><polyline points="15 8 19 12 15 16"
+                            ></polyline><polyline points="9 8 5 12 9 16"
+                            ></polyline></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-float-x</div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Continuous float (loop) -->
+<div class="animate-float">Gentle levitation</div>
+<div class="animate-float-big">Wide arc float</div>
+<div class="animate-float-x">Horizontal sway</div>
+<div class="animate-bounce">Bouncing loop</div>
+
+<!-- One-shot entrance animations -->
+<div class="animate-bounce-in">Bounce in on load</div>
+<div class="animate-scale-in">Scale from 0</div>
+<div class="animate-flip">3D flip entrance</div>'
+                >
+                    <span class="c">&lt;!-- Continuous float (loop) --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-float"</span
+                    ><span class="k">&gt;</span>Gentle levitation<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-float-big"</span
+                    ><span class="k">&gt;</span>Wide arc float<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-bounce"</span
+                    ><span class="k">&gt;</span>Bouncing loop<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="c">&lt;!-- One-shot entrance --&gt;</span><br
+                    />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-bounce-in"</span
+                    ><span class="k">&gt;</span>Bounce in<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-scale-in"</span
+                    ><span class="k">&gt;</span>Scale from 0<span class="k"
+                        >&lt;/div&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Sub-section: Hover ── -->
+    <div class="lib-subsection-title">
+        <span>Hover-triggered</span>
+        <span class="lib-subsection-desc"
+            >Plays once on <code>:hover</code>. No JS needed.</span
+        >
+    </div>
+
+    <!-- ── Spin & Rotate ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">
+            Spin &amp; Rotate — hover to replay
+        </div>
+        <div class="lib-preview" style="display:block;padding:20px">
+            <div class="anim-grid">
+                <div class="anim-tile">
+                    <div class="anim-icon animate-spin">
+                        <svg viewBox="0 0 24 24"
+                            ><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-spin</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-spin-slow">
+                        <svg viewBox="0 0 24 24"
+                            ><circle cx="12" cy="12" r="10"></circle><polyline
+                                points="12 6 12 12 16 14"></polyline></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-spin-slow</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-rotate">
+                        <svg viewBox="0 0 24 24"
+                            ><polyline points="23 4 23 10 17 10"
+                            ></polyline><polyline points="1 20 1 14 7 14"
+                            ></polyline><path
+                                d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
+                            ></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-rotate</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-spin-y">
+                        <svg viewBox="0 0 24 24"
+                            ><rect x="3" y="3" width="18" height="18" rx="2"
+                            ></rect></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-spin-y</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-spin-x">
+                        <svg viewBox="0 0 24 24"
+                            ><circle cx="12" cy="12" r="10"></circle></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-spin-x</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-spin-ccw">
+                        <svg viewBox="0 0 24 24"
+                            ><polyline points="1 4 1 10 7 10"></polyline><path
+                                d="M3.51 15a9 9 0 1 0 .49-3.4"></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-spin-ccw</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-spin-bounce">
+                        <svg viewBox="0 0 24 24"
+                            ><polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                            ></polygon></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-spin-bounce</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-spin-wobble">
+                        <svg viewBox="0 0 24 24"
+                            ><path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                            ></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-spin-wobble</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-spin-fade">
+                        <svg viewBox="0 0 24 24"
+                            ><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-spin-fade</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-spin-180">
+                        <svg viewBox="0 0 24 24"
+                            ><path
+                                d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
+                            ></path><path d="M3 3v5h5"></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-spin-180</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-spin-swing">
+                        <svg viewBox="0 0 24 24"
+                            ><line x1="12" y1="2" x2="12" y2="6"></line><line
+                                x1="12"
+                                y1="18"
+                                x2="12"
+                                y2="22"></line><line
+                                x1="4.93"
+                                y1="4.93"
+                                x2="7.76"
+                                y2="7.76"></line><line
+                                x1="16.24"
+                                y1="16.24"
+                                x2="19.07"
+                                y2="19.07"></line><line
+                                x1="2"
+                                y1="12"
+                                x2="6"
+                                y2="12"></line><line
+                                x1="18"
+                                y1="12"
+                                x2="22"
+                                y2="12"></line><line
+                                x1="4.93"
+                                y1="19.07"
+                                x2="7.76"
+                                y2="16.24"></line><line
+                                x1="16.24"
+                                y1="7.76"
+                                x2="19.07"
+                                y2="4.93"></line></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-spin-swing</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-spin-rock">
+                        <svg viewBox="0 0 24 24"
+                            ><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path
+                                d="M2 17l10 5 10-5"></path><path
+                                d="M2 12l10 5 10-5"></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-spin-rock</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-spin-tilt">
+                        <svg viewBox="0 0 24 24"
+                            ><rect x="3" y="3" width="18" height="18" rx="2"
+                            ></rect><line x1="9" y1="3" x2="9" y2="21"
+                            ></line></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-spin-tilt</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-spin-yoyo">
+                        <svg viewBox="0 0 24 24"
+                            ><circle cx="12" cy="12" r="10"></circle><path
+                                d="M12 8v4l3 3"></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-spin-yoyo</div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Hover-triggered (play once on hover) -->
+<div class="animate-spin-y">3D flip Y</div>
+<div class="animate-spin-x">3D flip X</div>
+<div class="animate-spin-ccw">Counter-clockwise</div>
+<div class="animate-spin-bounce">Spin + bounce</div>
+<div class="animate-spin-wobble">Wobble</div>
+<div class="animate-spin-180">Half turn</div>
+<div class="animate-spin-swing">Pendulum swing</div>
+<div class="animate-spin-rock">Rock / teeter</div>
+<div class="animate-spin-tilt">Tilt 45°</div>
+<div class="animate-spin-yoyo">Spin & return</div>
+
+<!-- Loop (always spinning) -->
+<svg class="animate-spin">...</svg>
+<div class="animate-spin-slow">...</div>
+<div class="animate-spin-fade">...</div>
+<div class="animate-rotate">...</div>'
+                >
+                    <span class="c"
+                        >&lt;!-- Hover-triggered (one-shot on hover) --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin-y"</span
+                    ><span class="k">&gt;</span>3D flip Y<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin-x"</span
+                    ><span class="k">&gt;</span>3D flip X<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin-ccw"</span
+                    ><span class="k">&gt;</span>Counter-clockwise<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin-bounce"</span
+                    ><span class="k">&gt;</span>Spin + bounce<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin-wobble"</span
+                    ><span class="k">&gt;</span>Wobble<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin-180"</span
+                    ><span class="k">&gt;</span>Half turn<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin-swing"</span
+                    ><span class="k">&gt;</span>Pendulum<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin-rock"</span
+                    ><span class="k">&gt;</span>Rock<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin-tilt"</span
+                    ><span class="k">&gt;</span>Tilt 45°<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin-yoyo"</span
+                    ><span class="k">&gt;</span>Yoyo<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="c">&lt;!-- Loop --&gt;</span><br />
+                    <span class="k">&lt;svg</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/svg&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin-slow"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin-fade"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Shake, Wiggle & Attention ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">
+            Shake, Wiggle &amp; Attention — click to trigger
+        </div>
+        <div class="lib-preview" style="display:block;padding:20px">
+            <div class="anim-grid">
+                <div
+                    class="anim-tile"
+                    onclick="triggerAnim('anim-shake-icon','animate-shake')"
+                >
+                    <div
+                        class="anim-icon"
+                        id="anim-shake-icon"
+                        style="background:color-mix(in srgb,var(--color-error,#ef4444) 16%,transparent)"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            style="stroke:var(--color-error,#ef4444)"
+                            ><path
+                                d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"
+                            ></path><path d="M13.73 21a2 2 0 0 1-3.46 0"
+                            ></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-shake</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-wiggle">
+                        <svg viewBox="0 0 24 24"
+                            ><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"
+                            ></path><path
+                                d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"
+                            ></path><path
+                                d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"
+                            ></path><path
+                                d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"
+                            ></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-wiggle</div>
+                </div>
+                <div
+                    class="anim-tile"
+                    onclick="triggerAnim('anim-tada-icon','animate-tada')"
+                >
+                    <div
+                        class="anim-icon"
+                        id="anim-tada-icon"
+                        style="background:color-mix(in srgb,var(--color-warning,#f59e0b) 18%,transparent)"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            style="stroke:var(--color-warning,#f59e0b)"
+                            ><polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                            ></polygon></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-tada</div>
+                </div>
+                <div
+                    class="anim-tile"
+                    onclick="triggerAnim('anim-rubber-icon','animate-rubber')"
+                >
+                    <div class="anim-icon" id="anim-rubber-icon">
+                        <svg viewBox="0 0 24 24"
+                            ><polyline points="15 3 21 3 21 9"
+                            ></polyline><polyline points="9 21 3 21 3 15"
+                            ></polyline><line x1="21" y1="3" x2="14" y2="10"
+                            ></line><line x1="3" y1="21" x2="10" y2="14"
+                            ></line></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-rubber</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-heartbeat">
+                        <svg viewBox="0 0 24 24"
+                            ><path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                            ></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-heartbeat</div>
+                </div>
+                <div
+                    class="anim-tile"
+                    onclick="triggerAnim('anim-shake-y-icon','animate-shake-y')"
+                >
+                    <div
+                        class="anim-icon"
+                        id="anim-shake-y-icon"
+                        style="background:color-mix(in srgb,var(--color-accent,#a78bfa) 16%,transparent)"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            style="stroke:var(--color-accent,#a78bfa)"
+                            ><line x1="12" y1="2" x2="12" y2="22"></line><path
+                                d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                            ></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-shake-y</div>
+                </div>
+                <div
+                    class="anim-tile"
+                    onclick="triggerAnim('anim-buzz-icon','animate-buzz')"
+                >
+                    <div
+                        class="anim-icon"
+                        id="anim-buzz-icon"
+                        style="background:color-mix(in srgb,var(--color-primary,#6366f1) 16%,transparent)"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            style="stroke:var(--color-primary,#6366f1)"
+                            ><polygon
+                                points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"
+                            ></polygon></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-buzz</div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- One-shot: play once per trigger -->
+<div class="animate-shake">Error state</div>   <!-- horizontal shake -->
+<div class="animate-shake-y">Vertical shake</div>
+<div class="animate-buzz">Buzz / jitter</div>
+<div class="animate-tada">Celebration!</div>   <!-- scale + rotate party -->
+<div class="animate-rubber">Stretch!</div>     <!-- rubberBand squish -->
+
+<!-- Loop: continuous attention getter -->
+<div class="animate-wiggle">Wiggling...</div>
+<div class="animate-heartbeat">● Live</div>
+
+<!-- JS replay trick -->
+el.classList.remove("animate-shake");
+void el.offsetWidth; // force reflow
+el.classList.add("animate-shake");'
+                >
+                    <span class="c">&lt;!-- One-shot (play once) --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-shake"</span
+                    ><span class="k">&gt;</span>Horizontal shake<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-shake-y"</span
+                    ><span class="k">&gt;</span>Vertical shake<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-buzz"</span
+                    ><span class="k">&gt;</span>Buzz / jitter<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-tada"</span
+                    ><span class="k">&gt;</span>Celebration!<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-rubber"</span
+                    ><span class="k">&gt;</span>Stretch<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="c">&lt;!-- JS replay --&gt;</span><br />
+                    el.classList.remove(<span class="cn">"animate-shake"</span
+                    >);<br />
+                    <span class="k">void</span> el.offsetWidth;<br />
+                    el.classList.add(<span class="cn">"animate-shake"</span>);
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Pulse & Scale ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">
+            Pulse &amp; Scale — hover to replay
+        </div>
+        <div class="lib-preview" style="display:block;padding:20px">
+            <div class="anim-grid">
+                <div class="anim-tile">
+                    <div class="anim-icon animate-pulse">
+                        <svg viewBox="0 0 24 24"
+                            ><circle cx="12" cy="12" r="10"></circle><circle
+                                cx="12"
+                                cy="12"
+                                r="4"></circle></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-pulse</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-scale">
+                        <svg viewBox="0 0 24 24"
+                            ><path
+                                d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"
+                            ></path></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-scale</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-scale-big">
+                        <svg viewBox="0 0 24 24"
+                            ><polyline points="15 3 21 3 21 9"
+                            ></polyline><polyline points="9 21 3 21 3 15"
+                            ></polyline><line x1="21" y1="3" x2="14" y2="10"
+                            ></line><line x1="3" y1="21" x2="10" y2="14"
+                            ></line></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-scale-big</div>
+                </div>
+                <div class="anim-tile">
+                    <div
+                        class="anim-icon animate-border-pulse"
+                        style="background:transparent;border:2px solid var(--color-primary)"
+                    >
+                        <svg viewBox="0 0 24 24"
+                            ><rect
+                                x="3"
+                                y="3"
+                                width="18"
+                                height="18"
+                                rx="2"
+                                ry="2"></rect></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-border-pulse</div>
+                </div>
+                <div class="anim-tile">
+                    <div
+                        class="anim-icon animate-shimmer"
+                        style="background:none;width:80px;height:16px;border-radius:4px"
+                    >
+                    </div>
+                    <div class="anim-label">.animate-shimmer</div>
+                </div>
+                <div class="anim-tile">
+                    <div class="anim-icon animate-scale-out">
+                        <svg viewBox="0 0 24 24"
+                            ><polyline points="4 14 10 14 10 20"
+                            ></polyline><polyline points="20 10 14 10 14 4"
+                            ></polyline><line x1="14" y1="10" x2="21" y2="3"
+                            ></line><line x1="3" y1="21" x2="10" y2="14"
+                            ></line></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-scale-out</div>
+                </div>
+                <div class="anim-tile">
+                    <div
+                        class="anim-icon animate-ping"
+                        style="position:relative"
+                    >
+                        <svg viewBox="0 0 24 24"
+                            ><circle cx="12" cy="12" r="10"></circle><circle
+                                cx="12"
+                                cy="12"
+                                r="3"></circle></svg
+                        >
+                    </div>
+                    <div class="anim-label">.animate-ping</div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Subtle scale pulse (loop) -->
+<div class="animate-pulse">Scale 1→1.05</div>
+<div class="animate-scale-big">Scale 1→1.1</div>
+<div class="animate-ping">Ping / ring pulse</div>
+<div class="animate-scale-out">Scale out + fade</div>
+
+<!-- Border glow pulse -->
+<div class="animate-border-pulse"></div>
+
+<!-- Skeleton / loading shimmer -->
+<div class="animate-shimmer" style="height:16px;border-radius:4px"></div>
+<div class="animate-shimmer" style="height:12px;width:60%;border-radius:4px"></div>'
+                >
+                    <span class="c">&lt;!-- Scale pulse (loop) --&gt;</span><br
+                    />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-pulse"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-scale-big"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    <span class="c">&lt;!-- Border glow --&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-border-pulse"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    <span class="c">&lt;!-- Skeleton shimmer --&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-shimmer"</span
+                    >
+                    <span class="s">style</span>=<span class="cn"
+                        >"height:16px;border-radius:4px"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Text effects ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Text effects — Neon glow</div>
+        <div class="lib-preview col">
+            <div
+                class="title-sm animate-neon-primary"
+                style="font-size:var(--fs-4xl);color:var(--color-primary)"
+            >
+                .animate-neon-primary
+            </div>
+            <div
+                class="title-sm animate-neon-accent"
+                style="font-size:var(--fs-4xl);color:var(--color-accent)"
+            >
+                .animate-neon-accent
+            </div>
+            <div
+                class="title-sm animate-neon-success"
+                style="font-size:var(--fs-4xl);color:var(--color-success)"
+            >
+                .animate-neon-success
+            </div>
+            <div
+                class="title-sm animate-neon-error"
+                style="font-size:var(--fs-4xl);color:var(--color-error)"
+            >
+                .animate-neon-error
+            </div>
+            <div
+                class="title-sm animate-neon-warning"
+                style="font-size:var(--fs-4xl);color:var(--color-warning)"
+            >
+                .animate-neon-warning
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<h2 class="animate-neon-primary" style="color:var(--color-primary)">Primary</h2>
+<h2 class="animate-neon-accent"  style="color:var(--color-accent)">Accent</h2>
+<h2 class="animate-neon-success" style="color:var(--color-success)">Success</h2>
+<h2 class="animate-neon-error"   style="color:var(--color-error)">Error</h2>
+<h2 class="animate-neon-warning" style="color:var(--color-warning)">Warning</h2>'
+                >
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-neon-primary"</span
+                    >
+                    <span class="s">style</span>=<span class="cn"
+                        >"color:var(--color-primary)"</span
+                    ><span class="k">&gt;</span>Primary<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-neon-accent"</span
+                    >
+                    <span class="s">style</span>=<span class="cn"
+                        >"color:var(--color-accent)"</span
+                    ><span class="k">&gt;</span>Accent<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-neon-success"</span
+                    >
+                    <span class="s">style</span>=<span class="cn"
+                        >"color:var(--color-success)"</span
+                    ><span class="k">&gt;</span>Success<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-neon-error"</span
+                    >
+                    <span class="s">style</span>=<span class="cn"
+                        >"color:var(--color-error)"</span
+                    ><span class="k">&gt;</span>Error<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-neon-warning"</span
+                    >
+                    <span class="s">style</span>=<span class="cn"
+                        >"color:var(--color-warning)"</span
+                    ><span class="k">&gt;</span>Warning<span class="k"
+                        >&lt;/h2&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Text effects — Rainbow ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Text effects — Rainbow glow</div>
+        <div class="lib-preview col">
+            <div
+                class="title-sm animate-rainbow"
+                style="font-size:var(--fs-4xl)"
+            >
+                .animate-rainbow
+            </div>
+            <div
+                class="title-sm animate-rainbow-primary"
+                style="font-size:var(--fs-4xl);color:var(--color-primary)"
+            >
+                .animate-rainbow-primary
+            </div>
+            <div
+                class="title-sm animate-rainbow-accent"
+                style="font-size:var(--fs-4xl);color:var(--color-accent)"
+            >
+                .animate-rainbow-accent
+            </div>
+            <div
+                class="title-sm animate-rainbow-success"
+                style="font-size:var(--fs-4xl);color:var(--color-success)"
+            >
+                .animate-rainbow-success
+            </div>
+            <div
+                class="title-sm animate-rainbow-error"
+                style="font-size:var(--fs-4xl);color:var(--color-error)"
+            >
+                .animate-rainbow-error
+            </div>
+            <div
+                class="title-sm animate-rainbow-warning"
+                style="font-size:var(--fs-4xl);color:var(--color-warning)"
+            >
+                .animate-rainbow-warning
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<h2 class="animate-rainbow">Rainbow</h2>
+<h2 class="animate-rainbow-primary">Primary</h2>
+<h2 class="animate-rainbow-accent">Accent</h2>
+<h2 class="animate-rainbow-success">Success</h2>
+<h2 class="animate-rainbow-error">Error</h2>
+<h2 class="animate-rainbow-warning">Warning</h2>'
+                >
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-rainbow"</span
+                    ><span class="k">&gt;</span>Rainbow<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-rainbow-primary"</span
+                    ><span class="k">&gt;</span>Primary<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-rainbow-accent"</span
+                    ><span class="k">&gt;</span>Accent<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-rainbow-success"</span
+                    ><span class="k">&gt;</span>Success<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-rainbow-error"</span
+                    ><span class="k">&gt;</span>Error<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-rainbow-warning"</span
+                    ><span class="k">&gt;</span>Warning<span class="k"
+                        >&lt;/h2&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Text effects — Breathe ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Text effects — Breathe glow</div>
+        <div class="lib-preview col">
+            <div
+                class="title-sm animate-breathe"
+                style="font-size:var(--fs-4xl)"
+            >
+                .animate-breathe
+            </div>
+            <div
+                class="title-sm animate-breathe-primary"
+                style="font-size:var(--fs-4xl);color:var(--color-primary)"
+            >
+                .animate-breathe-primary
+            </div>
+            <div
+                class="title-sm animate-breathe-accent"
+                style="font-size:var(--fs-4xl);color:var(--color-accent)"
+            >
+                .animate-breathe-accent
+            </div>
+            <div
+                class="title-sm animate-breathe-success"
+                style="font-size:var(--fs-4xl);color:var(--color-success)"
+            >
+                .animate-breathe-success
+            </div>
+            <div
+                class="title-sm animate-breathe-error"
+                style="font-size:var(--fs-4xl);color:var(--color-error)"
+            >
+                .animate-breathe-error
+            </div>
+            <div
+                class="title-sm animate-breathe-warning"
+                style="font-size:var(--fs-4xl);color:var(--color-warning)"
+            >
+                .animate-breathe-warning
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<h2 class="animate-breathe">Breathe</h2>
+<h2 class="animate-breathe-primary" style="color:var(--color-primary)">Primary</h2>
+<h2 class="animate-breathe-accent"  style="color:var(--color-accent)">Accent</h2>
+<h2 class="animate-breathe-success" style="color:var(--color-success)">Success</h2>
+<h2 class="animate-breathe-error"   style="color:var(--color-error)">Error</h2>
+<h2 class="animate-breathe-warning" style="color:var(--color-warning)">Warning</h2>'
+                >
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-breathe"</span
+                    ><span class="k">&gt;</span>Breathe<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-breathe-primary"</span
+                    >
+                    <span class="s">style</span>=<span class="cn"
+                        >"color:var(--color-primary)"</span
+                    ><span class="k">&gt;</span>Primary<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-breathe-accent"</span
+                    >
+                    <span class="s">style</span>=<span class="cn"
+                        >"color:var(--color-accent)"</span
+                    ><span class="k">&gt;</span>Accent<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-breathe-success"</span
+                    >
+                    <span class="s">style</span>=<span class="cn"
+                        >"color:var(--color-success)"</span
+                    ><span class="k">&gt;</span>Success<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-breathe-error"</span
+                    >
+                    <span class="s">style</span>=<span class="cn"
+                        >"color:var(--color-error)"</span
+                    ><span class="k">&gt;</span>Error<span class="k"
+                        >&lt;/h2&gt;</span
+                    ><br />
+                    <span class="k">&lt;h2</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-breathe-warning"</span
+                    >
+                    <span class="s">style</span>=<span class="cn"
+                        >"color:var(--color-warning)"</span
+                    ><span class="k">&gt;</span>Warning<span class="k"
+                        >&lt;/h2&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Glow & Neon (boxes) ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Glow &amp; Shadow effects</div>
+        <div class="lib-preview" style="display:block;padding:20px">
+            <div class="glow-grid">
+                <div class="glow-tile">
+                    <div class="glow-box animate-glow"></div>
+                    <div class="glow-label">
+                        .animate-glow<br /><span style="opacity:.6"
+                            >primary theme color</span
+                        >
+                    </div>
+                </div>
+                <div class="glow-tile">
+                    <div
+                        class="glow-box animate-glow-accent"
+                        style="background:color-mix(in srgb,var(--color-accent,#a78bfa) 16%,transparent)"
+                    >
+                    </div>
+                    <div class="glow-label">
+                        .animate-glow-accent<br /><span style="opacity:.6"
+                            >accent color</span
+                        >
+                    </div>
+                </div>
+                <div class="glow-tile">
+                    <div
+                        class="glow-box animate-border-pulse"
+                        style="background:transparent;border:2px solid var(--color-primary)"
+                    >
+                    </div>
+                    <div class="glow-label">
+                        .animate-border-pulse<br /><span style="opacity:.6"
+                            >expanding ring</span
+                        >
+                    </div>
+                </div>
+                <div class="glow-tile">
+                    <div class="glow-box shadow-neon"></div>
+                    <div class="glow-label">
+                        .shadow-neon<br /><span style="opacity:.6"
+                            >static white glow</span
+                        >
+                    </div>
+                </div>
+                <div class="glow-tile">
+                    <div class="glow-box shadow-neon-primary"></div>
+                    <div class="glow-label">
+                        .shadow-neon-primary<br /><span style="opacity:.6"
+                            >static primary glow</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Pulsing glow (box-shadow based) -->
+<div class="animate-glow">Primary color glow</div>
+<div class="animate-glow-accent">Accent color glow</div>
+
+<!-- Expanding border ring -->
+<div class="animate-border-pulse"></div>
+
+<!-- Static neon shadow utilities -->
+<div class="shadow-neon">White neon glow</div>
+<div class="shadow-neon-primary">Theme color glow</div>'
+                >
+                    <span class="c">&lt;!-- Pulsing glow --&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-glow"</span
+                    ><span class="k">&gt;</span>Primary glow<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-glow-accent"</span
+                    ><span class="k">&gt;</span>Accent glow<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="c">&lt;!-- Expanding border ring --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-border-pulse"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    <span class="c">&lt;!-- Static shadow utilities --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"shadow-neon"</span
+                    ><span class="k">&gt;</span>White neon<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"shadow-neon-primary"</span
+                    ><span class="k">&gt;</span>Theme glow<span class="k"
+                        >&lt;/div&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Border & Rainbow ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Border pulse &amp; Rainbow sweep</div>
+        <div
+            class="lib-preview"
+            style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;padding:20px"
+        >
+            <div
+                style="background:var(--color-dark-secondary);border:1px solid transparent;border-radius:12px;padding:18px;text-align:center;position:relative;z-index:1"
+                class="animate-border-pulse"
+            >
+                <div
+                    style="font-size:11px;font-family:monospace;color:var(--color-muted)"
+                >
+                    .animate-border-pulse
+                </div>
+            </div>
+            <div
+                style="background:var(--color-dark-secondary);border:1px solid transparent;border-radius:12px;padding:18px;text-align:center;position:relative;z-index:1"
+                class="animate-border-pulse-primary"
+            >
+                <div
+                    style="font-size:11px;font-family:monospace;color:var(--color-primary)"
+                >
+                    .animate-border-pulse-primary
+                </div>
+            </div>
+            <div
+                style="background:var(--color-dark-secondary);border:1px solid transparent;border-radius:12px;padding:18px;text-align:center;position:relative;z-index:1"
+                class="animate-border-pulse-accent"
+            >
+                <div
+                    style="font-size:11px;font-family:monospace;color:var(--color-accent)"
+                >
+                    .animate-border-pulse-accent
+                </div>
+            </div>
+            <div
+                style="background:var(--color-dark-secondary);border:1px solid transparent;border-radius:12px;padding:18px;text-align:center;position:relative;z-index:1"
+                class="animate-border-pulse-success"
+            >
+                <div
+                    style="font-size:11px;font-family:monospace;color:var(--color-success)"
+                >
+                    .animate-border-pulse-success
+                </div>
+            </div>
+            <div
+                style="background:var(--color-dark-secondary);border:1px solid transparent;border-radius:12px;padding:18px;text-align:center;position:relative;z-index:1"
+                class="animate-border-pulse-error"
+            >
+                <div
+                    style="font-size:11px;font-family:monospace;color:var(--color-error)"
+                >
+                    .animate-border-pulse-error
+                </div>
+            </div>
+            <div
+                style="background:var(--color-dark-secondary);border:1px solid transparent;border-radius:12px;padding:18px;text-align:center;position:relative;z-index:1"
+                class="animate-border-pulse-warning"
+            >
+                <div
+                    style="font-size:11px;font-family:monospace;color:var(--color-warning)"
+                >
+                    .animate-border-pulse-warning
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Pulsing border ring — semantic colors -->
+<div class="animate-border-pulse"></div>
+<div class="animate-border-pulse-primary"></div>
+<div class="animate-border-pulse-accent"></div>
+<div class="animate-border-pulse-success"></div>
+<div class="animate-border-pulse-error"></div>
+<div class="animate-border-pulse-warning"></div>'
+                >
+                    <span class="c"
+                        >&lt;!-- Pulsing border ring — semantic colors --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-border-pulse"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-border-pulse-primary"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-border-pulse-accent"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-border-pulse-success"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-border-pulse-error"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-border-pulse-warning"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Speed & Delay modifiers ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Speed &amp; Delay modifiers</div>
+        <div class="lib-preview" style="display:block;padding:20px">
+            <div class="mod-grid">
+                <div class="mod-tile">
+                    <div class="mod-name">.anim-fast</div><div class="mod-val">
+                        0.3s duration
+                    </div>
+                </div>
+                <div class="mod-tile">
+                    <div class="mod-name">.anim-slow</div><div class="mod-val">
+                        2s duration
+                    </div>
+                </div>
+                <div class="mod-tile">
+                    <div class="mod-name">.anim-slower</div><div
+                        class="mod-val"
+                    >
+                        4s duration
+                    </div>
+                </div>
+                <div class="mod-tile">
+                    <div class="mod-name">.anim-delay-1</div><div
+                        class="mod-val"
+                    >
+                        0.1s delay
+                    </div>
+                </div>
+                <div class="mod-tile">
+                    <div class="mod-name">.anim-delay-2</div><div
+                        class="mod-val"
+                    >
+                        0.2s delay
+                    </div>
+                </div>
+                <div class="mod-tile">
+                    <div class="mod-name">.anim-delay-3</div><div
+                        class="mod-val"
+                    >
+                        0.3s delay
+                    </div>
+                </div>
+                <div class="mod-tile">
+                    <div class="mod-name">.anim-delay-5</div><div
+                        class="mod-val"
+                    >
+                        0.5s delay
+                    </div>
+                </div>
+                <div class="mod-tile">
+                    <div class="mod-name">.anim-delay-1s</div><div
+                        class="mod-val"
+                    >
+                        1s delay
+                    </div>
+                </div>
+                <div class="mod-tile">
+                    <div class="mod-name">.anim-paused</div><div
+                        class="mod-val"
+                    >
+                        Pauses animation
+                    </div>
+                </div>
+                <div class="mod-tile">
+                    <div class="mod-name">.anim-none</div><div class="mod-val">
+                        Removes animation
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Speed modifiers -->
+<div class="animate-spin anim-fast">Very fast</div>
+<div class="animate-spin anim-slow">Slow</div>
+<div class="animate-spin anim-slower">Very slow</div>
+
+<!-- Delay modifiers -->
+<div class="animate-fade-in-up anim-delay-1">0.1s later</div>
+<div class="animate-fade-in-up anim-delay-3">0.3s later</div>
+<div class="animate-fade-in-up anim-delay-1s">1s later</div>
+
+<!-- Pause / remove -->
+<div class="animate-float anim-paused">Paused</div>
+<div class="animate-float anim-none">No animation</div>
+
+<!-- Staggered entrance (great for lists) -->
+<div class="animate-fade-in-up anim-delay-1">Item 1</div>
+<div class="animate-fade-in-up anim-delay-3">Item 2</div>
+<div class="animate-fade-in-up anim-delay-5">Item 3</div>'
+                >
+                    <span class="c">&lt;!-- Speed modifiers --&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin anim-fast"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-spin anim-slow"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    <span class="c">&lt;!-- Staggered entrance --&gt;</span><br
+                    />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-fade-in-up anim-delay-1"</span
+                    ><span class="k">&gt;</span>Item 1<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-fade-in-up anim-delay-3"</span
+                    ><span class="k">&gt;</span>Item 2<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-fade-in-up anim-delay-5"</span
+                    ><span class="k">&gt;</span>Item 3<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="c">&lt;!-- Pause / remove --&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-float anim-paused"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"animate-float anim-none"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Real-world examples ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Real-world examples</div>
+        <div
+            class="lib-preview"
+            style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;padding:20px"
+        >
+            <!-- Loading button -->
+            <div
+                style="background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px;position:relative;z-index:1"
+            >
+                <div
+                    style="font-size:11px;font-weight:700;color:var(--color-muted);text-transform:uppercase;letter-spacing:.8px"
+                >
+                    Loading state
+                </div>
+                <button
+                    class="btn btn-primary"
+                    style="display:flex;align-items:center;gap:8px;justify-content:center"
+                >
+                    <svg
+                        class="animate-spin"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        ><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg
+                    >
+                    Saving...
+                </button>
+                <div
+                    style="font-size:10px;font-family:monospace;color:var(--color-muted)"
+                >
+                    svg.animate-spin inside btn
+                </div>
+            </div>
+
+            <!-- Notification badge -->
+            <div
+                style="background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px;position:relative;z-index:1"
+            >
+                <div
+                    style="font-size:11px;font-weight:700;color:var(--color-muted);text-transform:uppercase;letter-spacing:.8px"
+                >
+                    Live indicator
+                </div>
+                <div style="display:flex;align-items:center;gap:10px">
+                    <div
+                        class="animate-bounce"
+                        style="position:relative;display:inline-flex"
+                    >
+                        <svg
+                            width="28"
+                            height="28"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="var(--color-primary)"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path
+                                d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"
+                            ></path><path d="M13.73 21a2 2 0 0 1-3.46 0"
+                            ></path></svg
+                        >
+                        <span
+                            class="animate-heartbeat"
+                            style="position:absolute;top:-4px;right:-4px;width:12px;height:12px;background:#f43f5e;border-radius:50%;border:2px solid var(--сolor-dark)"
+                        ></span>
+                    </div>
+                    <span style="font-size:13px;color:var(--color-muted)"
+                        >3 new alerts</span
+                    >
+                </div>
+                <div
+                    style="font-size:10px;font-family:monospace;color:var(--color-muted)"
+                >
+                    .animate-bounce + .animate-heartbeat badge
+                </div>
+            </div>
+
+            <!-- Float + Fade-in card -->
+            <div
+                style="background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);border-radius:12px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;position:relative;z-index:1"
+            >
+                <div
+                    style="font-size:11px;font-weight:700;color:var(--color-muted);text-transform:uppercase;letter-spacing:.8px"
+                >
+                    Float + Fade
+                </div>
+                <div
+                    class="animate-float"
+                    style="width:48px;height:48px;background:color-mix(in srgb,var(--color-primary) 16%,transparent);border-radius:12px;display:flex;align-items:center;justify-content:center"
+                >
+                    <svg
+                        width="26"
+                        height="26"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="var(--color-primary)"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        ><polygon
+                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                        ></polygon></svg
+                    >
+                </div>
+                <div
+                    class="animate-fade-in"
+                    style="font-size:13px;font-weight:700;color:var(--color-light)"
+                >
+                    njX UI ✦
+                </div>
+                <div
+                    style="font-size:10px;font-family:monospace;color:var(--color-muted)"
+                >
+                    .animate-float + .animate-fade-in
+                </div>
+            </div>
+
+            <!-- Skeleton loader -->
+            <div
+                style="background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:10px;position:relative;z-index:1"
+            >
+                <div
+                    style="font-size:11px;font-weight:700;color:var(--color-muted);text-transform:uppercase;letter-spacing:.8px"
+                >
+                    Skeleton loader
+                </div>
+                <div
+                    class="animate-shimmer"
+                    style="height:12px;border-radius:4px;width:80%"
+                >
+                </div>
+                <div
+                    class="animate-shimmer anim-delay-1"
+                    style="height:12px;border-radius:4px;width:60%"
+                >
+                </div>
+                <div
+                    class="animate-shimmer anim-delay-2"
+                    style="height:12px;border-radius:4px;width:70%"
+                >
+                </div>
+                <div
+                    style="font-size:10px;font-family:monospace;color:var(--color-muted)"
+                >
+                    .animate-shimmer + .anim-delay-*
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Sub-section: Scroll-triggered ── -->
+    <div class="lib-subsection-title">
+        <span>Scroll-triggered</span>
+        <span class="lib-subsection-desc"
+            >Plays once when element enters the viewport. Requires <code
+                >njx.js</code
+            >.</span
+        >
+        <button
+            onclick="resetScrollAnimations()"
+            style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:8px;border:1px solid color-mix(in srgb,var(--color-primary) 30%,transparent);background:color-mix(in srgb,var(--color-primary) 8%,transparent);color:var(--color-primary);font-size:11px;font-weight:600;cursor:pointer;letter-spacing:.02em;transition:background .15s"
+        >
+            <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
+                ></path><path d="M3 3v5h5"></path></svg
+            >
+            Replay all
+        </button>
+    </div>
+
+    <!-- ── Scroll demos — Fade ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Fade — from any direction</div>
+        <div class="lib-preview" style="display:block">
+            <div class="scroll-demo-grid">
+                <div class="scroll-demo-card scroll-fade-up">
+                    <div class="scroll-demo-card-icon">
+                        <svg viewBox="0 0 24 24"
+                            ><line x1="12" y1="19" x2="12" y2="5"
+                            ></line><polyline points="5 12 12 5 19 12"
+                            ></polyline></svg
+                        >
+                    </div>
+                    <div class="scroll-demo-card-label">.scroll-fade-up</div>
+                </div>
+                <div class="scroll-demo-card scroll-fade-down">
+                    <div class="scroll-demo-card-icon">
+                        <svg viewBox="0 0 24 24"
+                            ><line x1="12" y1="5" x2="12" y2="19"
+                            ></line><polyline points="19 12 12 19 5 12"
+                            ></polyline></svg
+                        >
+                    </div>
+                    <div class="scroll-demo-card-label">.scroll-fade-down</div>
+                </div>
+                <div class="scroll-demo-card scroll-fade-left">
+                    <div class="scroll-demo-card-icon">
+                        <svg viewBox="0 0 24 24"
+                            ><line x1="19" y1="12" x2="5" y2="12"
+                            ></line><polyline points="12 19 5 12 12 5"
+                            ></polyline></svg
+                        >
+                    </div>
+                    <div class="scroll-demo-card-label">.scroll-fade-left</div>
+                </div>
+                <div class="scroll-demo-card scroll-fade-right">
+                    <div class="scroll-demo-card-icon">
+                        <svg viewBox="0 0 24 24"
+                            ><line x1="5" y1="12" x2="19" y2="12"
+                            ></line><polyline points="12 5 19 12 12 19"
+                            ></polyline></svg
+                        >
+                    </div>
+                    <div class="scroll-demo-card-label">.scroll-fade-right</div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<div class="scroll-fade-up">From below</div>
+<div class="scroll-fade-down">From above</div>
+<div class="scroll-fade-left">From right</div>
+<div class="scroll-fade-right">From left</div>'
+                >
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"scroll-fade-up"</span
+                    ><span class="k">&gt;</span>From below<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"scroll-fade-down"</span
+                    ><span class="k">&gt;</span>From above<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"scroll-fade-left"</span
+                    ><span class="k">&gt;</span>From right<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"scroll-fade-right"</span
+                    ><span class="k">&gt;</span>From left<span class="k"
+                        >&lt;/div&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Scroll demos — Zoom ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Zoom</div>
+        <div class="lib-preview" style="display:block">
+            <div class="scroll-demo-grid">
+                <div class="scroll-demo-card scroll-zoom-in">
+                    <div class="scroll-demo-card-icon">
+                        <svg viewBox="0 0 24 24"
+                            ><polyline points="15 3 21 3 21 9"
+                            ></polyline><polyline points="9 21 3 21 3 15"
+                            ></polyline><line x1="21" y1="3" x2="14" y2="10"
+                            ></line><line x1="3" y1="21" x2="10" y2="14"
+                            ></line></svg
+                        >
+                    </div>
+                    <div class="scroll-demo-card-label">.scroll-zoom-in</div>
+                </div>
+                <div class="scroll-demo-card scroll-zoom-out">
+                    <div class="scroll-demo-card-icon">
+                        <svg viewBox="0 0 24 24"
+                            ><polyline points="4 14 10 14 10 20"
+                            ></polyline><polyline points="20 10 14 10 14 4"
+                            ></polyline><line x1="14" y1="10" x2="21" y2="3"
+                            ></line><line x1="3" y1="21" x2="10" y2="14"
+                            ></line></svg
+                        >
+                    </div>
+                    <div class="scroll-demo-card-label">.scroll-zoom-out</div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<div class="scroll-zoom-in">Scales 0.8 → 1</div>
+<div class="scroll-zoom-out">Scales 1.2 → 1</div>'
+                >
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"scroll-zoom-in"</span
+                    ><span class="k">&gt;</span>Scales 0.8 → 1<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"scroll-zoom-out"</span
+                    ><span class="k">&gt;</span>Scales 1.2 → 1<span class="k"
+                        >&lt;/div&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Scroll demos — Flip ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">3D Flip</div>
+        <div class="lib-preview" style="display:block">
+            <div class="scroll-demo-grid">
+                <div class="scroll-demo-card scroll-flip-up">
+                    <div class="scroll-demo-card-icon">
+                        <svg viewBox="0 0 24 24"
+                            ><polyline points="23 4 23 10 17 10"
+                            ></polyline><path
+                                d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"
+                            ></path></svg
+                        >
+                    </div>
+                    <div class="scroll-demo-card-label">.scroll-flip-up</div>
+                </div>
+                <div class="scroll-demo-card scroll-flip-left">
+                    <div class="scroll-demo-card-icon">
+                        <svg viewBox="0 0 24 24"
+                            ><polyline points="1 4 1 10 7 10"></polyline><path
+                                d="M3.51 15a9 9 0 1 0 .49-3.4"></path></svg
+                        >
+                    </div>
+                    <div class="scroll-demo-card-label">.scroll-flip-left</div>
+                </div>
+                <div class="scroll-demo-card scroll-flip-right">
+                    <div class="scroll-demo-card-icon">
+                        <svg viewBox="0 0 24 24"
+                            ><polyline points="23 4 23 10 17 10"
+                            ></polyline><path
+                                d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"
+                            ></path></svg
+                        >
+                    </div>
+                    <div class="scroll-demo-card-label">.scroll-flip-right</div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<div class="scroll-flip-up">rotateX from bottom</div>
+<div class="scroll-flip-left">rotateY from left</div>
+<div class="scroll-flip-right">rotateY from right</div>'
+                >
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"scroll-flip-up"</span
+                    ><span class="k">&gt;</span>rotateX from bottom<span
+                        class="k">&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"scroll-flip-left"</span
+                    ><span class="k">&gt;</span>rotateY from left<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"scroll-flip-right"</span
+                    ><span class="k">&gt;</span>rotateY from right<span
+                        class="k">&lt;/div&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Scroll demos — Special ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Rotate, Blur, Bounce, Drop</div>
+        <div class="lib-preview" style="display:block">
+            <div class="scroll-demo-grid">
+                <div class="scroll-demo-card scroll-rotate-in">
+                    <div class="scroll-demo-card-icon">
+                        <svg viewBox="0 0 24 24"
+                            ><path
+                                d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"
+                            ></path></svg
+                        >
+                    </div>
+                    <div class="scroll-demo-card-label">.scroll-rotate-in</div>
+                </div>
+                <div class="scroll-demo-card scroll-blur-in">
+                    <div class="scroll-demo-card-icon">
+                        <svg viewBox="0 0 24 24"
+                            ><circle cx="12" cy="12" r="10"></circle><path
+                                d="M8 14s1.5 2 4 2 4-2 4-2"></path><line
+                                x1="9"
+                                y1="9"
+                                x2="9.01"
+                                y2="9"></line><line
+                                x1="15"
+                                y1="9"
+                                x2="15.01"
+                                y2="9"></line></svg
+                        >
+                    </div>
+                    <div class="scroll-demo-card-label">.scroll-blur-in</div>
+                </div>
+                <div class="scroll-demo-card scroll-bounce-in">
+                    <div class="scroll-demo-card-icon">
+                        <svg viewBox="0 0 24 24"
+                            ><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"
+                            ></polyline></svg
+                        >
+                    </div>
+                    <div class="scroll-demo-card-label">.scroll-bounce-in</div>
+                </div>
+                <div class="scroll-demo-card scroll-drop-in">
+                    <div class="scroll-demo-card-icon">
+                        <svg viewBox="0 0 24 24"
+                            ><line x1="12" y1="5" x2="12" y2="19"
+                            ></line><polyline points="19 12 12 19 5 12"
+                            ></polyline></svg
+                        >
+                    </div>
+                    <div class="scroll-demo-card-label">.scroll-drop-in</div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Slight rotation + fade -->
+<div class="scroll-rotate-in">Rotates into view</div>
+
+<!-- Blur to sharp + fade -->
+<div class="scroll-blur-in">Unblurs into view</div>
+
+<!-- Springy entrance from below -->
+<div class="scroll-bounce-in">Bounces in</div>
+
+<!-- Drops from above with overshoot -->
+<div class="scroll-drop-in">Drops in</div>'
+                >
+                    <span class="c">&lt;!-- Slight rotation + fade --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"scroll-rotate-in"</span
+                    ><span class="k">&gt;</span>Rotates into view<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="c">&lt;!-- Blur to sharp --&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"scroll-blur-in"</span
+                    ><span class="k">&gt;</span>Unblurs into view<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="c">&lt;!-- Springy entrance --&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"scroll-bounce-in"</span
+                    ><span class="k">&gt;</span>Bounces in<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="c">&lt;!-- Drops from above --&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"scroll-drop-in"</span
+                    ><span class="k">&gt;</span>Drops in<span class="k"
+                        >&lt;/div&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Scroll demos — Stagger ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">
+            Stagger — children appear in sequence
+        </div>
+        <div class="lib-preview" style="display:block;padding:20px">
+            <div
+                class="scroll-stagger"
+                style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px"
+            >
+                <div class="scroll-demo-card">Item 1</div>
+                <div class="scroll-demo-card">Item 2</div>
+                <div class="scroll-demo-card">Item 3</div>
+                <div class="scroll-demo-card">Item 4</div>
+                <div class="scroll-demo-card">Item 5</div>
+                <div class="scroll-demo-card">Item 6</div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Add .scroll-stagger to parent — children animate one by one -->
+<div class="scroll-stagger" style="display:flex;gap:10px">
+  <div>Card 1</div>
+  <div>Card 2</div>
+  <div>Card 3</div>
+</div>
+
+<!-- Works with any layout -->
+<ul class="scroll-stagger">
+  <li>Item A</li>
+  <li>Item B</li>
+  <li>Item C</li>
+</ul>'
+                >
+                    <span class="c"
+                        >&lt;!-- Add .scroll-stagger to parent —&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"scroll-stagger"</span
+                    >
+                    <span class="s">style</span>=<span class="cn"
+                        >"display:flex;gap:10px"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div&gt;</span>Card 1<span
+                        class="k">&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div&gt;</span>Card 2<span
+                        class="k">&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div&gt;</span>Card 3<span
+                        class="k">&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;/div&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

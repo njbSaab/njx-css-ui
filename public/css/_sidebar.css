@@ -1,0 +1,580 @@
+/* ============================================================
+   _sidebar.css — Sidebar / Drawer component
+   ============================================================
+
+   Variants:
+   ┌─────────────────────────────────────────────────────────┐
+   │ .sidebar                  — base (left, overlay mode)   │
+   │ .sidebar.sidebar-right    — slides from right           │
+   │ .sidebar.sidebar-push     — pushes page content         │
+   │ .sidebar.sidebar-right.sidebar-push — push from right   │
+   │ .sidebar.sidebar-fullpage — full viewport overlay        │
+   └─────────────────────────────────────────────────────────┘
+
+   Required HTML wrapper for push variants:
+     <div class="sidebar-layout">
+       <aside class="sidebar sidebar-push" id="my-sidebar">...</aside>
+       <div class="sidebar-content">...page content...</div>
+     </div>
+
+   Open/Close via JS:
+     sidebarOpen('my-sidebar')
+     sidebarClose('my-sidebar')
+     sidebarToggle('my-sidebar')
+
+   Backdrop click to close (also closes on click outside automatically):
+     <div class="sidebar-backdrop" id="my-sidebar-backdrop"></div>
+   ============================================================ */
+
+/* ── CSS Variables ── */
+:root {
+  --sidebar-width:    280px;
+  --sidebar-bg:       var(--color-dark-secondary);
+  --sidebar-border:   color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+  --sidebar-shadow:   0 8px 48px rgba(0, 0, 0, 0.38);
+  --sidebar-duration: 0.28s;
+  --sidebar-ease:     cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ══════════════════════════════════════════
+   BASE SIDEBAR
+══════════════════════════════════════════ */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  height: 100dvh;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border);
+  display: flex;
+  flex-direction: column;
+  z-index: calc(var(--z-modal) - 1);
+  transform: translateX(-100%);
+  transition: transform var(--sidebar-duration) var(--sidebar-ease),
+              box-shadow var(--sidebar-duration) var(--sidebar-ease);
+  overflow: hidden;
+}
+
+.sidebar.is-open {
+  transform: translateX(0);
+  box-shadow: var(--sidebar-shadow);
+}
+
+/* ── Header ── */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--sidebar-border);
+  flex-shrink: 0;
+  min-height: 60px;
+  gap: var(--space-3);
+}
+
+.sidebar-title {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--color-light);
+  flex: 1;
+}
+
+/* ── Brand (logo + name in header) ── */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+  min-width: 0;
+}
+.sidebar-brand-logo {
+  font-size: var(--fs-xl);
+  font-weight: 900;
+  color: var(--color-primary);
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.sidebar-brand-text {
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+/* ── Close button ── */
+.sidebar-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  color: var(--color-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background var(--ease-fast), color var(--ease-fast);
+  flex-shrink: 0;
+}
+.sidebar-close:hover {
+  background: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+  color: var(--color-light);
+}
+.sidebar-close svg { pointer-events: none; }
+
+/* Larger close button for fullpage variant */
+.sidebar-close-lg {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+}
+.sidebar-close-lg:hover {
+  background: color-mix(in srgb, var(--color-error) 12%, transparent);
+  color: var(--color-error);
+}
+
+/* ── Body ── */
+.sidebar-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  /* Custom slim scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--sidebar-border) transparent;
+}
+.sidebar-body::-webkit-scrollbar { width: 4px; }
+.sidebar-body::-webkit-scrollbar-track { background: transparent; }
+.sidebar-body::-webkit-scrollbar-thumb {
+  background: var(--sidebar-border);
+  border-radius: 4px;
+}
+
+/* ── Footer ── */
+.sidebar-footer {
+  padding: var(--space-3) var(--space-5);
+  border-top: 1px solid var(--sidebar-border);
+  flex-shrink: 0;
+}
+
+/* ── Nav links inside sidebar ── */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  color: var(--color-muted-light);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--ease-fast), color var(--ease-fast);
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  position: relative;
+}
+.sidebar-link:hover {
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  color: var(--color-light);
+}
+/* Active state — left accent bar */
+.sidebar-link.is-active {
+  background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+.sidebar-link.is-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 3px;
+  background: var(--color-primary);
+  border-radius: 0 3px 3px 0;
+}
+.sidebar-link svg { flex-shrink: 0; opacity: 0.65; }
+.sidebar-link.is-active svg { opacity: 1; }
+
+/* ── Section label ── */
+.sidebar-label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  color: var(--color-muted);
+  padding: var(--space-4) var(--space-4) var(--space-1);
+}
+
+/* ── Divider ── */
+.sidebar-divider {
+  height: 1px;
+  background: var(--sidebar-border);
+  margin: var(--space-2) 0;
+}
+
+/* ══════════════════════════════════════════
+   VARIANT: RIGHT
+══════════════════════════════════════════ */
+.sidebar.sidebar-right {
+  left: auto;
+  right: 0;
+  border-right: none;
+  border-left: 1px solid var(--sidebar-border);
+  transform: translateX(100%);
+}
+.sidebar.sidebar-right.is-open {
+  transform: translateX(0);
+}
+
+/* ══════════════════════════════════════════
+   VARIANT: PUSH (shifts page content)
+   Requires .sidebar-layout wrapper
+══════════════════════════════════════════ */
+.sidebar-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+.sidebar-layout .sidebar.sidebar-push {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  transform: translateX(0);
+  flex-shrink: 0;
+  width: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  transition: width var(--sidebar-duration) var(--sidebar-ease);
+  z-index: 1;
+}
+
+.sidebar-layout .sidebar.sidebar-push.is-open {
+  width: var(--sidebar-width);
+  border-right: 1px solid var(--sidebar-border);
+  box-shadow: none;
+}
+
+.sidebar-layout .sidebar.sidebar-push.sidebar-right {
+  order: 1;
+}
+.sidebar-layout .sidebar.sidebar-push.sidebar-right.is-open {
+  border-left: 1px solid var(--sidebar-border);
+  border-right: none;
+}
+
+.sidebar-content {
+  flex: 1;
+  min-width: 0;
+  transition: none;
+}
+
+/* ══════════════════════════════════════════
+   VARIANT: FULLPAGE
+══════════════════════════════════════════ */
+.sidebar.sidebar-fullpage {
+  width: 100vw;
+  border: none;
+  transform: translateX(-100%);
+}
+.sidebar.sidebar-fullpage.is-open {
+  transform: translateX(0);
+  box-shadow: none;
+}
+.sidebar.sidebar-fullpage .sidebar-header {
+  padding: var(--space-5) var(--space-8);
+  border: none;
+  min-height: 72px;
+}
+
+/* Fullpage body — vertically and horizontally centered */
+.sidebar-fullpage-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  overflow-y: auto;
+}
+
+/* Fullpage nav */
+.sidebar-fullpage-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 400px;
+}
+
+.sidebar-fullpage-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--color-muted-light);
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+  transition: background var(--ease-fast), color var(--ease-fast), transform 0.18s var(--sidebar-ease);
+  position: relative;
+}
+.sidebar-fullpage-link:hover {
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  color: var(--color-primary);
+  transform: translateX(10px);
+}
+.sidebar-fullpage-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 3px;
+  background: var(--color-primary);
+  border-radius: 0 3px 3px 0;
+  transform: scaleY(0);
+  transition: transform 0.18s var(--sidebar-ease);
+}
+.sidebar-fullpage-link:hover::before { transform: scaleY(1); }
+.sidebar-fullpage-link svg { flex-shrink: 0; opacity: 0.6; }
+.sidebar-fullpage-link:hover svg { opacity: 1; }
+
+/* Fullpage footer */
+.sidebar-fullpage-footer {
+  padding: var(--space-6) var(--space-8);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.sidebar-social-links {
+  display: flex;
+  gap: var(--space-3);
+}
+.sidebar-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  color: var(--color-muted);
+  background: color-mix(in srgb, var(--color-neutral-600) 15%, transparent);
+  text-decoration: none;
+  transition: background var(--ease-fast), color var(--ease-fast);
+}
+.sidebar-social-link:hover {
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  color: var(--color-primary);
+}
+.sidebar-social-link svg { pointer-events: none; }
+
+/* ══════════════════════════════════════════
+   BACKDROP
+   <div class="sidebar-backdrop" id="my-sidebar-backdrop"></div>
+══════════════════════════════════════════ */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: calc(var(--z-modal) - 2);
+  animation: sidebar-backdrop-in 0.22s ease forwards;
+}
+.sidebar-backdrop.is-visible { display: block; }
+
+@keyframes sidebar-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Prevent body scroll when overlay sidebar is open ── */
+body.sidebar-open { overflow: hidden; }
+
+/* ══════════════════════════════════════════
+   VARIANT: PUSH RIGHT
+   Same as push left but sidebar slides from right.
+   Wrap page in .sidebar-layout:
+     <div class="sidebar-layout">
+       <div class="sidebar-content">...page...</div>
+       <aside class="sidebar sidebar-push sidebar-right" id="...">...</aside>
+     </div>
+══════════════════════════════════════════ */
+/* Already handled by .sidebar-push.sidebar-right rules above */
+
+
+/* ══════════════════════════════════════════
+   VARIANT: MINI / ICON RAIL
+   Always-visible rail that collapses to icons.
+   Use inside .sidebar-layout + add .sidebar-push.
+   Toggle with sidebarExpandToggle('id').
+
+   Wrap text in <span class="sidebar-link-text"> for hide/show.
+══════════════════════════════════════════ */
+:root {
+  --sidebar-mini-width: 62px;
+}
+
+/* Override push defaults — mini is always visible */
+.sidebar-layout .sidebar.sidebar-push.sidebar-mini {
+  width: var(--sidebar-mini-width) !important;
+  border-right: 1px solid var(--sidebar-border) !important;
+  overflow: hidden;
+  transition: width var(--sidebar-duration) var(--sidebar-ease);
+}
+.sidebar-layout .sidebar.sidebar-push.sidebar-mini.is-expanded {
+  width: var(--sidebar-width) !important;
+}
+
+/* Header: center when collapsed */
+.sidebar.sidebar-mini .sidebar-header {
+  justify-content: center;
+  padding: var(--space-3) var(--space-2);
+  min-height: 60px;
+}
+.sidebar.sidebar-mini.is-expanded .sidebar-header {
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-5);
+}
+
+/* Nav links: center icon, no gap in collapsed */
+.sidebar.sidebar-mini .sidebar-nav { gap: 2px; }
+.sidebar.sidebar-mini .sidebar-link {
+  justify-content: center;
+  padding: var(--space-3) var(--space-2);
+  gap: 0;
+  border-radius: var(--radius-sm);
+}
+.sidebar.sidebar-mini.is-expanded .sidebar-link {
+  justify-content: flex-start;
+  padding: var(--space-3) var(--space-4);
+  gap: var(--space-3);
+}
+
+/* Hide text labels when collapsed */
+.sidebar.sidebar-mini .sidebar-link-text,
+.sidebar.sidebar-mini .sidebar-brand-text,
+.sidebar.sidebar-mini .sidebar-label,
+.sidebar.sidebar-mini .sidebar-footer { opacity: 0; }
+.sidebar.sidebar-mini .sidebar-link-text,
+.sidebar.sidebar-mini .sidebar-brand-text,
+.sidebar.sidebar-mini .sidebar-label {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: opacity 0.15s, max-width 0.22s var(--sidebar-ease);
+}
+.sidebar.sidebar-mini .sidebar-footer {
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+
+/* Show text labels when expanded */
+.sidebar.sidebar-mini.is-expanded .sidebar-link-text,
+.sidebar.sidebar-mini.is-expanded .sidebar-brand-text,
+.sidebar.sidebar-mini.is-expanded .sidebar-label {
+  opacity: 1;
+  max-width: 200px;
+}
+.sidebar.sidebar-mini.is-expanded .sidebar-footer {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Bigger icon hit area when collapsed */
+.sidebar.sidebar-mini .sidebar-link svg { flex-shrink: 0; }
+
+/* Body padding adjusts */
+.sidebar.sidebar-mini .sidebar-body {
+  padding: var(--space-3) var(--space-2);
+}
+.sidebar.sidebar-mini.is-expanded .sidebar-body {
+  padding: var(--space-4) var(--space-5);
+}
+
+/* Active indicator — thinner in mini mode */
+.sidebar.sidebar-mini:not(.is-expanded) .sidebar-link.is-active::before { display: none; }
+
+/* Expand toggle button */
+.sidebar-mini-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  color: var(--color-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  transition: background var(--ease-fast), color var(--ease-fast);
+}
+.sidebar-mini-toggle:hover {
+  background: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+  color: var(--color-light);
+}
+/* Hide collapse arrow in mini mode (logo acts as expand trigger) */
+.sidebar.sidebar-mini:not(.is-expanded) .sidebar-mini-toggle { opacity: 0; width: 0; padding: 0; }
+
+
+/* ══════════════════════════════════════════
+   VARIANT: FLOATING
+   Detached from edge — rounded, inset from viewport.
+   Overlay mode (slides in like left/right).
+   Add class .sidebar-floating to base .sidebar.
+══════════════════════════════════════════ */
+.sidebar.sidebar-floating {
+  top: var(--space-5);
+  bottom: var(--space-5);
+  left: var(--space-4);
+  height: auto;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--sidebar-border);
+  background: color-mix(in srgb, var(--sidebar-bg) 94%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  /* Override base translateX(-100%) — add extra offset to fully clear the left inset */
+  transform: translateX(calc(-100% - var(--space-4) - 2px));
+}
+.sidebar.sidebar-floating.is-open {
+  transform: translateX(0);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.32), 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+.sidebar.sidebar-floating.sidebar-right {
+  left: auto;
+  right: var(--space-4);
+  border-left: 1px solid var(--sidebar-border);
+  border-right: none;
+  transform: translateX(calc(100% + var(--space-4) + 2px));
+}
+.sidebar.sidebar-floating.sidebar-right.is-open {
+  transform: translateX(0);
+}
+.sidebar.sidebar-floating .sidebar-header {
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+.sidebar.sidebar-floating .sidebar-footer {
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+}

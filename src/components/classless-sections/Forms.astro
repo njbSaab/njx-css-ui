@@ -1,0 +1,123 @@
+<section class="lib-section cl-section" id="inputs">
+    <div class="lib-section-title">📋 Inputs &amp; Forms</div>
+    <div class="lib-section-desc">
+        Native form elements styled by <code>_native.css</code> — <code>label</code>, <code>input</code>, <code>select</code>, <code>textarea</code>, <code>fieldset</code>.
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Label + input</div>
+        <div class="lib-preview">
+            <article>
+                <form>
+                    <label>Full name <input type="text" placeholder="Jane Doe" /></label>
+                    <label>Email <input type="email" placeholder="jane@example.com" /></label>
+                    <label>Password <input type="password" placeholder="••••••••" /></label>
+                </form>
+            </article>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div class="lib-code" data-raw='<form>
+  <label>Full name <input type="text" placeholder="Jane Doe"></label>
+  <label>Email <input type="email" placeholder="jane@example.com"></label>
+  <label>Password <input type="password" placeholder="••••••••"></label>
+</form>'>
+                    <span class="k">&lt;form&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;label&gt;</span><span class="t">Full name </span><span class="k">&lt;input</span> <span class="s">type</span>=<span class="cn">"text"</span><span class="k">&gt;&lt;/label&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;label&gt;</span><span class="t">Email </span><span class="k">&lt;input</span> <span class="s">type</span>=<span class="cn">"email"</span><span class="k">&gt;&lt;/label&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;label&gt;</span><span class="t">Password </span><span class="k">&lt;input</span> <span class="s">type</span>=<span class="cn">"password"</span><span class="k">&gt;&lt;/label&gt;</span><br />
+                    <span class="k">&lt;/form&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Select &amp; textarea</div>
+        <div class="lib-preview">
+            <article>
+                <form>
+                    <label>Country
+                        <select>
+                            <option>Choose a country</option>
+                            <option>United States</option>
+                            <option>Germany</option>
+                            <option>Japan</option>
+                        </select>
+                    </label>
+                    <label>Message
+                        <textarea rows="4" placeholder="Write your message here..."></textarea>
+                    </label>
+                </form>
+            </article>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div class="lib-code" data-raw='<label>Country
+  <select>
+    <option>Choose a country</option>
+    <option>United States</option>
+  </select>
+</label>
+<label>Message
+  <textarea rows="4" placeholder="Write your message..."></textarea>
+</label>'>
+                    <span class="k">&lt;label&gt;</span><span class="t">Country</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;select&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;option&gt;</span><span class="t">Choose a country</span><span class="k">&lt;/option&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;option&gt;</span><span class="t">United States</span><span class="k">&lt;/option&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/select&gt;</span><br />
+                    <span class="k">&lt;/label&gt;</span><br />
+                    <span class="k">&lt;label&gt;</span><span class="t">Message</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;textarea</span> <span class="s">rows</span>=<span class="cn">"4"</span><span class="k">&gt;&lt;/textarea&gt;</span><br />
+                    <span class="k">&lt;/label&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Fieldset &amp; legend</div>
+        <div class="lib-preview">
+            <article>
+                <form>
+                    <fieldset>
+                        <legend>Personal Info</legend>
+                        <label>First name <input type="text" placeholder="John" /></label>
+                        <label>Last name <input type="text" placeholder="Doe" /></label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Preferences</legend>
+                        <label><input type="checkbox" /> Subscribe to newsletter</label>
+                        <label><input type="checkbox" checked /> Accept terms</label>
+                    </fieldset>
+                    <button type="submit">Submit</button>
+                </form>
+            </article>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div class="lib-code" data-raw='<form>
+  <fieldset>
+    <legend>Personal Info</legend>
+    <label>First name <input type="text"></label>
+    <label>Last name <input type="text"></label>
+  </fieldset>
+  <fieldset>
+    <legend>Preferences</legend>
+    <label><input type="checkbox"> Subscribe</label>
+  </fieldset>
+  <button type="submit">Submit</button>
+</form>'>
+                    <span class="k">&lt;form&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;fieldset&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;legend&gt;</span><span class="t">Personal Info</span><span class="k">&lt;/legend&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;label&gt;</span><span class="t">First name </span><span class="k">&lt;input</span> <span class="s">type</span>=<span class="cn">"text"</span><span class="k">&gt;&lt;/label&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/fieldset&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">type</span>=<span class="cn">"submit"</span><span class="k">&gt;</span><span class="t">Submit</span><span class="k">&lt;/button&gt;</span><br />
+                    <span class="k">&lt;/form&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

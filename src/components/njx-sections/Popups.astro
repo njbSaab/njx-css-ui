@@ -1,0 +1,1093 @@
+<section class="lib-section" id="popups">
+    <div class="lib-section-title">💬 Popups / Modals</div>
+    <div class="lib-section-desc">
+        From <code>_popups.css</code>. Variant is set on <code
+            >.lib-modal-box</code
+        > — the overlay is automatically colored via <code>:has()</code>. Close
+        — Escape or click the overlay.
+    </div>
+
+    <!-- All variants -->
+    <div class="lib-component">
+        <div class="lib-component-label">All variants — colored overlays</div>
+        <div class="lib-preview" style="gap:10px;flex-wrap:wrap">
+            <button
+                class="btn btn-ghost btn-sm"
+                onclick="openModal('modal-default')">Default</button
+            >
+            <button
+                class="btn btn-primary btn-sm"
+                onclick="openModal('modal-primary')">Primary</button
+            >
+            <button
+                class="btn btn-success btn-sm"
+                onclick="openModal('modal-success')">✅ Success</button
+            >
+            <button
+                class="btn btn-danger btn-sm"
+                onclick="openModal('modal-error')">❌ Error</button
+            >
+            <button
+                class="btn btn-warning btn-sm"
+                onclick="openModal('modal-warning')">⚠️ Warning</button
+            >
+            <button
+                class="btn btn-accent btn-sm"
+                onclick="openModal('modal-info')">ℹ️ Info</button
+            >
+            <button
+                class="btn btn-ghost btn-sm"
+                onclick="openModal('modal-form')">📋 With form</button
+            >
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Overlay is automatically colored via :has() -->
+<!-- Variants: is-primary | is-success | is-error | is-warning | is-info -->
+
+<div id="my-modal" class="lib-modal-overlay"
+     onclick="if(event.target===this)closeModal(this)">
+
+  <div class="lib-modal-box is-success">
+    <button class="lib-modal-close"
+      onclick="closeModal(document.getElementById(&apos;my-modal&apos;))">✕</button>
+
+    <div class="lib-modal-icon-wrap">✅</div>
+    <div class="lib-modal-title">Success!</div>
+    <div class="lib-modal-text">Description of the action or result.</div>
+
+    <div class="lib-modal-actions">
+      <button class="btn btn-success btn-sm">Great!</button>
+      <button class="btn btn-ghost btn-sm">Close</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openModal(id) {
+  document.getElementById(id).classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeModal(el) {
+  el.classList.remove("open");
+  document.body.style.overflow = "";
+}
+// close on Escape
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape")
+    document.querySelectorAll(".lib-modal-overlay.open")
+      .forEach(closeModal);
+});
+</script>'
+                >
+                    <span class="c"
+                        >&lt;!-- Variants: is-primary | is-success | is-error |
+                        is-warning | is-info --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-overlay"</span
+                    >
+                    <span class="s">id</span>=<span class="cn">"my-modal"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-box is-success"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-close"</span
+                    ><span class="k">&gt;</span>✕<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-icon-wrap"</span
+                    ><span class="k">&gt;</span>✅<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-title"</span
+                    ><span class="k">&gt;</span>Success!<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-text"</span
+                    ><span class="k">&gt;</span>Description.<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-actions"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
+                        >&lt;button</span
+                    >
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-success btn-sm"</span
+                    ><span class="k">&gt;</span>Great!<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
+                    <span class="k">&lt;/div&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Size variants -->
+    <div class="lib-component">
+        <div class="lib-component-label">Size variants — is-sm · is-lg</div>
+        <div class="lib-preview" style="gap:10px;flex-wrap:wrap">
+            <button
+                class="btn btn-primary btn-sm"
+                onclick="openModal('modal-small')"
+                >🔹 Small <code
+                    style="font-size:10px;margin-left:4px;color:inherit"
+                    >.is-sm</code
+                ></button
+            >
+            <button
+                class="btn btn-primary btn-sm"
+                onclick="openModal('modal-large')"
+                >🔲 Large <code
+                    style="font-size:10px;margin-left:4px;color:inherit"
+                    >.is-lg</code
+                ></button
+            >
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Small: max-width 340px -->
+<div class="lib-modal-box is-sm">...</div>
+
+<!-- Large: max-width 620px -->
+<div class="lib-modal-box is-lg">...</div>
+
+<!-- Combine size + color -->
+<div class="lib-modal-box is-sm is-primary">...</div>'
+                >
+                    <span class="c">&lt;!-- Small: max-width 340px --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-box is-sm"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br /><br />
+                    <span class="c">&lt;!-- Large: max-width 620px --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-box is-lg"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br /><br />
+                    <span class="c">&lt;!-- Combine size + color --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-box is-sm is-primary"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/div&gt;</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stacked actions -->
+    <div class="lib-component">
+        <div class="lib-component-label">
+            Stacked actions — lib-modal-actions.is-column
+        </div>
+        <div class="lib-preview" style="gap:10px;flex-wrap:wrap">
+            <button
+                class="btn btn-warning btn-sm"
+                onclick="openModal('modal-column')"
+                >🗑️ Delete confirmation (stacked)</button
+            >
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Add .is-column to stack buttons vertically -->
+<div class="lib-modal-actions is-column">
+  <button class="btn btn-error btn-sm">Delete permanently</button>
+  <button class="btn btn-warning btn-sm">Archive instead</button>
+  <button class="btn btn-ghost btn-sm">Cancel</button>
+</div>'
+                >
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-actions is-column"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;button</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-error btn-sm"</span
+                    ><span class="k">&gt;</span>Delete permanently<span
+                        class="k">&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;button</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-warning btn-sm"</span
+                    ><span class="k">&gt;</span>Archive instead<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;button</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-ghost btn-sm"</span
+                    ><span class="k">&gt;</span>Cancel<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    <span class="k">&lt;/div&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal with form -->
+    <div class="lib-component">
+        <div class="lib-component-label">Modal with form</div>
+        <div class="lib-preview" style="gap:10px;flex-wrap:wrap">
+            <button
+                class="btn btn-primary btn-sm"
+                onclick="openModal('modal-form')">📋 Open form modal</button
+            >
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Place any HTML inside .lib-modal-box -->
+<div class="lib-modal-box is-primary">
+  <div class="lib-modal-icon-wrap">📝</div>
+  <div class="lib-modal-title">Send a message</div>
+  <div class="lib-modal-text">Fill in the details below.</div>
+  <!-- form fields -->
+  <input type="text" placeholder="Your name" />
+  <textarea placeholder="Your message..."></textarea>
+  <div class="lib-modal-divider"></div>
+  <div class="lib-modal-actions">
+    <button class="btn btn-primary btn-sm">Send</button>
+    <button class="btn btn-ghost btn-sm">Cancel</button>
+  </div>
+</div>'
+                >
+                    <span class="c"
+                        >&lt;!-- Place any HTML inside .lib-modal-box --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-box is-primary"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-icon-wrap"</span
+                    ><span class="k">&gt;</span>📝<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-title"</span
+                    ><span class="k">&gt;</span>Send a message<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="c">&lt;!-- form fields --&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;input</span>
+                    <span class="s">type</span>=<span class="cn">"text"</span>
+                    <span class="s">placeholder</span>=<span class="cn"
+                        >"Your name"</span
+                    >
+                    <span class="k">/&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;textarea</span>
+                    <span class="s">placeholder</span>=<span class="cn"
+                        >"Your message..."</span
+                    ><span class="k">&gt;&lt;/textarea&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-divider"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-actions"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-primary btn-sm"</span
+                    ><span class="k">&gt;</span>Send<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-ghost btn-sm"</span
+                    ><span class="k">&gt;</span>Cancel<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
+                    <span class="k">&lt;/div&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HTML structure reference -->
+    <div class="lib-component">
+        <div class="lib-component-label">Full HTML structure</div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- Trigger button -->
+<button onclick="openModal(&apos;my-modal&apos;)">Open</button>
+
+<!-- Modal (place anywhere in body) -->
+<div id="my-modal" class="lib-modal-overlay"
+     onclick="if(event.target===this)closeModal(this)">
+  <div class="lib-modal-box is-primary">
+    <button class="lib-modal-close"
+      onclick="closeModal(document.getElementById(&apos;my-modal&apos;))">✕</button>
+    <div class="lib-modal-icon-wrap">🔷</div>
+    <div class="lib-modal-title">Title here</div>
+    <div class="lib-modal-text">Description text.</div>
+    <div class="lib-modal-divider"></div>
+    <div class="lib-modal-actions">
+      <button class="btn btn-primary btn-sm">Confirm</button>
+      <button class="btn btn-ghost btn-sm">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(id) {
+  document.getElementById(id).classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeModal(el) {
+  el.classList.remove("open");
+  document.body.style.overflow = "";
+}
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape")
+    document.querySelectorAll(".lib-modal-overlay.open").forEach(closeModal);
+});
+</script>'
+                >
+                    <span class="c">&lt;!-- Trigger button --&gt;</span><br />
+                    <span class="k">&lt;button</span>
+                    <span class="s">onclick</span>=<span class="cn"
+                        >"openModal('my-modal')"</span
+                    ><span class="k">&gt;</span>Open<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br /><br />
+                    <span class="c"
+                        >&lt;!-- Modal (place anywhere in body) --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">id</span>=<span class="cn">"my-modal"</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-overlay"</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="s">onclick</span
+                    >=<span class="cn"
+                        >"if(event.target===this)closeModal(this)"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-box is-primary"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-close"</span
+                    ><span class="k">&gt;</span>✕<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-icon-wrap"</span
+                    ><span class="k">&gt;</span>🔷<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-title"</span
+                    ><span class="k">&gt;</span>Title here<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-text"</span
+                    ><span class="k">&gt;</span>Description text.<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-divider"</span
+                    ><span class="k">&gt;&lt;/div&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-actions"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
+                        >&lt;button</span
+                    >
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-primary btn-sm"</span
+                    ><span class="k">&gt;</span>Confirm<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
+                        >&lt;button</span
+                    >
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-ghost btn-sm"</span
+                    ><span class="k">&gt;</span>Cancel<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
+                    <span class="k">&lt;/div&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive preview grid -->
+    <div class="lib-component">
+        <div class="lib-component-label">
+            Interactive preview — click any card
+        </div>
+        <div
+            class="lib-preview"
+            style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;padding:4px"
+        >
+            <div
+                onclick="openModal('modal-default')"
+                style="padding:20px 16px;border-radius:12px;cursor:pointer;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);transition:transform .18s,box-shadow .18s,border-color .18s"
+                onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px color-mix(in srgb,var(--color-primary) 18%,transparent)';this.style.borderColor='color-mix(in srgb,var(--color-primary) 35%,transparent)'"
+                onmouseleave="this.style.transform='';this.style.boxShadow='';this.style.borderColor=''"
+            >
+                <div style="font-size:1.6rem;margin-bottom:8px">⬜</div>
+                <div
+                    style="font-size:13px;font-weight:700;color:var(--color-light);margin-bottom:4px"
+                >
+                    Default modal
+                </div>
+                <div
+                    style="font-size:11px;color:var(--color-muted);line-height:1.5;margin-bottom:8px"
+                >
+                    Neutral styling, no color tint.
+                </div>
+                <span
+                    style="font-family:monospace;font-size:10px;color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 10%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 22%,transparent);padding:2px 7px;border-radius:5px"
+                    >.lib-modal-box</span
+                >
+            </div>
+
+            <div
+                onclick="openModal('modal-primary')"
+                style="padding:20px 16px;border-radius:12px;cursor:pointer;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);transition:transform .18s,box-shadow .18s,border-color .18s"
+                onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px color-mix(in srgb,var(--color-primary) 18%,transparent)';this.style.borderColor='color-mix(in srgb,var(--color-primary) 35%,transparent)'"
+                onmouseleave="this.style.transform='';this.style.boxShadow='';this.style.borderColor=''"
+            >
+                <div style="font-size:1.6rem;margin-bottom:8px">🔷</div>
+                <div
+                    style="font-size:13px;font-weight:700;color:var(--color-light);margin-bottom:4px"
+                >
+                    Primary variant
+                </div>
+                <div
+                    style="font-size:11px;color:var(--color-muted);line-height:1.5;margin-bottom:8px"
+                >
+                    Themed accent, adapts to active theme.
+                </div>
+                <span
+                    style="font-family:monospace;font-size:10px;color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 10%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 22%,transparent);padding:2px 7px;border-radius:5px"
+                    >.is-primary</span
+                >
+            </div>
+
+            <div
+                onclick="openModal('modal-success')"
+                style="padding:20px 16px;border-radius:12px;cursor:pointer;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);transition:transform .18s,box-shadow .18s,border-color .18s"
+                onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px color-mix(in srgb,var(--color-primary) 18%,transparent)';this.style.borderColor='color-mix(in srgb,var(--color-primary) 35%,transparent)'"
+                onmouseleave="this.style.transform='';this.style.boxShadow='';this.style.borderColor=''"
+            >
+                <div style="font-size:1.6rem;margin-bottom:8px">✅</div>
+                <div
+                    style="font-size:13px;font-weight:700;color:var(--color-light);margin-bottom:4px"
+                >
+                    Success variant
+                </div>
+                <div
+                    style="font-size:11px;color:var(--color-muted);line-height:1.5;margin-bottom:8px"
+                >
+                    Green tint — confirmations, approvals.
+                </div>
+                <span
+                    style="font-family:monospace;font-size:10px;color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 10%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 22%,transparent);padding:2px 7px;border-radius:5px"
+                    >.is-success</span
+                >
+            </div>
+
+            <div
+                onclick="openModal('modal-error')"
+                style="padding:20px 16px;border-radius:12px;cursor:pointer;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);transition:transform .18s,box-shadow .18s,border-color .18s"
+                onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px color-mix(in srgb,var(--color-primary) 18%,transparent)';this.style.borderColor='color-mix(in srgb,var(--color-primary) 35%,transparent)'"
+                onmouseleave="this.style.transform='';this.style.boxShadow='';this.style.borderColor=''"
+            >
+                <div style="font-size:1.6rem;margin-bottom:8px">🚨</div>
+                <div
+                    style="font-size:13px;font-weight:700;color:var(--color-light);margin-bottom:4px"
+                >
+                    Error variant
+                </div>
+                <div
+                    style="font-size:11px;color:var(--color-muted);line-height:1.5;margin-bottom:8px"
+                >
+                    Red tint — destructive actions, critical alerts.
+                </div>
+                <span
+                    style="font-family:monospace;font-size:10px;color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 10%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 22%,transparent);padding:2px 7px;border-radius:5px"
+                    >.is-error</span
+                >
+            </div>
+
+            <div
+                onclick="openModal('modal-warning')"
+                style="padding:20px 16px;border-radius:12px;cursor:pointer;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);transition:transform .18s,box-shadow .18s,border-color .18s"
+                onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px color-mix(in srgb,var(--color-primary) 18%,transparent)';this.style.borderColor='color-mix(in srgb,var(--color-primary) 35%,transparent)'"
+                onmouseleave="this.style.transform='';this.style.boxShadow='';this.style.borderColor=''"
+            >
+                <div style="font-size:1.6rem;margin-bottom:8px">⚠️</div>
+                <div
+                    style="font-size:13px;font-weight:700;color:var(--color-light);margin-bottom:4px"
+                >
+                    Warning variant
+                </div>
+                <div
+                    style="font-size:11px;color:var(--color-muted);line-height:1.5;margin-bottom:8px"
+                >
+                    Amber tint — cautions, non-destructive alerts.
+                </div>
+                <span
+                    style="font-family:monospace;font-size:10px;color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 10%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 22%,transparent);padding:2px 7px;border-radius:5px"
+                    >.is-warning</span
+                >
+            </div>
+
+            <div
+                onclick="openModal('modal-info')"
+                style="padding:20px 16px;border-radius:12px;cursor:pointer;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);transition:transform .18s,box-shadow .18s,border-color .18s"
+                onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px color-mix(in srgb,var(--color-primary) 18%,transparent)';this.style.borderColor='color-mix(in srgb,var(--color-primary) 35%,transparent)'"
+                onmouseleave="this.style.transform='';this.style.boxShadow='';this.style.borderColor=''"
+            >
+                <div style="font-size:1.6rem;margin-bottom:8px">ℹ️</div>
+                <div
+                    style="font-size:13px;font-weight:700;color:var(--color-light);margin-bottom:4px"
+                >
+                    Info variant
+                </div>
+                <div
+                    style="font-size:11px;color:var(--color-muted);line-height:1.5;margin-bottom:8px"
+                >
+                    Cyan tint — tips, hints, announcements.
+                </div>
+                <span
+                    style="font-family:monospace;font-size:10px;color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 10%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 22%,transparent);padding:2px 7px;border-radius:5px"
+                    >.is-info</span
+                >
+            </div>
+
+            <div
+                onclick="openModal('modal-small')"
+                style="padding:20px 16px;border-radius:12px;cursor:pointer;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);transition:transform .18s,box-shadow .18s,border-color .18s"
+                onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px color-mix(in srgb,var(--color-primary) 18%,transparent)';this.style.borderColor='color-mix(in srgb,var(--color-primary) 35%,transparent)'"
+                onmouseleave="this.style.transform='';this.style.boxShadow='';this.style.borderColor=''"
+            >
+                <div style="font-size:1.6rem;margin-bottom:8px">🔹</div>
+                <div
+                    style="font-size:13px;font-weight:700;color:var(--color-light);margin-bottom:4px"
+                >
+                    Small size
+                </div>
+                <div
+                    style="font-size:11px;color:var(--color-muted);line-height:1.5;margin-bottom:8px"
+                >
+                    max-width: 340px — compact quick confirms.
+                </div>
+                <span
+                    style="font-family:monospace;font-size:10px;color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 10%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 22%,transparent);padding:2px 7px;border-radius:5px"
+                    >.is-sm</span
+                >
+            </div>
+
+            <div
+                onclick="openModal('modal-large')"
+                style="padding:20px 16px;border-radius:12px;cursor:pointer;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);transition:transform .18s,box-shadow .18s,border-color .18s"
+                onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px color-mix(in srgb,var(--color-primary) 18%,transparent)';this.style.borderColor='color-mix(in srgb,var(--color-primary) 35%,transparent)'"
+                onmouseleave="this.style.transform='';this.style.boxShadow='';this.style.borderColor=''"
+            >
+                <div style="font-size:1.6rem;margin-bottom:8px">🔲</div>
+                <div
+                    style="font-size:13px;font-weight:700;color:var(--color-light);margin-bottom:4px"
+                >
+                    Large size
+                </div>
+                <div
+                    style="font-size:11px;color:var(--color-muted);line-height:1.5;margin-bottom:8px"
+                >
+                    max-width: 620px — spacious content, long text.
+                </div>
+                <span
+                    style="font-family:monospace;font-size:10px;color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 10%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 22%,transparent);padding:2px 7px;border-radius:5px"
+                    >.is-lg</span
+                >
+            </div>
+
+            <div
+                onclick="openModal('modal-column')"
+                style="padding:20px 16px;border-radius:12px;cursor:pointer;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);transition:transform .18s,box-shadow .18s,border-color .18s"
+                onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px color-mix(in srgb,var(--color-primary) 18%,transparent)';this.style.borderColor='color-mix(in srgb,var(--color-primary) 35%,transparent)'"
+                onmouseleave="this.style.transform='';this.style.boxShadow='';this.style.borderColor=''"
+            >
+                <div style="font-size:1.6rem;margin-bottom:8px">📋</div>
+                <div
+                    style="font-size:13px;font-weight:700;color:var(--color-light);margin-bottom:4px"
+                >
+                    Stacked actions
+                </div>
+                <div
+                    style="font-size:11px;color:var(--color-muted);line-height:1.5;margin-bottom:8px"
+                >
+                    Buttons stack vertically — 3+ action choices.
+                </div>
+                <span
+                    style="font-family:monospace;font-size:10px;color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 10%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 22%,transparent);padding:2px 7px;border-radius:5px"
+                    >.is-column</span
+                >
+            </div>
+
+            <div
+                onclick="openModal('modal-form')"
+                style="padding:20px 16px;border-radius:12px;cursor:pointer;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);transition:transform .18s,box-shadow .18s,border-color .18s"
+                onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px color-mix(in srgb,var(--color-primary) 18%,transparent)';this.style.borderColor='color-mix(in srgb,var(--color-primary) 35%,transparent)'"
+                onmouseleave="this.style.transform='';this.style.boxShadow='';this.style.borderColor=''"
+            >
+                <div style="font-size:1.6rem;margin-bottom:8px">📝</div>
+                <div
+                    style="font-size:13px;font-weight:700;color:var(--color-light);margin-bottom:4px"
+                >
+                    Form modal
+                </div>
+                <div
+                    style="font-size:11px;color:var(--color-muted);line-height:1.5;margin-bottom:8px"
+                >
+                    Any HTML inside the box — inputs, textareas.
+                </div>
+                <span
+                    style="font-family:monospace;font-size:10px;color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 10%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 22%,transparent);padding:2px 7px;border-radius:5px"
+                    >form inside box</span
+                >
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<!-- ── Color variants — add modifier to .lib-modal-box ── -->
+<!-- default | is-primary | is-success | is-error | is-warning | is-info -->
+
+<div id="modal-1" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+  <div class="lib-modal-box is-success">
+    <button class="lib-modal-close" onclick="closeModal(document.getElementById(&apos;modal-1&apos;))">✕</button>
+    <div class="lib-modal-icon-wrap">✅</div>
+    <div class="lib-modal-title">Success!</div>
+    <div class="lib-modal-text">Description of the action or result.</div>
+    <div class="lib-modal-actions">
+      <button class="btn btn-success btn-sm">Confirm</button>
+      <button class="btn btn-ghost btn-sm">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Size variants ── -->
+<div class="lib-modal-box is-sm">...</div>   <!-- max-width: 340px -->
+<div class="lib-modal-box is-lg">...</div>   <!-- max-width: 620px -->
+
+<!-- ── Stacked actions ── -->
+<div class="lib-modal-box is-column">
+  <div class="lib-modal-actions">
+    <button class="btn btn-primary btn-sm">Option A</button>
+    <button class="btn btn-ghost btn-sm">Option B</button>
+    <button class="btn btn-ghost btn-sm">Option C</button>
+  </div>
+</div>
+
+<!-- ── Form inside ── -->
+<div class="lib-modal-box">
+  <div class="lib-modal-title">Edit profile</div>
+  <form style="display:flex;flex-direction:column;gap:12px;margin-top:16px">
+    <input class="inp" type="text" placeholder="Name">
+    <input class="inp" type="email" placeholder="Email">
+    <div class="lib-modal-actions">
+      <button class="btn btn-primary btn-sm" type="submit">Save</button>
+      <button class="btn btn-ghost btn-sm" type="button">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<script>
+function openModal(id) {
+  document.getElementById(id).classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeModal(el) {
+  el.classList.remove("open");
+  document.body.style.overflow = "";
+}
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape")
+    document.querySelectorAll(".lib-modal-overlay.open").forEach(closeModal);
+});
+</script>'
+                >
+                    <span class="c"
+                        >&lt;!-- Color variants: default | is-primary |
+                        is-success | is-error | is-warning | is-info --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">id</span>=<span class="cn">"modal-1"</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-overlay"</span
+                    >
+                    <span class="s">onclick</span>=<span class="cn"
+                        >"if(event.target===this)closeModal(this)"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-box is-success"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-close"</span
+                    ><span class="k">&gt;</span>✕<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-icon-wrap"</span
+                    ><span class="k">&gt;</span>✅<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-title"</span
+                    ><span class="k">&gt;</span>Success!<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-text"</span
+                    ><span class="k">&gt;</span>Description of the action or
+                    result.<span class="k">&lt;/div&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-actions"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
+                        >&lt;button</span
+                    >
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-success btn-sm"</span
+                    ><span class="k">&gt;</span>Confirm<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
+                        >&lt;button</span
+                    >
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-ghost btn-sm"</span
+                    ><span class="k">&gt;</span>Cancel<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
+                    <span class="k">&lt;/div&gt;</span><br />
+                    <br />
+                    <span class="c"
+                        >&lt;!-- Size: is-sm (340px) · is-lg (620px) --&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-box is-sm"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-box is-lg"</span
+                    ><span class="k">&gt;</span>...<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    <br />
+                    <span class="c">&lt;!-- Stacked actions --&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-box is-column"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-actions"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-primary btn-sm"</span
+                    ><span class="k">&gt;</span>Option A<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-ghost btn-sm"</span
+                    ><span class="k">&gt;</span>Option B<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
+                    <span class="k">&lt;/div&gt;</span><br />
+                    <br />
+                    <span class="c">&lt;!-- Form inside --&gt;</span><br />
+                    <span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-box"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-title"</span
+                    ><span class="k">&gt;</span>Edit profile<span class="k"
+                        >&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;form</span>
+                    <span class="s">style</span>=<span class="cn"
+                        >"display:flex;flex-direction:column;gap:12px;margin-top:16px"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;input</span>
+                    <span class="s">class</span>=<span class="cn">"inp"</span>
+                    <span class="s">type</span>=<span class="cn">"text"</span>
+                    <span class="s">placeholder</span>=<span class="cn"
+                        >"Name"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;input</span>
+                    <span class="s">class</span>=<span class="cn">"inp"</span>
+                    <span class="s">type</span>=<span class="cn">"email"</span>
+                    <span class="s">placeholder</span>=<span class="cn"
+                        >"Email"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
+                    <span class="s">class</span>=<span class="cn"
+                        >"lib-modal-actions"</span
+                    ><span class="k">&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
+                        >&lt;button</span
+                    >
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-primary btn-sm"</span
+                    ><span class="k">&gt;</span>Save<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
+                        >&lt;button</span
+                    >
+                    <span class="s">class</span>=<span class="cn"
+                        >"btn btn-ghost btn-sm"</span
+                    ><span class="k">&gt;</span>Cancel<span class="k"
+                        >&lt;/button&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;/div&gt;</span
+                    ><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/form&gt;</span><br />
+                    <span class="k">&lt;/div&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Modal overlays (actual DOM elements) ── -->
+    <div id="modal-default" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box">
+            <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-default'))">✕</button>
+            <div class="lib-modal-icon-wrap">⬜</div>
+            <div class="lib-modal-title">Default modal</div>
+            <div class="lib-modal-text">Neutral styling — no color tint. Use for general purpose dialogs.</div>
+            <div class="lib-modal-actions">
+                <button class="btn btn-primary btn-sm" onclick="closeModal(document.getElementById('modal-default'))">Got it</button>
+                <button class="btn btn-ghost btn-sm" onclick="closeModal(document.getElementById('modal-default'))">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-primary" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-primary">
+            <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-primary'))">✕</button>
+            <div class="lib-modal-icon-wrap">🔷</div>
+            <div class="lib-modal-title">Primary variant</div>
+            <div class="lib-modal-text">Themed accent color — adapts to the active theme automatically.</div>
+            <div class="lib-modal-actions">
+                <button class="btn btn-primary btn-sm" onclick="closeModal(document.getElementById('modal-primary'))">Confirm</button>
+                <button class="btn btn-ghost btn-sm" onclick="closeModal(document.getElementById('modal-primary'))">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-success" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-success">
+            <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-success'))">✕</button>
+            <div class="lib-modal-icon-wrap">✅</div>
+            <div class="lib-modal-title">Action completed!</div>
+            <div class="lib-modal-text">Your changes have been saved successfully. Everything looks great.</div>
+            <div class="lib-modal-actions">
+                <button class="btn btn-success btn-sm" onclick="closeModal(document.getElementById('modal-success'))">Great!</button>
+                <button class="btn btn-ghost btn-sm" onclick="closeModal(document.getElementById('modal-success'))">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-error" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-error">
+            <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-error'))">✕</button>
+            <div class="lib-modal-icon-wrap">🚨</div>
+            <div class="lib-modal-title">Something went wrong</div>
+            <div class="lib-modal-text">An error occurred while processing your request. Please try again.</div>
+            <div class="lib-modal-actions">
+                <button class="btn btn-danger btn-sm" onclick="closeModal(document.getElementById('modal-error'))">Try again</button>
+                <button class="btn btn-ghost btn-sm" onclick="closeModal(document.getElementById('modal-error'))">Dismiss</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-warning" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-warning">
+            <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-warning'))">✕</button>
+            <div class="lib-modal-icon-wrap">⚠️</div>
+            <div class="lib-modal-title">Proceed with caution</div>
+            <div class="lib-modal-text">This action may have unintended consequences. Are you sure you want to continue?</div>
+            <div class="lib-modal-actions">
+                <button class="btn btn-warning btn-sm" onclick="closeModal(document.getElementById('modal-warning'))">Continue</button>
+                <button class="btn btn-ghost btn-sm" onclick="closeModal(document.getElementById('modal-warning'))">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-info" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-info">
+            <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-info'))">✕</button>
+            <div class="lib-modal-icon-wrap">ℹ️</div>
+            <div class="lib-modal-title">Did you know?</div>
+            <div class="lib-modal-text">Cyan tint is perfect for tips, hints, and general announcements. Subtle but noticeable.</div>
+            <div class="lib-modal-actions">
+                <button class="btn btn-accent btn-sm" onclick="closeModal(document.getElementById('modal-info'))">Got it</button>
+                <button class="btn btn-ghost btn-sm" onclick="closeModal(document.getElementById('modal-info'))">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-small" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-sm is-primary">
+            <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-small'))">✕</button>
+            <div class="lib-modal-icon-wrap">🔹</div>
+            <div class="lib-modal-title">Small modal</div>
+            <div class="lib-modal-text">Compact — max-width 340px. Great for quick confirmations.</div>
+            <div class="lib-modal-actions">
+                <button class="btn btn-primary btn-sm" onclick="closeModal(document.getElementById('modal-small'))">OK</button>
+                <button class="btn btn-ghost btn-sm" onclick="closeModal(document.getElementById('modal-small'))">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-large" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-lg is-primary">
+            <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-large'))">✕</button>
+            <div class="lib-modal-icon-wrap">🔲</div>
+            <div class="lib-modal-title">Large modal</div>
+            <div class="lib-modal-text">Spacious — max-width 620px. Ideal for longer content, detailed forms, or rich media. You have plenty of room here to add more text, images, or any HTML content you need.</div>
+            <div class="lib-modal-actions">
+                <button class="btn btn-primary btn-sm" onclick="closeModal(document.getElementById('modal-large'))">Confirm</button>
+                <button class="btn btn-ghost btn-sm" onclick="closeModal(document.getElementById('modal-large'))">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-column" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-warning">
+            <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-column'))">✕</button>
+            <div class="lib-modal-icon-wrap">🗑️</div>
+            <div class="lib-modal-title">Delete this item?</div>
+            <div class="lib-modal-text">This action cannot be undone. Choose how to proceed:</div>
+            <div class="lib-modal-actions is-column">
+                <button class="btn btn-danger btn-sm" onclick="closeModal(document.getElementById('modal-column'))">Delete permanently</button>
+                <button class="btn btn-warning btn-sm" onclick="closeModal(document.getElementById('modal-column'))">Archive instead</button>
+                <button class="btn btn-ghost btn-sm" onclick="closeModal(document.getElementById('modal-column'))">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-form" class="lib-modal-overlay" onclick="if(event.target===this)closeModal(this)">
+        <div class="lib-modal-box is-primary">
+            <button class="lib-modal-close" onclick="closeModal(document.getElementById('modal-form'))">✕</button>
+            <div class="lib-modal-icon-wrap">📝</div>
+            <div class="lib-modal-title">Send a message</div>
+            <div class="lib-modal-text">Fill in the details below and we'll get back to you.</div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+                <input type="text" class="inp" placeholder="Your name" />
+                <textarea class="inp" placeholder="Your message..." style="min-height:80px;resize:vertical"></textarea>
+            </div>
+            <div class="lib-modal-divider"></div>
+            <div class="lib-modal-actions">
+                <button class="btn btn-primary btn-sm" onclick="closeModal(document.getElementById('modal-form'))">Send</button>
+                <button class="btn btn-ghost btn-sm" onclick="closeModal(document.getElementById('modal-form'))">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script is:inline>
+(function() {
+    if (typeof window.__njxModalsInit !== 'undefined') return;
+    window.__njxModalsInit = true;
+
+    window.openModal = function(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    };
+
+    window.closeModal = function(el) {
+        if (!el) return;
+        el.classList.remove('open');
+        document.body.style.overflow = '';
+    };
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.lib-modal-overlay.open').forEach(function(m) {
+                m.classList.remove('open');
+            });
+            document.body.style.overflow = '';
+        }
+    });
+})();
+</script>

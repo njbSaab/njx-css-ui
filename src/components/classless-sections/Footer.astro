@@ -1,0 +1,81 @@
+<section class="lib-section cl-section" id="semantic">
+    <div class="lib-section-title">🏗 Semantic Elements</div>
+    <div class="lib-section-desc">
+        <code>aside</code>, <code>address</code>, and ARIA live region roles — <code>role="alert"</code>, <code>role="status"</code>, <code>role="note"</code>.
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">aside</div>
+        <div class="lib-preview">
+            <article>
+                <p>Main content goes here. It can contain any text.</p>
+                <aside>
+                    <strong>Tip:</strong> Use <code>aside</code> for supplementary content that is related but not essential to the main flow.
+                </aside>
+            </article>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div class="lib-code" data-raw='<p>Main content here.</p>
+<aside>
+  <strong>Tip:</strong> Use aside for supplementary content.
+</aside>'>
+                    <span class="k">&lt;p&gt;</span><span class="t">Main content here.</span><span class="k">&lt;/p&gt;</span><br />
+                    <span class="k">&lt;aside&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;strong&gt;</span><span class="t">Tip:</span><span class="k">&lt;/strong&gt;</span><span class="t"> Supplementary content.</span><br />
+                    <span class="k">&lt;/aside&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">ARIA roles: alert / status / note</div>
+        <div class="lib-preview">
+            <article>
+                <p role="alert">Alert: Your session will expire in 5 minutes.</p>
+                <p role="status">Status: File upload complete (3 of 3).</p>
+                <p role="note">Note: Changes are saved automatically.</p>
+            </article>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div class="lib-code" data-raw='<p role="alert">Alert: Session expiring soon.</p>
+<p role="status">Status: Upload complete.</p>
+<p role="note">Note: Auto-saved.</p>'>
+                    <span class="k">&lt;p</span> <span class="s">role</span>=<span class="cn">"alert"</span><span class="k">&gt;</span><span class="t">Alert: Session expiring.</span><span class="k">&lt;/p&gt;</span><br />
+                    <span class="k">&lt;p</span> <span class="s">role</span>=<span class="cn">"status"</span><span class="k">&gt;</span><span class="t">Status: Upload complete.</span><span class="k">&lt;/p&gt;</span><br />
+                    <span class="k">&lt;p</span> <span class="s">role</span>=<span class="cn">"note"</span><span class="k">&gt;</span><span class="t">Note: Auto-saved.</span><span class="k">&lt;/p&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">address</div>
+        <div class="lib-preview">
+            <article>
+                <address>
+                    Written by <a href="#">John Doe</a>.<br />
+                    42 Main Street, San Francisco, CA 94105<br />
+                    <a href="mailto:john@example.com">john@example.com</a>
+                </address>
+            </article>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div class="lib-code" data-raw='<address>
+  Written by <a href="#">John Doe</a>.<br>
+  42 Main Street, San Francisco, CA<br>
+  <a href="mailto:john@example.com">john@example.com</a>
+</address>'>
+                    <span class="k">&lt;address&gt;</span><br />
+                    &nbsp;&nbsp;<span class="t">Written by </span><span class="k">&lt;a</span> <span class="s">href</span>=<span class="cn">"#"</span><span class="k">&gt;</span><span class="t">John Doe</span><span class="k">&lt;/a&gt;</span><span class="t">.</span><span class="k">&lt;br&gt;</span><br />
+                    &nbsp;&nbsp;<span class="t">42 Main Street, SF</span><span class="k">&lt;br&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;a</span> <span class="s">href</span>=<span class="cn">"mailto:john@example.com"</span><span class="k">&gt;</span><span class="t">john@example.com</span><span class="k">&lt;/a&gt;</span><br />
+                    <span class="k">&lt;/address&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

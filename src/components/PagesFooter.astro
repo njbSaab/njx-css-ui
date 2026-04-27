@@ -1,0 +1,68 @@
+---
+interface Props {
+    activePage?: 'overview' | 'njxUIComponents' | 'documentation' | 'quickstart' | 'donate' | 'classless';
+}
+const { activePage } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<footer class="sc-footer">
+    <div class="sc-footer-logo">njX UI</div>
+    <p
+        style="font-size:14px;color:var(--color-muted);margin-bottom:20px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.6"
+    >
+        A modern CSS component library built for developers who value speed and
+        simplicity.
+    </p>
+    <div class="sc-footer-links">
+        <a href={base} class={activePage === 'njxUIComponents' ? 'active' : ''}>Components</a>
+        <a href={`${base}classless-components`} class={activePage === 'classless' ? 'active' : ''}>Classless</a>
+        <a href={`${base}documentation`} class={activePage === 'documentation' ? 'active' : ''}>Documentation</a>
+        <a href={`${base}quickstart`} class={activePage === 'quickstart' ? 'active' : ''}>Quick Start</a>
+        <a href={`${base}overview`} class={activePage === 'overview' ? 'active' : ''}>Overview</a>
+        <a href={`${base}donate`} class={activePage === 'donate' ? 'active' : ''}>Donate</a>
+        <a href="https://github.com/njbSaab/njx-css-ui" target="_blank">GitHub</a>
+    </div>
+    <p class="sc-footer-copy">
+        MIT License · Open Source · Built with ❤️ and pure CSS
+    </p>
+</footer>
+<style is:global>
+    /* ── PagesFooter shared styles ── */
+    .sc-footer {
+        padding: 48px 32px;
+        text-align: center;
+        border-top: 1px solid
+            color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+    }
+    .sc-footer-logo {
+        font-size: 22px;
+        font-weight: 900;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 12px;
+        display: inline-block;
+    }
+    .sc-footer-links {
+        display: flex;
+        gap: 24px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 20px 0;
+    }
+    .sc-footer-links a {
+        font-size: 14px;
+        color: var(--color-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    .sc-footer-links a:hover,
+    .sc-footer-links a.active { color: var(--color-primary); }
+    .sc-footer-copy {
+        font-size: 12px;
+        color: var(--color-muted);
+        opacity: 0.4;
+    }
+</style>

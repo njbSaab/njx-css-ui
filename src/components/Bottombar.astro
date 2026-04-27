@@ -1,0 +1,424 @@
+---
+interface Props {
+    activePage?:
+        | 'overview'
+        | 'documentation'
+        | 'quickstart'
+        | 'index'
+        | 'classless'
+        | 'donate';
+}
+const { activePage = '' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<div class="bb" id="page-bottombar">
+    <div class="bb-inner">
+        <!-- LEFT: nav links -->
+        <nav class="bb-nav">
+            <a
+                href={base}
+                class={`bb-nav-btn${activePage === 'index' ? ' active' : ''}`}
+                data-tip="njX UI Components"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+            </a>
+            <a
+                href={`${base}classless-components`}
+                class={`bb-nav-btn${activePage === 'classless' ? ' active' : ''}`}
+                data-tip="Classless Components"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+            </a>
+            <a
+                href={`${base}overview`}
+                class={`bb-nav-btn${activePage === 'overview' ? ' active' : ''}`}
+                data-tip="Overview"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <rect x="3" y="3" width="7" height="7"></rect><rect
+                        x="14"
+                        y="3"
+                        width="7"
+                        height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect><rect
+                        x="14"
+                        y="14"
+                        width="7"
+                        height="7"></rect>
+                </svg>
+            </a>
+            <a
+                href={`${base}documentation`}
+                class={`bb-nav-btn${activePage === 'documentation' ? ' active' : ''}`}
+                data-tip="Documentation"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path
+                        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                    ></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line><line
+                        x1="16"
+                        y1="17"
+                        x2="8"
+                        y2="17"></line>
+                </svg>
+            </a>
+            <a
+                href={`${base}quickstart`}
+                class={`bb-nav-btn${activePage === 'quickstart' ? ' active' : ''}`}
+                data-tip="Quick Start"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"
+                    ></polygon>
+                </svg>
+            </a>
+            <a
+                href={`${base}donate`}
+                class={`bb-nav-btn bb-donate${activePage === 'donate' ? ' active' : ''}`}
+                data-tip="Support njX"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path
+                        d="M12 6v2m0 8v2M9.5 9.5c0-1.1.9-2 2-2h1a2 2 0 0 1 0 4h-1a2 2 0 0 0 0 4h1a2 2 0 0 0 2-2"
+                    ></path>
+                </svg>
+            </a>
+        </nav>
+
+        <div class="bb-sep"></div>
+
+        <!-- RIGHT: theme dots -->
+        <div class="bb-themes">
+            <div
+                class="bb-dot"
+                style="background:#4a4a56"
+                data-t="dark"
+                title="dark"
+            >
+            </div>
+            <div
+                class="bb-dot"
+                style="background:#e2e8f0"
+                data-t="light"
+                title="light"
+            >
+            </div>
+            <div
+                class="bb-dot"
+                style="background:#f43f5e"
+                data-t="red"
+                title="red"
+            >
+            </div>
+            <div
+                class="bb-dot"
+                style="background:#3b82f6"
+                data-t="blue"
+                title="blue"
+            >
+            </div>
+            <div
+                class="bb-dot"
+                style="background:#22c55e"
+                data-t="green"
+                title="green"
+            >
+            </div>
+            <div
+                class="bb-dot"
+                style="background:#00e5ff"
+                data-t="cyan"
+                title="cyan"
+            >
+            </div>
+            <div
+                class="bb-dot"
+                style="background:#facc15"
+                data-t="yellow"
+                title="yellow"
+            >
+            </div>
+            <div
+                class="bb-dot"
+                style="background:#ec4899"
+                data-t="pink"
+                title="pink"
+            >
+            </div>
+            <div
+                class="bb-dot"
+                style="background:#a855f7"
+                data-t="purple"
+                title="purple"
+            >
+            </div>
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    (function () {
+        var bar = document.getElementById('page-bottombar');
+        if (!bar) return;
+
+        // ── Scroll trigger: show after first screen ──
+        // Remove previous listener if it exists (is:inline re-runs on every VT nav)
+        if (window._bbScroll) {
+            window.removeEventListener('scroll', window._bbScroll);
+        }
+        function onScroll() {
+            bar.classList.toggle(
+                'visible',
+                window.scrollY > window.innerHeight * 0.6,
+            );
+        }
+        window._bbScroll = onScroll;
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        // ── Theme dots ──
+        function syncDots(theme) {
+            bar.querySelectorAll('.bb-dot').forEach(function (d) {
+                d.classList.toggle('active', d.dataset.t === theme);
+            });
+        }
+
+        bar.querySelectorAll('.bb-dot').forEach(function (d) {
+            d.addEventListener('click', function () {
+                var t = d.dataset.t;
+                document.documentElement.setAttribute('data-theme', t);
+                try {
+                    localStorage.setItem('njx-theme', t);
+                } catch (e) {}
+                syncDots(t);
+            });
+        });
+
+        var saved =
+            document.documentElement.getAttribute('data-theme') ||
+            (function () {
+                try {
+                    return localStorage.getItem('njx-theme');
+                } catch (e) {}
+                return null;
+            })() ||
+            'dark';
+        syncDots(saved);
+    })();
+</script>
+
+<style is:global>
+    .bb {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 150;
+        display: flex;
+        justify-content: center;
+        padding: 14px 20px 18px;
+        transform: translateY(120%);
+        transition:
+            transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1),
+            opacity 0.25s;
+        opacity: 0;
+        pointer-events: none;
+    }
+    .bb.visible {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+    }
+    .bb-inner {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        background: var(--color-dark-secondary);
+        border: 1px solid
+            color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+        border-radius: 18px;
+        padding: 6px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    }
+    .bb-sep {
+        width: 1px;
+        height: 22px;
+        background: color-mix(
+            in srgb,
+            var(--color-neutral-600) 25%,
+            transparent
+        );
+        margin: 0 4px;
+        flex-shrink: 0;
+    }
+    /* Nav */
+    .bb-nav {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+    }
+    .bb-nav-btn {
+        position: relative;
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-muted);
+        text-decoration: none;
+        transition: all 0.2s;
+        flex-shrink: 0;
+    }
+    .bb-nav-btn:hover {
+        background: color-mix(
+            in srgb,
+            var(--color-neutral-600) 18%,
+            transparent
+        );
+        color: var(--color-light);
+    }
+    .bb-nav-btn.active {
+        background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+        color: var(--color-primary);
+    }
+    .bb-donate {
+        color: #f59e0b;
+    }
+    .bb-donate:hover {
+        background: color-mix(in srgb, #f59e0b 15%, transparent);
+        color: #fbbf24;
+    }
+    .bb-donate.active {
+        background: color-mix(in srgb, #f59e0b 15%, transparent);
+        color: #fbbf24;
+    }
+    .bb-nav-btn::after {
+        content: attr(data-tip);
+        position: absolute;
+        bottom: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%) translateY(4px);
+        background: var(--сolor-dark);
+        color: var(--color-light);
+        font-size: 11px;
+        font-weight: 600;
+        white-space: nowrap;
+        padding: 5px 10px;
+        border-radius: 7px;
+        border: 1px solid
+            color-mix(in srgb, var(--color-neutral-600) 30%, transparent);
+        pointer-events: none;
+        opacity: 0;
+        transition:
+            opacity 0.15s,
+            transform 0.15s;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .bb-nav-btn:hover::after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    /* Theme dots */
+    .bb-themes {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0 6px 0 2px;
+    }
+    .bb-dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.2s;
+        flex-shrink: 0;
+    }
+    .bb-dot:hover {
+        transform: scale(1.2);
+    }
+    .bb-dot.active {
+        /* border-color: var(--color-light); */
+        transform: scale(1.15);
+        box-shadow:
+            0 0 0 2px var(--color-dark-secondary),
+            0 0 0 4px currentColor;
+    }
+    @media (max-width: 720px) {
+        .bb-nav {
+            display: none;
+        }
+        .bb-sep {
+            display: none;
+        }
+        .bb-themes {
+            gap: 4px;
+        }
+    }
+</style>

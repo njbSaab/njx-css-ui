@@ -1,0 +1,1149 @@
+/* ============================================================
+   _native.css — safe native HTML defaults
+   Gives style.min.css a light classless baseline without importing
+   classless.css globally. Component classes stay authoritative.
+   ============================================================ */
+
+/* Text rhythm for plain semantic pages and semantic containers without classes. */
+body > main:not([class]) {
+  width: min(100% - var(--space-8), 980px);
+  margin: 0 auto;
+  padding: var(--space-8) 0;
+}
+
+body > main:not([class]) > header:not([class]),
+body > main:not([class]) > footer:not([class]) {
+  padding: var(--space-5) var(--space-8);
+  background: var(--color-dark-secondary);
+}
+
+body > main:not([class]) > section:not([class]) {
+  padding: var(--space-5) var(--space-8);
+}
+
+body > main:not([class]) nav:not([class]) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: var(--space-5) 0;
+}
+
+body > main:not([class]) nav:not([class]) a:not([class]) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 var(--space-4);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background var(--ease-fast), border-color var(--ease-fast), color var(--ease-fast);
+}
+
+body > main:not([class]) nav:not([class]) a:not([class]):hover {
+  background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+  text-decoration: none;
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) :where(h1, h2, h3, h4, h5, h6):not([class]) {
+  font-family: var(--font-heading);
+  line-height: var(--lh-snug);
+  color: var(--color-light);
+  margin: 0 0 var(--space-4);
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) h1:not([class]) {
+  font-size: var(--fs-4xl);
+  font-weight: 900;
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) h2:not([class]) {
+  font-size: var(--fs-3xl);
+  font-weight: 800;
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) h3:not([class]) {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) h4:not([class]) {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) h5:not([class]) {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) h6:not([class]) {
+  font-size: var(--fs-base);
+  font-weight: 700;
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) :where(p, ul, ol, dl, blockquote, pre, table, figure, form, details, article):not([class]) {
+  margin: 0 0 var(--space-5);
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) :where(p, address):not([class]) {
+  color: var(--color-light);
+  font-size: var(--fs-base);
+  line-height: var(--lh-relaxed);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) :where(small:not([class])) {
+  display: block;
+  color: var(--color-muted);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  margin: calc(var(--space-3) * -1) 0 var(--space-4);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) :where(strong:not([class])) {
+  color: var(--color-light);
+  font-weight: 800;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) :where(mark:not([class])) {
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-warning) 28%, transparent);
+  color: var(--color-light);
+  padding: 0.1em 0.28em;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) :where(abbr[title]:not([class])) {
+  cursor: help;
+  text-decoration: underline dotted;
+  text-underline-offset: 0.18em;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) :where(ins:not([class])) {
+  color: var(--color-success);
+  text-decoration-color: currentColor;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) :where(del:not([class])) {
+  color: var(--color-muted);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) :where(a:not([class])) {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
+  text-underline-offset: 0.18em;
+  transition: color var(--ease-fast), text-decoration-color var(--ease-fast), text-underline-offset var(--ease-fast);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) :where(a:not([class])):hover {
+  text-decoration-color: currentColor;
+  text-underline-offset: 0.24em;
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) :where(ul, ol):not([class]) {
+  padding-left: var(--space-6);
+  color: var(--color-light);
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) ul:not([class]) {
+  list-style: disc;
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) ol:not([class]) {
+  list-style: decimal;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) :where(li:not([class])) {
+  margin: 0 0 var(--space-2);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) :where(code, kbd, samp):not([class]) {
+  border-radius: var(--radius-sm);
+  background: var(--color-dark-secondary);
+  color: var(--color-primary);
+  padding: 0.18em 0.4em;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) :where(kbd:not([class])) {
+  border: 1px solid var(--color-neutral-700);
+  box-shadow: inset 0 -1px 0 var(--color-neutral-700);
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) pre:not([class]) {
+  overflow-x: auto;
+  padding: var(--space-4);
+  border: 1px solid var(--color-neutral-700);
+  border-radius: var(--radius-md);
+  background: var(--color-dark-secondary);
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) blockquote:not([class]) {
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-primary) 9%, transparent);
+  padding: var(--space-4) var(--space-5);
+  color: var(--color-light);
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) hr:not([class]) {
+  height: 1px;
+  border: 0;
+  background: var(--color-neutral-700);
+  margin: var(--space-8) 0;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) :where(img, video):not([class]) {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) figure:not([class]) {
+  display: grid;
+  gap: var(--space-2);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) figcaption:not([class]) {
+  color: var(--color-muted);
+  font-size: var(--fs-sm);
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) article:not([class]) {
+  border: 1px solid var(--color-neutral-700);
+  border-radius: var(--radius-md);
+  background: var(--color-dark-secondary);
+  padding: var(--space-5);
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) article:not([class]) > header:not([class]),
+:where(body, main:not([class]), article:not([class]), section:not([class])) article:not([class]) > footer:not([class]) {
+  margin: calc(var(--space-5) * -1) calc(var(--space-5) * -1) var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-neutral-700);
+  background: color-mix(in srgb, var(--color-dark) 60%, transparent);
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) article:not([class]) > footer:not([class]) {
+  margin: var(--space-5) calc(var(--space-5) * -1) calc(var(--space-5) * -1);
+  border-top: 1px solid var(--color-neutral-700);
+  border-bottom: 0;
+}
+
+/* Tables */
+:where(body, main:not([class]), article:not([class]), section:not([class])) table:not([class]) {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: var(--color-light);
+  font-size: var(--fs-sm);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) :where(th, td):not([class]) {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-neutral-700);
+  text-align: left;
+  vertical-align: middle;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) th:not([class]) {
+  color: var(--color-muted);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Forms */
+:where(body, main:not([class]), article:not([class]), section:not([class])) form:not([class]) {
+  display: grid;
+  gap: var(--space-4);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(fieldset:not([class])) {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--form-border, var(--color-neutral-700));
+  border-radius: var(--radius-md);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(legend:not([class])) {
+  color: var(--color-primary);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0 var(--space-2);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(label:not([class])) {
+  display: grid;
+  gap: var(--space-2);
+  color: var(--color-muted);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(label:not([class]):has(> input[type="checkbox"]), label:not([class]):has(> input[type="radio"])) {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-light);
+  font-weight: 500;
+  line-height: var(--lh-normal);
+  cursor: pointer;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(
+  input:not([class]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="button"]):not([type="submit"]):not([type="reset"]),
+  select:not([class]),
+  textarea:not([class])
+) {
+  width: 100%;
+  border: 1.5px solid var(--form-border, var(--color-neutral-700));
+  border-radius: var(--form-radius, var(--radius-md));
+  background: var(--form-bg-input, var(--color-dark-secondary));
+  color: var(--form-text, var(--color-light));
+  padding: var(--form-padding, 10px 14px);
+  font-family: inherit;
+  font-size: var(--form-font-size, var(--fs-base));
+  outline: none;
+  transition: border-color var(--ease-fast), box-shadow var(--ease-fast), background var(--ease-fast);
+  height: 50px;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(select:not([class])) {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 42px;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-muted) 50%), linear-gradient(135deg, var(--color-muted) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(
+  input:not([class]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="button"]):not([type="submit"]):not([type="reset"]),
+  select:not([class]),
+  textarea:not([class])
+):focus {
+  --_v: var(--color-primary);
+  outline: none;
+  border-color: var(--_v);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--_v) 22%, transparent);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(
+  input:not([class]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="button"]):not([type="submit"]):not([type="reset"]),
+  select:not([class]),
+  textarea:not([class])
+):focus-visible {
+  outline: none;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(
+  input[aria-invalid="false"]:not([class]),
+  select[aria-invalid="false"]:not([class]),
+  textarea[aria-invalid="false"]:not([class])
+) {
+  border-color: var(--color-success);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(
+  input[aria-invalid="true"]:not([class]),
+  select[aria-invalid="true"]:not([class]),
+  textarea[aria-invalid="true"]:not([class])
+) {
+  border-color: var(--color-error);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where([aria-invalid="false"]:not([class]) + small:not([class])) {
+  color: var(--color-success);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where([aria-invalid="true"]:not([class]) + small:not([class])) {
+  color: var(--color-error);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(textarea:not([class])) {
+  min-height: 110px;
+  resize: vertical;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="range"]:not([class])) {
+  accent-color: var(--color-primary);
+}
+
+/* ── Custom Checkbox ── */
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="checkbox"]:not([class])) {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  flex-shrink: 0;
+  border: 2px solid var(--color-neutral-600);
+  border-radius: var(--radius-sm);
+  background: var(--color-dark-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: background var(--ease-fast), border-color var(--ease-fast), box-shadow var(--ease-fast);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="checkbox"]:not([class])):checked {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="checkbox"]:not([class])):checked::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 0.3rem;
+  height: 0.55rem;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="checkbox"]:not([class])):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="checkbox"]:not([class])):indeterminate {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="checkbox"]:not([class])):indeterminate::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 0.55rem;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+/* ── Custom Radio ── */
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="radio"]:not([class])) {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  flex-shrink: 0;
+  border: 2px solid var(--color-neutral-600);
+  border-radius: 50%;
+  background: var(--color-dark-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: background var(--ease-fast), border-color var(--ease-fast), box-shadow var(--ease-fast);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="radio"]:not([class])):checked {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="radio"]:not([class])):checked::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="radio"]:not([class])):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="checkbox"]:disabled:not([class]), input[type="radio"]:disabled:not([class])) {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+/* ── Switch (role="switch" + checkbox) ── */
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="checkbox"][role="switch"]:not([class])) {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 2.75rem;
+  height: 1.5rem;
+  border: 2px solid var(--color-neutral-600);
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-700);
+  box-shadow: none;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: background var(--ease-fast), border-color var(--ease-fast), box-shadow var(--ease-fast);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="checkbox"][role="switch"]:not([class]))::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-muted);
+  transform: translateY(-50%);
+  transition: left var(--ease-fast), background var(--ease-fast), width var(--ease-fast);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="checkbox"][role="switch"]:not([class])):checked {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="checkbox"][role="switch"]:not([class])):checked::after {
+  /* reset checkmark inherited from checkbox::after */
+  inset: unset;
+  margin: unset;
+  border: none;
+  transform: translateY(-50%);
+  /* knob position */
+  top: 50%;
+  left: calc(100% - 17px);
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="checkbox"][role="switch"]:not([class])):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="checkbox"][role="switch"]:not([class])):disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="range"]:not([class])) {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="color"]:not([class])) {
+  width: 56px;
+  height: 42px;
+  padding: 4px;
+  border: 1.5px solid var(--form-border, var(--color-neutral-700));
+  border-radius: var(--radius-md);
+  background: var(--form-bg-input, var(--color-dark-secondary));
+  cursor: pointer;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="file"]:not([class])) {
+  width: 100%;
+  border: 1.5px dashed var(--form-border, var(--color-neutral-700));
+  border-radius: var(--form-radius, var(--radius-lg));
+  background: color-mix(in srgb, var(--color-primary) 5%, transparent);
+  color: var(--color-muted);
+  padding: var(--space-3);
+  cursor: pointer;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(input[type="file"]:not([class]))::file-selector-button {
+  margin-right: var(--space-3);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #ffffff;
+  padding: 7px 14px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(button:not([class]), input[type="button"]:not([class]), input[type="submit"]:not([class]), input[type="reset"]:not([class])) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: fit-content;
+  min-height: 44px;
+  padding: 0 var(--space-6);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--color-primary) 22%, transparent);
+  transition: background var(--ease-fast), border-color var(--ease-fast), box-shadow var(--ease-fast), filter var(--ease-fast), transform var(--ease-fast), opacity var(--ease-fast);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(button:not([class]), input[type="button"]:not([class]), input[type="submit"]:not([class])):hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--color-primary) 30%, transparent);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(button[type="reset"]:not([class]), input[type="reset"]:not([class])) {
+  background: transparent;
+  color: var(--color-primary);
+  box-shadow: none;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(button[type="reset"]:not([class]), input[type="reset"]:not([class])):hover {
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  transform: translateY(-1px);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(button:not([class]), input[type="button"]:not([class]), input[type="submit"]:not([class]), input[type="reset"]:not([class])):disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(button[aria-busy="true"]:not([class])) {
+  position: relative;
+  min-width: 48px;
+  color: transparent;
+  pointer-events: none;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(button[aria-busy="true"]:not([class]))::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid color-mix(in srgb, #fff 30%, transparent);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: native-spin 0.65s linear infinite;
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) details:not([class]) {
+  border: 1px solid var(--color-neutral-700);
+  border-radius: var(--radius-md);
+  background: var(--color-dark-secondary);
+  padding: var(--space-4);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) summary:not([class]) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  color: var(--color-light);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) summary:not([class])::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--color-muted);
+  border-bottom: 2px solid var(--color-muted);
+  transform: rotate(45deg);
+  transition: transform var(--ease-fast);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) details[open]:not([class]) > summary:not([class])::after {
+  transform: rotate(225deg);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) details:not([class]) > :not(summary):not([class]) {
+  margin-top: var(--space-4);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) :where(progress:not([class]), meter:not([class])) {
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-800);
+  accent-color: var(--color-primary);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) meter:not([class])::-webkit-meter-bar {
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-800);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) meter:not([class])::-webkit-meter-optimum-value {
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--color-success), color-mix(in srgb, var(--color-success) 65%, #ffffff));
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) meter:not([class])::-webkit-meter-suboptimum-value {
+  border-radius: var(--radius-full);
+  background: var(--color-warning);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) meter:not([class])::-webkit-meter-even-less-good-value {
+  border-radius: var(--radius-full);
+  background: var(--color-error);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) output:not([class]) {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 30px;
+  padding: 0 var(--space-3);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  color: var(--color-primary);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) progress:not([class])::-webkit-progress-bar {
+  background: var(--color-neutral-800);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) progress:not([class])::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 65%, #ffffff));
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) progress:not([class])::-moz-progress-bar {
+  background: linear-gradient(90deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 65%, #ffffff));
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) dialog:not([class]) {
+  max-width: min(560px, calc(100% - var(--space-8)));
+  border: 1px solid var(--color-neutral-700);
+  border-radius: var(--radius-lg);
+  background: var(--сolor-dark);
+  color: var(--color-light);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-lg);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) dialog:not([class])::backdrop {
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) dialog:not([class]) article:not([class]) {
+  margin: 0;
+  border: 0;
+  background: transparent;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) dialog:not([class]) button[rel="prev"]:not([class]) {
+  width: 34px;
+  min-width: 34px;
+  min-height: 34px;
+  padding: 0;
+  border-color: var(--color-neutral-700);
+  background: transparent;
+  color: var(--color-muted);
+  box-shadow: none;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) dialog:not([class]) button[rel="prev"]:not([class])::before {
+  content: "×";
+  color: currentColor;
+  font-size: 22px;
+  line-height: 1;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) [data-tooltip]:not([class]) {
+  position: relative;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) [data-tooltip]:not([class]):hover::after,
+:where(main:not([class]), article:not([class]), section:not([class])) [data-tooltip]:not([class]):focus-visible::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  z-index: var(--z-100);
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 220px;
+  padding: 6px 10px;
+  border: 1px solid var(--color-neutral-700);
+  border-radius: var(--radius-sm);
+  background: var(--color-dark-secondary);
+  color: var(--color-light);
+  font-size: var(--fs-xs);
+  line-height: 1.3;
+  box-shadow: var(--shadow-md);
+  pointer-events: none;
+}
+
+/* ── Selection ── */
+::selection {
+  background: color-mix(in srgb, var(--color-primary) 28%, transparent);
+  color: var(--color-light);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-dark-secondary, #1a1a2e); }
+::-webkit-scrollbar-thumb {
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-600, #444);
+  transition: background var(--ease-fast);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-neutral-500, #666); }
+* { scrollbar-width: thin; scrollbar-color: var(--color-neutral-600, #444) var(--color-dark-secondary, #1a1a2e); }
+
+/* ── Focus ring ── */
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(*:not([class])):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-md);
+}
+
+/* ── Definition list ── */
+:where(main:not([class]), article:not([class]), section:not([class])) dl:not([class]) {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-2) var(--space-5);
+  color: var(--color-light);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) dt:not([class]) {
+  color: var(--color-muted);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding-top: 2px;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) dd:not([class]) {
+  margin: 0;
+  color: var(--color-light);
+}
+
+/* ── Aside / callout ── */
+:where(body, main:not([class]), article:not([class]), section:not([class])) aside:not([class]) {
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  padding: var(--space-4) var(--space-5);
+  color: var(--color-light);
+  font-size: var(--fs-sm);
+}
+
+:where(body, main:not([class]), article:not([class]), section:not([class])) aside:not([class]) > :last-child { margin-bottom: 0; }
+
+/* ── Semantic roles: alert / status / note ── */
+:where(main:not([class]), article:not([class]), section:not([class])) [role="alert"]:not([class]) {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid color-mix(in srgb, var(--color-error) 40%, transparent);
+  border-left: 4px solid var(--color-error);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-error) 9%, transparent);
+  color: var(--color-light);
+  font-size: var(--fs-sm);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) [role="status"]:not([class]) {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid color-mix(in srgb, var(--color-success) 40%, transparent);
+  border-left: 4px solid var(--color-success);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-success) 9%, transparent);
+  color: var(--color-light);
+  font-size: var(--fs-sm);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) [role="note"]:not([class]) {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid color-mix(in srgb, var(--color-warning) 40%, transparent);
+  border-left: 4px solid var(--color-warning);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-warning) 9%, transparent);
+  color: var(--color-light);
+  font-size: var(--fs-sm);
+}
+
+/* ── Address ── */
+:where(main:not([class]), article:not([class]), section:not([class])) address:not([class]) {
+  border: 1px solid var(--color-neutral-700);
+  border-radius: var(--radius-md);
+  background: var(--color-dark-secondary);
+  padding: var(--space-4) var(--space-5);
+  color: var(--color-muted);
+  font-style: normal;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+}
+
+/* ── Inline semantics ── */
+:where(main:not([class]), article:not([class]), section:not([class])) cite:not([class]) {
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) q:not([class]) {
+  color: var(--color-light);
+  font-style: italic;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) q:not([class])::before { content: open-quote; color: var(--color-primary); }
+:where(main:not([class]), article:not([class]), section:not([class])) q:not([class])::after  { content: close-quote; color: var(--color-primary); }
+
+:where(main:not([class]), article:not([class]), section:not([class])) dfn:not([class]) {
+  color: var(--color-primary);
+  font-style: normal;
+  font-weight: 600;
+  cursor: help;
+  text-decoration: underline dotted;
+  text-underline-offset: 0.18em;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) var:not([class]) {
+  font-family: var(--font-mono);
+  font-style: italic;
+  color: var(--color-accent, var(--color-primary));
+  font-size: 0.92em;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) sub:not([class]),
+:where(main:not([class]), article:not([class]), section:not([class])) sup:not([class]) {
+  font-size: 0.72em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) sup:not([class]) { top: -0.5em; }
+:where(main:not([class]), article:not([class]), section:not([class])) sub:not([class]) { bottom: -0.25em; }
+
+/* ── Media ── */
+:where(main:not([class]), article:not([class]), section:not([class])) audio:not([class]) {
+  width: 100%;
+  border-radius: var(--radius-md);
+  accent-color: var(--color-primary);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) video:not([class]) {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  background: #000;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) iframe:not([class]) {
+  max-width: 100%;
+  border: 1px solid var(--color-neutral-700);
+  border-radius: var(--radius-md);
+  background: var(--color-dark-secondary);
+}
+
+/* ── Search element ── */
+:where(main:not([class]), article:not([class]), section:not([class])) search:not([class]) {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) search:not([class]) input[type="search"]:not([class]) {
+  flex: 1;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) input[type="search"]:not([class])::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23888' d='M8 7l3-3 1 1-3 3 3 3-1 1-3-3-3 3-1-1 3-3-3-3 1-1z'/%3E%3C/svg%3E") center/contain no-repeat;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+/* ── aria-busy containers ── */
+:where(main:not([class]), article:not([class]), section:not([class])) [aria-busy="true"]:not([class]):not(button) {
+  position: relative;
+  pointer-events: none;
+  min-height: 64px;
+  overflow: hidden;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) [aria-busy="true"]:not([class]):not(button)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--color-dark, #0f0f1a) 70%, transparent);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) [aria-busy="true"]:not([class]):not(button)::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border: 3px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: native-spin 0.7s linear infinite;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--color-primary) 35%, transparent);
+}
+
+/* ── [data-loading] — standalone inline spinner ── */
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) [data-loading]:not([class]) {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: native-spin 0.65s linear infinite;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+@keyframes native-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ══════════════════════════════════════════════════════════
+   data-variant — color variants without classes
+   Usage: <button data-variant="success"> / <input data-variant="warning">
+   Only applies when element has no class (not([class]))
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Variant tokens (local override per element) ── */
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) [data-variant="accent"]:not([class])   { --_v: var(--color-accent, var(--color-primary)); }
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) [data-variant="success"]:not([class])  { --_v: var(--color-success); }
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) [data-variant="warning"]:not([class])  { --_v: var(--color-warning); }
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) [data-variant="error"]:not([class])   { --_v: var(--color-error); }
+
+/* ── Button variants ── */
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(
+  button[data-variant]:not([class]),
+  input[type="button"][data-variant]:not([class]),
+  input[type="submit"][data-variant]:not([class])
+) {
+  background: var(--_v);
+  border-color: var(--_v);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--_v) 22%, transparent);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(
+  button[data-variant]:not([class]),
+  input[type="button"][data-variant]:not([class]),
+  input[type="submit"][data-variant]:not([class])
+):hover {
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--_v) 32%, transparent);
+}
+
+/* dark — outline style */
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(
+  button[data-variant="dark"]:not([class]),
+  input[type="button"][data-variant="dark"]:not([class])
+) {
+  background: var(--color-dark-secondary);
+  border-color: var(--color-neutral-700);
+  color: var(--color-light);
+  box-shadow: none;
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(
+  button[data-variant="dark"]:not([class]),
+  input[type="button"][data-variant="dark"]:not([class])
+):hover {
+  background: color-mix(in srgb, var(--color-neutral-700) 60%, transparent);
+  box-shadow: none;
+}
+
+/* light — filled light */
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(
+  button[data-variant="light"]:not([class]),
+  input[type="button"][data-variant="light"]:not([class])
+) {
+  background: var(--color-light);
+  border-color: var(--color-light);
+  color: var(--сolor-dark, #0f0f1a);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--color-light) 15%, transparent);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(
+  button[data-variant="light"]:not([class]),
+  input[type="button"][data-variant="light"]:not([class])
+):hover {
+  filter: brightness(0.94);
+}
+
+/* ── Input / Textarea variants (border + focus ring) ── */
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(
+  input[data-variant]:not([class]),
+  textarea[data-variant]:not([class]),
+  select[data-variant]:not([class])
+) {
+  border-color: var(--_v);
+}
+
+
+/* dark/light inputs */
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(
+  input[data-variant="dark"]:not([class]),
+  textarea[data-variant="dark"]:not([class])
+) {
+  --_v: var(--color-neutral-600);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class]), form:not([class])) :where(
+  input[data-variant="light"]:not([class]),
+  textarea[data-variant="light"]:not([class])
+) {
+  --_v: var(--color-light);
+}
+
+/* ── Link variants ── */
+:where(main:not([class]), article:not([class]), section:not([class])) a[data-variant]:not([class]) {
+  color: var(--_v);
+  text-decoration-color: color-mix(in srgb, var(--_v) 50%, transparent);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) a[data-variant]:not([class]):hover {
+  text-decoration-color: var(--_v);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) a[data-variant="dark"]:not([class]) {
+  color: var(--color-muted);
+}
+
+:where(main:not([class]), article:not([class]), section:not([class])) a[data-variant="light"]:not([class]) {
+  color: var(--color-light-secondary);
+}

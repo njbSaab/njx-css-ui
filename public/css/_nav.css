@@ -1,0 +1,245 @@
+/* ─────────────────────────────────────────────
+   _nav.css — Navigation Bar
+   ─────────────────────────────────────────────
+   API:
+     <nav class="nav">
+       <div class="nav-left">
+         <a class="nav-brand" href="#">Brand</a>
+       </div>
+       <div class="nav-center">
+         <a href="#" class="nav-link is-active">Home</a>
+         <a href="#" class="nav-link">About</a>
+       </div>
+       <div class="nav-right">
+         <button class="btn btn-primary btn-sm">Sign in</button>
+       </div>
+     </nav>
+
+   Variants:  .nav-glass  .nav-solid  .nav-primary  .nav-dark  .nav-floating
+   Sizes:     .nav-sm  .nav-lg
+   Links:     .nav-link  .nav-brand  [aria-current="page"]  .is-active
+───────────────────────────────────────────── */
+
+/* ═══════════════════════════════
+   BASE
+═══════════════════════════════ */
+.nav {
+  --nav-height:   60px;
+  --nav-px:       20px;
+  --nav-bg:       transparent;
+  --nav-border:   transparent;
+  --nav-text:     var(--color-muted);
+  --nav-text-hover: var(--color-light);
+  --nav-active:   var(--color-primary);
+  --nav-brand-size: 1.1rem;
+
+  display: flex;
+  align-items: stretch;
+  min-height: var(--nav-height);
+  padding: 0 var(--nav-px);
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-border);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+/* ═══════════════════════════════
+   SECTIONS
+═══════════════════════════════ */
+.nav-left,
+.nav-right,
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav-left   { flex: 1; justify-content: flex-start; }
+.nav-right  { flex: 1; justify-content: flex-end; }
+.nav-center { justify-content: center; }
+
+/* ═══════════════════════════════
+   BRAND
+═══════════════════════════════ */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--nav-brand-size);
+  font-weight: 700;
+  color: var(--color-light);
+  text-decoration: none;
+  padding: 0 12px 0 0;
+  white-space: nowrap;
+  transition: opacity 0.18s;
+}
+
+.nav-brand:hover { opacity: 0.82; }
+
+.nav-brand img {
+  height: 28px;
+  width: auto;
+}
+
+/* ═══════════════════════════════
+   LINKS
+═══════════════════════════════ */
+.nav-link,
+.nav a:not(.btn):not(.nav-brand) {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--nav-text);
+  text-decoration: none;
+  border-radius: var(--radius-md, 8px);
+  transition: color 0.18s, background 0.18s;
+  white-space: nowrap;
+}
+
+.nav-link:hover,
+.nav a:not(.btn):not(.nav-brand):hover {
+  color: var(--nav-text-hover);
+  background: color-mix(in srgb, var(--color-neutral-600) 8%, transparent);
+}
+
+.nav-link.is-active,
+.nav-link[aria-current="page"],
+.nav a:not(.btn)[aria-current="page"] {
+  color: var(--nav-active);
+  background: color-mix(in srgb, var(--nav-active) 10%, transparent);
+  font-weight: 600;
+}
+
+/* Separator dot between links */
+.nav-sep {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-neutral-600) 40%, transparent);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════
+   SIZES
+═══════════════════════════════ */
+.nav-sm { --nav-height: 48px; --nav-px: 16px; }
+.nav-sm .nav-link,
+.nav-sm .nav a:not(.btn):not(.nav-brand) {
+  font-size: 13px;
+  padding: 5px 10px;
+}
+
+.nav-lg { --nav-height: 72px; --nav-px: 28px; }
+.nav-lg .nav-brand { font-size: 1.25rem; }
+
+/* ═══════════════════════════════
+   VARIANT: SOLID (with border)
+═══════════════════════════════ */
+.nav-solid {
+  --nav-bg:     var(--color-dark-secondary);
+  --nav-border: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+  border-radius: var(--radius-lg, 12px);
+}
+
+/* ═══════════════════════════════
+   VARIANT: GLASS (frosted)
+═══════════════════════════════ */
+.nav-glass {
+  --nav-bg:     color-mix(in srgb, var(--сolor-dark) 75%, transparent);
+  --nav-border: color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ═══════════════════════════════
+   VARIANT: PRIMARY (tinted)
+═══════════════════════════════ */
+.nav-primary {
+  --nav-bg:       color-mix(in srgb, var(--color-primary) 10%, var(--color-dark-secondary));
+  --nav-border:   color-mix(in srgb, var(--color-primary) 22%, transparent);
+  --nav-text:     color-mix(in srgb, var(--color-primary) 70%, var(--color-muted));
+  --nav-text-hover: var(--color-light);
+  --nav-active:   var(--color-primary);
+}
+
+/* ═══════════════════════════════
+   VARIANT: DARK (always dark)
+═══════════════════════════════ */
+.nav-dark {
+  --nav-bg:         #0f0f0f;
+  --nav-border:     rgba(255,255,255,0.08);
+  --nav-text:       rgba(255,255,255,0.55);
+  --nav-text-hover: #fff;
+  --nav-active:     var(--color-primary);
+}
+
+.nav-dark .nav-brand { color: #fff; }
+
+.nav-dark .nav-link:hover,
+.nav-dark .nav a:not(.btn):not(.nav-brand):hover {
+  background: rgba(255,255,255,0.06);
+}
+
+.nav-dark .nav-link.is-active,
+.nav-dark .nav-link[aria-current="page"],
+.nav-dark .nav a:not(.btn)[aria-current="page"] {
+  background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+}
+
+/* ═══════════════════════════════
+   VARIANT: FLOATING (pill bar)
+═══════════════════════════════ */
+.nav-floating {
+  --nav-bg:     color-mix(in srgb, var(--color-dark-secondary) 92%, transparent);
+  --nav-border: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+  border-radius: 99px;
+  border: 1px solid var(--nav-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 0 8px;
+  min-height: 52px;
+  box-shadow: 0 4px 24px color-mix(in srgb, #000 18%, transparent);
+}
+
+.nav-floating .nav-brand { padding: 0 8px 0 4px; }
+
+.nav-floating .nav-link,
+.nav-floating .nav a:not(.btn):not(.nav-brand) {
+  border-radius: 99px;
+}
+
+/* ═══════════════════════════════
+   UNDERLINE LINK STYLE
+   (add .nav-underline to .nav)
+═══════════════════════════════ */
+.nav-underline .nav-link,
+.nav-underline .nav a:not(.btn):not(.nav-brand) {
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 4px;
+  margin-bottom: -1px;
+  background: transparent !important;
+}
+
+.nav-underline .nav-link:hover,
+.nav-underline .nav a:not(.btn):not(.nav-brand):hover {
+  border-bottom-color: color-mix(in srgb, var(--color-neutral-600) 40%, transparent);
+}
+
+.nav-underline .nav-link.is-active,
+.nav-underline .nav-link[aria-current="page"],
+.nav-underline .nav a:not(.btn)[aria-current="page"] {
+  border-bottom-color: var(--nav-active);
+  background: transparent !important;
+}
+
+/* ═══════════════════════════════
+   MOBILE
+═══════════════════════════════ */
+@media (max-width: 600px) {
+  .nav-center { display: none; }
+  .nav-left   { flex: 0 0 auto; }
+  .nav-right  { flex: 1; }
+}

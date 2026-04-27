@@ -1,0 +1,1194 @@
+<div
+    id="njx-download-overlay"
+    class="njx-dl-overlay"
+    onclick="if(event.target===this)closeDownloadModal()"
+>
+    <div class="njx-dl-modal">
+
+        <!-- Header -->
+        <div class="njx-dl-header">
+            <div class="njx-dl-header-left">
+                <div class="njx-dl-header-icon">
+                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M8 1v8M5 6l3 3 3-3M2 11v1a1 1 0 001 1h10a1 1 0 001-1v-1"></path>
+                    </svg>
+                </div>
+                <div class="njx-dl-header-text">
+                    <div class="njx-dl-header-title">Download njX UI</div>
+                    <div class="njx-dl-header-sub">Choose your build type</div>
+                </div>
+            </div>
+            <button class="njx-dl-close" onclick="closeDownloadModal()">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M3 3l10 10M13 3L3 13"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="njx-dl-tabs">
+            <button class="njx-dl-tab active" data-tab="default" onclick="njxDlSwitchTab('default')">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 3h12v10H2zM2 7h12"/>
+                    <path d="M5 3V1M11 3V1"/>
+                </svg>
+                Quick
+            </button>
+            <button class="njx-dl-tab" data-tab="custom" onclick="njxDlSwitchTab('custom')">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+                    <path d="M2 4h3M7 4h7M2 8h7M11 8h3M2 12h5M9 12h5"/>
+                    <circle cx="5" cy="4" r="1.5"/>
+                    <circle cx="9.5" cy="8" r="1.5"/>
+                    <circle cx="7.5" cy="12" r="1.5"/>
+                </svg>
+                Custom
+            </button>
+            <button class="njx-dl-tab" data-tab="all" onclick="njxDlSwitchTab('all')">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 3h14M1 8h14M1 13h14"/>
+                </svg>
+                All Files
+            </button>
+        </div>
+
+        <!-- ══════════════════════════════════════════════
+             Panel: Quick Download (Default)
+             ══════════════════════════════════════════════ -->
+        <div class="njx-dl-panel" id="njx-tab-default">
+            <div class="njx-dl-body njx-dl-body--default">
+
+                <!-- Variant cards -->
+                <div class="njx-vc-grid">
+
+                    <!-- Full -->
+                    <label class="njx-vc" data-variant="full">
+                        <input type="radio" name="njx-def-variant" value="full" checked hidden />
+                        <div class="njx-vc-accent njx-vc-accent--full"></div>
+                        <div class="njx-vc-icon njx-vc-icon--full">
+                            <svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+                                <rect x="1.5" y="1.5" width="13" height="13" rx="2"/>
+                                <path d="M4.5 5.5h7M4.5 8h7M4.5 10.5h4"/>
+                            </svg>
+                        </div>
+                        <div class="njx-vc-body">
+                            <div class="njx-vc-name">Full UI</div>
+                            <div class="njx-vc-file">style.min.css</div>
+                            <div class="njx-vc-desc">30+ components, 9 themes</div>
+                        </div>
+                        <div class="njx-vc-meta">
+                            <span class="njx-vc-size">~66 KB</span>
+                            <div class="njx-vc-check">
+                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- Classless -->
+                    <label class="njx-vc" data-variant="classless">
+                        <input type="radio" name="njx-def-variant" value="classless" hidden />
+                        <div class="njx-vc-accent njx-vc-accent--classless"></div>
+                        <div class="njx-vc-icon njx-vc-icon--classless">
+                            <svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+                                <path d="M4 4l-3 4 3 4M12 4l3 4-3 4M9 2l-2 12"/>
+                            </svg>
+                        </div>
+                        <div class="njx-vc-body">
+                            <div class="njx-vc-name">Classless</div>
+                            <div class="njx-vc-file">classless.min.css</div>
+                            <div class="njx-vc-desc">Zero class names needed</div>
+                        </div>
+                        <div class="njx-vc-meta">
+                            <span class="njx-vc-size">~45 KB</span>
+                            <div class="njx-vc-check">
+                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- Legacy scoped mode -->
+                    <label class="njx-vc" data-variant="mix">
+                        <input type="radio" name="njx-def-variant" value="mix" hidden />
+                        <div class="njx-vc-accent njx-vc-accent--mix"></div>
+                        <div class="njx-vc-icon njx-vc-icon--mix">
+                            <svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 4h5M2 8h5M2 12h5"/>
+                                <path d="M9 4h5M9 8h5M9 12h5"/>
+                                <path d="M7 8h2"/>
+                            </svg>
+                        </div>
+                        <div class="njx-vc-body">
+                            <div class="njx-vc-name">Mix Mode</div>
+                            <div class="njx-vc-file">classless-mode.css</div>
+                            <div class="njx-vc-desc">Full + Classless, zero conflicts</div>
+                        </div>
+                        <div class="njx-vc-meta">
+                            <span class="njx-vc-size">2 files</span>
+                            <div class="njx-vc-check">
+                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
+                            </div>
+                        </div>
+                    </label>
+
+                </div><!-- /.njx-vc-grid -->
+
+                <!-- CDN snippet -->
+                <div class="njx-dl-cdn-block">
+                    <div class="njx-dl-cdn-header">
+                        <div class="njx-dl-cdn-dots">
+                            <span style="background:#ff5f57"></span>
+                            <span style="background:#febc2e"></span>
+                            <span style="background:#28c840"></span>
+                        </div>
+                        <span class="njx-dl-cdn-label">CDN</span>
+                        <button class="njx-dl-cdn-copy" onclick="njxCopyCdn(this,'njx-def-cdn-code')" title="Copy">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                            Copy
+                        </button>
+                    </div>
+                    <code id="njx-def-cdn-code" class="njx-dl-cdn-code"></code>
+                </div>
+
+            </div>
+        </div><!-- /#njx-tab-default -->
+
+
+        <!-- ══════════════════════════════════════════════
+             Panel: Custom Build
+             ══════════════════════════════════════════════ -->
+        <div class="njx-dl-panel njx-dl-panel-hidden" id="njx-tab-custom">
+            <div class="njx-dl-body njx-dl-body--custom">
+
+                <!-- Progress bar header -->
+                <div class="njx-cb-header">
+                    <div class="njx-cb-header-left">
+                        <span class="njx-cb-title">Select components</span>
+                        <span class="njx-cb-count" id="njx-cb-count-label">26 of 26</span>
+                    </div>
+                    <div class="njx-cb-header-right">
+                        <button class="njx-dl-btn-text" onclick="dlSelectAll(true)">All</button>
+                        <span class="njx-dl-sep">·</span>
+                        <button class="njx-dl-btn-text" onclick="dlSelectAll(false)">None</button>
+                    </div>
+                </div>
+                <div class="njx-cb-progress-wrap">
+                    <div class="njx-cb-progress-bar" id="njx-cb-progress"></div>
+                </div>
+
+                <!-- Foundation -->
+                <div class="njx-cb-section">
+                    <div class="njx-cb-section-head">
+                        <span class="njx-cb-section-dot" style="background:#f59e0b"></span>
+                        <span class="njx-cb-section-name">Foundation</span>
+                        <span class="njx-cb-section-badge">always included · 6 files</span>
+                    </div>
+                    <div class="njx-dl-grid">
+                        <label class="njx-dl-item njx-dl-item-locked"><input type="checkbox" checked disabled /><span>_base.css</span><span class="njx-dl-tag">tokens</span></label>
+                        <label class="njx-dl-item njx-dl-item-locked"><input type="checkbox" checked disabled /><span>_reset.css</span><span class="njx-dl-tag">reset</span></label>
+                        <label class="njx-dl-item njx-dl-item-locked"><input type="checkbox" checked disabled /><span>_grid.css</span><span class="njx-dl-tag">layout</span></label>
+                        <label class="njx-dl-item njx-dl-item-locked"><input type="checkbox" checked disabled /><span>_typography.css</span><span class="njx-dl-tag">type</span></label>
+                        <label class="njx-dl-item njx-dl-item-locked"><input type="checkbox" checked disabled /><span>_utils.css</span><span class="njx-dl-tag">utility</span></label>
+                        <label class="njx-dl-item njx-dl-item-locked"><input type="checkbox" checked disabled /><span>_responsive.css</span><span class="njx-dl-tag">responsive</span></label>
+                    </div>
+                </div>
+
+                <!-- Components -->
+                <div class="njx-cb-section">
+                    <div class="njx-cb-section-head">
+                        <span class="njx-cb-section-dot" style="background:var(--color-primary)"></span>
+                        <span class="njx-cb-section-name">Components</span>
+                        <span class="njx-cb-section-badge njx-cb-section-badge--count" id="njx-cb-comp-count">20 files</span>
+                    </div>
+                    <div class="njx-dl-grid" id="njx-dl-components">
+                        <label class="njx-dl-item"><input type="checkbox" value="_buttons.css" checked /><span>_buttons.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_cards.css" checked /><span>_cards.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_form.css" checked /><span>_form.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_tags.css" checked /><span>_tags.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_nav.css" checked /><span>_nav.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_tab.css" checked /><span>_tab.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_collapse.css" checked /><span>_collapse.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_dropdown.css" checked /><span>_dropdown.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_slider.css" checked /><span>_slider.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_popups.css" checked /><span>_popups.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_sidebar.css" checked /><span>_sidebar.css</span><span class="njx-dl-tag">drawer</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_notifications.css" checked /><span>_notifications.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_table.css" checked /><span>_table.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_breadcrumb.css" checked /><span>_breadcrumb.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_sections.css" checked /><span>_sections.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_social.css" checked /><span>_social.css</span><span class="njx-dl-tag">social</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_skeleton.css" checked /><span>_skeleton.css</span><span class="njx-dl-tag">skeleton</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_links.css" checked /><span>_links.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_global.css" checked /><span>_global.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_tooltip.css" checked /><span>_tooltip.css</span><span class="njx-dl-tag">tooltips</span></label>
+                    </div>
+                </div>
+
+                <!-- Visual -->
+                <div class="njx-cb-section">
+                    <div class="njx-cb-section-head">
+                        <span class="njx-cb-section-dot" style="background:#a855f7"></span>
+                        <span class="njx-cb-section-name">Visual</span>
+                        <span class="njx-cb-section-badge njx-cb-section-badge--count" id="njx-cb-visual-count">3 files</span>
+                    </div>
+                    <div class="njx-dl-grid">
+                        <label class="njx-dl-item"><input type="checkbox" value="_animations.css" checked /><span>_animations.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_gradients.css" checked /><span>_gradients.css</span></label>
+                        <label class="njx-dl-item"><input type="checkbox" value="_hovers.css" checked /><span>_hovers.css</span></label>
+                    </div>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="njx-cb-section">
+                    <div class="njx-cb-section-head">
+                        <span class="njx-cb-section-dot" style="background:#f59e0b"></span>
+                        <span class="njx-cb-section-name">JavaScript</span>
+                    </div>
+                    <div class="njx-dl-grid">
+                        <label class="njx-dl-item"><input type="checkbox" value="njx.js" id="njx-dl-js" checked /><span>njx.js</span><span class="njx-dl-tag">helper</span></label>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- /#njx-tab-custom -->
+
+
+        <!-- ══════════════════════════════════════════════
+             Panel: All Files
+             ══════════════════════════════════════════════ -->
+        <div class="njx-dl-panel njx-dl-panel-hidden" id="njx-tab-all">
+            <div class="njx-dl-body njx-dl-body--all">
+
+                <!-- Teaser banner -->
+                <div class="njx-all-banner">
+                    <div class="njx-all-banner-glow"></div>
+                    <div class="njx-all-banner-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="njx-all-banner-title">Complete Package</div>
+                        <div class="njx-all-banner-sub">Every file, every variant — one ZIP.</div>
+                    </div>
+                    <div class="njx-all-banner-stats">
+                        <div class="njx-all-stat">
+                            <span class="njx-all-stat-val">5</span>
+                            <span class="njx-all-stat-lbl">files</span>
+                        </div>
+                        <div class="njx-all-stat">
+                            <span class="njx-all-stat-val">9</span>
+                            <span class="njx-all-stat-lbl">themes</span>
+                        </div>
+                        <div class="njx-all-stat">
+                            <span class="njx-all-stat-val">MIT</span>
+                            <span class="njx-all-stat-lbl">license</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File rows -->
+                <div class="njx-all-files">
+
+                    <div class="njx-all-file">
+                        <div class="njx-all-file-type njx-all-file-type--css">CSS</div>
+                        <div class="njx-all-file-info">
+                            <span class="njx-all-file-name">style.min.css</span>
+                            <span class="njx-all-file-desc">Full UI — 30+ components, 9 themes, utility classes</span>
+                        </div>
+                        <span class="njx-all-file-size">~66 KB</span>
+                    </div>
+
+                    <div class="njx-all-file">
+                        <div class="njx-all-file-type njx-all-file-type--css">CSS</div>
+                        <div class="njx-all-file-info">
+                            <span class="njx-all-file-name">classless.css</span>
+                            <span class="njx-all-file-desc">Classless — style semantic HTML, zero class names</span>
+                        </div>
+                        <span class="njx-all-file-size">~65 KB</span>
+                    </div>
+
+                    <div class="njx-all-file">
+                        <div class="njx-all-file-type njx-all-file-type--min">MIN</div>
+                        <div class="njx-all-file-info">
+                            <span class="njx-all-file-name">classless.min.css</span>
+                            <span class="njx-all-file-desc">Classless minified — production-ready</span>
+                        </div>
+                        <span class="njx-all-file-size">~45 KB</span>
+                    </div>
+
+                    <div class="njx-all-file">
+                        <div class="njx-all-file-type njx-all-file-type--mix">MIX</div>
+                        <div class="njx-all-file-info">
+                            <span class="njx-all-file-name">classless-mode.css</span>
+                            <span class="njx-all-file-desc">Mix mode — scoped to <code>html[data-classless]</code></span>
+                        </div>
+                        <span class="njx-all-file-size">~77 KB</span>
+                    </div>
+
+                    <div class="njx-all-file">
+                        <div class="njx-all-file-type njx-all-file-type--js">JS</div>
+                        <div class="njx-all-file-info">
+                            <span class="njx-all-file-name">njx.js</span>
+                            <span class="njx-all-file-desc">JS helper — tabs, modals, toasts, carousels</span>
+                        </div>
+                        <span class="njx-all-file-size">~10 KB</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div><!-- /#njx-tab-all -->
+
+
+        <!-- Footer -->
+        <div class="njx-dl-footer">
+            <span class="njx-dl-selected-count" id="njx-dl-count">style.min.css</span>
+            <div class="njx-dl-footer-btns">
+                <button class="njx-dl-btn-cancel" onclick="closeDownloadModal()">Cancel</button>
+                <button class="njx-dl-btn-download" id="njx-dl-confirm" onclick="njxDlDownload()">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M8 1v8M5 6l3 3 3-3M2 11v1a1 1 0 001 1h10a1 1 0 001-1v-1"></path>
+                    </svg>
+                    Download ZIP
+                </button>
+            </div>
+        </div>
+
+    </div><!-- /.njx-dl-modal -->
+</div><!-- /#njx-download-overlay -->
+
+<script is:inline>
+(function () {
+    var _activeTab = 'default';
+
+    var DL_BTN_ICON = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1v8M5 6l3 3 3-3M2 11v1a1 1 0 001 1h10a1 1 0 001-1v-1"/></svg>';
+    var DL_SPIN_ICON = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="20" stroke-dashoffset="5"/></svg>';
+
+    var DEF_CDN_RAW = {
+        full: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css">',
+        classless: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/classless.min.css">',
+        mix: '<!-- Legacy scoped mode only -->\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/classless-mode.css">\n<!-- add data-classless to <html> -->'
+    };
+
+    function escHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    function highlightCdnLine(line) {
+        if (/^\s*<!--/.test(line)) {
+            return '<span class="njx-code-comment">' + escHtml(line) + '</span>';
+        }
+
+        var out = escHtml(line);
+        out = out.replace(/(&lt;\/?)([a-zA-Z-]+)/g, '$1<span class="njx-code-tag">$2</span>');
+        out = out.replace(/([a-zA-Z-:]+)=(&quot;[^&]*?&quot;)/g, '<span class="njx-code-attr">$1</span>=<span class="njx-code-string">$2</span>');
+        return out;
+    }
+
+    function renderCdnSnippet(variant) {
+        var raw = DEF_CDN_RAW[variant] || DEF_CDN_RAW.full;
+        return raw
+            .split('\n')
+            .map(highlightCdnLine)
+            .join('\n');
+    }
+
+    // ── Tab switcher ──
+    window.njxDlSwitchTab = function (tab) {
+        _activeTab = tab;
+        document.querySelectorAll('.njx-dl-tab').forEach(function (btn) {
+            btn.classList.toggle('active', btn.dataset.tab === tab);
+        });
+        ['default', 'custom', 'all'].forEach(function (t) {
+            var p = document.getElementById('njx-tab-' + t);
+            if (p) p.classList.toggle('njx-dl-panel-hidden', t !== tab);
+        });
+        njxDlUpdateFooter();
+    };
+
+    // ── Variant card selector ──
+    window.njxDefSelectVariant = function (variant) {
+        document.querySelectorAll('.njx-vc').forEach(function(card) {
+            card.classList.toggle('is-selected', card.dataset.variant === variant);
+        });
+        var cdnEl = document.getElementById('njx-def-cdn-code');
+        if (cdnEl) {
+            cdnEl.innerHTML = renderCdnSnippet(variant);
+            cdnEl.dataset.copyValue = DEF_CDN_RAW[variant] || DEF_CDN_RAW.full;
+        }
+        njxDlUpdateFooter();
+    };
+
+    // ── Progress bar for Custom Build ──
+    function njxCbUpdateProgress() {
+        var panel = document.getElementById('njx-tab-custom');
+        if (!panel) return;
+        var all     = panel.querySelectorAll('input[type="checkbox"]');
+        var checked = panel.querySelectorAll('input[type="checkbox"]:checked');
+        var pct     = all.length ? (checked.length / all.length * 100) : 100;
+        var bar     = document.getElementById('njx-cb-progress');
+        var lbl     = document.getElementById('njx-cb-count-label');
+        if (bar) bar.style.width = pct + '%';
+        if (lbl) lbl.textContent = checked.length + ' of ' + all.length;
+
+        // Section sub-counts
+        var compPanel = document.getElementById('njx-dl-components');
+        if (compPanel) {
+            var cc = compPanel.querySelectorAll('input:checked').length;
+            var ct = compPanel.querySelectorAll('input').length;
+            var el = document.getElementById('njx-cb-comp-count');
+            if (el) el.textContent = cc + ' / ' + ct + ' files';
+        }
+        var visualCbs = panel.querySelectorAll('.njx-dl-grid:last-of-type input');
+        var visualChecked = panel.querySelectorAll('.njx-dl-grid:last-of-type input:checked');
+        var vEl = document.getElementById('njx-cb-visual-count');
+        // Simple fallback
+        if (vEl) {
+            var vcTotal = 3;
+            var vcChecked = panel.querySelectorAll('input[value="_animations.css"]:checked, input[value="_gradients.css"]:checked, input[value="_hovers.css"]:checked').length;
+            vEl.textContent = vcChecked + ' / ' + vcTotal + ' files';
+        }
+    }
+
+    // ── Footer count updater ──
+    function njxDlUpdateFooter() {
+        var countEl = document.getElementById('njx-dl-count');
+        if (!countEl) return;
+        if (_activeTab === 'default') {
+            var sel = document.querySelector('input[name="njx-def-variant"]:checked');
+            var v = sel ? sel.value : 'full';
+            var labels = { full: 'style.min.css', classless: 'classless.min.css', mix: 'style.min.css + classless-mode.css' };
+            countEl.textContent = labels[v] || 'style.min.css';
+        } else if (_activeTab === 'all') {
+            countEl.textContent = '5 files — complete package';
+        } else {
+            dlUpdateCount();
+        }
+    }
+    window.njxDlUpdateFooter = njxDlUpdateFooter;
+
+    // ── Init variant cards (click) ──
+    function initDownloadModal() {
+        document.querySelectorAll('.njx-vc').forEach(function(card) {
+            if (card.dataset.njxInit === '1') return;
+            card.dataset.njxInit = '1';
+            if (card.querySelector('input:checked')) card.classList.add('is-selected');
+            card.addEventListener('click', function() {
+                var radio = card.querySelector('input[type="radio"]');
+                if (!radio) return;
+                document.querySelectorAll('input[name="' + radio.name + '"]').forEach(function(r){ r.checked = false; });
+                radio.checked = true;
+                njxDefSelectVariant(card.dataset.variant);
+            });
+        });
+        var selected = document.querySelector('input[name="njx-def-variant"]:checked');
+        if (selected) njxDefSelectVariant(selected.value);
+        njxCbUpdateProgress();
+        njxDlUpdateFooter();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDownloadModal, { once: true });
+    } else {
+        initDownloadModal();
+    }
+
+    // ── Change events ──
+    document.addEventListener('change', function (e) {
+        if (e.target.name === 'njx-def-variant') {
+            njxDefSelectVariant(e.target.value);
+        }
+        if (e.target.closest('#njx-tab-custom')) {
+            njxCbUpdateProgress();
+            njxDlUpdateFooter();
+        }
+    });
+
+    // ── Unified download dispatcher ──
+    window.njxDlDownload = function () {
+        if (_activeTab === 'default') njxDownloadDefault();
+        else if (_activeTab === 'all')  njxDownloadAll();
+        else buildAndDownload();
+    };
+
+    // ── Default download ──
+    window.njxDownloadDefault = async function () {
+        var btn = document.getElementById('njx-dl-confirm');
+        btn.disabled = true;
+        btn.innerHTML = DL_SPIN_ICON + ' Packing...';
+
+        var sel = document.querySelector('input[name="njx-def-variant"]:checked');
+        var variant = sel ? sel.value : 'full';
+
+        var files = {
+            full:      [{ src: 'css/style.min.css',      dest: 'njx-ui/css/style.min.css' }],
+            classless: [{ src: 'css/classless.min.css',  dest: 'njx-ui/css/classless.min.css' }],
+            mix:       [
+                { src: 'css/style.min.css',     dest: 'njx-ui/css/style.min.css' },
+                { src: 'css/classless-mode.css', dest: 'njx-ui/css/classless-mode.css' }
+            ]
+        };
+
+        var readmes = {
+            full:      '# njX UI\nConnect: <link rel="stylesheet" href="css/style.min.css">\n<html data-theme="dark">\nMIT License\n',
+            classless: '# njX Classless\nConnect: <link rel="stylesheet" href="classless.min.css">\n<html data-theme="dark">\nMIT License\n',
+            mix:       '# njX Mix Mode\n<link rel="stylesheet" href="css/style.min.css">\n<link rel="stylesheet" href="css/classless-mode.css">\n<html data-classless data-theme="dark">\nMIT License\n'
+        };
+
+        var zipNames = { full: 'njx-ui-full.zip', classless: 'njx-classless.zip', mix: 'njx-mix.zip' };
+
+        try {
+            var zip = new JSZip();
+            await Promise.all((files[variant] || files.full).map(async function(f) {
+                var res = await fetch(f.src);
+                if (res.ok) zip.file(f.dest, await res.text());
+            }));
+            zip.file('njx-ui/README.md', readmes[variant] || readmes.full);
+
+            var blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } });
+            var a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: zipNames[variant] || 'njx-ui.zip' });
+            a.click();
+            URL.revokeObjectURL(a.href);
+            closeDownloadModal();
+            showToast('Download ready!', 'success');
+        } catch (err) {
+            console.error(err);
+            showToast('Download failed', 'error');
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = DL_BTN_ICON + ' Download ZIP';
+        }
+    };
+
+    // ── All Files download ──
+    window.njxDownloadAll = async function () {
+        var btn = document.getElementById('njx-dl-confirm');
+        btn.disabled = true;
+        btn.innerHTML = DL_SPIN_ICON + ' Packing...';
+
+        var allFiles = [
+            { src: 'css/style.min.css',      dest: 'njx-ui/css/style.min.css' },
+            { src: 'css/classless.css',        dest: 'njx-ui/css/classless.css' },
+            { src: 'css/classless.min.css',    dest: 'njx-ui/css/classless.min.css' },
+            { src: 'css/classless-mode.css',   dest: 'njx-ui/css/classless-mode.css' },
+            { src: 'js/njx.js',               dest: 'njx-ui/js/njx.js' }
+        ];
+
+        var README_ALL = '# njX UI — Complete Package\n\ncss/style.min.css     Full UI\ncss/classless.css     Classless\ncss/classless.min.css Classless minified\ncss/classless-mode.css Mix mode (html[data-classless])\njs/njx.js             JS helper\n\nMIT License\n';
+
+        try {
+            var zip = new JSZip();
+            await Promise.all(allFiles.map(async function(f) {
+                try { var res = await fetch(f.src); if (res.ok) zip.file(f.dest, await res.text()); } catch(e) {}
+            }));
+            zip.file('njx-ui/README.md', README_ALL);
+
+            var blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } });
+            var a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'njx-ui-complete.zip' });
+            a.click();
+            URL.revokeObjectURL(a.href);
+            closeDownloadModal();
+            showToast('Complete package downloaded!', 'success');
+        } catch (err) {
+            console.error(err);
+            showToast('Download failed', 'error');
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = DL_BTN_ICON + ' Download ZIP';
+        }
+    };
+
+    // ── CDN copy ──
+    window.njxCopyCdn = function (btn, codeId) {
+        var code = document.getElementById(codeId || 'njx-def-cdn-code');
+        var text = code ? (code.dataset.copyValue || code.textContent) : '';
+        navigator.clipboard.writeText(text).then(function () {
+            btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 15 4 10"/></svg> Copied!';
+            btn.style.color = 'var(--color-primary)';
+            setTimeout(function () {
+                btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy';
+                btn.style.color = '';
+            }, 1800);
+        });
+    };
+})();
+</script>
+
+<style>
+    /* ── Overlay ── */
+    .njx-dl-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: var(--z-modal, 900);
+        background: rgba(0,0,0,0.8);
+        backdrop-filter: blur(10px);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    .njx-dl-overlay.open { display: flex; }
+
+    /* ── Modal shell ── */
+    .njx-dl-modal {
+        background: #0e0e11;
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 22px;
+        width: 100%;
+        max-width: 680px;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        box-shadow:
+            0 0 0 1px rgba(255,255,255,0.03) inset,
+            0 40px 120px rgba(0,0,0,0.9),
+            0 0 80px color-mix(in srgb, var(--color-primary) 6%, transparent);
+        overflow: hidden;
+    }
+
+    /* ── Header ── */
+    .njx-dl-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 24px 18px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        flex-shrink: 0;
+        background: linear-gradient(180deg, rgba(255,255,255,0.025) 0%, transparent 100%);
+    }
+    .njx-dl-header-left { display: flex; align-items: center; gap: 12px; }
+    .njx-dl-header-icon {
+        width: 38px; height: 38px;
+        border-radius: 11px;
+        background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+        border: 1px solid color-mix(in srgb, var(--color-primary) 28%, transparent);
+        display: flex; align-items: center; justify-content: center;
+        color: var(--color-primary);
+        flex-shrink: 0;
+    }
+    .njx-dl-header-text { display: flex; flex-direction: column; gap: 2px; }
+    .njx-dl-header-title { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.2px; }
+    .njx-dl-header-sub   { font-size: 11px; color: rgba(255,255,255,0.3); }
+    .njx-dl-close {
+        width: 32px; height: 32px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 8px;
+        color: rgba(255,255,255,0.35);
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.15s;
+    }
+    .njx-dl-close:hover { background: rgba(255,255,255,0.09); color: #fff; }
+
+    /* ── Tabs ── */
+    .njx-dl-tabs {
+        display: flex;
+        padding: 12px 24px;
+        gap: 6px;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        background: rgba(255,255,255,0.01);
+    }
+    .njx-dl-tab {
+        flex: 1;
+        display: flex; align-items: center; justify-content: center;
+        gap: 7px;
+        padding: 9px 14px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 10px;
+        color: rgba(255,255,255,0.4);
+        font-size: 12.5px; font-weight: 600;
+        cursor: pointer;
+        transition: all 0.18s;
+        white-space: nowrap;
+    }
+    .njx-dl-tab svg { opacity: 0.55; transition: opacity 0.18s; }
+    .njx-dl-tab:hover {
+        background: rgba(255,255,255,0.06);
+        color: rgba(255,255,255,0.75);
+        border-color: rgba(255,255,255,0.1);
+    }
+    .njx-dl-tab:hover svg { opacity: 0.9; }
+    .njx-dl-tab.active {
+        background: color-mix(in srgb, var(--color-primary) 12%, rgba(0,0,0,0.3));
+        border-color: color-mix(in srgb, var(--color-primary) 38%, transparent);
+        color: var(--color-primary);
+        box-shadow: 0 0 18px color-mix(in srgb, var(--color-primary) 12%, transparent);
+    }
+    .njx-dl-tab.active svg { opacity: 1; }
+
+    /* ── Panels ── */
+    .njx-dl-panel { display: flex; flex-direction: column; overflow-y: auto; flex: 1; min-height: 0; }
+    .njx-dl-panel::-webkit-scrollbar { width: 4px; }
+    .njx-dl-panel::-webkit-scrollbar-track { background: transparent; }
+    .njx-dl-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
+    .njx-dl-panel-hidden { display: none !important; }
+
+    /* ── Body ── */
+    .njx-dl-body { padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 16px; }
+
+    /* ════════════════════════════
+       DEFAULT PANEL — Variant Cards
+       ════════════════════════════ */
+    .njx-vc-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .njx-vc {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 16px;
+        background: rgba(255,255,255,0.02);
+        border: 1.5px solid rgba(255,255,255,0.06);
+        border-radius: 14px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+        user-select: none;
+    }
+    .njx-vc:hover {
+        background: rgba(255,255,255,0.04);
+        border-color: rgba(255,255,255,0.12);
+    }
+    .njx-vc.is-selected {
+        background: color-mix(in srgb, var(--color-primary) 7%, rgba(0,0,0,0.3));
+        border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+        box-shadow: 0 0 24px color-mix(in srgb, var(--color-primary) 10%, transparent);
+    }
+
+    /* Colored left accent bar */
+    .njx-vc-accent {
+        position: absolute;
+        left: 0; top: 0; bottom: 0;
+        width: 3px;
+        border-radius: 14px 0 0 14px;
+        opacity: 0;
+        transition: opacity 0.18s;
+    }
+    .njx-vc.is-selected .njx-vc-accent { opacity: 1; }
+    .njx-vc-accent--full      { background: var(--color-primary); }
+    .njx-vc-accent--classless { background: #22d3ee; }
+    .njx-vc-accent--mix       { background: linear-gradient(180deg, var(--color-primary), #a855f7); }
+
+    /* Icon box */
+    .njx-vc-icon {
+        width: 44px; height: 44px;
+        border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.18s;
+    }
+    .njx-vc-icon--full {
+        background: color-mix(in srgb, var(--color-primary) 12%, rgba(0,0,0,0.4));
+        border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+        color: var(--color-primary);
+    }
+    .njx-vc-icon--classless {
+        background: rgba(34,211,238,0.1);
+        border: 1px solid rgba(34,211,238,0.22);
+        color: #22d3ee;
+    }
+    .njx-vc-icon--mix {
+        background: rgba(168,85,247,0.1);
+        border: 1px solid rgba(168,85,247,0.22);
+        color: #a855f7;
+    }
+
+    /* Body text */
+    .njx-vc-body { flex: 1; min-width: 0; }
+    .njx-vc-name {
+        font-size: 13.5px; font-weight: 700;
+        color: rgba(255,255,255,0.85);
+        margin-bottom: 2px;
+    }
+    .njx-vc-file {
+        font-size: 11px;
+        font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+        color: rgba(255,255,255,0.35);
+        margin-bottom: 4px;
+    }
+    .njx-vc-desc {
+        font-size: 11.5px;
+        color: rgba(255,255,255,0.4);
+    }
+    .njx-vc.is-selected .njx-vc-name { color: #fff; }
+    .njx-vc.is-selected .njx-vc-desc { color: rgba(255,255,255,0.6); }
+
+    /* Meta / check */
+    .njx-vc-meta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+        flex-shrink: 0;
+    }
+    .njx-vc-size {
+        font-size: 10.5px;
+        font-family: monospace;
+        color: rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.05);
+        padding: 2px 8px;
+        border-radius: 20px;
+    }
+    .njx-vc-check {
+        width: 20px; height: 20px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.12);
+        display: flex; align-items: center; justify-content: center;
+        color: transparent;
+        background: transparent;
+        transition: all 0.18s;
+    }
+    .njx-vc.is-selected .njx-vc-check {
+        background: var(--color-primary);
+        border-color: var(--color-primary);
+        color: #000;
+        box-shadow: 0 0 12px color-mix(in srgb, var(--color-primary) 40%, transparent);
+    }
+
+    /* ── CDN block ── */
+    .njx-dl-cdn-block {
+        background: #080809;
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    .njx-dl-cdn-header {
+        display: flex; align-items: center;
+        padding: 8px 14px;
+        background: rgba(255,255,255,0.025);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        gap: 8px;
+    }
+    .njx-dl-cdn-dots { display: flex; gap: 5px; }
+    .njx-dl-cdn-dots span { width: 10px; height: 10px; border-radius: 50%; opacity: 0.7; }
+    .njx-dl-cdn-label {
+        font-size: 10px; font-weight: 700;
+        letter-spacing: 1.2px; text-transform: uppercase;
+        color: var(--color-primary); opacity: 0.75;
+        margin-left: 2px;
+    }
+    .njx-dl-cdn-copy {
+        margin-left: auto;
+        display: flex; align-items: center; gap: 5px;
+        padding: 3px 10px;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.09);
+        border-radius: 5px;
+        color: rgba(255,255,255,0.4);
+        font-size: 10px; font-weight: 600;
+        cursor: pointer; transition: all 0.15s;
+    }
+    .njx-dl-cdn-copy:hover { background: rgba(255,255,255,0.09); color: #fff; }
+    .njx-dl-cdn-code {
+        display: block;
+        padding: 12px 14px;
+        font-size: 11px;
+        font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+        color: rgba(255,255,255,0.58);
+        background:
+            linear-gradient(
+                180deg,
+                rgba(255,255,255,0.02),
+                rgba(255,255,255,0)
+            );
+        overflow-x: auto;
+        white-space: pre;
+        line-height: 1.6;
+        tab-size: 2;
+    }
+    .njx-dl-cdn-code .njx-code-tag {
+        color: #ff8ba7;
+    }
+    .njx-dl-cdn-code .njx-code-attr {
+        color: #7dd3fc;
+    }
+    .njx-dl-cdn-code .njx-code-string {
+        color: #a3e635;
+    }
+    .njx-dl-cdn-code .njx-code-comment {
+        color: rgba(255,255,255,0.34);
+        font-style: italic;
+    }
+
+    /* ════════════════════════════
+       CUSTOM BUILD PANEL
+       ════════════════════════════ */
+    .njx-cb-header {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 4px;
+    }
+    .njx-cb-header-left { display: flex; align-items: center; gap: 10px; }
+    .njx-cb-title { font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,0.55); }
+    .njx-cb-count {
+        font-size: 11.5px; font-weight: 700;
+        color: var(--color-primary);
+        background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+        padding: 2px 9px; border-radius: 20px;
+    }
+    .njx-cb-header-right { display: flex; align-items: center; gap: 6px; }
+
+    .njx-cb-progress-wrap {
+        height: 3px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 2px;
+        overflow: hidden;
+        margin-bottom: 4px;
+    }
+    .njx-cb-progress-bar {
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(90deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 60%, #a855f7));
+        border-radius: 2px;
+        transition: width 0.25s ease;
+    }
+
+    .njx-cb-section { display: flex; flex-direction: column; gap: 9px; }
+    .njx-cb-section-head {
+        display: flex; align-items: center; gap: 8px;
+        padding: 8px 12px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.05);
+        border-radius: 8px;
+    }
+    .njx-cb-section-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .njx-cb-section-name {
+        font-size: 11px; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.8px;
+        color: rgba(255,255,255,0.5);
+    }
+    .njx-cb-section-badge {
+        margin-left: auto;
+        font-size: 10px; font-weight: 400;
+        color: rgba(255,255,255,0.25);
+        font-family: sans-serif;
+    }
+    .njx-cb-section-badge--count { color: rgba(255,255,255,0.4); }
+
+    /* ── Shared item grid ── */
+    .njx-dl-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+        gap: 6px;
+    }
+    .njx-dl-item {
+        display: flex; align-items: center; gap: 9px;
+        padding: 9px 12px;
+        background: rgba(255,255,255,0.025);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 9px;
+        cursor: pointer;
+        font-size: 11.5px;
+        font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+        color: rgba(255,255,255,0.5);
+        transition: all 0.14s;
+        user-select: none;
+    }
+    .njx-dl-item:hover {
+        background: color-mix(in srgb, var(--color-primary) 7%, rgba(0,0,0,0.2));
+        border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+        color: rgba(255,255,255,0.8);
+    }
+    .njx-dl-item:has(input:checked) {
+        background: color-mix(in srgb, var(--color-primary) 9%, rgba(0,0,0,0.2));
+        border-color: color-mix(in srgb, var(--color-primary) 38%, transparent);
+        color: rgba(255,255,255,0.85);
+    }
+    .njx-dl-item input[type='checkbox'],
+    .njx-dl-item input[type='radio'] {
+        accent-color: var(--color-primary);
+        cursor: pointer; flex-shrink: 0;
+        width: 13px; height: 13px;
+    }
+    .njx-dl-item-locked {
+        opacity: 0.28;
+        cursor: not-allowed;
+    }
+    .njx-dl-item-locked:hover {
+        background: rgba(255,255,255,0.025);
+        border-color: rgba(255,255,255,0.06);
+        color: rgba(255,255,255,0.5);
+    }
+    .njx-dl-tag {
+        margin-left: auto;
+        font-size: 9px; font-family: sans-serif;
+        color: rgba(255,255,255,0.28);
+        background: rgba(255,255,255,0.05);
+        padding: 1px 6px; border-radius: 20px;
+        white-space: nowrap; flex-shrink: 0;
+    }
+
+    .njx-dl-btn-text {
+        background: none; border: none;
+        color: var(--color-primary);
+        font-size: 11px; font-weight: 600;
+        cursor: pointer; padding: 2px 6px; border-radius: 5px;
+        opacity: 0.7; transition: all 0.15s;
+    }
+    .njx-dl-btn-text:hover { opacity: 1; background: color-mix(in srgb, var(--color-primary) 10%, transparent); }
+    .njx-dl-sep { color: rgba(255,255,255,0.18); font-size: 12px; }
+
+    /* ════════════════════════════
+       ALL FILES PANEL
+       ════════════════════════════ */
+    .njx-all-banner {
+        position: relative;
+        display: flex; align-items: center; gap: 16px;
+        padding: 20px;
+        background: linear-gradient(135deg,
+            color-mix(in srgb, var(--color-primary) 8%, rgba(0,0,0,0.5)),
+            rgba(0,0,0,0.2)
+        );
+        border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+        border-radius: 16px;
+        overflow: hidden;
+    }
+    .njx-all-banner-glow {
+        position: absolute;
+        top: -40px; right: -40px;
+        width: 160px; height: 160px;
+        border-radius: 50%;
+        background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+        filter: blur(40px);
+        pointer-events: none;
+    }
+    .njx-all-banner-icon {
+        width: 56px; height: 56px;
+        border-radius: 16px;
+        background: color-mix(in srgb, var(--color-primary) 15%, rgba(0,0,0,0.5));
+        border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+        display: flex; align-items: center; justify-content: center;
+        color: var(--color-primary);
+        flex-shrink: 0;
+        box-shadow: 0 0 24px color-mix(in srgb, var(--color-primary) 18%, transparent);
+    }
+    .njx-all-banner-title {
+        font-size: 16px; font-weight: 800;
+        color: #fff; margin-bottom: 4px;
+        letter-spacing: -0.3px;
+    }
+    .njx-all-banner-sub { font-size: 12px; color: rgba(255,255,255,0.45); }
+    .njx-all-banner-stats {
+        margin-left: auto;
+        display: flex; gap: 16px; flex-shrink: 0;
+    }
+    .njx-all-stat { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .njx-all-stat-val {
+        font-size: 18px; font-weight: 800;
+        color: var(--color-primary);
+        line-height: 1;
+    }
+    .njx-all-stat-lbl { font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* File rows */
+    .njx-all-files {
+        display: flex; flex-direction: column;
+        gap: 6px;
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 14px;
+        overflow: hidden;
+    }
+    .njx-all-file {
+        display: flex; align-items: center; gap: 14px;
+        padding: 12px 16px;
+        background: rgba(255,255,255,0.02);
+        border-bottom: 1px solid rgba(255,255,255,0.04);
+        transition: background 0.14s;
+    }
+    .njx-all-file:last-child { border-bottom: none; }
+    .njx-all-file:hover { background: rgba(255,255,255,0.04); }
+
+    .njx-all-file-type {
+        font-size: 9px; font-weight: 800;
+        letter-spacing: 0.5px;
+        padding: 4px 8px; border-radius: 6px;
+        flex-shrink: 0; width: 36px; text-align: center;
+    }
+    .njx-all-file-type--css { background: rgba(96,165,250,0.15); color: #60a5fa; border: 1px solid rgba(96,165,250,0.25); }
+    .njx-all-file-type--min { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.22); }
+    .njx-all-file-type--mix { background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.22); }
+    .njx-all-file-type--js  { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.22); }
+    .njx-all-file-type--md  { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.1); }
+
+    .njx-all-file-info { flex: 1; min-width: 0; }
+    .njx-all-file-name {
+        display: block;
+        font-size: 12.5px; font-weight: 600;
+        font-family: 'JetBrains Mono', monospace;
+        color: rgba(255,255,255,0.8);
+        margin-bottom: 2px;
+    }
+    .njx-all-file-desc {
+        font-size: 11px; color: rgba(255,255,255,0.35);
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .njx-all-file-desc code {
+        font-size: 10px;
+        font-family: monospace;
+        color: var(--color-primary);
+        background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+        padding: 1px 5px; border-radius: 4px;
+    }
+    .njx-all-file-size {
+        font-size: 10.5px; font-family: monospace;
+        color: rgba(255,255,255,0.22);
+        background: rgba(255,255,255,0.04);
+        padding: 3px 9px; border-radius: 20px;
+        flex-shrink: 0;
+    }
+
+    /* ════════════════════════════
+       FOOTER
+       ════════════════════════════ */
+    .njx-dl-footer {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 14px 24px;
+        border-top: 1px solid rgba(255,255,255,0.05);
+        flex-shrink: 0; gap: 12px;
+        background: rgba(0,0,0,0.3);
+    }
+    .njx-dl-selected-count {
+        font-size: 11px; color: rgba(255,255,255,0.28);
+        font-family: 'JetBrains Mono', monospace;
+    }
+    .njx-dl-footer-btns { display: flex; gap: 8px; }
+    .njx-dl-btn-cancel {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        color: rgba(255,255,255,0.45);
+        padding: 9px 18px; border-radius: 9px;
+        font-size: 13px; font-weight: 500;
+        cursor: pointer; transition: all 0.15s;
+    }
+    .njx-dl-btn-cancel:hover { background: rgba(255,255,255,0.08); color: #fff; }
+    .njx-dl-btn-download {
+        display: flex; align-items: center; gap: 8px;
+        background: var(--color-primary);
+        color: #000;
+        border: none;
+        padding: 9px 22px; border-radius: 9px;
+        font-size: 13px; font-weight: 700;
+        cursor: pointer; transition: all 0.15s;
+        box-shadow: 0 4px 20px color-mix(in srgb, var(--color-primary) 32%, transparent);
+    }
+    .njx-dl-btn-download:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 28px color-mix(in srgb, var(--color-primary) 48%, transparent);
+    }
+    .njx-dl-btn-download:active { transform: none; }
+    .njx-dl-btn-download:disabled {
+        opacity: 0.5; cursor: not-allowed;
+        transform: none; box-shadow: none;
+    }
+</style>

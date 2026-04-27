@@ -1,0 +1,191 @@
+/* ============================================================
+   _typography.css — heading and text system
+   Naming: DaisyUI/Bootstrap style
+   .title-hero .title-xl .title-lg .title-md .title-sm .title-xs
+   .text-lead .text-body .text-sm .text-xs .text-caption .text-label
+   Modifier .fluid — switches to vw-size (clamp)
+   ============================================================ */
+
+/* ── Headings ── */
+
+.title-hero {
+  font-size: var(--fs-hero);
+  font-weight: 900;
+  line-height: var(--lh-tight);
+  font-family: var(--font-heading);
+}
+.title-hero.fluid { font-size: var(--fs-f-hero); }
+
+.title-xl {
+  font-size: var(--fs-7xl);
+  font-weight: 900;
+  line-height: var(--lh-tight);
+  font-family: var(--font-heading);
+}
+.title-xl.fluid { font-size: var(--fs-f-7xl); }
+
+.title-lg {
+  font-size: var(--fs-6xl);
+  font-weight: 900;
+  line-height: var(--lh-snug);
+  font-family: var(--font-heading);
+}
+.title-lg.fluid { font-size: var(--fs-f-6xl); }
+
+.title-md {
+  font-size: var(--fs-5xl);
+  font-weight: 900;
+  line-height: var(--lh-snug);
+  font-family: var(--font-heading);
+}
+.title-md.fluid { font-size: var(--fs-f-5xl); }
+
+.title-sm {
+  font-size: var(--fs-4xl);
+  font-weight: 800;
+  line-height: var(--lh-snug);
+  font-family: var(--font-heading);
+}
+.title-sm.fluid { font-size: var(--fs-f-4xl); }
+
+.title-xs {
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  line-height: var(--lh-normal);
+  font-family: var(--font-heading);
+}
+.title-xs.fluid { font-size: var(--fs-f-3xl); }
+
+/* ── Text ── */
+
+.text-lead {
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  line-height: var(--lh-relaxed);
+}
+
+.text-body {
+  font-size: var(--fs-base);
+  font-weight: 400;
+  line-height: var(--lh-normal);
+}
+
+.text-sm {
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  line-height: var(--lh-normal);
+}
+
+.text-xs {
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  line-height: var(--lh-normal);
+}
+
+.text-caption {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.text-label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  letter-spacing: 0.04em;
+}
+
+/* ── Color modifiers ── */
+.text-primary   { color: var(--color-primary) !important; }
+.text-accent    { color: var(--color-accent) !important; }
+.text-success   { color: var(--color-success) !important; }
+.text-error     { color: var(--color-error) !important; }
+.text-warning   { color: var(--color-warning) !important; }
+.text-muted     { color: var(--color-muted) !important; }
+.text-light     { color: var(--color-muted-light) !important; }
+.text-white     { color: #ffffff !important; }
+.text-black     { color: #000000 !important; }
+
+/* ── Transformations ── */
+.text-upper   { text-transform: uppercase !important; }
+.text-lower   { text-transform: lowercase !important; }
+.text-cap     { text-transform: capitalize !important; }
+.text-normal  { text-transform: none !important; }
+
+/* ── Alignment ── */
+.text-center  { text-align: center !important; }
+.text-left    { text-align: left !important; }
+.text-right   { text-align: right !important; }
+.text-justify { text-align: justify !important; }
+
+/* ── Weight ── */
+.font-thin    { font-weight: 100 !important; }
+.font-light   { font-weight: 300 !important; }
+.font-normal  { font-weight: 400 !important; }
+.font-medium  { font-weight: 500 !important; }
+.font-semi    { font-weight: 600 !important; }
+.font-bold    { font-weight: 700 !important; }
+.font-extra   { font-weight: 800 !important; }
+.font-black   { font-weight: 900 !important; }
+
+/* ── Wrapping ── */
+.text-nowrap  { white-space: nowrap !important; }
+.text-balance { text-wrap: balance !important; }
+.text-pretty  { text-wrap: pretty !important; }
+
+/* ── Decorations ── */
+.text-underline    { text-decoration: underline !important; }
+.text-line-through { text-decoration: line-through !important; }
+.text-no-underline { text-decoration: none !important; }
+
+/* ── Tips / Callouts ── */
+.tip {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--tip-color, var(--color-primary));
+  background: color-mix(in srgb, var(--tip-color, var(--color-primary)) 10%, transparent);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--color-light);
+}
+
+.tip-icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  color: var(--tip-color, var(--color-primary));
+}
+
+.tip-title {
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  color: var(--tip-color, var(--color-primary));
+  margin-bottom: 4px;
+}
+
+.tip-body {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--color-light);
+}
+
+.tip--info    { --tip-color: var(--color-primary); }
+.tip--success { --tip-color: var(--color-success); }
+.tip--warning { --tip-color: var(--color-warning); }
+.tip--danger  { --tip-color: var(--color-error); }
+.tip--neutral { --tip-color: var(--color-muted); }
+
+/* ── Backward compatibility (legacy classes) ── */
+.h1-title    { font-size: var(--fs-hero);  font-weight: 900; line-height: var(--lh-tight); }
+.h2-title    { font-size: var(--fs-7xl);   font-weight: 900; line-height: 1; }
+.h3-title    { font-size: var(--fs-6xl);   font-weight: 900; line-height: var(--lh-snug); text-transform: uppercase; }
+.h4-title    { font-size: var(--fs-5xl);   font-weight: 900; line-height: 1.2; text-transform: uppercase; }
+.title-text  { font-size: var(--fs-hero);  font-weight: 900; line-height: var(--lh-normal); }
+.subtext     { font-size: var(--fs-lg);    font-weight: 500; line-height: 25px; }
+.link        { color: var(--color-primary); font-size: var(--fs-2xl); font-weight: 800; }

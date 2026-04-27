@@ -1,0 +1,102 @@
+---
+import ClientRouter from 'astro/components/ClientRouter.astro';
+interface Props {
+    title: string;
+    description?: string;
+    /** Загружать lib-docs.css в head (для страниц с docs-layout: index, documentation, classless) */
+    withDocsCss?: boolean;
+    /** Загружать Alpine.js и lib-docs.js (нужны только для docs-страниц с компонентами) */
+    withDocsScripts?: boolean;
+}
+const { title, description, withDocsCss = false, withDocsScripts = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="icon"
+            href={`${import.meta.env.BASE_URL}img/logo-xs.png`}
+            sizes="32x32"
+            type="image/png"
+        />
+
+        <!-- njX CSS Library -->
+        <link
+            rel="stylesheet"
+            href={`${import.meta.env.BASE_URL}css/style.min.css`}
+            fetchpriority="high"
+        />
+        <!-- Docs UI styles — только для страниц с docs-layout -->
+        {withDocsCss && (
+            <link
+                rel="stylesheet"
+                href={`${import.meta.env.BASE_URL}styles/lib-docs.css`}
+                fetchpriority="high"
+            />
+        )}
+
+        <!-- View Transitions — плавное переключение страниц -->
+        <ClientRouter />
+
+        <!-- Анти-флэш: читаем тему ДО рендера страницы (+ после каждой навигации VT) -->
+        <script is:inline>
+            function njxRestoreTheme() {
+                try {
+                    var t = localStorage.getItem('njx-theme');
+                    if (t) document.documentElement.setAttribute('data-theme', t);
+                } catch (e) {}
+            }
+            njxRestoreTheme();
+            document.addEventListener('astro:after-swap', njxRestoreTheme);
+        </script>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700;800;900&family=Roboto:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Google Analytics -->
+        <script
+            is:inline
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-969JS8G6QK"
+        ></script>
+        <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-969JS8G6QK');
+        </script>
+
+        <!-- njX JS (всегда — theme, tabs, modal, accordion, toast) -->
+        <script is:inline src={`${import.meta.env.BASE_URL}js/njx.js`}></script>
+
+        <!-- Docs scripts — только для страниц с docs-компонентами -->
+        {withDocsScripts && (
+            <>
+                <script
+                    is:inline
+                    defer
+                    src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"
+                ></script>
+                <script is:inline src={`${import.meta.env.BASE_URL}scripts/lib-docs.js`}></script>
+            </>
+        )}
+
+        <!-- Title и description — уникальны для каждой страницы -->
+        <title>{title}</title>
+        <meta name="description" content={description} />
+
+        <!-- Слот для page-level вещей: og:, twitter:, inline <style>, JSON-LD -->
+        <slot name="head" />
+    </head>
+    <body>
+        <slot />
+    </body>
+</html>

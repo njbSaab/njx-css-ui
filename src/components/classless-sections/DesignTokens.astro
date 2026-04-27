@@ -1,0 +1,982 @@
+<style is:global>
+    /* ── Design Tokens section ── */
+    .tok-group {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    /* Colors */
+    .tok-colors {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .tok-swatch {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 90px;
+        height: 80px;
+        border-radius: 10px;
+        padding: 8px;
+        position: relative;
+        cursor: default;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .tok-swatch-name {
+        font-size: 11px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.92);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+        line-height: 1.2;
+    }
+    .tok-swatch-var {
+        font-size: 9.5px;
+        color: rgba(255, 255, 255, 0.55);
+        font-family: var(--font-mono);
+        margin-top: 2px;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    .tok-scale {
+        display: flex;
+        border-radius: 10px;
+        overflow: hidden;
+        height: 44px;
+        width: 100%;
+    }
+    .tok-scale-step {
+        flex: 1;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 5px;
+        font-size: 9px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.7);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        cursor: default;
+    }
+    .tok-scale-step.dark {
+        color: rgba(0, 0, 0, 0.55);
+    }
+
+    /* Fonts */
+    .tok-fonts {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+    @media (max-width: 700px) {
+        .tok-fonts {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+    .tok-font-card {
+        background: var(--color-dark-secondary);
+        border: 1px solid var(--color-neutral-700);
+        border-radius: 10px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .tok-font-sample {
+        font-size: 28px;
+        line-height: 1.1;
+        color: var(--color-light);
+        font-weight: 600;
+    }
+    .tok-font-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin-top: 4px;
+    }
+    .tok-font-role {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-primary);
+    }
+    .tok-font-name {
+        font-size: 11px;
+        color: var(--color-muted);
+        font-family: var(--font-mono);
+    }
+
+    /* Font sizes */
+    .tok-sizes {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .tok-size-row {
+        display: grid;
+        grid-template-columns: 52px 1fr 60px;
+        align-items: center;
+        gap: 12px;
+        padding: 3px 0;
+    }
+    .tok-size-label {
+        font-size: 11px;
+        color: var(--color-muted);
+        font-family: var(--font-mono);
+        text-align: right;
+    }
+    .tok-size-text {
+        color: var(--color-light);
+        white-space: nowrap;
+        overflow: hidden;
+        line-height: 1.3;
+    }
+    .tok-size-px {
+        font-size: 10px;
+        color: var(--color-neutral-500);
+        font-family: var(--font-mono);
+        text-align: right;
+    }
+
+    /* Spacing */
+    .tok-spacing {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .tok-space-row {
+        display: grid;
+        grid-template-columns: 70px auto 1fr;
+        align-items: center;
+        gap: 12px;
+    }
+    .tok-space-bar {
+        height: 8px;
+        border-radius: 4px;
+        background: color-mix(in srgb, var(--color-primary) 60%, transparent);
+        flex-shrink: 0;
+    }
+    .tok-space-val {
+        font-size: 10px;
+        color: var(--color-neutral-500);
+        font-family: var(--font-mono);
+    }
+
+    /* Radius */
+    .tok-radii {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: flex-end;
+    }
+    .tok-radius-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    .tok-radius-box {
+        background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+        border: 1.5px solid
+            color-mix(in srgb, var(--color-primary) 40%, transparent);
+        width: 52px;
+        height: 52px;
+    }
+    .tok-radius-label {
+        font-size: 10px;
+        color: var(--color-muted);
+        font-family: var(--font-mono);
+        text-align: center;
+    }
+
+    /* Shadows */
+    .tok-shadows {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    .tok-shadow-item {
+        background: var(--color-dark-secondary);
+        border: 1px solid var(--color-neutral-700);
+        border-radius: 10px;
+        padding: 16px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        min-width: 130px;
+        align-items: center;
+    }
+    .tok-shadow-preview {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: var(--color-neutral-700);
+    }
+    .tok-shadow-var {
+        font-size: 10px;
+        color: var(--color-muted);
+        font-family: var(--font-mono);
+    }
+</style>
+
+<section class="lib-section cl-section" id="tokens">
+    <div class="lib-section-title">🎨 Design Tokens</div>
+    <div class="lib-section-desc">
+        CSS-переменные из <code>_base.css</code> — единый источник правды для всех
+        стилей. Меняй здесь — применяется везде.
+    </div>
+
+    <!-- ── Semantic colors ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Semantic colors</div>
+        <div class="lib-preview">
+            <div class="tok-colors">
+                <div class="tok-swatch" style="background:var(--color-primary)">
+                    <div class="tok-swatch-name">primary</div>
+                    <div class="tok-swatch-var">--color-primary</div>
+                </div>
+                <div class="tok-swatch" style="background:var(--color-accent)">
+                    <div class="tok-swatch-name">accent</div>
+                    <div class="tok-swatch-var">--color-accent</div>
+                </div>
+                <div class="tok-swatch" style="background:var(--color-success)">
+                    <div class="tok-swatch-name">success</div>
+                    <div class="tok-swatch-var">--color-success</div>
+                </div>
+                <div class="tok-swatch" style="background:var(--color-error)">
+                    <div class="tok-swatch-name">error</div>
+                    <div class="tok-swatch-var">--color-error</div>
+                </div>
+                <div class="tok-swatch" style="background:var(--color-warning)">
+                    <div class="tok-swatch-name">warning</div>
+                    <div class="tok-swatch-var">--color-warning</div>
+                </div>
+                <div class="tok-swatch" style="background:var(--color-muted)">
+                    <div class="tok-swatch-name">muted</div>
+                    <div class="tok-swatch-var">--color-muted</div>
+                </div>
+                <div
+                    class="tok-swatch"
+                    style="background:var(--color-light);border-color:rgba(0,0,0,0.12)"
+                >
+                    <div
+                        class="tok-swatch-name"
+                        style="color:rgba(0,0,0,0.75);text-shadow:none"
+                    >
+                        light
+                    </div>
+                    <div
+                        class="tok-swatch-var"
+                        style="color:rgba(0,0,0,0.45);text-shadow:none"
+                    >
+                        --color-light
+                    </div>
+                </div>
+                <div
+                    class="tok-swatch"
+                    style="background:var(--color-dark-secondary)"
+                >
+                    <div class="tok-swatch-name">surface</div>
+                    <div class="tok-swatch-var">--color-dark-secondary</div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw="--color-primary
+--color-accent
+--color-success
+--color-error
+--color-warning
+--color-muted
+--color-light
+--color-dark-secondary"
+                >
+                    <span class="s">--color-primary</span><br />
+                    <span class="s">--color-accent</span><br />
+                    <span class="s">--color-success</span><br />
+                    <span class="s">--color-error</span><br />
+                    <span class="s">--color-warning</span><br />
+                    <span class="s">--color-muted</span><br />
+                    <span class="s">--color-light</span><br />
+                    <span class="s">--color-dark-secondary</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Primary scale ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Primary scale</div>
+        <div class="lib-preview">
+            <div class="tok-scale" style="width: 100%;">
+                <div
+                    class="tok-scale-step"
+                    style="background:#e6f4ff"
+                    title="--color-primary-100"
+                >
+                    <span style="color:rgba(0,0,0,0.5)">100</span>
+                </div>
+                <div
+                    class="tok-scale-step"
+                    style="background:#bde0ff"
+                    title="--color-primary-200"
+                >
+                    <span style="color:rgba(0,0,0,0.5)">200</span>
+                </div>
+                <div
+                    class="tok-scale-step"
+                    style="background:#7ec8ff"
+                    title="--color-primary-300"
+                >
+                    <span style="color:rgba(0,0,0,0.4)">300</span>
+                </div>
+                <div
+                    class="tok-scale-step"
+                    style="background:#3db1ff"
+                    title="--color-primary-400"
+                >
+                    400
+                </div>
+                <div
+                    class="tok-scale-step"
+                    style="background:#14a0ff"
+                    title="--color-primary-500"
+                >
+                    500
+                </div>
+                <div
+                    class="tok-scale-step"
+                    style="background:#0080e0"
+                    title="--color-primary-600"
+                >
+                    600
+                </div>
+                <div
+                    class="tok-scale-step"
+                    style="background:#0060b0"
+                    title="--color-primary-700"
+                >
+                    700
+                </div>
+                <div
+                    class="tok-scale-step"
+                    style="background:#004080"
+                    title="--color-primary-800"
+                >
+                    800
+                </div>
+                <div
+                    class="tok-scale-step"
+                    style="background:#002050"
+                    title="--color-primary-900"
+                >
+                    900
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw="--color-primary-100 … --color-primary-900"
+                >
+                    <span class="s">--color-primary-100</span> … <span class="s"
+                        >--color-primary-900</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Neutral scale ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Neutral scale</div>
+        <div class="lib-preview">
+            <div class="tok-scale" style="width: 100%;">
+                <div
+                    class="tok-scale-step dark"
+                    style="background:#f9f9f9"
+                    title="--color-neutral-50"
+                >
+                    <span>50</span>
+                </div>
+                <div
+                    class="tok-scale-step dark"
+                    style="background:#f0f0f0"
+                    title="--color-neutral-100"
+                >
+                    <span>100</span>
+                </div>
+                <div
+                    class="tok-scale-step dark"
+                    style="background:#d2d6dd"
+                    title="--color-neutral-200"
+                >
+                    <span>200</span>
+                </div>
+                <div
+                    class="tok-scale-step dark"
+                    style="background:#aaaaaa"
+                    title="--color-neutral-300"
+                >
+                    300
+                </div>
+                <div
+                    class="tok-scale-step"
+                    style="background:#747681"
+                    title="--color-neutral-400"
+                >
+                    400
+                </div>
+                <div
+                    class="tok-scale-step"
+                    style="background:#555555"
+                    title="--color-neutral-500"
+                >
+                    500
+                </div>
+                <div
+                    class="tok-scale-step"
+                    style="background:#3f4144"
+                    title="--color-neutral-600"
+                >
+                    600
+                </div>
+                <div
+                    class="tok-scale-step"
+                    style="background:#2a2a2a"
+                    title="--color-neutral-700"
+                >
+                    700
+                </div>
+                <div
+                    class="tok-scale-step"
+                    style="background:#1a1a1a"
+                    title="--color-neutral-800"
+                >
+                    800
+                </div>
+                <div
+                    class="tok-scale-step"
+                    style="background:#0a0a0a"
+                    title="--color-neutral-900"
+                >
+                    900
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw="--color-neutral-50 … --color-neutral-900"
+                >
+                    <span class="s">--color-neutral-50</span> … <span class="s"
+                        >--color-neutral-900</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Font families ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Font families</div>
+        <div class="lib-preview">
+            <div class="tok-fonts" style="width: 100%;">
+                <div class="tok-font-card">
+                    <div
+                        class="tok-font-sample"
+                        style="font-family:var(--font-inter)"
+                    >
+                        Aa Gg
+                    </div>
+                    <div class="tok-font-meta">
+                        <div class="tok-font-role">Sans · body</div>
+                        <div class="tok-font-name">--font-sans (Inter)</div>
+                    </div>
+                    <div
+                        style="font-family:var(--font-inter);font-size:12px;color:var(--color-muted);margin-top:4px"
+                    >
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br
+                        />abcdefghijklmnopqrstuvwxyz 0123
+                    </div>
+                </div>
+                <div class="tok-font-card">
+                    <div
+                        class="tok-font-sample"
+                        style="font-family:var(--font-poppins)"
+                    >
+                        Aa Gg
+                    </div>
+                    <div class="tok-font-meta">
+                        <div class="tok-font-role">Display · headings</div>
+                        <div class="tok-font-name">
+                            --font-heading (Poppins)
+                        </div>
+                    </div>
+                    <div
+                        style="font-family:var(--font-poppins);font-size:12px;color:var(--color-muted);margin-top:4px"
+                    >
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br
+                        />abcdefghijklmnopqrstuvwxyz 0123
+                    </div>
+                </div>
+                <div class="tok-font-card">
+                    <div
+                        class="tok-font-sample"
+                        style="font-family:var(--font-roboto-mono)"
+                    >
+                        Aa Gg
+                    </div>
+                    <div class="tok-font-meta">
+                        <div class="tok-font-role">Mono · code</div>
+                        <div class="tok-font-name">
+                            --font-mono (Roboto Mono)
+                        </div>
+                    </div>
+                    <div
+                        style="font-family:var(--font-roboto-mono);font-size:12px;color:var(--color-muted);margin-top:4px"
+                    >
+                        const x = 42;<br />fn() =&gt; &#123; return true &#125;
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw="--font-sans:    var(--font-inter)
+--font-heading: var(--font-poppins)
+--font-mono:    var(--font-roboto-mono)"
+                >
+                    <span class="s">--font-sans</span>: <span class="cn"
+                        >var(--font-inter)</span
+                    ><br />
+                    <span class="s">--font-heading</span>: <span class="cn"
+                        >var(--font-poppins)</span
+                    ><br />
+                    <span class="s">--font-mono</span>: <span class="cn"
+                        >var(--font-roboto-mono)</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Font sizes ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Font sizes</div>
+        <div class="lib-preview">
+            <div class="tok-sizes" style="width: 100%;">
+                <div class="tok-size-row">
+                    <div class="tok-size-label">--fs-xs</div>
+                    <div class="tok-size-text" style="font-size:var(--fs-xs)">
+                        The quick brown fox jumps
+                    </div>
+                    <div class="tok-size-px">12px</div>
+                </div>
+                <div class="tok-size-row">
+                    <div class="tok-size-label">--fs-sm</div>
+                    <div class="tok-size-text" style="font-size:var(--fs-sm)">
+                        The quick brown fox jumps
+                    </div>
+                    <div class="tok-size-px">14px</div>
+                </div>
+                <div class="tok-size-row">
+                    <div class="tok-size-label">--fs-base</div>
+                    <div
+                        class="tok-size-text"
+                        style="font-size:var(--fs-base);color:var(--color-light);font-weight:500"
+                    >
+                        The quick brown fox jumps
+                    </div>
+                    <div class="tok-size-px">16px</div>
+                </div>
+                <div class="tok-size-row">
+                    <div class="tok-size-label">--fs-lg</div>
+                    <div class="tok-size-text" style="font-size:var(--fs-lg)">
+                        The quick brown fox
+                    </div>
+                    <div class="tok-size-px">18px</div>
+                </div>
+                <div class="tok-size-row">
+                    <div class="tok-size-label">--fs-xl</div>
+                    <div class="tok-size-text" style="font-size:var(--fs-xl)">
+                        The quick brown fox
+                    </div>
+                    <div class="tok-size-px">20px</div>
+                </div>
+                <div class="tok-size-row">
+                    <div class="tok-size-label">--fs-2xl</div>
+                    <div class="tok-size-text" style="font-size:var(--fs-2xl)">
+                        The quick brown
+                    </div>
+                    <div class="tok-size-px">24px</div>
+                </div>
+                <div class="tok-size-row">
+                    <div class="tok-size-label">--fs-3xl</div>
+                    <div class="tok-size-text" style="font-size:var(--fs-3xl)">
+                        The quick brown
+                    </div>
+                    <div class="tok-size-px">30px</div>
+                </div>
+                <div class="tok-size-row">
+                    <div class="tok-size-label">--fs-4xl</div>
+                    <div class="tok-size-text" style="font-size:var(--fs-4xl)">
+                        The quick
+                    </div>
+                    <div class="tok-size-px">36px</div>
+                </div>
+                <div class="tok-size-row">
+                    <div class="tok-size-label">--fs-5xl</div>
+                    <div class="tok-size-text" style="font-size:var(--fs-5xl)">
+                        Display
+                    </div>
+                    <div class="tok-size-px">48px</div>
+                </div>
+                <div class="tok-size-row">
+                    <div class="tok-size-label">--fs-hero</div>
+                    <div
+                        class="tok-size-text"
+                        style="font-size:clamp(36px,6vw,var(--fs-hero));font-weight:800;background:linear-gradient(90deg,var(--color-primary),var(--color-accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text"
+                    >
+                        Hero
+                    </div>
+                    <div class="tok-size-px">96px</div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw="--fs-xs: 12px  --fs-sm: 14px  --fs-base: 16px
+--fs-lg: 18px  --fs-xl: 20px  --fs-2xl: 24px
+--fs-3xl: 30px  --fs-4xl: 36px  --fs-5xl: 48px
+--fs-hero: 96px  (+ fluid: --fs-f-base, --fs-f-xl…)"
+                >
+                    <span class="s">--fs-xs</span>: <span class="cn">12px</span> &nbsp;
+                    <span class="s">--fs-sm</span>: <span class="cn">14px</span> &nbsp;
+                    <span class="s">--fs-base</span>: <span class="cn"
+                        >16px</span
+                    ><br />
+                    <span class="s">--fs-lg</span>: <span class="cn">18px</span> &nbsp;
+                    <span class="s">--fs-xl</span>: <span class="cn">20px</span> &nbsp;
+                    <span class="s">--fs-2xl</span>: <span class="cn">24px</span
+                    ><br />
+                    <span class="s">--fs-3xl</span>: <span class="cn">30px</span
+                    > &nbsp; <span class="s">--fs-4xl</span>: <span class="cn"
+                        >36px</span
+                    > &nbsp; <span class="s">--fs-5xl</span>: <span class="cn"
+                        >48px</span
+                    ><br />
+                    <span class="s">--fs-hero</span>: <span class="cn"
+                        >96px</span
+                    > &nbsp; <span class="c"
+                        >(+ fluid: --fs-f-base, --fs-f-xl…)</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Spacing ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Spacing scale</div>
+        <div class="lib-preview">
+            <div class="tok-spacing" style="width: 100%;">
+                <div class="tok-space-row">
+                    <div class="tok-size-label">--space-1</div><div
+                        class="tok-space-bar"
+                        style="width:var(--space-1)"
+                    >
+                    </div><div class="tok-space-val">4px</div>
+                </div>
+                <div class="tok-space-row">
+                    <div class="tok-size-label">--space-2</div><div
+                        class="tok-space-bar"
+                        style="width:var(--space-2)"
+                    >
+                    </div><div class="tok-space-val">8px</div>
+                </div>
+                <div class="tok-space-row">
+                    <div class="tok-size-label">--space-3</div><div
+                        class="tok-space-bar"
+                        style="width:var(--space-3)"
+                    >
+                    </div><div class="tok-space-val">12px</div>
+                </div>
+                <div class="tok-space-row">
+                    <div class="tok-size-label">--space-4</div><div
+                        class="tok-space-bar"
+                        style="width:var(--space-4)"
+                    >
+                    </div><div class="tok-space-val">16px</div>
+                </div>
+                <div class="tok-space-row">
+                    <div class="tok-size-label">--space-5</div><div
+                        class="tok-space-bar"
+                        style="width:var(--space-5)"
+                    >
+                    </div><div class="tok-space-val">20px</div>
+                </div>
+                <div class="tok-space-row">
+                    <div class="tok-size-label">--space-6</div><div
+                        class="tok-space-bar"
+                        style="width:var(--space-6)"
+                    >
+                    </div><div class="tok-space-val">24px</div>
+                </div>
+                <div class="tok-space-row">
+                    <div class="tok-size-label">--space-8</div><div
+                        class="tok-space-bar"
+                        style="width:var(--space-8)"
+                    >
+                    </div><div class="tok-space-val">32px</div>
+                </div>
+                <div class="tok-space-row">
+                    <div class="tok-size-label">--space-10</div><div
+                        class="tok-space-bar"
+                        style="width:var(--space-10)"
+                    >
+                    </div><div class="tok-space-val">40px</div>
+                </div>
+                <div class="tok-space-row">
+                    <div class="tok-size-label">--space-12</div><div
+                        class="tok-space-bar"
+                        style="width:var(--space-12)"
+                    >
+                    </div><div class="tok-space-val">48px</div>
+                </div>
+                <div class="tok-space-row">
+                    <div class="tok-size-label">--space-16</div><div
+                        class="tok-space-bar"
+                        style="width:var(--space-16)"
+                    >
+                    </div><div class="tok-space-val">64px</div>
+                </div>
+                <div class="tok-space-row">
+                    <div class="tok-size-label">--space-20</div><div
+                        class="tok-space-bar"
+                        style="width:var(--space-20)"
+                    >
+                    </div><div class="tok-space-val">80px</div>
+                </div>
+                <div class="tok-space-row">
+                    <div class="tok-size-label">--space-24</div><div
+                        class="tok-space-bar"
+                        style="width:var(--space-24)"
+                    >
+                    </div><div class="tok-space-val">96px</div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw="--space-1: 4px   --space-2: 8px   --space-3: 12px
+--space-4: 16px  --space-6: 24px  --space-8: 32px
+--space-10: 40px --space-12: 48px --space-16: 64px
+--space-20: 80px --space-24: 96px"
+                >
+                    <span class="s">--space-1</span>: <span class="cn">4px</span
+                    > &nbsp; <span class="s">--space-2</span>: <span class="cn"
+                        >8px</span
+                    > &nbsp; <span class="s">--space-3</span>: <span class="cn"
+                        >12px</span
+                    ><br />
+                    <span class="s">--space-4</span>: <span class="cn"
+                        >16px</span
+                    > &nbsp; <span class="s">--space-6</span>: <span class="cn"
+                        >24px</span
+                    > &nbsp; <span class="s">--space-8</span>: <span class="cn"
+                        >32px</span
+                    ><br />
+                    <span class="s">--space-10</span>: <span class="cn"
+                        >40px</span
+                    > &nbsp; <span class="s">--space-12</span>: <span class="cn"
+                        >48px</span
+                    > &nbsp; <span class="s">--space-16</span>: <span class="cn"
+                        >64px</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Border radius ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Border radius</div>
+        <div class="lib-preview">
+            <div class="tok-radii">
+                <div class="tok-radius-item">
+                    <div
+                        class="tok-radius-box"
+                        style="border-radius:var(--radius-none)"
+                    >
+                    </div>
+                    <div class="tok-radius-label">none<br />0px</div>
+                </div>
+                <div class="tok-radius-item">
+                    <div
+                        class="tok-radius-box"
+                        style="border-radius:var(--radius-sm)"
+                    >
+                    </div>
+                    <div class="tok-radius-label">sm<br />6px</div>
+                </div>
+                <div class="tok-radius-item">
+                    <div
+                        class="tok-radius-box"
+                        style="border-radius:var(--radius-md)"
+                    >
+                    </div>
+                    <div class="tok-radius-label">md<br />12px</div>
+                </div>
+                <div class="tok-radius-item">
+                    <div
+                        class="tok-radius-box"
+                        style="border-radius:var(--radius-lg)"
+                    >
+                    </div>
+                    <div class="tok-radius-label">lg<br />20px</div>
+                </div>
+                <div class="tok-radius-item">
+                    <div
+                        class="tok-radius-box"
+                        style="border-radius:var(--radius-xl)"
+                    >
+                    </div>
+                    <div class="tok-radius-label">xl<br />30px</div>
+                </div>
+                <div class="tok-radius-item">
+                    <div
+                        class="tok-radius-box"
+                        style="border-radius:var(--radius-2xl)"
+                    >
+                    </div>
+                    <div class="tok-radius-label">2xl<br />40px</div>
+                </div>
+                <div class="tok-radius-item">
+                    <div
+                        class="tok-radius-box"
+                        style="border-radius:var(--radius-full)"
+                    >
+                    </div>
+                    <div class="tok-radius-label">full<br />9999px</div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw="--radius-none: 0px    --radius-sm: 6px
+--radius-md: 12px     --radius-lg: 20px
+--radius-xl: 30px     --radius-2xl: 40px
+--radius-full: 9999px"
+                >
+                    <span class="s">--radius-none</span>: <span class="cn"
+                        >0px</span
+                    > &nbsp; <span class="s">--radius-sm</span>: <span
+                        class="cn">6px</span
+                    ><br />
+                    <span class="s">--radius-md</span>: <span class="cn"
+                        >12px</span
+                    > &nbsp;&nbsp; <span class="s">--radius-lg</span>: <span
+                        class="cn">20px</span
+                    ><br />
+                    <span class="s">--radius-xl</span>: <span class="cn"
+                        >30px</span
+                    > &nbsp;&nbsp; <span class="s">--radius-2xl</span>: <span
+                        class="cn">40px</span
+                    ><br />
+                    <span class="s">--radius-full</span>: <span class="cn"
+                        >9999px</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Shadows ── -->
+    <div class="lib-component">
+        <div class="lib-component-label">Shadows</div>
+        <div class="lib-preview">
+            <div class="tok-shadows">
+                <div class="tok-shadow-item">
+                    <div
+                        class="tok-shadow-preview"
+                        style="box-shadow:var(--shadow-sm)"
+                    >
+                    </div>
+                    <div class="tok-shadow-var">--shadow-sm</div>
+                </div>
+                <div class="tok-shadow-item">
+                    <div
+                        class="tok-shadow-preview"
+                        style="box-shadow:var(--shadow-md)"
+                    >
+                    </div>
+                    <div class="tok-shadow-var">--shadow-md</div>
+                </div>
+                <div class="tok-shadow-item">
+                    <div
+                        class="tok-shadow-preview"
+                        style="box-shadow:var(--shadow-lg)"
+                    >
+                    </div>
+                    <div class="tok-shadow-var">--shadow-lg</div>
+                </div>
+                <div class="tok-shadow-item">
+                    <div
+                        class="tok-shadow-preview"
+                        style="box-shadow:var(--shadow-primary)"
+                    >
+                    </div>
+                    <div class="tok-shadow-var">--shadow-primary</div>
+                </div>
+                <div class="tok-shadow-item">
+                    <div
+                        class="tok-shadow-preview"
+                        style="box-shadow:var(--shadow-accent)"
+                    >
+                    </div>
+                    <div class="tok-shadow-var">--shadow-accent</div>
+                </div>
+                <div class="tok-shadow-item">
+                    <div
+                        class="tok-shadow-preview"
+                        style="box-shadow:var(--shadow-glow)"
+                    >
+                    </div>
+                    <div class="tok-shadow-var">--shadow-glow</div>
+                </div>
+            </div>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw="--shadow-sm      --shadow-md      --shadow-lg
+--shadow-primary --shadow-accent  --shadow-glow"
+                >
+                    <span class="s">--shadow-sm</span> &nbsp; <span class="s"
+                        >--shadow-md</span
+                    > &nbsp; <span class="s">--shadow-lg</span><br />
+                    <span class="s">--shadow-primary</span> &nbsp; <span
+                        class="s">--shadow-accent</span
+                    > &nbsp; <span class="s">--shadow-glow</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

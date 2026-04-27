@@ -1,0 +1,279 @@
+      <section class="lib-section" id="collapse">
+        <div class="lib-section-title">📂 Collapse / Accordion</div>
+        <div class="lib-section-desc">From <code>_collapse.css</code>. Supports native <code>&lt;details&gt;</code>
+          and JS class <code>.is-open</code>. Variants: <code>.collapse-plus</code> <code>.collapse-ghost</code>
+          <code>.collapse-primary</code>. Wrappers: <code>.accordion</code> <code>.accordion-flush</code>.
+        </div>
+
+        <!-- Basic collapse (details API) -->
+        <div class="lib-component">
+          <div class="lib-component-label">Basic — details API</div>
+          <div class="lib-preview col" style="align-items:stretch">
+            <details class="collapse">
+              <summary class="collapse-header">What is njX? <span class="collapse-icon"></span></summary>
+              <div class="collapse-body">njX is a zero-dependency CSS component library with 9 built-in themes. Switch
+                themes instantly via <code>data-theme</code> on the <code>&lt;html&gt;</code> element.</div>
+            </details>
+            <details class="collapse">
+              <summary class="collapse-header">No build step required? <span class="collapse-icon"></span></summary>
+              <div class="collapse-body">Correct — just one <code>&lt;link&gt;</code> tag. No npm, no webpack, no
+                PostCSS config. Works in any environment.</div>
+            </details>
+            <details class="collapse" open>
+              <summary class="collapse-header">Can I customise the theme? <span class="collapse-icon"></span></summary>
+              <div class="collapse-body">Yes. Override <code>--color-primary</code> and other CSS variables in your own
+                <code>:root</code> block. All components update automatically.
+              </div>
+            </details>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw="&lt;details class=&quot;collapse&quot;&gt;
+  &lt;summary class=&quot;collapse-header&quot;&gt;
+    Title &lt;span class=&quot;collapse-icon&quot;&gt;&lt;/span&gt;
+  &lt;/summary&gt;
+  &lt;div class=&quot;collapse-body&quot;&gt;Content goes here.&lt;/div&gt;
+&lt;/details&gt;">
+                <span class="k">&lt;details</span> <span class="s">class</span>=<span class="cn">"collapse"</span><span
+                  class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;summary</span> <span class="s">class</span>=<span
+                  class="cn">"collapse-header"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Title <span class="k">&lt;span</span> <span class="s">class</span>=<span
+                  class="cn">"collapse-icon"</span><span class="k">&gt;&lt;/span&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/summary&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"collapse-body"</span><span class="k">&gt;</span>Content goes here.<span
+                  class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/details&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic collapse (JS API) -->
+        <div class="lib-component">
+          <div class="lib-component-label">Basic — JS API (.is-open)</div>
+          <div class="lib-preview col" style="align-items:stretch">
+            <div class="collapse" id="col-js-1">
+              <div class="collapse-header" onclick="collapseToggle(this)">What is a JS collapse? <span
+                  class="collapse-icon"></span></div>
+              <div class="collapse-body">Add <code>.is-open</code> to the <code>.collapse</code> element to expand it.
+                Remove to collapse. Use any event — click, hover, programmatic.</div>
+            </div>
+            <div class="collapse is-open" id="col-js-2">
+              <div class="collapse-header" onclick="collapseToggle(this)">This one starts open <span
+                  class="collapse-icon"></span></div>
+              <div class="collapse-body">Pre-open by adding <code>.is-open</code> to the wrapper div in HTML. No JS
+                needed at load time.</div>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw="&lt;div class=&quot;collapse&quot;&gt;
+  &lt;div class=&quot;collapse-header&quot; onclick=&quot;collapseToggle(this)&quot;&gt;
+    Title &lt;span class=&quot;collapse-icon&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;collapse-body&quot;&gt;Content&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function collapseToggle(header) {
+  header.closest('.collapse').classList.toggle('is-open');
+}
+&lt;/script&gt;">
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"collapse"</span><span
+                  class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"collapse-header"</span> <span class="s">onclick</span>=<span
+                  class="cn">"collapseToggle(this)"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Title <span class="k">&lt;span</span> <span class="s">class</span>=<span
+                  class="cn">"collapse-icon"</span><span class="k">&gt;&lt;/span&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"collapse-body"</span><span class="k">&gt;</span>Content<span
+                  class="k">&lt;/div&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span><br><br>
+                <span class="k">&lt;script&gt;</span><br>
+                <span class="v">function</span> <span class="fn">collapseToggle</span>(header) &#123;<br>
+                &nbsp;&nbsp;header.closest(<span class="cn">'.collapse'</span>).classList.toggle(<span
+                  class="cn">'is-open'</span>);<br>
+                &#125;<br>
+                <span class="k">&lt;/script&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Variants -->
+        <div class="lib-component">
+          <div class="lib-component-label">Variants — plus / ghost / primary</div>
+          <div class="lib-preview col" style="align-items:stretch">
+            <details class="collapse collapse-plus">
+              <summary class="collapse-header">Plus/minus icon <span class="collapse-icon"></span></summary>
+              <div class="collapse-body">Uses <code>.collapse-plus</code> — shows a ＋ that morphs into — when open.
+              </div>
+            </details>
+            <details class="collapse collapse-ghost">
+              <summary class="collapse-header">Ghost (no border) <span class="collapse-icon"></span></summary>
+              <div class="collapse-body">Uses <code>.collapse-ghost</code> — transparent background and border. Great
+                inside cards or sidebars.</div>
+            </details>
+            <details class="collapse collapse-primary">
+              <summary class="collapse-header">Primary accent <span class="collapse-icon"></span></summary>
+              <div class="collapse-body">Uses <code>.collapse-primary</code> — tinted border and header that matches
+                your theme's primary color.</div>
+            </details>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw="&lt;!-- Plus/minus icon --&gt;
+&lt;details class=&quot;collapse collapse-plus&quot;&gt;...&lt;/details&gt;
+
+&lt;!-- Ghost (transparent) --&gt;
+&lt;details class=&quot;collapse collapse-ghost&quot;&gt;...&lt;/details&gt;
+
+&lt;!-- Primary accent --&gt;
+&lt;details class=&quot;collapse collapse-primary&quot;&gt;...&lt;/details&gt;">
+                <span class="c">&lt;!-- Plus/minus icon --&gt;</span><br>
+                <span class="k">&lt;details</span> <span class="s">class</span>=<span class="cn">"collapse
+                  collapse-plus"</span><span class="k">&gt;</span>...<span class="k">&lt;/details&gt;</span><br><br>
+                <span class="c">&lt;!-- Ghost (transparent) --&gt;</span><br>
+                <span class="k">&lt;details</span> <span class="s">class</span>=<span class="cn">"collapse
+                  collapse-ghost"</span><span class="k">&gt;</span>...<span class="k">&lt;/details&gt;</span><br><br>
+                <span class="c">&lt;!-- Primary accent --&gt;</span><br>
+                <span class="k">&lt;details</span> <span class="s">class</span>=<span class="cn">"collapse
+                  collapse-primary"</span><span class="k">&gt;</span>...<span class="k">&lt;/details&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion -->
+        <div class="lib-component">
+          <div class="lib-component-label">Accordion wrapper</div>
+          <div class="lib-preview col" style="align-items:stretch">
+            <div class="accordion">
+              <details class="collapse">
+                <summary class="collapse-header">Section A <span class="collapse-icon"></span></summary>
+                <div class="collapse-body">Content for section A. The <code>.accordion</code> wrapper adds 6px gap
+                  between items.</div>
+              </details>
+              <details class="collapse" open>
+                <summary class="collapse-header">Section B (open) <span class="collapse-icon"></span></summary>
+                <div class="collapse-body">Content for section B. Each collapse is independent — multiple can be open at
+                  once.</div>
+              </details>
+              <details class="collapse">
+                <summary class="collapse-header">Section C <span class="collapse-icon"></span></summary>
+                <div class="collapse-body">Content for section C.</div>
+              </details>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw="&lt;div class=&quot;accordion&quot;&gt;
+  &lt;details class=&quot;collapse&quot;&gt;
+    &lt;summary class=&quot;collapse-header&quot;&gt;Section A &lt;span class=&quot;collapse-icon&quot;&gt;&lt;/span&gt;&lt;/summary&gt;
+    &lt;div class=&quot;collapse-body&quot;&gt;Content A&lt;/div&gt;
+  &lt;/details&gt;
+  &lt;details class=&quot;collapse&quot;&gt;
+    &lt;summary class=&quot;collapse-header&quot;&gt;Section B &lt;span class=&quot;collapse-icon&quot;&gt;&lt;/span&gt;&lt;/summary&gt;
+    &lt;div class=&quot;collapse-body&quot;&gt;Content B&lt;/div&gt;
+  &lt;/details&gt;
+&lt;/div&gt;">
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"accordion"</span><span
+                  class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;details</span> <span class="s">class</span>=<span
+                  class="cn">"collapse"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;summary</span> <span class="s">class</span>=<span
+                  class="cn">"collapse-header"</span><span class="k">&gt;</span>Section A <span
+                  class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"collapse-icon"</span><span
+                  class="k">&gt;&lt;/span&gt;&lt;/summary&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"collapse-body"</span><span class="k">&gt;</span>Content A<span
+                  class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/details&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;details</span> <span class="s">class</span>=<span
+                  class="cn">"collapse"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;summary</span> <span class="s">class</span>=<span
+                  class="cn">"collapse-header"</span><span class="k">&gt;</span>Section B <span
+                  class="k">&lt;span</span> <span class="s">class</span>=<span class="cn">"collapse-icon"</span><span
+                  class="k">&gt;&lt;/span&gt;&lt;/summary&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"collapse-body"</span><span class="k">&gt;</span>Content B<span
+                  class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/details&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Flush -->
+        <div class="lib-component">
+          <div class="lib-component-label">Accordion Flush — connected</div>
+          <div class="lib-preview col" style="align-items:stretch">
+            <div class="accordion-flush">
+              <details class="collapse">
+                <summary class="collapse-header">Feature overview <span class="collapse-icon"></span></summary>
+                <div class="collapse-body">The <code>.accordion-flush</code> wrapper removes individual borders and
+                  joins all items into one bordered block with dividers between them.</div>
+              </details>
+              <details class="collapse" open>
+                <summary class="collapse-header">Installation <span class="collapse-icon"></span></summary>
+                <div class="collapse-body">One <code>&lt;link&gt;</code> tag — that's it. No npm, no build tools. Works
+                  offline too.</div>
+              </details>
+              <details class="collapse">
+                <summary class="collapse-header">Browser support <span class="collapse-icon"></span></summary>
+                <div class="collapse-body">All modern browsers. Uses <code>color-mix()</code> which requires Chrome
+                  111+, Firefox 113+, Safari 16.2+.</div>
+              </details>
+              <details class="collapse">
+                <summary class="collapse-header">Customisation <span class="collapse-icon"></span></summary>
+                <div class="collapse-body">Override CSS variables on <code>:root</code> or any parent element. Scoped
+                  theming is fully supported.</div>
+              </details>
+            </div>
+          </div>
+          <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+              <div class="lib-code" data-raw="&lt;div class=&quot;accordion-flush&quot;&gt;
+  &lt;details class=&quot;collapse&quot;&gt;
+    &lt;summary class=&quot;collapse-header&quot;&gt;Item 1 &lt;span class=&quot;collapse-icon&quot;&gt;&lt;/span&gt;&lt;/summary&gt;
+    &lt;div class=&quot;collapse-body&quot;&gt;Content&lt;/div&gt;
+  &lt;/details&gt;
+  &lt;details class=&quot;collapse&quot;&gt;
+    &lt;summary class=&quot;collapse-header&quot;&gt;Item 2 &lt;span class=&quot;collapse-icon&quot;&gt;&lt;/span&gt;&lt;/summary&gt;
+    &lt;div class=&quot;collapse-body&quot;&gt;Content&lt;/div&gt;
+  &lt;/details&gt;
+&lt;/div&gt;">
+                <span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"accordion-flush"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;details</span> <span class="s">class</span>=<span
+                  class="cn">"collapse"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;summary</span> <span class="s">class</span>=<span
+                  class="cn">"collapse-header"</span><span class="k">&gt;</span>Item 1 <span class="k">&lt;span</span>
+                <span class="s">class</span>=<span class="cn">"collapse-icon"</span><span
+                  class="k">&gt;&lt;/span&gt;&lt;/summary&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"collapse-body"</span><span class="k">&gt;</span>Content<span
+                  class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/details&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;details</span> <span class="s">class</span>=<span
+                  class="cn">"collapse"</span><span class="k">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;summary</span> <span class="s">class</span>=<span
+                  class="cn">"collapse-header"</span><span class="k">&gt;</span>Item 2 <span class="k">&lt;span</span>
+                <span class="s">class</span>=<span class="cn">"collapse-icon"</span><span
+                  class="k">&gt;&lt;/span&gt;&lt;/summary&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span> <span class="s">class</span>=<span
+                  class="cn">"collapse-body"</span><span class="k">&gt;</span>Content<span
+                  class="k">&lt;/div&gt;</span><br>
+                &nbsp;&nbsp;<span class="k">&lt;/details&gt;</span><br>
+                <span class="k">&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>

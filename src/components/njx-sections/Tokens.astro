@@ -1,0 +1,1583 @@
+<section class="lib-section" id="tokens">
+  <div class="lib-section-title">🎨 Design Tokens</div>
+  <div class="lib-section-desc">
+    All variables from <code>_base.css</code>. Change here — updates everywhere.
+  </div>
+
+  <!-- ═══ THEME SYSTEM SHOWCASE ═══ -->
+  <div class="lib-component ts-wrap">
+    <div class="lib-component-label">Theme system</div>
+
+    <div class="ts-stage">
+      <!-- glow orb behind preview — follows theme color via CSS vars -->
+      <div class="ts-glow"></div>
+
+      <!-- TOP: headline + attr badge -->
+      <div class="ts-top">
+        <div class="ts-top-left">
+          <div class="ts-eyebrow">9 built-in themes · one attribute</div>
+          <h1 class="ts-heading">
+            The entire UI reacts<br />to a single attribute.
+          </h1>
+          <p class="ts-sub">
+            Set <code class="ts-inline-code">data-theme</code> on <code
+              class="ts-inline-code">&lt;html&gt;</code
+            > and every component, shadow, and gradient updates instantly. No JS required.
+          </p>
+        </div>
+        <div class="ts-attr-pill">
+          <span class="ts-attr-dot"></span>
+          <code id="tsAttrCode"
+            >&lt;html data-theme="<span id="tsAttrTheme">dark</span>"&gt;</code
+          >
+        </div>
+      </div>
+
+      <!-- MIDDLE: theme selector + mini app preview -->
+      <div class="ts-body">
+        <!-- Theme selector -->
+        <div class="ts-selector">
+          <div class="ts-selector-label">Select theme</div>
+          <div class="ts-grid">
+            <button
+              class="ts-tile active"
+              data-ts="dark"
+              onclick="tsSwitch(this,'dark')"
+              style="--tc:#14a0ff"
+              ><span class="ts-tile-swatch"></span><span>Dark</span></button
+            >
+            <button
+              class="ts-tile"
+              data-ts="light"
+              onclick="tsSwitch(this,'light')"
+              style="--tc:#64748b"
+              ><span class="ts-tile-swatch"></span><span>Light</span></button
+            >
+            <button
+              class="ts-tile"
+              data-ts="red"
+              onclick="tsSwitch(this,'red')"
+              style="--tc:#f43f5e"
+              ><span class="ts-tile-swatch"></span><span>Red</span></button
+            >
+            <button
+              class="ts-tile"
+              data-ts="blue"
+              onclick="tsSwitch(this,'blue')"
+              style="--tc:#3b82f6"
+              ><span class="ts-tile-swatch"></span><span>Blue</span></button
+            >
+            <button
+              class="ts-tile"
+              data-ts="green"
+              onclick="tsSwitch(this,'green')"
+              style="--tc:#22c55e"
+              ><span class="ts-tile-swatch"></span><span>Green</span></button
+            >
+            <button
+              class="ts-tile"
+              data-ts="cyan"
+              onclick="tsSwitch(this,'cyan')"
+              style="--tc:#00e5ff"
+              ><span class="ts-tile-swatch"></span><span>Cyan</span></button
+            >
+            <button
+              class="ts-tile"
+              data-ts="yellow"
+              onclick="tsSwitch(this,'yellow')"
+              style="--tc:#facc15"
+              ><span class="ts-tile-swatch"></span><span>Yellow</span></button
+            >
+            <button
+              class="ts-tile"
+              data-ts="pink"
+              onclick="tsSwitch(this,'pink')"
+              style="--tc:#ec4899"
+              ><span class="ts-tile-swatch"></span><span>Pink</span></button
+            >
+            <button
+              class="ts-tile"
+              data-ts="purple"
+              onclick="tsSwitch(this,'purple')"
+              style="--tc:#a855f7"
+              ><span class="ts-tile-swatch"></span><span>Purple</span></button
+            >
+          </div>
+        </div>
+
+        <!-- Mini app window -->
+        <div class="ts-app">
+          <!-- window chrome -->
+          <div class="ts-app-chrome">
+            <span class="ts-dot" style="background:#ff5f57"></span>
+            <span class="ts-dot" style="background:#febc2e"></span>
+            <span class="ts-dot" style="background:#28c840"></span>
+            <span class="ts-app-title">njX UI — Dashboard</span>
+          </div>
+          <!-- app body -->
+          <div class="ts-app-body">
+            <!-- sidebar -->
+            <div class="ts-app-sidebar">
+              <div class="ts-app-logo">
+                <span class="ts-app-logo-dot"></span>njX
+              </div>
+              <nav class="ts-app-nav">
+                <a class="ts-nav-item active">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    ><rect x="1" y="1" width="5" height="5" rx="1"></rect><rect
+                      x="9"
+                      y="1"
+                      width="6"
+                      height="5"
+                      rx="1"></rect><rect
+                      x="1"
+                      y="9"
+                      width="6"
+                      height="6"
+                      rx="1"></rect><rect
+                      x="10"
+                      y="9"
+                      width="5"
+                      height="6"
+                      rx="1"></rect></svg
+                  >
+                  Dashboard
+                </a>
+                <a class="ts-nav-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    ><circle cx="8" cy="6" r="3"></circle><path
+                      d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"></path></svg
+                  >
+                  Users
+                </a>
+                <a class="ts-nav-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    ><path d="M2 4h12M2 8h8M2 12h10"></path></svg
+                  >
+                  Reports
+                </a>
+                <a class="ts-nav-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    ><circle cx="8" cy="8" r="3"></circle><path
+                      d="M8 1v2M8 13v2M1 8h2M13 8h2"></path></svg
+                  >
+                  Settings
+                </a>
+              </nav>
+            </div>
+            <!-- main content -->
+            <div class="ts-app-main">
+              <!-- stat row -->
+              <div class="ts-stat-row">
+                <div class="ts-stat-card">
+                  <div class="ts-stat-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      ><circle cx="8" cy="6" r="3"></circle><path
+                        d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"></path></svg
+                    >
+                  </div>
+                  <div class="ts-stat-val">2,481</div>
+                  <div class="ts-stat-key">Users</div>
+                  <div class="ts-stat-trend up">+12%</div>
+                </div>
+                <div class="ts-stat-card">
+                  <div class="ts-stat-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      ><path d="M1 13L5 7l3 3 3-4 4 7"></path></svg
+                    >
+                  </div>
+                  <div class="ts-stat-val">$18.4k</div>
+                  <div class="ts-stat-key">Revenue</div>
+                  <div class="ts-stat-trend up">+8%</div>
+                </div>
+                <div class="ts-stat-card">
+                  <div class="ts-stat-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      ><rect x="1" y="3" width="14" height="10" rx="1.5"
+                      ></rect><path d="M1 6h14"></path></svg
+                    >
+                  </div>
+                  <div class="ts-stat-val">340</div>
+                  <div class="ts-stat-key">Orders</div>
+                  <div class="ts-stat-trend down">-3%</div>
+                </div>
+              </div>
+              <!-- progress section -->
+              <div class="ts-progress-block">
+                <div class="ts-progress-row">
+                  <span class="ts-progress-label">Components</span>
+                  <span class="ts-progress-val">30+</span>
+                </div>
+                <div class="ts-bar">
+                  <div class="ts-bar-fill" style="width:88%"></div>
+                </div>
+                <div class="ts-progress-row">
+                  <span class="ts-progress-label">Themes</span>
+                  <span class="ts-progress-val">9</span>
+                </div>
+                <div class="ts-bar">
+                  <div class="ts-bar-fill" style="width:100%"></div>
+                </div>
+              </div>
+              <!-- buttons -->
+              <div class="ts-actions">
+                <button class="ts-btn-primary">Get started</button>
+                <button class="ts-btn-outline">View docs</button>
+                <span class="ts-badge">Zero deps</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /ts-body -->
+    </div><!-- /ts-stage -->
+
+    <!-- Code block -->
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw="/* Via HTML attribute */
+<html data-theme=&quot;dark&quot;>
+
+/* Via JavaScript */
+document.documentElement.setAttribute('data-theme', 'purple');
+
+/* With localStorage persistence */
+function setTheme(name) {
+  document.documentElement.setAttribute('data-theme', name);
+  localStorage.setItem('theme', name);
+}
+const saved = localStorage.getItem('theme');
+if (saved) setTheme(saved);"
+        >
+          <span class="c">/* Via HTML attribute */</span><br />
+          <span class="k">&lt;html</span>
+          <span class="s">data-theme</span>=<span class="cn"
+            >"<span id="tsCodeTheme">dark</span>"</span
+          ><span class="k">&gt;</span><br /><br />
+          <span class="c">/* Via JavaScript */</span><br />
+          <span class="s">document</span>.<span class="k">documentElement</span
+          >.<span class="s">setAttribute</span>(<span class="cn"
+            >'data-theme'</span
+          >, <span class="cn">'purple'</span>);<br /><br />
+          <span class="c">/* With localStorage persistence */</span><br />
+          <span class="k">function</span>
+          <span class="s">setTheme</span>(name) &#123;<br />
+          &nbsp;&nbsp;<span class="s">document</span>.<span class="k"
+            >documentElement</span
+          >.<span class="s">setAttribute</span>(<span class="cn"
+            >'data-theme'</span
+          >, name);<br />
+          &nbsp;&nbsp;<span class="s">localStorage</span>.<span class="k"
+            >setItem</span
+          >(<span class="cn">'theme'</span>, name);<br />
+          &#125;<br />
+          <span class="k">const</span> saved = <span class="s"
+            >localStorage</span
+          >.<span class="k">getItem</span>(<span class="cn">'theme'</span>);<br
+          />
+          <span class="k">if</span> (saved) <span class="s">setTheme</span
+          >(saved);
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ═══ END THEME SYSTEM ═══ -->
+
+  <!-- ═══ THEME SWITCHER VARIANTS ═══ -->
+  <div class="lib-component">
+    <div class="lib-component-label">Theme switcher variants</div>
+    <div class="lib-section-desc">
+      Copy-paste dark / light toggle components. Click any to try live.
+    </div>
+
+    <div class="lib-preview sw-showcase">
+      <!-- 1. Toggle slide -->
+      <div class="sw-card">
+        <div class="sw-card-label">Toggle</div>
+        <button
+          class="sw-toggle"
+          onclick="toggleDarkLight()"
+          title="Toggle dark / light"
+        >
+          <svg
+            class="sw-toggle-icon sw-ico-moon"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <span class="sw-track"><span class="sw-thumb"></span></span>
+          <svg
+            class="sw-toggle-icon sw-ico-sun"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+          >
+            <circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"
+            ></circle>
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- 2. Segmented pill -->
+      <div class="sw-card">
+        <div class="sw-card-label">Segmented</div>
+        <div class="sw-seg">
+          <button class="sw-seg-btn sw-btn-dark" onclick="applyTheme('dark')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"
+              ><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+              ></path></svg
+            >
+            Dark
+          </button>
+          <button class="sw-seg-btn sw-btn-light" onclick="applyTheme('light')">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              ><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"
+              ></circle><path
+                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+              ></path></svg
+            >
+            Light
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. Icon button -->
+      <div class="sw-card">
+        <div class="sw-card-label">Icon</div>
+        <button
+          class="sw-icon-btn"
+          onclick="toggleDarkLight()"
+          title="Toggle theme"
+        >
+          <svg
+            class="sw-ico-moon"
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            ><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+            ></path></svg
+          >
+          <svg
+            class="sw-ico-sun"
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            ><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"
+            ></circle><path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+            ></path></svg
+          >
+        </button>
+      </div>
+
+      <!-- 4. Settings row -->
+      <div class="sw-card sw-card--wide">
+        <div class="sw-card-label">Settings row</div>
+        <div
+          class="sw-row"
+          onclick="toggleDarkLight()"
+          role="button"
+          tabindex="0"
+        >
+          <div class="sw-row-left">
+            <svg
+              class="sw-row-moon"
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              ><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+              ></path></svg
+            >
+            <svg
+              class="sw-row-sun"
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              ><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"
+              ></circle><path
+                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+              ></path></svg
+            >
+            <span class="sw-row-text-dark">Dark mode</span>
+            <span class="sw-row-text-light">Light mode</span>
+          </div>
+          <span class="sw-mini-track"><span class="sw-mini-thumb"></span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw="/* 1. JS helpers (add once to your project) */
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+}
+function toggleDarkLight() {
+  const t = document.documentElement.dataset.theme;
+  applyTheme(t === 'light' ? 'dark' : 'light');
+}
+const saved = localStorage.getItem('theme');
+if (saved) applyTheme(saved);
+
+/* 2. Toggle variant HTML */
+<button onclick=&quot;toggleDarkLight()&quot;>...</button>
+
+/* 3. Segmented variant HTML */
+<div class=&quot;sw-seg&quot;>
+  <button onclick=&quot;applyTheme('dark')&quot;>Dark</button>
+  <button onclick=&quot;applyTheme('light')&quot;>Light</button>
+</div>
+
+/* 4. CSS active states (pure CSS, no JS) */
+html:not([data-theme=&quot;light&quot;]) .dark-btn { background: var(--color-primary); }
+html[data-theme=&quot;light&quot;]       .light-btn { background: var(--color-primary); }"
+        >
+          <span class="c">/* 1. JS helpers */</span><br />
+          <span class="k">function</span>
+          <span class="s">applyTheme</span>(theme) &#123;<br />
+          &nbsp;&nbsp;<span class="s">document</span>.<span class="k"
+            >documentElement</span
+          >.<span class="s">setAttribute</span>(<span class="cn"
+            >'data-theme'</span
+          >, theme);<br />
+          &nbsp;&nbsp;<span class="s">localStorage</span>.<span class="k"
+            >setItem</span
+          >(<span class="cn">'theme'</span>, theme);<br />
+          &#125;<br />
+          <span class="k">function</span>
+          <span class="s">toggleDarkLight</span>() &#123;<br />
+          &nbsp;&nbsp;<span class="k">const</span> t = <span class="s"
+            >document</span
+          >.<span class="k">documentElement</span>.<span class="s">dataset</span
+          >.<span class="k">theme</span>;<br />
+          &nbsp;&nbsp;<span class="s">applyTheme</span>(t === <span class="cn"
+            >'light'</span
+          > ? <span class="cn">'dark'</span> : <span class="cn">'light'</span
+          >);<br />
+          &#125;<br />
+          <span class="k">const</span> saved = <span class="s"
+            >localStorage</span
+          >.<span class="k">getItem</span>(<span class="cn">'theme'</span>);<br
+          />
+          <span class="k">if</span> (saved) <span class="s">applyTheme</span
+          >(saved);<br /><br />
+          <span class="c">/* 2. HTML — toggle variant */</span><br />
+          <span class="k">&lt;button</span>
+          <span class="s">onclick</span>=<span class="cn"
+            >"toggleDarkLight()"</span
+          ><span class="k">&gt;</span>...<span class="k">&lt;/button&gt;</span
+          ><br /><br />
+          <span class="c">/* 3. HTML — segmented variant */</span><br />
+          <span class="k">&lt;div&gt;</span><br />
+          &nbsp;&nbsp;<span class="k">&lt;button</span>
+          <span class="s">onclick</span>=<span class="cn"
+            >"applyTheme('dark')"</span
+          ><span class="k">&gt;</span>Dark<span class="k">&lt;/button&gt;</span
+          ><br />
+          &nbsp;&nbsp;<span class="k">&lt;button</span>
+          <span class="s">onclick</span>=<span class="cn"
+            >"applyTheme('light')"</span
+          ><span class="k">&gt;</span>Light<span class="k">&lt;/button&gt;</span
+          ><br />
+          <span class="k">&lt;/div&gt;</span><br /><br />
+          <span class="c">/* 4. CSS active states — no extra JS needed */</span
+          ><br />
+          <span class="k">html:not([data-theme="light"])</span>
+          <span class="s">.dark-btn</span> &#123; <span class="v"
+            >background</span
+          >: <span class="cn">var(--color-primary)</span>; &#125;<br />
+          <span class="k">html[data-theme="light"]</span>
+          <span class="s">.light-btn</span> &#123; <span class="v"
+            >background</span
+          >: <span class="cn">var(--color-primary)</span>; &#125;
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ═══ END THEME SWITCHER VARIANTS ═══ -->
+
+  <div class="lib-component">
+    <div class="lib-component-label">Main colors</div>
+    <div class="lib-preview">
+      <div class="color-swatch">
+        <div class="color-swatch-block" style="background:var(--color-primary)">
+        </div>
+        <div class="color-swatch-label">--color-primary</div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-block" style="background:var(--color-accent)">
+        </div>
+        <div class="color-swatch-label">--color-accent</div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-block" style="background:var(--color-success)">
+        </div>
+        <div class="color-swatch-label">--color-success</div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-block" style="background:var(--color-error)">
+        </div>
+        <div class="color-swatch-label">--color-error</div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-block" style="background:var(--color-warning)">
+        </div>
+        <div class="color-swatch-label">--color-warning</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--сolor-dark);border:1px solid #333"
+        >
+        </div>
+        <div class="color-swatch-label">--сolor-dark</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-light);border:1px solid #333"
+        >
+        </div>
+        <div class="color-swatch-label">--color-light</div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw='<!-- _base.css — main colors via var() -->
+<div style="color: var(--color-primary)">Primary</div>
+<div style="color: var(--color-accent)">Accent</div>
+<div style="color: var(--color-success)">Success</div>
+<div style="color: var(--color-error)">Error</div>
+<div style="color: var(--color-warning)">Warning</div>
+
+<!-- Page background and text -->
+<body style="background: var(--сolor-dark); color: var(--color-light)">'
+        >
+          <span class="c">/* _base.css — main colors */</span><br />
+          <span class="k">&lt;div</span>
+          <span class="s">style</span>=<span class="cn"
+            >"color: var(--color-primary)"</span
+          ><span class="k">&gt;</span>Primary<span class="k">&lt;/div&gt;</span
+          ><br />
+          <span class="k">&lt;div</span>
+          <span class="s">style</span>=<span class="cn"
+            >"color: var(--color-accent)"</span
+          ><span class="k">&gt;</span>Accent<span class="k">&lt;/div&gt;</span
+          ><br />
+          <span class="k">&lt;div</span>
+          <span class="s">style</span>=<span class="cn"
+            >"color: var(--color-success)"</span
+          ><span class="k">&gt;</span>Success<span class="k">&lt;/div&gt;</span
+          ><br />
+          <span class="k">&lt;div</span>
+          <span class="s">style</span>=<span class="cn"
+            >"color: var(--color-error)"</span
+          ><span class="k">&gt;</span>Error<span class="k">&lt;/div&gt;</span
+          ><br />
+          <span class="k">&lt;div</span>
+          <span class="s">style</span>=<span class="cn"
+            >"color: var(--color-warning)"</span
+          ><span class="k">&gt;</span>Warning<span class="k">&lt;/div&gt;</span
+          ><br />
+          <span class="c">/* Page background and text */</span><br />
+          <span class="k">&lt;body</span>
+          <span class="s">style</span>=<span class="cn"
+            >"background: var(--сolor-dark); color: var(--color-light)"</span
+          ><span class="k">&gt;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lib-component">
+    <div class="lib-component-label">Primary shades (100→900)</div>
+    <div class="lib-preview">
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-primary-100)"
+        >
+        </div>
+        <div class="color-swatch-label">100</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-primary-200)"
+        >
+        </div>
+        <div class="color-swatch-label">200</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-primary-300)"
+        >
+        </div>
+        <div class="color-swatch-label">300</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-primary-400)"
+        >
+        </div>
+        <div class="color-swatch-label">400</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-primary-500)"
+        >
+        </div>
+        <div class="color-swatch-label">500 ←base</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-primary-600)"
+        >
+        </div>
+        <div class="color-swatch-label">600</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-primary-700)"
+        >
+        </div>
+        <div class="color-swatch-label">700</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-primary-800)"
+        >
+        </div>
+        <div class="color-swatch-label">800</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-primary-900)"
+        >
+        </div>
+        <div class="color-swatch-label">900</div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw="<!-- _base.css — shades --color-primary-100 ... --color-primary-900 -->
+
+/* Lightest shade */
+background: var(--color-primary-100);
+
+/* Base (= --color-primary) */
+color: var(--color-primary-500);
+
+/* Darkest */
+background: var(--color-primary-900);
+
+/* Example: button hover darker than base */
+.btn-primary:hover {
+  background: var(--color-primary-600);
+}
+
+/* Example: light background with accent shade */
+.highlight {
+  background: var(--color-primary-100);
+  border: 1px solid var(--color-primary-300);
+}"
+        >
+          <span class="c">/* _base.css — primary shades */</span><br />
+          <span class="v">background</span>: <span class="cn"
+            >var(--color-primary-100)</span
+          >; <span class="c">/* lightest */</span><br />
+          <span class="v">color</span>: <span class="cn"
+            >var(--color-primary-500)</span
+          >; <span class="c">/* base */</span><br />
+          <span class="v">background</span>: <span class="cn"
+            >var(--color-primary-900)</span
+          >; <span class="c">/* darkest */</span><br />
+          <span class="c">/* Hover darker than base */</span><br />
+          <span class="k">.btn-primary:hover</span> &#123;<br />
+          &nbsp;&nbsp;<span class="v">background</span>: <span class="cn"
+            >var(--color-primary-600)</span
+          >;<br />
+          &#125;<br />
+          <span class="c">/* Light accent background */</span><br />
+          <span class="v">background</span>: <span class="cn"
+            >var(--color-primary-100)</span
+          >;<br />
+          <span class="v">border</span>: 1px solid <span class="cn"
+            >var(--color-primary-300)</span
+          >;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lib-component">
+    <div class="lib-component-label">Neutrals (50→900)</div>
+    <div class="lib-preview">
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-neutral-50);border:1px solid #333"
+        >
+        </div>
+        <div class="color-swatch-label">50</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-neutral-100);border:1px solid #333"
+        >
+        </div>
+        <div class="color-swatch-label">100</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-neutral-200)"
+        >
+        </div>
+        <div class="color-swatch-label">200</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-neutral-300)"
+        >
+        </div>
+        <div class="color-swatch-label">300</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-neutral-400)"
+        >
+        </div>
+        <div class="color-swatch-label">400</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-neutral-500)"
+        >
+        </div>
+        <div class="color-swatch-label">500</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-neutral-600)"
+        >
+        </div>
+        <div class="color-swatch-label">600</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-neutral-700)"
+        >
+        </div>
+        <div class="color-swatch-label">700</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-neutral-800)"
+        >
+        </div>
+        <div class="color-swatch-label">800</div>
+      </div>
+      <div class="color-swatch">
+        <div
+          class="color-swatch-block"
+          style="background:var(--color-neutral-900)"
+        >
+        </div>
+        <div class="color-swatch-label">900</div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw="<!-- _base.css — neutral palette --color-neutral-50 ... 900 -->
+
+/* Light background over card */
+background: var(--color-neutral-50);
+
+/* Mid gray — for icons, placeholders */
+color: var(--color-neutral-500);
+
+/* Dark background */
+background: var(--color-neutral-900);
+
+/* Practical examples */
+border: 1px solid var(--color-neutral-300);
+color: var(--color-neutral-600);   /* muted text */
+background: var(--color-neutral-100); /* table zebra rows */"
+        >
+          <span class="c">/* _base.css — neutrals */</span><br />
+          <span class="v">background</span>: <span class="cn"
+            >var(--color-neutral-50)</span
+          >; <span class="c">/* near white */</span><br />
+          <span class="v">color</span>: <span class="cn"
+            >var(--color-neutral-500)</span
+          >; <span class="c">/* grey */</span><br />
+          <span class="v">background</span>: <span class="cn"
+            >var(--color-neutral-900)</span
+          >; <span class="c">/* near black */</span><br />
+          <span class="c">/* Practical examples */</span><br />
+          <span class="v">border</span>: 1px solid <span class="cn"
+            >var(--color-neutral-300)</span
+          >;<br />
+          <span class="v">color</span>: <span class="cn"
+            >var(--color-neutral-600)</span
+          >; <span class="c">/* muted */</span><br />
+          <span class="v">background</span>: <span class="cn"
+            >var(--color-neutral-100)</span
+          >; <span class="c">/* zebra */</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ACCENT SHADES ═══ -->
+  <div class="lib-component">
+    <div class="lib-component-label">Accent shades (100→900)</div>
+    <div class="lib-preview">
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-accent-100)"></div><div class="color-swatch-label">100</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-accent-200)"></div><div class="color-swatch-label">200</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-accent-300)"></div><div class="color-swatch-label">300</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-accent-400)"></div><div class="color-swatch-label">400</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-accent-500)"></div><div class="color-swatch-label">500 ←base</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-accent-600)"></div><div class="color-swatch-label">600</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-accent-700)"></div><div class="color-swatch-label">700</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-accent-800)"></div><div class="color-swatch-label">800</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-accent-900)"></div><div class="color-swatch-label">900</div></div>
+    </div>
+    <div class="lib-code-wrapper"><div class="lib-code-container"><div class="lib-code" data-raw="color: var(--color-accent-500);  /* base accent */
+background: var(--color-accent-100); /* light tint */
+border: 1px solid var(--color-accent-300);"><span class="v">color</span>: <span class="cn">var(--color-accent-500)</span>; <span class="c">/* base accent */</span><br /><span class="v">background</span>: <span class="cn">var(--color-accent-100)</span>; <span class="c">/* light tint */</span><br /><span class="v">border</span>: 1px solid <span class="cn">var(--color-accent-300)</span>;</div></div></div>
+  </div>
+
+  <!-- ═══ SUCCESS / ERROR SHADES ═══ -->
+  <div class="lib-component">
+    <div class="lib-component-label">Success shades (100→800)</div>
+    <div class="lib-preview">
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-success-100)"></div><div class="color-swatch-label">100</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-success-200)"></div><div class="color-swatch-label">200</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-success-300)"></div><div class="color-swatch-label">300</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-success-400)"></div><div class="color-swatch-label">400 ←base</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-success-500)"></div><div class="color-swatch-label">500</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-success-600)"></div><div class="color-swatch-label">600</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-success-700)"></div><div class="color-swatch-label">700</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-success-800)"></div><div class="color-swatch-label">800</div></div>
+    </div>
+    <div class="lib-code-wrapper"><div class="lib-code-container"><div class="lib-code" data-raw="color: var(--color-success-400);  /* base */
+background: var(--color-success-100); /* pale green bg */"><span class="v">color</span>: <span class="cn">var(--color-success-400)</span>;<br /><span class="v">background</span>: <span class="cn">var(--color-success-100)</span>;</div></div></div>
+  </div>
+
+  <div class="lib-component">
+    <div class="lib-component-label">Error shades (100→800)</div>
+    <div class="lib-preview">
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-error-100)"></div><div class="color-swatch-label">100</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-error-200)"></div><div class="color-swatch-label">200</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-error-300)"></div><div class="color-swatch-label">300</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-error-400)"></div><div class="color-swatch-label">400</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-error-500)"></div><div class="color-swatch-label">500 ←base</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-error-600)"></div><div class="color-swatch-label">600</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-error-700)"></div><div class="color-swatch-label">700</div></div>
+      <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-error-800)"></div><div class="color-swatch-label">800</div></div>
+    </div>
+    <div class="lib-code-wrapper"><div class="lib-code-container"><div class="lib-code" data-raw="color: var(--color-error-500);   /* base */
+background: var(--color-error-100);  /* pale red bg */
+border: 1px solid var(--color-error-300);"><span class="v">color</span>: <span class="cn">var(--color-error-500)</span>;<br /><span class="v">background</span>: <span class="cn">var(--color-error-100)</span>;<br /><span class="v">border</span>: 1px solid <span class="cn">var(--color-error-300)</span>;</div></div></div>
+  </div>
+
+  <!-- ═══ BORDER RADIUS ═══ -->
+  <div class="lib-component">
+    <div class="lib-component-label">Border radius</div>
+    <div class="lib-preview" style="flex-wrap:wrap;gap:12px;align-items:flex-end">
+      <div class="tk-r-item">
+        <div class="tk-r-box" style="border-radius:var(--radius-none)"></div>
+        <code class="tk-r-var">--radius-none</code>
+        <span class="tk-r-px">0px</span>
+      </div>
+      <div class="tk-r-item">
+        <div class="tk-r-box" style="border-radius:var(--radius-sm)"></div>
+        <code class="tk-r-var">--radius-sm</code>
+        <span class="tk-r-px">6px</span>
+      </div>
+      <div class="tk-r-item tk-r-item--active">
+        <div class="tk-r-box" style="border-radius:var(--radius-md)"></div>
+        <code class="tk-r-var">--radius-md</code>
+        <span class="tk-r-px">12px</span>
+      </div>
+      <div class="tk-r-item">
+        <div class="tk-r-box" style="border-radius:var(--radius-lg)"></div>
+        <code class="tk-r-var">--radius-lg</code>
+        <span class="tk-r-px">20px</span>
+      </div>
+      <div class="tk-r-item">
+        <div class="tk-r-box" style="border-radius:var(--radius-xl)"></div>
+        <code class="tk-r-var">--radius-xl</code>
+        <span class="tk-r-px">30px</span>
+      </div>
+      <div class="tk-r-item">
+        <div class="tk-r-box" style="border-radius:var(--radius-2xl)"></div>
+        <code class="tk-r-var">--radius-2xl</code>
+        <span class="tk-r-px">40px</span>
+      </div>
+      <div class="tk-r-item">
+        <div class="tk-r-box tk-r-box--pill" style="border-radius:var(--radius-full)"></div>
+        <code class="tk-r-var">--radius-full</code>
+        <span class="tk-r-px">9999px</span>
+      </div>
+    </div>
+    <div class="lib-code-wrapper"><div class="lib-code-container"><div class="lib-code" data-raw="border-radius: var(--radius-sm);    /* 6px  — input, badge */
+border-radius: var(--radius-md);    /* 12px — card, panel */
+border-radius: var(--radius-lg);    /* 20px — modal, sheet */
+border-radius: var(--radius-xl);    /* 30px — hero block */
+border-radius: var(--radius-full);  /* pill / avatar */"><span class="v">border-radius</span>: <span class="cn">var(--radius-sm)</span>;    <span class="c">/* 6px  — input, badge */</span><br /><span class="v">border-radius</span>: <span class="cn">var(--radius-md)</span>;    <span class="c">/* 12px — card */</span><br /><span class="v">border-radius</span>: <span class="cn">var(--radius-lg)</span>;    <span class="c">/* 20px — modal */</span><br /><span class="v">border-radius</span>: <span class="cn">var(--radius-full)</span>;  <span class="c">/* pill / avatar */</span></div></div></div>
+  </div>
+
+  <!-- ═══ SHADOWS ═══ -->
+  <div class="lib-component">
+    <div class="lib-component-label">Shadows</div>
+    <div class="lib-preview" style="flex-wrap:wrap;gap:12px;align-items:stretch">
+      <div class="tk-sh-panel">
+        <div class="tk-sh-float" style="box-shadow:var(--shadow-sm)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+        </div>
+        <code class="tk-sh-label">--shadow-sm</code>
+        <span class="tk-sh-desc">Subtle lift</span>
+      </div>
+      <div class="tk-sh-panel">
+        <div class="tk-sh-float" style="box-shadow:var(--shadow-md)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+        </div>
+        <code class="tk-sh-label">--shadow-md</code>
+        <span class="tk-sh-desc">Card hover</span>
+      </div>
+      <div class="tk-sh-panel">
+        <div class="tk-sh-float" style="box-shadow:var(--shadow-lg)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+        </div>
+        <code class="tk-sh-label">--shadow-lg</code>
+        <span class="tk-sh-desc">Modal · Dropdown</span>
+      </div>
+      <div class="tk-sh-panel">
+        <div class="tk-sh-float tk-sh-float--primary" style="box-shadow:var(--shadow-primary)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.6"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <code class="tk-sh-label">--shadow-primary</code>
+        <span class="tk-sh-desc">Primary glow</span>
+      </div>
+      <div class="tk-sh-panel">
+        <div class="tk-sh-float tk-sh-float--accent" style="box-shadow:var(--shadow-accent)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.6"><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <code class="tk-sh-label">--shadow-accent</code>
+        <span class="tk-sh-desc">Accent glow</span>
+      </div>
+      <div class="tk-sh-panel">
+        <div class="tk-sh-float tk-sh-float--glow" style="box-shadow:var(--shadow-glow)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2"/></svg>
+        </div>
+        <code class="tk-sh-label">--shadow-glow</code>
+        <span class="tk-sh-desc">White halo</span>
+      </div>
+    </div>
+    <div class="lib-code-wrapper"><div class="lib-code-container"><div class="lib-code" data-raw="box-shadow: var(--shadow-sm);       /* subtle lift */
+box-shadow: var(--shadow-md);       /* card hover */
+box-shadow: var(--shadow-lg);       /* modal / dropdown */
+box-shadow: var(--shadow-primary);  /* primary glow */
+box-shadow: var(--shadow-glow);     /* light glow */"><span class="v">box-shadow</span>: <span class="cn">var(--shadow-sm)</span>;       <span class="c">/* subtle lift */</span><br /><span class="v">box-shadow</span>: <span class="cn">var(--shadow-md)</span>;       <span class="c">/* card hover */</span><br /><span class="v">box-shadow</span>: <span class="cn">var(--shadow-lg)</span>;       <span class="c">/* modal */</span><br /><span class="v">box-shadow</span>: <span class="cn">var(--shadow-primary)</span>;  <span class="c">/* primary glow */</span><br /><span class="v">box-shadow</span>: <span class="cn">var(--shadow-glow)</span>;     <span class="c">/* white glow */</span></div></div></div>
+  </div>
+
+  <!-- ═══ TRANSITIONS ═══ -->
+  <div class="lib-component">
+    <div class="lib-component-label">Transitions</div>
+    <div class="lib-preview col" style="gap:12px">
+      <div class="tk-ease-row">
+        <div class="tk-ease-meta">
+          <code class="tk-ease-var">--ease-fast</code>
+          <span class="tk-ease-val">0.15s ease-in-out</span>
+          <span class="tk-ease-use">Micro-feedback · Buttons</span>
+        </div>
+        <div class="tk-ease-track">
+          <div class="tk-ease-rail"></div>
+          <div class="tk-ease-dot" style="--dur:0.15s"></div>
+        </div>
+      </div>
+      <div class="tk-ease-row">
+        <div class="tk-ease-meta">
+          <code class="tk-ease-var">--ease</code>
+          <span class="tk-ease-val">0.30s ease-in-out</span>
+          <span class="tk-ease-use">Standard hover · Reveal</span>
+        </div>
+        <div class="tk-ease-track">
+          <div class="tk-ease-rail"></div>
+          <div class="tk-ease-dot" style="--dur:0.3s"></div>
+        </div>
+      </div>
+      <div class="tk-ease-row">
+        <div class="tk-ease-meta">
+          <code class="tk-ease-var">--ease-slow</code>
+          <span class="tk-ease-val">0.50s ease-in-out</span>
+          <span class="tk-ease-use">Entrance · Page transitions</span>
+        </div>
+        <div class="tk-ease-track">
+          <div class="tk-ease-rail"></div>
+          <div class="tk-ease-dot" style="--dur:0.5s"></div>
+        </div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper"><div class="lib-code-container"><div class="lib-code" data-raw="transition: all var(--ease-fast);  /* 0.15s — micro feedback */
+transition: all var(--ease);       /* 0.30s — standard hover */
+transition: all var(--ease-slow);  /* 0.50s — entrance / exit */
+
+/* Example */
+.btn { transition: background var(--ease-fast), transform var(--ease-fast); }"><span class="v">transition</span>: all <span class="cn">var(--ease-fast)</span>;  <span class="c">/* 0.15s — micro */</span><br /><span class="v">transition</span>: all <span class="cn">var(--ease)</span>;       <span class="c">/* 0.30s — hover */</span><br /><span class="v">transition</span>: all <span class="cn">var(--ease-slow)</span>;  <span class="c">/* 0.50s — entrance */</span></div></div></div>
+  </div>
+
+  <!-- ═══ Z-INDEX ═══ -->
+  <div class="lib-component">
+    <div class="lib-component-label">Z-index scale</div>
+    <div class="lib-preview" style="gap:20px;align-items:center;flex-wrap:wrap">
+      <div class="tk-z-stage">
+        <div class="tk-z-layer" style="--n:1;--c:rgba(255,255,255,0.04);bottom:0px;left:0px"><span>--z-0 · 0</span></div>
+        <div class="tk-z-layer" style="--n:2;--c:rgba(20,160,255,0.08);bottom:12px;left:12px"><span>--z-1 · 1</span></div>
+        <div class="tk-z-layer" style="--n:3;--c:rgba(20,160,255,0.13);bottom:24px;left:24px"><span>--z-10 · 10</span></div>
+        <div class="tk-z-layer" style="--n:4;--c:rgba(20,160,255,0.18);bottom:36px;left:36px"><span>--z-50 · 50</span></div>
+        <div class="tk-z-layer" style="--n:5;--c:rgba(20,160,255,0.24);bottom:48px;left:48px"><span>--z-100 · 100</span></div>
+        <div class="tk-z-layer tk-z-layer--modal" style="--n:6;bottom:60px;left:60px"><span>--z-modal · 1000</span></div>
+      </div>
+      <div class="tk-z-table">
+        <div class="tk-z-tr"><span class="tk-z-td-var">--z-0</span><span class="tk-z-td-val">0</span><span class="tk-z-td-use">Base stacking context</span></div>
+        <div class="tk-z-tr"><span class="tk-z-td-var">--z-1</span><span class="tk-z-td-val">1</span><span class="tk-z-td-use">Sticky headers</span></div>
+        <div class="tk-z-tr"><span class="tk-z-td-var">--z-10</span><span class="tk-z-td-val">10</span><span class="tk-z-td-use">Dropdowns · Menus</span></div>
+        <div class="tk-z-tr"><span class="tk-z-td-var">--z-50</span><span class="tk-z-td-val">50</span><span class="tk-z-td-use">Tooltips · Popovers</span></div>
+        <div class="tk-z-tr"><span class="tk-z-td-var">--z-100</span><span class="tk-z-td-val">100</span><span class="tk-z-td-use">Topbar · Navigation</span></div>
+        <div class="tk-z-tr tk-z-tr--modal"><span class="tk-z-td-var">--z-modal</span><span class="tk-z-td-val">1000</span><span class="tk-z-td-use">Modals · Dialogs</span></div>
+      </div>
+    </div>
+    <div class="lib-code-wrapper"><div class="lib-code-container"><div class="lib-code" data-raw="z-index: var(--z-1);      /* sticky headers */
+z-index: var(--z-10);     /* dropdowns */
+z-index: var(--z-50);     /* tooltips, popovers */
+z-index: var(--z-100);    /* topbar / navbar */
+z-index: var(--z-modal);  /* modals, dialogs */"><span class="v">z-index</span>: <span class="cn">var(--z-1)</span>;      <span class="c">/* sticky headers */</span><br /><span class="v">z-index</span>: <span class="cn">var(--z-10)</span>;     <span class="c">/* dropdowns */</span><br /><span class="v">z-index</span>: <span class="cn">var(--z-50)</span>;     <span class="c">/* tooltips */</span><br /><span class="v">z-index</span>: <span class="cn">var(--z-100)</span>;    <span class="c">/* topbar */</span><br /><span class="v">z-index</span>: <span class="cn">var(--z-modal)</span>;  <span class="c">/* modals */</span></div></div></div>
+  </div>
+
+  <!-- ═══ RESPONSIVE TOKENS ═══ -->
+  <div class="lib-component">
+    <div class="lib-component-label">Responsive tokens — automatic scaling</div>
+    <div class="lib-preview col" style="gap:0">
+      <div class="tk-bp-row tk-bp-head">
+        <span>Breakpoint</span><span>--fs-base</span><span>--space-4</span><span>--radius-lg</span><span>--grid-gutter</span>
+      </div>
+      <div class="tk-bp-row">
+        <span class="tk-bp-name">≥ 1200px <span class="tk-bp-hint">desktop</span></span><span>16px</span><span>16px</span><span>20px</span><span>2rem</span>
+      </div>
+      <div class="tk-bp-row">
+        <span class="tk-bp-name">≤ 1200px <span class="tk-bp-hint">laptop</span></span><span>15px</span><span>14px</span><span>20px</span><span>1.5rem</span>
+      </div>
+      <div class="tk-bp-row">
+        <span class="tk-bp-name">≤ 768px <span class="tk-bp-hint">tablet</span></span><span>14px</span><span>12px</span><span>16px</span><span>1rem</span>
+      </div>
+      <div class="tk-bp-row">
+        <span class="tk-bp-name">≤ 480px <span class="tk-bp-hint">mobile</span></span><span>13px</span><span>10px</span><span>12px</span><span>0.75rem</span>
+      </div>
+      <div class="tk-bp-row">
+        <span class="tk-bp-name">≤ 390px <span class="tk-bp-hint">iPhone</span></span><span>12px</span><span>9px</span><span>10px</span><span>0.625rem</span>
+      </div>
+      <div class="tk-bp-row">
+        <span class="tk-bp-name">≤ 360px <span class="tk-bp-hint">Android</span></span><span>11px</span><span>8px</span><span>9px</span><span>0.5rem</span>
+      </div>
+      <div class="tk-bp-row">
+        <span class="tk-bp-name">≤ 320px <span class="tk-bp-hint">small</span></span><span>10px</span><span>7px</span><span>8px</span><span>0.375rem</span>
+      </div>
+    </div>
+    <div class="lib-code-wrapper"><div class="lib-code-container"><div class="lib-code" data-raw="/* No code needed — tokens scale automatically at breakpoints.
+   Any component using var(--fs-base), var(--space-*), etc.
+   will respond to viewport size changes without media queries.
+
+   Override a token in your component for custom scaling: */
+@media (max-width: 768px) {
+  .hero-title { font-size: var(--fs-f-4xl); }
+}"><span class="c">/* No code needed — tokens scale automatically.</span><br /><span class="c">   Components using var(--fs-*), var(--space-*)</span><br /><span class="c">   respond to viewport changes automatically. */</span><br /><br /><span class="c">/* Override for a specific component: */</span><br /><span class="k">@media</span> (max-width: 768px) &#123;<br />&nbsp;&nbsp;<span class="s">.hero-title</span> &#123; <span class="v">font-size</span>: <span class="cn">var(--fs-f-4xl)</span>; &#125;<br />&#125;</div></div></div>
+  </div>
+
+  <div class="lib-component">
+    <div class="lib-component-label">Spacing scale</div>
+    <div class="lib-preview col">
+      <div class="space-demo">
+        <div class="space-demo-bar" style="width:4px"></div><span
+          >--space-1: 4px</span
+        >
+      </div>
+      <div class="space-demo">
+        <div class="space-demo-bar" style="width:8px"></div><span
+          >--space-2: 8px</span
+        >
+      </div>
+      <div class="space-demo">
+        <div class="space-demo-bar" style="width:12px"></div><span
+          >--space-3: 12px</span
+        >
+      </div>
+      <div class="space-demo">
+        <div class="space-demo-bar" style="width:16px"></div><span
+          >--space-4: 16px</span
+        >
+      </div>
+      <div class="space-demo">
+        <div class="space-demo-bar" style="width:20px"></div><span
+          >--space-5: 20px</span
+        >
+      </div>
+      <div class="space-demo">
+        <div class="space-demo-bar" style="width:24px"></div><span
+          >--space-6: 24px</span
+        >
+      </div>
+      <div class="space-demo">
+        <div class="space-demo-bar" style="width:32px"></div><span
+          >--space-8: 32px</span
+        >
+      </div>
+      <div class="space-demo">
+        <div class="space-demo-bar" style="width:40px"></div><span
+          >--space-10: 40px</span
+        >
+      </div>
+      <div class="space-demo">
+        <div class="space-demo-bar" style="width:48px"></div><span
+          >--space-12: 48px</span
+        >
+      </div>
+      <div class="space-demo">
+        <div class="space-demo-bar" style="width:64px"></div><span
+          >--space-16: 64px</span
+        >
+      </div>
+      <div class="space-demo">
+        <div class="space-demo-bar" style="width:80px"></div><span
+          >--space-20: 80px</span
+        >
+      </div>
+    </div>
+    <div class="lib-code-wrapper">
+      <div class="lib-code-container">
+        <div
+          class="lib-code"
+          data-raw="<!-- _base.css — spacing scale (4px step) -->
+
+/* Small spacing */
+gap: var(--space-2);         /* 8px */
+padding: var(--space-3);     /* 12px */
+margin: var(--space-4);      /* 16px */
+
+/* Medium spacing */
+padding: var(--space-6);     /* 24px */
+gap: var(--space-8);         /* 32px */
+
+/* Large spacing */
+padding: var(--space-12);    /* 48px */
+margin-bottom: var(--space-16);  /* 64px */
+
+/* Combination */
+padding: var(--space-6) var(--space-4);  /* 24px 16px */"
+        >
+          <span class="c">/* _base.css — spacing scale (4px step) */</span><br
+          />
+          <span class="v">gap</span>: <span class="cn">var(--space-2)</span>; <span
+            class="c">/* 8px */</span
+          ><br />
+          <span class="v">padding</span>: <span class="cn">var(--space-4)</span
+          >; <span class="c">/* 16px */</span><br />
+          <span class="v">margin</span>: <span class="cn">var(--space-6)</span>; <span
+            class="c">/* 24px */</span
+          ><br />
+          <span class="v">gap</span>: <span class="cn">var(--space-8)</span>; <span
+            class="c">/* 32px */</span
+          ><br />
+          <span class="v">padding</span>: <span class="cn">var(--space-12)</span
+          >; <span class="c">/* 48px */</span><br />
+          <span class="v">margin-bottom</span>: <span class="cn"
+            >var(--space-16)</span
+          >; <span class="c">/* 64px */</span><br />
+          <span class="c">/* Combining sides */</span><br />
+          <span class="v">padding</span>: <span class="cn">var(--space-6)</span>
+          <span class="cn">var(--space-4)</span>; <span class="c"
+            >/* 24px 16px */</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ═══════════════════════════════════════════════
+     BORDER RADIUS
+  ═══════════════════════════════════════════════ */
+  .tk-r-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .tk-r-item--active .tk-r-box {
+    border-color: color-mix(in srgb, var(--color-primary) 60%, transparent);
+    background: rgba(20,160,255,0.1);
+  }
+  .tk-r-box {
+    width: 72px;
+    height: 72px;
+    background: rgba(20,160,255,0.07);
+    border: 2px solid rgba(20,160,255,0.2);
+    transition: background var(--ease-fast), border-color var(--ease-fast);
+    flex-shrink: 0;
+  }
+  .tk-r-box--pill {
+    width: 100px;
+    height: 44px;
+  }
+  .tk-r-item:hover .tk-r-box {
+    background: rgba(20,160,255,0.14);
+    border-color: rgba(20,160,255,0.45);
+  }
+  .tk-r-var {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    color: var(--color-primary);
+    text-align: center;
+  }
+  .tk-r-px {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-muted);
+  }
+
+  /* ═══════════════════════════════════════════════
+     SHADOWS
+  ═══════════════════════════════════════════════ */
+  .tk-sh-panel {
+    flex: 1;
+    min-width: 120px;
+    background: #0c0c10;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: var(--radius-md);
+    padding: 20px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .tk-sh-float {
+    width: 56px;
+    height: 56px;
+    background: var(--color-dark-secondary);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-muted);
+  }
+  .tk-sh-float--primary {
+    background: color-mix(in srgb, var(--color-primary) 15%, #111);
+    border-color: rgba(20,160,255,0.2);
+    color: var(--color-primary);
+  }
+  .tk-sh-float--accent {
+    background: color-mix(in srgb, var(--color-accent) 12%, #111);
+    border-color: rgba(249,6,63,0.2);
+    color: var(--color-accent);
+  }
+  .tk-sh-float--glow {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7);
+  }
+  .tk-sh-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-primary);
+    text-align: center;
+  }
+  .tk-sh-desc {
+    font-size: 11px;
+    color: var(--color-muted);
+    text-align: center;
+  }
+
+  /* ═══════════════════════════════════════════════
+     TRANSITIONS
+  ═══════════════════════════════════════════════ */
+  .tk-ease-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--color-dark-secondary);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+  }
+  .tk-ease-meta {
+    min-width: 220px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .tk-ease-var {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-primary);
+  }
+  .tk-ease-val {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-muted);
+  }
+  .tk-ease-use {
+    font-size: 11px;
+    color: var(--color-muted);
+    opacity: 0.6;
+  }
+  .tk-ease-track {
+    flex: 1;
+    position: relative;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .tk-ease-rail {
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+  }
+  .tk-ease-dot {
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background: var(--color-primary);
+    border-radius: var(--radius-full);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--color-primary) 60%, transparent);
+    transition: left var(--dur, 0.3s) ease-in-out;
+    margin-left: -12px;
+  }
+  .tk-ease-row:hover .tk-ease-dot {
+    left: calc(100% - 0px);
+  }
+  @media (max-width: 600px) {
+    .tk-ease-row { flex-direction: column; align-items: flex-start; }
+    .tk-ease-meta { min-width: unset; }
+    .tk-ease-track { width: 100%; }
+  }
+
+  /* ═══════════════════════════════════════════════
+     Z-INDEX
+  ═══════════════════════════════════════════════ */
+  .tk-z-stage {
+    position: relative;
+    width: 240px;
+    height: 200px;
+    flex-shrink: 0;
+  }
+  .tk-z-layer {
+    position: absolute;
+    width: 140px;
+    height: 56px;
+    background: var(--c, rgba(255,255,255,0.04));
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    backdrop-filter: blur(4px);
+  }
+  .tk-z-layer--modal {
+    background: color-mix(in srgb, var(--color-accent) 18%, rgba(10,10,10,0.9));
+    border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+    color: var(--color-light);
+    box-shadow: 0 4px 20px rgba(249,6,63,0.25);
+  }
+  .tk-z-table {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .tk-z-tr {
+    display: grid;
+    grid-template-columns: 90px 52px 1fr;
+    padding: 9px 14px;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    gap: 8px;
+    align-items: center;
+    transition: background var(--ease-fast);
+  }
+  .tk-z-tr:hover { background: rgba(255,255,255,0.025); }
+  .tk-z-tr--modal {
+    background: rgba(249,6,63,0.06);
+    border-color: rgba(249,6,63,0.1);
+  }
+  .tk-z-td-var {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-primary);
+  }
+  .tk-z-tr--modal .tk-z-td-var { color: var(--color-accent); }
+  .tk-z-td-val {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-light);
+    opacity: 0.5;
+  }
+  .tk-z-tr--modal .tk-z-td-val { opacity: 1; color: var(--color-accent); }
+  .tk-z-td-use {
+    font-size: 11px;
+    color: var(--color-muted);
+  }
+
+  /* ═══════════════════════════════════════════════
+     RESPONSIVE TOKENS TABLE
+  ═══════════════════════════════════════════════ */
+  .tk-bp-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+    padding: 9px 14px;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    gap: 8px;
+    align-items: center;
+    transition: background var(--ease-fast);
+  }
+  .tk-bp-row:not(.tk-bp-head):hover { background: rgba(255,255,255,0.02); }
+  .tk-bp-head {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-muted);
+    background: rgba(255,255,255,0.025);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom-color: rgba(255,255,255,0.08);
+  }
+  .tk-bp-name {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-light);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .tk-bp-hint {
+    color: var(--color-muted);
+    font-size: 10px;
+    font-family: var(--font-sans);
+  }
+  .tk-bp-row:not(.tk-bp-head) span:not(.tk-bp-name):not(.tk-bp-hint) {
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    font-size: 11px;
+  }
+</style>

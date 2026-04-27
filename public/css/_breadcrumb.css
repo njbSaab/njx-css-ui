@@ -1,0 +1,233 @@
+/* ============================================================
+   _breadcrumb.css — Breadcrumb, Pagination, Panel (Bulma)
+   ============================================================ */
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.breadcrumb li {
+  display: flex;
+  align-items: center;
+}
+.breadcrumb li + li::before {
+  content: "/";
+  margin: 0 var(--space-2);
+  color: var(--color-neutral-500);
+}
+.breadcrumb li a {
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color var(--ease);
+}
+.breadcrumb li a:hover { color: var(--color-primary); }
+.breadcrumb li.is-active a,
+.breadcrumb li.is-active span { color: var(--color-light); cursor: default; }
+
+.breadcrumb.has-dot-separator li + li::before   { content: "•"; }
+.breadcrumb.has-arrow-separator li + li::before { content: "→"; }
+
+/* ── Pagination ── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+.pagination-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-neutral-700);
+  background: var(--color-dark-secondary);
+  color: var(--color-light);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--ease);
+  user-select: none;
+}
+.pagination-item:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.pagination-item.is-current { background: var(--color-primary); border-color: var(--color-primary); color: #fff; cursor: default; }
+.pagination-item.is-disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+
+.pagination-prev,
+.pagination-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  height: 36px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-neutral-700);
+  background: var(--color-dark-secondary);
+  color: var(--color-light);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--ease);
+}
+.pagination-prev:hover,
+.pagination-next:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+.pagination-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--space-2);
+  color: var(--color-muted);
+  font-size: var(--fs-sm);
+}
+
+/* ── Panel (Bulma) ── */
+.panel {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-dark-secondary);
+  border: 1px solid var(--color-neutral-700);
+}
+.panel-heading {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-neutral-800);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-light);
+  border-bottom: 1px solid var(--color-neutral-700);
+}
+.panel-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-neutral-700);
+}
+.panel-tabs a {
+  padding: var(--space-2) var(--space-5);
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: all var(--ease);
+}
+.panel-tabs a:hover { color: var(--color-light); }
+.panel-tabs a.is-active { color: var(--color-primary); border-bottom-color: var(--color-primary); }
+.panel-block {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--color-neutral-700);
+  font-size: var(--fs-sm);
+  color: var(--color-light);
+  text-decoration: none;
+  transition: background var(--ease);
+  cursor: pointer;
+}
+.panel-block:last-child { border-bottom: none; }
+.panel-block:hover { background: rgba(255,255,255,0.04); }
+.panel-block.is-active { color: var(--color-primary); background: var(--color-primary-900); }
+.panel-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--color-muted);
+}
+
+/* ── Panel color variants ── */
+.panel.is-primary .panel-heading { background: var(--color-primary); color: #fff; border-color: var(--color-primary-600); }
+.panel.is-success .panel-heading { background: var(--color-success); color: #111; }
+.panel.is-danger  .panel-heading { background: var(--color-error);   color: #fff; }
+.panel.is-warning .panel-heading { background: var(--color-warning); color: #111; }
+
+/* ── Panel: search block ── */
+.panel-search {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-neutral-700);
+}
+.panel-search input {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-neutral-700);
+  border-radius: var(--radius-sm);
+  background: var(--сolor-dark);
+  color: var(--color-light);
+  font-size: var(--fs-sm);
+  outline: none;
+  transition: border-color var(--ease-fast);
+}
+.panel-search input:focus { border-color: var(--color-primary); }
+.panel-search input::placeholder { color: var(--color-muted); }
+
+/* ── Panel: footer ── */
+.panel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-top: 1px solid var(--color-neutral-700);
+  background: var(--color-neutral-800);
+}
+
+/* ── Panel block extras ── */
+/* Right-slot (badge / action) */
+.panel-block-badge {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  background: color-mix(in srgb, var(--color-primary) 18%, transparent);
+  color: var(--color-primary);
+}
+.panel-block-badge.is-muted {
+  background: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+  color: var(--color-muted);
+}
+.panel-block-meta {
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  color: var(--color-muted);
+}
+/* Checkbox inside panel-block */
+.panel-block input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+/* Avatar in panel-block */
+.panel-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
