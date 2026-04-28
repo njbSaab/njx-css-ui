@@ -42,7 +42,9 @@ const base = import.meta.env.BASE_URL;
             <a href={`${base}`} class="btn-pill ghost">Try it live</a>
           </div>
           <div class="stats-inline">
-            <div><div class="v">{SIZE_FULL}</div><div class="l">Bundle</div></div>
+            <div>
+              <div class="v">{SIZE_FULL}</div><div class="l">Bundle</div>
+            </div>
             <div><div class="v">9</div><div class="l">Themes</div></div>
             <div><div class="v">30+</div><div class="l">Components</div></div>
             <div><div class="v">0</div><div class="l">Deps</div></div>
@@ -300,8 +302,8 @@ const base = import.meta.env.BASE_URL;
         Heavier than chota.<br />Lighter than everything else.
       </h2>
       <p class="sc-subheading">
-        308 KB gets you themes, animations, hover effects and gradients — features
-        that don't exist anywhere else at this weight.
+        308 KB gets you themes, animations, hover effects and gradients —
+        features that don't exist anywhere else at this weight.
       </p>
     </div>
     <div class="sc-table-wrap">
@@ -466,6 +468,15 @@ const base = import.meta.env.BASE_URL;
     border: none;
     background: none;
     color: inherit;
+  }
+  .inp.inp-sm {
+    font-size: 12px;
+    background: var(--bg-main);
+    border-radius: 12px;
+    height: 35px;
+    border: 1px solid var(--color-primary);
+    padding: 0 5px;
+    color: var(--color-light);
   }
   .wrap {
     max-width: 1340px;
@@ -1325,7 +1336,6 @@ const base = import.meta.env.BASE_URL;
       };
     });
     setMode('auth');
-
   })();
 
   document.addEventListener('astro:page-load', function () {
@@ -1395,7 +1405,6 @@ const base = import.meta.env.BASE_URL;
         };
       });
       setMode('auth');
-
     })();
   });
 </script>

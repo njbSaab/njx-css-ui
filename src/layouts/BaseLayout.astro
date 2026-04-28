@@ -8,7 +8,12 @@ interface Props {
     /** Загружать Alpine.js и lib-docs.js (нужны только для docs-страниц с компонентами) */
     withDocsScripts?: boolean;
 }
-const { title, description, withDocsCss = false, withDocsScripts = false } = Astro.props;
+const {
+    title,
+    description,
+    withDocsCss = false,
+    withDocsScripts = false,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -30,13 +35,15 @@ const { title, description, withDocsCss = false, withDocsScripts = false } = Ast
             fetchpriority="high"
         />
         <!-- Docs UI styles — только для страниц с docs-layout -->
-        {withDocsCss && (
-            <link
-                rel="stylesheet"
-                href={`${import.meta.env.BASE_URL}styles/lib-docs.css`}
-                fetchpriority="high"
-            />
-        )}
+        {
+            withDocsCss && (
+                <link
+                    rel="stylesheet"
+                    href={`${import.meta.env.BASE_URL}styles/lib-docs.css`}
+                    fetchpriority="high"
+                />
+            )
+        }
 
         <!-- View Transitions — плавное переключение страниц -->
         <ClientRouter />
@@ -46,7 +53,8 @@ const { title, description, withDocsCss = false, withDocsScripts = false } = Ast
             function njxRestoreTheme() {
                 try {
                     var t = localStorage.getItem('njx-theme');
-                    if (t) document.documentElement.setAttribute('data-theme', t);
+                    if (t)
+                        document.documentElement.setAttribute('data-theme', t);
                 } catch (e) {}
             }
             njxRestoreTheme();
@@ -62,8 +70,21 @@ const { title, description, withDocsCss = false, withDocsScripts = false } = Ast
         />
 
         <!-- Clicky Analytics -->
-        <script is:inline async data-id="101505163" src="//static.getclicky.com/js"></script>
-        <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101505163ns.gif" /></p></noscript>
+        <script
+            is:inline
+            async
+            data-id="101505163"
+            src="//static.getclicky.com/js"></script>
+        <noscript
+            ><p class="absolute">
+                <img
+                    alt="Clicky"
+                    width="1"
+                    height="1"
+                    src="//in.getclicky.com/101505163ns.gif"
+                />
+            </p></noscript
+        >
 
         <!-- Google Analytics -->
         <script
@@ -73,7 +94,9 @@ const { title, description, withDocsCss = false, withDocsScripts = false } = Ast
         ></script>
         <script is:inline>
             window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
+            function gtag() {
+                dataLayer.push(arguments);
+            }
             gtag('js', new Date());
             gtag('config', 'G-969JS8G6QK');
         </script>
@@ -82,16 +105,21 @@ const { title, description, withDocsCss = false, withDocsScripts = false } = Ast
         <script is:inline src={`${import.meta.env.BASE_URL}js/njx.js`}></script>
 
         <!-- Docs scripts — только для страниц с docs-компонентами -->
-        {withDocsScripts && (
-            <>
-                <script
-                    is:inline
-                    defer
-                    src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"
-                ></script>
-                <script is:inline src={`${import.meta.env.BASE_URL}scripts/lib-docs.js`}></script>
-            </>
-        )}
+        {
+            withDocsScripts && (
+                <>
+                    <script
+                        is:inline
+                        defer
+                        src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"
+                    />
+                    <script
+                        is:inline
+                        src={`${import.meta.env.BASE_URL}scripts/lib-docs.js`}
+                    />
+                </>
+            )
+        }
 
         <!-- Title и description — уникальны для каждой страницы -->
         <title>{title}</title>
