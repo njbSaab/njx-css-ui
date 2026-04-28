@@ -10,8 +10,20 @@
     <div class="lib-component">
         <div class="lib-component-label">aria-busy on article</div>
         <div class="lib-preview">
-            <article aria-busy="true" style="min-height:100px;">
-                <p>Loading content…</p>
+            <article class="cl-loading-demo">
+                <article aria-busy="true" aria-label="Loading project card">
+                    <h3>Project analytics</h3>
+                    <p>Loading content…</p>
+                    <div class="cl-loading-lines" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <p>
+                        <button data-variant="primary">View report</button>
+                        <button>Export</button>
+                    </p>
+                </article>
             </article>
         </div>
         <div class="lib-code-wrapper">
@@ -19,16 +31,18 @@
                 <div
                     class="lib-code"
                     data-raw='<article aria-busy="true">
+  <h3>Project analytics</h3>
   <p>Loading content…</p>
+  <button>View report</button>
 </article>'
                 >
                     <span class="k">&lt;article</span>
                     <span class="s">aria-busy</span>=<span class="cn"
                         >"true"</span
                     ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;p&gt;</span><span class="t"
-                        >Loading content…</span
-                    ><span class="k">&lt;/p&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;h3&gt;</span><span class="t">Project analytics</span><span class="k">&lt;/h3&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;p&gt;</span><span class="t">Loading content…</span><span class="k">&lt;/p&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;button&gt;</span><span class="t">View report</span><span class="k">&lt;/button&gt;</span><br />
                     <span class="k">&lt;/article&gt;</span>
                 </div>
             </div>
@@ -38,14 +52,14 @@
     <div class="lib-component">
         <div class="lib-component-label">aria-busy on section</div>
         <div class="lib-preview">
-            <article>
+            <article class="cl-loading-demo">
                 <section
                     aria-busy="true"
-                    style="min-height:90px; padding: 1.25rem; border-radius: 8px;"
+                    aria-label="Loading settings section"
                 >
-                    <p style="margin-top: 80px; text-align: center;">
-                        Section loading…
-                    </p>
+                    <h3>Account settings</h3>
+                    <p>Section loading…</p>
+                    <progress value="68" max="100"></progress>
                 </section>
             </article>
         </div>
@@ -140,3 +154,66 @@
         </div>
     </div>
 </section>
+
+<style>
+    .cl-loading-demo {
+        display: block !important;
+        width: 100%;
+    }
+
+    .cl-loading-demo > article,
+    .cl-loading-demo > section {
+        min-height: 180px;
+        padding: 24px !important;
+        border: 1px solid color-mix(in srgb, var(--color-primary) 24%, transparent) !important;
+        border-radius: 18px !important;
+        background:
+            linear-gradient(180deg, color-mix(in srgb, var(--color-primary) 8%, transparent), transparent 46%),
+            color-mix(in srgb, var(--color-dark-secondary) 88%, transparent) !important;
+        box-shadow: 0 16px 36px color-mix(in srgb, #000 16%, transparent);
+    }
+
+    .cl-loading-demo h3,
+    .cl-loading-demo p {
+        margin-bottom: 12px !important;
+    }
+
+    .cl-loading-demo button {
+        min-height: 38px;
+        padding: 0 14px;
+        border: 1px solid color-mix(in srgb, var(--color-primary) 34%, transparent);
+        border-radius: 10px;
+        background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+        color: var(--color-primary);
+        font: inherit;
+        font-size: 13px;
+        font-weight: 800;
+    }
+
+    .cl-loading-demo button[data-variant='primary'] {
+        border-color: var(--color-primary);
+        background: var(--color-primary);
+        color: var(--сolor-dark);
+    }
+
+    .cl-loading-lines {
+        display: grid;
+        gap: 10px;
+        margin: 18px 0;
+    }
+
+    .cl-loading-lines span {
+        display: block;
+        height: 10px;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--color-primary) 16%, transparent);
+    }
+
+    .cl-loading-lines span:nth-child(2) {
+        width: 72%;
+    }
+
+    .cl-loading-lines span:nth-child(3) {
+        width: 46%;
+    }
+</style>

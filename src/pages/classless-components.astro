@@ -17,6 +17,7 @@ import Accordion from '../components/classless-sections/Accordion.astro';
 import Tables from '../components/classless-sections/Tables.astro';
 import Forms from '../components/classless-sections/Forms.astro';
 import Buttons from '../components/classless-sections/Buttons.astro';
+import Articals from '../components/classless-sections/Articals.astro';
 import Modal from '../components/classless-sections/Modal.astro';
 import Navigation from '../components/classless-sections/Navigation.astro';
 import Footer from '../components/classless-sections/Footer.astro';
@@ -646,7 +647,7 @@ import Loading from '../components/classless-sections/Loading.astro';
                 border: none !important;
                 background: transparent !important;
                 border-radius: 0 !important;
-                padding: 0 !important;
+                /* padding: 0 !important; */
                 margin: 0 !important;
             }
             /* But keep card for article demo */
@@ -654,7 +655,6 @@ import Loading from '../components/classless-sections/Loading.astro';
                 border: 1px solid var(--color-neutral-700) !important;
                 background: var(--color-dark-secondary) !important;
                 border-radius: 14px !important;
-                padding: 0 !important;
                 overflow: hidden;
             }
 
@@ -1057,6 +1057,8 @@ import Loading from '../components/classless-sections/Loading.astro';
                 <hr class="doc-divider" />
                 <Buttons />
                 <hr class="doc-divider" />
+                <Articals />
+                <hr class="doc-divider" />
                 <Modal />
                 <hr class="doc-divider" />
                 <Navigation />
@@ -1136,6 +1138,7 @@ import Loading from '../components/classless-sections/Loading.astro';
                 inputs: '📋',
                 controls: '🎛',
                 buttons: '🔲',
+                'ready-cards': '▣',
                 article: '📄',
                 semantic: '🏗',
                 dl: '🖼',

@@ -120,4 +120,199 @@
             </div>
         </div>
     </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Ready form cards</div>
+        <div class="lib-preview">
+            <article class="cl-form-preview">
+                <div class="cl-form-card-grid">
+                    <article class="cl-form-card">
+                        <h3>Newsletter signup</h3>
+                        <p>Get classless.css examples, release notes and new ready blocks.</p>
+                        <form>
+                            <label>Email <input type="email" placeholder="you@example.com" /></label>
+                            <label><input type="checkbox" checked /> Send CSS tips and updates</label>
+                            <button type="button" data-variant="primary">Subscribe</button>
+                        </form>
+                    </article>
+
+                    <article class="cl-form-card">
+                        <h3>Contact form</h3>
+                        <form>
+                            <label>Name <input type="text" placeholder="Jane Developer" /></label>
+                            <label>Project type
+                                <select>
+                                    <option>Docs site</option>
+                                    <option>Landing page</option>
+                                    <option>Internal tool</option>
+                                    <option>Prototype</option>
+                                </select>
+                            </label>
+                            <label>Message <textarea rows="4" placeholder="Tell us what you are building"></textarea></label>
+                            <button type="button" data-variant="accent">Send message</button>
+                            <button type="reset" data-variant="ghost">Reset</button>
+                        </form>
+                    </article>
+
+                    <article class="cl-form-card">
+                        <h3>Login card</h3>
+                        <form>
+                            <label>Email <input type="email" value="demo@njxui.dev" /></label>
+                            <label>Password <input type="password" value="classless" /></label>
+                            <label><input type="checkbox" role="switch" checked /> Remember device</label>
+                            <button type="button" data-variant="primary">Sign in</button>
+                        </form>
+                    </article>
+
+                    <article class="cl-form-card">
+                        <h3>Validation states</h3>
+                        <form>
+                            <label>Valid package <input type="text" data-variant="success" value="njx-ui" /></label>
+                            <label>Invalid URL <input type="url" aria-invalid="true" value="not-a-url" /></label>
+                            <label>Warning <input type="text" data-variant="warning" value="Version is unpinned" /></label>
+                            <button type="button" aria-busy="true">Checking</button>
+                        </form>
+                    </article>
+                </div>
+            </article>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div class="lib-code" data-raw='<article>
+  <h3>Newsletter signup</h3>
+  <p>Get classless.css examples and release notes.</p>
+  <form>
+    <label>Email <input type="email" placeholder="you@example.com"></label>
+    <label><input type="checkbox" checked> Send updates</label>
+    <button type="button" data-variant="primary">Subscribe</button>
+  </form>
+</article>'>
+                    <span class="k">&lt;article&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;h3&gt;</span><span class="t">Newsletter signup</span><span class="k">&lt;/h3&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;p&gt;</span><span class="t">Get classless.css examples and release notes.</span><span class="k">&lt;/p&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;form&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;label&gt;</span><span class="t">Email </span><span class="k">&lt;input</span> <span class="s">type</span>=<span class="cn">"email"</span><span class="k">&gt;&lt;/label&gt;</span><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;button</span> <span class="s">data-variant</span>=<span class="cn">"primary"</span><span class="k">&gt;</span><span class="t">Subscribe</span><span class="k">&lt;/button&gt;</span><br />
+                    &nbsp;&nbsp;<span class="k">&lt;/form&gt;</span><br />
+                    <span class="k">&lt;/article&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
+<style>
+    .cl-form-preview {
+        display: block !important;
+        width: 100%;
+    }
+
+    .cl-form-card-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        width: 100%;
+    }
+
+    .cl-form-card {
+        display: grid !important;
+        min-width: 0;
+        height: 100%;
+        margin: 0 !important;
+        padding: 22px !important;
+        gap: 14px;
+        border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent) !important;
+        border-radius: 18px !important;
+        background:
+            linear-gradient(180deg, color-mix(in srgb, var(--color-primary) 7%, transparent), transparent 44%),
+            color-mix(in srgb, var(--color-dark-secondary) 88%, transparent) !important;
+        box-shadow: 0 16px 36px color-mix(in srgb, #000 16%, transparent);
+    }
+
+    .cl-form-card h3,
+    .cl-form-card p,
+    .cl-form-card form {
+        margin-bottom: 0 !important;
+    }
+
+    .cl-form-card form {
+        max-width: none !important;
+    }
+
+    .cl-form-card label {
+        display: grid;
+        gap: 8px;
+        color: var(--color-light);
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .cl-form-card input:not([type='checkbox']),
+    .cl-form-card textarea,
+    .cl-form-card select {
+        width: 100%;
+        min-height: 40px;
+        padding: 0 12px;
+        border: 1px solid color-mix(in srgb, var(--color-neutral-600) 38%, transparent);
+        border-radius: 10px;
+        background: color-mix(in srgb, var(--сolor-dark) 45%, transparent);
+        color: var(--color-light);
+        font: inherit;
+    }
+
+    .cl-form-card textarea {
+        min-height: 96px;
+        padding-top: 10px;
+        resize: vertical;
+    }
+
+    .cl-form-card input:focus,
+    .cl-form-card textarea:focus,
+    .cl-form-card select:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
+    }
+
+    .cl-form-card input[data-variant='success'] {
+        border-color: var(--color-success);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-success) 14%, transparent);
+    }
+
+    .cl-form-card input[data-variant='warning'],
+    .cl-form-card input[aria-invalid='true'] {
+        border-color: var(--color-warning);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-warning) 14%, transparent);
+    }
+
+    .cl-form-card button {
+        min-height: 40px;
+        padding: 0 16px;
+        border: 1px solid color-mix(in srgb, var(--color-primary) 36%, transparent);
+        border-radius: 10px;
+        background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+        color: var(--color-primary);
+        font: inherit;
+        font-size: 13px;
+        font-weight: 800;
+        cursor: pointer;
+    }
+
+    .cl-form-card button[data-variant='primary'] {
+        border-color: var(--color-primary);
+        background: var(--color-primary);
+        color: var(--сolor-dark);
+    }
+
+    .cl-form-card button[data-variant='accent'] {
+        border-color: var(--color-accent);
+        background: var(--color-accent);
+        color: #fff;
+    }
+
+    @media (max-width: 920px) {
+        .cl-form-card-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

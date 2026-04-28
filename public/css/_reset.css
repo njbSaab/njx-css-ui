@@ -50,3 +50,7 @@ code, kbd, pre, samp {
 iframe {
   border: 0;
 }
+
+[vcloak] {
+  display: block;
+}
