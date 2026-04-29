@@ -39,10 +39,8 @@ const sizeLabel = {
 };
 
 const commonVersionReplacements = [
-  [/v1\.0\.5/g, `v${version}`],
-  [/@1\.0\.5/g, `@${version}`],
-  [/v1\.0\.1/g, `v${version}`],
-  [/@1\.0\.1/g, `@${version}`],
+  [/v\d+\.\d+\.\d+/g, `v${version}`],
+  [/@\d+\.\d+\.\d+/g, `@${version}`],
 ];
 
 const commonSizeReplacements = [
@@ -59,6 +57,10 @@ const commonSizeReplacements = [
 const targets = [
   {
     file: 'README.md',
+    replacements: commonVersionReplacements,
+  },
+  {
+    file: 'src/lib/meta.ts',
     replacements: commonVersionReplacements,
   },
   {
