@@ -242,7 +242,7 @@
   z-index: 1;
   animation: animateGradient 18s linear infinite;
   transition: var(--ease);
-  height: 65px;
+  height: 50px;
 }
 .btn-gradient-hover:hover {
   background: linear-gradient(90deg, var(--btn-gradient-color-soft), var(--btn-gradient-color), var(--btn-gradient-color), var(--btn-gradient-color-soft));
@@ -451,6 +451,79 @@
   transform: skewX(-20deg);
   animation: shine 2.5s cubic-bezier(0.3, 0.6, 0.4, 1) infinite;
 } */
+
+/* ── Outline Gradient — border + text both shimmer ── */
+.btn-outline-gradient {
+  position: relative;
+  background: linear-gradient(135deg, var(--og-c1), var(--og-c2), var(--og-c1));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  border: none;
+  animation: shineShift 3s ease infinite;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+.btn-outline-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--og-c1), var(--og-c2), var(--og-c1));
+  background-size: 200% 200%;
+  animation: shineShift 3s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+.btn-outline-gradient:hover {
+  transform: translateY(-4px) scale(1.05);
+  filter: brightness(1.2) saturate(1.15);
+  animation-duration: 1.5s;
+}
+.btn-outline-gradient:hover::before {
+  animation-duration: 1.5s;
+}
+.btn-outline-gradient:active {
+  transform: translateY(-1px) scale(1.01);
+}
+
+/* colour variants — single-colour shimmer (colour → light) */
+.btn-outline-gradient-primary {
+  --og-c1: var(--color-primary);
+  --og-c2: color-mix(in oklch, var(--color-primary) 55%, #fff);
+}
+.btn-outline-gradient-accent {
+  --og-c1: var(--color-accent);
+  --og-c2: color-mix(in oklch, var(--color-accent) 55%, #fff);
+}
+.btn-outline-gradient-success {
+  --og-c1: var(--color-success);
+  --og-c2: color-mix(in oklch, var(--color-success) 55%, #fff);
+}
+.btn-outline-gradient-error {
+  --og-c1: var(--color-error);
+  --og-c2: color-mix(in oklch, var(--color-error) 55%, #fff);
+}
+.btn-outline-gradient-warning {
+  --og-c1: var(--color-warning);
+  --og-c2: color-mix(in oklch, var(--color-warning) 55%, #fff);
+}
+
+/* colour variants — two-colour shimmer */
+.btn-outline-gradient-fire {
+  --og-c1: var(--color-error);
+  --og-c2: var(--color-warning);
+}
+.btn-outline-gradient-ocean {
+  --og-c1: var(--color-primary);
+  --og-c2: var(--color-accent);
+}
+.btn-outline-gradient-nature {
+  --og-c1: var(--color-success);
+  --og-c2: var(--color-primary);
+}
 
 /* ── Gradient-border ── */
 .btn-gradient-border {

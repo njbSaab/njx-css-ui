@@ -871,6 +871,7 @@ function initItemCopy() {
 
   let currentEl = null;
   let hideTimer = null;
+  let showTimer = null;
   let resetTimer = null;
 
   function positionChip(el) {
@@ -881,16 +882,32 @@ function initItemCopy() {
 
   function showChip(el) {
     clearTimeout(hideTimer);
-    currentEl = el;
-    positionChip(el);
-    chip.classList.add('visible');
+    clearTimeout(showTimer);
+    showTimer = setTimeout(() => {
+      currentEl = el;
+      positionChip(el);
+      chip.classList.add('visible');
+    }, 500);
   }
 
   function hideChip() {
+    clearTimeout(showTimer);
     hideTimer = setTimeout(() => {
       chip.classList.remove('visible');
       currentEl = null;
     }, 180);
+  }
+
+  function cleanNode(node) {
+    // Remove all data-astro-* and data-njx-* attributes from node and all descendants
+    const els = [node, ...node.querySelectorAll('*')];
+    els.forEach(el => {
+      [...el.attributes].forEach(attr => {
+        if (attr.name.startsWith('data-astro-') || attr.name.startsWith('data-njx-')) {
+          el.removeAttribute(attr.name);
+        }
+      });
+    });
   }
 
   // Attach hover listeners to all lib-preview containers
@@ -914,11 +931,10 @@ function initItemCopy() {
 
   chip.addEventListener('click', () => {
     if (!currentEl) return;
-    // Clone and strip docs-only attributes/classes
+    // Clone, strip all Astro/docs-only attributes, remove injected elements
     const clone = currentEl.cloneNode(true);
-    clone.removeAttribute('data-njx-item');
-    // Remove any injected chip elements inside
     clone.querySelectorAll('.lib-item-copy-chip').forEach(n => n.remove());
+    cleanNode(clone);
     const html = clone.outerHTML;
 
     navigator.clipboard.writeText(html).then(() => {
