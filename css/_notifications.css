@@ -182,6 +182,7 @@
   position: absolute;
   background: currentColor;
   border-radius: 2px;
+  position: relative;
 }
 .delete::before { width: 50%; height: 2px; }
 .delete::after  { width: 2px; height: 50%; }

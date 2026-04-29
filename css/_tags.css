@@ -19,6 +19,7 @@
   color: var(--color-muted);
   background: transparent;
   white-space: nowrap;
+  width: fit-content;
 }
 
 /* ── Sizes ── */

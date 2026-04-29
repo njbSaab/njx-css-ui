@@ -97,7 +97,7 @@
 /* ── Panel (Bulma) ── */
 .panel {
   border-radius: var(--radius-md);
-  overflow: hidden;
+  overflow: visible;
   background: var(--color-dark-secondary);
   border: 1px solid var(--color-neutral-700);
 }

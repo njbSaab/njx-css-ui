@@ -190,6 +190,11 @@
   gap: 6px;
   padding: 4px 0;
 }
+  .carousel-dots button {
+    font-size: 0;
+    line-height: 0;
+    padding: 0;
+  }
 
 .carousel-dot {
   display: block;

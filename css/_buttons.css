@@ -6,6 +6,12 @@
 
 /* ── Base button ── */
 .btn {
+  --btn-gradient-from: var(--color-primary);
+  --btn-gradient-to: var(--color-accent);
+  --btn-gradient-text: #fff;
+  --btn-gradient-color: var(--color-primary);
+  --btn-gradient-color-soft: var(--color-primary-opacity);
+  --btn-gradient-shadow: var(--color-primary-opacity);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -204,22 +210,33 @@
 
 /* ── Gradient variants ── */
 .btn-gradient {
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-  color: #fff;
+  background: linear-gradient(90deg, var(--btn-gradient-from), var(--btn-gradient-to));
+  color: var(--btn-gradient-text);
   border: none;
 }
 .btn-gradient:hover {
-  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+  background: linear-gradient(90deg, var(--btn-gradient-to), var(--btn-gradient-from));
   transform: scale(1.03);
-  box-shadow: var(--shadow-accent);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--btn-gradient-to) 32%, transparent);
 }
+
+.btn-gradient-primary-accent { --btn-gradient-from: var(--color-primary); --btn-gradient-to: var(--color-accent); }
+.btn-gradient-primary-success { --btn-gradient-from: var(--color-primary); --btn-gradient-to: var(--color-success); }
+.btn-gradient-primary-error { --btn-gradient-from: var(--color-primary); --btn-gradient-to: var(--color-error); }
+.btn-gradient-primary-warning { --btn-gradient-from: var(--color-primary); --btn-gradient-to: var(--color-warning); }
+.btn-gradient-accent-success { --btn-gradient-from: var(--color-accent); --btn-gradient-to: var(--color-success); }
+.btn-gradient-accent-error { --btn-gradient-from: var(--color-accent); --btn-gradient-to: var(--color-error); }
+.btn-gradient-accent-warning { --btn-gradient-from: var(--color-accent); --btn-gradient-to: var(--color-warning); }
+.btn-gradient-success-error { --btn-gradient-from: var(--color-success); --btn-gradient-to: var(--color-error); }
+.btn-gradient-success-warning { --btn-gradient-from: var(--color-success); --btn-gradient-to: var(--color-warning); --btn-gradient-text: #111; }
+.btn-gradient-error-warning { --btn-gradient-from: var(--color-error); --btn-gradient-to: var(--color-warning); }
 
 .btn-gradient-hover {
   position: relative;
-  color: #fff;
+  color: var(--btn-gradient-text);
   text-transform: uppercase;
-  background: linear-gradient(90deg, #f9063f, #f9063f46, #f9063f46, #f9063f);
-  box-shadow: 0 -10px 8px 0 rgba(0,0,0,0.25) inset, 0 0 20px 0 rgba(255,255,255,0.59);
+  background: linear-gradient(90deg, var(--btn-gradient-color), var(--btn-gradient-color-soft), var(--btn-gradient-color-soft), var(--btn-gradient-color));
+  box-shadow: 0 -10px 8px 0 rgba(0,0,0,0.25) inset, 0 0 20px 0 var(--btn-gradient-shadow);
   background-size: 400%;
   border-radius: var(--radius-full);
   z-index: 1;
@@ -228,14 +245,22 @@
   height: 65px;
 }
 .btn-gradient-hover:hover {
+  background: linear-gradient(90deg, var(--btn-gradient-color-soft), var(--btn-gradient-color), var(--btn-gradient-color), var(--btn-gradient-color-soft));
   animation: animateGradient 8s linear infinite;
+  transform: translateY(-4px) scale(1.04);
+  filter: brightness(1.15) saturate(1.1);
+  box-shadow: 0 -10px 8px 0 rgba(0,0,0,0.25) inset, 0 8px 32px 0 var(--btn-gradient-shadow);
+}
+.btn-gradient-hover:active {
+  transform: translateY(-1px) scale(1.01);
+  filter: brightness(1.05);
 }
 .btn-gradient-hover::before {
   content: "";
   position: absolute;
   top: -5px; right: -5px; bottom: -5px; left: -5px;
   z-index: -1;
-  background: linear-gradient(90deg, #f9063f46, #f9063f, #f9063f, #f9063f46);
+  background: linear-gradient(90deg, var(--btn-gradient-color-soft), var(--btn-gradient-color), var(--btn-gradient-color), var(--btn-gradient-color-soft));
   background-size: 400%;
   border-radius: var(--radius-xl);
   opacity: 0;
@@ -247,31 +272,175 @@
   animation: animateGradient 8s linear infinite;
 }
 
-/* ── Glow variants ── */
-.btn-glow {
-  background: var(--color-accent);
-  color: #fff;
-  border: none;
-  animation: borderPulse 1000ms infinite ease-out;
+.btn-gradient-hover-primary {
+  --btn-gradient-color:      var(--color-primary);
+  --btn-gradient-color-soft: color-mix(in oklch, var(--color-primary) 65%, #fff);
+  --btn-gradient-shadow:     color-mix(in srgb, var(--color-primary) 40%, transparent);
 }
-.btn-glow-primary {
-  background: var(--color-primary);
-  color: #fff;
-  border: none;
-  box-shadow: 0 0 15px var(--color-primary-shadow);
+.btn-gradient-hover-accent {
+  --btn-gradient-color:      var(--color-accent);
+  --btn-gradient-color-soft: color-mix(in srgb, var(--color-accent) 55%, var(--color-primary));
+  --btn-gradient-shadow:     color-mix(in srgb, var(--color-accent) 40%, transparent);
 }
-.btn-glow-primary:hover {
-  box-shadow: 0 0 30px var(--color-primary-shadow), 0 0 60px var(--color-primary-shadow);
+.btn-gradient-hover-success {
+  --btn-gradient-color:      var(--color-success);
+  --btn-gradient-color-soft: color-mix(in srgb, var(--color-success) 55%, var(--color-primary));
+  --btn-gradient-shadow:     color-mix(in srgb, var(--color-success) 40%, transparent);
+  --btn-gradient-text:       #111;
+}
+.btn-gradient-hover-error {
+  --btn-gradient-color:      var(--color-error);
+  --btn-gradient-color-soft: color-mix(in srgb, var(--color-error) 55%, var(--color-accent));
+  --btn-gradient-shadow:     color-mix(in srgb, var(--color-error) 40%, transparent);
+}
+.btn-gradient-hover-warning {
+  --btn-gradient-color:      var(--color-warning);
+  --btn-gradient-color-soft: color-mix(in srgb, var(--color-warning) 55%, var(--color-error));
+  --btn-gradient-shadow:     color-mix(in srgb, var(--color-warning) 40%, transparent);
+  --btn-gradient-text:       #111;
 }
 
+/* ── Shine — sweep light streak across button ── */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  color: var(--btn-gradient-text, #fff);
+  background: linear-gradient(135deg, var(--btn-gradient-color), var(--btn-gradient-color-soft));
+  background-size: 200% 200%;
+  box-shadow: 0 4px 20px var(--btn-gradient-shadow, transparent);
+  transition: box-shadow 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: -50%; left: -75%;
+  width: 50%; height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    color-mix(in srgb, #fff 28%, transparent) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  animation: shineSweep 3.5s ease-in-out infinite;
+}
+.btn-shine:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow:
+    0 8px 24px var(--btn-gradient-shadow, transparent),
+    0 0 40px var(--btn-gradient-shadow, transparent);
+  filter: brightness(1.18) saturate(1.15);
+}
+.btn-shine:hover::after {
+  animation-duration: 0.8s;
+}
+.btn-shine:active {
+  transform: translateY(-1px) scale(1.01);
+  filter: brightness(1.05);
+}
+
+@keyframes shineShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes shineSweep {
+  0%   { left: -75%; }
+  60%  { left: 125%; }
+  100% { left: 125%; }
+}
+
+.btn-shine-primary {
+  --btn-gradient-color:      var(--color-primary);
+  --btn-gradient-color-soft: color-mix(in oklch, var(--color-primary) 65%, #fff);
+  --btn-gradient-shadow:     color-mix(in srgb, var(--color-primary) 45%, transparent);
+}
+.btn-shine-accent {
+  --btn-gradient-color:      var(--color-accent);
+  --btn-gradient-color-soft: color-mix(in srgb, var(--color-accent) 55%, var(--color-primary));
+  --btn-gradient-shadow:     color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+.btn-shine-success {
+  --btn-gradient-color:      var(--color-success);
+  --btn-gradient-color-soft: color-mix(in srgb, var(--color-success) 55%, var(--color-primary));
+  --btn-gradient-shadow:     color-mix(in srgb, var(--color-success) 45%, transparent);
+  --btn-gradient-text:       #111;
+}
+.btn-shine-error {
+  --btn-gradient-color:      var(--color-error);
+  --btn-gradient-color-soft: color-mix(in srgb, var(--color-error) 55%, var(--color-accent));
+  --btn-gradient-shadow:     color-mix(in srgb, var(--color-error) 45%, transparent);
+}
+.btn-shine-warning {
+  --btn-gradient-color:      var(--color-warning);
+  --btn-gradient-color-soft: color-mix(in srgb, var(--color-warning) 55%, var(--color-error));
+  --btn-gradient-shadow:     color-mix(in srgb, var(--color-warning) 45%, transparent);
+  --btn-gradient-text:       #111;
+}
+
+/* ── Glow variants ── */
+.btn-glow {
+  --btn-glow-color: var(--color-accent);
+  --btn-glow-text: #fff;
+  background: var(--btn-glow-color);
+  color: var(--btn-glow-text);
+  border: none;
+  box-shadow: 0 0 16px color-mix(in srgb, var(--btn-glow-color) 62%, transparent);
+  animation: borderPulse 1000ms infinite ease-out;
+}
+.btn-glow:hover {
+  box-shadow: 0 0 30px color-mix(in srgb, var(--btn-glow-color) 72%, transparent), 0 0 60px color-mix(in srgb, var(--btn-glow-color) 42%, transparent);
+  transform: scale(1.03);
+}
+.btn-glow-primary {
+  --btn-glow-color: var(--color-primary);
+  --btn-glow-text: #fff;
+}
+.btn-glow-accent {
+  --btn-glow-color: var(--color-accent);
+  --btn-glow-text: #fff;
+}
+.btn-glow-success {
+  --btn-glow-color: var(--color-success);
+  --btn-glow-text: #111;
+}
+.btn-glow-error {
+  --btn-glow-color: var(--color-error);
+  --btn-glow-text: #fff;
+}
+.btn-glow-warning {
+  --btn-glow-color: var(--color-warning);
+  --btn-glow-text: #111;
+}
+.btn-glow-primary,
+.btn-glow-accent,
+.btn-glow-success,
+.btn-glow-error,
+.btn-glow-warning {
+  background: var(--btn-glow-color);
+  color: var(--btn-glow-text);
+  border: none;
+  box-shadow: 0 0 16px color-mix(in srgb, var(--btn-glow-color) 62%, transparent);
+  animation: borderPulse 1000ms infinite ease-out;
+}
+.btn-glow-primary:hover,
+.btn-glow-accent:hover,
+.btn-glow-success:hover,
+.btn-glow-error:hover,
+.btn-glow-warning:hover {
+  box-shadow: 0 0 30px color-mix(in srgb, var(--btn-glow-color) 72%, transparent), 0 0 60px color-mix(in srgb, var(--btn-glow-color) 42%, transparent);
+  transform: scale(1.03);
+}
 /* ── Shine / Shimmer ── */
 .btn-shine {
-  background: linear-gradient(135deg, var(--color-primary-700), var(--color-primary));
-  color: #fff;
+  background: linear-gradient(90deg, var(--btn-gradient-color), var(--btn-gradient-color-soft), var(--btn-gradient-color-soft), var(--btn-gradient-color));
+  color: var(--btn-gradient-text);
   border: none;
   overflow: hidden;
+  box-shadow: 0 0 20px var(--btn-gradient-shadow);
 }
-.btn-shine::before {
+/* .btn-shine::before {
   content: "";
   position: absolute;
   top: 0;
@@ -281,7 +450,7 @@
   background: linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 70%);
   transform: skewX(-20deg);
   animation: shine 2.5s cubic-bezier(0.3, 0.6, 0.4, 1) infinite;
-}
+} */
 
 /* ── Gradient-border ── */
 .btn-gradient-border {
