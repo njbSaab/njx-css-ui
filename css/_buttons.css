@@ -299,6 +299,22 @@
   --btn-gradient-shadow:     color-mix(in srgb, var(--color-warning) 40%, transparent);
   --btn-gradient-text:       #111;
 }
+.btn-gradient-hover-fire {
+  --btn-gradient-color:      var(--color-error);
+  --btn-gradient-color-soft: var(--color-warning);
+  --btn-gradient-shadow:     color-mix(in srgb, var(--color-error) 40%, transparent);
+}
+.btn-gradient-hover-ocean {
+  --btn-gradient-color:      var(--color-primary);
+  --btn-gradient-color-soft: var(--color-accent);
+  --btn-gradient-shadow:     color-mix(in srgb, var(--color-primary) 40%, transparent);
+}
+.btn-gradient-hover-nature {
+  --btn-gradient-color:      var(--color-success);
+  --btn-gradient-color-soft: var(--color-primary);
+  --btn-gradient-shadow:     color-mix(in srgb, var(--color-success) 40%, transparent);
+  --btn-gradient-text:       #111;
+}
 
 /* ── Shine — sweep light streak across button ── */
 .btn-shine {
@@ -354,29 +370,97 @@
 .btn-shine-primary {
   --btn-gradient-color:      var(--color-primary);
   --btn-gradient-color-soft: color-mix(in oklch, var(--color-primary) 65%, #fff);
-  --btn-gradient-shadow:     color-mix(in srgb, var(--color-primary) 45%, transparent);
 }
 .btn-shine-accent {
   --btn-gradient-color:      var(--color-accent);
   --btn-gradient-color-soft: color-mix(in srgb, var(--color-accent) 55%, var(--color-primary));
-  --btn-gradient-shadow:     color-mix(in srgb, var(--color-accent) 45%, transparent);
 }
 .btn-shine-success {
   --btn-gradient-color:      var(--color-success);
   --btn-gradient-color-soft: color-mix(in srgb, var(--color-success) 55%, var(--color-primary));
-  --btn-gradient-shadow:     color-mix(in srgb, var(--color-success) 45%, transparent);
   --btn-gradient-text:       #111;
 }
 .btn-shine-error {
   --btn-gradient-color:      var(--color-error);
   --btn-gradient-color-soft: color-mix(in srgb, var(--color-error) 55%, var(--color-accent));
-  --btn-gradient-shadow:     color-mix(in srgb, var(--color-error) 45%, transparent);
 }
 .btn-shine-warning {
   --btn-gradient-color:      var(--color-warning);
   --btn-gradient-color-soft: color-mix(in srgb, var(--color-warning) 55%, var(--color-error));
-  --btn-gradient-shadow:     color-mix(in srgb, var(--color-warning) 45%, transparent);
   --btn-gradient-text:       #111;
+}
+.btn-shine-fire {
+  --btn-gradient-color:      var(--color-error);
+  --btn-gradient-color-soft: var(--color-warning);
+}
+.btn-shine-ocean {
+  --btn-gradient-color:      var(--color-primary);
+  --btn-gradient-color-soft: var(--color-accent);
+}
+.btn-shine-nature {
+  --btn-gradient-color:      var(--color-success);
+  --btn-gradient-color-soft: var(--color-primary);
+  --btn-gradient-text:       #111;
+}
+
+/* ── Aura — glow halo that blooms on hover ── */
+.btn-aura {
+  position: relative;
+  border: none;
+  color: var(--aura-text, #fff);
+  background: var(--aura-bg);
+  z-index: 1;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.btn-aura::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  background: var(--aura-glow);
+  filter: blur(18px);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.35s ease, filter 0.35s ease;
+}
+.btn-aura:hover {
+  transform: translateY(-3px) scale(1.04);
+  filter: brightness(1.12);
+}
+.btn-aura:hover::before {
+  opacity: 0.85;
+  filter: blur(24px);
+}
+.btn-aura:active {
+  transform: translateY(0) scale(1.01);
+}
+
+.btn-aura-sunset {
+  --aura-bg:   linear-gradient(135deg, #ff6b35, #f72585);
+  --aura-glow: linear-gradient(135deg, #ff6b35, #f72585);
+}
+.btn-aura-aurora {
+  --aura-bg:   linear-gradient(135deg, #06d6a0, #118ab2, #8338ec);
+  --aura-glow: linear-gradient(135deg, #06d6a0, #8338ec);
+}
+.btn-aura-cosmic {
+  --aura-bg:   linear-gradient(135deg, #3a0ca3, #7209b7, #f72585);
+  --aura-glow: linear-gradient(135deg, #7209b7, #f72585);
+}
+.btn-aura-candy {
+  --aura-bg:   linear-gradient(135deg, #ff85a1, #ffc2d4, #ff85a1);
+  --aura-glow: linear-gradient(135deg, #ff85a1, #ffc2d4);
+  --aura-text: #6d1a36;
+}
+.btn-aura-gold {
+  --aura-bg:   linear-gradient(135deg, #f59e0b, #fbbf24, #d97706);
+  --aura-glow: linear-gradient(135deg, #f59e0b, #fbbf24);
+  --aura-text: #1a0a00;
+}
+.btn-aura-ice {
+  --aura-bg:   linear-gradient(135deg, #67e8f9, #38bdf8, #818cf8);
+  --aura-glow: linear-gradient(135deg, #38bdf8, #818cf8);
+  --aura-text: #0c1a3a;
 }
 
 /* ── Glow variants ── */
@@ -569,6 +653,41 @@
   color: #fff;
   border: none;
 }
+.btn-animated-fire {
+  background: linear-gradient(-45deg, #ff0000, #ff7300, #fffb00, #ff4500);
+  background-size: 600%;
+  animation: animateBorder 6s linear infinite;
+  color: #fff;
+  border: none;
+}
+.btn-animated-ocean {
+  background: linear-gradient(-45deg, #002bff, #00c6ff, #3cf0c5, #0072ff);
+  background-size: 600%;
+  animation: animateBorder 8s linear infinite;
+  color: #fff;
+  border: none;
+}
+.btn-animated-aurora {
+  background: linear-gradient(-45deg, #06d6a0, #118ab2, #8338ec, #3a86ff);
+  background-size: 600%;
+  animation: animateBorder 10s linear infinite;
+  color: #fff;
+  border: none;
+}
+.btn-animated-candy {
+  background: linear-gradient(-45deg, #f72585, #b5179e, #7209b7, #f72585);
+  background-size: 600%;
+  animation: animateBorder 7s linear infinite;
+  color: #fff;
+  border: none;
+}
+.btn-rainbow-pastel {
+  background: linear-gradient(270deg, #ffb3ba, #ffdfba, #ffffba, #baffc9, #bae1ff, #e8baff);
+  background-size: 1400% 1400%;
+  animation: rainbowStripes 6s linear infinite;
+  color: #333;
+  border: none;
+}
 
 /* ── Color-shift (pulse-on-hover / auto) ── */
 .btn-color-shift {
@@ -581,8 +700,12 @@
 
 /* ── Glow on hover (dark bg) ── */
 .btn-glow-hover {
-  color: #fff;
-  background: #111;
+  --glow-bg:       #111;
+  --glow-text:     #fff;
+  --glow-gradient: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  --glow-speed:    20s;
+  color: var(--glow-text);
+  background: var(--glow-bg);
   cursor: pointer;
   position: relative;
   z-index: 0;
@@ -592,7 +715,7 @@
 }
 .btn-glow-hover::before {
   content: "";
-  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  background: var(--glow-gradient);
   position: absolute;
   top: -2px; left: -2px;
   background-size: 400%;
@@ -600,7 +723,7 @@
   filter: blur(5px);
   width: calc(100% + 4px);
   height: calc(100% + 4px);
-  animation: glowing 20s linear infinite;
+  animation: glowing var(--glow-speed) linear infinite;
   opacity: 0;
   transition: opacity var(--ease);
   border-radius: var(--radius-md);
@@ -608,10 +731,33 @@
 .btn-glow-hover::after {
   z-index: -1; content: "";
   position: absolute; width: 100%; height: 100%;
-  background: #111; left: 0; top: 0;
+  background: var(--glow-bg); left: 0; top: 0;
   border-radius: var(--radius-md);
 }
 .btn-glow-hover:hover::before { opacity: 1; }
+.btn-glow-hover:hover { transform: translateY(-2px); }
+
+.btn-glow-hover-fire {
+  --glow-gradient: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #ff4500, #ff0000);
+  --glow-speed:    8s;
+}
+.btn-glow-hover-ocean {
+  --glow-gradient: linear-gradient(45deg, #002bff, #00c6ff, #3cf0c5, #0072ff, #002bff);
+  --glow-speed:    10s;
+}
+.btn-glow-hover-aurora {
+  --glow-gradient: linear-gradient(45deg, #06d6a0, #118ab2, #8338ec, #3a86ff, #06d6a0);
+  --glow-speed:    12s;
+}
+.btn-glow-hover-sunset {
+  --glow-gradient: linear-gradient(45deg, #ff6b35, #f72585, #b5179e, #ff6b35);
+  --glow-speed:    9s;
+}
+.btn-glow-hover-gold {
+  --glow-gradient: linear-gradient(45deg, #f59e0b, #fbbf24, #f97316, #fbbf24, #f59e0b);
+  --glow-speed:    7s;
+  --glow-text:     #111;
+}
 
 /* ── Gradient presets ── */
 .btn-gradient-1 { background: linear-gradient(135deg, #00c6ff, #0072ff); border: none; color: #fff; }
