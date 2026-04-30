@@ -1,7 +1,7 @@
 {
   "name": "njx-ui",
   "version": "1.1.4",
-  "description": "Lightweight CSS component library — 30+ components, 9 themes, zero dependencies, classless components ~59KB.",
+  "description": "Lightweight CSS component library — 30+ components, 9 themes, zero dependencies, classless components ~49KB.",
   "main": "css/style.css",
   "style": "css/style.min.css",
   "type": "module",
