@@ -885,6 +885,350 @@
         </div>
     </div>
 
+    <!-- Gradient Hover Cards -->
+    <div class="lib-component">
+        <div class="lib-component-label">✨ Gradient Hover Cards — <code>card-gradient-hover-*</code></div>
+        <div class="lib-preview" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;align-items:stretch">
+
+            <div class="card-gradient-hover card-gradient-hover-primary gc-card">
+                <div class="gc-icon" style="color:var(--color-primary)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <div class="gc-title">Primary</div>
+                <div class="gc-desc">Hover to reveal the gradient overlay.</div>
+                <code class="gc-class">card-gradient-hover-primary</code>
+            </div>
+
+            <div class="card-gradient-hover card-gradient-hover-accent gc-card">
+                <div class="gc-icon" style="color:var(--color-accent)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+                </div>
+                <div class="gc-title">Accent</div>
+                <div class="gc-desc">Smooth color wash on hover.</div>
+                <code class="gc-class">card-gradient-hover-accent</code>
+            </div>
+
+            <div class="card-gradient-hover card-gradient-hover-success gc-card">
+                <div class="gc-icon" style="color:var(--color-success)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div class="gc-title">Success</div>
+                <div class="gc-desc">Green tint for positive actions.</div>
+                <code class="gc-class">card-gradient-hover-success</code>
+            </div>
+
+            <div class="card-gradient-hover card-gradient-hover-fire gc-card">
+                <div class="gc-icon" style="color:#f97316">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c0 6-8 8-8 14a8 8 0 0 0 16 0c0-6-8-8-8-14z"/></svg>
+                </div>
+                <div class="gc-title">Fire</div>
+                <div class="gc-desc">Hot gradient for promotions.</div>
+                <code class="gc-class">card-gradient-hover-fire</code>
+            </div>
+
+            <div class="card-gradient-hover card-gradient-hover-ocean gc-card">
+                <div class="gc-icon" style="color:#38bdf8">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 6-4 8 0s6 4 8 0"/><path d="M2 17c2-4 6-4 8 0s6 4 8 0"/></svg>
+                </div>
+                <div class="gc-title">Ocean</div>
+                <div class="gc-desc">Deep blue for analytics panels.</div>
+                <code class="gc-class">card-gradient-hover-ocean</code>
+            </div>
+
+            <div class="card-gradient-hover card-gradient-hover-sunset gc-card">
+                <div class="gc-icon" style="color:#fb923c">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2"/></svg>
+                </div>
+                <div class="gc-title">Sunset</div>
+                <div class="gc-desc">Warm glow for landing pages.</div>
+                <code class="gc-class">card-gradient-hover-sunset</code>
+            </div>
+
+            <div class="card-gradient-hover card-gradient-hover-aurora gc-card">
+                <div class="gc-icon" style="color:#a855f7">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+                </div>
+                <div class="gc-title">Aurora</div>
+                <div class="gc-desc">Cool cyan-purple for dashboards.</div>
+                <code class="gc-class">card-gradient-hover-aurora</code>
+            </div>
+
+            <div class="card-gradient-hover card-gradient-hover-error gc-card">
+                <div class="gc-icon" style="color:var(--color-error)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                </div>
+                <div class="gc-title">Error</div>
+                <div class="gc-desc">Red wash for alerts and warnings.</div>
+                <code class="gc-class">card-gradient-hover-error</code>
+            </div>
+
+        </div>
+        <div class="lib-code-wrapper"><div class="lib-code-container">
+            <pre class="lib-code" data-raw='<!-- Gradient appears smoothly on hover -->
+<div class="card-gradient-hover card-gradient-hover-primary">...</div>
+<div class="card-gradient-hover card-gradient-hover-accent">...</div>
+<div class="card-gradient-hover card-gradient-hover-fire">...</div>
+<div class="card-gradient-hover card-gradient-hover-ocean">...</div>
+<div class="card-gradient-hover card-gradient-hover-sunset">...</div>
+<div class="card-gradient-hover card-gradient-hover-aurora">...</div>'><span class="c">/* gradient appears smoothly on hover */</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-hover card-gradient-hover-primary"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-hover card-gradient-hover-accent"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-hover card-gradient-hover-fire"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-hover card-gradient-hover-ocean"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-hover card-gradient-hover-sunset"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-hover card-gradient-hover-aurora"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span></pre>
+        </div></div>
+    </div>
+
+    <!-- Shine Cards -->
+    <div class="lib-component">
+        <div class="lib-component-label">💎 Shine Cards — <code>card-shine-*</code></div>
+        <div class="lib-preview" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;align-items:stretch">
+
+            <div class="card-shine card-shine-primary gc-card gc-card-light">
+                <div class="gc-icon" style="color:rgba(255,255,255,0.9)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <div class="gc-title" style="color:#fff">Primary</div>
+                <div class="gc-desc" style="color:rgba(255,255,255,0.72)">Hover for light sweep.</div>
+                <code class="gc-class" style="color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15)">card-shine-primary</code>
+            </div>
+
+            <div class="card-shine card-shine-accent gc-card gc-card-light">
+                <div class="gc-icon" style="color:rgba(255,255,255,0.9)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <div class="gc-title" style="color:#fff">Accent</div>
+                <div class="gc-desc" style="color:rgba(255,255,255,0.72)">Bold blue-to-purple.</div>
+                <code class="gc-class" style="color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15)">card-shine-accent</code>
+            </div>
+
+            <div class="card-shine card-shine-fire gc-card gc-card-light">
+                <div class="gc-icon" style="color:rgba(255,255,255,0.9)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c0 6-8 8-8 14a8 8 0 0 0 16 0c0-6-8-8-8-14z"/></svg>
+                </div>
+                <div class="gc-title" style="color:#fff">Fire</div>
+                <div class="gc-desc" style="color:rgba(255,255,255,0.72)">Red-orange flame sweep.</div>
+                <code class="gc-class" style="color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15)">card-shine-fire</code>
+            </div>
+
+            <div class="card-shine card-shine-ocean gc-card gc-card-light">
+                <div class="gc-icon" style="color:rgba(255,255,255,0.9)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 6-4 8 0s6 4 8 0"/></svg>
+                </div>
+                <div class="gc-title" style="color:#fff">Ocean</div>
+                <div class="gc-desc" style="color:rgba(255,255,255,0.72)">Blue depth with shine.</div>
+                <code class="gc-class" style="color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15)">card-shine-ocean</code>
+            </div>
+
+            <div class="card-shine card-shine-sunset gc-card gc-card-light">
+                <div class="gc-icon" style="color:rgba(255,255,255,0.9)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2"/></svg>
+                </div>
+                <div class="gc-title" style="color:#fff">Sunset</div>
+                <div class="gc-desc" style="color:rgba(255,255,255,0.72)">Warm orange-pink glow.</div>
+                <code class="gc-class" style="color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15)">card-shine-sunset</code>
+            </div>
+
+            <div class="card-shine card-shine-aurora gc-card gc-card-light">
+                <div class="gc-icon" style="color:rgba(255,255,255,0.9)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+                </div>
+                <div class="gc-title" style="color:#fff">Aurora</div>
+                <div class="gc-desc" style="color:rgba(255,255,255,0.72)">Cyan-purple northern lights.</div>
+                <code class="gc-class" style="color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15)">card-shine-aurora</code>
+            </div>
+
+            <div class="card-shine card-shine-cosmic gc-card gc-card-light">
+                <div class="gc-icon" style="color:rgba(255,255,255,0.9)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                </div>
+                <div class="gc-title" style="color:#fff">Cosmic</div>
+                <div class="gc-desc" style="color:rgba(255,255,255,0.72)">Deep violet-magenta space.</div>
+                <code class="gc-class" style="color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15)">card-shine-cosmic</code>
+            </div>
+
+        </div>
+        <div class="lib-code-wrapper"><div class="lib-code-container">
+            <pre class="lib-code" data-raw='<!-- Gradient background + shine sweep on hover -->
+<div class="card-shine card-shine-primary">...</div>
+<div class="card-shine card-shine-fire">...</div>
+<div class="card-shine card-shine-ocean">...</div>
+<div class="card-shine card-shine-sunset">...</div>
+<div class="card-shine card-shine-aurora">...</div>
+<div class="card-shine card-shine-cosmic">...</div>'><span class="c">/* gradient bg + shine sweep on hover */</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shine card-shine-primary"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shine card-shine-fire"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shine card-shine-ocean"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shine card-shine-sunset"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shine card-shine-aurora"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shine card-shine-cosmic"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span></pre>
+        </div></div>
+    </div>
+
+    <!-- Outline Gradient Cards -->
+    <div class="lib-component">
+        <div class="lib-component-label">🔲 Outline Gradient Cards — <code>card-outline-gradient-*</code></div>
+        <div class="lib-preview" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;align-items:stretch">
+
+            <div class="card-outline-gradient card-outline-gradient-primary gc-card">
+                <div class="gc-icon" style="color:var(--color-primary)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <div class="gc-title">Primary</div>
+                <div class="gc-desc">Animated gradient border.</div>
+                <code class="gc-class">card-outline-gradient-primary</code>
+            </div>
+
+            <div class="card-outline-gradient card-outline-gradient-accent gc-card">
+                <div class="gc-icon" style="color:var(--color-accent)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <div class="gc-title">Accent</div>
+                <div class="gc-desc">Rotating blue-purple outline.</div>
+                <code class="gc-class">card-outline-gradient-accent</code>
+            </div>
+
+            <div class="card-outline-gradient card-outline-gradient-fire gc-card">
+                <div class="gc-icon" style="color:#f97316">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c0 6-8 8-8 14a8 8 0 0 0 16 0c0-6-8-8-8-14z"/></svg>
+                </div>
+                <div class="gc-title">Fire</div>
+                <div class="gc-desc">Red-orange hot border.</div>
+                <code class="gc-class">card-outline-gradient-fire</code>
+            </div>
+
+            <div class="card-outline-gradient card-outline-gradient-ocean gc-card">
+                <div class="gc-icon" style="color:#38bdf8">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 6-4 8 0s6 4 8 0"/></svg>
+                </div>
+                <div class="gc-title">Ocean</div>
+                <div class="gc-desc">Blue depth outline animation.</div>
+                <code class="gc-class">card-outline-gradient-ocean</code>
+            </div>
+
+            <div class="card-outline-gradient card-outline-gradient-sunset gc-card">
+                <div class="gc-icon" style="color:#fb923c">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42"/></svg>
+                </div>
+                <div class="gc-title">Sunset</div>
+                <div class="gc-desc">Warm gradient frame.</div>
+                <code class="gc-class">card-outline-gradient-sunset</code>
+            </div>
+
+            <div class="card-outline-gradient card-outline-gradient-aurora gc-card">
+                <div class="gc-icon" style="color:#a855f7">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+                </div>
+                <div class="gc-title">Aurora</div>
+                <div class="gc-desc">Cyan-purple flowing border.</div>
+                <code class="gc-class">card-outline-gradient-aurora</code>
+            </div>
+
+            <div class="card-outline-gradient card-outline-gradient-cosmic gc-card">
+                <div class="gc-icon" style="color:#c026d3">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                </div>
+                <div class="gc-title">Cosmic</div>
+                <div class="gc-desc">Violet-magenta cosmic ring.</div>
+                <code class="gc-class">card-outline-gradient-cosmic</code>
+            </div>
+
+        </div>
+        <div class="lib-code-wrapper"><div class="lib-code-container">
+            <pre class="lib-code" data-raw='<!-- Animated gradient border, transparent background -->
+<div class="card-outline-gradient card-outline-gradient-primary">...</div>
+<div class="card-outline-gradient card-outline-gradient-fire">...</div>
+<div class="card-outline-gradient card-outline-gradient-ocean">...</div>
+<div class="card-outline-gradient card-outline-gradient-sunset">...</div>
+<div class="card-outline-gradient card-outline-gradient-aurora">...</div>
+<div class="card-outline-gradient card-outline-gradient-cosmic">...</div>'><span class="c">/* animated gradient border, transparent bg */</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-outline-gradient card-outline-gradient-primary"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-outline-gradient card-outline-gradient-fire"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-outline-gradient card-outline-gradient-ocean"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-outline-gradient card-outline-gradient-sunset"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-outline-gradient card-outline-gradient-aurora"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-outline-gradient card-outline-gradient-cosmic"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span></pre>
+        </div></div>
+    </div>
+
+    <!-- Aura Cards -->
+    <div class="lib-component">
+        <div class="lib-component-label">🌟 Aura Cards — <code>card-aura-*</code></div>
+        <div class="lib-preview" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:28px;align-items:stretch;padding:24px 8px">
+
+            <div class="card-aura card-aura-primary gc-card gc-card-light">
+                <div class="gc-icon" style="color:var(--color-primary)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <div class="gc-title" style="color:var(--color-light)">Primary</div>
+                <div class="gc-desc">Hover — glow blooms behind the card.</div>
+                <code class="gc-class">card-aura-primary</code>
+            </div>
+
+            <div class="card-aura card-aura-sunset gc-card gc-card-light">
+                <div class="gc-icon" style="color:#fb923c">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2"/></svg>
+                </div>
+                <div class="gc-title" style="color:var(--color-light)">Sunset</div>
+                <div class="gc-desc">Orange-pink aura for promos.</div>
+                <code class="gc-class">card-aura-sunset</code>
+            </div>
+
+            <div class="card-aura card-aura-aurora gc-card gc-card-light">
+                <div class="gc-icon" style="color:#a855f7">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+                </div>
+                <div class="gc-title" style="color:var(--color-light)">Aurora</div>
+                <div class="gc-desc">Cyan-violet northern glow.</div>
+                <code class="gc-class">card-aura-aurora</code>
+            </div>
+
+            <div class="card-aura card-aura-cosmic gc-card gc-card-light">
+                <div class="gc-icon" style="color:#c026d3">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                </div>
+                <div class="gc-title" style="color:var(--color-light)">Cosmic</div>
+                <div class="gc-desc">Deep violet-magenta pulse.</div>
+                <code class="gc-class">card-aura-cosmic</code>
+            </div>
+
+            <div class="card-aura card-aura-gold gc-card gc-card-light">
+                <div class="gc-icon" style="color:#f59e0b">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <div class="gc-title" style="color:var(--color-light)">Gold</div>
+                <div class="gc-desc">Premium amber glow for pricing.</div>
+                <code class="gc-class">card-aura-gold</code>
+            </div>
+
+            <div class="card-aura card-aura-ocean gc-card gc-card-light">
+                <div class="gc-icon" style="color:#38bdf8">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 6-4 8 0s6 4 8 0"/><path d="M2 17c2-4 6-4 8 0s6 4 8 0"/></svg>
+                </div>
+                <div class="gc-title" style="color:var(--color-light)">Ocean</div>
+                <div class="gc-desc">Aqua depth for dashboards.</div>
+                <code class="gc-class">card-aura-ocean</code>
+            </div>
+
+        </div>
+        <div class="lib-code-wrapper"><div class="lib-code-container">
+            <pre class="lib-code" data-raw='<!-- Hover triggers glowing aura behind the card -->
+<div class="card-aura card-aura-primary">...</div>
+<div class="card-aura card-aura-sunset">...</div>
+<div class="card-aura card-aura-aurora">...</div>
+<div class="card-aura card-aura-cosmic">...</div>
+<div class="card-aura card-aura-gold">...</div>
+<div class="card-aura card-aura-ocean">...</div>'><span class="c">/* hover triggers glowing aura behind the card */</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-aura card-aura-primary"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-aura card-aura-sunset"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-aura card-aura-aurora"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-aura card-aura-cosmic"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-aura card-aura-gold"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-aura card-aura-ocean"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span></pre>
+        </div></div>
+    </div>
+
     <div class="lib-component">
         <div class="lib-component-label">Bulma card</div>
         <div class="lib-preview">
@@ -1097,6 +1441,57 @@
         color: rgba(255,255,255,0.38);
         background: rgba(255,255,255,0.06);
         border: 1px solid rgba(255,255,255,0.1);
+        padding: 2px 7px;
+        border-radius: 5px;
+        align-self: flex-start;
+        margin-top: auto;
+    }
+
+    /* Gradient / Shine / Outline / Aura card inner layout */
+    .gc-card {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+        min-height: 190px;
+        cursor: default;
+    }
+
+    .gc-icon {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9px;
+        background: color-mix(in srgb, currentColor 10%, transparent);
+        flex-shrink: 0;
+        margin-bottom: 2px;
+    }
+    .gc-card-light .gc-icon {
+        background: rgba(255,255,255,0.1);
+    }
+
+    .gc-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--color-light);
+        line-height: 1.2;
+    }
+
+    .gc-desc {
+        font-size: 12px;
+        color: var(--color-muted);
+        line-height: 1.55;
+        flex: 1;
+    }
+
+    .gc-class {
+        font-size: 10px;
+        font-family: var(--font-mono);
+        color: var(--color-muted);
+        background: color-mix(in srgb, var(--color-neutral-600) 12%, transparent);
+        border: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
         padding: 2px 7px;
         border-radius: 5px;
         align-self: flex-start;
