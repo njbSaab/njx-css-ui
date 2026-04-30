@@ -1,0 +1,671 @@
+<!--
+TITLE: njX UI — Gradient Effect Cards: Hover, Shine, Outline, Aura
+DESCRIPTION: Gradient card variants from njX UI style.min.css: gradient hover wash, shine sweep, animated outline gradient border, aura glow halo. All theme-aware. Hover each card to see the effect.
+TAGS: css, cards, gradient, hover-effect, glassmorphism, njx-ui
+-->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>njX UI — Gradient Cards Showcase</title>
+  <script>try { var t = localStorage.getItem('njx-theme'); if (t) document.documentElement.setAttribute('data-theme', t) } catch (e) { }</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1.1.4/css/style.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box }
+
+    body {
+      margin: 0; min-height: 100vh;
+      background:
+        radial-gradient(circle at 8% 0, color-mix(in srgb, var(--color-primary) 18%, transparent), transparent 34rem),
+        radial-gradient(circle at 94% 14%, color-mix(in srgb, var(--color-accent) 12%, transparent), transparent 28rem),
+        var(--bg-main);
+      color: var(--text-main); font-family: var(--font-sans);
+      background-repeat: no-repeat; background-attachment: fixed
+    }
+
+    /* ─── nav ─── */
+    .top {
+      position: sticky; top: 0; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: .85rem clamp(1rem, 3vw, 2rem);
+      background: color-mix(in srgb, var(--bg-main) 80%, transparent);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 18%, transparent)
+    }
+    .brand { display: inline-flex; align-items: center; gap: .65rem; color: var(--text-main); text-decoration: none; font-weight: 900 }
+    .brand img { width: 30px; height: 30px; object-fit: contain }
+    .nav-r { display: flex; align-items: center; gap: .85rem; flex-wrap: wrap }
+    .nav-links { display: flex; gap: .4rem; flex-wrap: wrap }
+    .nav-links a {
+      color: var(--text-muted); font-size: .82rem; font-weight: 700;
+      text-decoration: none; padding: .28rem .55rem; border-radius: 8px;
+      transition: color .15s, background .15s
+    }
+    .nav-links a:hover { color: var(--color-primary); background: color-mix(in srgb, var(--color-primary) 10%, transparent) }
+    .themes { display: flex; gap: .5rem }
+    .theme-btn {
+      width: 24px; height: 24px; border-radius: 999px; border: 2px solid transparent;
+      cursor: pointer; background: var(--sw);
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--sw) 40%, transparent);
+      transition: transform .15s, box-shadow .15s
+    }
+    .theme-btn:hover, .theme-btn[aria-pressed="true"] { transform: scale(1.2); box-shadow: 0 0 0 3px color-mix(in srgb, var(--sw) 30%, transparent) }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0) }
+
+    /* ─── layout ─── */
+    .wrap { width: min(1160px, calc(100% - 2rem)); margin: 0 auto; padding: clamp(2.5rem, 5vw, 4.5rem) 0 6rem }
+
+    /* ─── hero ─── */
+    .hero { text-align: center; margin-bottom: 3.5rem }
+    .hero-badge {
+      display: inline-flex; gap: .4rem; align-items: center;
+      padding: .28rem .85rem; border-radius: 999px; margin-bottom: 1.1rem;
+      border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+      background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+      color: var(--color-primary); font-size: .75rem; font-weight: 900;
+      text-transform: uppercase; letter-spacing: .1em
+    }
+    .hero h1 { margin: 0 0 .7rem; font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: .92; letter-spacing: -.02em }
+    .hero h1 .g { background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; background-clip: text; color: transparent }
+    .hero p { max-width: 620px; margin: 0 auto .5rem; color: var(--text-muted); line-height: 1.7; font-size: 1.05rem }
+    .hero-cta { display: flex; justify-content: center; gap: .8rem; flex-wrap: wrap; margin-top: 1.3rem }
+
+    /* ─── install strip ─── */
+    .install-strip { display: flex; flex-wrap: wrap; gap: 10px; flex-direction: column; width: fit-content; margin: 0 auto 2.8rem }
+    .copy-snippet {
+      flex: 1; min-width: 260px; display: flex; align-items: center;
+      border: 1px solid color-mix(in srgb, var(--color-primary) 28%, transparent);
+      border-radius: 14px; background: color-mix(in srgb, var(--bg-secondary) 70%, transparent); overflow: hidden
+    }
+    .copy-snippet-label {
+      padding: .25rem .7rem; font-size: .68rem; font-weight: 900;
+      text-transform: uppercase; letter-spacing: .08em; color: var(--color-primary);
+      background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+      border-right: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+      white-space: nowrap; align-self: stretch; display: flex; align-items: center
+    }
+    .copy-snippet code {
+      flex: 1; padding: .65rem 1rem; font: 700 .78rem/1.4 var(--font-mono, monospace);
+      color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis
+    }
+    .copy-btn {
+      flex: none; display: flex; align-items: center; gap: .3rem; padding: .45rem .8rem;
+      border: none; border-left: 1px solid color-mix(in srgb, var(--color-primary) 18%, transparent);
+      background: transparent; color: var(--text-muted);
+      font: 700 .72rem var(--font-sans); cursor: pointer; transition: color .15s, background .15s; white-space: nowrap
+    }
+    .copy-btn:hover { color: var(--color-primary); background: color-mix(in srgb, var(--color-primary) 10%, transparent) }
+    .copy-btn.copied { color: var(--color-success) }
+
+    /* ─── section ─── */
+    .sec { margin-bottom: 3.5rem }
+    .sec-head { margin-bottom: 1.4rem }
+    .sec-label {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: var(--color-primary); font-size: .75rem; font-weight: 900;
+      text-transform: uppercase; letter-spacing: .1em; margin-bottom: .45rem
+    }
+    .sec-label::before { content: ""; display: block; width: 14px; height: 2px; border-radius: 2px; background: currentColor }
+    .sec-head h2 { margin: 0 0 .3rem; font-size: clamp(1.25rem, 2.4vw, 1.85rem) }
+    .sec-head p { margin: 0; color: var(--text-muted); font-size: .9rem }
+    .sec-head code { font: 700 .82rem var(--font-mono, monospace); color: var(--color-primary) }
+
+    /* ─── card grids ─── */
+    .cg3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem }
+    .cg4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem }
+
+    /* ─── demo card padding ─── */
+    .demo-pad { padding: 1.4rem 1.3rem }
+
+    /* ─── card inner content ─── */
+    .card-icon { font-size: 1.8rem; margin-bottom: .7rem; line-height: 1 }
+    .card-cat { font-size: .7rem; font-weight: 900; text-transform: uppercase; letter-spacing: .1em; color: var(--color-primary); margin-bottom: .35rem }
+    .card-title-sm { font-size: 1.1rem; font-weight: 800; margin: 0 0 .4rem }
+    .card-body-sm { font-size: .84rem; color: var(--text-muted); line-height: 1.55; margin: 0 0 1rem }
+    .card-meta { display: flex; align-items: center; justify-content: space-between; gap: .5rem; flex-wrap: wrap }
+    .card-price { font-size: 1.4rem; font-weight: 900; color: var(--text-main) }
+    .card-price span { font-size: .8rem; font-weight: 600; color: var(--text-muted) }
+    /* override for shine cards */
+    .card-shine .card-cat { color: rgba(255,255,255,.75) }
+    .card-shine .card-body-sm { color: rgba(255,255,255,.7) }
+    .card-shine .card-price { color: #fff }
+    .card-shine .card-price span { color: rgba(255,255,255,.6) }
+    /* override for aura cards */
+    .card-aura .card-cat { color: color-mix(in srgb, #fff 70%, var(--card-gc1, var(--color-primary))) }
+
+    /* ─── promo ─── */
+    .promo {
+      margin-top: 3.5rem; padding: 2.2rem 2rem;
+      border-radius: 26px;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 16%, var(--bg-secondary)), color-mix(in srgb, var(--color-accent) 12%, var(--bg-secondary)));
+      border: 1px solid color-mix(in srgb, var(--color-primary) 28%, transparent);
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem
+    }
+    .promo h2 { margin: 0 0 .4rem; font-size: clamp(1.3rem, 2.2vw, 1.85rem) }
+    .promo p { margin: 0; color: var(--text-muted); max-width: 480px; line-height: 1.65 }
+    .promo-ey { color: var(--color-primary); font-size: .74rem; font-weight: 900; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .5rem }
+    .promo-stats { display: flex; gap: 2rem; flex-wrap: wrap }
+    .ps { text-align: center }
+    .ps-v { display: block; font-size: 1.9rem; font-weight: 900; color: var(--color-primary) }
+    .ps-l { font-size: .72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .07em }
+    .promo-btns { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 1.1rem }
+
+    /* ─── stats bar ─── */
+    .stats {
+      display: flex; flex-wrap: wrap; gap: 0;
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+      border-radius: 18px; overflow: hidden;
+      margin-bottom: 2rem; background: color-mix(in srgb, var(--bg-secondary) 60%, transparent);
+      backdrop-filter: blur(12px)
+    }
+    .stat {
+      flex: 1; min-width: 120px; padding: 1.1rem 1.5rem; text-align: center;
+      border-right: 1px solid color-mix(in srgb, var(--color-neutral-600) 16%, transparent)
+    }
+    .stat:last-child { border-right: none }
+    .stat-val { display: block; font-size: 1.55rem; font-weight: 900; color: var(--color-primary); line-height: 1 }
+    .stat-lbl { display: block; font-size: .7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .07em; margin-top: .35rem }
+
+    /* ─── toolbar ─── */
+    .toolbar {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem;
+      padding: .75rem 1.2rem; margin-bottom: 2.2rem;
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+      border-radius: 14px; background: color-mix(in srgb, var(--bg-secondary) 55%, transparent);
+      backdrop-filter: blur(14px)
+    }
+    .toolbar-label { font-size: .72rem; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted) }
+    .toolbar-themes { display: flex; align-items: center; gap: .45rem; flex-wrap: wrap }
+    .theme-btn {
+      width: 22px; height: 22px; border-radius: 999px; border: 2px solid transparent;
+      cursor: pointer; background: var(--sw);
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--sw) 40%, transparent);
+      transition: transform .15s, box-shadow .15s; padding: 0; font-size: 0
+    }
+    .theme-btn:hover, .theme-btn[aria-pressed="true"] { transform: scale(1.25); box-shadow: 0 0 0 3px color-mix(in srgb, var(--sw) 35%, transparent) }
+
+    @media (max-width: 820px) { .cg3, .cg4 { grid-template-columns: repeat(2, 1fr) } }
+    @media (max-width: 480px) { .cg3, .cg4 { grid-template-columns: 1fr } }
+  </style>
+</head>
+<body>
+
+  <nav class="top">
+    <a class="brand" href="https://njxui.dev" target="_blank" rel="noopener">
+      <img src="https://njxui.dev/img/logo-xl.png" alt="njX UI" width="60" height="84" />
+      njX UI
+    </a>
+    <div class="nav-r">
+      <div class="themes">
+        <button class="theme-btn" data-t="dark"   style="--sw:#14a0ff" aria-label="Dark"><span class="sr-only">Dark</span></button>
+        <button class="theme-btn" data-t="light"  style="--sw:#94a3b8" aria-label="Light"><span class="sr-only">Light</span></button>
+        <button class="theme-btn" data-t="purple" style="--sw:#9933ff" aria-label="Purple"><span class="sr-only">Purple</span></button>
+        <button class="theme-btn" data-t="cyan"   style="--sw:#00e5ff" aria-label="Cyan"><span class="sr-only">Cyan</span></button>
+        <button class="theme-btn" data-t="red"    style="--sw:#ff2233" aria-label="Red"><span class="sr-only">Red</span></button>
+        <button class="theme-btn" data-t="green"  style="--sw:#00cc44" aria-label="Green"><span class="sr-only">Green</span></button>
+        <button class="theme-btn" data-t="pink"   style="--sw:#ff0088" aria-label="Pink"><span class="sr-only">Pink</span></button>
+      </div>
+      <div class="nav-links">
+        <a href="https://njxui.dev" target="_blank" rel="noopener">Docs</a>
+        <a href="https://github.com/njbSaab/njx-css-ui" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.npmjs.com/package/njx-ui" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Get started →</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-badge">✦ njX UI v1.1.4 · _cards.css</div>
+      <h1><span class="g">Gradient</span> cards<br>that convert.</h1>
+      <p>4 hover presets — gradient wash, shine sweep, animated border, aura halo. One class combo. Theme-aware. No extra markup.</p>
+      <div class="hero-cta">
+        <a class="btn btn-gradient-hover btn-gradient-hover-primary btn-lg" href="https://njxui.dev" target="_blank" rel="noopener">Open docs ↗</a>
+        <a class="btn btn-shine btn-shine-accent btn-lg" href="https://github.com/njbSaab/njx-css-ui" target="_blank" rel="noopener">★ GitHub</a>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats" role="list" aria-label="Library stats">
+      <div class="stat" role="listitem"><span class="stat-val">40 KB</span><span class="stat-lbl">Full bundle</span></div>
+      <div class="stat" role="listitem"><span class="stat-val">9</span><span class="stat-lbl">Themes</span></div>
+      <div class="stat" role="listitem"><span class="stat-val">30+</span><span class="stat-lbl">Components</span></div>
+      <div class="stat" role="listitem"><span class="stat-val">4</span><span class="stat-lbl">Card presets</span></div>
+      <div class="stat" role="listitem"><span class="stat-val">0</span><span class="stat-lbl">Dependencies</span></div>
+    </div>
+
+    <!-- INSTALL -->
+    <div class="install-strip">
+      <div class="copy-snippet">
+        <span class="copy-snippet-label">CDN</span>
+        <code id="cdn-text">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css"&gt;</code>
+        <button class="copy-btn" data-copy="cdn" aria-label="Copy CDN link">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="5" width="9" height="9" rx="2"/><path d="M3 11H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v1"/></svg>
+          <span>Copy</span>
+        </button>
+      </div>
+      <div class="copy-snippet">
+        <span class="copy-snippet-label">npm</span>
+        <code id="npm-text">npm install njx-ui</code>
+        <button class="copy-btn" data-copy="npm" aria-label="Copy npm command">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="5" width="9" height="9" rx="2"/><path d="M3 11H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v1"/></svg>
+          <span>Copy</span>
+        </button>
+      </div>
+      <div class="copy-snippet">
+        <span class="copy-snippet-label">jsDelivr</span>
+        <code id="min-text">https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css</code>
+        <button class="copy-btn" data-copy="min" aria-label="Copy CDN URL">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="5" width="9" height="9" rx="2"/><path d="M3 11H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v1"/></svg>
+          <span>Copy</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar" aria-label="Demo controls">
+      <span class="toolbar-label">Theme</span>
+      <div class="toolbar-themes" aria-label="Theme switcher">
+        <button class="theme-btn" data-t="dark"   style="--sw:#14a0ff" aria-label="Dark"></button>
+        <button class="theme-btn" data-t="light"  style="--sw:#94a3b8" aria-label="Light"></button>
+        <button class="theme-btn" data-t="purple" style="--sw:#9933ff" aria-label="Purple"></button>
+        <button class="theme-btn" data-t="cyan"   style="--sw:#00e5ff" aria-label="Cyan"></button>
+        <button class="theme-btn" data-t="red"    style="--sw:#ff2233" aria-label="Red"></button>
+        <button class="theme-btn" data-t="green"  style="--sw:#00cc44" aria-label="Green"></button>
+        <button class="theme-btn" data-t="yellow" style="--sw:#ffdd00" aria-label="Yellow"></button>
+        <button class="theme-btn" data-t="pink"   style="--sw:#ff0088" aria-label="Pink"></button>
+      </div>
+    </div>
+
+    <!-- 01 GRADIENT HOVER -->
+    <section class="sec">
+      <div class="sec-head">
+        <div class="sec-label">01 — Gradient Hover</div>
+        <h2>Gradient wash activates on hover</h2>
+        <p>Pattern: <code>.card-gradient-hover .card-gradient-hover-{color}</code> — subtle tint + lift + shadow</p>
+      </div>
+      <div class="cg4">
+
+        <div class="card card-gradient-hover card-gradient-hover-primary demo-pad">
+          <div class="card-icon">⚡</div>
+          <div class="card-cat">Primary</div>
+          <div class="card-title-sm">Lightning fast</div>
+          <div class="card-body-sm">Hover to see the gradient wash + lift effect.</div>
+          <div class="card-meta">
+            <span class="tag tag-primary">New</span>
+            <button class="btn btn-primary btn-sm">Open</button>
+          </div>
+        </div>
+
+        <div class="card card-gradient-hover card-gradient-hover-accent demo-pad">
+          <div class="card-icon">🎯</div>
+          <div class="card-cat">Accent</div>
+          <div class="card-title-sm">Precision targeting</div>
+          <div class="card-body-sm">Theme-aware — switches with your color tokens.</div>
+          <div class="card-meta">
+            <span class="tag tag-accent">Pro</span>
+            <button class="btn btn-accent btn-sm">Try</button>
+          </div>
+        </div>
+
+        <div class="card card-gradient-hover card-gradient-hover-fire demo-pad">
+          <div class="card-icon">🔥</div>
+          <div class="card-cat">Fire</div>
+          <div class="card-title-sm">Blazing performance</div>
+          <div class="card-body-sm">Red → orange gradient, independent of theme.</div>
+          <div class="card-meta">
+            <span class="tag tag-error">Hot</span>
+            <button class="btn btn-error btn-sm">Go</button>
+          </div>
+        </div>
+
+        <div class="card card-gradient-hover card-gradient-hover-ocean demo-pad">
+          <div class="card-icon">🌊</div>
+          <div class="card-cat">Ocean</div>
+          <div class="card-title-sm">Deep analytics</div>
+          <div class="card-body-sm">Primary → accent cool-blue blend.</div>
+          <div class="card-meta">
+            <span class="tag tag-primary">Live</span>
+            <button class="btn btn-primary btn-sm">View</button>
+          </div>
+        </div>
+
+        <div class="card card-gradient-hover card-gradient-hover-sunset demo-pad">
+          <div class="card-icon">🌅</div>
+          <div class="card-cat">Sunset</div>
+          <div class="card-title-sm">Golden hour</div>
+          <div class="card-body-sm">Orange → magenta warm gradient palette.</div>
+          <div class="card-meta">
+            <span class="tag">Warm</span>
+            <button class="btn btn-outline btn-sm">More</button>
+          </div>
+        </div>
+
+        <div class="card card-gradient-hover card-gradient-hover-aurora demo-pad">
+          <div class="card-icon">🌌</div>
+          <div class="card-cat">Aurora</div>
+          <div class="card-title-sm">Northern lights</div>
+          <div class="card-body-sm">Cyan → violet cool gradient palette.</div>
+          <div class="card-meta">
+            <span class="tag">Cool</span>
+            <button class="btn btn-outline btn-sm">More</button>
+          </div>
+        </div>
+
+        <div class="card card-gradient-hover card-gradient-hover-success demo-pad">
+          <div class="card-icon">✅</div>
+          <div class="card-cat">Success</div>
+          <div class="card-title-sm">Task completed</div>
+          <div class="card-body-sm">Green → primary success confirmation state.</div>
+          <div class="card-meta">
+            <span class="tag tag-success">Done</span>
+            <button class="btn btn-success btn-sm">OK</button>
+          </div>
+        </div>
+
+        <div class="card card-gradient-hover card-gradient-hover-error demo-pad">
+          <div class="card-icon">⚠️</div>
+          <div class="card-cat">Error</div>
+          <div class="card-title-sm">Needs attention</div>
+          <div class="card-body-sm">Error → accent alert/warning context.</div>
+          <div class="card-meta">
+            <span class="tag tag-error">Alert</span>
+            <button class="btn btn-error btn-sm">Fix</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 02 SHINE -->
+    <section class="sec">
+      <div class="sec-head">
+        <div class="sec-label">02 — Shine</div>
+        <h2>Gradient fill + continuous light sweep</h2>
+        <p>Pattern: <code>.card-shine .card-shine-{color}</code> — gradient is always on, shine animates in loop</p>
+      </div>
+      <div class="cg3">
+
+        <div class="card card-shine card-shine-primary demo-pad">
+          <div class="card-icon">🚀</div>
+          <div class="card-cat">Primary</div>
+          <div class="card-title-sm">Launch your project</div>
+          <div class="card-body-sm">Perfect for featured CTAs, hero highlights, pricing cards.</div>
+          <div class="card-meta">
+            <div class="card-price">$0 <span>/ forever</span></div>
+            <button class="btn btn-sm" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3)">Start</button>
+          </div>
+        </div>
+
+        <div class="card card-shine card-shine-fire demo-pad">
+          <div class="card-icon">🔥</div>
+          <div class="card-cat">Fire</div>
+          <div class="card-title-sm">Red-hot deal</div>
+          <div class="card-body-sm">Warm gradient with animated shine — great for promotions.</div>
+          <div class="card-meta">
+            <div class="card-price">48h <span>only</span></div>
+            <button class="btn btn-sm" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3)">Grab</button>
+          </div>
+        </div>
+
+        <div class="card card-shine card-shine-aurora demo-pad">
+          <div class="card-icon">🌌</div>
+          <div class="card-cat">Aurora</div>
+          <div class="card-title-sm">Premium tier</div>
+          <div class="card-body-sm">Cyan → violet. Ideal for premium badges and upgrade cards.</div>
+          <div class="card-meta">
+            <div class="card-price">$29 <span>/ mo</span></div>
+            <button class="btn btn-sm" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3)">Upgrade</button>
+          </div>
+        </div>
+
+        <div class="card card-shine card-shine-ocean demo-pad">
+          <div class="card-icon">🌊</div>
+          <div class="card-cat">Ocean</div>
+          <div class="card-title-sm">Starter plan</div>
+          <div class="card-body-sm">Cool blue blend. Works on any background theme.</div>
+          <div class="card-meta">
+            <div class="card-price">Free <span>trial</span></div>
+            <button class="btn btn-sm" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3)">Try</button>
+          </div>
+        </div>
+
+        <div class="card card-shine card-shine-sunset demo-pad">
+          <div class="card-icon">🌅</div>
+          <div class="card-cat">Sunset</div>
+          <div class="card-title-sm">Creator plan</div>
+          <div class="card-body-sm">Orange → magenta. Warm and inviting conversion card.</div>
+          <div class="card-meta">
+            <div class="card-price">$12 <span>/ mo</span></div>
+            <button class="btn btn-sm" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3)">Join</button>
+          </div>
+        </div>
+
+        <div class="card card-shine card-shine-cosmic demo-pad">
+          <div class="card-icon">🔮</div>
+          <div class="card-cat">Cosmic</div>
+          <div class="card-title-sm">Enterprise</div>
+          <div class="card-body-sm">Deep purple → violet. Bold, distinctive, memorable.</div>
+          <div class="card-meta">
+            <div class="card-price">Custom</div>
+            <button class="btn btn-sm" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3)">Contact</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 03 OUTLINE GRADIENT -->
+    <section class="sec">
+      <div class="sec-head">
+        <div class="sec-label">03 — Outline Gradient</div>
+        <h2>Animated gradient border — no extra markup</h2>
+        <p>Pattern: <code>.card-outline-gradient .card-outline-gradient-{color}</code> — CSS mask technique</p>
+      </div>
+      <div class="cg4">
+
+        <div class="card card-outline-gradient card-outline-gradient-primary demo-pad">
+          <div class="card-icon">⚡</div>
+          <div class="card-cat" style="color:var(--color-primary)">Primary</div>
+          <div class="card-title-sm">API Integration</div>
+          <div class="card-body-sm">Gradient border animates continuously. Content stays clean.</div>
+          <button class="btn btn-primary btn-sm">Connect</button>
+        </div>
+
+        <div class="card card-outline-gradient card-outline-gradient-fire demo-pad">
+          <div class="card-icon">🔥</div>
+          <div class="card-cat" style="color:var(--color-error)">Fire</div>
+          <div class="card-title-sm">Hot feature</div>
+          <div class="card-body-sm">Eye-catching without overwhelming. Great for feature highlights.</div>
+          <button class="btn btn-error btn-sm">Explore</button>
+        </div>
+
+        <div class="card card-outline-gradient card-outline-gradient-aurora demo-pad">
+          <div class="card-icon">🌌</div>
+          <div class="card-cat" style="color:#00c6ff">Aurora</div>
+          <div class="card-title-sm">AI-powered</div>
+          <div class="card-body-sm">Cyan → violet border. Best for dark backgrounds.</div>
+          <button class="btn btn-outline btn-sm">Try AI</button>
+        </div>
+
+        <div class="card card-outline-gradient card-outline-gradient-sunset demo-pad">
+          <div class="card-icon">🌅</div>
+          <div class="card-cat" style="color:#ff6b35">Sunset</div>
+          <div class="card-title-sm">Marketing suite</div>
+          <div class="card-body-sm">Warm palette. Orange → magenta animated glow border.</div>
+          <button class="btn btn-outline btn-sm">Start</button>
+        </div>
+
+        <div class="card card-outline-gradient card-outline-gradient-ocean demo-pad">
+          <div class="card-icon">🌊</div>
+          <div class="card-cat" style="color:var(--color-accent)">Ocean</div>
+          <div class="card-title-sm">Analytics</div>
+          <div class="card-body-sm">Cool blue gradient border follows your theme primary + accent.</div>
+          <button class="btn btn-outline btn-sm">View</button>
+        </div>
+
+        <div class="card card-outline-gradient card-outline-gradient-cosmic demo-pad">
+          <div class="card-icon">🔮</div>
+          <div class="card-cat" style="color:#a855f7">Cosmic</div>
+          <div class="card-title-sm">Premium access</div>
+          <div class="card-body-sm">Deep purple border. Bold accent for special offers.</div>
+          <button class="btn btn-outline btn-sm">Unlock</button>
+        </div>
+
+        <div class="card card-outline-gradient card-outline-gradient-accent demo-pad">
+          <div class="card-icon">🎯</div>
+          <div class="card-cat" style="color:var(--color-accent)">Accent</div>
+          <div class="card-title-sm">Focus mode</div>
+          <div class="card-body-sm">Accent → primary gradient, adapts to any active theme.</div>
+          <button class="btn btn-accent btn-sm">Focus</button>
+        </div>
+
+        <div class="card card-outline-gradient card-outline-gradient-nature demo-pad" style="--card-og1:var(--color-success);--card-og2:var(--color-primary)">
+          <div class="card-icon">🌿</div>
+          <div class="card-cat" style="color:var(--color-success)">Nature</div>
+          <div class="card-title-sm">Eco dashboard</div>
+          <div class="card-body-sm">Green → primary border. Clean and sustainable feel.</div>
+          <button class="btn btn-success btn-sm">Go green</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 04 AURA -->
+    <section class="sec">
+      <div class="sec-head">
+        <div class="sec-label">04 — Aura</div>
+        <h2>Glow halo blooms on hover</h2>
+        <p>Pattern: <code>.card-aura .card-aura-{preset}</code> — blurred glow expands from behind the card</p>
+      </div>
+      <div class="cg3">
+
+        <div class="card card-aura card-aura-primary demo-pad">
+          <div class="card-icon">⚡</div>
+          <div class="card-cat" style="color:var(--color-primary)">Primary</div>
+          <div class="card-title-sm">Quick start</div>
+          <div class="card-body-sm">Hover to see the primary color halo appear behind the card.</div>
+          <div class="card-meta">
+            <span class="tag tag-primary">Theme-aware</span>
+            <button class="btn btn-primary btn-sm">Start</button>
+          </div>
+        </div>
+
+        <div class="card card-aura card-aura-sunset demo-pad">
+          <div class="card-icon">🌅</div>
+          <div class="card-cat" style="color:#ff6b35">Sunset</div>
+          <div class="card-title-sm">Creator tools</div>
+          <div class="card-body-sm">Warm orange-magenta glow radiates on hover. Dark bg card.</div>
+          <div class="card-meta">
+            <span class="tag">Warm</span>
+            <button class="btn btn-sm" style="background:#ff6b3520;border:1px solid #ff6b3540;color:#ff6b35">Create</button>
+          </div>
+        </div>
+
+        <div class="card card-aura card-aura-aurora demo-pad">
+          <div class="card-icon">🌌</div>
+          <div class="card-cat" style="color:#00c6ff">Aurora</div>
+          <div class="card-title-sm">Cloud platform</div>
+          <div class="card-body-sm">Cyan → violet halo. Dramatic effect for feature callouts.</div>
+          <div class="card-meta">
+            <span class="tag">Cool</span>
+            <button class="btn btn-sm" style="background:#00c6ff20;border:1px solid #00c6ff40;color:#00c6ff">Explore</button>
+          </div>
+        </div>
+
+        <div class="card card-aura card-aura-cosmic demo-pad">
+          <div class="card-icon">🔮</div>
+          <div class="card-cat" style="color:#a855f7">Cosmic</div>
+          <div class="card-title-sm">Magic features</div>
+          <div class="card-body-sm">Deep purple halo. Use for premium or exclusive content.</div>
+          <div class="card-meta">
+            <span class="tag">Premium</span>
+            <button class="btn btn-sm" style="background:#a855f720;border:1px solid #a855f740;color:#a855f7">Unlock</button>
+          </div>
+        </div>
+
+        <div class="card card-aura card-aura-gold demo-pad">
+          <div class="card-icon">🏆</div>
+          <div class="card-cat" style="color:#f59e0b">Gold</div>
+          <div class="card-title-sm">Top performer</div>
+          <div class="card-body-sm">Golden halo — perfect for achievements, top-tier plans.</div>
+          <div class="card-meta">
+            <span class="tag">Elite</span>
+            <button class="btn btn-sm" style="background:#f59e0b20;border:1px solid #f59e0b40;color:#f59e0b">Claim</button>
+          </div>
+        </div>
+
+        <div class="card card-aura card-aura-ocean demo-pad">
+          <div class="card-icon">🌊</div>
+          <div class="card-cat" style="color:var(--color-primary)">Ocean</div>
+          <div class="card-title-sm">Data insights</div>
+          <div class="card-body-sm">Blue glow radiates outward. Calm and trustworthy aesthetic.</div>
+          <div class="card-meta">
+            <span class="tag tag-primary">Live</span>
+            <button class="btn btn-primary btn-sm">View</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROMO -->
+    <div class="promo">
+      <div>
+        <div class="promo-ey">Open source · MIT · Zero dependencies</div>
+        <h2>njX UI — Drop one link, get everything.</h2>
+        <p>40 KB CSS. 9 themes. 30+ components. Gradient hover, shine, outline and aura cards — all in one file.</p>
+        <div class="promo-btns">
+          <a class="btn btn-gradient-hover btn-gradient-hover-primary" href="https://njxui.dev" target="_blank" rel="noopener">Read the docs →</a>
+          <a class="btn btn-outline" href="https://github.com/njbSaab/njx-css-ui" target="_blank" rel="noopener">★ GitHub</a>
+        </div>
+      </div>
+      <div class="promo-stats">
+        <div class="ps"><span class="ps-v">4</span><span class="ps-l">Card presets</span></div>
+        <div class="ps"><span class="ps-v">9</span><span class="ps-l">Themes</span></div>
+        <div class="ps"><span class="ps-v">40KB</span><span class="ps-l">Bundle</span></div>
+        <div class="ps"><span class="ps-v">0</span><span class="ps-l">Deps</span></div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    (function () {
+      var COPY_TEXT = {
+        cdn: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css">',
+        npm: 'npm install njx-ui',
+        min: 'https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css'
+      };
+      document.querySelectorAll('[data-t]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var t = btn.dataset.t;
+          document.documentElement.setAttribute('data-theme', t);
+          try { localStorage.setItem('njx-theme', t); } catch (e) { }
+          document.querySelectorAll('[data-t]').forEach(function (b) {
+            b.setAttribute('aria-pressed', b.dataset.t === t ? 'true' : 'false');
+          });
+        });
+      });
+      document.querySelectorAll('.copy-btn[data-copy]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var text = COPY_TEXT[btn.dataset.copy] || '';
+          navigator.clipboard.writeText(text).then(function () {
+            var span = btn.querySelector('span');
+            var orig = span.textContent;
+            btn.classList.add('copied');
+            span.textContent = 'Copied!';
+            setTimeout(function () { btn.classList.remove('copied'); span.textContent = orig; }, 2000);
+          });
+        });
+      });
+      var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+      document.querySelectorAll('[data-t]').forEach(function (b) {
+        b.setAttribute('aria-pressed', b.dataset.t === cur ? 'true' : 'false');
+      });
+    })();
+  </script>
+</body>
+</html>
