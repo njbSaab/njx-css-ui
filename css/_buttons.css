@@ -322,8 +322,7 @@
   overflow: hidden;
   border: none;
   color: var(--btn-gradient-text, #fff);
-  background: linear-gradient(135deg, var(--btn-gradient-color), var(--btn-gradient-color-soft));
-  background-size: 200% 200%;
+  background: linear-gradient(to right, var(--btn-gradient-color), var(--btn-gradient-color-soft));
   box-shadow: 0 4px 20px var(--btn-gradient-shadow, transparent);
   transition: box-shadow 0.25s ease, transform 0.25s ease, filter 0.25s ease;
 }
