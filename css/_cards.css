@@ -458,3 +458,182 @@
   border-color: rgba(0,0,0,0.09);
   --_glow-color: rgba(100,140,255,0.12);
 }
+
+/* ============================================================
+   GRADIENT EFFECT CARDS — hover/shine/outline/aura
+   Pattern: .card-gradient-hover .card-gradient-hover-{color}
+   ============================================================ */
+
+/* ── Gradient Hover — gradient washes in on hover ── */
+.card-gradient-hover {
+  position: relative;
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in srgb, var(--card-gc1, var(--color-primary)) 20%, transparent);
+  background: var(--bg-secondary);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card-gradient-hover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--card-gc1, var(--color-primary)), var(--card-gc2, var(--color-accent)));
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 0;
+}
+.card-gradient-hover > * { position: relative; z-index: 1; }
+.card-gradient-hover:hover::before { opacity: 0.13; }
+.card-gradient-hover:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--card-gc1, var(--color-primary)) 55%, transparent);
+  box-shadow: 0 14px 40px color-mix(in srgb, var(--card-gc1, var(--color-primary)) 22%, transparent);
+}
+
+.card-gradient-hover-primary {
+  --card-gc1: var(--color-primary);
+  --card-gc2: color-mix(in oklch, var(--color-primary) 65%, #fff);
+}
+.card-gradient-hover-accent {
+  --card-gc1: var(--color-accent);
+  --card-gc2: var(--color-primary);
+}
+.card-gradient-hover-success {
+  --card-gc1: var(--color-success);
+  --card-gc2: var(--color-primary);
+}
+.card-gradient-hover-error {
+  --card-gc1: var(--color-error);
+  --card-gc2: var(--color-accent);
+}
+.card-gradient-hover-fire {
+  --card-gc1: var(--color-error);
+  --card-gc2: var(--color-warning);
+}
+.card-gradient-hover-ocean {
+  --card-gc1: var(--color-primary);
+  --card-gc2: var(--color-accent);
+}
+.card-gradient-hover-sunset {
+  --card-gc1: #ff6b35;
+  --card-gc2: #ff2d7c;
+}
+.card-gradient-hover-aurora {
+  --card-gc1: #00c6ff;
+  --card-gc2: #a855f7;
+}
+
+/* ── Shine Cards — gradient + sweep animation ── */
+.card-shine {
+  position: relative;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(to right, var(--card-gc1, var(--color-primary)), var(--card-gc2, var(--color-accent)));
+  border: none;
+  overflow: hidden;
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+.card-shine::after {
+  content: "";
+  position: absolute;
+  top: -50%; left: -75%;
+  width: 50%; height: 200%;
+  background: linear-gradient(120deg, transparent 0%, color-mix(in srgb, #fff 22%, transparent) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  animation: shineSweep 4.5s ease-in-out infinite;
+}
+.card-shine:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--card-gc1, var(--color-primary)) 32%, transparent);
+  filter: brightness(1.1) saturate(1.1);
+}
+
+.card-shine-primary { --card-gc1: var(--color-primary); --card-gc2: color-mix(in oklch, var(--color-primary) 65%, #fff); }
+.card-shine-accent  { --card-gc1: var(--color-accent);  --card-gc2: var(--color-primary); }
+.card-shine-fire    { --card-gc1: var(--color-error);   --card-gc2: var(--color-warning); }
+.card-shine-ocean   { --card-gc1: var(--color-primary); --card-gc2: var(--color-accent); }
+.card-shine-sunset  { --card-gc1: #ff6b35; --card-gc2: #ff2d7c; }
+.card-shine-aurora  { --card-gc1: #00c6ff; --card-gc2: #a855f7; }
+.card-shine-cosmic  { --card-gc1: #7c3aed; --card-gc2: #c026d3; }
+
+/* ── Outline Gradient Cards — animated gradient border ── */
+.card-outline-gradient {
+  position: relative;
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-outline-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--card-og1, var(--color-primary)), var(--card-og2, var(--color-accent)), var(--card-og1, var(--color-primary)));
+  background-size: 200% 200%;
+  animation: shineShift 3.5s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+.card-outline-gradient:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 36px color-mix(in srgb, var(--card-og1, var(--color-primary)) 20%, transparent);
+}
+
+.card-outline-gradient-primary { --card-og1: var(--color-primary); --card-og2: color-mix(in oklch, var(--color-primary) 65%, #fff); }
+.card-outline-gradient-accent  { --card-og1: var(--color-accent);  --card-og2: var(--color-primary); }
+.card-outline-gradient-fire    { --card-og1: var(--color-error);   --card-og2: var(--color-warning); }
+.card-outline-gradient-ocean   { --card-og1: var(--color-primary); --card-og2: var(--color-accent); }
+.card-outline-gradient-sunset  { --card-og1: #ff6b35; --card-og2: #ff2d7c; }
+.card-outline-gradient-aurora  { --card-og1: #00c6ff; --card-og2: #a855f7; }
+.card-outline-gradient-cosmic  { --card-og1: #7c3aed; --card-og2: #c026d3; }
+
+/* ── Aura Cards — glow halo blooms on hover ── */
+.card-aura {
+  position: relative;
+  border: none;
+  border-radius: var(--radius-lg);
+  background: var(--card-aura-bg, var(--bg-secondary));
+  z-index: 1;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+.card-aura::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: calc(var(--radius-lg) + 10px);
+  background: var(--card-aura-glow, linear-gradient(135deg, var(--color-primary), var(--color-accent)));
+  filter: blur(20px);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+.card-aura:hover::before { opacity: 0.65; }
+.card-aura:hover { transform: translateY(-6px); filter: brightness(1.06); }
+
+.card-aura-primary {
+  --card-aura-bg: var(--bg-secondary);
+  --card-aura-glow: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+}
+.card-aura-sunset {
+  --card-aura-bg: linear-gradient(160deg, #1a0800, #2a0e00);
+  --card-aura-glow: linear-gradient(135deg, #ff6b35, #ff2d7c);
+}
+.card-aura-aurora {
+  --card-aura-bg: linear-gradient(160deg, #000d1a, #0a1626);
+  --card-aura-glow: linear-gradient(135deg, #00c6ff, #a855f7);
+}
+.card-aura-cosmic {
+  --card-aura-bg: linear-gradient(160deg, #0d0014, #160024);
+  --card-aura-glow: linear-gradient(135deg, #7c3aed, #c026d3);
+}
+.card-aura-gold {
+  --card-aura-bg: linear-gradient(160deg, #110e00, #1e1800);
+  --card-aura-glow: linear-gradient(135deg, #f59e0b, #fbbf24);
+}
+.card-aura-ocean {
+  --card-aura-bg: linear-gradient(160deg, #00101a, #001c2e);
+  --card-aura-glow: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+}
