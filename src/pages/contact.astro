@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PagesTopbar from '../components/PagesTopbar.astro';
 import PagesFooter from '../components/PagesFooter.astro';
 
-const base = import.meta.env.BASE_URL;
 const supportEmail = 'sdr.expert@gmail.com';
 const githubIssues = 'https://github.com/njbSaab/njx-css-ui/issues';
 const githubDiscussions = 'https://github.com/njbSaab/njx-css-ui/discussions';
@@ -43,33 +42,73 @@ const telegramBot = 'https://t.me/njxui_bot';
 
     <main class="contact-page">
         <section class="contact-hero">
-            <span class="contact-badge">Support & feedback</span>
-            <h1>Contact <span class="text-main-gradient">njX UI</span></h1>
-            <p>
-                Found a bug, need help with integration, or want to suggest a
-                component? Use the fastest channel below and include a small
-                reproducible example when possible.
-            </p>
-            <div class="contact-actions">
-                <a
-                    class="btn btn-primary btn-lg"
-                    href={`mailto:${supportEmail}?subject=njX%20UI%20support`}
-                >
-                    Email support
+            <div class="contact-hero-copy">
+                <span class="tag tag-primary">Support & feedback</span>
+                <h1>Contact <span class="text-main-gradient">njX UI</span></h1>
+                <p>
+                    Found a bug, need help with integration, or want to suggest
+                    a component? Pick the right channel and include a small
+                    reproducible example when possible.
+                </p>
+                <div class="contact-actions">
+                    <a class="btn btn-primary btn-lg" href="#contact-form">
+                        Send message
+                    </a>
+                    <a
+                        class="btn btn-outline btn-lg"
+                        href={githubIssues}
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Report on GitHub
+                    </a>
+                </div>
+            </div>
+
+            <aside
+                class="contact-hero-panel"
+                aria-label="Fastest contact paths"
+            >
+                <span class="contact-panel-kicker">Fastest paths</span>
+                <a class="contact-path" href="#contact-form">
+                    <span class="contact-path-icon">✉</span>
+                    <span>
+                        <strong>Private support</strong>
+                        <small>Email + Telegram copy</small>
+                    </span>
+                    <span class="contact-path-arrow">→</span>
                 </a>
                 <a
-                    class="btn btn-outline btn-lg"
+                    class="contact-path"
                     href={githubIssues}
                     target="_blank"
                     rel="noopener"
                 >
-                    Open GitHub issue
+                    <span class="contact-path-icon">GH</span>
+                    <span>
+                        <strong>Bug report</strong>
+                        <small>Issue with reproduction</small>
+                    </span>
+                    <span class="contact-path-arrow">→</span>
                 </a>
-            </div>
+                <a
+                    class="contact-path"
+                    href={telegramBot}
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span class="contact-path-icon">TG</span>
+                    <span>
+                        <strong>Quick ping</strong>
+                        <small>Open @njxui_bot</small>
+                    </span>
+                    <span class="contact-path-arrow">→</span>
+                </a>
+            </aside>
         </section>
 
         <section class="contact-grid" aria-label="Contact channels">
-            <article class="contact-card primary-card">
+            <article class="contact-card card-aura card-aura-primary">
                 <div class="contact-icon">✉</div>
                 <div>
                     <h2>Email</h2>
@@ -78,15 +117,18 @@ const telegramBot = 'https://t.me/njxui_bot';
                         or reports that should not be public.
                     </p>
                 </div>
-                <a
-                    class="contact-link"
-                    href={`mailto:${supportEmail}?subject=njX%20UI%20question`}
-                >
-                    {supportEmail}
-                </a>
+                <div class="contact-card-actions">
+                    <a
+                        class="btn btn-primary btn-sm"
+                        href={`mailto:${supportEmail}?subject=njX%20UI%20question`}
+                    >
+                        Email support
+                    </a>
+                    <span>{supportEmail}</span>
+                </div>
             </article>
 
-            <article class="contact-card">
+            <article class="contact-card card-aura card-aura-sunset">
                 <div class="contact-icon">GH</div>
                 <div>
                     <h2>GitHub Issues</h2>
@@ -95,17 +137,20 @@ const telegramBot = 'https://t.me/njxui_bot';
                         requests and reproducible examples.
                     </p>
                 </div>
-                <a
-                    class="contact-link"
-                    href={githubIssues}
-                    target="_blank"
-                    rel="noopener"
-                >
-                    github.com/njbSaab/njx-css-ui/issues
-                </a>
+                <div class="contact-card-actions">
+                    <a
+                        class="btn btn-outline btn-sm"
+                        href={githubIssues}
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Open issue
+                    </a>
+                    <span>Public bugs and features</span>
+                </div>
             </article>
 
-            <article class="contact-card">
+            <article class="contact-card card-aura card-aura-aurora">
                 <div class="contact-icon">?</div>
                 <div>
                     <h2>Discussions</h2>
@@ -114,17 +159,20 @@ const telegramBot = 'https://t.me/njxui_bot';
                         decisions that do not require an immediate fix.
                     </p>
                 </div>
-                <a
-                    class="contact-link"
-                    href={githubDiscussions}
-                    target="_blank"
-                    rel="noopener"
-                >
-                    GitHub Discussions
-                </a>
+                <div class="contact-card-actions">
+                    <a
+                        class="btn btn-outline btn-sm"
+                        href={githubDiscussions}
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Ask publicly
+                    </a>
+                    <span>Ideas and usage questions</span>
+                </div>
             </article>
 
-            <article class="contact-card contact-card-muted">
+            <article class="contact-card card-aura card-aura-cosmic">
                 <div class="contact-icon">TG</div>
                 <div>
                     <h2>Telegram bot</h2>
@@ -134,25 +182,35 @@ const telegramBot = 'https://t.me/njxui_bot';
                         project credentials.
                     </p>
                 </div>
-                <a
-                    class="contact-link"
-                    href={telegramBot}
-                    target="_blank"
-                    rel="noopener"
-                >
-                    t.me/njxui_bot
-                </a>
+                <div class="contact-card-actions">
+                    <a
+                        class="btn btn-primary btn-sm"
+                        href={telegramBot}
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Open bot
+                    </a>
+                    <span>t.me/njxui_bot</span>
+                </div>
             </article>
         </section>
 
-        <section class="contact-form-card">
+        <section class="contact-form-card" id="contact-form">
             <div class="contact-form-copy">
-                <span class="contact-badge">Quick email draft</span>
+                <span class="tag tag-accent">Contact form</span>
                 <h2>Send a useful support message</h2>
                 <p>
-                    Fill this out and it will open your mail app with a prepared
-                    message. No backend, no tracking, no stored data.
+                    The form sends an email through njxui.dev and mirrors the
+                    message to Telegram when support notifications are enabled.
+                    If the service is unavailable, it opens your mail app with a
+                    prepared draft.
                 </p>
+                <div class="contact-form-points">
+                    <span>Private by default</span>
+                    <span>Email reply path</span>
+                    <span>Fallback mail draft</span>
+                </div>
             </div>
 
             <form class="contact-form" id="contactForm">
@@ -195,9 +253,9 @@ const telegramBot = 'https://t.me/njxui_bot';
                         placeholder="What happened? What did you expect? Add a CodePen, repo, browser and njX UI version if relevant."
                     ></textarea>
                 </label>
-                <button class="btn btn-primary btn-lg" type="submit"
-                    >Open email</button
-                >
+                <button class="btn btn-primary btn-lg" type="submit">
+                    Send message
+                </button>
                 <p
                     class="contact-form-status"
                     id="contactFormStatus"
@@ -207,7 +265,7 @@ const telegramBot = 'https://t.me/njxui_bot';
             </form>
         </section>
 
-        <section class="contact-tips">
+        <section class="contact-tips card-glass">
             <div>
                 <h2>For faster bug reports</h2>
                 <p>
@@ -217,10 +275,10 @@ const telegramBot = 'https://t.me/njxui_bot';
                 </p>
             </div>
             <div class="contact-tip-grid">
-                <span>njX UI version</span>
+                <span>Version</span>
                 <span>Browser / device</span>
-                <span>CDN or npm install</span>
-                <span>CodePen or repo link</span>
+                <span>CDN or npm</span>
+                <span>CodePen / repo</span>
             </div>
         </section>
     </main>
@@ -255,37 +313,54 @@ const telegramBot = 'https://t.me/njxui_bot';
     }
 
     .contact-hero {
-        text-align: center;
-        padding: 30px 0 46px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+        gap: clamp(28px, 5vw, 64px);
+        align-items: center;
+        padding: 58px 0 46px;
     }
 
-    .contact-badge {
-        display: inline-flex;
-        align-items: center;
-        min-height: 32px;
-        padding: 0 14px;
-        border: 1px solid
-            color-mix(in srgb, var(--color-primary) 34%, transparent);
-        border-radius: 999px;
-        background: color-mix(in srgb, var(--color-primary) 12%, transparent);
-        color: var(--color-primary);
-        font-size: 12px;
-        font-weight: 900;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
+    .contact-hero-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 16px 0;
+        position: relative;
+    }
+
+    .contact-hero-copy::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -18px;
+        width: min(420px, 70%);
+        height: 2px;
+        background: linear-gradient(
+            90deg,
+            var(--color-primary),
+            color-mix(in srgb, var(--color-accent) 70%, transparent),
+            transparent
+        );
+        pointer-events: none;
+    }
+
+    .contact-hero-copy > * {
+        position: relative;
+        z-index: 1;
     }
 
     .contact-hero h1 {
-        margin: 18px 0 0;
-        font-size: clamp(44px, 8vw, 92px);
-        line-height: 0.92;
+        margin: 20px 0 0;
+        max-width: 720px;
+        font-size: 88px;
+        line-height: 0.94;
         font-weight: 950;
-        letter-spacing: -0.05em;
+        letter-spacing: 0;
     }
 
     .contact-hero p {
-        max-width: 680px;
-        margin: 22px auto 0;
+        max-width: 640px;
+        margin: 22px 0 0;
         color: var(--color-muted);
         font-size: 18px;
         line-height: 1.75;
@@ -294,9 +369,82 @@ const telegramBot = 'https://t.me/njxui_bot';
     .contact-actions {
         display: flex;
         gap: 14px;
-        justify-content: center;
+        justify-content: flex-start;
         flex-wrap: wrap;
         margin-top: 30px;
+    }
+
+    .contact-hero-panel {
+        display: grid;
+        gap: 12px;
+        padding: 8px 0 8px 18px;
+        border-left: 1px solid
+            color-mix(in srgb, var(--color-primary) 24%, transparent);
+    }
+
+    .contact-panel-kicker {
+        color: var(--color-primary);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0;
+        text-transform: uppercase;
+    }
+
+    .contact-path {
+        display: grid;
+        grid-template-columns: 42px minmax(0, 1fr) 34px;
+        gap: 12px;
+        align-items: center;
+        padding: 12px 0;
+        border: 1px solid
+            color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+        border-width: 0 0 1px;
+        background: transparent;
+        color: var(--color-light);
+        text-decoration: none;
+        transition:
+            transform 0.18s ease,
+            color 0.18s ease;
+    }
+
+    .contact-path:hover {
+        transform: translateX(4px);
+        color: var(--color-primary);
+    }
+
+    .contact-path-icon,
+    .contact-path-arrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        background: color-mix(in srgb, var(--color-primary) 11%, transparent);
+        color: var(--color-primary);
+        font-size: 13px;
+        font-weight: 950;
+    }
+
+    .contact-path-arrow {
+        justify-self: end;
+        background: transparent;
+        color: var(--color-muted);
+        font-size: 20px;
+    }
+
+    .contact-path strong {
+        display: block;
+        font-size: 16px;
+        font-weight: 900;
+    }
+
+    .contact-path small {
+        display: block;
+        margin-top: 2px;
+        color: var(--color-muted);
+        font-size: 13px;
+        line-height: 1.35;
     }
 
     .contact-grid {
@@ -305,27 +453,47 @@ const telegramBot = 'https://t.me/njxui_bot';
         gap: 16px;
     }
 
-    .contact-card,
-    .contact-form-card,
-    .contact-tips {
-        border: 1px solid
-            color-mix(in srgb, var(--color-neutral-600) 24%, transparent);
-        background: linear-gradient(
-            180deg,
-            color-mix(in srgb, var(--color-dark-secondary) 86%, transparent),
-            color-mix(in srgb, var(--сolor-dark) 82%, transparent)
-        );
-        box-shadow: 0 22px 60px color-mix(in srgb, #000 18%, transparent);
-    }
-
     .contact-card {
         display: flex;
         flex-direction: column;
-        gap: 18px;
-        min-height: 280px;
+        gap: 16px;
+        min-height: 292px;
         padding: 22px;
-        border-radius: 24px;
+        border-radius: var(--radius-lg);
+        border: 1px solid color-mix(in srgb, #fff 8%, transparent);
+        box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 8%, transparent);
+        transition:
+            transform 0.18s ease,
+            box-shadow 0.18s ease,
+            border-color 0.18s ease;
     }
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+        border-color: color-mix(in srgb, var(--color-primary) 42%, transparent);
+        box-shadow: 0 26px 70px color-mix(in srgb, #000 22%, transparent);
+    }
+
+    .contact-card.card-aura-primary {
+        --card-aura-bg: linear-gradient(
+            160deg,
+            color-mix(in srgb, var(--color-primary) 12%, var(--bg-secondary)),
+            color-mix(in srgb, var(--color-accent) 7%, var(--сolor-dark))
+        );
+    }
+
+    .contact-card.card-aura-ocean {
+        --card-aura-bg: linear-gradient(160deg, #00101a, #061724);
+    }
+
+    .contact-card.card-aura-aurora {
+        --card-aura-bg: linear-gradient(160deg, #07111e, #101424);
+    }
+
+    .contact-card.card-aura-cosmic {
+        --card-aura-bg: linear-gradient(160deg, #100819, #15101f);
+    }
+
     .text-main-gradient {
         background: linear-gradient(
             135deg,
@@ -337,28 +505,6 @@ const telegramBot = 'https://t.me/njxui_bot';
         background-clip: text;
         text-decoration: none;
         white-space: nowrap;
-    }
-    .contact-card.primary-card {
-        border-color: color-mix(in srgb, var(--color-primary) 42%, transparent);
-        background:
-            radial-gradient(
-                circle at top right,
-                color-mix(in srgb, var(--color-primary) 18%, transparent),
-                transparent 52%
-            ),
-            linear-gradient(
-                180deg,
-                color-mix(
-                    in srgb,
-                    var(--color-dark-secondary) 88%,
-                    transparent
-                ),
-                color-mix(in srgb, var(--сolor-dark) 78%, transparent)
-            );
-    }
-
-    .contact-card-muted {
-        opacity: 0.82;
     }
 
     .contact-icon {
@@ -392,23 +538,19 @@ const telegramBot = 'https://t.me/njxui_bot';
         font-size: 14px;
     }
 
-    .contact-link {
+    .contact-card-actions {
         margin-top: auto;
-        color: var(--color-primary);
-        font-size: 13px;
-        font-weight: 800;
-        line-height: 1.45;
-        text-decoration: none;
-        word-break: break-word;
+        display: grid;
+        gap: 10px;
+        align-items: end;
     }
 
-    .contact-link:hover {
-        text-decoration: underline;
-    }
-
-    .contact-link.is-muted {
+    .contact-card-actions span {
         color: var(--color-muted);
-        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.45;
+        word-break: break-word;
     }
 
     .contact-form-card {
@@ -416,9 +558,32 @@ const telegramBot = 'https://t.me/njxui_bot';
         grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
         gap: 26px;
         align-items: start;
-        margin-top: 18px;
+        margin-top: 20px;
         padding: clamp(22px, 4vw, 36px);
         border-radius: 28px;
+        border: 1px solid
+            color-mix(in srgb, var(--color-primary) 30%, transparent);
+        background:
+            radial-gradient(
+                circle at 8% 0,
+                color-mix(in srgb, var(--color-primary) 24%, transparent),
+                transparent 24rem
+            ),
+            radial-gradient(
+                circle at 100% 18%,
+                color-mix(in srgb, var(--color-accent) 18%, transparent),
+                transparent 22rem
+            ),
+            linear-gradient(
+                135deg,
+                color-mix(
+                    in srgb,
+                    var(--color-dark-secondary) 94%,
+                    transparent
+                ),
+                color-mix(in srgb, var(--сolor-dark) 86%, transparent)
+            );
+        box-shadow: 0 30px 90px color-mix(in srgb, #000 24%, transparent);
     }
 
     .contact-form-copy {
@@ -427,10 +592,36 @@ const telegramBot = 'https://t.me/njxui_bot';
         padding-top: 4px;
     }
 
+    .contact-form-points {
+        display: grid;
+        gap: 10px;
+        margin-top: 8px;
+    }
+
+    .contact-form-points span {
+        display: flex;
+        align-items: center;
+        min-height: 42px;
+        padding: 10px 12px;
+        border: 1px solid
+            color-mix(in srgb, var(--color-primary) 22%, transparent);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--color-primary) 9%, transparent);
+        color: var(--color-light);
+        font-size: 13px;
+        font-weight: 800;
+    }
+
     .contact-form {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 14px;
+        padding: 20px;
+        border: 1px solid
+            color-mix(in srgb, var(--color-neutral-600) 28%, transparent);
+        border-radius: 22px;
+        background: color-mix(in srgb, var(--сolor-dark) 74%, transparent);
+        box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 8%, transparent);
     }
 
     .contact-honey {
@@ -533,6 +724,26 @@ const telegramBot = 'https://t.me/njxui_bot';
     }
 
     @media (max-width: 980px) {
+        .contact-hero {
+            grid-template-columns: 1fr;
+        }
+
+        .contact-hero-copy,
+        .contact-hero-panel {
+            min-height: auto;
+        }
+
+        .contact-hero-panel {
+            padding: 18px 0 0;
+            border-left: 0;
+            border-top: 1px solid
+                color-mix(in srgb, var(--color-primary) 22%, transparent);
+        }
+
+        .contact-hero h1 {
+            font-size: 64px;
+        }
+
         .contact-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
@@ -548,6 +759,14 @@ const telegramBot = 'https://t.me/njxui_bot';
             padding: 46px 14px 72px;
         }
 
+        .contact-hero h1 {
+            font-size: 46px;
+        }
+
+        .contact-hero p {
+            font-size: 16px;
+        }
+
         .contact-grid,
         .contact-form,
         .contact-tip-grid {
@@ -560,6 +779,10 @@ const telegramBot = 'https://t.me/njxui_bot';
 
         .contact-form button {
             width: 100%;
+        }
+
+        .contact-form {
+            padding: 16px;
         }
     }
 </style>
