@@ -1,0 +1,662 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PagesTopbar from '../components/PagesTopbar.astro';
+import PagesFooter from '../components/PagesFooter.astro';
+
+const base = import.meta.env.BASE_URL;
+const supportEmail = 'sdr.expert@gmail.com';
+const githubIssues = 'https://github.com/njbSaab/njx-css-ui/issues';
+const githubDiscussions = 'https://github.com/njbSaab/njx-css-ui/discussions';
+const telegramBot = 'https://t.me/njxui_bot';
+---
+
+<BaseLayout
+    title="Contact njX UI — Support, Bugs and Feedback"
+    description="Contact njX UI for bug reports, integration help, feedback, open-source questions and support."
+>
+    <Fragment slot="head">
+        <link rel="canonical" href="https://njxui.dev/contact" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Contact njX UI" />
+        <meta
+            property="og:description"
+            content="Report bugs, ask integration questions, request help or send feedback for njX UI."
+        />
+        <meta
+            property="og:image"
+            content="https://njxui.dev/img/og-image.png"
+        />
+        <meta property="og:url" content="https://njxui.dev/contact" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact njX UI" />
+        <meta
+            name="twitter:description"
+            content="Report bugs, ask integration questions, request help or send feedback for njX UI."
+        />
+        <meta
+            name="twitter:image"
+            content="https://njxui.dev/img/og-image.png"
+        />
+    </Fragment>
+
+    <PagesTopbar activePage="contact" />
+
+    <main class="contact-page">
+        <section class="contact-hero">
+            <span class="contact-badge">Support & feedback</span>
+            <h1>Contact <span class="text-main-gradient">njX UI</span></h1>
+            <p>
+                Found a bug, need help with integration, or want to suggest a
+                component? Use the fastest channel below and include a small
+                reproducible example when possible.
+            </p>
+            <div class="contact-actions">
+                <a
+                    class="btn btn-primary btn-lg"
+                    href={`mailto:${supportEmail}?subject=njX%20UI%20support`}
+                >
+                    Email support
+                </a>
+                <a
+                    class="btn btn-outline btn-lg"
+                    href={githubIssues}
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Open GitHub issue
+                </a>
+            </div>
+        </section>
+
+        <section class="contact-grid" aria-label="Contact channels">
+            <article class="contact-card primary-card">
+                <div class="contact-icon">✉</div>
+                <div>
+                    <h2>Email</h2>
+                    <p>
+                        Best for private questions, sponsorship, partnerships,
+                        or reports that should not be public.
+                    </p>
+                </div>
+                <a
+                    class="contact-link"
+                    href={`mailto:${supportEmail}?subject=njX%20UI%20question`}
+                >
+                    {supportEmail}
+                </a>
+            </article>
+
+            <article class="contact-card">
+                <div class="contact-icon">GH</div>
+                <div>
+                    <h2>GitHub Issues</h2>
+                    <p>
+                        Best for bugs, broken docs, missing styles, feature
+                        requests and reproducible examples.
+                    </p>
+                </div>
+                <a
+                    class="contact-link"
+                    href={githubIssues}
+                    target="_blank"
+                    rel="noopener"
+                >
+                    github.com/njbSaab/njx-css-ui/issues
+                </a>
+            </article>
+
+            <article class="contact-card">
+                <div class="contact-icon">?</div>
+                <div>
+                    <h2>Discussions</h2>
+                    <p>
+                        Best for usage questions, ideas, examples and design
+                        decisions that do not require an immediate fix.
+                    </p>
+                </div>
+                <a
+                    class="contact-link"
+                    href={githubDiscussions}
+                    target="_blank"
+                    rel="noopener"
+                >
+                    GitHub Discussions
+                </a>
+            </article>
+
+            <article class="contact-card contact-card-muted">
+                <div class="contact-icon">TG</div>
+                <div>
+                    <h2>Telegram bot</h2>
+                    <p>
+                        Fast contact channel for quick questions and support
+                        messages. Do not send private tokens or sensitive
+                        project credentials.
+                    </p>
+                </div>
+                <a
+                    class="contact-link"
+                    href={telegramBot}
+                    target="_blank"
+                    rel="noopener"
+                >
+                    t.me/njxui_bot
+                </a>
+            </article>
+        </section>
+
+        <section class="contact-form-card">
+            <div class="contact-form-copy">
+                <span class="contact-badge">Quick email draft</span>
+                <h2>Send a useful support message</h2>
+                <p>
+                    Fill this out and it will open your mail app with a prepared
+                    message. No backend, no tracking, no stored data.
+                </p>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <input
+                    id="contactCompany"
+                    name="company"
+                    type="text"
+                    autocomplete="off"
+                    tabindex="-1"
+                    aria-hidden="true"
+                    class="contact-honey"
+                />
+                <label>
+                    Topic
+                    <select id="contactTopic" name="topic">
+                        <option value="Bug report">Bug report</option>
+                        <option value="Integration help"
+                            >Integration help</option
+                        >
+                        <option value="Feature request">Feature request</option>
+                        <option value="Sponsorship">Sponsorship</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </label>
+                <label>
+                    Your email
+                    <input
+                        id="contactReply"
+                        name="reply"
+                        type="email"
+                        placeholder="you@example.com"
+                    />
+                </label>
+                <label class="full">
+                    Message
+                    <textarea
+                        id="contactMessage"
+                        name="message"
+                        rows="7"
+                        placeholder="What happened? What did you expect? Add a CodePen, repo, browser and njX UI version if relevant."
+                    ></textarea>
+                </label>
+                <button class="btn btn-primary btn-lg" type="submit"
+                    >Open email</button
+                >
+                <p
+                    class="contact-form-status"
+                    id="contactFormStatus"
+                    role="status"
+                >
+                </p>
+            </form>
+        </section>
+
+        <section class="contact-tips">
+            <div>
+                <h2>For faster bug reports</h2>
+                <p>
+                    Include the version, browser, minimal HTML/CSS, the expected
+                    result and the actual result. A CodePen or repo link is the
+                    fastest way to reproduce a problem.
+                </p>
+            </div>
+            <div class="contact-tip-grid">
+                <span>njX UI version</span>
+                <span>Browser / device</span>
+                <span>CDN or npm install</span>
+                <span>CodePen or repo link</span>
+            </div>
+        </section>
+    </main>
+
+    <PagesFooter activePage="contact" />
+</BaseLayout>
+
+<style is:global>
+    .contact-page {
+        min-height: 100vh;
+        background:
+            radial-gradient(
+                circle at 14% 0,
+                color-mix(in srgb, var(--color-primary) 16%, transparent),
+                transparent 34rem
+            ),
+            radial-gradient(
+                circle at 88% 18%,
+                color-mix(in srgb, var(--color-accent) 12%, transparent),
+                transparent 28rem
+            ),
+            var(--сolor-dark);
+        padding: 72px 24px 96px;
+    }
+
+    .contact-hero,
+    .contact-grid,
+    .contact-form-card,
+    .contact-tips {
+        width: min(1120px, 100%);
+        margin-inline: auto;
+    }
+
+    .contact-hero {
+        text-align: center;
+        padding: 30px 0 46px;
+    }
+
+    .contact-badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        padding: 0 14px;
+        border: 1px solid
+            color-mix(in srgb, var(--color-primary) 34%, transparent);
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+        color: var(--color-primary);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .contact-hero h1 {
+        margin: 18px 0 0;
+        font-size: clamp(44px, 8vw, 92px);
+        line-height: 0.92;
+        font-weight: 950;
+        letter-spacing: -0.05em;
+    }
+
+    .contact-hero p {
+        max-width: 680px;
+        margin: 22px auto 0;
+        color: var(--color-muted);
+        font-size: 18px;
+        line-height: 1.75;
+    }
+
+    .contact-actions {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .contact-card,
+    .contact-form-card,
+    .contact-tips {
+        border: 1px solid
+            color-mix(in srgb, var(--color-neutral-600) 24%, transparent);
+        background: linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--color-dark-secondary) 86%, transparent),
+            color-mix(in srgb, var(--сolor-dark) 82%, transparent)
+        );
+        box-shadow: 0 22px 60px color-mix(in srgb, #000 18%, transparent);
+    }
+
+    .contact-card {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        min-height: 280px;
+        padding: 22px;
+        border-radius: 24px;
+    }
+    .text-main-gradient {
+        background: linear-gradient(
+            135deg,
+            var(--color-primary),
+            var(--color-accent)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+    .contact-card.primary-card {
+        border-color: color-mix(in srgb, var(--color-primary) 42%, transparent);
+        background:
+            radial-gradient(
+                circle at top right,
+                color-mix(in srgb, var(--color-primary) 18%, transparent),
+                transparent 52%
+            ),
+            linear-gradient(
+                180deg,
+                color-mix(
+                    in srgb,
+                    var(--color-dark-secondary) 88%,
+                    transparent
+                ),
+                color-mix(in srgb, var(--сolor-dark) 78%, transparent)
+            );
+    }
+
+    .contact-card-muted {
+        opacity: 0.82;
+    }
+
+    .contact-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        border-radius: 16px;
+        background: color-mix(in srgb, var(--color-primary) 16%, transparent);
+        color: var(--color-primary);
+        font-weight: 950;
+    }
+
+    .contact-card h2,
+    .contact-form-copy h2,
+    .contact-tips h2 {
+        margin: 0;
+        color: var(--color-light);
+        font-size: 22px;
+        line-height: 1.2;
+        font-weight: 900;
+    }
+
+    .contact-card p,
+    .contact-form-copy p,
+    .contact-tips p {
+        margin: 10px 0 0;
+        color: var(--color-muted);
+        line-height: 1.65;
+        font-size: 14px;
+    }
+
+    .contact-link {
+        margin-top: auto;
+        color: var(--color-primary);
+        font-size: 13px;
+        font-weight: 800;
+        line-height: 1.45;
+        text-decoration: none;
+        word-break: break-word;
+    }
+
+    .contact-link:hover {
+        text-decoration: underline;
+    }
+
+    .contact-link.is-muted {
+        color: var(--color-muted);
+        text-decoration: none;
+    }
+
+    .contact-form-card {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        gap: 26px;
+        align-items: start;
+        margin-top: 18px;
+        padding: clamp(22px, 4vw, 36px);
+        border-radius: 28px;
+    }
+
+    .contact-form-copy {
+        display: grid;
+        gap: 16px;
+        padding-top: 4px;
+    }
+
+    .contact-form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .contact-honey {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .contact-form label {
+        display: grid;
+        gap: 8px;
+        color: var(--color-light);
+        font-size: 13px;
+        font-weight: 800;
+    }
+
+    .contact-form label.full {
+        grid-column: 1 / -1;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+        width: 100%;
+        border: 1px solid
+            color-mix(in srgb, var(--color-neutral-600) 34%, transparent);
+        border-radius: 16px;
+        background: color-mix(in srgb, var(--сolor-dark) 78%, transparent);
+        color: var(--color-light);
+        padding: 13px 14px;
+        outline: none;
+    }
+
+    .contact-form textarea {
+        resize: vertical;
+        min-height: 150px;
+    }
+
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 4px
+            color-mix(in srgb, var(--color-primary) 14%, transparent);
+    }
+
+    .contact-form button {
+        width: fit-content;
+    }
+
+    .contact-form-status {
+        align-self: center;
+        min-height: 24px;
+        margin: 0;
+        color: var(--color-muted);
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.45;
+    }
+
+    .contact-form-status.is-success {
+        color: var(--color-success);
+    }
+
+    .contact-form-status.is-error {
+        color: var(--color-warning);
+    }
+
+    .contact-tips {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 24px;
+        align-items: center;
+        margin-top: 18px;
+        padding: clamp(22px, 4vw, 34px);
+        border-radius: 28px;
+    }
+
+    .contact-tip-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .contact-tip-grid span {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        padding: 10px 12px;
+        border: 1px solid
+            color-mix(in srgb, var(--color-primary) 18%, transparent);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+        color: var(--color-light);
+        font-size: 13px;
+        font-weight: 800;
+    }
+
+    @media (max-width: 980px) {
+        .contact-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .contact-form-card,
+        .contact-tips {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 620px) {
+        .contact-page {
+            padding: 46px 14px 72px;
+        }
+
+        .contact-grid,
+        .contact-form,
+        .contact-tip-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .contact-card {
+            min-height: auto;
+        }
+
+        .contact-form button {
+            width: 100%;
+        }
+    }
+</style>
+
+<script is:inline define:vars={{ supportEmail }}>
+    (function () {
+        var form = document.getElementById('contactForm');
+        if (!form) return;
+        var status = document.getElementById('contactFormStatus');
+        var submit = form.querySelector('button[type="submit"]');
+
+        function setStatus(message, type) {
+            if (!status) return;
+            status.textContent = message || '';
+            status.classList.toggle('is-success', type === 'success');
+            status.classList.toggle('is-error', type === 'error');
+        }
+
+        function buildMailto(topic, reply, message) {
+            var body = [
+                reply ? 'Reply email: ' + reply : '',
+                '',
+                message || 'Describe the issue or question here.',
+                '',
+                'Useful details:',
+                '- njX UI version:',
+                '- Browser / device:',
+                '- CDN or npm:',
+                '- Reproduction link:',
+            ].join('\n');
+            return (
+                'mailto:' +
+                supportEmail +
+                '?subject=' +
+                encodeURIComponent('njX UI — ' + topic) +
+                '&body=' +
+                encodeURIComponent(body)
+            );
+        }
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var topic = document.getElementById('contactTopic').value;
+            var reply = document.getElementById('contactReply').value.trim();
+            var message = document
+                .getElementById('contactMessage')
+                .value.trim();
+            var company = document
+                .getElementById('contactCompany')
+                .value.trim();
+            var mailto = buildMailto(topic, reply, message);
+
+            if (!message) {
+                setStatus('Please add a short message first.', 'error');
+                return;
+            }
+
+            if (submit) submit.disabled = true;
+            setStatus('Sending...', '');
+
+            fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    topic: topic,
+                    replyEmail: reply,
+                    message: message,
+                    company: company,
+                }),
+            })
+                .then(function (response) {
+                    return response
+                        .json()
+                        .catch(function () {
+                            return { ok: false };
+                        })
+                        .then(function (data) {
+                            if (!response.ok || !data.ok) {
+                                throw new Error(data.error || 'Send failed');
+                            }
+                            return data;
+                        });
+                })
+                .then(function () {
+                    setStatus('Message sent. Thank you.', 'success');
+                    form.reset();
+                })
+                .catch(function () {
+                    setStatus(
+                        'Email service unavailable. Opening your mail app...',
+                        'error',
+                    );
+                    window.location.href = mailto;
+                })
+                .finally(function () {
+                    if (submit) submit.disabled = false;
+                });
+        });
+    })();
+</script>

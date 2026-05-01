@@ -2136,7 +2136,7 @@
   gap: 24px;
   flex-shrink: 0;
   background: color-mix(in srgb, var(--сolor-dark) 70%, var(--color-dark-secondary));
-  margin-left: 230px;
+  margin-left: 250px;
 }
 
 .lib-footer-logo {

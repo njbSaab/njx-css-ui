@@ -6,6 +6,7 @@ interface Props {
         | 'quickstart'
         | 'overview'
         | 'donate'
+        | 'contact'
         | 'classless';
 }
 const { activePage } = Astro.props;
@@ -38,6 +39,10 @@ const base = import.meta.env.BASE_URL;
         <a
             href={`${base}donate`}
             class={activePage === 'donate' ? 'active' : ''}>Donate</a
+        >
+        <a
+            href={`${base}contact`}
+            class={activePage === 'contact' ? 'active' : ''}>Contact</a
         >
         <a href="https://github.com/njbSaab/njx-css-ui" target="_blank"
             >GitHub</a
