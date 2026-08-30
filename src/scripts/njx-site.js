@@ -48,6 +48,37 @@
      *   toast       текст success-тоста (через showToast из njx.js)
      *   track       имя GA-события (через njxTrack) + trackParams
      */
+    /**
+     * Scroll-spy: подсвечивает пункт навигации (класс .active), чья секция
+     * сейчас в зоне видимости. ВАЖНО: один вызов на страницу для одного
+     * набора ссылок — два обсервера на тех же ссылках дерутся за active
+     * (так было на classless-странице до дедупликации).
+     * @returns {IntersectionObserver|null}
+     */
+    window.njxScrollSpy = function (linkSel, sectionSel, rootMargin) {
+        var links = document.querySelectorAll(linkSel);
+        if (!links.length) return null;
+        var observer = new IntersectionObserver(
+            function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    var id = entry.target.id;
+                    links.forEach(function (a) {
+                        a.classList.toggle(
+                            'active',
+                            a.getAttribute('href') === '#' + id
+                        );
+                    });
+                });
+            },
+            { rootMargin: rootMargin || '-20% 0px -70% 0px' }
+        );
+        document.querySelectorAll(sectionSel).forEach(function (s) {
+            observer.observe(s);
+        });
+        return observer;
+    };
+
     window.njxCopyBtn = function (btn, text, opts) {
         opts = opts || {};
         if (opts.track && window.njxTrack) {

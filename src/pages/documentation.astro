@@ -5209,26 +5209,12 @@ const base = import.meta.env.BASE_URL;
         });
     }
 
-    // ── SIDEBAR ACTIVE ON SCROLL ──
-    const sections = document.querySelectorAll('.doc-section');
-    const sideLinks = document.querySelectorAll('.lib-sidebar a[href^="#"]');
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((e) => {
-                if (e.isIntersecting) {
-                    const id = e.target.id;
-                    sideLinks.forEach((l) =>
-                        l.classList.toggle(
-                            'active',
-                            l.getAttribute('href') === '#' + id,
-                        ),
-                    );
-                }
-            });
-        },
-        { rootMargin: '-60px 0px -55% 0px' },
+    // ── SIDEBAR ACTIVE ON SCROLL ── (njxScrollSpy — из njx-site.js)
+    njxScrollSpy(
+        '.lib-sidebar a[href^="#"]',
+        '.doc-section',
+        '-60px 0px -55% 0px',
     );
-    sections.forEach((s) => observer.observe(s));
 
     // ── FLAVOR SYNC ──
     var MODE_HINTS = {

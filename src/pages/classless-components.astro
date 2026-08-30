@@ -1250,28 +1250,9 @@ import Loading from '../components/classless-sections/Loading.astro';
             });
         })();
 
-        // ── Sidebar active section ──
-        const sidebarLinks = document.querySelectorAll(
-            '.lib-sidebar a[href^="#"]',
-        );
-        const sectionObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((e) => {
-                    if (e.isIntersecting) {
-                        sidebarLinks.forEach((a) =>
-                            a.classList.toggle(
-                                'active',
-                                a.getAttribute('href') === '#' + e.target.id,
-                            ),
-                        );
-                    }
-                });
-            },
-            { rootMargin: '-15% 0px -70% 0px' },
-        );
-        document
-            .querySelectorAll('.cl-section[id]')
-            .forEach((s) => sectionObserver.observe(s));
+        // Sidebar scroll-spy здесь НЕ нужен: секции имеют класс .lib-section,
+        // их уже ведёт initSidebarObserver из lib-docs.js (раньше тут была
+        // вторая копия — два обсервера дрались за active в сайдбаре)
 
         // Trigger lib-docs.js initialization
         document.dispatchEvent(new Event('components-loaded'));
