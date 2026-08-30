@@ -5202,14 +5202,10 @@ const base = import.meta.env.BASE_URL;
 
     // ── COPY ──
     function copyBlock(id, btn) {
-        const text = document.getElementById(id).innerText;
-        navigator.clipboard.writeText(text).then(() => {
-            btn.textContent = 'Copied!';
-            btn.style.color = '#98c379';
-            setTimeout(() => {
-                btn.textContent = 'Copy';
-                btn.style.color = '';
-            }, 2000);
+        njxCopyBtn(btn, document.getElementById(id).innerText, {
+            ms: 2000,
+            onDone: (b) => (b.style.color = '#98c379'),
+            onRestore: (b) => (b.style.color = ''),
         });
     }
 

@@ -942,23 +942,6 @@ import '../../styles/lib-docs-demo-scoped.css';
     },
   };
 
-  function writeClipboard(text) {
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text);
-    }
-
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    textarea.setAttribute('readonly', '');
-    textarea.style.position = 'fixed';
-    textarea.style.left = '-9999px';
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand('copy');
-    textarea.remove();
-    return Promise.resolve();
-  }
-
   function initComponentExplorer(root) {
     if (root.dataset.demoCeReady === 'true') return;
     root.dataset.demoCeReady = 'true';
@@ -1080,12 +1063,7 @@ import '../../styles/lib-docs-demo-scoped.css';
     if (copy) {
       copy.addEventListener('click', () => {
         const text = code ? code.textContent || '' : '';
-        writeClipboard(text).then(() => {
-          copy.textContent = 'Copied!';
-          window.setTimeout(() => {
-            copy.textContent = 'Copy';
-          }, 1800);
-        });
+        njxCopyBtn(copy, text);
       });
     }
 

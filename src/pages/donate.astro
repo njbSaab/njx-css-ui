@@ -596,15 +596,16 @@ const base = import.meta.env.BASE_URL;
 <script is:inline>
     function copyAddr(id, btn) {
         const text = document.getElementById(id).innerText.replace(/\s/g, '');
-        navigator.clipboard.writeText(text).then(() => {
-            btn.textContent = 'Copied!';
-            btn.style.background = 'var(--color-primary)';
-            btn.style.color = '#fff';
-            setTimeout(() => {
-                btn.textContent = 'Copy';
-                btn.style.background = '';
-                btn.style.color = '';
-            }, 2500);
+        njxCopyBtn(btn, text, {
+            ms: 2500,
+            onDone: (b) => {
+                b.style.background = 'var(--color-primary)';
+                b.style.color = '#fff';
+            },
+            onRestore: (b) => {
+                b.style.background = '';
+                b.style.color = '';
+            },
         });
     }
 </script>

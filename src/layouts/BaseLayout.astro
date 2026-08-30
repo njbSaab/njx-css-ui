@@ -117,6 +117,10 @@ const ogImageURL = new URL('/img/og-image.png', Astro.site);
         <!-- njX JS (всегда — theme, tabs, modal, accordion, toast) -->
         <script is:inline src={`${import.meta.env.BASE_URL}js/njx.js`}></script>
 
+        <!-- Общие утилиты сайта: njxCopy/njxCopyBtn и т.п. (не дистрибутив) -->
+        <script is:inline src={`${import.meta.env.BASE_URL}scripts/njx-site.js`}
+        ></script>
+
         <!-- Аналитика сайта поверх njx.js (сам njx.js — дистрибутив, его не трогаем) -->
         <script is:inline>
             (function () {

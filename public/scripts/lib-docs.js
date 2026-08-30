@@ -354,25 +354,17 @@ function initCodeToggles() {
 
     copyBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      window.njxTrack && njxTrack('copy_code', { copy_type: 'code_block' });
-      navigator.clipboard.writeText(getRawCode(code)).then(() => {
-        copyBtn.classList.add('copied');
-        copyBtn.innerHTML = `
+      njxCopyBtn(copyBtn, getRawCode(code), {
+        done: `
           <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor">
             <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/>
           </svg>
-          Copied!`;
-        showToast('Code copied', 'success');
-        setTimeout(() => {
-          copyBtn.classList.remove('copied');
-          copyBtn.innerHTML = `
-            <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor">
-              <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/>
-              <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/>
-            </svg>
-            Copy`;
-        }, 1800);
-      }).catch(() => showToast('Copy failed', 'error'));
+          Copied!`,
+        doneClass: 'copied',
+        toast: 'Code copied',
+        track: 'copy_code',
+        trackParams: { copy_type: 'code_block' },
+      });
     });
 
     header.appendChild(copyBtn);
@@ -472,17 +464,20 @@ function renderUtils(filter) {
       chip.onmouseover = () => { chip.style.borderColor = 'var(--color-primary)'; chip.style.color = 'var(--color-primary)'; };
       chip.onmouseout = () => { chip.style.borderColor = 'var(--lib-inp-brd)'; chip.style.color = 'var(--color-light)'; };
       chip.onclick = () => {
-        navigator.clipboard.writeText(cls).catch(() => {});
-        chip.style.background = 'var(--color-primary)';
-        chip.style.color = '#000';
-        chip.style.borderColor = 'var(--color-primary)';
-        chip.textContent = '✓ ' + cls;
-        setTimeout(() => {
-          chip.style.background = 'var(--lib-inp-bg)';
-          chip.style.color = 'var(--color-light)';
-          chip.style.borderColor = 'var(--lib-inp-brd)';
-          chip.textContent = '.' + cls;
-        }, 700);
+        njxCopyBtn(chip, cls, {
+          done: '✓ ' + cls,
+          ms: 700,
+          onDone: (c) => {
+            c.style.background = 'var(--color-primary)';
+            c.style.color = '#000';
+            c.style.borderColor = 'var(--color-primary)';
+          },
+          onRestore: (c) => {
+            c.style.background = 'var(--lib-inp-bg)';
+            c.style.color = 'var(--color-light)';
+            c.style.borderColor = 'var(--lib-inp-brd)';
+          },
+        });
       };
       grid.appendChild(chip);
     });
@@ -702,15 +697,11 @@ function initInlineCodeCopy() {
     el.title = 'Click to copy';
 
     el.addEventListener('click', () => {
-      const text = el.textContent.trim();
-      navigator.clipboard.writeText(text).catch(() => {});
-      el.classList.add('lib-code-inline--copied');
-      const prev = el.textContent;
-      el.textContent = '✓ copied';
-      setTimeout(() => {
-        el.textContent = prev;
-        el.classList.remove('lib-code-inline--copied');
-      }, 1200);
+      njxCopyBtn(el, el.textContent.trim(), {
+        done: '✓ copied',
+        doneClass: 'lib-code-inline--copied',
+        ms: 1200,
+      });
     });
   });
 }
@@ -873,7 +864,6 @@ function initItemCopy() {
   let currentEl = null;
   let hideTimer = null;
   let showTimer = null;
-  let resetTimer = null;
 
   function positionChip(el) {
     const rect = el.getBoundingClientRect();
@@ -938,17 +928,14 @@ function initItemCopy() {
     cleanNode(clone);
     const html = clone.outerHTML;
 
-    window.njxTrack && njxTrack('copy_code', { copy_type: 'element' });
-    navigator.clipboard.writeText(html).then(() => {
-      chip.innerHTML = CHECK_SVG;
-      chip.classList.add('copied');
-      showToast('Element copied', 'success');
-      clearTimeout(resetTimer);
-      resetTimer = setTimeout(() => {
-        chip.innerHTML = COPY_SVG;
-        chip.classList.remove('copied');
-      }, 1600);
-    }).catch(() => showToast('Copy failed', 'error'));
+    njxCopyBtn(chip, html, {
+      done: CHECK_SVG,
+      doneClass: 'copied',
+      toast: 'Element copied',
+      ms: 1600,
+      track: 'copy_code',
+      trackParams: { copy_type: 'element' },
+    });
   });
 }
 

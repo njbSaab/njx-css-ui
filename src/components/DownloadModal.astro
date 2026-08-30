@@ -589,14 +589,12 @@ import {
     window.njxCopyCdn = function (btn, codeId) {
         var code = document.getElementById(codeId || 'njx-def-cdn-code');
         var text = code ? (code.dataset.copyValue || code.textContent) : '';
-        window.njxTrack && njxTrack('copy_cdn', { code_id: codeId || 'njx-def-cdn-code' });
-        navigator.clipboard.writeText(text).then(function () {
-            btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 15 4 10"/></svg> Copied!';
-            btn.style.color = 'var(--color-primary)';
-            setTimeout(function () {
-                btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy';
-                btn.style.color = '';
-            }, 1800);
+        njxCopyBtn(btn, text, {
+            done: '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 15 4 10"/></svg> Copied!',
+            track: 'copy_cdn',
+            trackParams: { code_id: codeId || 'njx-def-cdn-code' },
+            onDone: function (b) { b.style.color = 'var(--color-primary)'; },
+            onRestore: function (b) { b.style.color = ''; }
         });
     };
 })();

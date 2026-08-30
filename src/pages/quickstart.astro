@@ -1968,12 +1968,9 @@ const base = import.meta.env.BASE_URL;
 
 <!-- ══════════════════════ PAGE JS ══════════════════════ -->
 <script is:inline>
-  // ── Shared copy helper for this page ──
+  // ── Shared copy helper for this page (njxCopyBtn — из njx-site.js) ──
   function qsCopy(text, btn) {
-    if (navigator.clipboard) navigator.clipboard.writeText(text);
-    btn.textContent = 'Copied!';
-    var self = btn;
-    setTimeout(function () { self.textContent = 'Copy'; }, 1500);
+    njxCopyBtn(btn, text, { ms: 1500 });
   }
 
   function initQsNew() {
