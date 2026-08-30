@@ -212,10 +212,7 @@ const base = import.meta.env.BASE_URL;
 <script is:inline>
   // ── Global theme setter (called by topbar dots) ──
   function setTheme(dot, theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    try {
-      localStorage.setItem('njx-theme', theme);
-    } catch (e) {}
+    njxSetTheme(theme);
     document.querySelectorAll('.sc-theme-dot').forEach(function (d) {
       d.classList.toggle('active', d.dataset.t === theme);
     });

@@ -29,47 +29,16 @@ import Loading from '../components/classless-sections/Loading.astro';
 ---
 
 <BaseLayout
-    title="njX UI — Lightweight CSS Component Library (30+ components, 9 themes, 308 KB)"
-    description="njX UI is a lightweight, dependency-free CSS component library."
+    title="Classless CSS Components — njX UI · Style Plain Semantic HTML, Zero Classes"
+    description="20+ classless CSS components from njX UI: style plain semantic HTML — buttons, forms, tables, dialogs — with zero classes and zero dependencies. 47 KB."
     withDocsCss={true}
     withDocsScripts={true}
 >
     <!-- Слот head: page-specific мета -->
     <Fragment slot="head">
-        <link rel="canonical" href="https://njxui.dev/" />
-        <meta name="keywords" content="css component library, ..." />
+        <meta name="keywords" content="classless css, semantic html styling, css component library" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="njX UI" />
-
-        <meta property="og:type" content="website" />
-        <meta
-            property="og:title"
-            content="njX UI — Lightweight CSS Component Library"
-        />
-        <meta
-            property="og:description"
-            content="30+modern CSS components, 9 themes, zero dependencies."
-        />
-        <meta
-            property="og:image"
-            content="https://njxui.dev/img/og-image.png"
-        />
-        <meta property="og:url" content="https://njxui.dev/" />
-        <meta property="og:site_name" content="njX UI" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-            name="twitter:title"
-            content="njX UI — Lightweight CSS Component Library"
-        />
-        <meta
-            name="twitter:description"
-            content="30+ components • 9 themes • 308 KB • Zero dependencies"
-        />
-        <meta
-            name="twitter:image"
-            content="https://njxui.dev/img/og-image.png"
-        />
 
         <!-- classless-components page: section + component card UI styles -->
         <style is:global>
@@ -1082,7 +1051,7 @@ import Loading from '../components/classless-sections/Loading.astro';
 
     <script
         is:inline
-        src="https://cdn.jsdelivr.net/npm/jszip@1.1.3/dist/jszip.min.js"
+        src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"
     ></script>
 
     <LibsFooter activePage="classless" />
@@ -1107,8 +1076,7 @@ import Loading from '../components/classless-sections/Loading.astro';
         document.querySelectorAll('.theme-card[data-theme]').forEach((card) =>
             card.addEventListener('click', () => {
                 const theme = card.dataset.theme;
-                document.documentElement.setAttribute('data-theme', theme);
-                localStorage.setItem('njx-theme', theme);
+                njxSetTheme(theme);
                 syncThemeCards(theme);
                 document
                     .querySelectorAll('.lib-theme-pill')

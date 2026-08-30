@@ -1,0 +1,233 @@
+<section class="lib-section" id="page-cards">
+    <div class="lib-section-title">▣ Page Cards</div>
+    <div class="lib-section-desc">
+        Full page card sections for features, blog grids, case studies and
+        product galleries.
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Feature Cards Page</div>
+        <div class="lib-preview page-cards-preview">
+            <section class="pc-page">
+                <div class="pc-head">
+                    <span class="tag tag-primary">Feature grid</span>
+                    <h2 class="title-lg">Everything a launch page needs.</h2>
+                    <p class="text-muted">
+                        A full-width cards section with hierarchy, CTA and
+                        reusable card styles.
+                    </p>
+                </div>
+                <div class="pc-grid">
+                    <article class="card-aura card-aura-primary pc-card">
+                        <span class="pc-icon">01</span>
+                        <h3>Hero blocks</h3>
+                        <p>Strong first screens with CTA and proof points.</p>
+                        <a class="link" href="#">Explore →</a>
+                    </article>
+                    <article class="card-aura card-aura-aurora pc-card">
+                        <span class="pc-icon">02</span>
+                        <h3>Cards</h3>
+                        <p>Feature, pricing, dashboard and content cards.</p>
+                        <a class="link" href="#">Explore →</a>
+                    </article>
+                    <article class="card-aura card-aura-gold pc-card">
+                        <span class="pc-icon">03</span>
+                        <h3>Forms</h3>
+                        <p>Inputs, contact blocks and newsletter capture.</p>
+                        <a class="link" href="#">Explore →</a>
+                    </article>
+                </div>
+            </section>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <span class="tag tag-primary">Feature grid</span>
+      <h2 class="title-lg mt-3">Everything a launch page needs.</h2>
+      <p class="text-muted">A full-width cards section with hierarchy and CTA.</p>
+    </div>
+    <div class="grid grid-3 gap-5 mt-8">
+      <article class="card-aura card-aura-primary p-5">...</article>
+      <article class="card-aura card-aura-aurora p-5">...</article>
+      <article class="card-aura card-aura-gold p-5">...</article>
+    </div>
+  </div>
+</section>'
+                >
+                    <span class="c">&lt;!-- Ready page cards block --&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Article / Showcase Cards Page</div>
+        <div class="lib-preview page-cards-preview">
+            <section class="pc-page">
+                <div class="pc-layout">
+                    <aside class="card-gradient pc-sidebar">
+                        <span class="tag">Showcase</span>
+                        <h2>Ready stories for docs and blogs.</h2>
+                        <p>Use this when you need a page of examples, changelog
+                            posts or release notes.</p>
+                    </aside>
+                    <div class="pc-list">
+                        <article class="card-glass pc-row">
+                            <span class="tag tag-success">Guide</span>
+                            <strong>Build a landing page in 30 minutes</strong>
+                            <a class="link" href="#">Read →</a>
+                        </article>
+                        <article class="card-glass pc-row">
+                            <span class="tag tag-accent">Demo</span>
+                            <strong>Classless CSS without component classes</strong>
+                            <a class="link" href="#">Open →</a>
+                        </article>
+                        <article class="card-glass pc-row">
+                            <span class="tag tag-primary">Release</span>
+                            <strong>New gradient, cards and CTA sections</strong>
+                            <a class="link" href="#">Details →</a>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<section class="section">
+  <div class="container grid grid-2 gap-6">
+    <aside class="card-gradient p-6">...</aside>
+    <div class="grid gap-4">
+      <article class="card-glass p-4">...</article>
+      <article class="card-glass p-4">...</article>
+      <article class="card-glass p-4">...</article>
+    </div>
+  </div>
+</section>'
+                >
+                    <span class="c">&lt;!-- Ready article cards page --&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .page-cards-preview {
+        display: block;
+        padding: 0;
+        overflow: hidden;
+        background: var(--сolor-dark);
+    }
+
+    .pc-page {
+        min-height: 430px;
+        padding: clamp(24px, 5vw, 44px);
+    }
+
+    .pc-head {
+        max-width: 720px;
+        margin-inline: auto;
+        text-align: center;
+    }
+
+    .pc-head h2 {
+        margin: 14px 0 10px;
+    }
+
+    .pc-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 28px;
+    }
+
+    .pc-card {
+        display: grid;
+        gap: 12px;
+        min-height: 230px;
+        padding: 22px;
+        border-radius: var(--radius-lg);
+    }
+
+    .pc-card h3,
+    .pc-card p {
+        margin: 0;
+    }
+
+    .pc-card p {
+        color: var(--color-muted);
+        line-height: 1.6;
+    }
+
+    .pc-icon {
+        width: 38px;
+        height: 38px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+        color: var(--color-primary);
+        font-weight: 900;
+    }
+
+    .pc-layout {
+        display: grid;
+        grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.18fr);
+        gap: 18px;
+        align-items: stretch;
+    }
+
+    .pc-sidebar,
+    .pc-row {
+        border-radius: var(--radius-lg);
+    }
+
+    .pc-sidebar {
+        display: grid;
+        align-content: end;
+        gap: 14px;
+        min-height: 330px;
+        padding: 26px;
+    }
+
+    .pc-sidebar h2,
+    .pc-sidebar p {
+        margin: 0;
+    }
+
+    .pc-sidebar p {
+        color: color-mix(in srgb, #fff 72%, transparent);
+        line-height: 1.6;
+    }
+
+    .pc-list {
+        display: grid;
+        gap: 12px;
+    }
+
+    .pc-row {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 14px;
+        align-items: center;
+        padding: 18px;
+    }
+
+    @media (max-width: 850px) {
+        .pc-grid,
+        .pc-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .pc-row {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

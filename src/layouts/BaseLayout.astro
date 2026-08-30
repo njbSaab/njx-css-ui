@@ -14,6 +14,9 @@ const {
     withDocsCss = false,
     withDocsScripts = false,
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL('/img/og-image.png', Astro.site);
 ---
 
 <!doctype html>
@@ -98,11 +101,50 @@ const {
                 dataLayer.push(arguments);
             }
             gtag('js', new Date());
+            // page_view при навигации через View Transitions ловит сам GA4:
+            // enhanced measurement «Page changes based on browser history events»
+            // (включено по умолчанию) реагирует на pushState Astro ClientRouter.
+            // Вручную page_view не шлём — иначе задвоится.
             gtag('config', 'G-969JS8G6QK');
+            // Общий помощник для кастомных событий (copy_cdn, github_click, …)
+            window.njxTrack = function (name, params) {
+                try {
+                    gtag('event', name, params || {});
+                } catch (e) {}
+            };
         </script>
 
         <!-- njX JS (всегда — theme, tabs, modal, accordion, toast) -->
         <script is:inline src={`${import.meta.env.BASE_URL}js/njx.js`}></script>
+
+        <!-- Аналитика сайта поверх njx.js (сам njx.js — дистрибутив, его не трогаем) -->
+        <script is:inline>
+            (function () {
+                // theme_change: оборачиваем njxSetTheme
+                var origSetTheme = window.njxSetTheme;
+                if (origSetTheme) {
+                    window.njxSetTheme = function (t) {
+                        origSetTheme(t);
+                        window.njxTrack && njxTrack('theme_change', { theme: t });
+                    };
+                }
+                // github_click / donate_click: делегирование на все внешние ссылки
+                document.addEventListener(
+                    'click',
+                    function (e) {
+                        var a = e.target.closest && e.target.closest('a[href]');
+                        if (!a || !window.njxTrack) return;
+                        var href = a.href || '';
+                        if (href.indexOf('github.com/njbSaab') !== -1) {
+                            njxTrack('github_click', { link_url: href });
+                        } else if (href.indexOf('ko-fi.com') !== -1) {
+                            njxTrack('donate_click', { link_url: href });
+                        }
+                    },
+                    true
+                );
+            })();
+        </script>
 
         <!-- Docs scripts — только для страниц с docs-компонентами -->
         {
@@ -125,7 +167,20 @@ const {
         <title>{title}</title>
         <meta name="description" content={description} />
 
-        <!-- Слот для page-level вещей: og:, twitter:, inline <style>, JSON-LD -->
+        <!-- SEO: canonical + OG/Twitter для всех страниц (из props title/description) -->
+        <link rel="canonical" href={canonicalURL} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="njX UI" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:image" content={ogImageURL} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImageURL} />
+
+        <!-- Слот для page-level вещей: inline <style>, JSON-LD -->
         <slot name="head" />
     </head>
     <body>

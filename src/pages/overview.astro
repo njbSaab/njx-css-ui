@@ -9,8 +9,8 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
-  title="njX UI — 308 KB CSS library. 9 themes. Zero dependencies."
-  description="A modern CSS component library — 308 KB, zero dependencies, zero build step. Switch the entire UI theme with a single HTML attribute."
+  title="Overview — njX UI · Theme Playground: 9 Themes, One HTML Attribute"
+  description="See njX UI in action: an interactive playground where one HTML attribute re-tints every component across 9 themes. 44 KB gzipped, zero dependencies, zero build step."
 >
   <!-- ══ NAV ══ -->
   <PagesTopbar activePage="overview" />
@@ -31,9 +31,9 @@ const base = import.meta.env.BASE_URL;
             <span class="dim">Zero&nbsp;build.</span>
           </h1>
           <p class="sub">
-            A 40&nbsp;KB CSS library that flips themes with one HTML attribute.
-            Every demo on this page is live — change the theme and watch every
-            component re-tint instantly.
+            A CSS library — 44&nbsp;KB gzipped over the wire — that flips
+            themes with one HTML attribute. Every demo on this page is live —
+            change the theme and watch every component re-tint instantly.
           </p>
           <div class="hero-cta">
             <a href={`${base}quickstart`} class="btn-pill primary"
@@ -1247,16 +1247,24 @@ const base = import.meta.env.BASE_URL;
 
 <!-- ══════════════════════ PAGE JS ══════════════════════ -->
 <script is:inline>
-  (function initOvNew() {
+  var OV_THEMES = [
+    ['dark', '#14a0ff'], ['light', '#94a3b8'], ['red', '#f43f5e'],
+    ['blue', '#3b82f6'], ['green', '#22c55e'], ['cyan', '#00e5ff'],
+    ['yellow', '#facc15'], ['pink', '#ec4899'], ['purple', '#a855f7'],
+  ];
+  var OV_PG_MODES = {
+    auth: '<div class="pg-card full"><div class="t">Sign in</div><div class="x">Welcome back. Two-factor enabled.</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><input class="inp inp-sm" placeholder="email@team.dev" style="font-size:12px"><input class="inp inp-sm" placeholder="••••••••" type="password" style="font-size:12px"><button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;margin-top:4px">Continue</button></div></div><div class="pg-card"><div class="t">SSO</div><button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-top:6px">Google</button><button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-top:6px">GitHub</button></div><div class="pg-card"><div class="t">Status</div><div class="pg-tags"><span class="tag tag-primary">primary</span><span class="tag tag-success">live</span><span class="badge badge-error">3</span></div></div>',
+    dash: '<div class="pg-card full"><div class="t">Revenue · 7d</div><div class="x">+12.4% vs last week</div><div class="pg-progress"><div style="width:72%"></div></div><div class="pg-progress" style="margin-top:6px"><div style="width:48%"></div></div><div class="pg-progress" style="margin-top:6px"><div style="width:88%"></div></div></div><div class="pg-card"><div class="t">Users</div><div style="font-family:Poppins,sans-serif;font-size:24px;font-weight:900;color:var(--color-light);margin-top:4px">12,401</div><span class="tag tag-success" style="font-size:10px;margin-top:4px;display:inline-block">+4.2%</span></div><div class="pg-card"><div class="t">Errors</div><div style="font-family:Poppins,sans-serif;font-size:24px;font-weight:900;color:var(--color-light);margin-top:4px">0</div><span class="tag tag-primary" style="font-size:10px;margin-top:4px;display:inline-block">healthy</span></div>',
+    form: '<div class="pg-card full"><div class="t">New project</div><div class="x">Set the basics, you can change anything later.</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><input class="inp inp-sm" placeholder="Project name" style="font-size:12px"><input class="inp inp-sm" placeholder="Slug · auto" style="font-size:12px"><div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap"><span class="tag tag-primary">web</span><span class="tag tag-filled-primary">api</span></div><div style="display:flex;gap:6px;margin-top:6px"><button class="btn btn-ghost btn-sm" style="flex:1;justify-content:center">Cancel</button><button class="btn btn-primary btn-sm" style="flex:1;justify-content:center">Create</button></div></div></div>',
+  };
+
+  function initOvNew() {
     var tsw = document.getElementById('ov-tswatches');
     if (!tsw) return;
 
     // ── Central theme setter ──
     function ovnApplyTheme(t) {
-      document.documentElement.setAttribute('data-theme', t);
-      try {
-        localStorage.setItem('njx-theme', t);
-      } catch (e) {}
+      njxSetTheme(t);
       var a1 = document.getElementById('ov-attr');
       if (a1) a1.textContent = 'data-theme="' + t + '"';
       var a2 = document.getElementById('ov-attr2');
@@ -1269,142 +1277,44 @@ const base = import.meta.env.BASE_URL;
       });
     }
 
-    // ── Theme swatches ──
-    var OV_THEMES = [
-      ['dark', '#14a0ff'],
-      ['light', '#94a3b8'],
-      ['red', '#f43f5e'],
-      ['blue', '#3b82f6'],
-      ['green', '#22c55e'],
-      ['cyan', '#00e5ff'],
-      ['yellow', '#facc15'],
-      ['pink', '#ec4899'],
-      ['purple', '#a855f7'],
-    ];
+    // ── Theme swatches (build once per navigation) ──
+    if (tsw.children.length === 0) {
+      OV_THEMES.forEach(function (pair) {
+        var t = pair[0], c = pair[1];
+        var s = document.createElement('span');
+        s.style.background = c;
+        s.dataset.t = t;
+        s.title = t;
+        s.onclick = function () { ovnApplyTheme(t); };
+        tsw.appendChild(s);
+      });
+    }
+
+    // Sync to saved theme
     var curTheme = (function () {
-      try {
-        return localStorage.getItem('njx-theme') || 'dark';
-      } catch (e) {
-        return 'dark';
-      }
+      try { return localStorage.getItem('njx-theme') || 'dark'; } catch (e) { return 'dark'; }
     })();
+    ovnApplyTheme(curTheme);
 
-    OV_THEMES.forEach(function (pair) {
-      var t = pair[0],
-        c = pair[1];
-      var s = document.createElement('span');
-      s.className = 's' + (t === curTheme ? ' on' : '');
-      s.style.background = c;
-      s.dataset.t = t;
-      s.title = t;
-      s.onclick = function () {
-        ovnApplyTheme(t);
-      };
-      tsw.appendChild(s);
-    });
-
-    // Sync attr labels to current theme
-    var attrEl = document.getElementById('ov-attr');
-    if (attrEl) attrEl.textContent = 'data-theme="' + curTheme + '"';
-    var attrEl2 = document.getElementById('ov-attr2');
-    if (attrEl2) attrEl2.textContent = 'data-theme="' + curTheme + '"';
-
-    // Sync pills to current theme
+    // Sync pills
     document.querySelectorAll('.sc-tpill').forEach(function (p) {
-      p.classList.toggle('active', p.dataset.t === curTheme);
-      p.onclick = function () {
-        ovnApplyTheme(p.dataset.t);
-      };
+      p.onclick = function () { ovnApplyTheme(p.dataset.t); };
     });
 
     // ── Playground modes ──
-    var PG_MODES = {
-      auth: '<div class="pg-card full"><div class="t">Sign in</div><div class="x">Welcome back. Two-factor enabled.</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><input class="inp inp-sm" placeholder="email@team.dev" style="font-size:12px"><input class="inp inp-sm" placeholder="••••••••" type="password" style="font-size:12px"><button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;margin-top:4px">Continue</button></div></div><div class="pg-card"><div class="t">SSO</div><button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-top:6px">Google</button><button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-top:6px">GitHub</button></div><div class="pg-card"><div class="t">Status</div><div class="pg-tags"><span class="tag tag-primary">primary</span><span class="tag tag-success">live</span><span class="badge badge-error">3</span></div></div>',
-      dash: '<div class="pg-card full"><div class="t">Revenue · 7d</div><div class="x">+12.4% vs last week</div><div class="pg-progress"><div style="width:72%"></div></div><div class="pg-progress" style="margin-top:6px"><div style="width:48%"></div></div><div class="pg-progress" style="margin-top:6px"><div style="width:88%"></div></div></div><div class="pg-card"><div class="t">Users</div><div style="font-family:Poppins,sans-serif;font-size:24px;font-weight:900;color:var(--color-light);margin-top:4px">12,401</div><span class="tag tag-success" style="font-size:10px;margin-top:4px;display:inline-block">+4.2%</span></div><div class="pg-card"><div class="t">Errors</div><div style="font-family:Poppins,sans-serif;font-size:24px;font-weight:900;color:var(--color-light);margin-top:4px">0</div><span class="tag tag-primary" style="font-size:10px;margin-top:4px;display:inline-block">healthy</span></div>',
-      form: '<div class="pg-card full"><div class="t">New project</div><div class="x">Set the basics, you can change anything later.</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><input class="inp inp-sm" placeholder="Project name" style="font-size:12px"><input class="inp inp-sm" placeholder="Slug · auto" style="font-size:12px"><div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap"><span class="tag tag-primary">web</span><span class="tag tag-filled-primary">api</span></div><div style="display:flex;gap:6px;margin-top:6px"><button class="btn btn-ghost btn-sm" style="flex:1;justify-content:center">Cancel</button><button class="btn btn-primary btn-sm" style="flex:1;justify-content:center">Create</button></div></div></div>',
-    };
     function setMode(m) {
       var body = document.getElementById('ov-pgbody');
-      if (body) body.innerHTML = PG_MODES[m] || '';
+      if (body) body.innerHTML = OV_PG_MODES[m] || '';
       document.querySelectorAll('#ov-modeseg button').forEach(function (b) {
         b.classList.toggle('on', b.dataset.m === m);
       });
     }
     document.querySelectorAll('#ov-modeseg button').forEach(function (b) {
-      b.onclick = function () {
-        setMode(b.dataset.m);
-      };
+      b.onclick = function () { setMode(b.dataset.m); };
     });
     setMode('auth');
-  })();
+  }
 
-  document.addEventListener('astro:page-load', function () {
-    (function initOvNew() {
-      var tsw = document.getElementById('ov-tswatches');
-      if (!tsw || tsw.children.length > 0) return; // already populated
-
-      var OV_THEMES = [
-        ['dark', '#14a0ff'],
-        ['light', '#94a3b8'],
-        ['red', '#f43f5e'],
-        ['blue', '#3b82f6'],
-        ['green', '#22c55e'],
-        ['cyan', '#00e5ff'],
-        ['yellow', '#facc15'],
-        ['pink', '#ec4899'],
-        ['purple', '#a855f7'],
-      ];
-      var curTheme = (function () {
-        try {
-          return localStorage.getItem('njx-theme') || 'dark';
-        } catch (e) {
-          return 'dark';
-        }
-      })();
-
-      OV_THEMES.forEach(function (pair) {
-        var t = pair[0],
-          c = pair[1];
-        var s = document.createElement('span');
-        s.className = 's' + (t === curTheme ? ' on' : '');
-        s.style.background = c;
-        s.dataset.t = t;
-        s.title = t;
-        s.onclick = function () {
-          document.documentElement.setAttribute('data-theme', t);
-          try {
-            localStorage.setItem('njx-theme', t);
-          } catch (e) {}
-          var attrEl = document.getElementById('ov-attr');
-          if (attrEl) attrEl.textContent = 'data-theme="' + t + '"';
-          tsw.querySelectorAll('.s').forEach(function (el) {
-            el.classList.toggle('on', el.dataset.t === t);
-          });
-        };
-        tsw.appendChild(s);
-      });
-
-      var attrEl = document.getElementById('ov-attr');
-      if (attrEl) attrEl.textContent = 'data-theme="' + curTheme + '"';
-
-      var PG_MODES = {
-        auth: '<div class="pg-card full"><div class="t">Sign in</div><div class="x">Welcome back. Two-factor enabled.</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><input class="inp inp-sm" placeholder="email@team.dev" style="font-size:12px"><input class="inp inp-sm" placeholder="••••••••" type="password" style="font-size:12px"><button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;margin-top:4px">Continue</button></div></div><div class="pg-card"><div class="t">SSO</div><button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-top:6px">Google</button><button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-top:6px">GitHub</button></div><div class="pg-card"><div class="t">Status</div><div class="pg-tags"><span class="tag tag-primary">primary</span><span class="tag tag-success">live</span><span class="badge badge-error">3</span></div></div>',
-        dash: '<div class="pg-card full"><div class="t">Revenue · 7d</div><div class="x">+12.4% vs last week</div><div class="pg-progress"><div style="width:72%"></div></div><div class="pg-progress" style="margin-top:6px"><div style="width:48%"></div></div><div class="pg-progress" style="margin-top:6px"><div style="width:88%"></div></div></div><div class="pg-card"><div class="t">Users</div><div style="font-family:Poppins,sans-serif;font-size:24px;font-weight:900;color:var(--color-light);margin-top:4px">12,401</div><span class="tag tag-success" style="font-size:10px;margin-top:4px;display:inline-block">+4.2%</span></div><div class="pg-card"><div class="t">Errors</div><div style="font-family:Poppins,sans-serif;font-size:24px;font-weight:900;color:var(--color-light);margin-top:4px">0</div><span class="tag tag-primary" style="font-size:10px;margin-top:4px;display:inline-block">healthy</span></div>',
-        form: '<div class="pg-card full"><div class="t">New project</div><div class="x">Set the basics, you can change anything later.</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><input class="inp inp-sm" placeholder="Project name" style="font-size:12px"><input class="inp inp-sm" placeholder="Slug · auto" style="font-size:12px"><div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap"><span class="tag tag-primary">web</span><span class="tag tag-filled-primary">api</span></div><div style="display:flex;gap:6px;margin-top:6px"><button class="btn btn-ghost btn-sm" style="flex:1;justify-content:center">Cancel</button><button class="btn btn-primary btn-sm" style="flex:1;justify-content:center">Create</button></div></div></div>',
-      };
-      function setMode(m) {
-        var body = document.getElementById('ov-pgbody');
-        if (body) body.innerHTML = PG_MODES[m] || '';
-        document.querySelectorAll('#ov-modeseg button').forEach(function (b) {
-          b.classList.toggle('on', b.dataset.m === m);
-        });
-      }
-      document.querySelectorAll('#ov-modeseg button').forEach(function (b) {
-        b.onclick = function () {
-          setMode(b.dataset.m);
-        };
-      });
-      setMode('auth');
-    })();
-  });
+  initOvNew();
+  document.addEventListener('astro:page-load', initOvNew);
 </script>

@@ -1,0 +1,83 @@
+---
+interface Props {
+    code: string;
+    lang?: string;
+    filename?: string;
+    compact?: boolean;
+    class?: string;
+}
+
+const {
+    code,
+    lang = 'html',
+    filename,
+    compact = false,
+    class: className = '',
+} = Astro.props;
+
+const normalizedCode = code.trim();
+
+function escapeHtml(value: string) {
+    return value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
+
+function highlightHtml(value: string) {
+    const escaped = escapeHtml(value);
+
+    return escaped
+        .replace(/(&lt;!--[\s\S]*?--&gt;)/g, '<span class="c">$1</span>')
+        .replace(
+            /(&lt;\/?)([a-zA-Z][\w:-]*)([^&]*?)(&gt;)/g,
+            (_match, open, tag, attrs, close) => {
+                const highlightedAttrs = attrs.replace(
+                    /(\s)([a-zA-Z_:][\w:.-]*)(=)("[^"]*"|'[^']*'|[^\s]+)?/g,
+                    (_attrMatch, space, name, eq, attrValue = '') =>
+                        `${space}<span class="s">${name}</span>${eq}<span class="cn">${attrValue}</span>`,
+                );
+
+                return `<span class="k">${open}${tag}</span>${highlightedAttrs}<span class="k">${close}</span>`;
+            },
+        );
+}
+
+const highlightedCode = lang === 'html'
+    ? highlightHtml(normalizedCode)
+    : escapeHtml(normalizedCode);
+---
+
+<div
+    class={`lib-code-wrapper ${compact ? 'is-compact' : ''} ${className}`}
+    data-code-block
+>
+    <div class="lib-code-container">
+        <div
+            class="lib-code"
+            data-raw={normalizedCode}
+            data-code-filename={filename}
+        >
+            <pre class={`codeblock-pre language-${lang}`}><code set:html={highlightedCode} /></pre>
+        </div>
+    </div>
+</div>
+
+<style is:global>
+    .lib-code .codeblock-pre {
+        margin: 0;
+        padding: 0;
+        background: transparent !important;
+        border: 0;
+        white-space: pre;
+        overflow-x: auto;
+    }
+
+    .lib-code .codeblock-pre code {
+        display: block;
+        background: transparent;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+</style>

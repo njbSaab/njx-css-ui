@@ -1,0 +1,210 @@
+<section class="lib-section" id="hero-blocks">
+    <div class="lib-section-title">🚀 Hero Blocks</div>
+    <div class="lib-section-desc">
+        Ready hero sections built from <code>btn</code>, <code>tag</code>,
+        <code>card</code>, typography and layout utilities.
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Hero — Product Launch</div>
+        <div class="lib-preview ready-hero-preview">
+            <section class="rh rh-product">
+                <div class="rh-copy">
+                    <span class="tag tag-primary">Public beta</span>
+                    <h2 class="title-hero fluid">
+                        Build faster with <span class="text-gradient-primary">less CSS</span>
+                    </h2>
+                    <p class="text-lead text-muted">
+                        A polished first screen for SaaS, open-source projects
+                        and product launches.
+                    </p>
+                    <div class="rh-actions">
+                        <a class="btn btn-primary btn-lg" href="#">Start free</a>
+                        <a class="btn btn-outline btn-lg" href="#">View GitHub</a>
+                    </div>
+                </div>
+                <div class="card-gradient rh-panel">
+                    <span class="text-xs">npm install</span>
+                    <code>npm i njx-ui</code>
+                    <div class="rh-panel-grid">
+                        <span>9 themes</span>
+                        <span>0 deps</span>
+                        <span>308 KB</span>
+                        <span>CSS first</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<section class="section">
+  <div class="container grid grid-2 gap-8 items-center">
+    <div>
+      <span class="tag tag-primary">Public beta</span>
+      <h1 class="title-hero fluid mt-4">Build faster with less CSS</h1>
+      <p class="text-lead text-muted mt-4">A polished first screen for SaaS, open-source projects and product launches.</p>
+      <div class="flex gap-3 mt-6">
+        <a class="btn btn-primary btn-lg" href="#">Start free</a>
+        <a class="btn btn-outline btn-lg" href="#">View GitHub</a>
+      </div>
+    </div>
+    <div class="card-gradient p-6">npm i njx-ui</div>
+  </div>
+</section>'
+                >
+                    <span class="c">&lt;!-- Ready hero: product launch --&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Hero — Docs / Developer Tool</div>
+        <div class="lib-preview ready-hero-preview">
+            <section class="rh rh-docs">
+                <div class="rh-copy">
+                    <span class="tag tag-accent">Documentation</span>
+                    <h2 class="title-xl">Components developers can copy today.</h2>
+                    <p class="text-muted">
+                        A compact docs hero with search, shortcuts and a clear
+                        primary path.
+                    </p>
+                    <label class="rh-search">
+                        <span>Search</span>
+                        <input class="input" placeholder="buttons, cards, forms..." />
+                    </label>
+                </div>
+                <div class="rh-doc-grid">
+                    <a class="card-glass" href="#"><strong>Buttons</strong><span>50+ variants</span></a>
+                    <a class="card-glass" href="#"><strong>Cards</strong><span>30+ layouts</span></a>
+                    <a class="card-glass" href="#"><strong>Classless</strong><span>Semantic HTML</span></a>
+                </div>
+            </section>
+        </div>
+        <div class="lib-code-wrapper">
+            <div class="lib-code-container">
+                <div
+                    class="lib-code"
+                    data-raw='<section class="section">
+  <div class="container grid grid-2 gap-6 items-center">
+    <div>
+      <span class="tag tag-accent">Documentation</span>
+      <h1 class="title-xl mt-4">Components developers can copy today.</h1>
+      <p class="text-muted mt-3">A compact docs hero with search and shortcuts.</p>
+      <input class="input mt-5" placeholder="buttons, cards, forms...">
+    </div>
+    <div class="grid gap-3">
+      <a class="card-glass p-4" href="#">Buttons</a>
+      <a class="card-glass p-4" href="#">Cards</a>
+      <a class="card-glass p-4" href="#">Classless</a>
+    </div>
+  </div>
+</section>'
+                >
+                    <span class="c">&lt;!-- Ready hero: docs --&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .ready-hero-preview {
+        display: block;
+        padding: 0;
+        overflow: hidden;
+        background:
+            radial-gradient(circle at 12% 0, color-mix(in srgb, var(--color-primary) 18%, transparent), transparent 28rem),
+            radial-gradient(circle at 90% 18%, color-mix(in srgb, var(--color-accent) 12%, transparent), transparent 24rem),
+            var(--сolor-dark);
+    }
+
+    .rh {
+        min-height: 430px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+        gap: clamp(22px, 4vw, 42px);
+        align-items: center;
+        padding: clamp(26px, 5vw, 48px);
+    }
+
+    .rh h2 {
+        margin: 16px 0 0;
+        line-height: 0.96;
+    }
+
+    .rh p {
+        max-width: 620px;
+        margin: 18px 0 0;
+        line-height: 1.65;
+    }
+
+    .rh-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+    }
+
+    .rh-panel {
+        min-height: 260px;
+        display: grid;
+        align-content: end;
+        gap: 18px;
+        padding: 24px;
+        border-radius: var(--radius-lg);
+    }
+
+    .rh-panel code {
+        font-size: 24px;
+        color: #fff;
+    }
+
+    .rh-panel-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .rh-panel-grid span,
+    .rh-doc-grid a {
+        min-height: 52px;
+        display: grid;
+        align-content: center;
+        padding: 12px;
+        border-radius: var(--radius-md);
+        background: color-mix(in srgb, #fff 10%, transparent);
+    }
+
+    .rh-search {
+        display: grid;
+        gap: 8px;
+        margin-top: 22px;
+        max-width: 520px;
+        color: var(--color-light);
+        font-weight: 800;
+    }
+
+    .rh-doc-grid {
+        display: grid;
+        gap: 12px;
+    }
+
+    .rh-doc-grid a {
+        color: var(--color-light);
+        text-decoration: none;
+    }
+
+    .rh-doc-grid span {
+        color: var(--color-muted);
+        font-size: 13px;
+    }
+
+    @media (max-width: 820px) {
+        .rh {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

@@ -1,3 +1,17 @@
+---
+import CodeBlock from '../shared/CodeBlock.astro';
+
+const buttonVariantsCode = `
+<button>Default</button>
+<button data-variant="accent">Accent</button>
+<button data-variant="success">Success</button>
+<button data-variant="warning">Warning</button>
+<button data-variant="error">Error</button>
+<button data-variant="dark">Dark</button>
+<button data-variant="light">Light</button>
+`;
+---
+
 <section class="lib-section cl-section" id="buttons">
     <div class="lib-section-title">🔲 Buttons</div>
     <div class="lib-section-desc">
@@ -36,6 +50,22 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="lib-component">
+        <div class="lib-component-label">Variants — CodeBlock pilot</div>
+        <div class="lib-preview">
+            <article>
+                <button>Default</button>
+                <button data-variant="accent">Accent</button>
+                <button data-variant="success">Success</button>
+                <button data-variant="warning">Warning</button>
+                <button data-variant="error">Error</button>
+                <button data-variant="dark">Dark</button>
+                <button data-variant="light">Light</button>
+            </article>
+        </div>
+        <CodeBlock code={buttonVariantsCode} lang="html" />
     </div>
 
     <div class="lib-component">

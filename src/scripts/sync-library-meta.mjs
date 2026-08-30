@@ -38,9 +38,12 @@ const sizeLabel = {
   classless: `${classlessSize} KB`,
 };
 
+// ВАЖНО: заменяем версию только у нашего пакета — огульный /@\d+\.\d+\.\d+/
+// ломал сторонние CDN-ссылки (например, jszip@3.10.1 → jszip@1.1.4).
 const commonVersionReplacements = [
   [/v\d+\.\d+\.\d+/g, `v${version}`],
-  [/@\d+\.\d+\.\d+/g, `@${version}`],
+  [/njx-css-ui@\d+\.\d+\.\d+/g, `${meta.npmPackage}@${version}`],
+  [new RegExp(`${meta.npmPackage}@\\d+\\.\\d+\\.\\d+`, 'g'), `${meta.npmPackage}@${version}`],
 ];
 
 const commonSizeReplacements = [
@@ -57,10 +60,6 @@ const commonSizeReplacements = [
 const targets = [
   {
     file: 'README.md',
-    replacements: commonVersionReplacements,
-  },
-  {
-    file: 'src/lib/meta.ts',
     replacements: commonVersionReplacements,
   },
   {

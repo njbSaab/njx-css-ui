@@ -1,3 +1,13 @@
+---
+import {
+    SIZE_FULL,
+    SIZE_FULL_GZIP,
+    SIZE_CLASSLESS,
+    SIZE_CLASSLESS_SRC,
+    SIZE_JS,
+} from '../lib/meta';
+---
+
 <div
     id="njx-download-overlay"
     class="njx-dl-overlay"
@@ -76,7 +86,7 @@
                             <div class="njx-vc-desc">30+ components, 9 themes</div>
                         </div>
                         <div class="njx-vc-meta">
-                            <span class="njx-vc-size">~66 KB</span>
+                            <span class="njx-vc-size">{SIZE_FULL_GZIP} gz</span>
                             <div class="njx-vc-check">
                                 <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
                             </div>
@@ -98,31 +108,7 @@
                             <div class="njx-vc-desc">Zero class names needed</div>
                         </div>
                         <div class="njx-vc-meta">
-                            <span class="njx-vc-size">~45 KB</span>
-                            <div class="njx-vc-check">
-                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
-                            </div>
-                        </div>
-                    </label>
-
-                    <!-- Legacy scoped mode -->
-                    <label class="njx-vc" data-variant="mix">
-                        <input type="radio" name="njx-def-variant" value="mix" hidden />
-                        <div class="njx-vc-accent njx-vc-accent--mix"></div>
-                        <div class="njx-vc-icon njx-vc-icon--mix">
-                            <svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M2 4h5M2 8h5M2 12h5"/>
-                                <path d="M9 4h5M9 8h5M9 12h5"/>
-                                <path d="M7 8h2"/>
-                            </svg>
-                        </div>
-                        <div class="njx-vc-body">
-                            <div class="njx-vc-name">Mix Mode</div>
-                            <div class="njx-vc-file">classless-mode.css</div>
-                            <div class="njx-vc-desc">Full + Classless, zero conflicts</div>
-                        </div>
-                        <div class="njx-vc-meta">
-                            <span class="njx-vc-size">2 files</span>
+                            <span class="njx-vc-size">{SIZE_CLASSLESS}</span>
                             <div class="njx-vc-check">
                                 <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
                             </div>
@@ -179,11 +165,12 @@
                     <div class="njx-cb-section-head">
                         <span class="njx-cb-section-dot" style="background:#f59e0b"></span>
                         <span class="njx-cb-section-name">Foundation</span>
-                        <span class="njx-cb-section-badge">always included · 6 files</span>
+                        <span class="njx-cb-section-badge">always included · 7 files</span>
                     </div>
                     <div class="njx-dl-grid">
                         <label class="njx-dl-item njx-dl-item-locked"><input type="checkbox" checked disabled /><span>_base.css</span><span class="njx-dl-tag">tokens</span></label>
                         <label class="njx-dl-item njx-dl-item-locked"><input type="checkbox" checked disabled /><span>_reset.css</span><span class="njx-dl-tag">reset</span></label>
+                        <label class="njx-dl-item njx-dl-item-locked"><input type="checkbox" checked disabled /><span>_native.css</span><span class="njx-dl-tag">elements</span></label>
                         <label class="njx-dl-item njx-dl-item-locked"><input type="checkbox" checked disabled /><span>_grid.css</span><span class="njx-dl-tag">layout</span></label>
                         <label class="njx-dl-item njx-dl-item-locked"><input type="checkbox" checked disabled /><span>_typography.css</span><span class="njx-dl-tag">type</span></label>
                         <label class="njx-dl-item njx-dl-item-locked"><input type="checkbox" checked disabled /><span>_utils.css</span><span class="njx-dl-tag">utility</span></label>
@@ -273,7 +260,7 @@
                     </div>
                     <div class="njx-all-banner-stats">
                         <div class="njx-all-stat">
-                            <span class="njx-all-stat-val">5</span>
+                            <span class="njx-all-stat-val">4</span>
                             <span class="njx-all-stat-lbl">files</span>
                         </div>
                         <div class="njx-all-stat">
@@ -296,7 +283,7 @@
                             <span class="njx-all-file-name">style.min.css</span>
                             <span class="njx-all-file-desc">Full UI — 30+ components, 9 themes, utility classes</span>
                         </div>
-                        <span class="njx-all-file-size">~66 KB</span>
+                        <span class="njx-all-file-size">{SIZE_FULL} · {SIZE_FULL_GZIP} gz</span>
                     </div>
 
                     <div class="njx-all-file">
@@ -305,7 +292,7 @@
                             <span class="njx-all-file-name">classless.css</span>
                             <span class="njx-all-file-desc">Classless — style semantic HTML, zero class names</span>
                         </div>
-                        <span class="njx-all-file-size">~65 KB</span>
+                        <span class="njx-all-file-size">{SIZE_CLASSLESS_SRC}</span>
                     </div>
 
                     <div class="njx-all-file">
@@ -314,16 +301,7 @@
                             <span class="njx-all-file-name">classless.min.css</span>
                             <span class="njx-all-file-desc">Classless minified — production-ready</span>
                         </div>
-                        <span class="njx-all-file-size">~45 KB</span>
-                    </div>
-
-                    <div class="njx-all-file">
-                        <div class="njx-all-file-type njx-all-file-type--mix">MIX</div>
-                        <div class="njx-all-file-info">
-                            <span class="njx-all-file-name">classless-mode.css</span>
-                            <span class="njx-all-file-desc">Mix mode — scoped to <code>html[data-classless]</code></span>
-                        </div>
-                        <span class="njx-all-file-size">~77 KB</span>
+                        <span class="njx-all-file-size">{SIZE_CLASSLESS}</span>
                     </div>
 
                     <div class="njx-all-file">
@@ -332,7 +310,7 @@
                             <span class="njx-all-file-name">njx.js</span>
                             <span class="njx-all-file-desc">JS helper — tabs, modals, toasts, carousels</span>
                         </div>
-                        <span class="njx-all-file-size">~10 KB</span>
+                        <span class="njx-all-file-size">{SIZE_JS}</span>
                     </div>
 
                 </div>
@@ -367,8 +345,7 @@
 
     var DEF_CDN_RAW = {
         full: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css">',
-        classless: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/classless.min.css">',
-        mix: '<!-- Legacy scoped mode only -->\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/classless-mode.css">\n<!-- add data-classless to <html> -->'
+        classless: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/classless.min.css">'
     };
 
     function escHtml(str) {
@@ -462,7 +439,7 @@
         if (_activeTab === 'default') {
             var sel = document.querySelector('input[name="njx-def-variant"]:checked');
             var v = sel ? sel.value : 'full';
-            var labels = { full: 'style.min.css', classless: 'classless.min.css', mix: 'style.min.css + classless-mode.css' };
+            var labels = { full: 'style.min.css', classless: 'classless.min.css' };
             countEl.textContent = labels[v] || 'style.min.css';
         } else if (_activeTab === 'all') {
             countEl.textContent = '5 files — complete package';
@@ -474,6 +451,9 @@
 
     // ── Init variant cards (click) ──
     function initDownloadModal() {
+        // При VT-навигации DOM пересоздаётся, а замыкание живёт — сбрасываем
+        // вкладку, чтобы кнопка Download соответствовала видимой панели
+        _activeTab = 'default';
         document.querySelectorAll('.njx-vc').forEach(function(card) {
             if (card.dataset.njxInit === '1') return;
             card.dataset.njxInit = '1';
@@ -492,11 +472,13 @@
         njxDlUpdateFooter();
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initDownloadModal, { once: true });
-    } else {
-        initDownloadModal();
+    // ClientRouter НЕ перезапускает одинаковые inline-скрипты при VT-навигации —
+    // переинициализируем модалку на каждый astro:page-load (как Bottombar)
+    if (!window._njxDlInitRegistered) {
+        window._njxDlInitRegistered = true;
+        document.addEventListener('astro:page-load', initDownloadModal);
     }
+    if (document.readyState !== 'loading') initDownloadModal();
 
     // ── Change events ──
     document.addEventListener('change', function (e) {
@@ -511,6 +493,7 @@
 
     // ── Unified download dispatcher ──
     window.njxDlDownload = function () {
+        window.njxTrack && njxTrack('download_zip', { tab: _activeTab });
         if (_activeTab === 'default') njxDownloadDefault();
         else if (_activeTab === 'all')  njxDownloadAll();
         else buildAndDownload();
@@ -527,20 +510,15 @@
 
         var files = {
             full:      [{ src: 'css/style.min.css',      dest: 'njx-ui/css/style.min.css' }],
-            classless: [{ src: 'css/classless.min.css',  dest: 'njx-ui/css/classless.min.css' }],
-            mix:       [
-                { src: 'css/style.min.css',     dest: 'njx-ui/css/style.min.css' },
-                { src: 'css/classless-mode.css', dest: 'njx-ui/css/classless-mode.css' }
-            ]
+            classless: [{ src: 'css/classless.min.css',  dest: 'njx-ui/css/classless.min.css' }]
         };
 
         var readmes = {
             full:      '# njX UI\nConnect: <link rel="stylesheet" href="css/style.min.css">\n<html data-theme="dark">\nMIT License\n',
-            classless: '# njX Classless\nConnect: <link rel="stylesheet" href="classless.min.css">\n<html data-theme="dark">\nMIT License\n',
-            mix:       '# njX Mix Mode\n<link rel="stylesheet" href="css/style.min.css">\n<link rel="stylesheet" href="css/classless-mode.css">\n<html data-classless data-theme="dark">\nMIT License\n'
+            classless: '# njX Classless\nConnect: <link rel="stylesheet" href="classless.min.css">\n<html data-theme="dark">\nMIT License\n'
         };
 
-        var zipNames = { full: 'njx-ui-full.zip', classless: 'njx-classless.zip', mix: 'njx-mix.zip' };
+        var zipNames = { full: 'njx-ui-full.zip', classless: 'njx-classless.zip' };
 
         try {
             var zip = new JSZip();
@@ -573,19 +551,23 @@
 
         var allFiles = [
             { src: 'css/style.min.css',      dest: 'njx-ui/css/style.min.css' },
-            { src: 'css/classless.css',        dest: 'njx-ui/css/classless.css' },
             { src: 'css/classless.min.css',    dest: 'njx-ui/css/classless.min.css' },
-            { src: 'css/classless-mode.css',   dest: 'njx-ui/css/classless-mode.css' },
             { src: 'js/njx.js',               dest: 'njx-ui/js/njx.js' }
         ];
+        // classless.css в репо — @import-заглушка; для ZIP склеиваем реальное содержимое
+        var classlessParts = ['css/_base.css', 'css/_native.css'];
 
-        var README_ALL = '# njX UI — Complete Package\n\ncss/style.min.css     Full UI\ncss/classless.css     Classless\ncss/classless.min.css Classless minified\ncss/classless-mode.css Mix mode (html[data-classless])\njs/njx.js             JS helper\n\nMIT License\n';
+        var README_ALL = '# njX UI — Complete Package\n\ncss/style.min.css     Full UI\ncss/classless.css     Classless\ncss/classless.min.css Classless minified\njs/njx.js             JS helper\n\nUse ONE stylesheet at a time: Full or Classless.\n\nMIT License\n';
 
         try {
             var zip = new JSZip();
             await Promise.all(allFiles.map(async function(f) {
                 try { var res = await fetch(f.src); if (res.ok) zip.file(f.dest, await res.text()); } catch(e) {}
             }));
+            var parts = await Promise.all(classlessParts.map(async function(src) {
+                try { var res = await fetch(src); return res.ok ? await res.text() : ''; } catch(e) { return ''; }
+            }));
+            zip.file('njx-ui/css/classless.css', '/* njX UI — classless bundle (_base + _native) */\n' + parts.join('\n'));
             zip.file('njx-ui/README.md', README_ALL);
 
             var blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } });
@@ -607,6 +589,7 @@
     window.njxCopyCdn = function (btn, codeId) {
         var code = document.getElementById(codeId || 'njx-def-cdn-code');
         var text = code ? (code.dataset.copyValue || code.textContent) : '';
+        window.njxTrack && njxTrack('copy_cdn', { code_id: codeId || 'njx-def-cdn-code' });
         navigator.clipboard.writeText(text).then(function () {
             btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 15 4 10"/></svg> Copied!';
             btn.style.color = 'var(--color-primary)';
@@ -779,7 +762,6 @@
     .njx-vc.is-selected .njx-vc-accent { opacity: 1; }
     .njx-vc-accent--full      { background: var(--color-primary); }
     .njx-vc-accent--classless { background: #22d3ee; }
-    .njx-vc-accent--mix       { background: linear-gradient(180deg, var(--color-primary), #a855f7); }
 
     /* Icon box */
     .njx-vc-icon {
@@ -798,11 +780,6 @@
         background: rgba(34,211,238,0.1);
         border: 1px solid rgba(34,211,238,0.22);
         color: #22d3ee;
-    }
-    .njx-vc-icon--mix {
-        background: rgba(168,85,247,0.1);
-        border: 1px solid rgba(168,85,247,0.22);
-        color: #a855f7;
     }
 
     /* Body text */
@@ -1117,7 +1094,6 @@
     }
     .njx-all-file-type--css { background: rgba(96,165,250,0.15); color: #60a5fa; border: 1px solid rgba(96,165,250,0.25); }
     .njx-all-file-type--min { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.22); }
-    .njx-all-file-type--mix { background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.22); }
     .njx-all-file-type--js  { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.22); }
     .njx-all-file-type--md  { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.1); }
 

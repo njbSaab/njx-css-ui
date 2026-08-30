@@ -16,8 +16,13 @@ import Breadcrumb from '../components/njx-sections/Breadcrumb.astro';
 import Pagination from '../components/njx-sections/Pagination.astro';
 import Panel from '../components/njx-sections/Panel.astro';
 import Links from '../components/njx-sections/Links.astro';
+import Hero from '../components/njx-sections/Hero.astro';
+import PageCards from '../components/njx-sections/PageCards.astro';
 import Sections from '../components/njx-sections/Sections.astro';
 import Social from '../components/njx-sections/Social.astro';
+import SocialBlocks from '../components/njx-sections/SocialBlocks.astro';
+import CTA from '../components/njx-sections/CTA.astro';
+import Contacts from '../components/njx-sections/Contacts.astro';
 import Tabs from '../components/njx-sections/Tabs.astro';
 import Collapse from '../components/njx-sections/Collapse.astro';
 import Dropdown from '../components/njx-sections/Dropdown.astro';
@@ -38,7 +43,9 @@ import DownloadModal from '../components/DownloadModal.astro';
 import LibsFooter from '../components/LibsFooter.astro';
 import LibsSidebar from '../components/LibsSidebar.astro';
 import Bottombar from '../components/Bottombar.astro';
-import { SIZE_FULL } from '../lib/meta';
+import { SIZE_FULL, CDN_BASE } from '../lib/meta';
+
+const heroCdnSnippet = `<link rel="stylesheet" href="${CDN_BASE}style.min.css">`;
 ---
 
 <BaseLayout
@@ -49,40 +56,9 @@ import { SIZE_FULL } from '../lib/meta';
 >
 	<!-- Слот head: page-specific мета -->
 	<Fragment slot="head">
-		<link rel="canonical" href="https://njxui.dev/" />
 		<meta name="keywords" content="css component library, ..." />
 		<meta name="robots" content="index, follow" />
 		<meta name="author" content="njX UI" />
-
-		<meta property="og:type" content="website" />
-		<meta
-			property="og:title"
-			content="njX UI — Lightweight CSS Component Library"
-		/>
-		<meta
-			property="og:description"
-			content="30+modern CSS components, 9 themes, zero dependencies."
-		/>
-		<meta
-			property="og:image"
-			content="https://njxui.dev/img/og-image.png"
-		/>
-		<meta property="og:url" content="https://njxui.dev/" />
-		<meta property="og:site_name" content="njX UI" />
-
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta
-			name="twitter:title"
-			content="njX UI — Lightweight CSS Component Library"
-		/>
-		<meta
-			name="twitter:description"
-			content="30+ components • 9 themes • 308 KB • Zero dependencies"
-		/>
-		<meta
-			name="twitter:image"
-			content="https://njxui.dev/img/og-image.png"
-		/>
 
 		<script is:inline type="application/ld+json">
 			{
@@ -501,6 +477,51 @@ import { SIZE_FULL } from '../lib/meta';
 				grid-template-columns: 1fr;
 			}
 		}
+
+		/* ── Hero CDN snippet ── */
+		.ui-preview-cdn {
+			display: flex;
+			align-items: stretch;
+			gap: 8px;
+			margin-top: 14px;
+			max-width: 620px;
+		}
+		.ui-preview-cdn-code {
+			flex: 1;
+			overflow-x: auto;
+			white-space: nowrap;
+			font-family: 'Roboto Mono', monospace;
+			font-size: 12px;
+			line-height: 1.5;
+			padding: 10px 12px;
+			border-radius: 10px;
+			color: var(--color-text, #e6e6e6);
+			background: var(--color-surface, rgba(255, 255, 255, 0.04));
+			border: 1px solid var(--color-border, rgba(255, 255, 255, 0.12));
+		}
+		.ui-preview-cdn-copy {
+			flex-shrink: 0;
+			padding: 0 16px;
+			border-radius: 10px;
+			border: 1px solid var(--color-border, rgba(255, 255, 255, 0.12));
+			background: transparent;
+			color: var(--color-primary, #7c9cff);
+			font-size: 12px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: background 0.15s ease;
+		}
+		.ui-preview-cdn-copy:hover {
+			background: rgba(255, 255, 255, 0.06);
+		}
+		@media (max-width: 720px) {
+			.ui-preview-cdn {
+				flex-direction: column;
+			}
+			.ui-preview-cdn-copy {
+				padding: 10px 16px;
+			}
+		}
 	</style>
 
 	<!-- Body content -->
@@ -532,6 +553,12 @@ import { SIZE_FULL } from '../lib/meta';
 							<div class="ui-preview-actions">
 								<a
 									class="ui-preview-btn ui-preview-btn-primary"
+									href={`${import.meta.env.BASE_URL}quickstart`}
+								>
+									Quick Start
+								</a>
+								<a
+									class="ui-preview-btn ui-preview-btn-secondary"
 									href="#tokens"
 								>
 									Start With Themes
@@ -542,6 +569,28 @@ import { SIZE_FULL } from '../lib/meta';
 								>
 									Explore Components
 								</a>
+								<a
+									class="ui-preview-btn ui-preview-btn-secondary"
+									href="https://github.com/njbSaab/njx-css-ui"
+									target="_blank"
+									rel="noopener"
+								>
+									★ GitHub
+								</a>
+							</div>
+							<div class="ui-preview-cdn">
+								<code
+									id="ui-hero-cdn"
+									class="ui-preview-cdn-code"
+									data-copy-value={heroCdnSnippet}
+								>{heroCdnSnippet}</code>
+								<button
+									class="ui-preview-cdn-copy"
+									onclick="njxCopyCdn(this,'ui-hero-cdn')"
+									title="Copy CDN link"
+								>
+									Copy
+								</button>
 							</div>
 							<div class="ui-preview-meta">
 								<div class="ui-preview-pill">
@@ -723,8 +772,13 @@ import { SIZE_FULL } from '../lib/meta';
 			<Pagination />
 			<Panel />
 			<Links />
+			<Hero />
+			<PageCards />
 			<Sections />
 			<Social />
+			<SocialBlocks />
+			<CTA />
+			<Contacts />
 
 			<!--! Components · JS -->
 			<Tabs />
@@ -742,7 +796,7 @@ import { SIZE_FULL } from '../lib/meta';
 	<!-- jszip — нужен для кнопки Download CSS -->
 	<script
 		is:inline
-		src="https://cdn.jsdelivr.net/npm/jszip@1.1.3/dist/jszip.min.js"
+		src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"
 	></script>
 
 	<!-- Ko-fi виджет -->

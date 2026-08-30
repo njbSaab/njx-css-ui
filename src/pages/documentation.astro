@@ -15,45 +15,6 @@ const base = import.meta.env.BASE_URL;
     withDocsCss={true}
     withDocsScripts={true}
 >
-    <!-- ── OG / Twitter meta → head slot ── -->
-    <meta slot="head" property="og:type" content="website" />
-    <meta
-        slot="head"
-        property="og:title"
-        content="njX UI Documentation — Full Reference"
-    />
-    <meta
-        slot="head"
-        property="og:description"
-        content="Design tokens, component classes, JavaScript helpers and themes — full njX UI reference."
-    />
-    <meta
-        slot="head"
-        property="og:image"
-        content="https://njxui.dev/img/og-image.png"
-    />
-    <meta
-        slot="head"
-        property="og:url"
-        content="https://njxui.dev/documentation"
-    />
-    <meta slot="head" name="twitter:card" content="summary_large_image" />
-    <meta
-        slot="head"
-        name="twitter:title"
-        content="njX UI Documentation — Full Reference"
-    />
-    <meta
-        slot="head"
-        name="twitter:description"
-        content="Design tokens, component classes, JavaScript helpers and themes — full njX UI reference."
-    />
-    <meta
-        slot="head"
-        name="twitter:image"
-        content="https://njxui.dev/img/og-image.png"
-    />
-
     <!-- ══════════════════════ NAV ══════════════════════ -->
     <PagesTopbar activePage="documentation" />
 
@@ -123,11 +84,10 @@ const base = import.meta.env.BASE_URL;
                             style="color:var(--color-primary)"
                             >classless.min.css</code
                         >
-                        when you need classless without any component classes. Want
-                        components too? Add <code>classless-mode.css</code> alongside
-                        <strong>Full</strong> and set <code
-                            >html[data-classless]</code
-                        >.
+                        when you need classless without any component classes. Need
+                        component classes instead? Switch to <strong>Full</strong>
+                        (<code>style.min.css</code>) — pick one stylesheet, the
+                        builds are standalone.
                     </p>
                 </div>
                 <div
@@ -181,10 +141,8 @@ const base = import.meta.env.BASE_URL;
                             30+ component classes — <code>.btn</code>, <code
                                 >.card</code
                             >,
-                            <code>.tag</code> and more. Add <code
-                                >classless-mode.css</code
-                            >
-                            to also style bare elements.
+                            <code>.tag</code> and more, plus utilities and 9
+                            themes.
                         </div>
                         <div class="doc-flavor-card-badge">
                             style.min.css · 308 KB
@@ -209,19 +167,16 @@ const base = import.meta.env.BASE_URL;
                     </div>
                 </div>
 
-                <!-- ── Full mode tip ── -->
+                <!-- ── One-build tip ── -->
                 <div class="doc-mix-tip">
                     <span class="doc-mix-tip-icon">✦</span>
                     <span>
-                        <strong>Mixed mode available.</strong>
-                        Load <code>style.min.css</code> + <code
-                            >classless-mode.css</code
+                        <strong>One stylesheet at a time.</strong>
+                        <code>style.min.css</code> (Full) and <code
+                            >classless.min.css</code
                         >
-                        and add <code>data-classless</code> to <code
-                            >&lt;html&gt;</code
-                        >
-                        — bare elements get styled AND component classes stay available.
-                        Zero cascade conflicts.
+                        are standalone builds — pick the one that fits your
+                        project, don't load both together.
                     </span>
                 </div>
 
@@ -3587,12 +3542,10 @@ const base = import.meta.env.BASE_URL;
                     <div class="doc-tip" style="margin-top:16px">
                         <span class="doc-tip-icon">💡</span>
                         <div class="doc-tip-text">
-                            Want component classes too? Use <code
+                            Want component classes too? Switch to <code
                                 >style.min.css</code
-                            > + <code>classless-mode.css</code> and add <code
-                                >data-classless</code
-                            > on <code>&lt;html&gt;</code> — bare elements and component
-                            classes, zero conflicts.
+                            > (Full) — it styles components via classes. Full and
+                            Classless are standalone builds: use one, not both.
                         </div>
                     </div>
                 </div><!-- /classless -->
@@ -5024,10 +4977,20 @@ const base = import.meta.env.BASE_URL;
         text-transform: uppercase;
     }
 
-    /* ── Sticky Mode Bar ── */
+    /* ── Sticky Mode Bar ──
+       top: 60px = высота .sc-nav (топбар sticky, z-index 200) — бар
+       прилипает ПОД шапкой, а не прячется за ней.
+       lib-docs.css даёт .lib-main overflow-y:auto — это делает main
+       собственным scroll-контейнером и полностью ломает sticky, поэтому
+       для этой страницы возвращаем visible (min-width:0 вместо overflow
+       защищает flex-элемент от распирания широкими <pre>) */
+    main.doc-main {
+        overflow: visible;
+        min-width: 0;
+    }
     .doc-mode-bar {
         position: sticky;
-        top: 0;
+        top: 60px;
         z-index: 90;
         display: flex;
         align-items: center;

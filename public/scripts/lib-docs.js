@@ -138,8 +138,8 @@ Set theme on <html>:
 
 ## CDN (no download needed)
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@main/css/style.min.css">
-  <script src="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@main/js/njx.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-ui@main/css/style.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/njbSaab/njx-ui@main/js/njx.js"></script>
 
 ## Docs
 
@@ -155,7 +155,7 @@ async function buildAndDownload() {
   btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="20" stroke-dashoffset="5"/></svg> Packing...`;
 
   // Фиксированные файлы (foundation)
-  const foundation = ['_base.css', '_reset.css', '_grid.css', '_typography.css', '_utils.css', '_responsive.css'];
+  const foundation = ['_base.css', '_reset.css', '_native.css', '_grid.css', '_typography.css', '_utils.css', '_responsive.css'];
 
   // Выбранные пользователем компоненты (только из Custom Build панели)
   const selected = Array.from(
@@ -354,6 +354,7 @@ function initCodeToggles() {
 
     copyBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+      window.njxTrack && njxTrack('copy_code', { copy_type: 'code_block' });
       navigator.clipboard.writeText(getRawCode(code)).then(() => {
         copyBtn.classList.add('copied');
         copyBtn.innerHTML = `
@@ -937,6 +938,7 @@ function initItemCopy() {
     cleanNode(clone);
     const html = clone.outerHTML;
 
+    window.njxTrack && njxTrack('copy_code', { copy_type: 'element' });
     navigator.clipboard.writeText(html).then(() => {
       chip.innerHTML = CHECK_SVG;
       chip.classList.add('copied');

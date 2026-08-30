@@ -1,0 +1,38 @@
+# njX UI
+
+> njX UI is a lightweight, dependency-free CSS component library: 30+ components, 9 built-in themes switched with a single `data-theme` HTML attribute, zero build tools. 308 KB minified (44 KB gzipped). A classless mode (~48 KB) styles plain semantic HTML with zero classes. MIT license.
+
+## Install
+
+CDN (recommended — no build step):
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1.1.4/css/style.min.css">
+<html data-theme="dark">
+```
+
+npm: `npm install njx-ui` (package name is `njx-ui`).
+
+Optional JS helpers (theme toggle, tabs, modal, accordion, toast):
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/njx-ui@1.1.4/js/njx.js"></script>
+```
+
+## Themes
+
+9 themes via one attribute: `dark | light | red | blue | green | cyan | yellow | pink | purple`.
+Switch at runtime: `njxSetTheme('blue')` or set `data-theme` on `<html>`.
+
+## Components
+
+Buttons (50+ variants incl. gradient/glow/shine), Cards (30+), Navbar (5 variants), Tabs, Modal & Popup, Carousel & Slider (CSS scroll-snap + JS), Sidebar & Drawer, Collapse & Accordion, Toasts & Notifications, Skeleton loaders (shimmer/pulse/wave), Tags & Badges (30+), Forms, Tables, Dropdown, Progress, 60+ CSS animation utilities, 30+ hover effects, design tokens (CSS variables).
+
+## Docs
+
+- Quick Start: https://njxui.dev/quickstart
+- Full documentation (components, tokens, JS reference): https://njxui.dev/documentation
+- Component gallery: https://njxui.dev/
+- Classless components: https://njxui.dev/classless-components
+- Live theme playground: https://njxui.dev/overview
+- GitHub: https://github.com/njbSaab/njx-css-ui

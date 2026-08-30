@@ -44,7 +44,7 @@ No install. Just add to your HTML:
   <script src="https://cdn.jsdelivr.net/npm/njx-ui/js/njx.js"></script>
 
   <!-- Pinned version (recommended for production — won't change) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1.1.3/css/style.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1.1.4/css/style.min.css">
 </head>
 <body>
   <button class="btn btn-primary">Primary</button>
@@ -63,11 +63,11 @@ Works immediately after `git push`, without publishing to npm:
 
 ```html
 <!-- Always latest from main branch -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@main/css/style.min.css">
-<script src="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@main/js/njx.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-ui@main/css/style.min.css">
+<script src="https://cdn.jsdelivr.net/gh/njbSaab/njx-ui@main/js/njx.js"></script>
 
 <!-- Pinned to a specific tag -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-css-ui@v1.1.3/css/style.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-ui@v1.1.4/css/style.min.css">
 ```
 
 ---

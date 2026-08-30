@@ -1,7 +1,13 @@
 /** Single source of truth for njX UI library metadata */
-export const LIB_VERSION = '1.1.0';
-export const CDN_BASE = `https://cdn.jsdelivr.net/npm/njx-css-ui@${LIB_VERSION}/css/`;
+import meta from '../data/library-meta.json';
 
-/** Uncompressed file sizes (on-disk) */
-export const SIZE_FULL      = '293 KB';   // style.min.css
-export const SIZE_CLASSLESS = '48 KB';    // classless.min.css
+export const LIB_VERSION = meta.version;
+export const NPM_PACKAGE = meta.npmPackage;
+export const CDN_BASE = `https://cdn.jsdelivr.net/npm/${NPM_PACKAGE}@${LIB_VERSION}/css/`;
+
+/** Sizes: minified on-disk / gzip over the wire */
+export const SIZE_FULL           = '308 KB';  // style.min.css (44 KB gzip)
+export const SIZE_FULL_GZIP      = '44 KB';
+export const SIZE_CLASSLESS      = '48 KB';   // classless.min.css
+export const SIZE_CLASSLESS_SRC  = '~62 KB';  // classless.css (unminified _base + _native)
+export const SIZE_JS             = '14 KB';   // njx.js
