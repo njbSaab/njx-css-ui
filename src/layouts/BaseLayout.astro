@@ -3,15 +3,18 @@ import ClientRouter from 'astro/components/ClientRouter.astro';
 interface Props {
     title: string;
     description?: string;
-    /** Загружать lib-docs.css в head (для страниц с docs-layout: index, documentation, classless) */
-    withDocsCss?: boolean;
+    /** «Хром» docs-страниц (топбар/сайдбар/поиск/футер): index, documentation, classless */
+    withDocsShell?: boolean;
+    /** Стили карточек/демо-секций (.lib-section и т.д.): index, classless */
+    withDocsSections?: boolean;
     /** Загружать Alpine.js и lib-docs.js (нужны только для docs-страниц с компонентами) */
     withDocsScripts?: boolean;
 }
 const {
     title,
     description,
-    withDocsCss = false,
+    withDocsShell = false,
+    withDocsSections = false,
     withDocsScripts = false,
 } = Astro.props;
 
@@ -37,12 +40,23 @@ const ogImageURL = new URL('/img/og-image.png', Astro.site);
             href={`${import.meta.env.BASE_URL}css/style.min.css`}
             fetchpriority="high"
         />
-        <!-- Docs UI styles — только для страниц с docs-layout -->
+        <!-- Docs UI styles: shell — хром страницы, sections — карточки демо.
+             documentation грузит только shell (из sections она не использовала
+             ни одного класса — раньше возила ~1400 лишних строк) -->
         {
-            withDocsCss && (
+            withDocsShell && (
                 <link
                     rel="stylesheet"
-                    href={`${import.meta.env.BASE_URL}styles/lib-docs.css`}
+                    href={`${import.meta.env.BASE_URL}styles/docs-shell.css`}
+                    fetchpriority="high"
+                />
+            )
+        }
+        {
+            withDocsSections && (
+                <link
+                    rel="stylesheet"
+                    href={`${import.meta.env.BASE_URL}styles/docs-sections.css`}
                     fetchpriority="high"
                 />
             )

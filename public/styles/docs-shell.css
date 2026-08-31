@@ -1,0 +1,624 @@
+/* ============================================================
+   docs-shell.css — «хром» docs-страниц: шрифты, токены, топбар,
+   поиск, сайдбар, каркас, тосты, футер.
+   Нужен: index, documentation, classless-components.
+   Стили карточек/демо-секций — в docs-sections.css.
+   ============================================================ */
+    /* ── Google Fonts — all library fonts ── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500&family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Nunito:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&family=Figtree:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Fira+Code:wght@400;500&display=swap");
+
+/* ── Shell: design system ── */
+
+    /* ── lib tokens ── */
+    :root,
+    [data-theme] {
+      --lib-sep: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+      --lib-code-bg: #0d0d0d;
+      --lib-comp-brd: color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+      --lib-inp-bg: var(--color-dark-secondary);
+      --lib-inp-brd: color-mix(in srgb, var(--color-neutral-600) 35%, transparent);
+      --lib-inp-brd-hover: color-mix(in srgb, var(--color-neutral-600) 55%, transparent);
+      --lib-inp-placeholder: var(--color-muted);
+      --lib-inp-icon: var(--color-muted);
+    }
+
+    [data-theme="light"] {
+      --lib-code-bg: #f0f0f0;
+      --lib-inp-bg: #ffffff;
+      --lib-inp-brd: #d0d0d0;
+      --lib-inp-brd-hover: #999999;
+      --lib-inp-placeholder: #888888;
+      --lib-inp-icon: #999999;
+    }
+
+    body {
+      background: var(--сolor-dark);
+      color: var(--color-light);
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background 0.35s, color 0.35s;
+      overflow-x: hidden;
+    }
+    /* .sc-nav* (топбар страниц) живёт в PagesTopbar.astro; здесь оставлены
+       только .sc-nav-github-правила — кнопка используется в LibsTopbar/Sidebar */
+    .lib-topbar .sc-nav-github {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      /* background: var(--color-primary); */
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+      /* color: var(--color-primary); */
+      /* box-shadow: 0 4px 14px color-mix(in srgb, var(--color-primary) 40%, transparent); */
+    }
+
+    .lib-topbar .sc-nav-github:hover {
+      scale: 1.1;
+    }
+
+    /* ═══ TOP BAR ═══ */
+    .lib-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      height: 60px;
+      background: color-mix(in srgb, var(--сolor-dark) 85%, transparent);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 16px;
+      transition: background 0.35s, border-color 0.35s;
+    }
+
+    .lib-topbar-brand {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--color-light);
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .lib-topbar-brand span {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .lib-topbar-sep {
+      width: 1px;
+      height: 20px;
+      background: color-mix(in srgb, var(--color-neutral-600) 30%, transparent);
+      flex-shrink: 0;
+    }
+
+    .lib-topbar-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--color-muted);
+      white-space: nowrap;
+    }
+
+    /* ── theme dots ── */
+    .lib-theme-pills {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .lib-theme-pill {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background: var(--pill-color, var(--color-primary));
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      overflow: hidden;
+      font-size: 0;
+      padding: 0;
+    }
+
+    .lib-theme-pill .dot {
+      display: none;
+    }
+
+    .lib-theme-pill:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--pill-color, var(--color-primary)) 35%, transparent);
+    }
+
+    .lib-theme-pill.active {
+      border-color: var(--сolor-dark);
+      box-shadow: 0 0 0 2px var(--pill-color, var(--color-primary));
+      transform: scale(1.15);
+    }
+
+    .lib-topbar-spacer {
+      flex: 1;
+    }
+
+    .lib-topbar-version {
+      font-size: 11px;
+      font-family: 'Roboto Mono', monospace;
+      color: var(--color-muted);
+      opacity: 0.5;
+      white-space: nowrap;
+    }
+
+    .lib-download-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      border-radius: 8px;
+      border: 1px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
+      background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+      color: var(--color-primary);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      text-decoration: none;
+      flex-shrink: 0;
+      font-family: inherit;
+    }
+
+    .lib-download-btn:hover {
+      background: var(--color-primary);
+      color: #fff;
+    }
+
+    /* ═══ SEARCH ═══ */
+    .lib-search {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--lib-inp-bg);
+      border: 1px solid var(--lib-inp-brd);
+      border-radius: 10px;
+      padding: 0 14px;
+      height: 38px;
+      width: 340px;
+      transition: border-color 0.2s, width 0.25s, box-shadow 0.2s;
+      z-index: 10;
+    }
+
+    .lib-search:focus-within {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 15%, transparent);
+      width: 420px;
+    }
+
+    .lib-search-icon {
+      color: var(--lib-inp-icon);
+      flex-shrink: 0;
+      pointer-events: none;
+    }
+
+    .lib-search-input {
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--color-light);
+      font-size: 14px;
+      font-family: inherit;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .lib-search-input::placeholder {
+      color: var(--lib-inp-placeholder);
+    }
+
+    .lib-search-kbd {
+      font-size: 10px;
+      font-family: 'Roboto Mono', monospace;
+      color: var(--color-muted);
+      background: color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 30%, transparent);
+      border-radius: 4px;
+      padding: 1px 5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: opacity 0.15s;
+    }
+
+    .lib-search:focus-within .lib-search-kbd {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* dropdown */
+    .lib-search-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      background: var(--color-dark-secondary);
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 30%, transparent);
+      border-radius: 12px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+      overflow: hidden;
+      z-index: 999;
+      display: none;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .lib-search-dropdown.open {
+      display: block;
+    }
+
+    .lib-search-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      cursor: pointer;
+      transition: background 0.12s;
+      text-decoration: none;
+    }
+
+    .lib-search-item:hover,
+    .lib-search-item.focused {
+      background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    }
+
+    .lib-search-item-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 13px;
+    }
+
+    .lib-search-item-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      min-width: 0;
+    }
+
+    .lib-search-item-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-light);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lib-search-item-name mark {
+      background: none;
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    .lib-search-item-section {
+      font-size: 11px;
+      color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .lib-search-empty {
+      padding: 20px 14px;
+      text-align: center;
+      color: var(--color-muted);
+      font-size: 13px;
+    }
+
+    .lib-search-group-label {
+      padding: 8px 14px 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--color-muted);
+      border-top: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+    }
+
+    .lib-search-group-label:first-child {
+      border-top: none;
+    }
+
+    .lib-download-btn.loading {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .lib-download-btn svg {
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .lib-download-btn:hover svg {
+      transform: translateY(1px);
+    }
+
+    .lib-download-btn.loading svg {
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ═══ LAYOUT ═══ */
+    .lib-wrap {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* ═══ SIDEBAR ═══ */
+    .lib-sidebar {
+      width: 250px;
+      flex-shrink: 0;
+      border-right: 1px solid color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+      position: sticky;
+      top: 60px;
+      height: calc(100vh - 60px);
+      overflow-y: auto;
+      padding: 28px 16px 40px;
+      transition: border-color 0.35s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lib-sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .lib-sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .lib-sidebar::-webkit-scrollbar-thumb {
+      background: color-mix(in srgb, var(--color-neutral-600) 35%, transparent);
+      border-radius: 4px;
+    }
+
+    .lib-sidebar-group {
+      margin-bottom: 24px;
+      width: 100%;
+    }
+
+    .lib-sidebar-title {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--color-muted);
+      opacity: 0.5;
+      padding: 0 12px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .lib-sidebar a {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-muted);
+      text-decoration: none;
+      transition: all 0.18s;
+      margin-bottom: 1px;
+    }
+
+    .lib-sidebar a svg {
+      flex-shrink: 0;
+      opacity: 0.6;
+      transition: opacity 0.18s;
+    }
+
+    .lib-sidebar a:hover {
+      color: var(--color-light);
+      background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    }
+
+    .lib-sidebar a:hover svg {
+      opacity: 0.9;
+    }
+
+    .lib-sidebar a.active {
+      color: var(--color-primary);
+      background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+      font-weight: 600;
+    }
+
+    .lib-sidebar a.active svg {
+      opacity: 1;
+    }
+
+    /* ═══ MAIN ═══ */
+    .lib-main {
+      flex: 1;
+      padding: 28px 56px;
+      overflow-y: auto;
+      max-width: 1080px;
+    }
+
+    /* ── Toast container ── */
+    #lib-toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .lib-toast {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      pointer-events: auto;
+      animation: lib-toast-in 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      white-space: nowrap;
+      max-width: 360px;
+    }
+
+    .lib-toast.out {
+      animation: lib-toast-out 0.2s ease forwards;
+    }
+
+    .lib-toast-success {
+      background: var(--color-success);
+      color: #111;
+    }
+
+    .lib-toast-error {
+      background: var(--color-error);
+      color: #fff;
+    }
+
+    .lib-toast-primary {
+      background: var(--color-primary);
+      color: #fff;
+    }
+
+    .sidebar-close.sidebar-close-lg{
+      padding: 0;
+    }
+    @keyframes lib-toast-in {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.92);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes lib-toast-out {
+      from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateY(8px) scale(0.96);
+      }
+    }
+
+/* ═══ FOOTER ═══ */
+.lib-footer {
+  border-top: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+  padding: 0px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--сolor-dark) 70%, var(--color-dark-secondary));
+  margin-left: 250px;
+}
+
+.lib-footer-logo {
+  font-size: 14px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+}
+
+.lib-footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.lib-footer-links a {
+  font-size: 12px;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.lib-footer-links a:hover {
+  color: var(--color-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   WIDE SCREEN ≥ 1440px
+   — sidebar wider
+   — main without width limit, code fully expanded without "Show more"
+═══════════════════════════════════════════════════════════ */
+@media (min-width: 1440px) {
+
+  /* Sidebar — wider */
+  .lib-sidebar {
+    width: 250px;
+    padding: 32px 20px 48px;
+  }
+
+  .lib-sidebar a {
+    font-size: 13.5px;
+    padding: 8px 14px;
+  }
+
+  /* Footer shifts under new sidebar */
+  .lib-footer {
+    margin-left: 300px;
+  }
+
+  /* Main — remove width limit */
+  .lib-main {
+    max-width: none;
+    padding: 28px 64px;
+  }
+
+}
+/* ── View Transition: подавление transition на время кроссфейда (.vt-active)
+   живёт в BaseLayout — глобально для всех страниц. Здесь только
+   докс-специфичная длительность кроссфейда. ── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.28s;
+  animation-timing-function: ease;
+}
+

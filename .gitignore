@@ -44,4 +44,4 @@ yarn-error.log*
 # Editor
 .idea/
 *.swp
-*.swo
+*.swo/src/styles/demo-scoped.generated.css

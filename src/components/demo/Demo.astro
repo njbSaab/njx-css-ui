@@ -27,7 +27,9 @@ import Tokens from '../njx-sections/Tokens.astro';
 import Typography from '../njx-sections/Typography.astro';
 import Utils from '../njx-sections/Utils.astro';
 import Animations from '../njx-sections/Animations.astro';
-import '../../styles/lib-docs-demo-scoped.css';
+// Стили демо-секций: docs-sections.css, обёрнутый в @scope(.demo-ce)
+// (генерируется prebuild-ом: scripts/build-demo-css.cjs)
+import '../../styles/demo-scoped.generated.css';
 ---
 
 <div class="ce demo-ce" data-demo-ce>
