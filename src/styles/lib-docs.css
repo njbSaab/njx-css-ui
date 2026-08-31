@@ -35,97 +35,8 @@
       transition: background 0.35s, color 0.35s;
       overflow-x: hidden;
     }
-    /* ═══ PAGES TOPBAR ═══ */
-    .sc-nav {
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      height: 60px;
-      background: color-mix(in srgb, var(--сolor-dark) 85%, transparent);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
-      display: flex;
-      align-items: center;
-      padding: 0 32px;
-      gap: 24px;
-      transition: background 0.35s, border-color 0.35s;
-    }
-
-    .sc-nav-logo {
-      font-size: 18px;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .sc-nav-ver {
-      font-size: 11px;
-      font-family: 'Roboto Mono', monospace;
-      color: var(--color-muted);
-      opacity: 0.5;
-    }
-
-    .sc-nav-links {
-      display: flex;
-      gap: 4px;
-      align-items: center;
-    }
-
-    .sc-nav-links a {
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--color-muted);
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-
-    .sc-nav-links a:hover {
-      color: var(--color-light);
-      background: color-mix(in srgb, var(--color-primary) 10%, transparent);
-    }
-
-    .sc-nav-links a.active {
-      color: var(--color-primary);
-      background: color-mix(in srgb, var(--color-primary) 12%, transparent);
-    }
-
-    .sc-nav-spacer {
-      flex: 1;
-    }
-
-    .sc-nav-themes {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-    }
-
-    .sc-theme-dot {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: all 0.2s;
-      flex-shrink: 0;
-    }
-
-    .sc-theme-dot:hover {
-      transform: scale(1.2);
-    }
-
-    .sc-theme-dot.active {
-      border-color: var(--color-light);
-      transform: scale(1.15);
-    }
-
+    /* .sc-nav* (топбар страниц) живёт в PagesTopbar.astro; здесь оставлены
+       только .sc-nav-github-правила — кнопка используется в LibsTopbar/Sidebar */
     .lib-topbar .sc-nav-github {
       display: flex;
       align-items: center;
@@ -147,11 +58,6 @@
       scale: 1.1;
     }
 
-    @media (max-width: 900px) {
-      .sc-nav-links {
-        display: none;
-      }
-    }
     /* ═══ TOP BAR ═══ */
     .lib-topbar {
       position: sticky;
