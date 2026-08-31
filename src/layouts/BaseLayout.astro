@@ -40,6 +40,11 @@ const ogImageURL = new URL('/img/og-image.png', Astro.site);
             href={`${import.meta.env.BASE_URL}css/style.min.css`}
             fetchpriority="high"
         />
+        <!-- Общие паттерны сайта (mode-бар и т.п.) -->
+        <link
+            rel="stylesheet"
+            href={`${import.meta.env.BASE_URL}styles/site-shared.css`}
+        />
         <!-- Docs UI styles: shell — хром страницы, sections — карточки демо.
              documentation грузит только shell (из sections она не использовала
              ни одного класса — раньше возила ~1400 лишних строк) -->

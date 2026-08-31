@@ -46,7 +46,7 @@
     "css:classless": "node scripts/build-classless.cjs",
     "css:header": "node scripts/add-style-header.cjs",
     "css:build": "npm run css:minify && npm run css:classless && npm run css:header",
-    "prebuild": "npm run sync:meta && npm run css:build && mkdir -p ./public/scripts ./public/styles && cp ./src/scripts/lib-docs.js ./public/scripts/lib-docs.js && cp ./src/scripts/njx-site.js ./public/scripts/njx-site.js && cp ./src/styles/docs-shell.css ./public/styles/docs-shell.css && cp ./src/styles/docs-sections.css ./public/styles/docs-sections.css && node scripts/build-demo-css.cjs && node -e \"const fs=require('fs');const css=fs.readFileSync('./public/css/classless.css','utf8');fs.writeFileSync('./public/css/classless-scoped.css','@scope (.cl-scope){\\n'+css+'\\n}');\"",
+    "prebuild": "npm run sync:meta && npm run css:build && mkdir -p ./public/scripts ./public/styles && cp ./src/scripts/lib-docs.js ./public/scripts/lib-docs.js && cp ./src/scripts/njx-site.js ./public/scripts/njx-site.js && cp ./src/styles/docs-shell.css ./public/styles/docs-shell.css && cp ./src/styles/docs-sections.css ./public/styles/docs-sections.css && cp ./src/styles/site-shared.css ./public/styles/site-shared.css && node scripts/build-demo-css.cjs && node -e \"const fs=require('fs');const css=fs.readFileSync('./public/css/classless.css','utf8');fs.writeFileSync('./public/css/classless-scoped.css','@scope (.cl-scope){\\n'+css+'\\n}');\"",
     "dev": "npm run prebuild && astro dev",
     "build": "astro build",
     "preview": "astro preview",
