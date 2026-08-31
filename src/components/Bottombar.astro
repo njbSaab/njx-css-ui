@@ -367,32 +367,8 @@ const base = import.meta.env.BASE_URL;
         background: color-mix(in srgb, #f59e0b 15%, transparent);
         color: #fbbf24;
     }
-    .bb-nav-btn::after {
-        content: attr(data-tip);
-        position: absolute;
-        bottom: calc(100% + 8px);
-        left: 50%;
-        transform: translateX(-50%) translateY(4px);
-        background: var(--сolor-dark);
-        color: var(--color-light);
-        font-size: 11px;
-        font-weight: 600;
-        white-space: nowrap;
-        padding: 5px 10px;
-        border-radius: 7px;
-        border: 1px solid
-            color-mix(in srgb, var(--color-neutral-600) 30%, transparent);
-        pointer-events: none;
-        opacity: 0;
-        transition:
-            opacity 0.15s,
-            transform 0.15s;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-    .bb-nav-btn:hover::after {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
+    /* Тултипы кнопок — [data-tip] из библиотечного _tooltip.css
+       (грузится на всех страницах); свой дубль удалён */
     /* Theme dots */
     .bb-themes {
         display: flex;
