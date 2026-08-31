@@ -2026,7 +2026,7 @@ const base = import.meta.env.BASE_URL;
           h: 'Install package',
           meta: '~30s',
           d: 'Add the package. Works with npm, pnpm, yarn or bun.',
-          code: '<span class="com"># pick your manager</span>\nnpm  install njx-css-ui\npnpm add     njx-css-ui\nbun  add     njx-css-ui',
+          code: '<span class="com"># pick your manager</span>\nnpm  install njx-ui\npnpm add     njx-ui\nbun  add     njx-ui',
           check: 'Installed',
         },
         {
@@ -2035,7 +2035,7 @@ const base = import.meta.env.BASE_URL;
           d: 'Pull the stylesheet into your entry file. Vite, webpack, esbuild — all fine.',
           get code() {
             return (
-              '<span class="com">// src/main.ts (or main.js)</span>\n<span class="sh-tag">import</span> <span class="str">"njx-css-ui/css/' +
+              '<span class="com">// src/main.ts (or main.js)</span>\n<span class="sh-tag">import</span> <span class="str">"njx-ui/css/' +
               window._qsCssFile +
               '"</span>;'
             );
@@ -2138,14 +2138,14 @@ const base = import.meta.env.BASE_URL;
           h: 'Install package',
           meta: '~30s',
           d: 'Add the package. Works with npm, pnpm, yarn or bun.',
-          code: '<span class="com"># pick your manager</span>\nnpm  install njx-css-ui\npnpm add     njx-css-ui',
+          code: '<span class="com"># pick your manager</span>\nnpm  install njx-ui\npnpm add     njx-ui',
           check: 'Installed',
         },
         {
           h: 'Import classless CSS',
           meta: '~5s',
           d: 'Import only the classless file — 47 KB, no component classes.',
-          code: '<span class="com">// src/main.ts (or main.js)</span>\n<span class="sh-tag">import</span> <span class="str">"njx-css-ui/css/classless.min.css"</span>;',
+          code: '<span class="com">// src/main.ts (or main.js)</span>\n<span class="sh-tag">import</span> <span class="str">"njx-ui/css/classless.min.css"</span>;',
           check: 'Imported',
         },
         {
@@ -2347,10 +2347,10 @@ const base = import.meta.env.BASE_URL;
             lang: 'JS',
             fname: 'main.ts',
             code: `<span class="com">// terminal</span>
-<span class="kw">$</span> npm install njx-css-ui
+<span class="kw">$</span> npm install njx-ui
 
 <span class="com">// src/main.ts</span>
-<span class="hi"><span class="kw">import</span> <span class="str">"njx-css-ui/css/style.min.css"</span>;
+<span class="hi"><span class="kw">import</span> <span class="str">"njx-ui/css/style.min.css"</span>;
 </span>
 <span class="kw">import</span> { createApp } <span class="kw">from</span> <span class="str">"vue"</span>;
 <span class="kw">import</span> App <span class="kw">from</span> <span class="str">"./App.vue"</span>;
