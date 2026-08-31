@@ -343,18 +343,157 @@ import {
     var DL_BTN_ICON = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1v8M5 6l3 3 3-3M2 11v1a1 1 0 001 1h10a1 1 0 001-1v-1"/></svg>';
     var DL_SPIN_ICON = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="20" stroke-dashoffset="5"/></svg>';
 
+    // ── Open / close (open зовётся из LibsTopbar: downloadCssZip) ──
+    window.downloadCssZip = function () {
+        document.getElementById('njx-download-overlay').classList.add('open');
+
+        var path = window.location.pathname;
+        var tab = 'default';
+        var variant = 'full';
+        if (path.includes('classless')) {
+            variant = 'classless';
+        } else if (path.includes('documentation')) {
+            tab = 'custom';
+        }
+
+        njxDlSwitchTab(tab);
+        if (tab === 'default') {
+            var radio = document.querySelector('input[name="njx-def-variant"][value="' + variant + '"]');
+            if (radio) { radio.checked = true; njxDefSelectVariant(variant); }
+        }
+        njxDlUpdateFooter();
+    };
+
+    window.closeDownloadModal = function () {
+        document.getElementById('njx-download-overlay').classList.remove('open');
+    };
+
+    // ── Custom build: выбор и счётчик ──
+    window.dlSelectAll = function (state) {
+        document.querySelectorAll('#njx-tab-custom input[type="checkbox"]:not(:disabled)')
+            .forEach(function (cb) { cb.checked = state; });
+        // programmatic checked не бросает change — обновляем всё сами
+        njxCbUpdateProgress();
+        njxDlUpdateFooter();
+    };
+
+    function dlUpdateCount() {
+        var panel = document.getElementById('njx-tab-custom');
+        if (!panel) return;
+        var all = panel.querySelectorAll('input[type="checkbox"]');
+        var checked = panel.querySelectorAll('input[type="checkbox"]:checked');
+        var countEl = document.getElementById('njx-dl-count');
+        if (countEl) countEl.textContent = checked.length + ' of ' + all.length + ' files selected';
+    }
+
+    var DL_README = [
+        '# njX UI',
+        '',
+        'A lightweight CSS component library — 9 themes, 30+ components, zero dependencies.',
+        '',
+        '## Files',
+        '',
+        'css/',
+        '  style.css        ← entry point, connect this file',
+        '  _base.css        ← design tokens (colors, fonts, spacing)',
+        '  _reset.css       ← CSS reset',
+        '  _native.css      ← base styles for bare HTML elements',
+        '  _grid.css        ← grid system',
+        '  _typography.css  ← typography classes',
+        '  _utils.css       ← utility classes (Tailwind-style)',
+        '  _responsive.css  ← responsive prefix utilities (sm: md: lg: xl:)',
+        '  ...components    ← only the components you selected',
+        '',
+        'js/',
+        '  njx.js           ← vanilla JS helpers (tabs, modal, accordion, toast)',
+        '',
+        '## Usage',
+        '',
+        '  <link rel="stylesheet" href="css/style.css">',
+        '  <html data-theme="dark">',
+        '',
+        'MIT License',
+        '',
+    ].join('\n');
+
+    // ── Единый каркас скачивания ZIP ──
+    // opts: files [{src,dest}], extra(zip) — доп. файлы, readme, name, toast
+    async function njxZipDownload(opts) {
+        var btn = document.getElementById('njx-dl-confirm');
+        btn.disabled = true;
+        btn.innerHTML = DL_SPIN_ICON + ' Packing...';
+        try {
+            var zip = new JSZip();
+            await Promise.all((opts.files || []).map(async function (f) {
+                try {
+                    var res = await fetch(f.src);
+                    if (res.ok) zip.file(f.dest, await res.text());
+                } catch (e) {}
+            }));
+            if (opts.extra) await opts.extra(zip);
+            zip.file('njx-ui/README.md', opts.readme || DL_README);
+            var blob = await zip.generateAsync({
+                type: 'blob',
+                compression: 'DEFLATE',
+                compressionOptions: { level: 6 },
+            });
+            var a = Object.assign(document.createElement('a'), {
+                href: URL.createObjectURL(blob),
+                download: opts.name || 'njx-ui.zip',
+            });
+            a.click();
+            URL.revokeObjectURL(a.href);
+            closeDownloadModal();
+            showToast(opts.toast || 'Download ready!', 'success');
+        } catch (err) {
+            console.error(err);
+            showToast('Download failed', 'error');
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = DL_BTN_ICON + ' Download ZIP';
+        }
+    }
+
+    // ── Custom build (панель Custom) ──
+    async function buildAndDownload() {
+        var foundation = ['_base.css', '_reset.css', '_native.css', '_grid.css', '_typography.css', '_utils.css', '_responsive.css'];
+        var selected = Array.from(
+            document.querySelectorAll('#njx-tab-custom input[type="checkbox"]:checked:not(:disabled)')
+        ).map(function (cb) { return cb.value; })
+         .filter(function (v) { return v && v.endsWith('.css'); });
+
+        var files = foundation.concat(selected).map(function (f) {
+            return { src: 'css/' + f, dest: 'njx-ui/css/' + f };
+        });
+        if (document.getElementById('njx-dl-js')?.checked) {
+            files.push({ src: 'js/njx.js', dest: 'njx-ui/js/njx.js' });
+        }
+
+        // Кастомный entry point со списком выбранного
+        var styleEntry = [
+            '/* njX UI — generated build */',
+            '/* Connect this file: <link rel="stylesheet" href="css/style.css"> */',
+            '',
+            '/* 1. Foundation */',
+        ].concat(foundation.map(function (f) { return '@import "' + f + '";'; }))
+         .concat(['', '/* 2. Components */'])
+         .concat(selected.map(function (f) { return '@import "' + f + '";'; }))
+         .join('\n');
+
+        return njxZipDownload({
+            files: files,
+            extra: function (zip) { zip.file('njx-ui/css/style.css', styleEntry); },
+            readme: DL_README,
+            name: 'njx-ui.zip',
+        });
+    }
+
     var DEF_CDN_RAW = {
         full: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css">',
         classless: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/classless.min.css">'
     };
 
-    function escHtml(str) {
-        return String(str)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;');
-    }
+    var escHtml = window.njxEscHtml; // общий хелпер из njx-site.js
 
     function highlightCdnLine(line) {
         if (/^\s*<!--/.test(line)) {
@@ -500,11 +639,7 @@ import {
     };
 
     // ── Default download ──
-    window.njxDownloadDefault = async function () {
-        var btn = document.getElementById('njx-dl-confirm');
-        btn.disabled = true;
-        btn.innerHTML = DL_SPIN_ICON + ' Packing...';
-
+    window.njxDownloadDefault = function () {
         var sel = document.querySelector('input[name="njx-def-variant"]:checked');
         var variant = sel ? sel.value : 'full';
 
@@ -512,77 +647,40 @@ import {
             full:      [{ src: 'css/style.min.css',      dest: 'njx-ui/css/style.min.css' }],
             classless: [{ src: 'css/classless.min.css',  dest: 'njx-ui/css/classless.min.css' }]
         };
-
         var readmes = {
             full:      '# njX UI\nConnect: <link rel="stylesheet" href="css/style.min.css">\n<html data-theme="dark">\nMIT License\n',
             classless: '# njX Classless\nConnect: <link rel="stylesheet" href="classless.min.css">\n<html data-theme="dark">\nMIT License\n'
         };
-
         var zipNames = { full: 'njx-ui-full.zip', classless: 'njx-classless.zip' };
 
-        try {
-            var zip = new JSZip();
-            await Promise.all((files[variant] || files.full).map(async function(f) {
-                var res = await fetch(f.src);
-                if (res.ok) zip.file(f.dest, await res.text());
-            }));
-            zip.file('njx-ui/README.md', readmes[variant] || readmes.full);
-
-            var blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } });
-            var a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: zipNames[variant] || 'njx-ui.zip' });
-            a.click();
-            URL.revokeObjectURL(a.href);
-            closeDownloadModal();
-            showToast('Download ready!', 'success');
-        } catch (err) {
-            console.error(err);
-            showToast('Download failed', 'error');
-        } finally {
-            btn.disabled = false;
-            btn.innerHTML = DL_BTN_ICON + ' Download ZIP';
-        }
+        return njxZipDownload({
+            files: files[variant] || files.full,
+            readme: readmes[variant] || readmes.full,
+            name: zipNames[variant] || 'njx-ui.zip',
+        });
     };
 
     // ── All Files download ──
-    window.njxDownloadAll = async function () {
-        var btn = document.getElementById('njx-dl-confirm');
-        btn.disabled = true;
-        btn.innerHTML = DL_SPIN_ICON + ' Packing...';
-
-        var allFiles = [
-            { src: 'css/style.min.css',      dest: 'njx-ui/css/style.min.css' },
-            { src: 'css/classless.min.css',    dest: 'njx-ui/css/classless.min.css' },
-            { src: 'js/njx.js',               dest: 'njx-ui/js/njx.js' }
-        ];
-        // classless.css в репо — @import-заглушка; для ZIP склеиваем реальное содержимое
-        var classlessParts = ['css/_base.css', 'css/_native.css'];
-
+    window.njxDownloadAll = function () {
         var README_ALL = '# njX UI — Complete Package\n\ncss/style.min.css     Full UI\ncss/classless.css     Classless\ncss/classless.min.css Classless minified\njs/njx.js             JS helper\n\nUse ONE stylesheet at a time: Full or Classless.\n\nMIT License\n';
 
-        try {
-            var zip = new JSZip();
-            await Promise.all(allFiles.map(async function(f) {
-                try { var res = await fetch(f.src); if (res.ok) zip.file(f.dest, await res.text()); } catch(e) {}
-            }));
-            var parts = await Promise.all(classlessParts.map(async function(src) {
-                try { var res = await fetch(src); return res.ok ? await res.text() : ''; } catch(e) { return ''; }
-            }));
-            zip.file('njx-ui/css/classless.css', '/* njX UI — classless bundle (_base + _native) */\n' + parts.join('\n'));
-            zip.file('njx-ui/README.md', README_ALL);
-
-            var blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } });
-            var a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'njx-ui-complete.zip' });
-            a.click();
-            URL.revokeObjectURL(a.href);
-            closeDownloadModal();
-            showToast('Complete package downloaded!', 'success');
-        } catch (err) {
-            console.error(err);
-            showToast('Download failed', 'error');
-        } finally {
-            btn.disabled = false;
-            btn.innerHTML = DL_BTN_ICON + ' Download ZIP';
-        }
+        return njxZipDownload({
+            files: [
+                { src: 'css/style.min.css',     dest: 'njx-ui/css/style.min.css' },
+                { src: 'css/classless.min.css', dest: 'njx-ui/css/classless.min.css' },
+                { src: 'js/njx.js',             dest: 'njx-ui/js/njx.js' }
+            ],
+            // classless.css в репо — @import-заглушка; для ZIP склеиваем реальное содержимое
+            extra: async function (zip) {
+                var parts = await Promise.all(['css/_base.css', 'css/_native.css'].map(async function (src) {
+                    try { var res = await fetch(src); return res.ok ? await res.text() : ''; } catch (e) { return ''; }
+                }));
+                zip.file('njx-ui/css/classless.css', '/* njX UI — classless bundle (_base + _native) */\n' + parts.join('\n'));
+            },
+            readme: README_ALL,
+            name: 'njx-ui-complete.zip',
+            toast: 'Complete package downloaded!',
+        });
     };
 
     // ── CDN copy ──

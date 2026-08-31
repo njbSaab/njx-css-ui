@@ -106,6 +106,15 @@
         njxSyncThemeUI(saved);
     }
 
+    /** Экранирование HTML для вставки кода/текста в innerHTML. */
+    window.njxEscHtml = function (str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    };
+
     /* ── Flavor/mode: full | classless | interactive ─────────────────
        Общая часть переключателей режима на quickstart и documentation.
        Тексты подсказок и ключ localStorage (njx-flavor) — единственная
