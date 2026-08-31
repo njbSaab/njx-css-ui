@@ -1,18 +1,7 @@
-// ── Theme apply (docs-страницы): njxApplyTheme + whole-page cross-fade ──
-// Сам сеттер и синк индикаторов — njxApplyTheme из njx-site.js (через него
-// же уходит GA-событие theme_change, которое раньше здесь терялось).
-// .vt-active suppresses per-element CSS transitions from _reset.css
-// so they don't fire simultaneously with the crossfade (avoids double-animation).
+// ── Theme apply: сеттер, синк индикаторов, GA и VT-кроссфейд — всё
+//    внутри njxApplyTheme (njx-site.js); имя оставлено для callers ──
 function applyTheme(theme) {
-  if (document.startViewTransition) {
-    document.documentElement.classList.add('vt-active');
-    const vt = document.startViewTransition(() => njxApplyTheme(theme));
-    vt.finished.finally(() => {
-      document.documentElement.classList.remove('vt-active');
-    });
-  } else {
-    njxApplyTheme(theme);
-  }
+  njxApplyTheme(theme);
 }
 
 // ── Toggle dark ↔ light ──

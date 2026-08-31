@@ -121,6 +121,16 @@ const ogImageURL = new URL('/img/og-image.png', Astro.site);
         <script is:inline src={`${import.meta.env.BASE_URL}scripts/njx-site.js`}
         ></script>
 
+        <!-- На время VT-кроссфейда смены темы (njxApplyTheme) глушим
+             поэлементные CSS-transition — иначе двойная анимация и
+             «кусочная» перекраска. Здесь, а не в lib-docs.css, потому что
+             тему меняют на всех страницах -->
+        <style is:global>
+            .vt-active * {
+                transition: none !important;
+            }
+        </style>
+
         <!-- Аналитика сайта поверх njx.js (сам njx.js — дистрибутив, его не трогаем) -->
         <script is:inline>
             (function () {

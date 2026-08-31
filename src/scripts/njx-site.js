@@ -83,15 +83,33 @@
         });
     };
 
-    /** Сменить тему (канонично, с GA-событием) + засинкать индикаторы. */
+    /**
+     * Сменить тему (канонично, с GA-событием) + засинкать индикаторы.
+     * Смена завёрнута в View Transition — единый кроссфейд всей страницы
+     * вместо «кусочной» перекраски (каждый элемент со своей скоростью
+     * transition). .vt-active глушит поэлементные transition на время
+     * кроссфейда (правило — в BaseLayout, действует на всех страницах);
+     * Firefox без startViewTransition получает мгновенную смену.
+     */
     window.njxApplyTheme = function (theme) {
-        if (window.njxSetTheme) {
-            njxSetTheme(theme);
-        } else {
-            document.documentElement.setAttribute('data-theme', theme);
-            try { localStorage.setItem('njx-theme', theme); } catch (e) {}
+        function setIt() {
+            if (window.njxSetTheme) {
+                njxSetTheme(theme);
+            } else {
+                document.documentElement.setAttribute('data-theme', theme);
+                try { localStorage.setItem('njx-theme', theme); } catch (e) {}
+            }
+            njxSyncThemeUI(theme);
         }
-        njxSyncThemeUI(theme);
+        if (document.startViewTransition) {
+            document.documentElement.classList.add('vt-active');
+            var vt = document.startViewTransition(setIt);
+            vt.finished.finally(function () {
+                document.documentElement.classList.remove('vt-active');
+            });
+        } else {
+            setIt();
+        }
     };
 
     /* Восстановление индикаторов: и на первой загрузке, и после каждой

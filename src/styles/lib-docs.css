@@ -2437,12 +2437,9 @@ html:not([data-theme="light"]) .sw-mini-thumb {
   transform: translateX(16px);
 }
 
-/* ── View Transition: suppress per-element CSS transitions during crossfade ── */
-/* Without this, _reset.css * { transition } fires simultaneously with the    */
-/* view transition crossfade → double-animation, choppy color change.         */
-.vt-active * {
-  transition: none !important;
-}
+/* ── View Transition: подавление transition на время кроссфейда (.vt-active)
+   живёт в BaseLayout — глобально для всех страниц. Здесь только
+   докс-специфичная длительность кроссфейда. ── */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: 0.28s;
