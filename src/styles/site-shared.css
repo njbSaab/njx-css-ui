@@ -64,6 +64,24 @@
   white-space: pre;
 }
 
+/* ── Тонкий скроллбар (сайдбары, панель Download-модалки) ── */
+.lib-sidebar::-webkit-scrollbar,
+.doc-sidebar::-webkit-scrollbar,
+.njx-dl-panel::-webkit-scrollbar {
+  width: 4px;
+}
+.lib-sidebar::-webkit-scrollbar-track,
+.doc-sidebar::-webkit-scrollbar-track,
+.njx-dl-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+.lib-sidebar::-webkit-scrollbar-thumb,
+.doc-sidebar::-webkit-scrollbar-thumb,
+.njx-dl-panel::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-neutral-600) 35%, transparent);
+  border-radius: 4px;
+}
+
 /* ── Подсветка синтаксиса, схема «бренд» (com/sh-tag/attr/str) ──
    Шаги quickstart, qs3-панель, explorer на overview и /demo — раньше
    4 идентичные копии. Значения одни — источник один. */

@@ -393,18 +393,8 @@
       flex-direction: column;
     }
 
-    .lib-sidebar::-webkit-scrollbar {
-      width: 4px;
-    }
 
-    .lib-sidebar::-webkit-scrollbar-track {
-      background: transparent;
-    }
 
-    .lib-sidebar::-webkit-scrollbar-thumb {
-      background: color-mix(in srgb, var(--color-neutral-600) 35%, transparent);
-      border-radius: 4px;
-    }
 
     .lib-sidebar-group {
       margin-bottom: 24px;
