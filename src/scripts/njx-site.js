@@ -105,12 +105,31 @@
             || 'dark';
         njxSyncThemeUI(saved);
     }
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', njxRestoreThemeUI);
-    } else {
-        njxRestoreThemeUI();
+
+    /* Тосты: showToast из njx.js МОЛЧА не работает без #lib-toast-container
+       (так на documentation терялись «Code copied»/«Copy failed»).
+       Гарантируем контейнер на каждой странице; после VT-навигации body
+       пересоздаётся, поэтому проверяем и на astro:page-load. Стили тостов —
+       в lib-docs.css (на страницах без него тост останется невидимым в
+       потоке — не хуже, чем было, и без ошибок). */
+    function njxEnsureToastContainer() {
+        if (!document.getElementById('lib-toast-container')) {
+            var c = document.createElement('div');
+            c.id = 'lib-toast-container';
+            document.body.appendChild(c);
+        }
     }
-    document.addEventListener('astro:page-load', njxRestoreThemeUI);
+
+    function njxPageInit() {
+        njxRestoreThemeUI();
+        njxEnsureToastContainer();
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', njxPageInit);
+    } else {
+        njxPageInit();
+    }
+    document.addEventListener('astro:page-load', njxPageInit);
 
     /**
      * Scroll-spy: подсвечивает пункт навигации (класс .active), чья секция
