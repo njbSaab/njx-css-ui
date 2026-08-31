@@ -4280,63 +4280,27 @@ const base = import.meta.env.BASE_URL;
     }
 
     /* ── CODE BLOCK ── */
-    .sc-code-wrap {
-        background: #0d0d0d;
+    /* .sc-code-* — база в site-shared.css; ниже дельты documentation
+       (скоуп .doc-main, чтобы не конфликтовать с базой на других страницах) */
+    .doc-main .sc-code-wrap {
         border-radius: 14px;
-        overflow: hidden;
-        border: 1px solid #222;
         margin-top: 16px;
     }
-
-    .sc-code-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    .doc-main .sc-code-header {
         padding: 10px 18px;
-        background: #111;
-        border-bottom: 1px solid #222;
     }
-
-    .sc-code-dots {
-        display: flex;
-        gap: 6px;
-    }
-
-    .sc-code-dot {
+    .doc-main .sc-code-dot {
         width: 11px;
         height: 11px;
-        border-radius: 50%;
     }
-
-    .sc-code-filename {
-        font-size: 12px;
-        font-family: 'Roboto Mono', monospace;
-        color: #555;
-    }
-
-    .sc-code-copy {
+    .doc-main .sc-code-copy {
         font-size: 11px;
-        font-weight: 600;
         padding: 3px 10px;
-        border-radius: 6px;
-        background: #222;
-        border: 1px solid #333;
-        color: #888;
-        cursor: pointer;
-        transition: all 0.2s;
     }
-
-    .sc-code-copy:hover {
-        background: #333;
-        color: #fff;
-    }
-
-    .sc-code-body {
+    .doc-main .sc-code-body {
         padding: 20px 22px;
-        font-family: 'Roboto Mono', monospace;
         font-size: 12.5px;
         line-height: 1.9;
-        overflow-x: auto;
     }
 
     .sc-code-body .c {

@@ -5,6 +5,65 @@
    Дельты страниц — в их собственных <style> (sticky/фон/радиус у doc,
    #qs-mode-bar и заливка табов у quickstart).
    ============================================================ */
+
+/* ── Код-окно .sc-code-* (quickstart + documentation) ──
+   База = значения quickstart; дельты documentation — в его <style>
+   под скоупом .doc-main. Раньше оба определяли эти имена целиком с
+   разными значениями (конфликт при VT-навигации). */
+.sc-code-wrap {
+  background: #0d0d0d;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #222;
+  position: relative;
+}
+.sc-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #111;
+  border-bottom: 1px solid #222;
+}
+.sc-code-dots {
+  display: flex;
+  gap: 6px;
+}
+.sc-code-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.sc-code-filename {
+  font-size: 12px;
+  font-family: 'Roboto Mono', monospace;
+  color: #555;
+}
+.sc-code-copy {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: #222;
+  border: 1px solid #333;
+  color: #888;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sc-code-copy:hover {
+  background: #333;
+  color: #fff;
+}
+.sc-code-body {
+  padding: 24px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-x: auto;
+  color: #e0e0e0;
+  white-space: pre;
+}
+
 .doc-mode-bar {
   display: flex;
   align-items: center;
