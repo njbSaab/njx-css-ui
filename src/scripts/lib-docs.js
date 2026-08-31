@@ -510,7 +510,10 @@ function initSidebarObserver() {
 
 // ── JS Carousel (sequential prev/next) ──
 // Target .js-carousel-wrap so dots can live anywhere inside it.
-function initCarousels() {
+// Сайтовая карусель (.js-carousel-wrap). НЕ называть initCarousels:
+// одноимённая функция есть в njx.js (дистрибутив, .carousel-wrap) — раньше
+// эта тихо перетирала библиотечную, и njxAutoInit вызывал не ту.
+function initDocsCarousels() {
   document.querySelectorAll('.js-carousel-wrap').forEach((container) => {
     const track = container.querySelector('.js-carousel-track');
     const slides = track ? Array.from(track.children) : [];
@@ -937,7 +940,7 @@ function njxDocsInit() {
   initAnimTileReplay();
   renderUtils();
   initSidebarObserver();
-  initCarousels();
+  initDocsCarousels();
   initHeroSliders();
   initTestiSliders();
   initSearch();

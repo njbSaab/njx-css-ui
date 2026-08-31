@@ -2675,11 +2675,8 @@ createApp(App).mount(<span class="str">"#app"</span>);`,
   document.addEventListener('astro:page-load', qsInitAll);
 
   // ══════════════════════ MODE BAR ══════════════════════
-  var QS_MODE_HINTS = {
-    full: 'Classless built-in — your HTML is styled automatically',
-    classless: 'Standalone — no component classes, 47 KB',
-    interactive: 'Full library + JS: modals, tabs, toasts and more',
-  };
+  // Общая механика (табы, hint, show/hide, persist) — njxSyncModeUI из
+  // njx-site.js; ниже только специфика quickstart (рендер трека/кода)
   var QS_CSS_FILE = {
     full: 'style.min.css',
     classless: 'classless.min.css',
@@ -2687,68 +2684,41 @@ createApp(App).mount(<span class="str">"#app"</span>);`,
   };
 
   function qsSyncMode(flavor) {
-    // 1. Sync mode bar tabs
-    document
-      .querySelectorAll('#qs-mode-bar .doc-mode-tab')
-      .forEach(function (b) {
-        b.classList.toggle('active', b.dataset.mode === flavor);
-      });
-    // 2. Update hint
-    var hint = document.getElementById('qs-mode-hint');
-    if (hint) hint.textContent = QS_MODE_HINTS[flavor] || QS_MODE_HINTS.full;
+    njxSyncModeUI(flavor, {
+      tabSel: '#qs-mode-bar .doc-mode-tab',
+      hintId: 'qs-mode-hint',
+      blockAttr: 'data-qs-mode',
+    });
 
-    // 3. Update global mode + css file vars (used by PATHS getters and render hooks)
+    // Global mode + css file vars (used by PATHS getters and render hooks)
     window._qsMode = flavor;
     window._qsCssFile = QS_CSS_FILE[flavor] || 'style.min.css';
 
-    // 4. Define code transformation hook (used by renderTab / renderTab2)
+    // Code transformation hook (used by renderTab)
     var _cssFile = window._qsCssFile;
     window._qsApplyModeToCode = function (el) {
       if (!el) return;
       el.innerHTML = el.innerHTML.replace(/style\.min\.css/g, _cssFile);
     };
 
-    // 5. Re-render the progress tracker with correct PATHS
+    // Re-render the progress tracker + code card
     if (window._qsRender) window._qsRender();
-
-    // 6. Re-render code card (applies hook automatically via renderTab)
     if (window._qsRenderTab) window._qsRenderTab();
 
-    // 7. Update static data-qs-cssfile spans
+    // Static data-qs-cssfile spans
     document.querySelectorAll('[data-qs-cssfile]').forEach(function (el) {
       el.textContent = window._qsCssFile;
     });
 
-    // 8. Show/hide data-qs-mode blocks (static HTML sections)
-    document.querySelectorAll('[data-qs-mode]').forEach(function (el) {
-      var modes = el.dataset.qsMode.split(' ');
-      el.style.display = modes.indexOf(flavor) !== -1 ? '' : 'none';
-    });
-
-    // 9. Show/hide JS step (interactive only)
+    // JS step (interactive only)
     document.querySelectorAll('[data-qs-jsonly]').forEach(function (el) {
       el.style.display = flavor === 'interactive' ? '' : 'none';
     });
-
-    // 10. Save
-    try {
-      localStorage.setItem('njx-flavor', flavor);
-    } catch (e) {}
   }
 
-  // Init from localStorage (shared with docs page)
-  (function () {
-    var saved = 'full';
-    try {
-      saved = localStorage.getItem('njx-flavor') || 'full';
-    } catch (e) {}
-    if (saved !== 'full') qsSyncMode(saved);
-  })();
+  // Init from saved flavor (общий ключ с documentation)
+  if (njxSavedFlavor() !== 'full') qsSyncMode(njxSavedFlavor());
   document.addEventListener('astro:page-load', function () {
-    var saved = 'full';
-    try {
-      saved = localStorage.getItem('njx-flavor') || 'full';
-    } catch (e) {}
-    qsSyncMode(saved);
+    qsSyncMode(njxSavedFlavor());
   });
 </script>

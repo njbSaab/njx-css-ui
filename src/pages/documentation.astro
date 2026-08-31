@@ -5210,39 +5210,18 @@ const base = import.meta.env.BASE_URL;
     }
 
     // ── FLAVOR SYNC ──
-    var MODE_HINTS = {
-        full: 'Classless built-in — your HTML is styled automatically',
-        classless: 'Standalone — no component classes, 47 KB',
-        interactive: 'Full library + JS: modals, tabs, toasts and more',
-    };
-
+    // Общая механика (табы, hint, show/hide, persist) — njxSyncModeUI
+    // из njx-site.js; здесь только страничная специфика (flavor-карточки)
     function applyFlavor(flavor) {
-        // 1. Show/hide data-flavor-code blocks (supports space-separated values)
-        document.querySelectorAll('[data-flavor-code]').forEach(function (el) {
-            var codes = el.dataset.flavorCode.split(' ');
-            el.style.display = codes.indexOf(flavor) !== -1 ? '' : 'none';
+        njxSyncModeUI(flavor, {
+            hintId: 'doc-mode-hint',
+            blockAttr: 'data-flavor-code',
         });
-
-        // 2. Sync flavor cards active state
         document
             .querySelectorAll('.doc-flavor-card[data-flavor-card]')
             .forEach(function (c) {
                 c.classList.toggle('active', c.dataset.flavorCard === flavor);
             });
-
-        // 3. Sync mode bar tabs
-        document.querySelectorAll('.doc-mode-tab').forEach(function (b) {
-            b.classList.toggle('active', b.dataset.mode === flavor);
-        });
-
-        // 4. Update hint text
-        var hint = document.getElementById('doc-mode-hint');
-        if (hint) hint.textContent = MODE_HINTS[flavor] || MODE_HINTS.full;
-
-        // 5. Save to localStorage
-        try {
-            localStorage.setItem('njx-flavor', flavor);
-        } catch (e) {}
     }
 
     window.pageSyncFlavor = function (flavor) {
@@ -5250,8 +5229,7 @@ const base = import.meta.env.BASE_URL;
     };
 
     // Init from saved flavor
-    var initFlavor = localStorage.getItem('njx-flavor') || 'full';
-    applyFlavor(initFlavor);
+    applyFlavor(njxSavedFlavor());
 
     // Восстановление .doc-theme-swatch делает njx-site.js (njxRestoreThemeUI
     // на DOMContentLoaded + astro:page-load) — свой restore-IIFE не нужен

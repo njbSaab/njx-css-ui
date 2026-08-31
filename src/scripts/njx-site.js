@@ -106,6 +106,59 @@
         njxSyncThemeUI(saved);
     }
 
+    /* ── Flavor/mode: full | classless | interactive ─────────────────
+       Общая часть переключателей режима на quickstart и documentation.
+       Тексты подсказок и ключ localStorage (njx-flavor) — единственная
+       связь между страницами, поэтому живут здесь, а не в инлайнах. */
+    window.NJX_MODE_HINTS = {
+        full: 'Classless built-in — your HTML is styled automatically',
+        classless: 'Standalone — no component classes, 47 KB',
+        interactive: 'Full library + JS: modals, tabs, toasts and more',
+    };
+
+    /** Сохранённый режим (общий для quickstart/documentation). */
+    window.njxSavedFlavor = function () {
+        try {
+            return localStorage.getItem('njx-flavor') || 'full';
+        } catch (e) {
+            return 'full';
+        }
+    };
+
+    /**
+     * Общая механика переключения режима: табы + hint + show/hide блоков
+     * (значение атрибута — режимы через пробел) + persist.
+     * Страничная специфика (карточки, ре-рендеры) остаётся в вызывающем коде.
+     * opts: tabSel (default '.doc-mode-tab'), hintId, blockAttr
+     */
+    window.njxSyncModeUI = function (flavor, opts) {
+        opts = opts || {};
+        document
+            .querySelectorAll(opts.tabSel || '.doc-mode-tab')
+            .forEach(function (b) {
+                b.classList.toggle('active', b.dataset.mode === flavor);
+            });
+        if (opts.hintId) {
+            var hint = document.getElementById(opts.hintId);
+            if (hint) {
+                hint.textContent =
+                    NJX_MODE_HINTS[flavor] || NJX_MODE_HINTS.full;
+            }
+        }
+        if (opts.blockAttr) {
+            document
+                .querySelectorAll('[' + opts.blockAttr + ']')
+                .forEach(function (el) {
+                    var modes = el.getAttribute(opts.blockAttr).split(' ');
+                    el.style.display =
+                        modes.indexOf(flavor) !== -1 ? '' : 'none';
+                });
+        }
+        try {
+            localStorage.setItem('njx-flavor', flavor);
+        } catch (e) {}
+    };
+
     /* Тосты: showToast из njx.js МОЛЧА не работает без #lib-toast-container
        (так на documentation терялись «Code copied»/«Copy failed»).
        Гарантируем контейнер на каждой странице; после VT-навигации body
