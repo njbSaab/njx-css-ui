@@ -1058,35 +1058,12 @@ import Loading from '../components/classless-sections/Loading.astro';
 
     <script is:inline>
         // ── Theme switching ──
-        function syncThemeCards(theme) {
-            document
-                .querySelectorAll('.theme-card[data-theme]')
-                .forEach((card) =>
-                    card.classList.toggle(
-                        'active',
-                        card.dataset.theme === theme,
-                    ),
-                );
-        }
-
-        const initialTheme =
-            document.documentElement.getAttribute('data-theme') || 'dark';
-        syncThemeCards(initialTheme);
-
+        // Смена + синк карточек/пилюль/прочих индикаторов — njxApplyTheme;
+        // начальное состояние восстанавливает njx-site.js
         document.querySelectorAll('.theme-card[data-theme]').forEach((card) =>
-            card.addEventListener('click', () => {
-                const theme = card.dataset.theme;
-                njxSetTheme(theme);
-                syncThemeCards(theme);
-                document
-                    .querySelectorAll('.lib-theme-pill')
-                    .forEach((p) =>
-                        p.classList.toggle(
-                            'active',
-                            p.title && p.title.toLowerCase() === theme,
-                        ),
-                    );
-            }),
+            card.addEventListener('click', () =>
+                njxApplyTheme(card.dataset.theme),
+            ),
         );
 
         // Поиск (⌘K) живёт в lib-docs.js (initSearch): секции этой страницы

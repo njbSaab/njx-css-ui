@@ -211,25 +211,11 @@ const base = import.meta.env.BASE_URL;
 
 <script is:inline>
   // ── Global theme setter (called by topbar dots) ──
+  // Смена + синк всех индикаторов — njxApplyTheme из njx-site.js;
+  // восстановление при загрузке/VT-навигации тоже делает njx-site.js
   function setTheme(dot, theme) {
-    njxSetTheme(theme);
-    document.querySelectorAll('.sc-theme-dot').forEach(function (d) {
-      d.classList.toggle('active', d.dataset.t === theme);
-    });
+    njxApplyTheme(theme);
   }
-  // Sync active dot with saved theme
-  (function () {
-    var saved;
-    try {
-      saved = localStorage.getItem('njx-theme');
-    } catch (e) {}
-    if (!saved) saved = document.documentElement.getAttribute('data-theme');
-    if (saved) {
-      document.querySelectorAll('.sc-theme-dot').forEach(function (d) {
-        d.classList.toggle('active', d.dataset.t === saved);
-      });
-    }
-  })();
 </script>
 
 <nav class="sc-nav">

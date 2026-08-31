@@ -48,6 +48,70 @@
      *   toast       текст success-тоста (через showToast из njx.js)
      *   track       имя GA-события (через njxTrack) + trackParams
      */
+    /* ── Тема ─────────────────────────────────────────────────────────
+       Канонический сеттер — njxSetTheme из njx.js (его оборачивает
+       GA-аналитика в BaseLayout). Здесь — синхронизация ВСЕХ индикаторов
+       темы на сайте одним декларативным реестром: селектор → откуда взять
+       тему элемента → какой класс ставить. Новый переключатель темы =
+       одна строка в реестре, а не своя функция синка. */
+    var THEME_UI = [
+        { sel: '.bb-dot',                 key: function (el) { return el.dataset.t; },     cls: 'active' },   // Bottombar
+        { sel: '.sc-theme-dot',           key: function (el) { return el.dataset.t; },     cls: 'active' },   // PagesTopbar
+        { sel: '.sc-tpill',               key: function (el) { return el.dataset.t; },     cls: 'active' },   // overview: пилюли
+        { sel: '#ov-tswatches .s',        key: function (el) { return el.dataset.t; },     cls: 'on' },       // overview: свотчи
+        { sel: '.doc-theme-swatch',       key: function (el) { return el.dataset.tc; },    cls: 'selected' }, // documentation
+        { sel: '.theme-card[data-theme]', key: function (el) { return el.dataset.theme; }, cls: 'active' },   // classless: карточки
+        { sel: '.lib-theme-pill',         key: function (el) { return (el.title || '').toLowerCase(); }, cls: 'active' }, // libs topbar
+        { sel: '.ts-tile',                key: function (el) { return el.dataset.ts; },    cls: 'active' },   // theme showcase
+    ];
+
+    /** Синхронизировать все индикаторы темы (без смены самой темы). */
+    window.njxSyncThemeUI = function (theme) {
+        THEME_UI.forEach(function (r) {
+            document.querySelectorAll(r.sel).forEach(function (el) {
+                el.classList.toggle(r.cls, r.key(el) === theme);
+            });
+        });
+        // Текстовые индикаторы
+        var t1 = document.getElementById('tsAttrTheme');
+        var t2 = document.getElementById('tsCodeTheme');
+        if (t1) t1.textContent = theme;
+        if (t2) t2.textContent = theme;
+        ['ov-attr', 'ov-attr2'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.textContent = 'data-theme="' + theme + '"';
+        });
+    };
+
+    /** Сменить тему (канонично, с GA-событием) + засинкать индикаторы. */
+    window.njxApplyTheme = function (theme) {
+        if (window.njxSetTheme) {
+            njxSetTheme(theme);
+        } else {
+            document.documentElement.setAttribute('data-theme', theme);
+            try { localStorage.setItem('njx-theme', theme); } catch (e) {}
+        }
+        njxSyncThemeUI(theme);
+    };
+
+    /* Восстановление индикаторов: и на первой загрузке, и после каждой
+       VT-навигации (инлайн-restore на страницах не перевыполнялся —
+       индикаторы «отставали» после переходов навбаром). */
+    function njxRestoreThemeUI() {
+        var saved = null;
+        try { saved = localStorage.getItem('njx-theme'); } catch (e) {}
+        saved = saved
+            || document.documentElement.getAttribute('data-theme')
+            || 'dark';
+        njxSyncThemeUI(saved);
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', njxRestoreThemeUI);
+    } else {
+        njxRestoreThemeUI();
+    }
+    document.addEventListener('astro:page-load', njxRestoreThemeUI);
+
     /**
      * Scroll-spy: подсвечивает пункт навигации (класс .active), чья секция
      * сейчас в зоне видимости. ВАЖНО: один вызов на страницу для одного

@@ -5172,32 +5172,13 @@ const base = import.meta.env.BASE_URL;
 
 <!-- ── Page JS (is:inline = runs as-is, no bundling) ── -->
 <script is:inline>
-    // ── NAV THEME DOTS (extends global setTheme from PagesTopbar) ──
-    var _baseSetTheme = window.setTheme;
-    window.setTheme = function (dot, theme) {
-        if (_baseSetTheme) _baseSetTheme(dot, theme);
-        document
-            .querySelectorAll('.doc-theme-swatch')
-            .forEach((s) =>
-                s.classList.toggle('selected', s.dataset.tc === theme),
-            );
-    };
-
-    // ── THEME SWATCHES (doc-specific) ──
+    // ── THEME SWATCHES ──
+    // Смена + синк ВСЕХ индикаторов (swatch, точки топбара и пр.) —
+    // njxApplyTheme из njx-site.js; хрупкий патч поверх window.setTheme
+    // из PagesTopbar больше не нужен — реестр в njx-site.js знает
+    // .doc-theme-swatch сам
     function switchTheme(swatch, theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        try {
-            localStorage.setItem('njx-theme', theme);
-        } catch (e) {}
-        document
-            .querySelectorAll('.doc-theme-swatch')
-            .forEach((s) => s.classList.remove('selected'));
-        swatch.classList.add('selected');
-        document
-            .querySelectorAll('.sc-theme-dot')
-            .forEach((d) =>
-                d.classList.toggle('active', d.dataset.t === theme),
-            );
+        njxApplyTheme(theme);
     }
 
     // ── COPY ──
@@ -5272,18 +5253,6 @@ const base = import.meta.env.BASE_URL;
     var initFlavor = localStorage.getItem('njx-flavor') || 'full';
     applyFlavor(initFlavor);
 
-    // ── RESTORE doc-theme-swatch (sc-theme-dot restored by PagesTopbar) ──
-    (function () {
-        var saved;
-        try {
-            saved = localStorage.getItem('njx-theme');
-        } catch (e) {}
-        if (saved) {
-            document
-                .querySelectorAll('.doc-theme-swatch')
-                .forEach((s) =>
-                    s.classList.toggle('selected', s.dataset.tc === saved),
-                );
-        }
-    })();
+    // Восстановление .doc-theme-swatch делает njx-site.js (njxRestoreThemeUI
+    // на DOMContentLoaded + astro:page-load) — свой restore-IIFE не нужен
 </script>

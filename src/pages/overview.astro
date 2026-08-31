@@ -1263,18 +1263,10 @@ const base = import.meta.env.BASE_URL;
     if (!tsw) return;
 
     // ── Central theme setter ──
+    // Смена + синк (свотчи .s, пилюли .sc-tpill, тексты ov-attr*) —
+    // njxApplyTheme, все индикаторы описаны в реестре njx-site.js
     function ovnApplyTheme(t) {
-      njxSetTheme(t);
-      var a1 = document.getElementById('ov-attr');
-      if (a1) a1.textContent = 'data-theme="' + t + '"';
-      var a2 = document.getElementById('ov-attr2');
-      if (a2) a2.textContent = 'data-theme="' + t + '"';
-      tsw.querySelectorAll('.s').forEach(function (el) {
-        el.classList.toggle('on', el.dataset.t === t);
-      });
-      document.querySelectorAll('.sc-tpill').forEach(function (p) {
-        p.classList.toggle('active', p.dataset.t === t);
-      });
+      njxApplyTheme(t);
     }
 
     // ── Theme swatches (build once per navigation) ──
@@ -1290,11 +1282,13 @@ const base = import.meta.env.BASE_URL;
       });
     }
 
-    // Sync to saved theme
+    // Sync to saved theme — только синк индикаторов, БЕЗ njxApplyTheme:
+    // сама тема уже восстановлена (njx.js/BaseLayout), а вызов сеттера
+    // здесь генерировал бы ложное GA-событие theme_change на каждый визит
     var curTheme = (function () {
       try { return localStorage.getItem('njx-theme') || 'dark'; } catch (e) { return 'dark'; }
     })();
-    ovnApplyTheme(curTheme);
+    njxSyncThemeUI(curTheme);
 
     // Sync pills
     document.querySelectorAll('.sc-tpill').forEach(function (p) {

@@ -265,29 +265,13 @@ const base = import.meta.env.BASE_URL;
             onScroll();
 
             // ── Theme dots ──
-            function syncDots(theme) {
-                bar.querySelectorAll('.bb-dot').forEach(function (d) {
-                    d.classList.toggle('active', d.dataset.t === theme);
-                });
-            }
-
+            // Смена + синк индикаторов (включая эти точки) — njxApplyTheme;
+            // начальное состояние точек восстанавливает njx-site.js
             bar.querySelectorAll('.bb-dot').forEach(function (d) {
                 d.addEventListener('click', function () {
-                    njxSetTheme(d.dataset.t);
-                    syncDots(d.dataset.t);
+                    njxApplyTheme(d.dataset.t);
                 });
             });
-
-            var saved =
-                document.documentElement.getAttribute('data-theme') ||
-                (function () {
-                    try {
-                        return localStorage.getItem('njx-theme');
-                    } catch (e) {}
-                    return null;
-                })() ||
-                'dark';
-            syncDots(saved);
         }
 
         if (window._bbInitRegistered) return;

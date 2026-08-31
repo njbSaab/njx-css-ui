@@ -1,33 +1,17 @@
-// ── Unified theme apply — syncs all UI elements ──
+// ── Theme apply (docs-страницы): njxApplyTheme + whole-page cross-fade ──
+// Сам сеттер и синк индикаторов — njxApplyTheme из njx-site.js (через него
+// же уходит GA-событие theme_change, которое раньше здесь терялось).
+// .vt-active suppresses per-element CSS transitions from _reset.css
+// so they don't fire simultaneously with the crossfade (avoids double-animation).
 function applyTheme(theme) {
-  // Persist choice
-  try { localStorage.setItem('njx-theme', theme); } catch(e) {}
-
-  // Update pills, labels etc. immediately (outside the visual transition)
-  document.querySelectorAll('.lib-theme-pill').forEach(p => {
-    p.classList.toggle('active', p.title.toLowerCase() === theme);
-  });
-  document.querySelectorAll('.ts-tile').forEach(t => {
-    t.classList.toggle('active', t.dataset.ts === theme);
-  });
-  const attrThemeEl = document.getElementById('tsAttrTheme');
-  const codeEl = document.getElementById('tsCodeTheme');
-  if (attrThemeEl) attrThemeEl.textContent = theme;
-  if (codeEl) codeEl.textContent = theme;
-
-  // View Transitions API — whole-page cross-fade (Chrome/Edge/Safari 18+)
-  // .vt-active suppresses per-element CSS transitions from _reset.css
-  // so they don't fire simultaneously with the crossfade (avoids double-animation).
   if (document.startViewTransition) {
     document.documentElement.classList.add('vt-active');
-    const vt = document.startViewTransition(() => {
-      document.documentElement.setAttribute('data-theme', theme);
-    });
+    const vt = document.startViewTransition(() => njxApplyTheme(theme));
     vt.finished.finally(() => {
       document.documentElement.classList.remove('vt-active');
     });
   } else {
-    document.documentElement.setAttribute('data-theme', theme);
+    njxApplyTheme(theme);
   }
 }
 
@@ -947,13 +931,7 @@ function njxDocsInit() {
   if (document.body.dataset.njxInited) return;
   document.body.dataset.njxInited = '1';
   document.body.classList.remove('sidebar-open');
-  const currentTheme = document.documentElement.dataset.theme || 'dark';
-  document.querySelectorAll('.lib-theme-pill').forEach(p => {
-    p.classList.toggle('active', p.title.toLowerCase() === currentTheme);
-  });
-  document.querySelectorAll('.ts-tile').forEach(t => {
-    t.classList.toggle('active', t.dataset.ts === currentTheme);
-  });
+  njxSyncThemeUI(document.documentElement.dataset.theme || 'dark');
   initSectionHeaders();
   initCodeToggles();
   initAnimTileReplay();
