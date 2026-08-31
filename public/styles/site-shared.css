@@ -38,6 +38,8 @@
   font-size: 13px;
   font-weight: 500;
   color: var(--color-muted);
+  /* без явного background у <button> вступает UA-дефолт buttonface (белый) */
+  background: transparent;
   border: 1px solid transparent;
   cursor: pointer;
   transition: all 0.2s;
