@@ -5210,11 +5210,23 @@ const base = import.meta.env.BASE_URL;
     }
 
     // ── SIDEBAR ACTIVE ON SCROLL ── (njxScrollSpy — из njx-site.js)
-    njxScrollSpy(
-        '.lib-sidebar a[href^="#"]',
-        '.doc-section',
-        '-60px 0px -55% 0px',
-    );
+    // Переинициализация на каждый astro:page-load: при VT-навигации DOM
+    // пересоздаётся, а инлайн-скрипт повторно не выполняется — без этого
+    // обсервер держит отсоединённые ссылки и сайдбар «гаснет»
+    function initDocSpy() {
+        if (!document.querySelector('.doc-section')) return;
+        if (window._docSpy) window._docSpy.disconnect();
+        window._docSpy = njxScrollSpy(
+            '.lib-sidebar a[href^="#"]',
+            '.doc-section',
+            '-60px 0px -55% 0px',
+        );
+    }
+    initDocSpy();
+    if (!window._docSpyReg) {
+        window._docSpyReg = true;
+        document.addEventListener('astro:page-load', initDocSpy);
+    }
 
     // ── FLAVOR SYNC ──
     var MODE_HINTS = {

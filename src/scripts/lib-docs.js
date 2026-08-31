@@ -713,13 +713,20 @@ function initSearch() {
     pagination: '«»', notifications: '🔔', progress: '▮',
     links: '🔗', dropdown: '⌄', carousel: '🎠', social: '🌐', sidebar: '◫',
     animations: '✨', gradients: '🌈', hovers: '🖱', skeleton: '💀', 'hover-tips': '💡',
+    // ── секции classless-страницы (ids не пересекаются с docs, кроме
+    //    buttons/progress — у тех иконки совпадают) ──
+    themes: '🎨', variants: '⚡', headings: '𝐓', inline: '🔗',
+    lists: '≡', 'code-block': '⌨', tables: '📊', inputs: '📋',
+    controls: '🎛', 'ready-cards': '▣', article: '📄', semantic: '🏗',
+    dl: '🖼', details: '🔽', dialog: '💬', loading: '⏳',
   };
 
   document.querySelectorAll('.lib-section[id]').forEach(section => {
     const id = section.id;
     const titleEl = section.querySelector('.lib-section-title');
     const title = titleEl ? titleEl.textContent.replace(/^[^\w\s]+/, '').trim() : id;
-    const group = SECTION_GROUPS[id] || 'Other';
+    // 'Section' — фолбэк для classless-секций (их ids нет в SECTION_GROUPS)
+    const group = SECTION_GROUPS[id] || 'Section';
     const icon = SECTION_ICONS[id] || '◻';
 
     // Section itself
