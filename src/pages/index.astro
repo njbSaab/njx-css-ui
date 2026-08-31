@@ -496,15 +496,19 @@ const heroCdnSnippet = `<link rel="stylesheet" href="${CDN_BASE}style.min.css">`
 			line-height: 1.5;
 			padding: 10px 12px;
 			border-radius: 10px;
-			color: var(--color-text, #e6e6e6);
-			background: var(--color-surface, rgba(255, 255, 255, 0.04));
-			border: 1px solid var(--color-border, rgba(255, 255, 255, 0.12));
+			/* реальные токены библиотеки: раньше тут были несуществующие
+			   --color-text/surface/border и блок не реагировал на тему */
+			color: var(--color-light);
+			background: color-mix(in srgb, var(--color-light) 4%, transparent);
+			border: 1px solid
+				color-mix(in srgb, var(--color-light) 12%, transparent);
 		}
 		.ui-preview-cdn-copy {
 			flex-shrink: 0;
 			padding: 0 16px;
 			border-radius: 10px;
-			border: 1px solid var(--color-border, rgba(255, 255, 255, 0.12));
+			border: 1px solid
+				color-mix(in srgb, var(--color-light) 12%, transparent);
 			background: transparent;
 			color: var(--color-primary, #7c9cff);
 			font-size: 12px;
