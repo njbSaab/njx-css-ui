@@ -211,6 +211,46 @@
     }
     document.addEventListener('astro:page-load', njxPageInit);
 
+    /* ── Делегированный хром код-окон (статическая разметка CodeBlock.astro) ──
+       Атрибуты data-code-toggle / data-code-copy есть только у статического
+       хрома — runtime-кнопки легаси-окон (lib-docs.js) сюда не попадают и
+       не срабатывают дважды. Слушатель на document переживает VT-своп body
+       и работает на страницах без lib-docs.js (например, /demo). */
+    document.addEventListener('click', function (e) {
+        if (!e.target || !e.target.closest) return;
+
+        var toggle = e.target.closest('.lib-code-reveal-btn[data-code-toggle]');
+        if (toggle) {
+            var wrapper = toggle.nextElementSibling;
+            if (wrapper && wrapper.classList.contains('lib-code-wrapper')) {
+                var isOpen = wrapper.classList.contains('code-open');
+                wrapper.classList.toggle('code-open', !isOpen);
+                toggle.classList.toggle('open', !isOpen);
+                var t = toggle.querySelector('.lib-crb-text');
+                if (t) t.textContent = isOpen ? 'Show code' : 'Hide code';
+            }
+            return;
+        }
+
+        var copy = e.target.closest('.lib-copy-btn[data-code-copy]');
+        if (copy) {
+            e.stopPropagation();
+            var wrap = copy.closest('.lib-code-wrapper');
+            var codeEl = wrap && wrap.querySelector('.lib-code');
+            if (!codeEl) return;
+            njxCopyBtn(copy, codeEl.dataset.raw || codeEl.innerText.trim(), {
+                done:
+                    '<svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor">' +
+                    '<path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/>' +
+                    '</svg> Copied!',
+                doneClass: 'copied',
+                toast: 'Code copied',
+                track: 'copy_code',
+                trackParams: { copy_type: 'code_block' },
+            });
+        }
+    });
+
     /**
      * Scroll-spy: подсвечивает пункт навигации (класс .active), чья секция
      * сейчас в зоне видимости. ВАЖНО: один вызов на страницу для одного

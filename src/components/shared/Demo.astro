@@ -52,6 +52,13 @@ const Wrap = previewWrap;
 const raw = dedent(await Astro.slots.render('default')).trim();
 const sample = code != null ? dedent(code).trim() : raw;
 const hasPreviewSlot = Astro.slots.has('preview');
+// лейбл окна кода — plain text (label может содержать разметку)
+const plainLabel = label
+  ? label
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+  : undefined;
 ---
 
 <div class={`lib-component ${className}`.trim()}>
@@ -68,5 +75,5 @@ const hasPreviewSlot = Astro.slots.has('preview');
       )
     }
   </div>
-  <CodeBlock code={sample} lang={lang} filename={filename} />
+  <CodeBlock code={sample} lang={lang} filename={filename} label={plainLabel} />
 </div>

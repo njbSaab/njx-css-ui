@@ -4,6 +4,7 @@ import { dedent, escapeHtml, highlightHtml, highlightCss } from './code-utils.js
 interface Props {
     code: string;
     lang?: string;
+    label?: string; // подпись в шапке окна (plain text)
     filename?: string;
     compact?: boolean;
     class?: string;
@@ -12,6 +13,7 @@ interface Props {
 const {
     code,
     lang = 'html',
+    label,
     filename,
     compact = false,
     class: className = '',
@@ -25,19 +27,74 @@ const highlightedCode =
         : lang === 'css'
           ? highlightCss(normalizedCode)
           : escapeHtml(normalizedCode);
+
+const windowLabel = label || filename || 'HTML';
 ---
 
+{/* Хром (Show code, mac-dots, Copy) — статическая разметка; поведение —
+    делегированные обработчики в njx-site.js (data-code-toggle/data-code-copy).
+    data-code-ready="1" — initCodeToggles из lib-docs.js пропускает такие окна
+    (runtime-инъекция осталась только для легаси: classless + Tokens showcase). */}
+<button class="lib-code-reveal-btn" type="button" data-code-toggle>
+    <svg
+        width="13"
+        height="13"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        style="flex-shrink:0;opacity:.75"
+    >
+        <path
+            d="M5.78 4.03a.75.75 0 0 1 0 1.06L3.87 7l1.91 1.91a.75.75 0 1 1-1.06 1.06l-2.47-2.47a.75.75 0 0 1 0-1.06l2.47-2.47a.75.75 0 0 1 1.06 0zm4.44 0a.75.75 0 0 1 1.06 0l2.47 2.47a.75.75 0 0 1 0 1.06l-2.47 2.47a.75.75 0 1 1-1.06-1.06L12.13 7l-1.91-1.91a.75.75 0 0 1 0-1.06z"
+        ></path>
+    </svg>
+    <span class="lib-crb-text">Show code</span>
+    <svg
+        class="lib-crb-chevron"
+        width="12"
+        height="12"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        style="flex-shrink:0"
+    >
+        <path
+            d="M3.22 6.03a.75.75 0 0 1 1.06 0L8 9.75l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L3.22 7.09a.75.75 0 0 1 0-1.06z"
+        ></path>
+    </svg>
+</button>
 <div
     class={`lib-code-wrapper ${compact ? 'is-compact' : ''} ${className}`}
     data-code-block
+    data-code-ready="1"
 >
-    <div class="lib-code-container">
-        <div
-            class="lib-code"
-            data-raw={normalizedCode}
-            data-code-filename={filename}
-        >
-            <pre class={`codeblock-pre language-${lang}`}><code set:html={highlightedCode} /></pre>
+    <div class="lib-code-inner">
+        <div class="lib-code-header">
+            <div class="lib-code-mac-dots">
+                <div class="lib-code-mac-dot" style="background:#ff5f57"></div>
+                <div class="lib-code-mac-dot" style="background:#febc2e"></div>
+                <div class="lib-code-mac-dot" style="background:#28c840"></div>
+            </div>
+            <span class="lib-code-label">{windowLabel}</span>
+            <button class="lib-copy-btn" type="button" data-code-copy>
+                <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor">
+                    <path
+                        d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                    ></path>
+                    <path
+                        d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                    ></path>
+                </svg>
+                Copy
+            </button>
+        </div>
+        <div class="lib-code-container">
+            <div
+                class="lib-code"
+                data-raw={normalizedCode}
+                data-code-filename={filename}
+            >
+                <pre
+                    class={`codeblock-pre language-${lang}`}><code set:html={highlightedCode} /></pre>
+            </div>
         </div>
     </div>
 </div>

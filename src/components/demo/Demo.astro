@@ -656,7 +656,11 @@ import '../../styles/demo-scoped.generated.css';
     display: none;
   }
 
-  .demo-ce .lib-code-wrapper {
+  /* принудительный разворот кода удалён (3.8): у окон теперь статический
+     хром Show code/Copy (делегирование в njx-site.js). Исключение — легаси
+     без хрома (Tokens theme-showcase): lib-docs.js здесь не грузится,
+     кнопки не появятся — держим такие окна развёрнутыми. */
+  .demo-ce .lib-code-wrapper:not([data-code-ready]) {
     display: grid;
     grid-template-rows: 1fr;
   }
