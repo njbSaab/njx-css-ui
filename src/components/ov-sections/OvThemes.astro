@@ -1,0 +1,105 @@
+---
+import { THEMES } from '../../data/themes';
+---
+
+  <!-- ══════════════════════ THEME SYSTEM ══════════════════════ -->
+  <div class="sc-section sc-section-center" style="padding-top:100px">
+    <span class="sc-eyebrow">Theme system</span>
+    <h2 class="sc-heading">
+      Switch the entire UI<br />with one HTML attribute
+    </h2>
+    <p class="sc-subheading center">
+      No CSS overrides. No JavaScript required. Every component adapts
+      automatically through CSS custom properties inherited from <code
+        style="color:var(--color-primary);font-family:'Roboto Mono',monospace"
+        >data-theme</code
+      >.
+    </p>
+    <div class="sc-theme-pills">
+      {THEMES.map((t) => (
+        <div
+          class={`sc-tpill${t.name === 'dark' ? ' active' : ''}`}
+          style={`--pill-color:${t.hex}`}
+          data-t={t.name}
+        >
+          <span class="dot" />{t.name.charAt(0).toUpperCase() + t.name.slice(1)}
+        </div>
+      ))}
+    </div>
+    <div class="sc-theme-preview">
+      <div class="sc-theme-preview-bar">
+        <div class="sc-tpbar-dot" style="background:#ff5f57"></div>
+        <div class="sc-tpbar-dot" style="background:#febc2e"></div>
+        <div class="sc-tpbar-dot" style="background:#28c840"></div>
+        <div class="sc-tpbar-url">
+          &lt;html <span style="color:var(--color-primary)" id="ov-attr2"
+            >data-theme="dark"</span
+          >&gt;
+        </div>
+      </div>
+      <div class="sc-theme-preview-body">
+        <div class="sc-demo-card">
+          <div class="sc-demo-card-title" style="color:var(--color-primary)">
+            Dashboard
+          </div>
+          <div class="sc-demo-card-text">
+            Real-time analytics overview with live metrics and trend data.
+          </div>
+          <button class="btn btn-primary btn-sm">View Stats</button>
+        </div>
+        <div class="sc-demo-card">
+          <div class="sc-demo-card-title">Sign in</div>
+          <div
+            style="display:flex;flex-direction:column;gap:10px;margin-top:10px"
+          >
+            <input
+              class="inp inp-sm"
+              placeholder="Email"
+              type="email"
+              style="font-size:12px"
+            />
+            <input
+              class="inp inp-sm"
+              placeholder="Password"
+              type="password"
+              style="font-size:12px"
+            />
+            <button class="btn btn-primary btn-sm" style="width:100%"
+              >Login</button
+            >
+          </div>
+        </div>
+        <div class="sc-demo-card">
+          <div class="sc-demo-card-title">Components</div>
+          <div class="sc-demo-card-text">Mix and match freely.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+            <span class="tag tag-primary" style="font-size:11px">primary</span>
+            <span class="tag tag-success" style="font-size:11px">success</span>
+            <span class="tag tag-filled-primary" style="font-size:11px"
+              >filled</span
+            >
+            <span class="badge badge-error" style="font-size:11px">3</span>
+          </div>
+          <div style="margin-top:10px">
+            <div
+              style="height:6px;background:color-mix(in srgb,var(--color-primary) 20%,transparent);border-radius:4px"
+            >
+              <div
+                style="height:100%;width:65%;background:var(--color-primary);border-radius:4px;transition:width 0.6s"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="margin-top:24px;font-family:'Roboto Mono',monospace;font-size:13px;color:var(--color-muted)"
+    >
+      That's literally it →
+      <span
+        style="color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 10%,transparent);padding:3px 10px;border-radius:6px"
+        >&lt;html data-theme="purple"&gt;</span
+      >
+    </div>
+  </div>

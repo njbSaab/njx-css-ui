@@ -1,0 +1,80 @@
+---
+
+const OV_FEATURES = [
+    {
+        icon: "🎨",
+        title: "9 Themes, one attribute",
+        desc: "Dark, Light, Red, Blue, Green, Cyan, Yellow, Pink, Purple. Every component adapts automatically. No extra CSS needed.",
+        tag: "data-theme=\"purple\""
+    },
+    {
+        icon: "⚡",
+        title: "Zero build step",
+        desc: "One CDN link and you're running. No npm, no webpack, no PostCSS config. Works in any HTML file, today.",
+        tag: "CDN ready"
+    },
+    {
+        icon: "🔑",
+        title: "CSS Variables First",
+        desc: "60+ design tokens. Change <code style=\"color:var(--color-primary)\" >--color-primary</code > once and it ripples through every component.",
+        tag: "60+ tokens"
+    },
+    {
+        icon: "✨",
+        title: "Hover effects built in",
+        desc: "30+ hover classes: scale, lift, glow, rotate, shimmer, blur, brightness. Effects that usually need custom CSS — already here.",
+        tag: "30+ effects"
+    },
+    {
+        icon: "🌈",
+        title: "Gradients out of the box",
+        desc: "15+ background gradients, 8 text gradients, gradient borders, animated gradients. Design-ready without a single line of custom CSS.",
+        tag: "_gradients.css"
+    },
+    {
+        icon: "🎭",
+        title: "Animations included",
+        desc: "Float, pulse, bounce, spin, heartbeat, wiggle, glow, neon text, rainbow, fade-in variants. Add a class, get an animation.",
+        tag: "_animations.css"
+    },
+    {
+        icon: "♻️",
+        title: "Bulma compatible",
+        desc: "Already using Bulma? Classes like <code style=\"color:var(--color-primary)\">.button.is-primary</code > work without changes. Migrate progressively, zero rewrites.",
+        tag: "Drop-in replacement"
+    },
+    {
+        icon: "📐",
+        title: "Two grid systems",
+        desc: "Classic 12-col flex grid (<code style=\"color:var(--color-primary)\" >.row</code > + <code style=\"color:var(--color-primary)\">.col-*</code>) and modern CSS Grid helpers. Pick what fits.",
+        tag: "_grid.css"
+    },
+    {
+        icon: "🎯",
+        title: "Tailwind-compatible utils",
+        desc: "Same class names as Tailwind — <code style=\"color:var(--color-primary)\" >flex gap-4 mt-6 px-4 rounded-lg</code > work out of the box. Zero PostCSS, zero build step, 40&nbsp;KB instead of 3&nbsp;MB.",
+        tag: "_utils.css"
+    }
+];
+---
+
+  <!-- ══════════════════════ FEATURES ══════════════════════ -->
+  <div class="sc-section" style="padding-top:40px; padding-bottom: 0;">
+    <div style="margin-bottom:40px">
+      <span class="sc-eyebrow">Why njX</span>
+      <h2 class="sc-heading">Everything you need.<br />Nothing you don't.</h2>
+      <p class="sc-subheading">
+        Built on CSS custom properties from the ground up. No preprocessors, no
+        PostCSS, no config files.
+      </p>
+    </div>
+    <div class="sc-features">
+      {OV_FEATURES.map((f) => (
+        <div class="sc-feat">
+          <span class="sc-feat-icon">{f.icon}</span><div class="sc-feat-title">
+            {f.title}
+          </div><div class="sc-feat-desc" set:html={f.desc} /><span class="sc-feat-tag">{f.tag}</span>
+        </div>
+      ))}
+    </div>
+  </div>
