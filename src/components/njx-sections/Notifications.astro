@@ -1,3 +1,108 @@
+---
+import Demo from '../shared/Demo.astro';
+
+const toastNotificationsClickToTriggerAutoDismCode = `
+<!-- Toast: success | error | warning | info -->
+<!-- Slides in from bottom-right, auto-dismisses, stackable -->
+<button onclick="njxFireToast(type, title, message)">Show Toast</button>
+
+njxFireToast("success", "Deployed!", "Your changes are live ✓");
+njxFireToast("error",   "Error 500", "Server failed to respond");
+njxFireToast("warning", "Low storage", "Only 120MB remaining");
+njxFireToast("info",    "New update", "v1.0.7 is available");
+`;
+
+const notificationBellClickToOpenMarkAsReadBadCode = `
+<div style="position:relative" id="njxBellWrap">
+  <button class="njx-bell-btn" onclick="njxToggleBell()">🔔
+    <span class="njx-bell-badge" id="njxBellBadge">4</span>
+  </button>
+  <div class="njx-notif-dropdown" id="njxBellDropdown">
+    <div class="njx-notif-item unread" onclick="njxReadNotif(this)">
+      <div class="njx-notif-avatar">A</div>
+      <div class="njx-notif-body">
+        <div class="njx-notif-text"><b>alex_dev</b> pushed to main</div>
+        <div class="njx-notif-time">2 min ago</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+/* njxToggleBell()   — open/close dropdown
+   njxReadNotif(el)  — mark single item read
+   njxMarkAllRead()  — mark all read, clear badge */
+`;
+
+const inlineAlertsClickToDismissSmoothCollapseCode = `
+<!-- njx-ni-success | njx-ni-error | njx-ni-warning | njx-ni-info | njx-ni-dark -->
+<div class="njx-notif-inline njx-ni-success">
+  <span class="njx-notif-inline-icon">✅</span>
+  <div class="njx-notif-inline-body">
+    <div class="njx-notif-inline-title">Deployment successful</div>
+    <div class="njx-notif-inline-msg">Version 1.0.6 is live.</div>
+  </div>
+  <button class="njx-notif-inline-close" onclick="njxDismissAlert(this)">×</button>
+</div>
+
+/* njxDismissAlert(btn) — collapses parent alert smoothly */
+/* njxRestoreAlerts()   — restores all dismissed alerts   */
+`;
+
+const messageInboxClickToReadBadgeCounterCode = `
+<div class="njx-inbox">
+  <div class="njx-inbox-header">
+    <div class="njx-inbox-title">Messages <span class="badge badge-primary" id="njxMsgBadge">3</span></div>
+    <div class="njx-inbox-actions">
+      <button class="njx-inbox-action-btn" onclick="njxMarkAllMsgs()">✓✓</button>
+    </div>
+  </div>
+  <div class="njx-msg-item unread" onclick="njxReadMsg(this)">
+    <div class="njx-msg-avatar">A</div>
+    <div class="njx-msg-content">
+      <div class="njx-msg-top">
+        <span class="njx-msg-name">alex_dev</span>
+        <span class="njx-msg-time">2m</span>
+      </div>
+      <div class="njx-msg-subject">Re: PR #38</div>
+      <div class="njx-msg-preview">Looks great! One question...</div>
+    </div>
+    <div class="njx-msg-dot"></div>
+  </div>
+</div>
+
+/* njxReadMsg(el)    — mark message read, update badge
+   njxMarkAllMsgs() — mark all read */
+`;
+
+const notificationStaticVariantsCode = `
+<!-- notification: is-primary | is-success | is-warning | is-danger -->
+<div class="notification is-success">
+  <button class="delete is-small" onclick="this.closest('.notification').style.display='none'"></button>
+  Completed successfully
+</div>
+`;
+
+const messagesCode = `
+<!-- message: is-primary | is-success | is-warning | is-danger -->
+<div class="message is-primary">
+  <div class="message-header">
+    Header
+    <button class="delete is-small"></button>
+  </div>
+  <div class="message-body">Message text</div>
+</div>
+`;
+
+const loadersCode = `
+<!-- loader: default | loader-accent | loader-success | loader-lg | loader-xl -->
+<div class="loader"></div>
+<div class="loader loader-accent"></div>
+<div class="loader loader-success"></div>
+<div class="loader loader-lg"></div>
+<div class="loader loader-xl"></div>
+`;
+---
+
 <style>
     /* ── Trigger buttons ── */
     .njx-trigger-grid {
@@ -495,11 +600,7 @@
     <!-- ══════════════════════════
              TOAST TRIGGERS
         ══════════════════════════ -->
-    <div class="lib-component">
-        <div class="lib-component-label">
-            Toast Notifications — click to trigger · auto-dismiss · stackable
-        </div>
-        <div class="lib-preview col" style="gap:16px">
+    <Demo is:raw label={'Toast Notifications — click to trigger · auto-dismiss · stackable'} previewClass="col" previewStyle="gap:16px" code={toastNotificationsClickToTriggerAutoDismCode}>
             <div class="njx-trigger-grid">
                 <button
                     class="njx-trigger-btn t-success"
@@ -553,59 +654,12 @@
                     >+ Subscribe</button
                 >
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Toast: success | error | warning | info -->
-<!-- Slides in from bottom-right, auto-dismisses, stackable -->
-<button onclick="njxFireToast(type, title, message)">Show Toast</button>
-
-njxFireToast("success", "Deployed!", "Your changes are live ✓");
-njxFireToast("error",   "Error 500", "Server failed to respond");
-njxFireToast("warning", "Low storage", "Only 120MB remaining");
-njxFireToast("info",    "New update", "v1.0.7 is available");'
-                >
-                    <span class="c"
-                        >/* njxFireToast(type, title, msg, duration=4000) */</span
-                    ><br /><br />
-                    <span class="n">njxFireToast</span>(<span class="cn"
-                        >"success"</span
-                    >, <span class="cn">"Deployed!"</span>, <span class="cn"
-                        >"Your changes are live ✓"</span
-                    >);<br />
-                    <span class="n">njxFireToast</span>(<span class="cn"
-                        >"error"</span
-                    >, <span class="cn">"Error 500"</span>, <span class="cn"
-                        >"Server failed to respond"</span
-                    >);<br />
-                    <span class="n">njxFireToast</span>(<span class="cn"
-                        >"warning"</span
-                    >, <span class="cn">"Low storage"</span>, <span class="cn"
-                        >"Only 120MB remaining"</span
-                    >);<br />
-                    <span class="n">njxFireToast</span>(<span class="cn"
-                        >"info"</span
-                    >, <span class="cn">"New update"</span>, <span class="cn"
-                        >"v1.0.7 is available"</span
-                    >);
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ══════════════════════════
              BELL DROPDOWN
         ══════════════════════════ -->
-    <div class="lib-component">
-        <div class="lib-component-label">
-            Notification Bell — click to open · mark as read · badge counter
-        </div>
-        <div
-            class="lib-preview"
-            style="gap:32px;align-items:flex-start;flex-wrap:wrap;overflow:visible"
-        >
+    <Demo is:raw label={'Notification Bell — click to open · mark as read · badge counter'} previewStyle="gap:32px;align-items:flex-start;flex-wrap:wrap;overflow:visible" code={notificationBellClickToOpenMarkAsReadBadCode}>
             <!-- Bell + dropdown -->
             <div
                 style="position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:6px"
@@ -811,60 +865,12 @@ njxFireToast("info",    "New update", "v1.0.7 is available");'
                     Click any icon to trigger a toast
                 </p>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<div style="position:relative" id="njxBellWrap">
-  <button class="njx-bell-btn" onclick="njxToggleBell()">🔔
-    <span class="njx-bell-badge" id="njxBellBadge">4</span>
-  </button>
-  <div class="njx-notif-dropdown" id="njxBellDropdown">
-    <div class="njx-notif-item unread" onclick="njxReadNotif(this)">
-      <div class="njx-notif-avatar">A</div>
-      <div class="njx-notif-body">
-        <div class="njx-notif-text"><b>alex_dev</b> pushed to main</div>
-        <div class="njx-notif-time">2 min ago</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-/* njxToggleBell()   — open/close dropdown
-   njxReadNotif(el)  — mark single item read
-   njxMarkAllRead()  — mark all read, clear badge */'
-                >
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"njx-notif-dropdown"</span
-                    >
-                    <span class="s">id</span>=<span class="cn"
-                        >"njxBellDropdown"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"njx-notif-item unread"</span
-                    >
-                    <span class="s">onclick</span>=<span class="cn"
-                        >"njxReadNotif(this)"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ══════════════════════════
              INLINE ALERTS
         ══════════════════════════ -->
-    <div class="lib-component">
-        <div class="lib-component-label">
-            Inline Alerts — click × to dismiss · smooth collapse
-        </div>
-        <div class="lib-preview col" style="align-items:stretch;gap:0">
+    <Demo is:raw label={'Inline Alerts — click × to dismiss · smooth collapse'} previewClass="col" previewStyle="align-items:stretch;gap:0" code={inlineAlertsClickToDismissSmoothCollapseCode}>
             <div class="njx-alert-stack" id="njxAlertStack">
                 <div class="njx-notif-inline njx-ni-success">
                     <span class="njx-notif-inline-icon">✅</span>
@@ -955,51 +961,12 @@ njxFireToast("info",    "New update", "v1.0.7 is available");'
                     onclick="njxRestoreAlerts()">↺ Restore all</button
                 >
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- njx-ni-success | njx-ni-error | njx-ni-warning | njx-ni-info | njx-ni-dark -->
-<div class="njx-notif-inline njx-ni-success">
-  <span class="njx-notif-inline-icon">✅</span>
-  <div class="njx-notif-inline-body">
-    <div class="njx-notif-inline-title">Deployment successful</div>
-    <div class="njx-notif-inline-msg">Version 1.0.6 is live.</div>
-  </div>
-  <button class="njx-notif-inline-close" onclick="njxDismissAlert(this)">×</button>
-</div>
-
-/* njxDismissAlert(btn) — collapses parent alert smoothly */
-/* njxRestoreAlerts()   — restores all dismissed alerts   */'
-                >
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"njx-notif-inline njx-ni-success"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"njx-notif-inline-close"</span
-                    >
-                    <span class="s">onclick</span>=<span class="cn"
-                        >"njxDismissAlert(this)"</span
-                    ><span class="k">&gt;</span>×<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ══════════════════════════
              MESSAGE INBOX
         ══════════════════════════ -->
-    <div class="lib-component">
-        <div class="lib-component-label">
-            Message Inbox — click to read · badge counter
-        </div>
-        <div class="lib-preview col" style="align-items:stretch;padding:0">
+    <Demo is:raw label={'Message Inbox — click to read · badge counter'} previewClass="col" previewStyle="align-items:stretch;padding:0" code={messageInboxClickToReadBadgeCounterCode}>
             <div class="njx-inbox">
                 <div class="njx-inbox-header">
                     <div class="njx-inbox-title">
@@ -1149,58 +1116,12 @@ njxFireToast("info",    "New update", "v1.0.7 is available");'
                     >
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<div class="njx-inbox">
-  <div class="njx-inbox-header">
-    <div class="njx-inbox-title">Messages <span class="badge badge-primary" id="njxMsgBadge">3</span></div>
-    <div class="njx-inbox-actions">
-      <button class="njx-inbox-action-btn" onclick="njxMarkAllMsgs()">✓✓</button>
-    </div>
-  </div>
-  <div class="njx-msg-item unread" onclick="njxReadMsg(this)">
-    <div class="njx-msg-avatar">A</div>
-    <div class="njx-msg-content">
-      <div class="njx-msg-top">
-        <span class="njx-msg-name">alex_dev</span>
-        <span class="njx-msg-time">2m</span>
-      </div>
-      <div class="njx-msg-subject">Re: PR #38</div>
-      <div class="njx-msg-preview">Looks great! One question...</div>
-    </div>
-    <div class="njx-msg-dot"></div>
-  </div>
-</div>
-
-/* njxReadMsg(el)    — mark message read, update badge
-   njxMarkAllMsgs() — mark all read */'
-                >
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"njx-msg-item unread"</span
-                    >
-                    <span class="s">onclick</span>=<span class="cn"
-                        >"njxReadMsg(this)"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"njx-msg-dot"</span
-                    ><span class="k">&gt;&lt;/div&gt;</span><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ══════════════════════════
              STATIC NOTIFICATIONS
         ══════════════════════════ -->
-    <div class="lib-component">
-        <div class="lib-component-label">Notification — static variants</div>
-        <div class="lib-preview col" style="align-items:stretch">
+    <Demo is:raw label={'Notification — static variants'} previewClass="col" previewStyle="align-items:stretch" code={notificationStaticVariantsCode}>
             <div class="notification">
                 <span style="margin-right:8px">🔔</span>Basic notification —
                 default style
@@ -1241,45 +1162,12 @@ njxFireToast("info",    "New update", "v1.0.7 is available");'
                     onclick="this.closest('.notification').style.display='none'"
                 ></button>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- notification: is-primary | is-success | is-warning | is-danger -->
-<div class="notification is-success">
-  <button class="delete is-small" onclick="this.closest(&apos;.notification&apos;).style.display=&apos;none&apos;"></button>
-  Completed successfully
-</div>'
-                >
-                    <span class="c"
-                        >/* notification: is-primary | is-success | is-warning |
-                        is-danger */</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"notification is-success"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"delete is-small"</span
-                    >
-                    <span class="s">onclick</span>=<span class="cn"
-                        >"this.closest('.notification').style.display='none'"</span
-                    ><span class="k">&gt;&lt;/button&gt;</span><br />
-                    &nbsp;&nbsp;Completed successfully<br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ══════════════════════════
              MESSAGES
         ══════════════════════════ -->
-    <div class="lib-component">
-        <div class="lib-component-label">Messages</div>
-        <div class="lib-preview col" style="align-items:stretch">
+    <Demo is:raw label={'Messages'} previewClass="col" previewStyle="align-items:stretch" code={messagesCode}>
             <div class="message is-primary">
                 <div class="message-header">
                     Primary <button
@@ -1326,52 +1214,12 @@ njxFireToast("info",    "New update", "v1.0.7 is available");'
                     An error occurred. Please try again.
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- message: is-primary | is-success | is-warning | is-danger -->
-<div class="message is-primary">
-  <div class="message-header">
-    Header
-    <button class="delete is-small"></button>
-  </div>
-  <div class="message-body">Message text</div>
-</div>'
-                >
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"message is-primary"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"message-header"</span
-                    ><span class="k">&gt;</span>Header &nbsp;<span class="k"
-                        >&lt;button</span
-                    >
-                    <span class="s">class</span>=<span class="cn"
-                        >"delete is-small"</span
-                    ><span class="k">&gt;&lt;/button&gt;&lt;/div&gt;</span><br
-                    />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"message-body"</span
-                    ><span class="k">&gt;</span>Message text<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ══════════════════════════
              LOADERS
         ══════════════════════════ -->
-    <div class="lib-component">
-        <div class="lib-component-label">Loaders</div>
-        <div class="lib-preview" style="gap:24px;align-items:center">
+    <Demo is:raw label={'Loaders'} previewStyle="gap:24px;align-items:center" code={loadersCode}>
             <div style="text-align:center">
                 <div class="loader"></div>
                 <div class="text-xs text-muted mt-2">default</div>
@@ -1392,43 +1240,5 @@ njxFireToast("info",    "New update", "v1.0.7 is available");'
                 <div class="loader loader-xl"></div>
                 <div class="text-xs text-muted mt-2">xl</div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- loader: default | loader-accent | loader-success | loader-lg | loader-xl -->
-<div class="loader"></div>
-<div class="loader loader-accent"></div>
-<div class="loader loader-success"></div>
-<div class="loader loader-lg"></div>
-<div class="loader loader-xl"></div>'
-                >
-                    <span class="c"
-                        >/* loader: default | loader-accent | loader-success |
-                        loader-lg | loader-xl */</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn">"loader"</span
-                    ><span class="k">&gt;&lt;/div&gt;</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"loader loader-accent"</span
-                    ><span class="k">&gt;&lt;/div&gt;</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"loader loader-success"</span
-                    ><span class="k">&gt;&lt;/div&gt;</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"loader loader-lg"</span
-                    ><span class="k">&gt;&lt;/div&gt;</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"loader loader-xl"</span
-                    ><span class="k">&gt;&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 </section>

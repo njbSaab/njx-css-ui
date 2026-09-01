@@ -1,12 +1,118 @@
+---
+import Demo from '../shared/Demo.astro';
+import CodeBlock from '../shared/CodeBlock.astro';
+
+const headingsCode = `
+<h1 class="title-hero">Hero Title</h1>
+<h2 class="title-xl">Title XL</h2>
+<h3 class="title-lg">Title LG</h3>
+<h4 class="title-md">Title MD</h4>
+<h5 class="title-sm">Title SM</h5>
+<h6 class="title-xs">Title XS</h6>
+
+<!-- .fluid — responsive clamp() size -->
+<h1 class="title-hero fluid">Fluid Hero</h1>
+<h2 class="title-xl fluid text-accent">Fluid Accent</h2>
+`;
+
+const textCode = `
+<p class="text-lead">Lead — intro paragraph</p>
+<p class="text-body">Body — default reading size</p>
+<p class="text-sm">Small text</p>
+<p class="text-xs">Extra small</p>
+<span class="text-caption">CAPTION LABEL</span>
+<span class="text-label">UI Label</span>
+
+<!-- Mix text size + color -->
+<p class="text-lead text-muted">Muted lead</p>
+<p class="text-sm text-primary">Small primary</p>
+`;
+
+const colorsAndModifiersCode = `
+<span class="text-primary">Primary</span>
+<span class="text-accent">Accent</span>
+<span class="text-success">Success</span>
+<span class="text-error">Error</span>
+<span class="text-warning">Warning</span>
+<span class="text-muted">Muted</span>
+<span class="text-white">White</span>
+
+<!-- Combine with any heading or text class -->
+<h2 class="title-lg text-primary">Colored heading</h2>
+<p class="text-sm text-muted">Small muted paragraph</p>
+<span class="text-caption text-accent">ACCENT LABEL</span>
+`;
+
+const tipsCalloutsCode = `
+<!-- Base + variant modifier -->
+<div class="tip tip--info">
+  <svg class="tip-icon">...</svg>
+  <div>
+    <div class="tip-title">Info</div>
+    <div class="tip-body">Message text here.</div>
+  </div>
+</div>
+
+<!-- Without icon -->
+<div class="tip tip--warning">
+  <div>
+    <div class="tip-title">Warning</div>
+    <div class="tip-body">This action cannot be undone.</div>
+  </div>
+</div>
+
+<!-- All variants -->
+<div class="tip tip--info">...</div>
+<div class="tip tip--success">...</div>
+<div class="tip tip--warning">...</div>
+<div class="tip tip--danger">...</div>
+<div class="tip tip--neutral">...</div>
+`;
+
+const fontSizesFixedCode = `
+font-size: var(--fs-sm);    /* 14px */
+font-size: var(--fs-base);  /* 16px — default */
+font-size: var(--fs-2xl);   /* 24px */
+font-size: var(--fs-5xl);   /* 48px */
+font-size: var(--fs-hero);  /* 96px */
+`;
+
+const fontSizesFluidClampMinVwMaxCode = `
+font-size: var(--fs-f-base);  /* clamp(14px,1.4vw,16px) */
+font-size: var(--fs-f-xl);    /* clamp(18px,2vw,24px)   */
+font-size: var(--fs-f-hero);  /* clamp(60px,10vw,120px) */
+`;
+
+const lineHeightCode = `
+line-height: var(--lh-tight);    /* 0.9 — hero */
+line-height: var(--lh-snug);     /* 1.2 — headings */
+line-height: var(--lh-normal);   /* 1.5 — body */
+line-height: var(--lh-relaxed);  /* 1.8 — articles */
+`;
+const fontRolesCode = `
+/* Active roles — change here to restyle entire project */
+--font-sans:    var(--font-inter);       /* body text */
+--font-heading: var(--font-poppins);     /* headings  */
+--font-mono:    var(--font-roboto-mono); /* code      */
+
+/* Usage */
+font-family: var(--font-sans);
+font-family: var(--font-heading);
+font-family: var(--font-mono);
+
+/* Or apply a specific font directly */
+font-family: var(--font-space);
+`;
+
+---
+
 <section class="lib-section" id="typography">
     <div class="lib-section-title">🔤 Typography</div>
     <div class="lib-section-desc">
         Classes from <code>_typography.css</code>. Add <code>.fluid</code> for vw-size.
     </div>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Headings</div>
-        <div class="lib-preview col">
+    <Demo is:raw label={'Headings'} previewClass="col" code={headingsCode}>
             <div class="typo-row">
                 <span class="typo-class">.title-hero</span><span
                     class="title-hero"
@@ -43,80 +149,9 @@
                     style="font-size:clamp(16px,2vw,24px)">Title XS</span
                 ><span class="typo-size">30px</span>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<h1 class="title-hero">Hero Title</h1>
-<h2 class="title-xl">Title XL</h2>
-<h3 class="title-lg">Title LG</h3>
-<h4 class="title-md">Title MD</h4>
-<h5 class="title-sm">Title SM</h5>
-<h6 class="title-xs">Title XS</h6>
+        </Demo>
 
-<!-- .fluid — responsive clamp() size -->
-<h1 class="title-hero fluid">Fluid Hero</h1>
-<h2 class="title-xl fluid text-accent">Fluid Accent</h2>'
-                >
-                    <span class="k">&lt;h1</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"title-hero"</span
-                    ><span class="k">&gt;</span>Hero Title<span class="k"
-                        >&lt;/h1&gt;</span
-                    ><br />
-                    <span class="k">&lt;h2</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"title-xl"</span
-                    ><span class="k">&gt;</span>Title XL<span class="k"
-                        >&lt;/h2&gt;</span
-                    ><br />
-                    <span class="k">&lt;h3</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"title-lg"</span
-                    ><span class="k">&gt;</span>Title LG<span class="k"
-                        >&lt;/h3&gt;</span
-                    ><br />
-                    <span class="k">&lt;h4</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"title-md"</span
-                    ><span class="k">&gt;</span>Title MD<span class="k"
-                        >&lt;/h4&gt;</span
-                    ><br />
-                    <span class="k">&lt;h5</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"title-sm"</span
-                    ><span class="k">&gt;</span>Title SM<span class="k"
-                        >&lt;/h5&gt;</span
-                    ><br />
-                    <span class="k">&lt;h6</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"title-xs"</span
-                    ><span class="k">&gt;</span>Title XS<span class="k"
-                        >&lt;/h6&gt;</span
-                    ><br /><br />
-                    <span class="c">/* .fluid — responsive clamp() size */</span
-                    ><br />
-                    <span class="k">&lt;h1</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"title-hero fluid"</span
-                    ><span class="k">&gt;</span>Fluid Hero<span class="k"
-                        >&lt;/h1&gt;</span
-                    ><br />
-                    <span class="k">&lt;h2</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"title-xl fluid text-accent"</span
-                    ><span class="k">&gt;</span>Fluid Accent<span class="k"
-                        >&lt;/h2&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="lib-component">
-        <div class="lib-component-label">Text</div>
-        <div class="lib-preview col">
+    <Demo is:raw label={'Text'} previewClass="col" code={textCode}>
             <div class="typo-row">
                 <span class="typo-class">.text-lead</span><span
                     class="text-lead">Lead text — fs-xl / 20px</span
@@ -147,79 +182,9 @@
                     class="text-label">Label text</span
                 ><span class="typo-size">14px, w:600</span>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<p class="text-lead">Lead — intro paragraph</p>
-<p class="text-body">Body — default reading size</p>
-<p class="text-sm">Small text</p>
-<p class="text-xs">Extra small</p>
-<span class="text-caption">CAPTION LABEL</span>
-<span class="text-label">UI Label</span>
+        </Demo>
 
-<!-- Mix text size + color -->
-<p class="text-lead text-muted">Muted lead</p>
-<p class="text-sm text-primary">Small primary</p>'
-                >
-                    <span class="k">&lt;p</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-lead"</span
-                    ><span class="k">&gt;</span>Lead — intro paragraph<span
-                        class="k">&lt;/p&gt;</span
-                    ><br />
-                    <span class="k">&lt;p</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-body"</span
-                    ><span class="k">&gt;</span>Body — default reading size<span
-                        class="k">&lt;/p&gt;</span
-                    ><br />
-                    <span class="k">&lt;p</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-sm"</span
-                    ><span class="k">&gt;</span>Small text<span class="k"
-                        >&lt;/p&gt;</span
-                    ><br />
-                    <span class="k">&lt;p</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-xs"</span
-                    ><span class="k">&gt;</span>Extra small<span class="k"
-                        >&lt;/p&gt;</span
-                    ><br />
-                    <span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-caption"</span
-                    ><span class="k">&gt;</span>CAPTION LABEL<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    <span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-label"</span
-                    ><span class="k">&gt;</span>UI Label<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br /><br />
-                    <span class="c">/* Mix text size + color */</span><br />
-                    <span class="k">&lt;p</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-lead text-muted"</span
-                    ><span class="k">&gt;</span>Muted lead<span class="k"
-                        >&lt;/p&gt;</span
-                    ><br />
-                    <span class="k">&lt;p</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-sm text-primary"</span
-                    ><span class="k">&gt;</span>Small primary<span class="k"
-                        >&lt;/p&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="lib-component">
-        <div class="lib-component-label">Colors and modifiers</div>
-        <div class="lib-preview">
+    <Demo is:raw label={'Colors and modifiers'} code={colorsAndModifiersCode}>
             <span class="text-primary text-label">.text-primary</span>
             <span class="text-accent text-label">.text-accent</span>
             <span class="text-success text-label">.text-success</span>
@@ -227,99 +192,8 @@
             <span class="text-warning text-label">.text-warning</span>
             <span class="text-muted text-label">.text-muted</span>
             <span class="text-white text-label">.text-white</span>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<span class="text-primary">Primary</span>
-<span class="text-accent">Accent</span>
-<span class="text-success">Success</span>
-<span class="text-error">Error</span>
-<span class="text-warning">Warning</span>
-<span class="text-muted">Muted</span>
-<span class="text-white">White</span>
-
-<!-- Combine with any heading or text class -->
-<h2 class="title-lg text-primary">Colored heading</h2>
-<p class="text-sm text-muted">Small muted paragraph</p>
-<span class="text-caption text-accent">ACCENT LABEL</span>'
-                >
-                    <span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-primary"</span
-                    ><span class="k">&gt;</span>Primary<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    <span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-accent"</span
-                    ><span class="k">&gt;</span>Accent<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    <span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-success"</span
-                    ><span class="k">&gt;</span>Success<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    <span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-error"</span
-                    ><span class="k">&gt;</span>Error<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    <span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-warning"</span
-                    ><span class="k">&gt;</span>Warning<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    <span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-muted"</span
-                    ><span class="k">&gt;</span>Muted<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    <span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-white"</span
-                    ><span class="k">&gt;</span>White<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br /><br />
-                    <span class="c"
-                        >/* Combine with any heading or text class */</span
-                    ><br />
-                    <span class="k">&lt;h2</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"title-lg text-primary"</span
-                    ><span class="k">&gt;</span>Colored heading<span class="k"
-                        >&lt;/h2&gt;</span
-                    ><br />
-                    <span class="k">&lt;p</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-sm text-muted"</span
-                    ><span class="k">&gt;</span>Small muted<span class="k"
-                        >&lt;/p&gt;</span
-                    ><br />
-                    <span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-caption text-accent"</span
-                    ><span class="k">&gt;</span>ACCENT LABEL<span class="k"
-                        >&lt;/span&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="lib-component">
-        <div class="lib-component-label">Tips / Callouts</div>
-        <div class="lib-section-desc">
-            Use <code>.tip</code> with a variant modifier. Icon slot via <code
-                >.tip-icon</code
-            >, title via <code>.tip-title</code>.
-        </div>
-        <div class="lib-preview col">
+        </Demo>
+    <Demo is:raw label={'Tips / Callouts'} previewClass="col" code={tipsCalloutsCode}>
             <div class="tip tip--info">
                 <svg
                     class="tip-icon"
@@ -431,96 +305,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Base + variant modifier -->
-<div class="tip tip--info">
-  <svg class="tip-icon">...</svg>
-  <div>
-    <div class="tip-title">Info</div>
-    <div class="tip-body">Message text here.</div>
-  </div>
-</div>
-
-<!-- Without icon -->
-<div class="tip tip--warning">
-  <div>
-    <div class="tip-title">Warning</div>
-    <div class="tip-body">This action cannot be undone.</div>
-  </div>
-</div>
-
-<!-- All variants -->
-<div class="tip tip--info">...</div>
-<div class="tip tip--success">...</div>
-<div class="tip tip--warning">...</div>
-<div class="tip tip--danger">...</div>
-<div class="tip tip--neutral">...</div>'
-                >
-                    <span class="c">/* Base + variant modifier */</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"tip tip--info"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;svg</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"tip-icon"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/svg&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"tip-title"</span
-                    ><span class="k">&gt;</span>Info<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"tip-body"</span
-                    ><span class="k">&gt;</span>Message text.<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
-                    <span class="k">&lt;/div&gt;</span><br /><br />
-                    <span class="c">/* Without icon */</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"tip tip--warning"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"tip-title"</span
-                    ><span class="k">&gt;</span>Warning<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"tip-body"</span
-                    ><span class="k">&gt;</span>Cannot be undone.<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span><br /><br />
-                    <span class="c">/* All variants */</span><br />
-                    <span class="k">.tip--info</span> &nbsp;&nbsp;&nbsp;<span
-                        class="c">/* primary color */</span
-                    ><br />
-                    <span class="k">.tip--success</span>
-                    <span class="c">/* green */</span><br />
-                    <span class="k">.tip--warning</span>
-                    <span class="c">/* yellow */</span><br />
-                    <span class="k">.tip--danger</span> &nbsp;<span class="c"
-                        >/* red */</span
-                    ><br />
-                    <span class="k">.tip--neutral</span>
-                    <span class="c">/* muted */</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ── Font Families ── -->
     <div class="lib-component" id="font-families">
@@ -739,47 +524,11 @@
             </div>
         </div>
 
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw="/* Active roles — change here to restyle entire project */
---font-sans:    var(--font-inter);       /* body text */
---font-heading: var(--font-poppins);     /* headings  */
---font-mono:    var(--font-roboto-mono); /* code      */
-
-/* Usage */
-font-family: var(--font-sans);
-font-family: var(--font-heading);
-font-family: var(--font-mono);
-
-/* Or apply a specific font directly */
-font-family: var(--font-space);"
-                >
-                    <span class="c"
-                        >/* Active roles — change to restyle entire project */</span
-                    ><br /><span class="cn">--font-sans</span>: <span class="v"
-                        >var(--font-inter)</span
-                    >;<br /><span class="cn">--font-heading</span>: <span
-                        class="v">var(--font-poppins)</span
-                    >;<br /><span class="cn">--font-mono</span>: <span class="v"
-                        >var(--font-roboto-mono)</span
-                    >;<br /><br /><span class="c">/* Usage */</span><br /><span
-                        class="v">font-family</span
-                    >: <span class="cn">var(--font-sans)</span>;<br /><span
-                        class="v">font-family</span
-                    >: <span class="cn">var(--font-heading)</span>;<br /><span
-                        class="v">font-family</span
-                    >: <span class="cn">var(--font-mono)</span>;
-                </div>
-            </div>
-        </div>
+        <CodeBlock code={fontRolesCode} lang="css" />
     </div>
 
     <!-- ── Font Sizes ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">Font sizes — fixed</div>
-        <div class="lib-preview col" style="gap:0;padding:0">
+    <Demo is:raw label={'Font sizes — fixed'} previewClass="col" previewStyle="gap:0;padding:0" code={fontSizesFixedCode}>
             <div class="tk-scale">
                 <div class="tk-scale-row">
                     <code class="tk-scale-var">--fs-xs</code><span
@@ -876,45 +625,9 @@ font-family: var(--font-space);"
                     >
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw="font-size: var(--fs-sm);    /* 14px */
-font-size: var(--fs-base);  /* 16px — default */
-font-size: var(--fs-2xl);   /* 24px */
-font-size: var(--fs-5xl);   /* 48px */
-font-size: var(--fs-hero);  /* 96px */"
-                >
-                    <span class="v">font-size</span>: <span class="cn"
-                        >var(--fs-sm)</span
-                    >; <span class="c">/* 14px */</span><br /><span class="v"
-                        >font-size</span
-                    >: <span class="cn">var(--fs-base)</span>; <span class="c"
-                        >/* 16px */</span
-                    ><br /><span class="v">font-size</span>: <span class="cn"
-                        >var(--fs-2xl)</span
-                    >; <span class="c">/* 24px */</span><br /><span class="v"
-                        >font-size</span
-                    >: <span class="cn">var(--fs-5xl)</span>; <span class="c"
-                        >/* 48px */</span
-                    ><br /><span class="v">font-size</span>: <span class="cn"
-                        >var(--fs-hero)</span
-                    >; <span class="c">/* 96px */</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">
-            Font sizes — fluid <code
-                style="font-size:11px;opacity:0.6;font-family:var(--font-mono)"
-                >clamp(min · vw · max)</code
-            >
-        </div>
-        <div class="lib-preview col" style="gap:0;padding:0">
+    <Demo is:raw label={'Font sizes — fluid <code style="font-size:11px;opacity:0.6;font-family:var(--font-mono)" >clamp(min · vw · max)</code >'} previewClass="col" previewStyle="gap:0;padding:0" code={fontSizesFluidClampMinVwMaxCode}>
             <div class="tk-scale">
                 <div class="tk-scale-row">
                     <code class="tk-scale-var">--fs-f-xs</code><span
@@ -991,36 +704,10 @@ font-size: var(--fs-hero);  /* 96px */"
                     >
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw="font-size: var(--fs-f-base);  /* clamp(14px,1.4vw,16px) */
-font-size: var(--fs-f-xl);    /* clamp(18px,2vw,24px)   */
-font-size: var(--fs-f-hero);  /* clamp(60px,10vw,120px) */"
-                >
-                    <span class="v">font-size</span>: <span class="cn"
-                        >var(--fs-f-base)</span
-                    >; <span class="c">/* clamp(14px,1.4vw,16px) */</span><br
-                    /><span class="v">font-size</span>: <span class="cn"
-                        >var(--fs-f-xl)</span
-                    >; <span class="c">/* clamp(18px,2vw,24px) */</span><br
-                    /><span class="v">font-size</span>: <span class="cn"
-                        >var(--fs-f-hero)</span
-                    >; <span class="c">/* clamp(60px,10vw,120px) */</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ── Line Height ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">Line height</div>
-        <div
-            class="lib-preview"
-            style="gap:16px;align-items:stretch;flex-wrap:wrap"
-        >
+    <Demo is:raw label={'Line height'} previewStyle="gap:16px;align-items:stretch;flex-wrap:wrap" code={lineHeightCode}>
             <div class="tk-lh-card">
                 <div class="tk-lh-header">
                     <code class="tk-lh-var">--lh-tight</code><span
@@ -1087,33 +774,7 @@ font-size: var(--fs-f-hero);  /* clamp(60px,10vw,120px) */"
                 </div>
                 <div class="tk-lh-tag">Articles · Docs</div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw="line-height: var(--lh-tight);    /* 0.9 — hero */
-line-height: var(--lh-snug);     /* 1.2 — headings */
-line-height: var(--lh-normal);   /* 1.5 — body */
-line-height: var(--lh-relaxed);  /* 1.8 — articles */"
-                >
-                    <span class="v">line-height</span>: <span class="cn"
-                        >var(--lh-tight)</span
-                    >; <span class="c">/* 0.9 — hero */</span><br /><span
-                        class="v">line-height</span
-                    >: <span class="cn">var(--lh-snug)</span>; <span class="c"
-                        >/* 1.2 — headings */</span
-                    ><br /><span class="v">line-height</span>: <span class="cn"
-                        >var(--lh-normal)</span
-                    >; <span class="c">/* 1.5 — body */</span><br /><span
-                        class="v">line-height</span
-                    >: <span class="cn">var(--lh-relaxed)</span>; <span
-                        class="c">/* 1.8 — articles */</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 </section>
 
 <style>

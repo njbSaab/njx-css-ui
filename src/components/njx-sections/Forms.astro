@@ -1,3 +1,141 @@
+---
+import Demo from '../shared/Demo.astro';
+
+const baseSizesCode = `
+<!-- _form.css — sizes -->
+<input class="inp inp-sm" type="text" placeholder="Small">
+<input class="inp" type="text" placeholder="Default">
+<input class="inp inp-lg" type="text" placeholder="Large">
+`;
+
+const statesPrimarySuccessErrorDisabledCode = `
+<!-- inp-primary | inp-success | inp-error | disabled -->
+<div class="field">
+  <div class="field-label">Email</div>
+  <input class="inp inp-success" type="text" value="ok@email.com">
+  <div class="field-success-msg">✓ Value is correct</div>
+</div>
+
+<div class="field">
+  <div class="field-label">Password</div>
+  <input class="inp inp-error" type="text" value="wrong">
+  <div class="field-error-msg">✕ Minimum 8 characters</div>
+</div>
+
+<input class="inp" type="text" placeholder="Disabled" disabled>
+`;
+
+const inputWithIconCode = `
+<!-- .inp-wrap is required for icons -->
+<div class="inp-wrap">
+  <span class="inp-icon-left">🔍</span>
+  <input class="inp" type="text" placeholder="Search...">
+</div>
+
+<!-- icon on the right -->
+<div class="inp-wrap">
+  <span class="inp-icon-left">🔒</span>
+  <input class="inp inp-suffix" type="password" placeholder="Password">
+  <span class="inp-icon-right">👁</span>
+</div>
+`;
+
+const floatLabelCode = `
+<!-- placeholder=" " is required (space) -->
+<div class="float-field">
+  <input class="inp" type="text" placeholder=" " id="f1">
+  <label class="float-label" for="f1">Username</label>
+</div>
+
+<div class="float-field">
+  <input class="inp inp-success" type="email" placeholder=" " id="f2" value="user@site.com">
+  <label class="float-label" for="f2">Email</label>
+</div>
+`;
+
+const checkboxToggleCode = `
+<!-- Checkboxes: .check + is-success | is-error -->
+<label class="check"><input type="checkbox" checked> Primary</label>
+<label class="check is-success"><input type="checkbox" checked> Success</label>
+<label class="check is-error"><input type="checkbox"> Error</label>
+
+<!-- Toggle: toggle-track + toggle-label are required -->
+<label class="toggle">
+  <input type="checkbox" checked>
+  <span class="toggle-track"></span>
+  <span class="toggle-label">Toggle ON</span>
+</label>
+`;
+
+const enhancedFormCardsLoginRegisterStatesCode = `
+<!-- form-card is-primary | is-success | is-error | is-warning -->
+<div class="form-card is-primary">
+  <div class="form-card-title">🔐 Sign In</div>
+
+  <div class="field">
+    <div class="field-label">Email</div>
+    <div class="inp-wrap">
+      <span class="inp-icon-left">✉️</span>
+      <input class="inp inp-primary" type="email" placeholder="user@example.com">
+    </div>
+  </div>
+
+  <button class="btn btn-primary" style="width:100%">Login</button>
+</div>
+`;
+
+const formStatesInputGroupsCode = `
+<!-- Input Group: flex + overflow:hidden -->
+<div style="display:flex;border-radius:12px;overflow:hidden;border:2px solid var(--lib-comp-brd)">
+  <input type="text" class="inp" placeholder="Search..." style="flex:1;border:none;border-radius:0">
+  <button class="btn btn-primary" style="border-radius:0">🔍 Find</button>
+</div>
+
+<!-- with prefix -->
+<div style="display:flex;border-radius:12px;overflow:hidden;border:2px solid var(--lib-comp-brd)">
+  <span style="padding:0 16px;display:flex;align-items:center;background:var(--color-dark-secondary);color:var(--color-primary);font-weight:700">https://</span>
+  <input type="url" class="inp" placeholder="yoursite.com" style="flex:1;border:none;border-radius:0">
+</div>
+`;
+
+const checkboxesRadiosTogglesCode = `
+<!-- Checkbox -->
+<label class="check">
+  <input type="checkbox" checked>
+  <span>💻 Development</span>
+</label>
+
+<!-- Radio -->
+<label class="check">
+  <input type="radio" name="plan" checked>
+  <span>💳 Bank card</span>
+</label>
+<label class="check">
+  <input type="radio" name="plan">
+  <span>🏦 Transfer</span>
+</label>
+
+<!-- Toggle -->
+<label class="toggle">
+  <input type="checkbox" checked>
+  <span class="toggle-track"></span>
+  <span class="toggle-label">Notifications</span>
+</label>
+`;
+const glassDarkVariantsCode = `
+<!-- .inp-glass — glassmorphism variant (for gradient backgrounds) -->
+<input class="inp inp-glass" type="text" placeholder="Glass input">
+
+<select class="inp inp-glass inp-select">
+  <option>Choose option</option>
+  <option>Aviator</option>
+</select>
+
+<textarea class="inp inp-glass inp-area" placeholder="Textarea..."></textarea>
+`;
+
+---
+
 <section class="lib-section" id="forms">
     <div class="lib-section-title">📋 Forms & Inputs</div>
     <div class="lib-section-desc">
@@ -9,9 +147,7 @@
     </div>
 
     <!-- Base inputs -->
-    <div class="lib-component">
-        <div class="lib-component-label">Base sizes</div>
-        <div class="lib-preview col" style="max-width:440px">
+    <Demo is:raw label={'Base sizes'} previewClass="col" previewStyle="max-width:440px" code={baseSizesCode}>
             <input
                 class="inp inp-sm"
                 type="text"
@@ -23,50 +159,10 @@
                 type="text"
                 placeholder="Large input — .inp-lg"
             />
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- _form.css — sizes -->
-<input class="inp inp-sm" type="text" placeholder="Small">
-<input class="inp" type="text" placeholder="Default">
-<input class="inp inp-lg" type="text" placeholder="Large">'
-                >
-                    <span class="c">/* _form.css — sizes */</span><br />
-                    <span class="k">&lt;input</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp inp-sm"</span
-                    >
-                    <span class="s">type</span>=<span class="cn">"text"</span>
-                    <span class="s">placeholder</span>=<span class="cn"
-                        >"Small"</span
-                    ><span class="k">&gt;</span><br />
-                    <span class="k">&lt;input</span>
-                    <span class="s">class</span>=<span class="cn">"inp"</span>
-                    <span class="s">type</span>=<span class="cn">"text"</span>
-                    <span class="s">placeholder</span>=<span class="cn"
-                        >"Default"</span
-                    ><span class="k">&gt;</span><br />
-                    <span class="k">&lt;input</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp inp-lg"</span
-                    >
-                    <span class="s">type</span>=<span class="cn">"text"</span>
-                    <span class="s">placeholder</span>=<span class="cn"
-                        >"Large"</span
-                    ><span class="k">&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- State variants -->
-    <div class="lib-component">
-        <div class="lib-component-label">
-            States — primary / success / error / disabled
-        </div>
-        <div class="lib-preview col" style="max-width:440px">
+    <Demo is:raw label={'States — primary / success / error / disabled'} previewClass="col" previewStyle="max-width:440px" code={statesPrimarySuccessErrorDisabledCode}>
             <div class="field">
                 <div class="field-label">Primary (focused)</div>
                 <input
@@ -94,77 +190,10 @@
                     disabled
                 />
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- inp-primary | inp-success | inp-error | disabled -->
-<div class="field">
-  <div class="field-label">Email</div>
-  <input class="inp inp-success" type="text" value="ok@email.com">
-  <div class="field-success-msg">✓ Value is correct</div>
-</div>
-
-<div class="field">
-  <div class="field-label">Password</div>
-  <input class="inp inp-error" type="text" value="wrong">
-  <div class="field-error-msg">✕ Minimum 8 characters</div>
-</div>
-
-<input class="inp" type="text" placeholder="Disabled" disabled>'
-                >
-                    <span class="c"
-                        >/* inp-primary | inp-success | inp-error | disabled */</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn">"field"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"field-label"</span
-                    ><span class="k">&gt;</span>Email<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;input</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp inp-success"</span
-                    >
-                    <span class="s">type</span>=<span class="cn">"text"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"field-success-msg"</span
-                    ><span class="k">&gt;</span>✓ Valid<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn">"field"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;input</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp inp-error"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"field-error-msg"</span
-                    ><span class="k">&gt;</span>✕ Error<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span><br />
-                    <span class="k">&lt;input</span>
-                    <span class="s">class</span>=<span class="cn">"inp"</span>
-                    <span class="s">disabled</span><span class="k">&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Icon inputs -->
-    <div class="lib-component">
-        <div class="lib-component-label">Input with icon</div>
-        <div class="lib-preview col" style="max-width:440px">
+    <Demo is:raw label={'Input with icon'} previewClass="col" previewStyle="max-width:440px" code={inputWithIconCode}>
             <div class="inp-wrap">
                 <span class="inp-icon-left">🔍</span>
                 <input class="inp" type="text" placeholder="Search..." />
@@ -190,79 +219,10 @@
                     style="pointer-events:auto;cursor:pointer">👁</span
                 >
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- .inp-wrap is required for icons -->
-<div class="inp-wrap">
-  <span class="inp-icon-left">🔍</span>
-  <input class="inp" type="text" placeholder="Search...">
-</div>
-
-<!-- icon on the right -->
-<div class="inp-wrap">
-  <span class="inp-icon-left">🔒</span>
-  <input class="inp inp-suffix" type="password" placeholder="Password">
-  <span class="inp-icon-right">👁</span>
-</div>'
-                >
-                    <span class="c">/* .inp-wrap is required for icons */</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp-wrap"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp-icon-left"</span
-                    ><span class="k">&gt;</span>🔍<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;input</span>
-                    <span class="s">class</span>=<span class="cn">"inp"</span>
-                    <span class="s">type</span>=<span class="cn">"text"</span>
-                    <span class="s">placeholder</span>=<span class="cn"
-                        >"Search..."</span
-                    ><span class="k">&gt;</span><br />
-                    <span class="k">&lt;/div&gt;</span><br />
-                    <span class="c"
-                        >/* right icon — add .inp-suffix to input */</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp-wrap"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp-icon-left"</span
-                    ><span class="k">&gt;</span>🔒<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;input</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp inp-suffix"</span
-                    >
-                    <span class="s">type</span>=<span class="cn"
-                        >"password"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp-icon-right"</span
-                    ><span class="k">&gt;</span>👁<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Float label -->
-    <div class="lib-component">
-        <div class="lib-component-label">Float label</div>
-        <div class="lib-preview col" style="max-width:440px">
+    <Demo is:raw label={'Float label'} previewClass="col" previewStyle="max-width:440px" code={floatLabelCode}>
             <div class="float-field">
                 <input class="inp" type="text" placeholder=" " id="fl1" />
                 <label class="float-label" for="fl1">Username</label>
@@ -286,59 +246,10 @@
                     >Nickname</label
                 >
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- placeholder=" " is required (space) -->
-<div class="float-field">
-  <input class="inp" type="text" placeholder=" " id="f1">
-  <label class="float-label" for="f1">Username</label>
-</div>
-
-<div class="float-field">
-  <input class="inp inp-success" type="email" placeholder=" " id="f2" value="user@site.com">
-  <label class="float-label" for="f2">Email</label>
-</div>'
-                >
-                    <span class="c"
-                        >/* placeholder=" " is required (space) */</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"float-field"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;input</span>
-                    <span class="s">class</span>=<span class="cn">"inp"</span>
-                    <span class="s">type</span>=<span class="cn">"text"</span>
-                    <span class="s">placeholder</span>=<span class="cn"
-                        >" "</span
-                    >
-                    <span class="s">id</span>=<span class="cn">"f1"</span><span
-                        class="k">&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;label</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"float-label"</span
-                    >
-                    <span class="s">for</span>=<span class="cn">"f1"</span><span
-                        class="k">&gt;</span
-                    >Username<span class="k">&lt;/label&gt;</span><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Glass input -->
-    <div class="lib-component">
-        <div class="lib-component-label">Glass / dark variants</div>
-        <div
-            class="lib-preview col"
-            style="max-width:440px;background:linear-gradient(135deg,#0a1628,#1a0a28)"
-            class="lib-preview"
-        >
+    <Demo is:raw label="Glass / dark variants" previewClass="col" previewStyle="max-width:440px;background:linear-gradient(135deg,#0a1628,#1a0a28)" code={glassDarkVariantsCode}>
             <input
                 class="inp inp-glass"
                 type="text"
@@ -355,53 +266,10 @@
                 class="inp inp-glass inp-area"
                 placeholder="Textarea — .inp-glass .inp-area"
                 style="color:#fff"></textarea>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- .inp-glass — glassmorphism variant (for gradient backgrounds) -->
-<input class="inp inp-glass" type="text" placeholder="Glass input">
-
-<select class="inp inp-glass inp-select">
-  <option>Choose option</option>
-  <option>Aviator</option>
-</select>
-
-<textarea class="inp inp-glass inp-area" placeholder="Textarea..."></textarea>'
-                >
-                    <span class="c"
-                        >/* .inp-glass — glassmorphism variant (for gradient
-                        backgrounds) */</span
-                    ><br />
-                    <span class="k">&lt;input</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp inp-glass"</span
-                    >
-                    <span class="s">type</span>=<span class="cn">"text"</span>
-                    <span class="s">placeholder</span>=<span class="cn"
-                        >"Glass input"</span
-                    ><span class="k">&gt;</span><br /><br />
-                    <span class="k">&lt;select</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp inp-glass inp-select"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;option&gt;</span>Choose
-                    option<span class="k">&lt;/option&gt;</span><br />
-                    <span class="k">&lt;/select&gt;</span><br /><br />
-                    <span class="k">&lt;textarea</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp inp-glass inp-area"</span
-                    ><span class="k">&gt;&lt;/textarea&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Checkbox / Toggle -->
-    <div class="lib-component">
-        <div class="lib-component-label">Checkbox & Toggle</div>
-        <div class="lib-preview" style="gap:20px;flex-wrap:wrap">
+    <Demo is:raw label={'Checkbox & Toggle'} previewStyle="gap:20px;flex-wrap:wrap" code={checkboxToggleCode}>
             <label class="check"
                 ><input type="checkbox" checked /> Primary</label
             >
@@ -428,91 +296,10 @@
                 ><input type="checkbox" disabled /><span class="toggle-track"
                 ></span><span class="toggle-label">Disabled</span></label
             >
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Checkboxes: .check + is-success | is-error -->
-<label class="check"><input type="checkbox" checked> Primary</label>
-<label class="check is-success"><input type="checkbox" checked> Success</label>
-<label class="check is-error"><input type="checkbox"> Error</label>
-
-<!-- Toggle: toggle-track + toggle-label are required -->
-<label class="toggle">
-  <input type="checkbox" checked>
-  <span class="toggle-track"></span>
-  <span class="toggle-label">Toggle ON</span>
-</label>'
-                >
-                    <span class="c"
-                        >/* Checkboxes: .check + is-success | is-error */</span
-                    ><br />
-                    <span class="k">&lt;label</span>
-                    <span class="s">class</span>=<span class="cn">"check"</span
-                    ><span class="k">&gt;&lt;input</span>
-                    <span class="s">type</span>=<span class="cn"
-                        >"checkbox"</span
-                    >
-                    <span class="s">checked</span><span class="k">&gt;</span> Primary<span
-                        class="k">&lt;/label&gt;</span
-                    ><br />
-                    <span class="k">&lt;label</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"check is-success"</span
-                    ><span class="k">&gt;&lt;input</span>
-                    <span class="s">type</span>=<span class="cn"
-                        >"checkbox"</span
-                    >
-                    <span class="s">checked</span><span class="k">&gt;</span> Success<span
-                        class="k">&lt;/label&gt;</span
-                    ><br />
-                    <span class="k">&lt;label</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"check is-error"</span
-                    ><span class="k">&gt;&lt;input</span>
-                    <span class="s">type</span>=<span class="cn"
-                        >"checkbox"</span
-                    ><span class="k">&gt;</span> Error<span class="k"
-                        >&lt;/label&gt;</span
-                    ><br />
-                    <span class="c"
-                        >/* Toggle: toggle-track + toggle-label are required */</span
-                    ><br />
-                    <span class="k">&lt;label</span>
-                    <span class="s">class</span>=<span class="cn">"toggle"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;input</span>
-                    <span class="s">type</span>=<span class="cn"
-                        >"checkbox"</span
-                    >
-                    <span class="s">checked</span><span class="k">&gt;</span><br
-                    />
-                    &nbsp;&nbsp;<span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"toggle-track"</span
-                    ><span class="k">&gt;&lt;/span&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"toggle-label"</span
-                    ><span class="k">&gt;</span>Toggle ON<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    <span class="k">&lt;/label&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Form cards Enhanced -->
-    <div class="lib-component">
-        <div class="lib-component-label">
-            📝 Enhanced Form Cards — Login / Register / States
-        </div>
-        <div
-            class="lib-preview"
-            style="align-items:flex-start;gap:24px;flex-wrap:wrap"
-        >
+    <Demo is:raw label={'📝 Enhanced Form Cards — Login / Register / States'} previewStyle="align-items:flex-start;gap:24px;flex-wrap:wrap" code={enhancedFormCardsLoginRegisterStatesCode}>
             <!-- Login Form -->
             <div
                 class="form-card is-primary"
@@ -713,91 +500,10 @@
                     Create account
                 </button>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- form-card is-primary | is-success | is-error | is-warning -->
-<div class="form-card is-primary">
-  <div class="form-card-title">🔐 Sign In</div>
-
-  <div class="field">
-    <div class="field-label">Email</div>
-    <div class="inp-wrap">
-      <span class="inp-icon-left">✉️</span>
-      <input class="inp inp-primary" type="email" placeholder="user@example.com">
-    </div>
-  </div>
-
-  <button class="btn btn-primary" style="width:100%">Login</button>
-</div>'
-                >
-                    <span class="c"
-                        >/* form-card is-primary | is-success | is-error |
-                        is-warning */</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"form-card is-primary"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"form-card-title"</span
-                    ><span class="k">&gt;</span>🔐 Sign In<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn">"field"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"field-label"</span
-                    ><span class="k">&gt;</span>Email<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp-wrap"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                        >&lt;span</span
-                    >
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp-icon-left"</span
-                    ><span class="k">&gt;</span>✉️<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                        >&lt;input</span
-                    >
-                    <span class="s">class</span>=<span class="cn"
-                        >"inp inp-primary"</span
-                    >
-                    <span class="s">type</span>=<span class="cn">"email"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary"</span
-                    ><span class="k">&gt;</span>Login<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Form States & Input Groups -->
-    <div class="lib-component">
-        <div class="lib-component-label">✅ Form States & Input Groups</div>
-        <div
-            class="lib-preview"
-            style="align-items:flex-start;gap:24px;flex-wrap:wrap"
-        >
+    <Demo is:raw label={'✅ Form States & Input Groups'} previewStyle="align-items:flex-start;gap:24px;flex-wrap:wrap" code={formStatesInputGroupsCode}>
             <!-- Validation States -->
             <div
                 class="form-card"
@@ -992,79 +698,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Input Group: flex + overflow:hidden -->
-<div style="display:flex;border-radius:12px;overflow:hidden;border:2px solid var(--lib-comp-brd)">
-  <input type="text" class="inp" placeholder="Search..." style="flex:1;border:none;border-radius:0">
-  <button class="btn btn-primary" style="border-radius:0">🔍 Find</button>
-</div>
-
-<!-- with prefix -->
-<div style="display:flex;border-radius:12px;overflow:hidden;border:2px solid var(--lib-comp-brd)">
-  <span style="padding:0 16px;display:flex;align-items:center;background:var(--color-dark-secondary);color:var(--color-primary);font-weight:700">https://</span>
-  <input type="url" class="inp" placeholder="yoursite.com" style="flex:1;border:none;border-radius:0">
-</div>'
-                >
-                    <span class="c"
-                        >/* Input Group: flex + overflow:hidden */</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">style</span>=<span class="cn"
-                        >"display:flex;border-radius:12px;overflow:hidden;border:2px
-                        solid var(--lib-comp-brd)"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;input</span>
-                    <span class="s">type</span>=<span class="cn">"text"</span>
-                    <span class="s">class</span>=<span class="cn">"inp"</span>
-                    <span class="s">style</span>=<span class="cn"
-                        >"flex:1;border:none;border-radius:0"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary"</span
-                    >
-                    <span class="s">style</span>=<span class="cn"
-                        >"border-radius:0"</span
-                    ><span class="k">&gt;</span>🔍 Find<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span><br />
-                    <span class="c">/* with prefix */</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">style</span>=<span class="cn"
-                        >"display:flex;border-radius:12px;overflow:hidden;border:2px
-                        solid var(--lib-comp-brd)"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;span</span>
-                    <span class="s">style</span>=<span class="cn"
-                        >"padding:0
-                        16px;display:flex;align-items:center;color:var(--color-primary);font-weight:700"</span
-                    ><span class="k">&gt;</span>https://<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;input</span>
-                    <span class="s">type</span>=<span class="cn">"url"</span>
-                    <span class="s">class</span>=<span class="cn">"inp"</span>
-                    <span class="s">style</span>=<span class="cn"
-                        >"flex:1;border:none;border-radius:0"</span
-                    ><span class="k">&gt;</span><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Checkboxes, Radios & Toggles -->
-    <div class="lib-component">
-        <div class="lib-component-label">☑️ Checkboxes, Radios & Toggles</div>
-        <div
-            class="lib-preview"
-            style="align-items:flex-start;gap:24px;flex-wrap:wrap"
-        >
+    <Demo is:raw label={'☑️ Checkboxes, Radios & Toggles'} previewStyle="align-items:flex-start;gap:24px;flex-wrap:wrap" code={checkboxesRadiosTogglesCode}>
             <!-- Checkboxes & Radios -->
             <div
                 class="form-card"
@@ -1301,83 +938,5 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Checkbox -->
-<label class="check">
-  <input type="checkbox" checked>
-  <span>💻 Development</span>
-</label>
-
-<!-- Radio -->
-<label class="check">
-  <input type="radio" name="plan" checked>
-  <span>💳 Bank card</span>
-</label>
-<label class="check">
-  <input type="radio" name="plan">
-  <span>🏦 Transfer</span>
-</label>
-
-<!-- Toggle -->
-<label class="toggle">
-  <input type="checkbox" checked>
-  <span class="toggle-track"></span>
-  <span class="toggle-label">Notifications</span>
-</label>'
-                >
-                    <span class="c">/* Checkbox */</span><br />
-                    <span class="k">&lt;label</span>
-                    <span class="s">class</span>=<span class="cn">"check"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;input</span>
-                    <span class="s">type</span>=<span class="cn"
-                        >"checkbox"</span
-                    >
-                    <span class="s">checked</span><span class="k">&gt;</span><br
-                    />
-                    &nbsp;&nbsp;<span class="k">&lt;span&gt;</span>💻
-                    Development<span class="k">&lt;/span&gt;</span><br />
-                    <span class="k">&lt;/label&gt;</span><br />
-                    <span class="c">/* Radio */</span><br />
-                    <span class="k">&lt;label</span>
-                    <span class="s">class</span>=<span class="cn">"check"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;input</span>
-                    <span class="s">type</span>=<span class="cn">"radio"</span>
-                    <span class="s">name</span>=<span class="cn">"plan"</span>
-                    <span class="s">checked</span><span class="k">&gt;</span><br
-                    />
-                    &nbsp;&nbsp;<span class="k">&lt;span&gt;</span>💳 Bank card<span
-                        class="k">&lt;/span&gt;</span
-                    ><br />
-                    <span class="k">&lt;/label&gt;</span><br />
-                    <span class="c">/* Toggle */</span><br />
-                    <span class="k">&lt;label</span>
-                    <span class="s">class</span>=<span class="cn">"toggle"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;input</span>
-                    <span class="s">type</span>=<span class="cn"
-                        >"checkbox"</span
-                    >
-                    <span class="s">checked</span><span class="k">&gt;</span><br
-                    />
-                    &nbsp;&nbsp;<span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"toggle-track"</span
-                    ><span class="k">&gt;&lt;/span&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"toggle-label"</span
-                    ><span class="k">&gt;</span>Notifications<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    <span class="k">&lt;/label&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 </section>
