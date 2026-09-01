@@ -55,7 +55,8 @@ const hasPreviewSlot = Astro.slots.has('preview');
 ---
 
 <div class={`lib-component ${className}`.trim()}>
-  {label && <div class="lib-component-label">{label}</div>}
+  {/* set:html — исторически лейблы содержат разметку (<code>…</code>) */}
+  {label && <div class="lib-component-label" set:html={label} />}
   <div class={`lib-preview ${previewClass}`.trim()} style={previewStyle}>
     {
       hasPreviewSlot ? (

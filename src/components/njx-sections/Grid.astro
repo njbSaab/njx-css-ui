@@ -1,3 +1,63 @@
+---
+import Demo from '../shared/Demo.astro';
+
+const u12ColumnFlexGridRowColCode = `
+<div class="row">
+  <div class="col-6">50%</div>
+  <div class="col-6">50%</div>
+</div>
+<div class="row">
+  <div class="col-8">Main (66%)</div>
+  <div class="col-4">Sidebar (33%)</div>
+</div>
+<div class="row">
+  <div class="col-4">33%</div>
+  <div class="col-4">33%</div>
+  <div class="col-4">33%</div>
+</div>
+`;
+
+const cssGridFixedColumnsGridCol1GridCol6Code = `
+<!-- Fixed columns: 1–6 -->
+<div class="grid-col-2 gap-4">...</div>
+<div class="grid-col-3 gap-4">...</div>
+<div class="grid-col-4 gap-4">...</div>
+<div class="grid-col-5 gap-4">...</div>
+<div class="grid-col-6 gap-4">...</div>
+
+<!-- Responsive: collapses on mobile (< 600px → 1 col)
+     and on tablet (600–899px: 4/5/6 → 2 cols) -->
+`;
+
+const cssGridAutoFitAdaptiveGridAutoCode = `
+<!-- Auto-fit: fills as many cols as fit, wraps automatically -->
+<div class="grid-auto-xs gap-2">…</div>  <!-- 100px min -->
+<div class="grid-auto-sm gap-3">…</div>  <!-- 160px min -->
+<div class="grid-auto-md gap-4">…</div>  <!-- 220px min -->
+<div class="grid-auto-lg gap-4">…</div>  <!-- 300px min -->
+<div class="grid-auto-xl gap-6">…</div>  <!-- 400px min -->
+`;
+
+const cssGridLayoutPresetsCode = `
+<!-- Layout presets -->
+<div class="grid-sidebar-l gap-4">
+  <aside>Sidebar (260px)</aside>
+  <main>Main content</main>
+</div>
+
+<div class="grid-sidebar-r gap-4">
+  <main>Main content</main>
+  <aside>Sidebar (260px)</aside>
+</div>
+
+<div class="grid-thirds gap-4">
+  <div>Left (1fr)</div>
+  <div>Main (2fr)</div>
+  <div>Right (1fr)</div>
+</div>
+`;
+---
+
 <section class="lib-section" id="grid">
     <div class="lib-section-title">📏 Grid System</div>
     <div class="lib-section-desc">
@@ -6,9 +66,7 @@
     </div>
 
     <!-- ── 12-Column Flex Grid ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">12-Column Flex Grid — <code>.row + .col-*</code></div>
-        <div class="lib-preview col no-dot" style="gap:8px">
+    <Demo is:raw label={'12-Column Flex Grid — <code>.row + .col-*</code>'} previewClass="col no-dot" previewStyle="gap:8px" code={u12ColumnFlexGridRowColCode}>
             <div class="row" style="width:100%">
                 <div class="col-12" style="background:var(--color-primary);color:#000;padding:8px 10px;text-align:center;font-size:11px;font-weight:700;border-radius:4px">col-12</div>
             </div>
@@ -31,36 +89,10 @@
                 <div class="col-3" style="background:var(--color-primary);color:#000;padding:8px 10px;text-align:center;font-size:11px;font-weight:700;border-radius:4px">col-3</div>
                 <div class="col-3" style="background:var(--color-primary);color:#000;padding:8px 10px;text-align:center;font-size:11px;font-weight:700;border-radius:4px">col-3</div>
             </div>
-        </div>
-        <div class="lib-code-wrapper"><div class="lib-code-container">
-            <pre class="lib-code" data-raw='<div class="row">
-  <div class="col-6">50%</div>
-  <div class="col-6">50%</div>
-</div>
-<div class="row">
-  <div class="col-8">Main (66%)</div>
-  <div class="col-4">Sidebar (33%)</div>
-</div>
-<div class="row">
-  <div class="col-4">33%</div>
-  <div class="col-4">33%</div>
-  <div class="col-4">33%</div>
-</div>'><span class="c">/* 12-column flex grid — col-1 to col-12 */</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"row"</span><span class="k">&gt;</span>
-  <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"col-6"</span><span class="k">&gt;</span>50%<span class="k">&lt;/div&gt;</span>
-  <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"col-6"</span><span class="k">&gt;</span>50%<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"row"</span><span class="k">&gt;</span>
-  <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"col-8"</span><span class="k">&gt;</span>Main<span class="k">&lt;/div&gt;</span>
-  <span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"col-4"</span><span class="k">&gt;</span>Sidebar<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;/div&gt;</span></pre>
-        </div></div>
-    </div>
+        </Demo>
 
     <!-- ── CSS Grid: Fixed Columns ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">CSS Grid — Fixed Columns <code>.grid-col-1</code> … <code>.grid-col-6</code></div>
-        <div class="lib-preview col no-dot" style="gap:12px">
+    <Demo is:raw label={'CSS Grid — Fixed Columns <code>.grid-col-1</code> … <code>.grid-col-6</code>'} previewClass="col no-dot" previewStyle="gap:12px" code={cssGridFixedColumnsGridCol1GridCol6Code}>
 
             <!-- 2 cols -->
             <div class="grid-col-label">2 columns — <code>.grid-col-2</code></div>
@@ -106,30 +138,10 @@
                 <div class="grid-demo-cell">5</div>
                 <div class="grid-demo-cell">6</div>
             </div>
-        </div>
-        <div class="lib-code-wrapper"><div class="lib-code-container">
-            <pre class="lib-code" data-raw='<!-- Fixed columns: 1–6 -->
-<div class="grid-col-2 gap-4">...</div>
-<div class="grid-col-3 gap-4">...</div>
-<div class="grid-col-4 gap-4">...</div>
-<div class="grid-col-5 gap-4">...</div>
-<div class="grid-col-6 gap-4">...</div>
-
-<!-- Responsive: collapses on mobile (< 600px → 1 col)
-     and on tablet (600–899px: 4/5/6 → 2 cols) -->'><span class="c">/* Fixed columns: grid-col-1 to grid-col-6 */</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"grid-col-2 gap-4"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"grid-col-3 gap-4"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"grid-col-4 gap-4"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"grid-col-6 gap-4"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-
-<span class="c">/* Collapses on mobile (1 col), on tablet 4/5/6 → 2 cols */</span></pre>
-        </div></div>
-    </div>
+        </Demo>
 
     <!-- ── Auto-fit (Adaptive) ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">CSS Grid — Auto-fit Adaptive <code>.grid-auto-*</code></div>
-        <div class="lib-preview col no-dot" style="gap:12px">
+    <Demo is:raw label={'CSS Grid — Auto-fit Adaptive <code>.grid-auto-*</code>'} previewClass="col no-dot" previewStyle="gap:12px" code={cssGridAutoFitAdaptiveGridAutoCode}>
 
             <div class="grid-col-label"><code>.grid-auto-xs</code> — minmax(100px, 1fr)</div>
             <div class="grid-auto-xs gap-2" style="width:100%">
@@ -167,26 +179,10 @@
                 <div class="grid-demo-cell">Wide Card 3</div>
             </div>
 
-        </div>
-        <div class="lib-code-wrapper"><div class="lib-code-container">
-            <pre class="lib-code" data-raw='<!-- Auto-fit: fills as many cols as fit, wraps automatically -->
-<div class="grid-auto-xs gap-2">…</div>  <!-- 100px min -->
-<div class="grid-auto-sm gap-3">…</div>  <!-- 160px min -->
-<div class="grid-auto-md gap-4">…</div>  <!-- 220px min -->
-<div class="grid-auto-lg gap-4">…</div>  <!-- 300px min -->
-<div class="grid-auto-xl gap-6">…</div>  <!-- 400px min -->'><span class="c">/* Auto-fit: fills as many cols as fit, wraps automatically */</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"grid-auto-xs gap-2"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>  <span class="c">/* 100px min */</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"grid-auto-sm gap-3"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>  <span class="c">/* 160px min */</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"grid-auto-md gap-4"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>  <span class="c">/* 220px min */</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"grid-auto-lg gap-4"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>  <span class="c">/* 300px min */</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"grid-auto-xl gap-6"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>  <span class="c">/* 400px min */</span></pre>
-        </div></div>
-    </div>
+        </Demo>
 
     <!-- ── Layout Presets ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">CSS Grid — Layout Presets</div>
-        <div class="lib-preview col no-dot" style="gap:12px">
+    <Demo is:raw label={'CSS Grid — Layout Presets'} previewClass="col no-dot" previewStyle="gap:12px" code={cssGridLayoutPresetsCode}>
 
             <div class="grid-col-label"><code>.grid-sidebar-l</code> — 260px | 1fr</div>
             <div class="grid-sidebar-l gap-3" style="width:100%">
@@ -207,36 +203,7 @@
                 <div class="grid-demo-cell" style="background:color-mix(in srgb,var(--color-accent) 25%,transparent)">Right</div>
             </div>
 
-        </div>
-        <div class="lib-code-wrapper"><div class="lib-code-container">
-            <pre class="lib-code" data-raw='<!-- Layout presets -->
-<div class="grid-sidebar-l gap-4">
-  <aside>Sidebar (260px)</aside>
-  <main>Main content</main>
-</div>
-
-<div class="grid-sidebar-r gap-4">
-  <main>Main content</main>
-  <aside>Sidebar (260px)</aside>
-</div>
-
-<div class="grid-thirds gap-4">
-  <div>Left (1fr)</div>
-  <div>Main (2fr)</div>
-  <div>Right (1fr)</div>
-</div>'><span class="c">/* Layout presets — stack to 1 col on mobile */</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"grid-sidebar-l gap-4"</span><span class="k">&gt;</span>
-  <span class="k">&lt;aside&gt;</span>Sidebar (260px)<span class="k">&lt;/aside&gt;</span>
-  <span class="k">&lt;main&gt;</span>Content<span class="k">&lt;/main&gt;</span>
-<span class="k">&lt;/div&gt;</span>
-
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"grid-thirds gap-4"</span><span class="k">&gt;</span>
-  <span class="k">&lt;div&gt;</span>Left (1fr)<span class="k">&lt;/div&gt;</span>
-  <span class="k">&lt;div&gt;</span>Main (2fr)<span class="k">&lt;/div&gt;</span>
-  <span class="k">&lt;div&gt;</span>Right (1fr)<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;/div&gt;</span></pre>
-        </div></div>
-    </div>
+        </Demo>
 
 </section>
 
