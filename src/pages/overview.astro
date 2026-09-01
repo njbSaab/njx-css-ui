@@ -1,4 +1,5 @@
 ---
+import { THEMES } from '../data/themes';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PagesTopbar from '../components/PagesTopbar.astro';
 import PagesFooter from '../components/PagesFooter.astro';
@@ -6,6 +7,64 @@ import Bottombar from '../components/Bottombar.astro';
 import Demo from '../components/demo/Demo.astro';
 import { LIB_VERSION, SIZE_FULL } from '../lib/meta';
 const base = import.meta.env.BASE_URL;
+
+const OV_FEATURES = [
+    {
+        icon: "🎨",
+        title: "9 Themes, one attribute",
+        desc: "Dark, Light, Red, Blue, Green, Cyan, Yellow, Pink, Purple. Every component adapts automatically. No extra CSS needed.",
+        tag: "data-theme=\"purple\""
+    },
+    {
+        icon: "⚡",
+        title: "Zero build step",
+        desc: "One CDN link and you're running. No npm, no webpack, no PostCSS config. Works in any HTML file, today.",
+        tag: "CDN ready"
+    },
+    {
+        icon: "🔑",
+        title: "CSS Variables First",
+        desc: "60+ design tokens. Change <code style=\"color:var(--color-primary)\" >--color-primary</code > once and it ripples through every component.",
+        tag: "60+ tokens"
+    },
+    {
+        icon: "✨",
+        title: "Hover effects built in",
+        desc: "30+ hover classes: scale, lift, glow, rotate, shimmer, blur, brightness. Effects that usually need custom CSS — already here.",
+        tag: "30+ effects"
+    },
+    {
+        icon: "🌈",
+        title: "Gradients out of the box",
+        desc: "15+ background gradients, 8 text gradients, gradient borders, animated gradients. Design-ready without a single line of custom CSS.",
+        tag: "_gradients.css"
+    },
+    {
+        icon: "🎭",
+        title: "Animations included",
+        desc: "Float, pulse, bounce, spin, heartbeat, wiggle, glow, neon text, rainbow, fade-in variants. Add a class, get an animation.",
+        tag: "_animations.css"
+    },
+    {
+        icon: "♻️",
+        title: "Bulma compatible",
+        desc: "Already using Bulma? Classes like <code style=\"color:var(--color-primary)\">.button.is-primary</code > work without changes. Migrate progressively, zero rewrites.",
+        tag: "Drop-in replacement"
+    },
+    {
+        icon: "📐",
+        title: "Two grid systems",
+        desc: "Classic 12-col flex grid (<code style=\"color:var(--color-primary)\" >.row</code > + <code style=\"color:var(--color-primary)\">.col-*</code>) and modern CSS Grid helpers. Pick what fits.",
+        tag: "_grid.css"
+    },
+    {
+        icon: "🎯",
+        title: "Tailwind-compatible utils",
+        desc: "Same class names as Tailwind — <code style=\"color:var(--color-primary)\" >flex gap-4 mt-6 px-4 rounded-lg</code > work out of the box. Zero PostCSS, zero build step, 40&nbsp;KB instead of 3&nbsp;MB.",
+        tag: "_utils.css"
+    }
+];
+
 ---
 
 <BaseLayout
@@ -95,33 +154,15 @@ const base = import.meta.env.BASE_URL;
       >.
     </p>
     <div class="sc-theme-pills">
-      <div class="sc-tpill active" style="--pill-color:#4a4a56" data-t="dark">
-        <span class="dot"></span>Dark
-      </div>
-      <div class="sc-tpill" style="--pill-color:#e2e8f0" data-t="light">
-        <span class="dot"></span>Light
-      </div>
-      <div class="sc-tpill" style="--pill-color:#f43f5e" data-t="red">
-        <span class="dot"></span>Red
-      </div>
-      <div class="sc-tpill" style="--pill-color:#3b82f6" data-t="blue">
-        <span class="dot"></span>Blue
-      </div>
-      <div class="sc-tpill" style="--pill-color:#22c55e" data-t="green">
-        <span class="dot"></span>Green
-      </div>
-      <div class="sc-tpill" style="--pill-color:#00e5ff" data-t="cyan">
-        <span class="dot"></span>Cyan
-      </div>
-      <div class="sc-tpill" style="--pill-color:#facc15" data-t="yellow">
-        <span class="dot"></span>Yellow
-      </div>
-      <div class="sc-tpill" style="--pill-color:#ec4899" data-t="pink">
-        <span class="dot"></span>Pink
-      </div>
-      <div class="sc-tpill" style="--pill-color:#a855f7" data-t="purple">
-        <span class="dot"></span>Purple
-      </div>
+      {THEMES.map((t) => (
+        <div
+          class={`sc-tpill${t.name === 'dark' ? ' active' : ''}`}
+          style={`--pill-color:${t.hex}`}
+          data-t={t.name}
+        >
+          <span class="dot" />{t.name.charAt(0).toUpperCase() + t.name.slice(1)}
+        </div>
+      ))}
     </div>
     <div class="sc-theme-preview">
       <div class="sc-theme-preview-bar">
@@ -212,85 +253,13 @@ const base = import.meta.env.BASE_URL;
       </p>
     </div>
     <div class="sc-features">
-      <div class="sc-feat">
-        <span class="sc-feat-icon">🎨</span><div class="sc-feat-title">
-          9 Themes, one attribute
-        </div><div class="sc-feat-desc">
-          Dark, Light, Red, Blue, Green, Cyan, Yellow, Pink, Purple. Every
-          component adapts automatically. No extra CSS needed.
-        </div><span class="sc-feat-tag">data-theme="purple"</span>
-      </div>
-      <div class="sc-feat">
-        <span class="sc-feat-icon">⚡</span><div class="sc-feat-title">
-          Zero build step
-        </div><div class="sc-feat-desc">
-          One CDN link and you're running. No npm, no webpack, no PostCSS
-          config. Works in any HTML file, today.
-        </div><span class="sc-feat-tag">CDN ready</span>
-      </div>
-      <div class="sc-feat">
-        <span class="sc-feat-icon">🔑</span><div class="sc-feat-title">
-          CSS Variables First
-        </div><div class="sc-feat-desc">
-          60+ design tokens. Change <code style="color:var(--color-primary)"
-            >--color-primary</code
-          > once and it ripples through every component.
-        </div><span class="sc-feat-tag">60+ tokens</span>
-      </div>
-      <div class="sc-feat">
-        <span class="sc-feat-icon">✨</span><div class="sc-feat-title">
-          Hover effects built in
-        </div><div class="sc-feat-desc">
-          30+ hover classes: scale, lift, glow, rotate, shimmer, blur,
-          brightness. Effects that usually need custom CSS — already here.
-        </div><span class="sc-feat-tag">30+ effects</span>
-      </div>
-      <div class="sc-feat">
-        <span class="sc-feat-icon">🌈</span><div class="sc-feat-title">
-          Gradients out of the box
-        </div><div class="sc-feat-desc">
-          15+ background gradients, 8 text gradients, gradient borders, animated
-          gradients. Design-ready without a single line of custom CSS.
-        </div><span class="sc-feat-tag">_gradients.css</span>
-      </div>
-      <div class="sc-feat">
-        <span class="sc-feat-icon">🎭</span><div class="sc-feat-title">
-          Animations included
-        </div><div class="sc-feat-desc">
-          Float, pulse, bounce, spin, heartbeat, wiggle, glow, neon text,
-          rainbow, fade-in variants. Add a class, get an animation.
-        </div><span class="sc-feat-tag">_animations.css</span>
-      </div>
-      <div class="sc-feat">
-        <span class="sc-feat-icon">♻️</span><div class="sc-feat-title">
-          Bulma compatible
-        </div><div class="sc-feat-desc">
-          Already using Bulma? Classes like <code
-            style="color:var(--color-primary)">.button.is-primary</code
-          > work without changes. Migrate progressively, zero rewrites.
-        </div><span class="sc-feat-tag">Drop-in replacement</span>
-      </div>
-      <div class="sc-feat">
-        <span class="sc-feat-icon">📐</span><div class="sc-feat-title">
-          Two grid systems
-        </div><div class="sc-feat-desc">
-          Classic 12-col flex grid (<code style="color:var(--color-primary)"
-            >.row</code
-          > + <code style="color:var(--color-primary)">.col-*</code>) and modern
-          CSS Grid helpers. Pick what fits.
-        </div><span class="sc-feat-tag">_grid.css</span>
-      </div>
-      <div class="sc-feat">
-        <span class="sc-feat-icon">🎯</span><div class="sc-feat-title">
-          Tailwind-compatible utils
-        </div><div class="sc-feat-desc">
-          Same class names as Tailwind — <code
-            style="color:var(--color-primary)"
-            >flex gap-4 mt-6 px-4 rounded-lg</code
-          > work out of the box. Zero PostCSS, zero build step, 40&nbsp;KB instead
-          of 3&nbsp;MB.
-        </div><span class="sc-feat-tag">_utils.css</span>
-      </div>
+      {OV_FEATURES.map((f) => (
+        <div class="sc-feat">
+          <span class="sc-feat-icon">{f.icon}</span><div class="sc-feat-title">
+            {f.title}
+          </div><div class="sc-feat-desc" set:html={f.desc} /><span class="sc-feat-tag">{f.tag}</span>
+        </div>
+      ))}
     </div>
   </div>
 

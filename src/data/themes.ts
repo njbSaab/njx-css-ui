@@ -8,7 +8,7 @@
  *  - Bottombar.astro     — точки .bb-dot (разметка вручную)
  *  - documentation.astro — свотчи .doc-theme-swatch (разметка вручную)
  *  - classless-sections/Themes.astro — карточки (разметка вручную)
- *  - overview.astro      — OV_THEMES в инлайн-скрипте
+ *  - overview.astro      — пилюли .sc-tpill из THEMES (map) + OV_THEMES в инлайн-скрипте
  */
 export const THEMES = [
     { name: 'dark', hex: '#4a4a56' },
