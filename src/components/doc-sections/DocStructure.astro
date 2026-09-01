@@ -1,0 +1,94 @@
+---
+import CodeBlock from '../shared/CodeBlock.astro';
+
+const classlessStructure = `
+njx-ui/
+├── classless.min.css   ← 47 KB standalone, no classes
+│
+│  That's it. No JS, no config, no build step.
+│
+│  Internally it contains:
+│  ├── _base.css            ← design tokens + 9 themes
+│  └── _classless-tags.css  ← styles on h1, p, button, input...
+`;
+---
+
+<section class="doc-section" id="structure">
+                <!-- classless: minimal structure -->
+                <div data-flavor-code="classless" style="display:none">
+                    <div class="doc-section-header">
+                        <span class="sc-eyebrow">Project</span>
+                        <h2 class="sc-heading">File Structure</h2>
+                        <p class="sc-subheading">
+                            Classless mode — one file, zero dependencies.
+                        </p>
+                    </div>
+                    <CodeBlock frame="sc" lang="txt" code={classlessStructure} />
+                    <div class="doc-tip" style="margin-top:16px">
+                        <span class="doc-tip-icon">💡</span>
+                        <div class="doc-tip-text">
+                            Want component classes too? Switch to <code
+                                >style.min.css</code
+                            > (Full) — it styles components via classes. Full and
+                            Classless are standalone builds: use one, not both.
+                        </div>
+                    </div>
+                </div><!-- /classless -->
+
+                <!-- full/interactive: full structure -->
+                <div data-flavor-code="full interactive">
+                    <div class="doc-section-header">
+                        <span class="sc-eyebrow">Project</span>
+                        <h2 class="sc-heading">File Structure</h2>
+                        <p class="sc-subheading">
+                            All CSS is modular — import everything via <code
+                                >style.css</code
+                            > or pick individual files.
+                        </p>
+                    </div>
+
+                    <pre
+                        class="doc-tree"><span class="dir">njx-ui/</span>
+├── <span class="file-main">style.css</span>              <span class="comment">← entry point (@import all modules)</span>
+├── <span class="dir">css/</span>
+│   ├── <span class="file">_base.css</span>              <span class="comment">← design tokens (CSS variables)</span>
+│   ├── <span class="file">_reset.css</span>             <span class="comment">← CSS reset</span>
+│   ├── <span class="file">_global.css</span>            <span class="comment">← 9 theme definitions</span>
+│   ├── <span class="file">_grid.css</span>              <span class="comment">← .row/.col-* and .grid-col-*</span>
+│   ├── <span class="file">_typography.css</span>        <span class="comment">← headings, text helpers</span>
+│   ├── <span class="file">_utils.css</span>             <span class="comment">← Tailwind-style utility classes</span>
+│   ├── <span class="file">_buttons.css</span>           <span class="comment">← .btn, .btn-primary, gradients, glow</span>
+│   ├── <span class="file">_cards.css</span>             <span class="comment">← .card, .card-glass, .card-glow, .box</span>
+│   ├── <span class="file">_form.css</span>              <span class="comment">← .inp, .toggle, .check, .float-field</span>
+│   ├── <span class="file">_tags.css</span>              <span class="comment">← .tag, .badge, outline variants</span>
+│   ├── <span class="file">_nav.css</span>               <span class="comment">← .nav, solid/glass/dark/floating/underline</span>
+│   ├── <span class="file">_tab.css</span>               <span class="comment">← .tab-wrap, pills/boxed/card variants</span>
+│   ├── <span class="file">_collapse.css</span>          <span class="comment">← .collapse, accordion, accordion-flush</span>
+│   ├── <span class="file">_dropdown.css</span>          <span class="comment">← .dropdown, positions, JS+native API</span>
+│   ├── <span class="file">_slider.css</span>            <span class="comment">← .carousel, scroll-snap, dots, gap</span>
+│   ├── <span class="file">_popups.css</span>            <span class="comment">← .lib-modal-*, success/error/warning/info</span>
+│   ├── <span class="file">_links.css</span>             <span class="comment">← .link, slide/arrow/btn/card/list variants</span>
+│   ├── <span class="file">_notifications.css</span>     <span class="comment">← .lib-toast, alerts</span>
+│   ├── <span class="file">_table.css</span>             <span class="comment">← .table and variants</span>
+│   ├── <span class="file">_breadcrumb.css</span>        <span class="comment">← .breadcrumb</span>
+│   ├── <span class="file">_sections.css</span>          <span class="comment">← .section, .panel, layout sections</span>
+│   ├── <span class="file">_animations.css</span>        <span class="comment">← fade, pulse, float, neon, etc.</span>
+│   ├── <span class="file">_gradients.css</span>         <span class="comment">← bg-gradient-*, text-gradient-*</span>
+│   └── <span class="file">_hovers.css</span>            <span class="comment">← hover-lift, hover-glow, etc.</span>
+└── <span class="dir">js/</span>
+    └── <span class="file-main">njx.js</span>             <span class="comment">← collapse, tabs, modal, carousel…</span></pre>
+
+                    <div class="doc-tip">
+                        <span class="doc-tip-icon">💡</span>
+                        <div class="doc-tip-text">
+                            <strong>Granular imports:</strong> Each file is independent.
+                            If you only need buttons and cards, import just <code
+                                >_base.css</code
+                            > + <code>_themes.css</code> + <code
+                                >_buttons.css</code
+                            >
+                            + <code>_cards.css</code> and save several KB.
+                        </div>
+                    </div>
+                </div><!-- /full interactive -->
+            </section>

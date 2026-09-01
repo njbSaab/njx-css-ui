@@ -1,0 +1,483 @@
+---
+import CodeBlock from '../shared/CodeBlock.astro';
+
+const nativeNoJs = `
+<!-- Accordion: native open/close -->
+<details>
+  <summary>Click to expand</summary>
+  <p>Content here</p>
+</details>
+
+<!-- Dialog: native modal -->
+<dialog id="dlg">
+  <p>Modal content</p>
+  <button onclick="dlg.close()">Close</button>
+</dialog>
+<button onclick="dlg.showModal()">Open</button>
+`;
+const jsConnection = `
+<!-- Add before </body> -->
+  <script src="js/njx.js"></script>
+</body>
+</html>
+`;
+const jsCollapse = `
+<div class="collapse">
+  <div class="collapse-header" onclick="collapseToggle(this)">
+    Title <span class="collapse-icon"></span>
+  </div>
+  <div class="collapse-body">Content</div>
+</div>
+`;
+const jsAccordion = `
+<div class="accordion">
+  <div class="collapse">
+    <div class="collapse-header" onclick="accordionToggle(this)">Section 1</div>
+    <div class="collapse-body">...</div>
+  </div>
+  <div class="collapse">
+    <div class="collapse-header" onclick="accordionToggle(this)">Section 2</div>
+    <div class="collapse-body">...</div>
+  </div>
+</div>
+`;
+const jsDropdown = `
+<div class="dropdown">
+  <button class="btn" onclick="dropdownToggle(this.parentElement)">Menu</button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item">Item</a>
+  </div>
+</div>
+`;
+const jsTabs = `
+<div class="tab-wrap">
+  <div class="tab-nav tab-nav-pills">
+    <button class="tab-btn is-active" onclick="tabSwitch(this)">Tab 1</button>
+    <button class="tab-btn" onclick="tabSwitch(this)">Tab 2</button>
+  </div>
+  <div class="tab-content">
+    <div class="tab-panel is-active">Content 1</div>
+    <div class="tab-panel">Content 2</div>
+  </div>
+</div>
+`;
+const jsModal = `
+<!-- Trigger -->
+<button onclick="openModal('my-modal')">Open</button>
+
+<!-- Modal -->
+<div id="my-modal" class="lib-modal-overlay"
+     onclick="if(event.target===this)closeModal(this)">
+  <div class="lib-modal-box">
+    <button class="lib-modal-close"
+      onclick="closeModal(document.getElementById('my-modal'))">✕</button>
+    <!-- .is-success .is-error .is-warning .is-info -->
+  </div>
+</div>
+`;
+const jsToast = `
+<!-- Required container (place anywhere in body) -->
+<div id="lib-toast-container"></div>
+
+// Usage
+showToast('Saved!', 'success');
+showToast('Something went wrong', 'error', 3000);
+showToast('Info message', 'primary');
+`;
+const jsCarousel = `
+// Scroll to slide index 2 programmatically
+const car = document.querySelector('.carousel');
+carouselGo(car, 2);
+
+// Re-init after dynamic content (e.g. AJAX)
+initCarousels();
+`;
+---
+
+<section class="doc-section" id="javascript">
+                <!-- ── Classless: no JS needed ── -->
+                <div data-flavor-code="classless" style="display:none">
+                    <div class="doc-section-header">
+                        <span class="sc-eyebrow">Reference</span>
+                        <h2 class="sc-heading">JavaScript</h2>
+                        <p class="sc-subheading">
+                            Classless mode requires <strong
+                                >zero JavaScript</strong
+                            >. Interactive elements work natively via HTML.
+                        </p>
+                    </div>
+                    <div class="doc-tip">
+                        <span class="doc-tip-icon">💡</span>
+                        <div class="doc-tip-text">
+                            <strong>Collapse / Accordion</strong> — use <code
+                                >&lt;details&gt;&lt;summary&gt;</code
+                            >, browser handles open/close natively.<br />
+                            <strong>Dialogs</strong> — use <code
+                                >&lt;dialog&gt;</code
+                            > with <code>showModal()</code> — no library needed.<br
+                            />
+                            <strong>Forms</strong> — native validation with <code
+                                >required</code
+                            >, <code>pattern</code>, <code>type</code> attributes.<br
+                            /><br />
+                            Want <code>openModal()</code>, <code
+                                >showToast()</code
+                            >, <code>tabSwitch()</code>? Switch to <strong
+                                >Interactive</strong
+                            > mode.
+                        </div>
+                    </div>
+                    <div style="margin-top:24px">
+                        <h3
+                            style="font-size:15px;font-weight:700;margin-bottom:12px;color:var(--color-light)"
+                        >
+                            Native HTML — no JS needed
+                        </h3>
+                        <CodeBlock frame="sc" lang="html" code={nativeNoJs} />
+                    </div>
+                </div><!-- /classless -->
+
+                <!-- ── Full / Interactive: njx.js reference ── -->
+                <div data-flavor-code="full interactive">
+                    <div class="doc-section-header">
+                        <span class="sc-eyebrow">Reference</span>
+                        <h2 class="sc-heading">JavaScript — njx.js</h2>
+                        <p class="sc-subheading">
+                            One script file for all interactive components.
+                            Include it once — everything initializes
+                            automatically.
+                        </p>
+                    </div>
+
+                    <!-- Connection -->
+                    <h3
+                        style="font-size:16px;font-weight:700;margin-bottom:12px"
+                    >
+                        Connection
+                    </h3>
+                    <CodeBlock frame="sc" lang="html" label="index.html" style="margin-bottom:28px" code={jsConnection} />
+
+                    <!-- Which components need JS -->
+                    <h3
+                        style="font-size:16px;font-weight:700;margin-bottom:16px"
+                    >
+                        Which components need JS
+                    </h3>
+                    <div
+                        class="doc-token-table-wrap"
+                        style="margin-bottom:28px"
+                    >
+                        <table class="doc-token-table">
+                            <thead>
+                                <tr>
+                                    <th>Component</th>
+                                    <th>Without JS</th>
+                                    <th>With njx.js</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="tok">Collapse</td>
+                                    <td
+                                        style="font-size:12px;color:var(--color-muted)"
+                                        ><code>details.collapse</code> — работает
+                                        нативно</td
+                                    >
+                                    <td
+                                        style="font-size:12px;color:var(--color-muted)"
+                                        ><code>collapseToggle()</code> для div-based
+                                        + аккордеон</td
+                                    >
+                                </tr>
+                                <tr>
+                                    <td class="tok">Dropdown</td>
+                                    <td
+                                        style="font-size:12px;color:var(--color-muted)"
+                                        ><code>details.dropdown</code> — работает
+                                        нативно</td
+                                    >
+                                    <td
+                                        style="font-size:12px;color:var(--color-muted)"
+                                        ><code>dropdownToggle()</code> для div-based
+                                        + close on outside click</td
+                                    >
+                                </tr>
+                                <tr>
+                                    <td class="tok">Tabs</td>
+                                    <td
+                                        style="font-size:12px;color:var(--color-muted)"
+                                        >—</td
+                                    >
+                                    <td
+                                        style="font-size:12px;color:var(--color-muted)"
+                                        ><code>tabSwitch()</code> — переключение панелей</td
+                                    >
+                                </tr>
+                                <tr>
+                                    <td class="tok">Modal</td>
+                                    <td
+                                        style="font-size:12px;color:var(--color-muted)"
+                                        >—</td
+                                    >
+                                    <td
+                                        style="font-size:12px;color:var(--color-muted)"
+                                        ><code>openModal()</code> / <code
+                                            >closeModal()</code
+                                        >
+                                        + Escape</td
+                                    >
+                                </tr>
+                                <tr>
+                                    <td class="tok">Carousel</td>
+                                    <td
+                                        style="font-size:12px;color:var(--color-muted)"
+                                        >Scroll-snap работает, якорные кнопки
+                                        работают</td
+                                    >
+                                    <td
+                                        style="font-size:12px;color:var(--color-muted)"
+                                        ><code>initCarousels()</code> — синхронизация
+                                        dots при свайпе</td
+                                    >
+                                </tr>
+                                <tr>
+                                    <td class="tok">Toast</td>
+                                    <td
+                                        style="font-size:12px;color:var(--color-muted)"
+                                        >—</td
+                                    >
+                                    <td
+                                        style="font-size:12px;color:var(--color-muted)"
+                                        ><code>showToast()</code> — динамические уведомления
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tok"
+                                        >Buttons, Cards, Forms, Nav, Links,
+                                        Tags, Table, Progress, Gradients,
+                                        Animations</td
+                                    >
+                                    <td
+                                        colspan="2"
+                                        style="font-size:12px;color:var(--color-success)"
+                                        >✓ Чистый CSS — JS не нужен</td
+                                    >
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Function reference -->
+                    <h3
+                        style="font-size:16px;font-weight:700;margin-bottom:16px"
+                    >
+                        Function reference
+                    </h3>
+
+                    <!-- collapseToggle -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:var(--color-primary)"
+                                >collapseToggle(header)</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,var(--color-primary) 12%,transparent);color:var(--color-primary)"
+                                >collapse</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            Toggles <code>.is-open</code> on the closest <code
+                                >.collapse</code
+                            > element.
+                        </p>
+                        <CodeBlock frame="sc" lang="html" code={jsCollapse} />
+                    </div>
+
+                    <!-- accordionToggle -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:var(--color-primary)"
+                                >accordionToggle(header)</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,var(--color-primary) 12%,transparent);color:var(--color-primary)"
+                                >accordion</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            Like <code>collapseToggle</code> but closes all sibling
+                            <code>.collapse</code> items in the same <code
+                                >.accordion</code
+                            > wrapper first.
+                        </p>
+                        <CodeBlock frame="sc" lang="html" code={jsAccordion} />
+                    </div>
+
+                    <!-- dropdownToggle -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:var(--color-primary)"
+                                >dropdownToggle(el)</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,var(--color-primary) 12%,transparent);color:var(--color-primary)"
+                                >dropdown</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            Toggles <code>.is-open</code> on a
+                            <code>.dropdown</code> element. All other open dropdowns
+                            are closed first. Outside-click listener is added automatically.
+                        </p>
+                        <CodeBlock frame="sc" lang="html" code={jsDropdown} />
+                    </div>
+
+                    <!-- tabSwitch -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:var(--color-primary)"
+                                >tabSwitch(btn)</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,var(--color-primary) 12%,transparent);color:var(--color-primary)"
+                                >tabs</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            Activates the clicked
+                            <code>.tab-btn</code> and shows the corresponding <code
+                                >.tab-panel</code
+                            > by index inside
+                            <code>.tab-wrap</code>.
+                        </p>
+                        <CodeBlock frame="sc" lang="html" code={jsTabs} />
+                    </div>
+
+                    <!-- openModal / closeModal -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:var(--color-primary)"
+                                >openModal(id) / closeModal(el)</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,var(--color-primary) 12%,transparent);color:var(--color-primary)"
+                                >modal</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            Opens a modal by its ID / closes by element
+                            reference. Escape key auto-closes all open modals.
+                            Click on overlay background also closes.
+                        </p>
+                        <CodeBlock frame="sc" lang="html" code={jsModal} />
+                    </div>
+
+                    <!-- showToast -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:var(--color-primary)"
+                                >showToast(msg, type, duration)</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,var(--color-primary) 12%,transparent);color:var(--color-primary)"
+                                >toast</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            Shows a toast notification. Types:
+                            <code>success</code> · <code>error</code> · <code
+                                >primary</code
+                            > · <code>dark</code>. Duration in ms (default
+                            2200). Requires <code id="toast-req"
+                                >&lt;div
+                                id="lib-toast-container"&gt;&lt;/div&gt;</code
+                            > in the page.
+                        </p>
+                        <CodeBlock frame="sc" lang="js" code={jsToast} />
+                    </div>
+
+                    <!-- initCarousels / carouselGo -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:var(--color-primary)"
+                                >initCarousels() / carouselGo(el, idx)</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,var(--color-primary) 12%,transparent);color:var(--color-primary)"
+                                >carousel</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            <code>initCarousels()</code> is called automatically on
+                            <code>DOMContentLoaded</code> — it attaches a scroll listener
+                            to every
+                            <code>.carousel-wrap</code> and syncs <code
+                                >.carousel-dot.is-active</code
+                            >. <code>carouselGo(el, idx)</code>
+                            programmatically scrolls to a slide by 0-based index.
+                        </p>
+                        <CodeBlock frame="sc" lang="js" code={jsCarousel} />
+                    </div>
+
+                    <div class="doc-tip">
+                        <span class="doc-tip-icon">💡</span>
+                        <div class="doc-tip-text">
+                            <strong
+                                >Native alternative for collapse &amp; dropdown:</strong
+                            > Use
+                            <code>&lt;details class="collapse"&gt;</code> and <code
+                                >&lt;details class="dropdown"&gt;</code
+                            > — the browser handles open/close natively, zero JS needed.
+                        </div>
+                    </div>
+                </div><!-- /full interactive -->
+            </section>

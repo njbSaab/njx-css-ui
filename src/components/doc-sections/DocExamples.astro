@@ -1,0 +1,118 @@
+---
+import CodeBlock from '../shared/CodeBlock.astro';
+
+const exClArticle = `
+<article>
+  <h1>Title</h1>
+  <p>Lead paragraph with <strong>bold</strong> and <em>italic</em>.</p>
+  <blockquote>A quoted insight.</blockquote>
+  <p>Read more at <a href="#">this link</a>.</p>
+</article>
+`;
+const exClForm = `
+<form>
+  <fieldset>
+    <legend>Contact</legend>
+    <label>Name</label>
+    <input type="text" placeholder="Your name">
+    <label>Email</label>
+    <input type="email" placeholder="you@example.com">
+    <button type="submit">Send</button>
+  </fieldset>
+</form>
+`;
+const exClAccordion = `
+<details>
+  <summary>Section one</summary>
+  <p>Content revealed on click — no JS.</p>
+</details>
+<details>
+  <summary>Section two</summary>
+  <p>Another panel.</p>
+</details>
+`;
+const exClTable = `
+<table>
+  <thead><tr>
+    <th>Name</th><th>Role</th><th>Status</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>Alice</td><td>Admin</td><td>Active</td></tr>
+    <tr><td>Bob</td><td>Editor</td><td>Inactive</td></tr>
+  </tbody>
+</table>
+`;
+const exCard = `
+<div class="card card-glass p-6">
+  <h3 class="text-gradient-primary">Card Title</h3>
+  <p class="text-muted mt-2">Description text...</p>
+  <div class="flex gap-4 mt-6">
+    <button class="btn btn-primary btn-sm">Action</button>
+    <button class="btn btn-outline btn-sm">Cancel</button>
+  </div>
+</div>
+`;
+const exForm = `
+<div class="field">
+  <label class="field-label">Email</label>
+  <input class="inp inp-error" type="email" placeholder="test@example.com">
+  <span class="field-error-msg">Invalid email address</span>
+</div>
+<div class="field">
+  <label class="field-label">Password</label>
+  <input class="inp inp-success" type="password">
+  <span class="field-success-msg">Password accepted</span>
+</div>
+`;
+const exModal = `
+<div class="lib-modal-overlay" id="modal">
+  <div class="lib-modal-box is-success">
+    <span class="lib-modal-icon">✓</span>
+    <div class="lib-modal-title">Success!</div>
+    <div class="lib-modal-text">Operation completed</div>
+    <div class="lib-modal-actions">
+      <button class="btn btn-success"
+        onclick="document.getElementById('modal').remove()">OK</button>
+    </div>
+  </div>
+</div>
+`;
+---
+
+<section class="doc-section" id="examples">
+                <!-- ── Classless examples ── -->
+                <div data-flavor-code="classless" style="display:none">
+                    <div class="doc-section-header">
+                        <span class="sc-eyebrow">Project</span>
+                        <h2 class="sc-heading">Examples</h2>
+                        <p class="sc-subheading">
+                            Semantic HTML — no class names needed.
+                        </p>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:20px">
+                        <CodeBlock frame="sc" lang="html" label="Article page" code={exClArticle} />
+                        <CodeBlock frame="sc" lang="html" label="Form" code={exClForm} />
+                        <CodeBlock frame="sc" lang="html" label="Accordion" code={exClAccordion} />
+                        <CodeBlock frame="sc" lang="html" label="Data table" code={exClTable} />
+                    </div>
+                </div><!-- /classless -->
+
+                <!-- ── Full / Interactive examples ── -->
+                <div data-flavor-code="full interactive">
+                    <div class="doc-section-header">
+                        <span class="sc-eyebrow">Project</span>
+                        <h2 class="sc-heading">Examples</h2>
+                        <p class="sc-subheading">
+                            Common patterns — copy and adapt.
+                        </p>
+                    </div>
+
+                    <div style="display:flex;flex-direction:column;gap:20px">
+                        <CodeBlock frame="sc" lang="html" label="Card with actions" code={exCard} />
+
+                        <CodeBlock frame="sc" lang="html" label="Form with validation states" code={exForm} />
+
+                        <CodeBlock frame="sc" lang="html" label="Modal dialog" code={exModal} />
+                    </div>
+                </div><!-- /full interactive -->
+            </section>

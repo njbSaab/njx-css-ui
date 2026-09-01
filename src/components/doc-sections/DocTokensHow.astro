@@ -1,0 +1,520 @@
+---
+import CodeBlock from '../shared/CodeBlock.astro';
+import { DOC_SPACES, DOC_FONT_SIZES, DOC_RADII } from '../../data/doc-tokens';
+
+const tokensBad = `
+.btn {
+  color: #14a0ff;
+  border: 1px solid #14a0ff;
+  background: rgba(20,160,255,0.1);
+}
+`;
+const tokensGood = `
+.btn {
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+`;
+const tokensSpacing = `
+.header { padding: var(--space-4) var(--space-6); }
+.card   { padding: var(--space-6); margin-bottom: var(--space-4); }
+.layout { gap: var(--space-4); }
+`;
+const tokensTypography = `
+.label   { font-size: var(--fs-xs); text-transform: uppercase; }
+.body    { font-size: var(--fs-base); line-height: 1.6; }
+.heading { font-size: var(--fs-3xl); font-weight: 800; }
+`;
+const tokensRadius = `
+.btn   { border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); }
+.card  { border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
+.modal { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+.glow  { box-shadow: var(--shadow-primary); }
+`;
+const tokensEase = `
+var(--ease-fast)  /* 0.1s ease — for hover states */
+var(--ease)       /* 0.2s ease — standard default */
+var(--ease-slow)  /* 0.4s ease — smooth reveals */
+
+.btn  { transition: all var(--ease); }
+.card { transition: transform var(--ease), box-shadow var(--ease); }
+`;
+const tokensFullExample = `
+.game-card {
+  padding: var(--space-6);
+  border-radius: var(--radius-md);
+  background: var(--color-dark-secondary);
+  box-shadow: var(--shadow-md);
+}
+.game-card__label {
+  font-size: var(--fs-xs);
+  color: var(--color-primary);
+}
+.game-card__title {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--color-light);
+}
+`;
+---
+
+<section class="doc-section" id="tokens-how">
+                <div class="doc-section-header">
+                    <span class="sc-eyebrow">Reference</span>
+                    <h2 class="sc-heading">Using Design Tokens</h2>
+                    <p class="sc-subheading">
+                        How to write CSS that works with all 9 themes
+                        automatically.
+                    </p>
+                </div>
+
+                <div
+                    style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px"
+                >
+                    <span class="tag tag-primary">9 themes automatically</span>
+                    <span class="tag tag-success">No hardcoded colors</span>
+                    <span class="tag tag-accent"
+                        >DRY — one token everywhere</span
+                    >
+                </div>
+
+                <!-- 1. Colors -->
+                <div style="margin-bottom:36px">
+                    <div
+                        style="display:flex;align-items:center;gap:12px;margin-bottom:14px"
+                    >
+                        <div
+                            style="width:32px;height:32px;border-radius:50%;background:var(--color-primary);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#000;flex-shrink:0"
+                        >
+                            1
+                        </div>
+                        <h3 style="font-size:16px;font-weight:700">
+                            Colors — <code>--color-*</code>
+                        </h3>
+                    </div>
+                    <p
+                        style="font-size:14px;color:var(--color-muted);line-height:1.65;margin-bottom:16px"
+                    >
+                        Never hardcode a hex value. Use a token — and when the
+                        theme changes, the color updates automatically
+                        everywhere.
+                    </p>
+                    <div class="doc-compare">
+                        <div>
+                            <div
+                                class="doc-compare-label"
+                                style="color:var(--color-error)"
+                            >
+                                ❌ Bad — hardcoded
+                            </div>
+                            <CodeBlock frame="sc" lang="css" code={tokensBad} />
+                        </div>
+                        <div>
+                            <div
+                                class="doc-compare-label"
+                                style="color:var(--color-success)"
+                            >
+                                ✅ Good — uses tokens
+                            </div>
+                            <CodeBlock frame="sc" lang="css" code={tokensGood} />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Spacing -->
+                <div style="margin-bottom:36px">
+                    <div
+                        style="display:flex;align-items:center;gap:12px;margin-bottom:14px"
+                    >
+                        <div
+                            style="width:32px;height:32px;border-radius:50%;background:var(--color-primary);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#000;flex-shrink:0"
+                        >
+                            2
+                        </div>
+                        <h3 style="font-size:16px;font-weight:700">
+                            Spacing — <code>--space-*</code>
+                        </h3>
+                    </div>
+                    <p
+                        style="font-size:14px;color:var(--color-muted);line-height:1.65;margin-bottom:16px"
+                    >
+                        4px base grid. Index = multiplier × 4px.
+                    </p>
+                    <div class="doc-space-row" style="margin-bottom:16px">
+                        {DOC_SPACES.map((s) => (
+                            <div class="doc-space-block">
+                                <div class="doc-space-sq" style={`width:${s.px}px;height:${s.px}px`} />
+                                <div class="doc-space-label">--space-{s.n}<br />{s.px}px</div>
+                            </div>
+                        ))}
+                    </div>
+                    <CodeBlock frame="sc" lang="css" code={tokensSpacing} />
+                </div>
+
+                <!-- 3. Typography -->
+                <div style="margin-bottom:36px">
+                    <div
+                        style="display:flex;align-items:center;gap:12px;margin-bottom:14px"
+                    >
+                        <div
+                            style="width:32px;height:32px;border-radius:50%;background:var(--color-primary);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#000;flex-shrink:0"
+                        >
+                            3
+                        </div>
+                        <h3 style="font-size:16px;font-weight:700">
+                            Typography — <code>--fs-*</code>
+                        </h3>
+                    </div>
+                    <div class="doc-font-row" style="margin-bottom:16px">
+                        {DOC_FONT_SIZES.map((f) => (
+                            <div class="doc-font-item">
+                                <span style={`font-size:${f.px}px`}>Aa</span>
+                                <div class="doc-font-label">--fs-{f.n}<br />{f.px}px</div>
+                            </div>
+                        ))}
+                    </div>
+                    <CodeBlock frame="sc" lang="css" code={tokensTypography} />
+                </div>
+
+                <!-- 4. Font Families -->
+                <div style="margin-bottom:36px">
+                    <div
+                        style="display:flex;align-items:center;gap:12px;margin-bottom:14px"
+                    >
+                        <div
+                            style="width:32px;height:32px;border-radius:50%;background:var(--color-primary);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#000;flex-shrink:0"
+                        >
+                            4
+                        </div>
+                        <h3 style="font-size:16px;font-weight:700">
+                            Font Families — <code>--font-*</code>
+                        </h3>
+                    </div>
+
+                    <!-- Active roles -->
+                    <div
+                        style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px"
+                    >
+                        <div class="doc-font-role-chip">
+                            <span class="doc-font-role-label">--font-sans</span>
+                            <span class="doc-font-role-val">→ Inter (body)</span
+                            >
+                        </div>
+                        <div class="doc-font-role-chip">
+                            <span class="doc-font-role-label"
+                                >--font-heading</span
+                            >
+                            <span class="doc-font-role-val"
+                                >→ Poppins (headings)</span
+                            >
+                        </div>
+                        <div class="doc-font-role-chip">
+                            <span class="doc-font-role-label">--font-mono</span>
+                            <span class="doc-font-role-val"
+                                >→ Roboto Mono (code)</span
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Sans-serif grid -->
+                    <div
+                        style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--color-muted);margin-bottom:10px"
+                    >
+                        Sans-serif
+                    </div>
+                    <div class="doc-font-grid">
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'Inter',sans-serif"
+                        >
+                            <div class="doc-font-preview">
+                                The quick brown fox
+                            </div>
+                            <div class="doc-font-meta">
+                                <code>--font-inter</code><span>Inter</span>
+                            </div>
+                        </div>
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'Roboto',sans-serif"
+                        >
+                            <div class="doc-font-preview">
+                                The quick brown fox
+                            </div>
+                            <div class="doc-font-meta">
+                                <code>--font-roboto</code><span>Roboto</span>
+                            </div>
+                        </div>
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'Poppins',sans-serif"
+                        >
+                            <div class="doc-font-preview">
+                                The quick brown fox
+                            </div>
+                            <div class="doc-font-meta">
+                                <code>--font-poppins</code><span>Poppins</span>
+                            </div>
+                        </div>
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'Montserrat',sans-serif"
+                        >
+                            <div class="doc-font-preview">
+                                The quick brown fox
+                            </div>
+                            <div class="doc-font-meta">
+                                <code>--font-montserrat</code><span
+                                    >Montserrat</span
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'Outfit',sans-serif"
+                        >
+                            <div class="doc-font-preview">
+                                The quick brown fox
+                            </div>
+                            <div class="doc-font-meta">
+                                <code>--font-outfit</code><span>Outfit</span>
+                            </div>
+                        </div>
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'Plus Jakarta Sans',sans-serif"
+                        >
+                            <div class="doc-font-preview">
+                                The quick brown fox
+                            </div>
+                            <div class="doc-font-meta">
+                                <code>--font-jakarta</code><span
+                                    >Plus Jakarta Sans</span
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'DM Sans',sans-serif"
+                        >
+                            <div class="doc-font-preview">
+                                The quick brown fox
+                            </div>
+                            <div class="doc-font-meta">
+                                <code>--font-dm-sans</code><span>DM Sans</span>
+                            </div>
+                        </div>
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'Nunito',sans-serif"
+                        >
+                            <div class="doc-font-preview">
+                                The quick brown fox
+                            </div>
+                            <div class="doc-font-meta">
+                                <code>--font-nunito</code><span>Nunito</span>
+                            </div>
+                        </div>
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'Space Grotesk',sans-serif"
+                        >
+                            <div class="doc-font-preview">
+                                The quick brown fox
+                            </div>
+                            <div class="doc-font-meta">
+                                <code>--font-space</code><span
+                                    >Space Grotesk</span
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'Manrope',sans-serif"
+                        >
+                            <div class="doc-font-preview">
+                                The quick brown fox
+                            </div>
+                            <div class="doc-font-meta">
+                                <code>--font-manrope</code><span>Manrope</span>
+                            </div>
+                        </div>
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'Figtree',sans-serif"
+                        >
+                            <div class="doc-font-preview">
+                                The quick brown fox
+                            </div>
+                            <div class="doc-font-meta">
+                                <code>--font-figtree</code><span>Figtree</span>
+                            </div>
+                        </div>
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'Sora',sans-serif"
+                        >
+                            <div class="doc-font-preview">
+                                The quick brown fox
+                            </div>
+                            <div class="doc-font-meta">
+                                <code>--font-sora</code><span>Sora</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Monospace grid -->
+                    <div
+                        style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--color-muted);margin:20px 0 10px"
+                    >
+                        Monospace
+                    </div>
+                    <div class="doc-font-grid">
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'Roboto Mono',monospace"
+                        >
+                            <div class="doc-font-preview">const x = 42;</div>
+                            <div class="doc-font-meta">
+                                <code>--font-roboto-mono</code><span
+                                    >Roboto Mono</span
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'JetBrains Mono',monospace"
+                        >
+                            <div class="doc-font-preview">const x = 42;</div>
+                            <div class="doc-font-meta">
+                                <code>--font-jetbrains</code><span
+                                    >JetBrains Mono</span
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="doc-font-card"
+                            style="font-family:'Fira Code',monospace"
+                        >
+                            <div class="doc-font-preview">const x = 42;</div>
+                            <div class="doc-font-meta">
+                                <code>--font-fira-code</code><span
+                                    >Fira Code</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Usage tip -->
+                    <div class="doc-tip" style="margin-top:20px">
+                        <span class="doc-tip-icon">💡</span>
+                        <div class="doc-tip-text">
+                            Change the active font for the whole site by
+                            overriding <code>--font-sans</code>, <code
+                                >--font-heading</code
+                            > or <code>--font-mono</code> in your own CSS — all components
+                            update automatically.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Radius + Shadows -->
+                <div style="margin-bottom:36px">
+                    <div
+                        style="display:flex;align-items:center;gap:12px;margin-bottom:14px"
+                    >
+                        <div
+                            style="width:32px;height:32px;border-radius:50%;background:var(--color-primary);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#000;flex-shrink:0"
+                        >
+                            5
+                        </div>
+                        <h3 style="font-size:16px;font-weight:700">
+                            Radius &amp; Shadows — <code>--radius-*</code> /
+                            <code>--shadow-*</code>
+                        </h3>
+                    </div>
+                    <div class="doc-radius-row" style="margin-bottom:16px">
+                        {DOC_RADII.map((r) => (
+                            <div class="doc-radius-block">
+                                <div class="doc-radius-sq" style={`border-radius:${r.v}`} />
+                                <div class="doc-radius-label">--radius-{r.n}<br />{r.v}</div>
+                            </div>
+                        ))}
+                    </div>
+                    <CodeBlock frame="sc" lang="css" code={tokensRadius} />
+                </div>
+
+                <!-- 5. Transitions -->
+                <div style="margin-bottom:36px">
+                    <div
+                        style="display:flex;align-items:center;gap:12px;margin-bottom:14px"
+                    >
+                        <div
+                            style="width:32px;height:32px;border-radius:50%;background:var(--color-primary);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#000;flex-shrink:0"
+                        >
+                            5
+                        </div>
+                        <h3 style="font-size:16px;font-weight:700">
+                            Transitions — <code>--ease-*</code>
+                        </h3>
+                    </div>
+                    <CodeBlock frame="sc" lang="css" code={tokensEase} />
+                </div>
+
+                <!-- 6. Full example -->
+                <div>
+                    <div
+                        style="display:flex;align-items:center;gap:12px;margin-bottom:14px"
+                    >
+                        <div
+                            style="width:32px;height:32px;border-radius:50%;background:var(--color-primary);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#000;flex-shrink:0"
+                        >
+                            6
+                        </div>
+                        <h3 style="font-size:16px;font-weight:700">
+                            Full component — tokens only
+                        </h3>
+                    </div>
+                    <div class="doc-compare">
+                        <div>
+                            <div
+                                style="font-size:11px;font-weight:700;color:var(--color-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px"
+                            >
+                                Live result
+                            </div>
+                            <div
+                                style="padding:var(--space-6);border-radius:var(--radius-md);background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-primary) 22%,transparent);box-shadow:var(--shadow-md)"
+                            >
+                                <div
+                                    style="font-size:var(--fs-xs);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--color-primary);margin-bottom:var(--space-2)"
+                                >
+                                    New round
+                                </div>
+                                <div
+                                    style="font-size:var(--fs-2xl);font-weight:800;color:var(--color-light);margin-bottom:var(--space-1)"
+                                >
+                                    Aviator ×5.2
+                                </div>
+                                <div
+                                    style="font-size:var(--fs-sm);color:var(--color-muted);margin-bottom:var(--space-4)"
+                                >
+                                    Bet: $10 → Win: $52
+                                </div>
+                                <button
+                                    style="width:100%;padding:var(--space-3) var(--space-4);border-radius:var(--radius-sm);background:var(--color-primary);color:#000;font-size:var(--fs-sm);font-weight:700;border:none;cursor:pointer;transition:all var(--ease)"
+                                    >Collect</button
+                                >
+                            </div>
+                        </div>
+                        <div>
+                            <div
+                                style="font-size:11px;font-weight:700;color:var(--color-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px"
+                            >
+                                CSS
+                            </div>
+                            <CodeBlock frame="sc" lang="css" code={tokensFullExample} />
+                        </div>
+                    </div>
+                </div>
+            </section>

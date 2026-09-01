@@ -1,0 +1,150 @@
+---
+import CodeBlock from '../shared/CodeBlock.astro';
+
+const animationsExample = `
+<div class="fade-in">Fades in on load</div>
+<button class="btn btn-primary animate-pulse">Pulsing CTA</button>
+<div class="animate-float">Floating element</div>
+<span class="animate-neon text-accent">Neon glow text</span>
+<div class="scale-in anim-delay-1">Delayed scale-in</div>
+`;
+const DOC_ANIM_CARDS = [
+    {
+        t: "Fade",
+        lines: [
+            ".fade-in",
+            ".fade-out"
+        ]
+    },
+    {
+        t: "Scale",
+        lines: [
+            ".scale-in",
+            ".scale-up"
+        ]
+    },
+    {
+        t: "Slide",
+        lines: [
+            ".slide-in",
+            ".slide-down"
+        ]
+    },
+    {
+        t: "Bounce",
+        lines: [
+            ".bounce",
+            ".bounce-in"
+        ]
+    },
+    {
+        t: "Pulse",
+        lines: [
+            ".animate-pulse",
+            ".pulse-slow"
+        ]
+    },
+    {
+        t: "Float",
+        lines: [
+            ".animate-float"
+        ]
+    },
+    {
+        t: "Glow",
+        lines: [
+            ".animate-glow",
+            ".glow-hover"
+        ]
+    },
+    {
+        t: "Spin",
+        lines: [
+            ".spin",
+            ".spin-slow"
+        ]
+    },
+    {
+        t: "Shake",
+        lines: [
+            ".shake",
+            ".shake-error"
+        ]
+    },
+    {
+        t: "Neon",
+        lines: [
+            ".animate-neon",
+            ".animate-neon-blue"
+        ]
+    },
+    {
+        t: "Rainbow",
+        lines: [
+            ".animate-rainbow",
+            ".animate-breathe"
+        ]
+    },
+    {
+        t: "Delay / Speed",
+        lines: [
+            ".anim-delay-1",
+            ".anim-fast · .anim-slow"
+        ]
+    }
+];
+---
+
+<section class="doc-section" id="animations">
+                <div data-flavor-code="classless" style="display:none">
+                    <div class="doc-section-header">
+                        <span class="sc-eyebrow">Reference</span>
+                        <h2 class="sc-heading">Animations</h2>
+                        <p class="sc-subheading">
+                            Animation classes are part of Full mode.
+                        </p>
+                    </div>
+                    <div class="doc-tip">
+                        <span class="doc-tip-icon">💡</span>
+                        <div class="doc-tip-text">
+                            Classes like <code>.fade-in</code>, <code
+                                >.animate-pulse</code
+                            >, <code>.animate-float</code> are included in <strong
+                                >Full</strong
+                            > mode. Classless mode doesn't include animation classes
+                            — use native CSS <code>@keyframes</code> in your own stylesheet
+                            if needed.
+                        </div>
+                    </div>
+                </div><!-- /classless -->
+
+                <div data-flavor-code="full interactive">
+                    <div class="doc-section-header">
+                        <span class="sc-eyebrow">Reference</span>
+                        <h2 class="sc-heading">Animations</h2>
+                        <p class="sc-subheading">
+                            Built-in CSS animations from <code
+                                >_animations.css</code
+                            >. Just add a class — no JavaScript.
+                        </p>
+                    </div>
+
+                    <div
+                        class="doc-grid doc-grid-auto"
+                        style="margin-bottom:24px"
+                    >
+                        {DOC_ANIM_CARDS.map((c) => (
+                            <div class="doc-card">
+                                <div class="doc-card-title">
+                                    {c.t}{c.note && (
+                                        <span style="font-size:10px;color:var(--color-muted);font-weight:400"> {c.note}</span>
+                                    )}
+                                </div>
+                                <div class="doc-card-mono" set:html={c.lines.join('<br />')} />
+                            </div>
+                        ))}
+                    </div>
+
+                    <CodeBlock frame="sc" lang="html" code={animationsExample} />
+                </div><!-- /full interactive -->
+            </section>

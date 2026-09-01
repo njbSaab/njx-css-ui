@@ -1,0 +1,125 @@
+---
+import CodeBlock from '../shared/CodeBlock.astro';
+
+const themeSwitchCode = `
+/* Via HTML attribute */
+<html data-theme="purple">
+
+/* Via JavaScript */
+document.documentElement.setAttribute('data-theme', 'purple');
+
+/* With localStorage persistence */
+function setTheme(name) {
+  document.documentElement.setAttribute('data-theme', name);
+  localStorage.setItem('theme', name);
+}
+const saved = localStorage.getItem('theme');
+if (saved) setTheme(saved);
+`;
+const DOC_THEME_SWATCHES = [
+    {
+        name: "dark",
+        label: "Dark",
+        bg: "#0d1117",
+        dot: "#14a0ff",
+        nameBg: "#161b22",
+        nameColor: "#8b949e"
+    },
+    {
+        name: "light",
+        label: "Light",
+        bg: "#f8fafc",
+        dot: "#0f172a;opacity:0.5",
+        nameBg: "#e2e8f0",
+        nameColor: "#475569"
+    },
+    {
+        name: "red",
+        label: "Red",
+        bg: "#0f0a0a",
+        dot: "#f43f5e",
+        nameBg: "#1a0d0f",
+        nameColor: "#f43f5e"
+    },
+    {
+        name: "blue",
+        label: "Blue",
+        bg: "#080f1a",
+        dot: "#3b82f6",
+        nameBg: "#0e1629",
+        nameColor: "#3b82f6"
+    },
+    {
+        name: "green",
+        label: "Green",
+        bg: "#071209",
+        dot: "#22c55e",
+        nameBg: "#0a1e0d",
+        nameColor: "#22c55e"
+    },
+    {
+        name: "cyan",
+        label: "Cyan",
+        bg: "#030f11",
+        dot: "#00e5ff",
+        nameBg: "#061a1e",
+        nameColor: "#00e5ff"
+    },
+    {
+        name: "yellow",
+        label: "Yellow",
+        bg: "#100f03",
+        dot: "#facc15",
+        nameBg: "#1a1904",
+        nameColor: "#facc15"
+    },
+    {
+        name: "pink",
+        label: "Pink",
+        bg: "#110610",
+        dot: "#ec4899",
+        nameBg: "#1e0b1b",
+        nameColor: "#ec4899"
+    },
+    {
+        name: "purple",
+        label: "Purple",
+        bg: "#0c0812",
+        dot: "#a855f7",
+        nameBg: "#160c22",
+        nameColor: "#a855f7"
+    }
+];
+---
+
+<section class="doc-section" id="themes">
+                <div class="doc-section-header">
+                    <span class="sc-eyebrow">Theme system</span>
+                    <h2 class="sc-heading">Themes</h2>
+                    <p class="sc-subheading">
+                        9 built-in themes, each defined as a complete set of CSS
+                        custom properties. Switch the entire UI with one
+                        attribute — no JavaScript required.
+                    </p>
+                </div>
+
+                <div class="doc-themes-grid" style="margin-bottom:28px">
+                    {DOC_THEME_SWATCHES.map((t) => (
+                        <div
+                            class={`doc-theme-swatch${t.name === 'dark' ? ' selected' : ''}`}
+                            onclick={`switchTheme(this,'${t.name}')`}
+                            data-tc={t.name}
+                            style={`background:${t.bg}`}
+                        >
+                            <div class="doc-theme-top" style={`background:${t.bg}`}>
+                                <div class="doc-theme-dot-b" style={`background:${t.dot}`} />
+                            </div>
+                            <div class="doc-theme-name" style={`background:${t.nameBg};color:${t.nameColor}`}>
+                                {t.label}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <CodeBlock frame="sc" lang="js" label="Theme switching" code={themeSwitchCode} />
+            </section>

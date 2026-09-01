@@ -1,0 +1,325 @@
+---
+
+const DOC_COMPONENT_CARDS = [
+    {
+        t: "🔲 Buttons",
+        lines: [
+            ".btn",
+            ".btn-primary · .btn-outline",
+            ".btn-ghost · .btn-gradient",
+            ".btn-glow · .btn-shine",
+            ".btn-sm · .btn-lg"
+        ]
+    },
+    {
+        t: "🃏 Cards",
+        lines: [
+            ".card · .card-glass",
+            ".card-dark · .card-bordered",
+            ".card-glow · .box"
+        ]
+    },
+    {
+        t: "📋 Forms",
+        lines: [
+            ".inp · .inp-primary",
+            ".inp-glass · .float-field",
+            ".toggle · .check",
+            ".inp-select"
+        ]
+    },
+    {
+        t: "🗂 Tabs",
+        note: "JS",
+        lines: [
+            ".tab-wrap · .tab-nav",
+            ".tab-btn · .tab-panel",
+            ".tab-nav-pills",
+            ".tab-nav-boxed · .tab-nav-card",
+            ".tab-nav.is-full · .tab-badge"
+        ]
+    },
+    {
+        t: "🪗 Collapse",
+        note: "JS / native",
+        lines: [
+            "details.collapse (native)",
+            ".collapse + JS toggle",
+            ".collapse-plus · .collapse-ghost",
+            ".collapse-primary",
+            ".accordion · .accordion-flush"
+        ]
+    },
+    {
+        t: "💬 Modals",
+        note: "JS",
+        lines: [
+            ".lib-modal-overlay",
+            ".lib-modal-box",
+            ".is-success · .is-error",
+            ".is-warning · .is-info",
+            ".lib-modal-close"
+        ]
+    },
+    {
+        t: "🧭 Navigation",
+        lines: [
+            ".nav · .nav-brand · .nav-link",
+            ".nav-solid · .nav-glass",
+            ".nav-primary · .nav-dark",
+            ".nav-floating · .nav-underline",
+            ".nav-sm · .nav-lg"
+        ]
+    },
+    {
+        t: "📂 Dropdown",
+        note: "JS / native",
+        lines: [
+            "details.dropdown (native)",
+            ".dropdown + JS toggle",
+            ".dropdown-menu · .dropdown-item",
+            ".dropdown-right · .dropdown-top",
+            ".dropdown-primary · .dropdown-dark"
+        ]
+    },
+    {
+        t: "🎠 Carousel",
+        note: "CSS + JS dots",
+        lines: [
+            ".carousel · .carousel-item",
+            ".carousel-center · .carousel-gap",
+            ".carousel-vertical",
+            ".carousel-btn · .carousel-dots",
+            ".carousel-item-sm/md/lg/xl"
+        ]
+    },
+    {
+        t: "🔗 Links",
+        lines: [
+            ".link · .link-underline",
+            ".link-slide · .link-arrow",
+            ".link-external · .link-muted",
+            ".link-btn · .link-card",
+            ".link-list"
+        ]
+    },
+    {
+        t: "🏷 Tags & Badges",
+        lines: [
+            ".tag · .badge",
+            ".tag-primary · .tag-success",
+            ".tag-accent · .tag-outline"
+        ]
+    },
+    {
+        t: "📊 Table & Progress",
+        lines: [
+            ".table",
+            ".progress · .progress-bar"
+        ]
+    },
+    {
+        t: "🔔 Notifications",
+        note: "JS",
+        lines: [
+            "showToast(msg, type)",
+            ".lib-toast · .lib-toast-success",
+            ".lib-toast-error · .lib-toast-primary"
+        ]
+    },
+    {
+        t: "🌈 Gradients",
+        lines: [
+            ".gradient-primary",
+            ".text-gradient-primary",
+            ".gradient-blue-purple"
+        ]
+    },
+    {
+        t: "✨ Hover FX",
+        lines: [
+            ".hover-lift · .hover-glow",
+            ".hover-brighten · .hover-rotate"
+        ]
+    }
+];
+const DOC_CLASSLESS_CARDS = [
+    {
+        t: "📝 Headings",
+        lines: [
+            "&lt;h1&gt; — &lt;h6&gt;",
+            "Size · weight · color",
+            "Responsive scale"
+        ]
+    },
+    {
+        t: "📄 Text",
+        lines: [
+            "&lt;p&gt; &lt;strong&gt; &lt;em&gt;",
+            "&lt;small&gt; &lt;mark&gt;",
+            "&lt;blockquote&gt; &lt;cite&gt;"
+        ]
+    },
+    {
+        t: "🔗 Links",
+        lines: [
+            "&lt;a&gt;",
+            "color-primary",
+            "hover underline"
+        ]
+    },
+    {
+        t: "🔲 Button",
+        lines: [
+            "&lt;button&gt;",
+            "&lt;input type=\"button\"&gt;",
+            "&lt;input type=\"submit\"&gt;"
+        ]
+    },
+    {
+        t: "📋 Forms",
+        lines: [
+            "&lt;input&gt; &lt;textarea&gt;",
+            "&lt;select&gt; &lt;label&gt;",
+            "&lt;fieldset&gt; &lt;legend&gt;"
+        ]
+    },
+    {
+        t: "✅ Checkboxes",
+        lines: [
+            "&lt;input type=\"checkbox\"&gt;",
+            "&lt;input type=\"radio\"&gt;",
+            "&lt;input type=\"range\"&gt;"
+        ]
+    },
+    {
+        t: "📊 Table",
+        lines: [
+            "&lt;table&gt; &lt;thead&gt;",
+            "&lt;tbody&gt; &lt;tr&gt;",
+            "&lt;th&gt; &lt;td&gt;"
+        ]
+    },
+    {
+        t: "📜 Lists",
+        lines: [
+            "&lt;ul&gt; &lt;ol&gt;",
+            "&lt;li&gt;",
+            "&lt;dl&gt; &lt;dt&gt; &lt;dd&gt;"
+        ]
+    },
+    {
+        t: "💻 Code",
+        lines: [
+            "&lt;code&gt; &lt;pre&gt;",
+            "&lt;kbd&gt; &lt;samp&gt;",
+            "Syntax highlight colors"
+        ]
+    },
+    {
+        t: "🪗 Accordion",
+        lines: [
+            "&lt;details&gt;",
+            "&lt;summary&gt;",
+            "Native open/close — no JS"
+        ]
+    },
+    {
+        t: "🧭 Nav",
+        lines: [
+            "&lt;nav&gt;",
+            "&lt;header&gt;",
+            "&lt;footer&gt; &lt;aside&gt;"
+        ]
+    },
+    {
+        t: "📦 Media",
+        lines: [
+            "&lt;img&gt; max-width 100%",
+            "&lt;figure&gt; &lt;figcaption&gt;",
+            "&lt;hr&gt; &lt;progress&gt;"
+        ]
+    }
+];
+---
+
+<section class="doc-section" id="components">
+                <!-- ── Full / Interactive: class-based components ── -->
+                <div data-flavor-code="full interactive">
+                    <div class="doc-section-header">
+                        <span class="sc-eyebrow">Reference</span>
+                        <h2 class="sc-heading">Components</h2>
+                        <p class="sc-subheading">
+                            30+ components included. Browse live demos and code
+                            at <a
+                                href="../index.html"
+                                style="color:var(--color-primary)"
+                                >the components page</a
+                            >.
+                        </p>
+                    </div>
+
+                    <div class="doc-grid doc-grid-auto">
+                        {DOC_COMPONENT_CARDS.map((c) => (
+                            <div class="doc-card">
+                                <div class="doc-card-title">
+                                    {c.t}{c.note && (
+                                        <span style="font-size:10px;color:var(--color-muted);font-weight:400"> {c.note}</span>
+                                    )}
+                                </div>
+                                <div class="doc-card-mono" set:html={c.lines.join('<br />')} />
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="doc-tip" style="margin-top:20px">
+                        <span class="doc-tip-icon">⚡</span>
+                        <div class="doc-tip-text">
+                            Components marked <strong>JS</strong> require <code
+                                >njx.js</code
+                            > for interactivity. Components marked <strong
+                                >native</strong
+                            > use <code>&lt;details&gt;</code>/<code
+                                >&lt;summary&gt;</code
+                            > and work without any JavaScript.
+                        </div>
+                    </div>
+                </div><!-- /full interactive -->
+
+                <!-- ── Classless: styled HTML elements ── -->
+                <div data-flavor-code="classless" style="display:none">
+                    <div class="doc-section-header">
+                        <span class="sc-eyebrow">Reference</span>
+                        <h2 class="sc-heading">Styled Elements</h2>
+                        <p class="sc-subheading">
+                            Every native HTML element below is styled
+                            automatically — no class names required. Just write
+                            semantic HTML.
+                        </p>
+                    </div>
+
+                    <div class="doc-grid doc-grid-auto">
+                        {DOC_CLASSLESS_CARDS.map((c) => (
+                            <div class="doc-card">
+                                <div class="doc-card-title">
+                                    {c.t}{c.note && (
+                                        <span style="font-size:10px;color:var(--color-muted);font-weight:400"> {c.note}</span>
+                                    )}
+                                </div>
+                                <div class="doc-card-mono" set:html={c.lines.join('<br />')} />
+                            </div>
+                        ))}
+                    </div>
+
+                    <div class="doc-tip" style="margin-top:20px">
+                        <span class="doc-tip-icon">💡</span>
+                        <div class="doc-tip-text">
+                            All these elements respond to <code>data-theme</code
+                            > — switch to any of 9 themes with zero extra CSS. Want
+                            component classes (<code>.btn-glow</code>, <code
+                                >.card-glass</code
+                            >...)? Switch to <strong>Full</strong> mode.
+                        </div>
+                    </div>
+                </div><!-- /classless -->
+            </section>

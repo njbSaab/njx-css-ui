@@ -1,0 +1,138 @@
+---
+import CodeBlock from '../shared/CodeBlock.astro';
+
+const utilsExample = `
+<div class="flex items-center gap-4 p-6">
+  <button class="btn btn-primary">Action</button>
+  <p class="text-sm text-muted">Helper text</p>
+</div>
+
+<div class="flex-center gap-6 mt-8 mb-4">
+  <span class="tag tag-primary uppercase text-xs">New</span>
+  <h2 class="text-2xl font-bold text-primary">Title</h2>
+</div>
+`;
+const DOC_UTIL_GROUPS = [
+    {
+        t: "📦 Display",
+        tags: [
+            ".flex",
+            ".flex-col",
+            ".grid",
+            ".inline-flex",
+            ".block",
+            ".hidden",
+            ".inline-block"
+        ]
+    },
+    {
+        t: "📍 Flex helpers",
+        tags: [
+            ".flex-center",
+            ".flex-between",
+            ".flex-col-center",
+            ".flex-1",
+            ".items-center",
+            ".justify-between"
+        ]
+    },
+    {
+        t: "📏 Spacing",
+        tags: [
+            ".m-4",
+            ".mt-6",
+            ".mb-4",
+            ".mx-auto",
+            ".p-4",
+            ".px-6",
+            ".py-8",
+            ".gap-4"
+        ]
+    },
+    {
+        t: "🔤 Typography",
+        tags: [
+            ".text-primary",
+            ".text-accent",
+            ".text-muted",
+            ".text-center",
+            ".text-sm",
+            ".text-xl",
+            ".uppercase",
+            ".font-bold"
+        ]
+    },
+    {
+        t: "🔲 Sizing",
+        tags: [
+            ".w-full",
+            ".w-auto",
+            ".h-full",
+            ".min-h-screen",
+            ".max-w-lg",
+            ".container"
+        ]
+    },
+    {
+        t: "💫 Effects",
+        tags: [
+            ".transition",
+            ".opacity-50",
+            ".shadow-md",
+            ".blur-sm",
+            ".grayscale",
+            ".rotate-45"
+        ]
+    }
+];
+---
+
+<section class="doc-section" id="utils">
+                <!-- classless: brief note -->
+                <div data-flavor-code="classless" style="display:none">
+                    <div class="doc-section-header">
+                        <span class="sc-eyebrow">Reference</span>
+                        <h2 class="sc-heading">Utility Classes</h2>
+                        <p class="sc-subheading">
+                            Utility classes are part of Full mode.
+                        </p>
+                    </div>
+                    <div class="doc-tip">
+                        <span class="doc-tip-icon">💡</span>
+                        <div class="doc-tip-text">
+                            Classes like <code>.flex</code>, <code>.p-4</code>, <code
+                                >.text-primary</code
+                            > are included in <strong>Full</strong> mode (<code
+                                >style.min.css</code
+                            >). In Classless mode only native HTML tags are
+                            styled — no utility classes are needed to get a
+                            clean look.
+                        </div>
+                    </div>
+                </div><!-- /classless -->
+
+                <!-- full/interactive: full utils reference -->
+                <div data-flavor-code="full interactive">
+                    <div class="doc-section-header">
+                        <span class="sc-eyebrow">Reference</span>
+                        <h2 class="sc-heading">Utility Classes</h2>
+                        <p class="sc-subheading">
+                            Tailwind-compatible utility classes for fast layout.
+                            All in <code>_utils.css</code>.
+                        </p>
+                    </div>
+
+                    <div class="doc-grid doc-grid-3" style="margin-bottom:24px">
+                        {DOC_UTIL_GROUPS.map((g) => (
+                            <div class="doc-card">
+                                <div class="doc-card-title" style="color:var(--color-primary)">{g.t}</div>
+                                <div style="margin-top:8px">
+                                    {g.tags.map((t) => <span class="doc-util-tag">{t}</span>)}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <CodeBlock frame="sc" lang="html" label="Usage example" code={utilsExample} />
+                </div><!-- /full interactive -->
+            </section>

@@ -1,0 +1,239 @@
+---
+import { DOC_SPACES, DOC_FONT_SIZES, DOC_RADII, DOC_EASES } from '../../data/doc-tokens';
+---
+
+<section class="doc-section" id="tokens">
+                <div class="doc-section-header">
+                    <span class="sc-eyebrow">Reference</span>
+                    <h2 class="sc-heading">Design Tokens</h2>
+                    <p class="sc-subheading">
+                        All values are CSS custom properties defined in <code
+                            >_base.css</code
+                        >. Use them in your own styles for automatic theme
+                        adaptation.
+                    </p>
+                </div>
+
+                <div class="doc-grid doc-grid-2" style="margin-bottom:20px">
+                    <!-- Colors -->
+                    <div>
+                        <div
+                            style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--color-muted);margin-bottom:10px"
+                        >
+                            Colors
+                        </div>
+                        <div class="doc-token-table-wrap">
+                            <table class="doc-token-table">
+                                <thead>
+                                    <tr>
+                                        <th>Token</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="tok">--color-primary</td>
+                                        <td
+                                            style="color:var(--color-muted);font-size:12px"
+                                            >Main brand color (theme-reactive)</td
+                                        >
+                                    </tr>
+                                    <tr>
+                                        <td class="tok">--color-accent</td>
+                                        <td
+                                            style="color:var(--color-muted);font-size:12px"
+                                            >Secondary accent</td
+                                        >
+                                    </tr>
+                                    <tr>
+                                        <td class="tok">--color-success</td>
+                                        <td
+                                            style="color:var(--color-muted);font-size:12px"
+                                            >Green / success state</td
+                                        >
+                                    </tr>
+                                    <tr>
+                                        <td class="tok">--color-error</td>
+                                        <td
+                                            style="color:var(--color-muted);font-size:12px"
+                                            >Red / error state</td
+                                        >
+                                    </tr>
+                                    <tr>
+                                        <td class="tok">--color-warning</td>
+                                        <td
+                                            style="color:var(--color-muted);font-size:12px"
+                                            >Orange / warning state</td
+                                        >
+                                    </tr>
+                                    <tr>
+                                        <td class="tok">--color-light</td>
+                                        <td
+                                            style="color:var(--color-muted);font-size:12px"
+                                            >Primary text</td
+                                        >
+                                    </tr>
+                                    <tr>
+                                        <td class="tok">--color-muted</td>
+                                        <td
+                                            style="color:var(--color-muted);font-size:12px"
+                                            >Secondary / muted text</td
+                                        >
+                                    </tr>
+                                    <tr>
+                                        <td class="tok">--сolor-dark</td>
+                                        <td
+                                            style="color:var(--color-muted);font-size:12px"
+                                            >Page background</td
+                                        >
+                                    </tr>
+                                    <tr>
+                                        <td class="tok"
+                                            >--color-dark-secondary</td
+                                        >
+                                        <td
+                                            style="color:var(--color-muted);font-size:12px"
+                                            >Card / surface background</td
+                                        >
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Spacing -->
+                    <div>
+                        <div
+                            style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--color-muted);margin-bottom:10px"
+                        >
+                            Spacing (4px base)
+                        </div>
+                        <div class="doc-token-table-wrap">
+                            <table class="doc-token-table">
+                                <thead>
+                                    <tr>
+                                        <th>Token</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {DOC_SPACES.map((x) => (
+                                        <tr><td class="tok">--space-{x.n}</td><td class="val">{x.px}px</td></tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Typography -->
+                    <div>
+                        <div
+                            style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--color-muted);margin-bottom:10px"
+                        >
+                            Typography
+                        </div>
+                        <div class="doc-token-table-wrap">
+                            <table class="doc-token-table">
+                                <thead>
+                                    <tr>
+                                        <th>Token</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {DOC_FONT_SIZES.map((x) => (
+                                        <tr><td class="tok">--fs-{x.n}</td><td class="val">{x.px}px</td></tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Radius + Shadows + Transitions -->
+                    <div style="display:flex;flex-direction:column;gap:20px">
+                        <div>
+                            <div
+                                style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--color-muted);margin-bottom:10px"
+                            >
+                                Border Radius
+                            </div>
+                            <div class="doc-token-table-wrap">
+                                <table class="doc-token-table">
+                                <tbody>
+                                    {DOC_RADII.map((x) => (
+                                        <tr><td class="tok">--radius-{x.n}</td><td class="val">{x.v}</td></tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                        <div>
+                            <div
+                                style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--color-muted);margin-bottom:10px"
+                            >
+                                Transitions
+                            </div>
+                            <div class="doc-token-table-wrap">
+                                <table class="doc-token-table">
+                                <tbody>
+                                    {DOC_EASES.map((x) => (
+                                        <tr><td class="tok">{x.t}</td><td class="val">{x.v}</td></tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shadows visual -->
+                <div
+                    style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--color-muted);margin-bottom:10px"
+                >
+                    Shadows
+                </div>
+                <div class="doc-shadow-list">
+                    <div
+                        class="doc-shadow-item"
+                        style="box-shadow:0 1px 3px rgba(0,0,0,0.3)"
+                    >
+                        <span class="tok" style="font-size:12px"
+                            >--shadow-sm</span
+                        >
+                    </div>
+                    <div
+                        class="doc-shadow-item"
+                        style="box-shadow:0 4px 12px rgba(0,0,0,0.4)"
+                    >
+                        <span class="tok" style="font-size:12px"
+                            >--shadow-md</span
+                        >
+                    </div>
+                    <div
+                        class="doc-shadow-item"
+                        style="box-shadow:0 8px 24px rgba(0,0,0,0.5)"
+                    >
+                        <span class="tok" style="font-size:12px"
+                            >--shadow-lg</span
+                        >
+                    </div>
+                    <div
+                        class="doc-shadow-item"
+                        style="box-shadow:0 0 20px color-mix(in srgb,var(--color-primary) 40%,transparent)"
+                    >
+                        <span
+                            style="font-family:'Roboto Mono',monospace;font-size:12px;color:var(--color-primary)"
+                            >--shadow-primary</span
+                        >
+                    </div>
+                    <div
+                        class="doc-shadow-item"
+                        style="box-shadow:0 0 20px color-mix(in srgb,var(--color-accent) 40%,transparent)"
+                    >
+                        <span
+                            style="font-family:'Roboto Mono',monospace;font-size:12px;color:var(--color-accent)"
+                            >--shadow-accent</span
+                        >
+                    </div>
+                </div>
+            </section>

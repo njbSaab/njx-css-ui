@@ -1,0 +1,422 @@
+---
+import CodeBlock from '../shared/CodeBlock.astro';
+import { CDN_BASE, CDN_JS } from '../../lib/meta';
+
+const base = import.meta.env.BASE_URL;
+const qsFullLink = `
+<link rel="stylesheet" href="${CDN_BASE}style.min.css">
+`;
+const qsFullTheme = `
+<html lang="en" data-theme="dark">
+<!-- dark · light · red · blue · green · cyan · yellow · pink · purple -->
+`;
+const qsFullPage = `
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="${CDN_BASE}style.min.css">
+</head>
+<body>
+  <button class="btn btn-primary">Hello njX</button>
+  <div class="card-glow">
+    <h2 class="text-gradient-primary">Works.</h2>
+  </div>
+</body>
+</html>
+`;
+const qsFullJs = `
+<!-- Adds: collapseToggle, tabSwitch, dropdownToggle,
+     openModal, closeModal, showToast, initCarousels -->
+<script src="${CDN_JS}"></script>
+`;
+const qsClasslessLink = `
+<link rel="stylesheet" href="${CDN_BASE}classless.min.css">
+`;
+const qsClasslessPage = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="${CDN_BASE}classless.min.css">
+</head>
+<body>
+  <button>Hello njX</button>
+  <article>
+    <h2>Works.</h2>
+    <p>No class names needed.</p>
+  </article>
+</body>
+</html>
+`;
+const qsClasslessTheme = `
+<html data-theme="dark">
+<!-- dark · light · red · blue · green · cyan · yellow · pink · purple -->
+`;
+const qsInteractiveLink = `
+<!-- In <head> -->
+<link rel="stylesheet" href="${CDN_BASE}style.min.css">
+
+<!-- Before </body> -->
+<script src="${CDN_JS}"></script>
+`;
+const qsInteractiveTheme = `
+<html lang="en" data-theme="dark">
+<!-- dark · light · red · blue · green · cyan · yellow · pink · purple -->
+`;
+const qsInteractivePage = `
+<button class="btn btn-primary" onclick="openModal('demo')">Open Modal</button>
+<button class="btn btn-accent" onclick="showToast('Done!','success')">Toast</button>
+
+<div class="modal" id="demo">
+  <div class="modal-box">
+    <h3>Hello from njX JS</h3>
+    <button onclick="closeModal('demo')">Close</button>
+  </div>
+</div>
+`;
+---
+
+<section class="doc-section" id="quickstart">
+                <!-- ── Flavor-aware section header ── -->
+                <div class="doc-section-header" data-flavor-code="full">
+                    <span class="sc-eyebrow">Getting started</span>
+                    <h1 class="sc-heading">Quick Start</h1>
+                    <p class="sc-subheading">
+                        Connect the library to your project in under a minute —
+                        no build tools required.
+                    </p>
+                </div>
+                <div
+                    class="doc-section-header"
+                    data-flavor-code="classless"
+                    style="display:none"
+                >
+                    <span class="sc-eyebrow">Getting started</span>
+                    <h1 class="sc-heading">Quick Start — Classless Only</h1>
+                    <p class="sc-subheading">
+                        Standalone mode — one file, zero class names. Semantic
+                        HTML is styled automatically via element selectors. Use <code
+                            style="color:var(--color-primary)"
+                            >classless.min.css</code
+                        >
+                        when you need classless without any component classes. Need
+                        component classes instead? Switch to <strong>Full</strong>
+                        (<code>style.min.css</code>) — pick one stylesheet, the
+                        builds are standalone.
+                    </p>
+                </div>
+                <div
+                    class="doc-section-header"
+                    data-flavor-code="interactive"
+                    style="display:none"
+                >
+                    <span class="sc-eyebrow">Getting started</span>
+                    <h1 class="sc-heading">Quick Start — Interactive</h1>
+                    <p class="sc-subheading">
+                        Full CSS components plus JavaScript-powered interactions
+                        out of the box — modals, tabs, toasts, dropdowns.
+                    </p>
+                </div>
+
+                <!-- ── Version selector cards ── -->
+                <div class="doc-flavor-cards">
+                    <div
+                        class="doc-flavor-card"
+                        data-flavor-card="classless"
+                        onclick="pageSyncFlavor('classless')"
+                    >
+                        <div class="doc-flavor-card-icon" style="color:#4ade80">
+                            &lt;/&gt;
+                        </div>
+                        <div class="doc-flavor-card-title">Classless Only</div>
+                        <div class="doc-flavor-card-desc">
+                            Standalone — no component classes. Semantic HTML
+                            gets styled automatically. Zero dependencies.
+                        </div>
+                        <div class="doc-flavor-card-badge">
+                            classless.min.css · 47 KB
+                        </div>
+                    </div>
+                    <div
+                        class="doc-flavor-card active"
+                        data-flavor-card="full"
+                        onclick="pageSyncFlavor('full')"
+                    >
+                        <div class="doc-flavor-card-label-default">
+                            RECOMMENDED
+                        </div>
+                        <div
+                            class="doc-flavor-card-icon"
+                            style="color:var(--color-primary)"
+                        >
+                            ◈
+                        </div>
+                        <div class="doc-flavor-card-title">Full</div>
+                        <div class="doc-flavor-card-desc">
+                            30+ component classes — <code>.btn</code>, <code
+                                >.card</code
+                            >,
+                            <code>.tag</code> and more, plus utilities and 9
+                            themes.
+                        </div>
+                        <div class="doc-flavor-card-badge">
+                            style.min.css · 308 KB
+                        </div>
+                    </div>
+                    <div
+                        class="doc-flavor-card"
+                        data-flavor-card="interactive"
+                        onclick="pageSyncFlavor('interactive')"
+                    >
+                        <div class="doc-flavor-card-icon" style="color:#facc15">
+                            JS
+                        </div>
+                        <div class="doc-flavor-card-title">Interactive</div>
+                        <div class="doc-flavor-card-desc">
+                            Everything in Full plus JS-powered modals, tabs,
+                            toasts, dropdowns and more.
+                        </div>
+                        <div class="doc-flavor-card-badge">
+                            style.min.css + njx.js
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── One-build tip ── -->
+                <div class="doc-mix-tip">
+                    <span class="doc-mix-tip-icon">✦</span>
+                    <span>
+                        <strong>One stylesheet at a time.</strong>
+                        <code>style.min.css</code> (Full) and <code
+                            >classless.min.css</code
+                        >
+                        are standalone builds — pick the one that fits your
+                        project, don't load both together.
+                    </span>
+                </div>
+
+                <!-- ── Steps: Full ── -->
+                <div class="doc-steps" data-flavor-code="full">
+                    <div class="doc-step">
+                        <div class="doc-step-left">
+                            <div class="doc-step-num">1</div>
+                            <div class="doc-step-line"></div>
+                        </div>
+                        <div class="doc-step-body">
+                            <div class="doc-step-title">Add the stylesheet</div>
+                            <div class="doc-step-desc">
+                                One <code>&lt;link&gt;</code> tag in <code
+                                    >&lt;head&gt;</code
+                                >. Nothing else required.
+                            </div>
+                            <CodeBlock frame="sc" lang="html" code={qsFullLink} />
+                        </div>
+                    </div>
+                    <div class="doc-step">
+                        <div class="doc-step-left">
+                            <div class="doc-step-num">2</div>
+                            <div class="doc-step-line"></div>
+                        </div>
+                        <div class="doc-step-body">
+                            <div class="doc-step-title">Set a theme</div>
+                            <div class="doc-step-desc">
+                                Add <code>data-theme</code> to the <code
+                                    >&lt;html&gt;</code
+                                > element. All components adapt automatically.
+                            </div>
+                            <CodeBlock frame="sc" lang="html" code={qsFullTheme} />
+                        </div>
+                    </div>
+                    <div class="doc-step">
+                        <div class="doc-step-left">
+                            <div class="doc-step-num">3</div>
+                            <div class="doc-step-line"></div>
+                        </div>
+                        <div class="doc-step-body">
+                            <div class="doc-step-title">
+                                Use component classes
+                            </div>
+                            <div class="doc-step-desc">
+                                Add class names to HTML elements. Most
+                                components are pure CSS — no JavaScript needed.
+                            </div>
+                            <CodeBlock frame="sc" lang="html" label="index.html" code={qsFullPage} />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: JS (Full only) -->
+                <div
+                    class="doc-step"
+                    style="margin-top:0"
+                    data-flavor-code="full"
+                >
+                    <div class="doc-step-left">
+                        <div class="doc-step-num">4</div>
+                    </div>
+                    <div class="doc-step-body">
+                        <div class="doc-step-title">
+                            Add JavaScript <span
+                                style="font-size:12px;font-weight:400;color:var(--color-muted)"
+                                >(optional)</span
+                            >
+                        </div>
+                        <div class="doc-step-desc">
+                            Interactive components — collapse, tabs, dropdown,
+                            modal, carousel, toast — need one script.
+                        </div>
+                        <CodeBlock frame="sc" lang="html" style="margin-top:12px" code={qsFullJs} />
+                        <div
+                            style="margin-top:10px;font-size:13px;color:var(--color-muted)"
+                        >
+                            Native <code>details/summary</code> components work without
+                            JS. See the <a
+                                href="#javascript"
+                                style="color:var(--color-primary)"
+                                >JavaScript reference</a
+                            > for all functions.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Steps: Classless ── -->
+                <div
+                    class="doc-steps"
+                    data-flavor-code="classless"
+                    style="display:none"
+                >
+                    <div class="doc-step">
+                        <div class="doc-step-left">
+                            <div class="doc-step-num">1</div>
+                            <div class="doc-step-line"></div>
+                        </div>
+                        <div class="doc-step-body">
+                            <div class="doc-step-title">Add the stylesheet</div>
+                            <div class="doc-step-desc">
+                                One <code>&lt;link&gt;</code> tag in <code
+                                    >&lt;head&gt;</code
+                                >. No configuration needed.
+                            </div>
+                            <CodeBlock frame="sc" lang="html" code={qsClasslessLink} />
+                        </div>
+                    </div>
+                    <div class="doc-step">
+                        <div class="doc-step-left">
+                            <div class="doc-step-num">2</div>
+                            <div class="doc-step-line"></div>
+                        </div>
+                        <div class="doc-step-body">
+                            <div class="doc-step-title">Write plain HTML</div>
+                            <div class="doc-step-desc">
+                                No class names needed. Every native HTML element
+                                — <code>&lt;button&gt;</code>, <code
+                                    >&lt;table&gt;</code
+                                >, <code>&lt;form&gt;</code>, <code
+                                    >&lt;details&gt;</code
+                                > — gets styled automatically.
+                            </div>
+                            <CodeBlock frame="sc" lang="html" label="index.html" code={qsClasslessPage} />
+                        </div>
+                    </div>
+                    <div class="doc-step">
+                        <div class="doc-step-left">
+                            <div class="doc-step-num">3</div>
+                        </div>
+                        <div class="doc-step-body">
+                            <div class="doc-step-title">
+                                Themes <span
+                                    style="font-size:12px;font-weight:400;color:var(--color-muted)"
+                                    >(optional)</span
+                                >
+                            </div>
+                            <div class="doc-step-desc">
+                                Classless supports the same 9 themes. Add <code
+                                    >data-theme</code
+                                > to <code>&lt;html&gt;</code> to switch color palettes.
+                            </div>
+                            <CodeBlock frame="sc" lang="html" code={qsClasslessTheme} />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Steps: Interactive ── -->
+                <div
+                    class="doc-steps"
+                    data-flavor-code="interactive"
+                    style="display:none"
+                >
+                    <div class="doc-step">
+                        <div class="doc-step-left">
+                            <div class="doc-step-num">1</div>
+                            <div class="doc-step-line"></div>
+                        </div>
+                        <div class="doc-step-body">
+                            <div class="doc-step-title">Add CSS + JS</div>
+                            <div class="doc-step-desc">
+                                Two tags in <code>&lt;head&gt;</code> and before <code
+                                    >&lt;/body&gt;</code
+                                >. JS unlocks modals, tabs, toasts, dropdowns.
+                            </div>
+                            <CodeBlock frame="sc" lang="html" code={qsInteractiveLink} />
+                        </div>
+                    </div>
+                    <div class="doc-step">
+                        <div class="doc-step-left">
+                            <div class="doc-step-num">2</div>
+                            <div class="doc-step-line"></div>
+                        </div>
+                        <div class="doc-step-body">
+                            <div class="doc-step-title">Set a theme</div>
+                            <div class="doc-step-desc">
+                                Add <code>data-theme</code> to <code
+                                    >&lt;html&gt;</code
+                                >. All components adapt automatically.
+                            </div>
+                            <CodeBlock frame="sc" lang="html" code={qsInteractiveTheme} />
+                        </div>
+                    </div>
+                    <div class="doc-step">
+                        <div class="doc-step-left">
+                            <div class="doc-step-num">3</div>
+                        </div>
+                        <div class="doc-step-body">
+                            <div class="doc-step-title">
+                                Use components + JS API
+                            </div>
+                            <div class="doc-step-desc">
+                                Classes work the same as Full. JS functions are
+                                available globally — no import needed.
+                            </div>
+                            <CodeBlock frame="sc" lang="html" label="index.html" code={qsInteractivePage} />
+                            <div
+                                style="margin-top:10px;font-size:13px;color:var(--color-muted)"
+                            >
+                                JS API: <code>openModal</code> · <code
+                                    >closeModal</code
+                                > · <code>showToast</code> · <code
+                                    >tabSwitch</code
+                                > · <code>collapseToggle</code> · <code
+                                    >dropdownToggle</code
+                                >. See the <a
+                                    href="#javascript"
+                                    style="color:var(--color-primary)"
+                                    >JavaScript reference</a
+                                >.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-tip" style="margin-top:28px">
+                    <span class="doc-tip-icon">📦</span>
+                    <div class="doc-tip-text">
+                        <strong>More install options:</strong> npm install, download
+                        ZIP, or import individual CSS files. See the <a
+                            href={`${base}quickstart`}
+                            style="color:var(--color-primary)"
+                            >Quick Start guide</a
+                        > for all methods.
+                    </div>
+                </div>
+            </section>
