@@ -43,7 +43,7 @@ import DownloadModal from '../components/DownloadModal.astro';
 import LibsFooter from '../components/LibsFooter.astro';
 import LibsSidebar from '../components/LibsSidebar.astro';
 import Bottombar from '../components/Bottombar.astro';
-import { SIZE_FULL, CDN_BASE, LIB_VERSION } from '../lib/meta';
+import { SIZE_FULL_GZIP, CDN_BASE, LIB_VERSION } from '../lib/meta';
 
 const heroCdnSnippet = `<link rel="stylesheet" href="${CDN_BASE}style.min.css">`;
 
@@ -66,7 +66,7 @@ const ldJson = {
 ---
 
 <BaseLayout
-	title="njX UI — Lightweight CSS Component Library (30+ components, 9 themes, 308 KB)"
+	title="njX UI — Lightweight CSS Component Library (30+ components, 9 themes, 44 KB gzip)"
 	description="njX UI is a lightweight, dependency-free CSS component library."
 	withDocsShell={true}
 	withDocsSections={true}
@@ -674,10 +674,10 @@ const ldJson = {
 									</div>
 									<div class="ui-preview-stat">
 										<span class="ui-preview-stat-value"
-											>{SIZE_FULL}</span
+											>{SIZE_FULL_GZIP}</span
 										>
 										<span class="ui-preview-stat-label"
-											>full bundle target</span
+											>gzip over the wire</span
 										>
 									</div>
 								</div>

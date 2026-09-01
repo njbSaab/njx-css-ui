@@ -5,7 +5,7 @@ import PagesTopbar from '../components/PagesTopbar.astro';
 import PagesFooter from '../components/PagesFooter.astro';
 import Bottombar from '../components/Bottombar.astro';
 import Demo from '../components/demo/Demo.astro';
-import { LIB_VERSION, SIZE_FULL } from '../lib/meta';
+import { LIB_VERSION, SIZE_FULL, SIZE_FULL_GZIP } from '../lib/meta';
 const base = import.meta.env.BASE_URL;
 
 const OV_FEATURES = [
@@ -102,7 +102,7 @@ const OV_FEATURES = [
           </div>
           <div class="stats-inline">
             <div>
-              <div class="v">{SIZE_FULL}</div><div class="l">Bundle</div>
+              <div class="v">{SIZE_FULL_GZIP}</div><div class="l">Gzip bundle</div>
             </div>
             <div><div class="v">9</div><div class="l">Themes</div></div>
             <div><div class="v">30+</div><div class="l">Components</div></div>
@@ -271,8 +271,9 @@ const OV_FEATURES = [
         Heavier than chota.<br />Lighter than everything else.
       </h2>
       <p class="sc-subheading">
-        308 KB gets you themes, animations, hover effects and gradients —
-        features that don't exist anywhere else at this weight.
+        44 KB gzip over the wire ({SIZE_FULL} minified on disk) gets you
+        themes, animations, hover effects and gradients — features that don't
+        exist anywhere else at this weight.
       </p>
     </div>
     <div class="sc-table-wrap">
@@ -289,7 +290,7 @@ const OV_FEATURES = [
         <tbody>
           <tr
             ><td>Bundle size</td><td>3 KB</td><td>9 KB</td><td>78 KB</td><td
-              style="color:var(--color-primary);font-weight:700">~308 KB</td
+              style="color:var(--color-primary);font-weight:700">44 KB gz</td
             ></tr
           >
           <tr
