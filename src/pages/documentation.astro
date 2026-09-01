@@ -803,6 +803,81 @@ const DOC_ANIM_CARDS = [
     }
 ];
 
+const DOC_THEME_SWATCHES = [
+    {
+        name: "dark",
+        label: "Dark",
+        bg: "#0d1117",
+        dot: "#14a0ff",
+        nameBg: "#161b22",
+        nameColor: "#8b949e"
+    },
+    {
+        name: "light",
+        label: "Light",
+        bg: "#f8fafc",
+        dot: "#0f172a;opacity:0.5",
+        nameBg: "#e2e8f0",
+        nameColor: "#475569"
+    },
+    {
+        name: "red",
+        label: "Red",
+        bg: "#0f0a0a",
+        dot: "#f43f5e",
+        nameBg: "#1a0d0f",
+        nameColor: "#f43f5e"
+    },
+    {
+        name: "blue",
+        label: "Blue",
+        bg: "#080f1a",
+        dot: "#3b82f6",
+        nameBg: "#0e1629",
+        nameColor: "#3b82f6"
+    },
+    {
+        name: "green",
+        label: "Green",
+        bg: "#071209",
+        dot: "#22c55e",
+        nameBg: "#0a1e0d",
+        nameColor: "#22c55e"
+    },
+    {
+        name: "cyan",
+        label: "Cyan",
+        bg: "#030f11",
+        dot: "#00e5ff",
+        nameBg: "#061a1e",
+        nameColor: "#00e5ff"
+    },
+    {
+        name: "yellow",
+        label: "Yellow",
+        bg: "#100f03",
+        dot: "#facc15",
+        nameBg: "#1a1904",
+        nameColor: "#facc15"
+    },
+    {
+        name: "pink",
+        label: "Pink",
+        bg: "#110610",
+        dot: "#ec4899",
+        nameBg: "#1e0b1b",
+        nameColor: "#ec4899"
+    },
+    {
+        name: "purple",
+        label: "Purple",
+        bg: "#0c0812",
+        dot: "#a855f7",
+        nameBg: "#160c22",
+        nameColor: "#a855f7"
+    }
+];
+
 ---
 
 <BaseLayout
@@ -1216,186 +1291,21 @@ const DOC_ANIM_CARDS = [
                 </div>
 
                 <div class="doc-themes-grid" style="margin-bottom:28px">
-                    <div
-                        class="doc-theme-swatch selected"
-                        onclick="switchTheme(this,'dark')"
-                        data-tc="dark"
-                        style="background:#0d1117"
-                    >
-                        <div class="doc-theme-top" style="background:#0d1117">
-                            <div
-                                class="doc-theme-dot-b"
-                                style="background:#14a0ff"
-                            >
+                    {DOC_THEME_SWATCHES.map((t) => (
+                        <div
+                            class={`doc-theme-swatch${t.name === 'dark' ? ' selected' : ''}`}
+                            onclick={`switchTheme(this,'${t.name}')`}
+                            data-tc={t.name}
+                            style={`background:${t.bg}`}
+                        >
+                            <div class="doc-theme-top" style={`background:${t.bg}`}>
+                                <div class="doc-theme-dot-b" style={`background:${t.dot}`} />
+                            </div>
+                            <div class="doc-theme-name" style={`background:${t.nameBg};color:${t.nameColor}`}>
+                                {t.label}
                             </div>
                         </div>
-                        <div
-                            class="doc-theme-name"
-                            style="background:#161b22;color:#8b949e"
-                        >
-                            Dark
-                        </div>
-                    </div>
-                    <div
-                        class="doc-theme-swatch"
-                        onclick="switchTheme(this,'light')"
-                        data-tc="light"
-                        style="background:#f8fafc"
-                    >
-                        <div class="doc-theme-top" style="background:#f8fafc">
-                            <div
-                                class="doc-theme-dot-b"
-                                style="background:#0f172a;opacity:0.5"
-                            >
-                            </div>
-                        </div>
-                        <div
-                            class="doc-theme-name"
-                            style="background:#e2e8f0;color:#475569"
-                        >
-                            Light
-                        </div>
-                    </div>
-                    <div
-                        class="doc-theme-swatch"
-                        onclick="switchTheme(this,'red')"
-                        data-tc="red"
-                        style="background:#0f0a0a"
-                    >
-                        <div class="doc-theme-top" style="background:#0f0a0a">
-                            <div
-                                class="doc-theme-dot-b"
-                                style="background:#f43f5e"
-                            >
-                            </div>
-                        </div>
-                        <div
-                            class="doc-theme-name"
-                            style="background:#1a0d0f;color:#f43f5e"
-                        >
-                            Red
-                        </div>
-                    </div>
-                    <div
-                        class="doc-theme-swatch"
-                        onclick="switchTheme(this,'blue')"
-                        data-tc="blue"
-                        style="background:#080f1a"
-                    >
-                        <div class="doc-theme-top" style="background:#080f1a">
-                            <div
-                                class="doc-theme-dot-b"
-                                style="background:#3b82f6"
-                            >
-                            </div>
-                        </div>
-                        <div
-                            class="doc-theme-name"
-                            style="background:#0e1629;color:#3b82f6"
-                        >
-                            Blue
-                        </div>
-                    </div>
-                    <div
-                        class="doc-theme-swatch"
-                        onclick="switchTheme(this,'green')"
-                        data-tc="green"
-                        style="background:#071209"
-                    >
-                        <div class="doc-theme-top" style="background:#071209">
-                            <div
-                                class="doc-theme-dot-b"
-                                style="background:#22c55e"
-                            >
-                            </div>
-                        </div>
-                        <div
-                            class="doc-theme-name"
-                            style="background:#0a1e0d;color:#22c55e"
-                        >
-                            Green
-                        </div>
-                    </div>
-                    <div
-                        class="doc-theme-swatch"
-                        onclick="switchTheme(this,'cyan')"
-                        data-tc="cyan"
-                        style="background:#030f11"
-                    >
-                        <div class="doc-theme-top" style="background:#030f11">
-                            <div
-                                class="doc-theme-dot-b"
-                                style="background:#00e5ff"
-                            >
-                            </div>
-                        </div>
-                        <div
-                            class="doc-theme-name"
-                            style="background:#061a1e;color:#00e5ff"
-                        >
-                            Cyan
-                        </div>
-                    </div>
-                    <div
-                        class="doc-theme-swatch"
-                        onclick="switchTheme(this,'yellow')"
-                        data-tc="yellow"
-                        style="background:#100f03"
-                    >
-                        <div class="doc-theme-top" style="background:#100f03">
-                            <div
-                                class="doc-theme-dot-b"
-                                style="background:#facc15"
-                            >
-                            </div>
-                        </div>
-                        <div
-                            class="doc-theme-name"
-                            style="background:#1a1904;color:#facc15"
-                        >
-                            Yellow
-                        </div>
-                    </div>
-                    <div
-                        class="doc-theme-swatch"
-                        onclick="switchTheme(this,'pink')"
-                        data-tc="pink"
-                        style="background:#110610"
-                    >
-                        <div class="doc-theme-top" style="background:#110610">
-                            <div
-                                class="doc-theme-dot-b"
-                                style="background:#ec4899"
-                            >
-                            </div>
-                        </div>
-                        <div
-                            class="doc-theme-name"
-                            style="background:#1e0b1b;color:#ec4899"
-                        >
-                            Pink
-                        </div>
-                    </div>
-                    <div
-                        class="doc-theme-swatch"
-                        onclick="switchTheme(this,'purple')"
-                        data-tc="purple"
-                        style="background:#0c0812"
-                    >
-                        <div class="doc-theme-top" style="background:#0c0812">
-                            <div
-                                class="doc-theme-dot-b"
-                                style="background:#a855f7"
-                            >
-                            </div>
-                        </div>
-                        <div
-                            class="doc-theme-name"
-                            style="background:#160c22;color:#a855f7"
-                        >
-                            Purple
-                        </div>
-                    </div>
+                    ))}
                 </div>
 
                 <CodeBlock frame="sc" lang="js" label="Theme switching" code={themeSwitchCode} />
