@@ -398,6 +398,411 @@ const DOC_RADII = [
     { n: 'lg', v: '20px' }, { n: 'full', v: '9999px' },
 ];
 
+
+// Карточки-справочники (рендер через .map())
+const DOC_COMPONENT_CARDS = [
+    {
+        t: "🔲 Buttons",
+        lines: [
+            ".btn",
+            ".btn-primary · .btn-outline",
+            ".btn-ghost · .btn-gradient",
+            ".btn-glow · .btn-shine",
+            ".btn-sm · .btn-lg"
+        ]
+    },
+    {
+        t: "🃏 Cards",
+        lines: [
+            ".card · .card-glass",
+            ".card-dark · .card-bordered",
+            ".card-glow · .box"
+        ]
+    },
+    {
+        t: "📋 Forms",
+        lines: [
+            ".inp · .inp-primary",
+            ".inp-glass · .float-field",
+            ".toggle · .check",
+            ".inp-select"
+        ]
+    },
+    {
+        t: "🗂 Tabs",
+        note: "JS",
+        lines: [
+            ".tab-wrap · .tab-nav",
+            ".tab-btn · .tab-panel",
+            ".tab-nav-pills",
+            ".tab-nav-boxed · .tab-nav-card",
+            ".tab-nav.is-full · .tab-badge"
+        ]
+    },
+    {
+        t: "🪗 Collapse",
+        note: "JS / native",
+        lines: [
+            "details.collapse (native)",
+            ".collapse + JS toggle",
+            ".collapse-plus · .collapse-ghost",
+            ".collapse-primary",
+            ".accordion · .accordion-flush"
+        ]
+    },
+    {
+        t: "💬 Modals",
+        note: "JS",
+        lines: [
+            ".lib-modal-overlay",
+            ".lib-modal-box",
+            ".is-success · .is-error",
+            ".is-warning · .is-info",
+            ".lib-modal-close"
+        ]
+    },
+    {
+        t: "🧭 Navigation",
+        lines: [
+            ".nav · .nav-brand · .nav-link",
+            ".nav-solid · .nav-glass",
+            ".nav-primary · .nav-dark",
+            ".nav-floating · .nav-underline",
+            ".nav-sm · .nav-lg"
+        ]
+    },
+    {
+        t: "📂 Dropdown",
+        note: "JS / native",
+        lines: [
+            "details.dropdown (native)",
+            ".dropdown + JS toggle",
+            ".dropdown-menu · .dropdown-item",
+            ".dropdown-right · .dropdown-top",
+            ".dropdown-primary · .dropdown-dark"
+        ]
+    },
+    {
+        t: "🎠 Carousel",
+        note: "CSS + JS dots",
+        lines: [
+            ".carousel · .carousel-item",
+            ".carousel-center · .carousel-gap",
+            ".carousel-vertical",
+            ".carousel-btn · .carousel-dots",
+            ".carousel-item-sm/md/lg/xl"
+        ]
+    },
+    {
+        t: "🔗 Links",
+        lines: [
+            ".link · .link-underline",
+            ".link-slide · .link-arrow",
+            ".link-external · .link-muted",
+            ".link-btn · .link-card",
+            ".link-list"
+        ]
+    },
+    {
+        t: "🏷 Tags & Badges",
+        lines: [
+            ".tag · .badge",
+            ".tag-primary · .tag-success",
+            ".tag-accent · .tag-outline"
+        ]
+    },
+    {
+        t: "📊 Table & Progress",
+        lines: [
+            ".table",
+            ".progress · .progress-bar"
+        ]
+    },
+    {
+        t: "🔔 Notifications",
+        note: "JS",
+        lines: [
+            "showToast(msg, type)",
+            ".lib-toast · .lib-toast-success",
+            ".lib-toast-error · .lib-toast-primary"
+        ]
+    },
+    {
+        t: "🌈 Gradients",
+        lines: [
+            ".gradient-primary",
+            ".text-gradient-primary",
+            ".gradient-blue-purple"
+        ]
+    },
+    {
+        t: "✨ Hover FX",
+        lines: [
+            ".hover-lift · .hover-glow",
+            ".hover-brighten · .hover-rotate"
+        ]
+    }
+];
+
+const DOC_CLASSLESS_CARDS = [
+    {
+        t: "📝 Headings",
+        lines: [
+            "&lt;h1&gt; — &lt;h6&gt;",
+            "Size · weight · color",
+            "Responsive scale"
+        ]
+    },
+    {
+        t: "📄 Text",
+        lines: [
+            "&lt;p&gt; &lt;strong&gt; &lt;em&gt;",
+            "&lt;small&gt; &lt;mark&gt;",
+            "&lt;blockquote&gt; &lt;cite&gt;"
+        ]
+    },
+    {
+        t: "🔗 Links",
+        lines: [
+            "&lt;a&gt;",
+            "color-primary",
+            "hover underline"
+        ]
+    },
+    {
+        t: "🔲 Button",
+        lines: [
+            "&lt;button&gt;",
+            "&lt;input type=\"button\"&gt;",
+            "&lt;input type=\"submit\"&gt;"
+        ]
+    },
+    {
+        t: "📋 Forms",
+        lines: [
+            "&lt;input&gt; &lt;textarea&gt;",
+            "&lt;select&gt; &lt;label&gt;",
+            "&lt;fieldset&gt; &lt;legend&gt;"
+        ]
+    },
+    {
+        t: "✅ Checkboxes",
+        lines: [
+            "&lt;input type=\"checkbox\"&gt;",
+            "&lt;input type=\"radio\"&gt;",
+            "&lt;input type=\"range\"&gt;"
+        ]
+    },
+    {
+        t: "📊 Table",
+        lines: [
+            "&lt;table&gt; &lt;thead&gt;",
+            "&lt;tbody&gt; &lt;tr&gt;",
+            "&lt;th&gt; &lt;td&gt;"
+        ]
+    },
+    {
+        t: "📜 Lists",
+        lines: [
+            "&lt;ul&gt; &lt;ol&gt;",
+            "&lt;li&gt;",
+            "&lt;dl&gt; &lt;dt&gt; &lt;dd&gt;"
+        ]
+    },
+    {
+        t: "💻 Code",
+        lines: [
+            "&lt;code&gt; &lt;pre&gt;",
+            "&lt;kbd&gt; &lt;samp&gt;",
+            "Syntax highlight colors"
+        ]
+    },
+    {
+        t: "🪗 Accordion",
+        lines: [
+            "&lt;details&gt;",
+            "&lt;summary&gt;",
+            "Native open/close — no JS"
+        ]
+    },
+    {
+        t: "🧭 Nav",
+        lines: [
+            "&lt;nav&gt;",
+            "&lt;header&gt;",
+            "&lt;footer&gt; &lt;aside&gt;"
+        ]
+    },
+    {
+        t: "📦 Media",
+        lines: [
+            "&lt;img&gt; max-width 100%",
+            "&lt;figure&gt; &lt;figcaption&gt;",
+            "&lt;hr&gt; &lt;progress&gt;"
+        ]
+    }
+];
+
+const DOC_UTIL_GROUPS = [
+    {
+        t: "📦 Display",
+        tags: [
+            ".flex",
+            ".flex-col",
+            ".grid",
+            ".inline-flex",
+            ".block",
+            ".hidden",
+            ".inline-block"
+        ]
+    },
+    {
+        t: "📍 Flex helpers",
+        tags: [
+            ".flex-center",
+            ".flex-between",
+            ".flex-col-center",
+            ".flex-1",
+            ".items-center",
+            ".justify-between"
+        ]
+    },
+    {
+        t: "📏 Spacing",
+        tags: [
+            ".m-4",
+            ".mt-6",
+            ".mb-4",
+            ".mx-auto",
+            ".p-4",
+            ".px-6",
+            ".py-8",
+            ".gap-4"
+        ]
+    },
+    {
+        t: "🔤 Typography",
+        tags: [
+            ".text-primary",
+            ".text-accent",
+            ".text-muted",
+            ".text-center",
+            ".text-sm",
+            ".text-xl",
+            ".uppercase",
+            ".font-bold"
+        ]
+    },
+    {
+        t: "🔲 Sizing",
+        tags: [
+            ".w-full",
+            ".w-auto",
+            ".h-full",
+            ".min-h-screen",
+            ".max-w-lg",
+            ".container"
+        ]
+    },
+    {
+        t: "💫 Effects",
+        tags: [
+            ".transition",
+            ".opacity-50",
+            ".shadow-md",
+            ".blur-sm",
+            ".grayscale",
+            ".rotate-45"
+        ]
+    }
+];
+
+const DOC_ANIM_CARDS = [
+    {
+        t: "Fade",
+        lines: [
+            ".fade-in",
+            ".fade-out"
+        ]
+    },
+    {
+        t: "Scale",
+        lines: [
+            ".scale-in",
+            ".scale-up"
+        ]
+    },
+    {
+        t: "Slide",
+        lines: [
+            ".slide-in",
+            ".slide-down"
+        ]
+    },
+    {
+        t: "Bounce",
+        lines: [
+            ".bounce",
+            ".bounce-in"
+        ]
+    },
+    {
+        t: "Pulse",
+        lines: [
+            ".animate-pulse",
+            ".pulse-slow"
+        ]
+    },
+    {
+        t: "Float",
+        lines: [
+            ".animate-float"
+        ]
+    },
+    {
+        t: "Glow",
+        lines: [
+            ".animate-glow",
+            ".glow-hover"
+        ]
+    },
+    {
+        t: "Spin",
+        lines: [
+            ".spin",
+            ".spin-slow"
+        ]
+    },
+    {
+        t: "Shake",
+        lines: [
+            ".shake",
+            ".shake-error"
+        ]
+    },
+    {
+        t: "Neon",
+        lines: [
+            ".animate-neon",
+            ".animate-neon-blue"
+        ]
+    },
+    {
+        t: "Rainbow",
+        lines: [
+            ".animate-rainbow",
+            ".animate-breathe"
+        ]
+    },
+    {
+        t: "Delay / Speed",
+        lines: [
+            ".anim-delay-1",
+            ".anim-fast · .anim-slow"
+        ]
+    }
+];
+
 ---
 
 <BaseLayout
@@ -1016,156 +1421,16 @@ const DOC_RADII = [
                     </div>
 
                     <div class="doc-grid doc-grid-auto">
-                        <div class="doc-card">
-                            <div class="doc-card-title">🔲 Buttons</div>
-                            <div class="doc-card-mono">
-                                .btn<br />.btn-primary · .btn-outline<br
-                                />.btn-ghost · .btn-gradient<br />.btn-glow ·
-                                .btn-shine<br />.btn-sm · .btn-lg
+                        {DOC_COMPONENT_CARDS.map((c) => (
+                            <div class="doc-card">
+                                <div class="doc-card-title">
+                                    {c.t}{c.note && (
+                                        <span style="font-size:10px;color:var(--color-muted);font-weight:400"> {c.note}</span>
+                                    )}
+                                </div>
+                                <div class="doc-card-mono" set:html={c.lines.join('<br />')} />
                             </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">🃏 Cards</div>
-                            <div class="doc-card-mono">
-                                .card · .card-glass<br />.card-dark ·
-                                .card-bordered<br />.card-glow · .box
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">📋 Forms</div>
-                            <div class="doc-card-mono">
-                                .inp · .inp-primary<br />.inp-glass ·
-                                .float-field<br />.toggle · .check<br
-                                />.inp-select
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">
-                                🗂 Tabs <span
-                                    style="font-size:10px;color:var(--color-muted);font-weight:400"
-                                    >JS</span
-                                >
-                            </div>
-                            <div class="doc-card-mono">
-                                .tab-wrap · .tab-nav<br />.tab-btn · .tab-panel<br
-                                />.tab-nav-pills<br />.tab-nav-boxed ·
-                                .tab-nav-card<br />.tab-nav.is-full · .tab-badge
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">
-                                🪗 Collapse <span
-                                    style="font-size:10px;color:var(--color-muted);font-weight:400"
-                                    >JS / native</span
-                                >
-                            </div>
-                            <div class="doc-card-mono">
-                                details.collapse (native)<br />.collapse + JS
-                                toggle<br />.collapse-plus · .collapse-ghost<br
-                                />.collapse-primary<br />.accordion ·
-                                .accordion-flush
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">
-                                💬 Modals <span
-                                    style="font-size:10px;color:var(--color-muted);font-weight:400"
-                                    >JS</span
-                                >
-                            </div>
-                            <div class="doc-card-mono">
-                                .lib-modal-overlay<br />.lib-modal-box<br
-                                />.is-success · .is-error<br />.is-warning ·
-                                .is-info<br />.lib-modal-close
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">🧭 Navigation</div>
-                            <div class="doc-card-mono">
-                                .nav · .nav-brand · .nav-link<br />.nav-solid ·
-                                .nav-glass<br />.nav-primary · .nav-dark<br
-                                />.nav-floating · .nav-underline<br />.nav-sm ·
-                                .nav-lg
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">
-                                📂 Dropdown <span
-                                    style="font-size:10px;color:var(--color-muted);font-weight:400"
-                                    >JS / native</span
-                                >
-                            </div>
-                            <div class="doc-card-mono">
-                                details.dropdown (native)<br />.dropdown + JS
-                                toggle<br />.dropdown-menu · .dropdown-item<br
-                                />.dropdown-right · .dropdown-top<br
-                                />.dropdown-primary · .dropdown-dark
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">
-                                🎠 Carousel <span
-                                    style="font-size:10px;color:var(--color-muted);font-weight:400"
-                                    >CSS + JS dots</span
-                                >
-                            </div>
-                            <div class="doc-card-mono">
-                                .carousel · .carousel-item<br />.carousel-center
-                                · .carousel-gap<br />.carousel-vertical<br
-                                />.carousel-btn · .carousel-dots<br
-                                />.carousel-item-sm/md/lg/xl
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">🔗 Links</div>
-                            <div class="doc-card-mono">
-                                .link · .link-underline<br />.link-slide ·
-                                .link-arrow<br />.link-external · .link-muted<br
-                                />.link-btn · .link-card<br />.link-list
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">🏷 Tags & Badges</div>
-                            <div class="doc-card-mono">
-                                .tag · .badge<br />.tag-primary · .tag-success<br
-                                />.tag-accent · .tag-outline
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">
-                                📊 Table & Progress
-                            </div>
-                            <div class="doc-card-mono">
-                                .table<br />.progress · .progress-bar
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">
-                                🔔 Notifications <span
-                                    style="font-size:10px;color:var(--color-muted);font-weight:400"
-                                    >JS</span
-                                >
-                            </div>
-                            <div class="doc-card-mono">
-                                showToast(msg, type)<br />.lib-toast ·
-                                .lib-toast-success<br />.lib-toast-error ·
-                                .lib-toast-primary
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">🌈 Gradients</div>
-                            <div class="doc-card-mono">
-                                .gradient-primary<br />.text-gradient-primary<br
-                                />.gradient-blue-purple
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">✨ Hover FX</div>
-                            <div class="doc-card-mono">
-                                .hover-lift · .hover-glow<br />.hover-brighten ·
-                                .hover-rotate
-                            </div>
-                        </div>
+                        ))}
                     </div>
 
                     <div class="doc-tip" style="margin-top:20px">
@@ -1195,102 +1460,16 @@ const DOC_RADII = [
                     </div>
 
                     <div class="doc-grid doc-grid-auto">
-                        <div class="doc-card">
-                            <div class="doc-card-title">📝 Headings</div>
-                            <div class="doc-card-mono">
-                                &lt;h1&gt; — &lt;h6&gt;<br />
-                                Size · weight · color<br />
-                                Responsive scale
+                        {DOC_CLASSLESS_CARDS.map((c) => (
+                            <div class="doc-card">
+                                <div class="doc-card-title">
+                                    {c.t}{c.note && (
+                                        <span style="font-size:10px;color:var(--color-muted);font-weight:400"> {c.note}</span>
+                                    )}
+                                </div>
+                                <div class="doc-card-mono" set:html={c.lines.join('<br />')} />
                             </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">📄 Text</div>
-                            <div class="doc-card-mono">
-                                &lt;p&gt; &lt;strong&gt; &lt;em&gt;<br />
-                                &lt;small&gt; &lt;mark&gt;<br />
-                                &lt;blockquote&gt; &lt;cite&gt;
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">🔗 Links</div>
-                            <div class="doc-card-mono">
-                                &lt;a&gt;<br />
-                                color-primary<br />
-                                hover underline
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">🔲 Button</div>
-                            <div class="doc-card-mono">
-                                &lt;button&gt;<br />
-                                &lt;input type="button"&gt;<br />
-                                &lt;input type="submit"&gt;
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">📋 Forms</div>
-                            <div class="doc-card-mono">
-                                &lt;input&gt; &lt;textarea&gt;<br />
-                                &lt;select&gt; &lt;label&gt;<br />
-                                &lt;fieldset&gt; &lt;legend&gt;
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">✅ Checkboxes</div>
-                            <div class="doc-card-mono">
-                                &lt;input type="checkbox"&gt;<br />
-                                &lt;input type="radio"&gt;<br />
-                                &lt;input type="range"&gt;
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">📊 Table</div>
-                            <div class="doc-card-mono">
-                                &lt;table&gt; &lt;thead&gt;<br />
-                                &lt;tbody&gt; &lt;tr&gt;<br />
-                                &lt;th&gt; &lt;td&gt;
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">📜 Lists</div>
-                            <div class="doc-card-mono">
-                                &lt;ul&gt; &lt;ol&gt;<br />
-                                &lt;li&gt;<br />
-                                &lt;dl&gt; &lt;dt&gt; &lt;dd&gt;
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">💻 Code</div>
-                            <div class="doc-card-mono">
-                                &lt;code&gt; &lt;pre&gt;<br />
-                                &lt;kbd&gt; &lt;samp&gt;<br />
-                                Syntax highlight colors
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">🪗 Accordion</div>
-                            <div class="doc-card-mono">
-                                &lt;details&gt;<br />
-                                &lt;summary&gt;<br />
-                                Native open/close — no JS
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">🧭 Nav</div>
-                            <div class="doc-card-mono">
-                                &lt;nav&gt;<br />
-                                &lt;header&gt;<br />
-                                &lt;footer&gt; &lt;aside&gt;
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">📦 Media</div>
-                            <div class="doc-card-mono">
-                                &lt;img&gt; max-width 100%<br />
-                                &lt;figure&gt; &lt;figcaption&gt;<br />
-                                &lt;hr&gt; &lt;progress&gt;
-                            </div>
-                        </div>
+                        ))}
                     </div>
 
                     <div class="doc-tip" style="margin-top:20px">
@@ -2526,111 +2705,14 @@ const DOC_RADII = [
                     </div>
 
                     <div class="doc-grid doc-grid-3" style="margin-bottom:24px">
-                        <div class="doc-card">
-                            <div
-                                class="doc-card-title"
-                                style="color:var(--color-primary)"
-                            >
-                                📦 Display
+                        {DOC_UTIL_GROUPS.map((g) => (
+                            <div class="doc-card">
+                                <div class="doc-card-title" style="color:var(--color-primary)">{g.t}</div>
+                                <div style="margin-top:8px">
+                                    {g.tags.map((t) => <span class="doc-util-tag">{t}</span>)}
+                                </div>
                             </div>
-                            <div style="margin-top:8px">
-                                <span class="doc-util-tag">.flex</span><span
-                                    class="doc-util-tag">.flex-col</span
-                                ><span class="doc-util-tag">.grid</span><span
-                                    class="doc-util-tag">.inline-flex</span
-                                ><span class="doc-util-tag">.block</span><span
-                                    class="doc-util-tag">.hidden</span
-                                ><span class="doc-util-tag">.inline-block</span>
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div
-                                class="doc-card-title"
-                                style="color:var(--color-primary)"
-                            >
-                                📍 Flex helpers
-                            </div>
-                            <div style="margin-top:8px">
-                                <span class="doc-util-tag">.flex-center</span
-                                ><span class="doc-util-tag">.flex-between</span
-                                ><span class="doc-util-tag"
-                                    >.flex-col-center</span
-                                ><span class="doc-util-tag">.flex-1</span><span
-                                    class="doc-util-tag">.items-center</span
-                                ><span class="doc-util-tag"
-                                    >.justify-between</span
-                                >
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div
-                                class="doc-card-title"
-                                style="color:var(--color-primary)"
-                            >
-                                📏 Spacing
-                            </div>
-                            <div style="margin-top:8px">
-                                <span class="doc-util-tag">.m-4</span><span
-                                    class="doc-util-tag">.mt-6</span
-                                ><span class="doc-util-tag">.mb-4</span><span
-                                    class="doc-util-tag">.mx-auto</span
-                                ><span class="doc-util-tag">.p-4</span><span
-                                    class="doc-util-tag">.px-6</span
-                                ><span class="doc-util-tag">.py-8</span><span
-                                    class="doc-util-tag">.gap-4</span
-                                >
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div
-                                class="doc-card-title"
-                                style="color:var(--color-primary)"
-                            >
-                                🔤 Typography
-                            </div>
-                            <div style="margin-top:8px">
-                                <span class="doc-util-tag">.text-primary</span
-                                ><span class="doc-util-tag">.text-accent</span
-                                ><span class="doc-util-tag">.text-muted</span
-                                ><span class="doc-util-tag">.text-center</span
-                                ><span class="doc-util-tag">.text-sm</span><span
-                                    class="doc-util-tag">.text-xl</span
-                                ><span class="doc-util-tag">.uppercase</span
-                                ><span class="doc-util-tag">.font-bold</span>
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div
-                                class="doc-card-title"
-                                style="color:var(--color-primary)"
-                            >
-                                🔲 Sizing
-                            </div>
-                            <div style="margin-top:8px">
-                                <span class="doc-util-tag">.w-full</span><span
-                                    class="doc-util-tag">.w-auto</span
-                                ><span class="doc-util-tag">.h-full</span><span
-                                    class="doc-util-tag">.min-h-screen</span
-                                ><span class="doc-util-tag">.max-w-lg</span
-                                ><span class="doc-util-tag">.container</span>
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div
-                                class="doc-card-title"
-                                style="color:var(--color-primary)"
-                            >
-                                💫 Effects
-                            </div>
-                            <div style="margin-top:8px">
-                                <span class="doc-util-tag">.transition</span
-                                ><span class="doc-util-tag">.opacity-50</span
-                                ><span class="doc-util-tag">.shadow-md</span
-                                ><span class="doc-util-tag">.blur-sm</span><span
-                                    class="doc-util-tag">.grayscale</span
-                                ><span class="doc-util-tag">.rotate-45</span>
-                            </div>
-                        </div>
+                        ))}
                     </div>
 
                     <CodeBlock frame="sc" lang="html" label="Usage example" code={utilsExample} />
@@ -2678,76 +2760,16 @@ const DOC_RADII = [
                         class="doc-grid doc-grid-auto"
                         style="margin-bottom:24px"
                     >
-                        <div class="doc-card">
-                            <div class="doc-card-title">Fade</div>
-                            <div class="doc-card-mono">
-                                .fade-in<br />.fade-out
+                        {DOC_ANIM_CARDS.map((c) => (
+                            <div class="doc-card">
+                                <div class="doc-card-title">
+                                    {c.t}{c.note && (
+                                        <span style="font-size:10px;color:var(--color-muted);font-weight:400"> {c.note}</span>
+                                    )}
+                                </div>
+                                <div class="doc-card-mono" set:html={c.lines.join('<br />')} />
                             </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">Scale</div>
-                            <div class="doc-card-mono">
-                                .scale-in<br />.scale-up
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">Slide</div>
-                            <div class="doc-card-mono">
-                                .slide-in<br />.slide-down
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">Bounce</div>
-                            <div class="doc-card-mono">
-                                .bounce<br />.bounce-in
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">Pulse</div>
-                            <div class="doc-card-mono">
-                                .animate-pulse<br />.pulse-slow
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">Float</div>
-                            <div class="doc-card-mono">.animate-float</div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">Glow</div>
-                            <div class="doc-card-mono">
-                                .animate-glow<br />.glow-hover
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">Spin</div>
-                            <div class="doc-card-mono">
-                                .spin<br />.spin-slow
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">Shake</div>
-                            <div class="doc-card-mono">
-                                .shake<br />.shake-error
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">Neon</div>
-                            <div class="doc-card-mono">
-                                .animate-neon<br />.animate-neon-blue
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">Rainbow</div>
-                            <div class="doc-card-mono">
-                                .animate-rainbow<br />.animate-breathe
-                            </div>
-                        </div>
-                        <div class="doc-card">
-                            <div class="doc-card-title">Delay / Speed</div>
-                            <div class="doc-card-mono">
-                                .anim-delay-1<br />.anim-fast · .anim-slow
-                            </div>
-                        </div>
+                        ))}
                     </div>
 
                     <CodeBlock frame="sc" lang="html" code={animationsExample} />
