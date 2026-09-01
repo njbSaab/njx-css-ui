@@ -229,3 +229,9 @@
     display: none;
   }
 }
+
+/* ── Компактное sc-окно (quickstart steps) ── */
+.sc-code-wrap.is-compact .sc-code-body {
+  padding: 14px 18px;
+  font-size: 12px;
+}
