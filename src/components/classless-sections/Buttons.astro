@@ -1,93 +1,46 @@
-<section class="lib-section cl-section" id="controls">
-    <div class="lib-section-title">🎛 Controls</div>
+---
+import Demo from '../shared/Demo.astro';
+---
+
+<section class="lib-section cl-section" id="buttons">
+    <div class="lib-section-title">🔲 Buttons</div>
     <div class="lib-section-desc">
-        Native checkboxes, radio buttons, and switches (<code>role="switch"</code>) styled by <code>_native.css</code>.
+        Native <code>&lt;button&gt;</code> elements styled by <code>_native.css</code> with <code>data-variant</code> for semantic variants.
     </div>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Checkbox</div>
-        <div class="lib-preview">
-            <article>
-                <label><input type="checkbox" checked /> Checked option</label>
-                <label><input type="checkbox" /> Unchecked option</label>
-                <label><input type="checkbox" disabled /> Disabled</label>
-                <label><input type="checkbox" disabled checked /> Disabled checked</label>
-            </article>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div class="lib-code" data-raw='<label><input type="checkbox" checked> Checked</label>
-<label><input type="checkbox"> Unchecked</label>
-<label><input type="checkbox" disabled> Disabled</label>'>
-                    <span class="k">&lt;label&gt;&lt;input</span> <span class="s">type</span>=<span class="cn">"checkbox"</span> <span class="s">checked</span><span class="k">&gt;</span><span class="t"> Checked</span><span class="k">&lt;/label&gt;</span><br />
-                    <span class="k">&lt;label&gt;&lt;input</span> <span class="s">type</span>=<span class="cn">"checkbox"</span><span class="k">&gt;</span><span class="t"> Unchecked</span><span class="k">&lt;/label&gt;</span><br />
-                    <span class="k">&lt;label&gt;&lt;input</span> <span class="s">type</span>=<span class="cn">"checkbox"</span> <span class="s">disabled</span><span class="k">&gt;</span><span class="t"> Disabled</span><span class="k">&lt;/label&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    <Demo label="Variants">
+        <article slot="preview">
+            <button>Default</button>
+            <button data-variant="accent">Accent</button>
+            <button data-variant="success">Success</button>
+            <button data-variant="warning">Warning</button>
+            <button data-variant="error">Error</button>
+            <button data-variant="dark">Dark</button>
+            <button data-variant="light">Light</button>
+        </article>
+        <Fragment is:raw>
+            <button>Default</button>
+            <button data-variant="accent">Accent</button>
+            <button data-variant="success">Success</button>
+            <button data-variant="warning">Warning</button>
+            <button data-variant="error">Error</button>
+            <button data-variant="dark">Dark</button>
+            <button data-variant="light">Light</button>
+        </Fragment>
+    </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Radio buttons</div>
-        <div class="lib-preview">
-            <article>
-                <label><input type="radio" name="cl-radio" checked /> Option A</label>
-                <label><input type="radio" name="cl-radio" /> Option B</label>
-                <label><input type="radio" name="cl-radio" /> Option C</label>
-                <label><input type="radio" name="cl-radio" disabled /> Disabled</label>
-            </article>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div class="lib-code" data-raw='<label><input type="radio" name="plan" checked> Option A</label>
-<label><input type="radio" name="plan"> Option B</label>
-<label><input type="radio" name="plan"> Option C</label>'>
-                    <span class="k">&lt;label&gt;&lt;input</span> <span class="s">type</span>=<span class="cn">"radio"</span> <span class="s">name</span>=<span class="cn">"plan"</span> <span class="s">checked</span><span class="k">&gt;</span><span class="t"> Option A</span><span class="k">&lt;/label&gt;</span><br />
-                    <span class="k">&lt;label&gt;&lt;input</span> <span class="s">type</span>=<span class="cn">"radio"</span> <span class="s">name</span>=<span class="cn">"plan"</span><span class="k">&gt;</span><span class="t"> Option B</span><span class="k">&lt;/label&gt;</span><br />
-                    <span class="k">&lt;label&gt;&lt;input</span> <span class="s">type</span>=<span class="cn">"radio"</span> <span class="s">name</span>=<span class="cn">"plan"</span><span class="k">&gt;</span><span class="t"> Option C</span><span class="k">&lt;/label&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="lib-component">
-        <div class="lib-component-label">Switch (role="switch")</div>
-        <div class="lib-preview">
-            <article>
-                <label>
-                    <input type="checkbox" role="switch" checked />
-                    Notifications enabled
-                </label>
-                <label>
-                    <input type="checkbox" role="switch" />
-                    Dark mode
-                </label>
-                <label>
-                    <input type="checkbox" role="switch" disabled />
-                    Analytics (disabled)
-                </label>
-            </article>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div class="lib-code" data-raw='<label>
-  <input type="checkbox" role="switch" checked>
-  Notifications enabled
-</label>
-<label>
-  <input type="checkbox" role="switch">
-  Dark mode
-</label>'>
-                    <span class="k">&lt;label&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;input</span> <span class="s">type</span>=<span class="cn">"checkbox"</span> <span class="s">role</span>=<span class="cn">"switch"</span> <span class="s">checked</span><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="t">Notifications enabled</span><br />
-                    <span class="k">&lt;/label&gt;</span><br />
-                    <span class="k">&lt;label&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;input</span> <span class="s">type</span>=<span class="cn">"checkbox"</span> <span class="s">role</span>=<span class="cn">"switch"</span><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="t">Dark mode</span><br />
-                    <span class="k">&lt;/label&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    <Demo label={'Disabled & types'}>
+        <article slot="preview">
+            <button type="button">button</button>
+            <button type="submit">submit</button>
+            <button type="reset">reset</button>
+            <button disabled>disabled</button>
+        </article>
+        <Fragment is:raw>
+            <button type="button">button</button>
+            <button type="submit">submit</button>
+            <button type="reset">reset</button>
+            <button disabled>disabled</button>
+        </Fragment>
+    </Demo>
 </section>
