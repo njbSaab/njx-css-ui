@@ -1,5 +1,6 @@
 ---
 import CodeBlock from '../shared/CodeBlock.astro';
+import { CDN_JS } from '../../lib/meta';
 
 const nativeNoJs = `
 <!-- Accordion: native open/close -->
@@ -16,8 +17,8 @@ const nativeNoJs = `
 <button onclick="dlg.showModal()">Open</button>
 `;
 const jsConnection = `
-<!-- Add before </body> -->
-  <script src="js/njx.js"></script>
+<!-- One file, before </body> — everything initializes automatically -->
+<script src="${CDN_JS}"></script>
 </body>
 </html>
 `;
