@@ -383,6 +383,21 @@ const exModal = `
 </div>
 `;
 
+// Шкалы токенов для витрин (Design Tokens) — рендер через .map()
+const DOC_SPACES = [
+    { n: 1, px: 4 }, { n: 2, px: 8 }, { n: 3, px: 12 }, { n: 4, px: 16 },
+    { n: 6, px: 24 }, { n: 8, px: 32 }, { n: 12, px: 48 }, { n: 16, px: 64 },
+];
+const DOC_FONT_SIZES = [
+    { n: 'xs', px: 12 }, { n: 'sm', px: 14 }, { n: 'base', px: 16 },
+    { n: 'lg', px: 18 }, { n: 'xl', px: 20 }, { n: '2xl', px: 24 },
+    { n: '3xl', px: 30 }, { n: '4xl', px: 36 }, { n: '5xl', px: 48 },
+];
+const DOC_RADII = [
+    { n: 'none', v: '0' }, { n: 'sm', v: '6px' }, { n: 'md', v: '12px' },
+    { n: 'lg', v: '20px' }, { n: 'full', v: '9999px' },
+];
+
 ---
 
 <BaseLayout
@@ -2095,86 +2110,12 @@ const exModal = `
                         4px base grid. Index = multiplier × 4px.
                     </p>
                     <div class="doc-space-row" style="margin-bottom:16px">
-                        <div class="doc-space-block">
-                            <div
-                                class="doc-space-sq"
-                                style="width:4px;height:4px"
-                            >
+                        {DOC_SPACES.map((s) => (
+                            <div class="doc-space-block">
+                                <div class="doc-space-sq" style={`width:${s.px}px;height:${s.px}px`} />
+                                <div class="doc-space-label">--space-{s.n}<br />{s.px}px</div>
                             </div>
-                            <div class="doc-space-label">
-                                --space-1<br />4px
-                            </div>
-                        </div>
-                        <div class="doc-space-block">
-                            <div
-                                class="doc-space-sq"
-                                style="width:8px;height:8px"
-                            >
-                            </div>
-                            <div class="doc-space-label">
-                                --space-2<br />8px
-                            </div>
-                        </div>
-                        <div class="doc-space-block">
-                            <div
-                                class="doc-space-sq"
-                                style="width:12px;height:12px"
-                            >
-                            </div>
-                            <div class="doc-space-label">
-                                --space-3<br />12px
-                            </div>
-                        </div>
-                        <div class="doc-space-block">
-                            <div
-                                class="doc-space-sq"
-                                style="width:16px;height:16px"
-                            >
-                            </div>
-                            <div class="doc-space-label">
-                                --space-4<br />16px
-                            </div>
-                        </div>
-                        <div class="doc-space-block">
-                            <div
-                                class="doc-space-sq"
-                                style="width:24px;height:24px"
-                            >
-                            </div>
-                            <div class="doc-space-label">
-                                --space-6<br />24px
-                            </div>
-                        </div>
-                        <div class="doc-space-block">
-                            <div
-                                class="doc-space-sq"
-                                style="width:32px;height:32px"
-                            >
-                            </div>
-                            <div class="doc-space-label">
-                                --space-8<br />32px
-                            </div>
-                        </div>
-                        <div class="doc-space-block">
-                            <div
-                                class="doc-space-sq"
-                                style="width:48px;height:48px"
-                            >
-                            </div>
-                            <div class="doc-space-label">
-                                --space-12<br />48px
-                            </div>
-                        </div>
-                        <div class="doc-space-block">
-                            <div
-                                class="doc-space-sq"
-                                style="width:64px;height:64px"
-                            >
-                            </div>
-                            <div class="doc-space-label">
-                                --space-16<br />64px
-                            </div>
-                        </div>
+                        ))}
                     </div>
                     <CodeBlock frame="sc" lang="css" code={tokensSpacing} />
                 </div>
@@ -2194,44 +2135,12 @@ const exModal = `
                         </h3>
                     </div>
                     <div class="doc-font-row" style="margin-bottom:16px">
-                        <div class="doc-font-item">
-                            <span style="font-size:12px">Aa</span>
-                            <div class="doc-font-label">--fs-xs<br />12px</div>
-                        </div>
-                        <div class="doc-font-item">
-                            <span style="font-size:14px">Aa</span>
-                            <div class="doc-font-label">--fs-sm<br />14px</div>
-                        </div>
-                        <div class="doc-font-item">
-                            <span style="font-size:16px">Aa</span>
-                            <div class="doc-font-label">
-                                --fs-base<br />16px
+                        {DOC_FONT_SIZES.map((f) => (
+                            <div class="doc-font-item">
+                                <span style={`font-size:${f.px}px`}>Aa</span>
+                                <div class="doc-font-label">--fs-{f.n}<br />{f.px}px</div>
                             </div>
-                        </div>
-                        <div class="doc-font-item">
-                            <span style="font-size:18px">Aa</span>
-                            <div class="doc-font-label">--fs-lg<br />18px</div>
-                        </div>
-                        <div class="doc-font-item">
-                            <span style="font-size:20px">Aa</span>
-                            <div class="doc-font-label">--fs-xl<br />20px</div>
-                        </div>
-                        <div class="doc-font-item">
-                            <span style="font-size:24px">Aa</span>
-                            <div class="doc-font-label">--fs-2xl<br />24px</div>
-                        </div>
-                        <div class="doc-font-item">
-                            <span style="font-size:30px">Aa</span>
-                            <div class="doc-font-label">--fs-3xl<br />30px</div>
-                        </div>
-                        <div class="doc-font-item">
-                            <span style="font-size:36px">Aa</span>
-                            <div class="doc-font-label">--fs-4xl<br />36px</div>
-                        </div>
-                        <div class="doc-font-item">
-                            <span style="font-size:48px">Aa</span>
-                            <div class="doc-font-label">--fs-5xl<br />48px</div>
-                        </div>
+                        ))}
                     </div>
                     <CodeBlock frame="sc" lang="css" code={tokensTypography} />
                 </div>
@@ -2494,53 +2403,12 @@ const exModal = `
                         </h3>
                     </div>
                     <div class="doc-radius-row" style="margin-bottom:16px">
-                        <div class="doc-radius-block">
-                            <div class="doc-radius-sq" style="border-radius:0">
+                        {DOC_RADII.map((r) => (
+                            <div class="doc-radius-block">
+                                <div class="doc-radius-sq" style={`border-radius:${r.v}`} />
+                                <div class="doc-radius-label">--radius-{r.n}<br />{r.v}</div>
                             </div>
-                            <div class="doc-radius-label">
-                                --radius-none<br />0
-                            </div>
-                        </div>
-                        <div class="doc-radius-block">
-                            <div
-                                class="doc-radius-sq"
-                                style="border-radius:6px"
-                            >
-                            </div>
-                            <div class="doc-radius-label">
-                                --radius-sm<br />6px
-                            </div>
-                        </div>
-                        <div class="doc-radius-block">
-                            <div
-                                class="doc-radius-sq"
-                                style="border-radius:12px"
-                            >
-                            </div>
-                            <div class="doc-radius-label">
-                                --radius-md<br />12px
-                            </div>
-                        </div>
-                        <div class="doc-radius-block">
-                            <div
-                                class="doc-radius-sq"
-                                style="border-radius:20px"
-                            >
-                            </div>
-                            <div class="doc-radius-label">
-                                --radius-lg<br />20px
-                            </div>
-                        </div>
-                        <div class="doc-radius-block">
-                            <div
-                                class="doc-radius-sq"
-                                style="border-radius:9999px"
-                            >
-                            </div>
-                            <div class="doc-radius-label">
-                                --radius-full<br />9999px
-                            </div>
-                        </div>
+                        ))}
                     </div>
                     <CodeBlock frame="sc" lang="css" code={tokensRadius} />
                 </div>
