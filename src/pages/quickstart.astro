@@ -5,15 +5,15 @@ import PagesFooter from '../components/PagesFooter.astro';
 import Bottombar from '../components/Bottombar.astro';
 import Demo from '../components/demo/Demo.astro';
 import CodeBlock from '../components/shared/CodeBlock.astro';
-import { LIB_VERSION, SIZE_FULL, SIZE_CLASSLESS } from '../lib/meta';
+import { LIB_VERSION, SIZE_FULL, SIZE_CLASSLESS, CDN_BASE, CDN_JS } from '../lib/meta';
 const base = import.meta.env.BASE_URL;
 
 const qsLinkFull = `
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/style.min.css">
+<link rel="stylesheet" href="${CDN_BASE}style.min.css">
 `;
 
 const qsLinkClassless = `
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/classless.min.css">
+<link rel="stylesheet" href="${CDN_BASE}classless.min.css">
 `;
 
 const qsTheme = `
@@ -40,7 +40,7 @@ const qsBoilerplateFull = `
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/style.min.css">
+        href="${CDN_BASE}style.min.css">
   <title>My App</title>
 </head>
 <body>
@@ -63,7 +63,7 @@ const qsBoilerplateClassless = `
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/classless.min.css">
+        href="${CDN_BASE}classless.min.css">
   <title>My App</title>
 </head>
 <body>

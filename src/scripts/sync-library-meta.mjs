@@ -40,6 +40,15 @@ const sizeLabel = {
 
 // ВАЖНО: заменяем версию только у нашего пакета — огульный /@\d+\.\d+\.\d+/
 // ломал сторонние CDN-ссылки (например, jszip@3.10.1 → jszip@1.1.4).
+const major = version.split('.')[0];
+
+// CDN-ссылки САЙТА держим на мажорной версии (не протухают);
+// README не трогаем этим правилом — там pinned-пример с точной версией.
+const cdnMajorReplacement = [
+  new RegExp(`npm/${meta.npmPackage}@\\d+(?:\\.\\d+\\.\\d+)?/`, 'g'),
+  `npm/${meta.npmPackage}@${major}/`,
+];
+
 const commonVersionReplacements = [
   [/v\d+\.\d+\.\d+/g, `v${version}`],
   [/njx-css-ui@\d+\.\d+\.\d+/g, `${meta.npmPackage}@${version}`],
@@ -64,35 +73,39 @@ const targets = [
   },
   {
     file: 'src/components/PagesTopbar.astro',
-    replacements: commonVersionReplacements,
+    replacements: [cdnMajorReplacement, ...commonVersionReplacements],
   },
   {
     file: 'src/pages/index.astro',
-    replacements: [...commonVersionReplacements, ...commonSizeReplacements],
+    replacements: [cdnMajorReplacement, ...commonVersionReplacements, ...commonSizeReplacements],
   },
   {
     file: 'src/pages/overview.astro',
-    replacements: [...commonVersionReplacements, ...commonSizeReplacements],
+    replacements: [cdnMajorReplacement, ...commonVersionReplacements, ...commonSizeReplacements],
   },
   {
     file: 'src/pages/quickstart.astro',
-    replacements: [...commonVersionReplacements, ...commonSizeReplacements],
+    replacements: [cdnMajorReplacement, ...commonVersionReplacements, ...commonSizeReplacements],
   },
   {
     file: 'src/pages/documentation.astro',
-    replacements: [...commonVersionReplacements, ...commonSizeReplacements],
+    replacements: [cdnMajorReplacement, ...commonVersionReplacements, ...commonSizeReplacements],
   },
   {
     file: 'src/pages/classless-components.astro',
-    replacements: [...commonVersionReplacements, ...commonSizeReplacements],
+    replacements: [cdnMajorReplacement, ...commonVersionReplacements, ...commonSizeReplacements],
   },
   {
     file: 'src/pages/demo.astro',
-    replacements: [...commonVersionReplacements, ...commonSizeReplacements],
+    replacements: [cdnMajorReplacement, ...commonVersionReplacements, ...commonSizeReplacements],
   },
   {
     file: 'src/components/njx-sections/Carousel.astro',
-    replacements: [...commonVersionReplacements, ...commonSizeReplacements],
+    replacements: [cdnMajorReplacement, ...commonVersionReplacements, ...commonSizeReplacements],
+  },
+  {
+    file: 'src/components/DownloadModal.astro',
+    replacements: [cdnMajorReplacement, ...commonVersionReplacements],
   },
 ];
 
