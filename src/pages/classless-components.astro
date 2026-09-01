@@ -6,6 +6,23 @@ import DownloadModal from '../components/DownloadModal.astro';
 import LibsFooter from '../components/LibsFooter.astro';
 import Bottombar from '../components/Bottombar.astro';
 import ClasslessSidebarNav from '../components/ClasslessSidebarNav.astro';
+import { LIB_VERSION } from '../lib/meta';
+
+// SoftwareSourceCode (roadmap 3.1.6) — classless-вариант библиотеки
+const ldJson = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareSourceCode',
+    name: 'njX UI Classless',
+    alternateName: 'njx-ui',
+    description:
+        'Classless CSS from njX UI: styles plain semantic HTML — zero class names, zero dependencies, one CDN link.',
+    url: 'https://njxui.dev/classless-components',
+    codeRepository: 'https://github.com/njbSaab/njx-css-ui',
+    programmingLanguage: 'CSS',
+    runtimePlatform: 'Web',
+    version: LIB_VERSION,
+    license: 'https://opensource.org/licenses/MIT',
+};
 
 import Themes from '../components/classless-sections/Themes.astro';
 import DesignTokens from '../components/classless-sections/DesignTokens.astro';
@@ -804,14 +821,7 @@ import Loading from '../components/classless-sections/Loading.astro';
             }
         </style>
 
-        <script is:inline type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "WebSite",
-                "name": "njX UI",
-                "url": "https://njxui.dev/"
-            }
-        </script>
+        <script type="application/ld+json" set:html={JSON.stringify(ldJson)} />
     </Fragment>
 
     <!-- Body content -->

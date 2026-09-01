@@ -43,9 +43,26 @@ import DownloadModal from '../components/DownloadModal.astro';
 import LibsFooter from '../components/LibsFooter.astro';
 import LibsSidebar from '../components/LibsSidebar.astro';
 import Bottombar from '../components/Bottombar.astro';
-import { SIZE_FULL, CDN_BASE } from '../lib/meta';
+import { SIZE_FULL, CDN_BASE, LIB_VERSION } from '../lib/meta';
 
 const heroCdnSnippet = `<link rel="stylesheet" href="${CDN_BASE}style.min.css">`;
+
+// SoftwareSourceCode вместо WebSite: из этого Google/агенты собирают
+// карточку «что это и как поставить» (roadmap 3.1.6)
+const ldJson = {
+	'@context': 'https://schema.org',
+	'@type': 'SoftwareSourceCode',
+	name: 'njX UI',
+	alternateName: 'njx-ui',
+	description:
+		'CSS component library with 9 themes, 30+ components and zero dependencies. No build step — one CDN link.',
+	url: 'https://njxui.dev/',
+	codeRepository: 'https://github.com/njbSaab/njx-css-ui',
+	programmingLanguage: 'CSS',
+	runtimePlatform: 'Web',
+	version: LIB_VERSION,
+	license: 'https://opensource.org/licenses/MIT',
+};
 ---
 
 <BaseLayout
@@ -61,14 +78,7 @@ const heroCdnSnippet = `<link rel="stylesheet" href="${CDN_BASE}style.min.css">`
 		<meta name="robots" content="index, follow" />
 		<meta name="author" content="njX UI" />
 
-		<script is:inline type="application/ld+json">
-			{
-				"@context": "https://schema.org",
-				"@type": "WebSite",
-				"name": "njX UI",
-				"url": "https://njxui.dev/"
-			}
-		</script>
+		<script type="application/ld+json" set:html={JSON.stringify(ldJson)} />
 	</Fragment>
 
 	<style is:global>
