@@ -1,10 +1,149 @@
+---
+import Demo from '../shared/Demo.astro';
+
+const variantsCode = `
+<!-- _cards.css -->
+<div class="card">Basic card</div>
+<div class="card-glass">Glassmorphism</div>
+<div class="card-dark">Dark</div>
+<div class="card-bordered">With border</div>
+<div class="card-bordered-primary">Primary border</div>
+<div class="card-glow">Glow effect</div>
+<div class="card-gradient">Gradient</div>
+`;
+
+const colorGlowCardsCardBgCode = `
+<div class="card-bg-primary">...</div>
+<div class="card-bg-accent">...</div>
+<div class="card-bg-success">...</div>
+<div class="card-bg-error">...</div>
+<div class="card-bg-warning">...</div>
+<div class="card-bg-dark">...</div>
+<div class="card-bg-light">...</div>
+`;
+
+const cardWithImageOnTopCardMediaCode = `
+<div class="card-media">
+  <!-- image or colored div -->
+  <img class="card-media-img" src="photo.jpg" alt="">
+  <div class="card-media-body">
+    <div class="card-media-label">Category</div>
+    <div class="card-media-title">Card Title</div>
+    <div class="card-media-text">Description text goes here.</div>
+    <a class="btn btn-primary btn-sm">Action</a>
+  </div>
+</div>
+`;
+
+const fullCoverImageCardCardCoverCode = `
+<div class="card-cover">
+  <!-- background image via inline style or background-image -->
+  <div class="card-cover-bg" style="background-image:url(photo.jpg)"></div>
+  <div class="card-cover-body">
+    <div class="card-cover-label">Category</div>
+    <div class="card-cover-title">Title</div>
+    <div class="card-cover-text">Text</div>
+  </div>
+</div>
+`;
+
+const gradientCardsCode = `
+<div class="card-gradient-purple">Purple gradient</div>
+<div class="card-gradient-sunset">Sunset</div>
+<div class="card-gradient-ocean">Ocean</div>
+<div class="card-gradient-emerald">Emerald</div>
+<div class="card-gradient-fire">Fire</div>
+`;
+
+const shadowVariantsCode = `
+<div class="card-shadow-sm">Subtle</div>
+<div class="card-shadow-md">Medium</div>
+<div class="card-shadow-lg">Large</div>
+<div class="card-shadow-primary">Primary glow</div>
+<div class="card-shadow-accent">Accent glow</div>
+`;
+
+const horizontalCardCardHorizontalCode = `
+<div class="card-horizontal">
+  <div class="card-h-img">🚀</div>
+  <div class="card-h-body">
+    <div class="card-h-title">Title</div>
+    <div class="card-h-text">Description text here.</div>
+  </div>
+</div>
+`;
+
+const statMetricCardsCardStatCode = `
+<div class="card-stat">
+  <div class="card-stat-icon">📦</div>
+  <div class="card-stat-value">12,480</div>
+  <div class="card-stat-label">Total orders</div>
+  <div class="card-stat-trend up">▲ 14.2% this week</div>
+</div>
+<!-- trend classes: .up (green) / .down (red) -->
+`;
+
+const gradientHoverCardsCardGradientHoverCode = `
+<!-- Gradient appears smoothly on hover -->
+<div class="card-gradient-hover card-gradient-hover-primary">...</div>
+<div class="card-gradient-hover card-gradient-hover-accent">...</div>
+<div class="card-gradient-hover card-gradient-hover-fire">...</div>
+<div class="card-gradient-hover card-gradient-hover-ocean">...</div>
+<div class="card-gradient-hover card-gradient-hover-sunset">...</div>
+<div class="card-gradient-hover card-gradient-hover-aurora">...</div>
+`;
+
+const shineCardsCardShineCode = `
+<!-- Gradient background + shine sweep on hover -->
+<div class="card-shine card-shine-primary">...</div>
+<div class="card-shine card-shine-fire">...</div>
+<div class="card-shine card-shine-ocean">...</div>
+<div class="card-shine card-shine-sunset">...</div>
+<div class="card-shine card-shine-aurora">...</div>
+<div class="card-shine card-shine-cosmic">...</div>
+`;
+
+const outlineGradientCardsCardOutlineGradientCode = `
+<!-- Animated gradient border, transparent background -->
+<div class="card-outline-gradient card-outline-gradient-primary">...</div>
+<div class="card-outline-gradient card-outline-gradient-fire">...</div>
+<div class="card-outline-gradient card-outline-gradient-ocean">...</div>
+<div class="card-outline-gradient card-outline-gradient-sunset">...</div>
+<div class="card-outline-gradient card-outline-gradient-aurora">...</div>
+<div class="card-outline-gradient card-outline-gradient-cosmic">...</div>
+`;
+
+const auraCardsCardAuraCode = `
+<!-- Hover triggers glowing aura behind the card -->
+<div class="card-aura card-aura-primary">...</div>
+<div class="card-aura card-aura-sunset">...</div>
+<div class="card-aura card-aura-aurora">...</div>
+<div class="card-aura card-aura-cosmic">...</div>
+<div class="card-aura card-aura-gold">...</div>
+<div class="card-aura card-aura-ocean">...</div>
+`;
+
+const bulmaCardCode = `
+<div class="card-bulma">
+  <div class="card-header">
+    <div class="card-header-title">Title</div>
+  </div>
+  <div class="card-content">
+    <p>Card content</p>
+  </div>
+  <div class="card-footer">
+    <a class="card-footer-item">Save</a>
+    <a class="card-footer-item text-error">Delete</a>
+  </div>
+</div>
+`;
+---
+
 <section class="lib-section" id="cards">
     <div class="lib-section-title">🃏 Cards</div>
     <div class="lib-section-desc">Variants from <code>_cards.css</code>.</div>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Variants</div>
-        <div class="lib-preview cards-variants-grid">
+    <Demo is:raw label={'Variants'} previewClass="cards-variants-grid" code={variantsCode}>
 
             <!-- Base -->
             <div class="card cv-card">
@@ -108,71 +247,10 @@
                 </div>
             </div>
 
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- _cards.css -->
-<div class="card">Basic card</div>
-<div class="card-glass">Glassmorphism</div>
-<div class="card-dark">Dark</div>
-<div class="card-bordered">With border</div>
-<div class="card-bordered-primary">Primary border</div>
-<div class="card-glow">Glow effect</div>
-<div class="card-gradient">Gradient</div>'
-                >
-                    <span class="c">/* _cards.css */</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn">"card"</span
-                    ><span class="k">&gt;</span>Basic card<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-glass"</span
-                    ><span class="k">&gt;</span>Glassmorphism<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-dark"</span
-                    ><span class="k">&gt;</span>Dark<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-bordered"</span
-                    ><span class="k">&gt;</span>With border<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-bordered-primary"</span
-                    ><span class="k">&gt;</span>Primary border<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-glow"</span
-                    ><span class="k">&gt;</span>Glow effect<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-gradient"</span
-                    ><span class="k">&gt;</span>Gradient<span class="k"
-                        >&lt;/div&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Color Glow Cards -->
-    <div class="lib-component">
-        <div class="lib-component-label">Color Glow Cards — <code>card-bg-*</code></div>
-        <div class="lib-preview" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;align-items:stretch">
+    <Demo is:raw label={'Color Glow Cards — <code>card-bg-*</code>'} previewStyle="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;align-items:stretch" code={colorGlowCardsCardBgCode}>
 
             <div class="card-bg-primary cgc">
                 <div class="cgc-icon" style="color:var(--color-primary)">
@@ -244,30 +322,10 @@
                 <code class="cgc-class" style="color:#6b7280;background:rgba(0,0,0,0.06);border-color:rgba(0,0,0,0.1)">card-bg-light</code>
             </div>
 
-        </div>
-        <div class="lib-code-wrapper"><div class="lib-code-container">
-            <pre class="lib-code" data-raw='<div class="card-bg-primary">...</div>
-<div class="card-bg-accent">...</div>
-<div class="card-bg-success">...</div>
-<div class="card-bg-error">...</div>
-<div class="card-bg-warning">...</div>
-<div class="card-bg-dark">...</div>
-<div class="card-bg-light">...</div>'><span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-bg-primary"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-bg-accent"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-bg-success"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-bg-error"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-bg-warning"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-bg-dark"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-bg-light"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span></pre>
-        </div></div>
-    </div>
+        </Demo>
 
     <!-- Image on top -->
-    <div class="lib-component">
-        <div class="lib-component-label">
-            🖼 Card with image on top (card-media)
-        </div>
-        <div class="lib-preview" style="align-items:stretch;gap:20px">
+    <Demo is:raw label={'🖼 Card with image on top (card-media)'} previewStyle="align-items:stretch;gap:20px" code={cardWithImageOnTopCardMediaCode}>
             <!-- Blog post card -->
             <div class="card-media" style="width:240px;flex-shrink:0">
                 <div
@@ -332,68 +390,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<div class="card-media">
-  <!-- image or colored div -->
-  <img class="card-media-img" src="photo.jpg" alt="">
-  <div class="card-media-body">
-    <div class="card-media-label">Category</div>
-    <div class="card-media-title">Card Title</div>
-    <div class="card-media-text">Description text goes here.</div>
-    <a class="btn btn-primary btn-sm">Action</a>
-  </div>
-</div>'
-                >
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-media"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;img</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-media-img"</span
-                    >
-                    <span class="s">src</span>=<span class="cn"
-                        >"photo.jpg"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-media-body"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-media-label"</span
-                    ><span class="k">&gt;</span>Category<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-media-title"</span
-                    ><span class="k">&gt;</span>Title<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-media-text"</span
-                    ><span class="k">&gt;</span>Text<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Full cover image -->
-    <div class="lib-component">
-        <div class="lib-component-label">
-            🌄 Full cover image card (card-cover)
-        </div>
-        <div class="lib-preview" style="align-items:stretch;gap:20px">
+    <Demo is:raw label={'🌄 Full cover image card (card-cover)'} previewStyle="align-items:stretch;gap:20px" code={fullCoverImageCardCardCoverCode}>
             <div
                 class="card-cover"
                 style="width:240px;flex-shrink:0;min-height:200px"
@@ -445,62 +445,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<div class="card-cover">
-  <!-- background image via inline style or background-image -->
-  <div class="card-cover-bg" style="background-image:url(photo.jpg)"></div>
-  <div class="card-cover-body">
-    <div class="card-cover-label">Category</div>
-    <div class="card-cover-title">Title</div>
-    <div class="card-cover-text">Text</div>
-  </div>
-</div>'
-                >
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-cover"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-cover-bg"</span
-                    >
-                    <span class="s">style</span>=<span class="cn"
-                        >"background-image:url(photo.jpg)"</span
-                    ><span class="k">&gt;&lt;/div&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-cover-body"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-cover-label"</span
-                    ><span class="k">&gt;</span>Category<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-cover-title"</span
-                    ><span class="k">&gt;</span>Title<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Gradient cards -->
-    <div class="lib-component">
-        <div class="lib-component-label">🌈 Gradient cards</div>
-        <div
-            class="lib-preview"
-            style="align-items:stretch;gap:16px;flex-wrap:wrap"
-        >
+    <Demo is:raw label={'🌈 Gradient cards'} previewStyle="align-items:stretch;gap:16px;flex-wrap:wrap" code={gradientCardsCode}>
             <div class="card-gradient-purple" style="min-width:160px;flex:1">
                 <div style="font-size:1.6rem;margin-bottom:8px">🔮</div>
                 <div
@@ -556,59 +504,10 @@
                     card-gradient-fire
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<div class="card-gradient-purple">Purple gradient</div>
-<div class="card-gradient-sunset">Sunset</div>
-<div class="card-gradient-ocean">Ocean</div>
-<div class="card-gradient-emerald">Emerald</div>
-<div class="card-gradient-fire">Fire</div>'
-                >
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-gradient-purple"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-gradient-sunset"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-gradient-ocean"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-gradient-emerald"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-gradient-fire"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Shadow variants -->
-    <div class="lib-component">
-        <div class="lib-component-label">🌑 Shadow variants</div>
-        <div
-            class="lib-preview"
-            style="align-items:stretch;gap:16px;flex-wrap:wrap"
-        >
+    <Demo is:raw label={'🌑 Shadow variants'} previewStyle="align-items:stretch;gap:16px;flex-wrap:wrap" code={shadowVariantsCode}>
             <div class="card-shadow-sm" style="min-width:150px;flex:1">
                 <div
                     style="font-size:11px;font-weight:700;color:var(--color-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px"
@@ -659,61 +558,10 @@
                     Accent glow
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<div class="card-shadow-sm">Subtle</div>
-<div class="card-shadow-md">Medium</div>
-<div class="card-shadow-lg">Large</div>
-<div class="card-shadow-primary">Primary glow</div>
-<div class="card-shadow-accent">Accent glow</div>'
-                >
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-shadow-sm"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-shadow-md"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-shadow-lg"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-shadow-primary"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-shadow-accent"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Horizontal card -->
-    <div class="lib-component">
-        <div class="lib-component-label">
-            ↔️ Horizontal card (card-horizontal)
-        </div>
-        <div
-            class="lib-preview"
-            style="flex-direction:column;align-items:stretch;gap:12px"
-        >
+    <Demo is:raw label={'↔️ Horizontal card (card-horizontal)'} previewStyle="flex-direction:column;align-items:stretch;gap:12px" code={horizontalCardCardHorizontalCode}>
             <div class="card-horizontal">
                 <div
                     class="card-h-img"
@@ -759,61 +607,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<div class="card-horizontal">
-  <div class="card-h-img">🚀</div>
-  <div class="card-h-body">
-    <div class="card-h-title">Title</div>
-    <div class="card-h-text">Description text here.</div>
-  </div>
-</div>'
-                >
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-horizontal"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-h-img"</span
-                    ><span class="k">&gt;</span>🚀<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-h-body"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-h-title"</span
-                    ><span class="k">&gt;</span>Title<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-h-text"</span
-                    ><span class="k">&gt;</span>Text<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Stat cards -->
-    <div class="lib-component">
-        <div class="lib-component-label">
-            📈 Stat / Metric cards (card-stat)
-        </div>
-        <div
-            class="lib-preview"
-            style="align-items:stretch;gap:16px;flex-wrap:wrap"
-        >
+    <Demo is:raw label={'📈 Stat / Metric cards (card-stat)'} previewStyle="align-items:stretch;gap:16px;flex-wrap:wrap" code={statMetricCardsCardStatCode}>
             <div class="card-stat" style="min-width:150px;flex:1">
                 <div class="card-stat-icon">📦</div>
                 <div class="card-stat-value">12,480</div>
@@ -838,57 +635,10 @@
                 <div class="card-stat-label">Avg. rating</div>
                 <div class="card-stat-trend up">▲ 0.3 vs last quarter</div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<div class="card-stat">
-  <div class="card-stat-icon">📦</div>
-  <div class="card-stat-value">12,480</div>
-  <div class="card-stat-label">Total orders</div>
-  <div class="card-stat-trend up">▲ 14.2% this week</div>
-</div>
-<!-- trend classes: .up (green) / .down (red) -->'
-                >
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-stat"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-stat-icon"</span
-                    ><span class="k">&gt;</span>📦<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-stat-value"</span
-                    ><span class="k">&gt;</span>12,480<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-stat-label"</span
-                    ><span class="k">&gt;</span>Total orders<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-stat-trend up"</span
-                    ><span class="k">&gt;</span>▲ 14.2%<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Gradient Hover Cards -->
-    <div class="lib-component">
-        <div class="lib-component-label">✨ Gradient Hover Cards — <code>card-gradient-hover-*</code></div>
-        <div class="lib-preview" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;align-items:stretch">
+    <Demo is:raw label={'✨ Gradient Hover Cards — <code>card-gradient-hover-*</code>'} previewStyle="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;align-items:stretch" code={gradientHoverCardsCardGradientHoverCode}>
 
             <div class="card-gradient-hover card-gradient-hover-primary gc-card">
                 <div class="gc-icon" style="color:var(--color-primary)">
@@ -962,28 +712,10 @@
                 <code class="gc-class">card-gradient-hover-error</code>
             </div>
 
-        </div>
-        <div class="lib-code-wrapper"><div class="lib-code-container">
-            <pre class="lib-code" data-raw='<!-- Gradient appears smoothly on hover -->
-<div class="card-gradient-hover card-gradient-hover-primary">...</div>
-<div class="card-gradient-hover card-gradient-hover-accent">...</div>
-<div class="card-gradient-hover card-gradient-hover-fire">...</div>
-<div class="card-gradient-hover card-gradient-hover-ocean">...</div>
-<div class="card-gradient-hover card-gradient-hover-sunset">...</div>
-<div class="card-gradient-hover card-gradient-hover-aurora">...</div>'><span class="c">/* gradient appears smoothly on hover */</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-hover card-gradient-hover-primary"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-hover card-gradient-hover-accent"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-hover card-gradient-hover-fire"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-hover card-gradient-hover-ocean"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-hover card-gradient-hover-sunset"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-gradient-hover card-gradient-hover-aurora"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span></pre>
-        </div></div>
-    </div>
+        </Demo>
 
     <!-- Shine Cards -->
-    <div class="lib-component">
-        <div class="lib-component-label">💎 Shine Cards — <code>card-shine-*</code></div>
-        <div class="lib-preview" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;align-items:stretch">
+    <Demo is:raw label={'💎 Shine Cards — <code>card-shine-*</code>'} previewStyle="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;align-items:stretch" code={shineCardsCardShineCode}>
 
             <div class="card-shine card-shine-primary gc-card gc-card-light">
                 <div class="gc-icon" style="color:rgba(255,255,255,0.9)">
@@ -1048,28 +780,10 @@
                 <code class="gc-class" style="color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15)">card-shine-cosmic</code>
             </div>
 
-        </div>
-        <div class="lib-code-wrapper"><div class="lib-code-container">
-            <pre class="lib-code" data-raw='<!-- Gradient background + shine sweep on hover -->
-<div class="card-shine card-shine-primary">...</div>
-<div class="card-shine card-shine-fire">...</div>
-<div class="card-shine card-shine-ocean">...</div>
-<div class="card-shine card-shine-sunset">...</div>
-<div class="card-shine card-shine-aurora">...</div>
-<div class="card-shine card-shine-cosmic">...</div>'><span class="c">/* gradient bg + shine sweep on hover */</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shine card-shine-primary"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shine card-shine-fire"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shine card-shine-ocean"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shine card-shine-sunset"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shine card-shine-aurora"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-shine card-shine-cosmic"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span></pre>
-        </div></div>
-    </div>
+        </Demo>
 
     <!-- Outline Gradient Cards -->
-    <div class="lib-component">
-        <div class="lib-component-label">🔲 Outline Gradient Cards — <code>card-outline-gradient-*</code></div>
-        <div class="lib-preview" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;align-items:stretch">
+    <Demo is:raw label={'🔲 Outline Gradient Cards — <code>card-outline-gradient-*</code>'} previewStyle="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;align-items:stretch" code={outlineGradientCardsCardOutlineGradientCode}>
 
             <div class="card-outline-gradient card-outline-gradient-primary gc-card">
                 <div class="gc-icon" style="color:var(--color-primary)">
@@ -1134,28 +848,10 @@
                 <code class="gc-class">card-outline-gradient-cosmic</code>
             </div>
 
-        </div>
-        <div class="lib-code-wrapper"><div class="lib-code-container">
-            <pre class="lib-code" data-raw='<!-- Animated gradient border, transparent background -->
-<div class="card-outline-gradient card-outline-gradient-primary">...</div>
-<div class="card-outline-gradient card-outline-gradient-fire">...</div>
-<div class="card-outline-gradient card-outline-gradient-ocean">...</div>
-<div class="card-outline-gradient card-outline-gradient-sunset">...</div>
-<div class="card-outline-gradient card-outline-gradient-aurora">...</div>
-<div class="card-outline-gradient card-outline-gradient-cosmic">...</div>'><span class="c">/* animated gradient border, transparent bg */</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-outline-gradient card-outline-gradient-primary"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-outline-gradient card-outline-gradient-fire"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-outline-gradient card-outline-gradient-ocean"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-outline-gradient card-outline-gradient-sunset"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-outline-gradient card-outline-gradient-aurora"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-outline-gradient card-outline-gradient-cosmic"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span></pre>
-        </div></div>
-    </div>
+        </Demo>
 
     <!-- Aura Cards -->
-    <div class="lib-component">
-        <div class="lib-component-label">🌟 Aura Cards — <code>card-aura-*</code></div>
-        <div class="lib-preview" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:28px;align-items:stretch;padding:24px 8px">
+    <Demo is:raw label={'🌟 Aura Cards — <code>card-aura-*</code>'} previewStyle="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:28px;align-items:stretch;padding:24px 8px" code={auraCardsCardAuraCode}>
 
             <div class="card-aura card-aura-primary gc-card gc-card-light">
                 <div class="gc-icon" style="color:var(--color-primary)">
@@ -1211,27 +907,9 @@
                 <code class="gc-class">card-aura-ocean</code>
             </div>
 
-        </div>
-        <div class="lib-code-wrapper"><div class="lib-code-container">
-            <pre class="lib-code" data-raw='<!-- Hover triggers glowing aura behind the card -->
-<div class="card-aura card-aura-primary">...</div>
-<div class="card-aura card-aura-sunset">...</div>
-<div class="card-aura card-aura-aurora">...</div>
-<div class="card-aura card-aura-cosmic">...</div>
-<div class="card-aura card-aura-gold">...</div>
-<div class="card-aura card-aura-ocean">...</div>'><span class="c">/* hover triggers glowing aura behind the card */</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-aura card-aura-primary"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-aura card-aura-sunset"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-aura card-aura-aurora"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-aura card-aura-cosmic"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-aura card-aura-gold"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span>
-<span class="k">&lt;div</span> <span class="s">class</span>=<span class="cn">"card-aura card-aura-ocean"</span><span class="k">&gt;</span>…<span class="k">&lt;/div&gt;</span></pre>
-        </div></div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Bulma card</div>
-        <div class="lib-preview">
+    <Demo is:raw label={'Bulma card'} code={bulmaCardCode}>
             <div class="card-bulma" style="max-width:300px;width:100%">
                 <div class="card-header">
                     <div class="card-header-title">Card title</div>
@@ -1247,71 +925,10 @@
                     <a class="card-footer-item text-error">Delete</a>
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<div class="card-bulma">
-  <div class="card-header">
-    <div class="card-header-title">Title</div>
-  </div>
-  <div class="card-content">
-    <p>Card content</p>
-  </div>
-  <div class="card-footer">
-    <a class="card-footer-item">Save</a>
-    <a class="card-footer-item text-error">Delete</a>
-  </div>
-</div>'
-                >
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-bulma"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-header"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-header-title"</span
-                    ><span class="k">&gt;</span>Title<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-content"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;p&gt;</span>Card
-                    content<span class="k">&lt;/p&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-footer"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-footer-item"</span
-                    ><span class="k">&gt;</span>Save<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"card-footer-item text-error"</span
-                    ><span class="k">&gt;</span>Delete<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 </section>
 
-<style>
+<style is:global>
     .cards-variants-grid {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
