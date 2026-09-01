@@ -31,6 +31,7 @@ interface Props {
   lang?: string; // 'html' | 'css' | 'js' (не-html пока без подсветки)
   filename?: string; // подпись-источник, напр. "_buttons.css"
   previewClass?: string; // модификаторы .lib-preview: 'col', 'no-dot', …
+  previewStyle?: string; // inline-стиль превью (раскладка демо, не часть образца)
   class?: string;
 }
 
@@ -40,6 +41,7 @@ const {
   lang = 'html',
   filename,
   previewClass = '',
+  previewStyle,
   class: className = '',
 } = Astro.props;
 
@@ -50,7 +52,7 @@ const hasPreviewSlot = Astro.slots.has('preview');
 
 <div class={`lib-component ${className}`.trim()}>
   {label && <div class="lib-component-label">{label}</div>}
-  <div class={`lib-preview ${previewClass}`.trim()}>
+  <div class={`lib-preview ${previewClass}`.trim()} style={previewStyle}>
     {hasPreviewSlot ? <slot name="preview" /> : <Fragment set:html={raw} />}
   </div>
   <CodeBlock code={sample} lang={lang} filename={filename} />
