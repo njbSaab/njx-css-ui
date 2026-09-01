@@ -1,5 +1,5 @@
 ---
-import { dedent, escapeHtml, highlightHtml, highlightCss } from './code-utils.js';
+import { dedent, escapeHtml, highlightHtml, highlightCss, highlightJs } from './code-utils.js';
 
 interface Props {
     code: string;
@@ -30,7 +30,9 @@ const highlightedCode =
         ? highlightHtml(normalizedCode)
         : lang === 'css'
           ? highlightCss(normalizedCode)
-          : escapeHtml(normalizedCode);
+          : lang === 'js'
+            ? highlightJs(normalizedCode)
+            : escapeHtml(normalizedCode);
 
 const windowLabel = label || filename || 'HTML';
 ---

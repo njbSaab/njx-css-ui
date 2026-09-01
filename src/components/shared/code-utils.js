@@ -56,6 +56,56 @@ export function highlightCss(value) {
     .join('');
 }
 
+/** Подсветка JS в словаре секций: .c комментарии, .cn строки, .k ключевые
+    слова, .v вызовы функций, .s числа; HTML-теги в смешанных образцах
+    докрашиваются пост-проходом. */
+export function highlightJs(value) {
+  // 1) HTML-комментарии и теги (смешанные образцы «разметка + JS»)
+  const tagged = escapeHtml(value)
+    .replace(/(&lt;!--[\s\S]*?--&gt;)/g, '<span class="c">$1</span>')
+    .replace(
+    /(&lt;\/?)([a-zA-Z][\w:-]*)((?:(?!&gt;)[\s\S])*?)(\/?&gt;)/g,
+    (_m, open, tag, attrs, close) => {
+      const a = attrs.replace(
+        /(\s+)([a-zA-Z_:@][\w:.@-]*)((?:=(?:"[^"]*"|'[^']*'|[^\s&]+))?)/g,
+        (_a, sp, name, vp) =>
+          vp
+            ? `${sp}<span class="s">${name}</span>=<span class="cn">${vp.slice(1)}</span>`
+            : `${sp}<span class="s">${name}</span>`,
+      );
+      return `<span class="k">${open}${tag}</span>${a}<span class="k">${close}</span>`;
+    },
+  );
+
+  // 2) JS-токены вне уже расставленных span'ов
+  const KEYWORDS =
+    'const|let|var|function|return|if|else|new|for|while|of|in|typeof|class|import|export|from|async|await|true|false|null|undefined|this|document|window|localStorage';
+  const jsRe = new RegExp(
+    "('(?:[^'\\\\\\n]|\\\\.)*'|\"(?:[^\"\\\\\\n]|\\\\.)*\")" + // строки
+      '|(\\/\\/[^\\n]*|\\/\\*[\\s\\S]*?\\*\\/)' + // комментарии
+      `|\\b(${KEYWORDS})\\b` +
+      '|\\b(\\d+(?:\\.\\d+)?)\\b' + // числа
+      '|([A-Za-z_$][\\w$]*)(?=\\()', // вызов функции
+    'g',
+  );
+
+  return tagged
+    .split(/(<span[^>]*>[\s\S]*?<\/span>)/)
+    .map((part, i) =>
+      i % 2
+        ? part
+        : part.replace(jsRe, (m, str, com, kw, num, call) => {
+            if (str) return `<span class="cn">${str}</span>`;
+            if (com) return `<span class="c">${com}</span>`;
+            if (kw) return `<span class="k">${kw}</span>`;
+            if (num) return `<span class="s">${num}</span>`;
+            if (call) return `<span class="v">${call}</span>`;
+            return m;
+          }),
+    )
+    .join('');
+}
+
 /** Подсветка HTML в словаре секций: .k теги, .s имена атрибутов,
     .cn значения, .c комментарии (палитры в docs-sections.css). */
 export function highlightHtml(value) {
