@@ -1,3 +1,92 @@
+---
+import Demo from '../shared/Demo.astro';
+
+const leftOverlayDefaultCode = `
+<!-- Trigger -->
+<button class="btn btn-primary" onclick="sidebarOpen('my-sidebar')">Open</button>
+
+<!-- Backdrop -->
+<div class="sidebar-backdrop" id="my-sidebar-backdrop" onclick="sidebarClose('my-sidebar')"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="my-sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">Menu</span>
+    <button class="sidebar-close" onclick="sidebarClose('my-sidebar')">✕</button>
+  </div>
+  <div class="sidebar-body">
+    <nav class="sidebar-nav">
+      <a class="sidebar-link is-active" href="#">Dashboard</a>
+      <a class="sidebar-link" href="#">Profile</a>
+      <a class="sidebar-link" href="#">Settings</a>
+    </nav>
+  </div>
+</aside>
+`;
+
+const rightOverlayCode = `
+<aside class="sidebar sidebar-right" id="my-sidebar-right">
+  ...
+</aside>
+`;
+
+const leftPushContentCode = `
+<!-- Wrap page in .sidebar-layout -->
+<div class="sidebar-layout">
+  <aside class="sidebar sidebar-push" id="push-sidebar">
+    <div class="sidebar-header">...</div>
+    <div class="sidebar-body">...</div>
+  </aside>
+  <div class="sidebar-content">
+    <!-- page content -->
+  </div>
+</div>
+`;
+
+const fullpageFullViewportCode = `
+<aside class="sidebar sidebar-fullpage" id="fullpage-menu">
+  <div class="sidebar-header">...</div>
+  <div class="sidebar-body">...</div>
+</aside>
+`;
+
+const rightPushContentCode = `
+<div class="sidebar-layout">
+  <div class="sidebar-content"><!-- page --></div>
+  <aside class="sidebar sidebar-push sidebar-right" id="right-panel">
+    ...
+  </aside>
+</div>
+`;
+
+const miniIconRailCollapsibleCode = `
+<div class="sidebar-layout">
+  <aside class="sidebar sidebar-push sidebar-mini is-open" id="mini-rail">
+    <!-- header: brand logo + sidebar-mini-toggle button -->
+    <!-- body: sidebar-link with <span class="sidebar-link-text">Label</span> -->
+  </aside>
+  <div class="sidebar-content">...</div>
+</div>
+
+<!-- Expand/collapse -->
+sidebarExpandToggle('mini-rail')
+`;
+
+const floatingDetachedGlassBlurCode = `
+<aside class="sidebar sidebar-floating" id="my-float">
+  ...
+</aside>
+<div class="sidebar-backdrop" id="my-float-backdrop"></div>
+`;
+
+const jsApiCode = `
+sidebarOpen('my-sidebar')         // open overlay
+sidebarClose('my-sidebar')        // close overlay
+sidebarToggle('my-sidebar')       // toggle open/close
+sidebarExpandToggle('mini-rail')  // expand/collapse mini sidebar
+`;
+---
+
 <section class="lib-section" id="sidebar">
     <div class="lib-section-title">🗂 Sidebar</div>
     <div class="lib-section-desc">
@@ -8,131 +97,25 @@
     </div>
 
     <!-- ── Variant 1: Left Overlay ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">Left — overlay (default)</div>
-        <div class="lib-preview" style="gap:12px;flex-wrap:wrap;">
+    <Demo is:raw label="Left — overlay (default)" previewStyle="gap:12px;flex-wrap:wrap;" code={leftOverlayDefaultCode}>
             <button
                 class="btn btn-primary"
                 onclick="sidebarOpen('demo-sidebar-left')"
                 >Open Left Sidebar</button
             >
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Trigger -->
-<button class="btn btn-primary" onclick="sidebarOpen(&apos;my-sidebar&apos;)">Open</button>
-
-<!-- Backdrop -->
-<div class="sidebar-backdrop" id="my-sidebar-backdrop" onclick="sidebarClose(&apos;my-sidebar&apos;)"></div>
-
-<!-- Sidebar -->
-<aside class="sidebar" id="my-sidebar">
-  <div class="sidebar-header">
-    <span class="sidebar-title">Menu</span>
-    <button class="sidebar-close" onclick="sidebarClose(&apos;my-sidebar&apos;)">✕</button>
-  </div>
-  <div class="sidebar-body">
-    <nav class="sidebar-nav">
-      <a class="sidebar-link is-active" href="#">Dashboard</a>
-      <a class="sidebar-link" href="#">Profile</a>
-      <a class="sidebar-link" href="#">Settings</a>
-    </nav>
-  </div>
-</aside>'
-                >
-                    <span class="c">&lt;!-- Trigger --&gt;</span><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary"</span
-                    >
-                    <span class="s">onclick</span>=<span class="cn"
-                        >"sidebarOpen('my-sidebar')"</span
-                    ><span class="k">&gt;</span>Open<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br /><br />
-                    <span class="c">&lt;!-- Backdrop --&gt;</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar-backdrop"</span
-                    >
-                    <span class="s">id</span>=<span class="cn"
-                        >"my-sidebar-backdrop"</span
-                    >
-                    <span class="s">onclick</span>=<span class="cn"
-                        >"sidebarClose('my-sidebar')"</span
-                    ><span class="k">&gt;&lt;/div&gt;</span><br /><br />
-                    <span class="k">&lt;aside</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar"</span
-                    >
-                    <span class="s">id</span>=<span class="cn"
-                        >"my-sidebar"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar-header"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar-body"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/aside&gt;</span>
-                </div>
-                <button class="lib-copy-btn" onclick="copyCode(this)"
-                    >Copy</button
-                >
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ── Variant 2: Right Overlay ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">Right — overlay</div>
-        <div class="lib-preview" style="gap:12px;flex-wrap:wrap;">
+    <Demo is:raw label="Right — overlay" previewStyle="gap:12px;flex-wrap:wrap;" code={rightOverlayCode}>
             <button
                 class="btn btn-outline"
                 onclick="sidebarOpen('demo-sidebar-right')"
                 >Open Right Sidebar</button
             >
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<aside class="sidebar sidebar-right" id="my-sidebar-right">
-  ...
-</aside>'
-                >
-                    <span class="k">&lt;aside</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar sidebar-right"</span
-                    >
-                    <span class="s">id</span>=<span class="cn"
-                        >"my-sidebar-right"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;...<br />
-                    <span class="k">&lt;/aside&gt;</span>
-                </div>
-                <button class="lib-copy-btn" onclick="copyCode(this)"
-                    >Copy</button
-                >
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ── Variant 3: Push left ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">Left — push content</div>
-        <div
-            class="lib-preview"
-            style="padding:0;overflow:hidden;border-radius:var(--radius-lg)"
-        >
+    <Demo is:raw label="Left — push content" previewStyle="padding:0;overflow:hidden;border-radius:var(--radius-lg)" code={leftPushContentCode}>
             <!-- Live push demo inside a contained box -->
             <div
                 class="sidebar-layout"
@@ -247,107 +230,19 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Wrap page in .sidebar-layout -->
-<div class="sidebar-layout">
-  <aside class="sidebar sidebar-push" id="push-sidebar">
-    <div class="sidebar-header">...</div>
-    <div class="sidebar-body">...</div>
-  </aside>
-  <div class="sidebar-content">
-    <!-- page content -->
-  </div>
-</div>'
-                >
-                    <span class="c"
-                        >&lt;!-- Wrap page in .sidebar-layout --&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar-layout"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;aside</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar sidebar-push"</span
-                    >
-                    <span class="s">id</span>=<span class="cn"
-                        >"push-sidebar"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/aside&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar-content"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-                <button class="lib-copy-btn" onclick="copyCode(this)"
-                    >Copy</button
-                >
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ── Variant 4: Fullpage ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">Fullpage — full viewport</div>
-        <div class="lib-preview" style="gap:12px;flex-wrap:wrap;">
+    <Demo is:raw label="Fullpage — full viewport" previewStyle="gap:12px;flex-wrap:wrap;" code={fullpageFullViewportCode}>
             <button
                 class="btn btn-primary btn-outline"
                 onclick="sidebarOpen('demo-sidebar-full')"
                 >Open Fullpage Menu</button
             >
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<aside class="sidebar sidebar-fullpage" id="fullpage-menu">
-  <div class="sidebar-header">...</div>
-  <div class="sidebar-body">...</div>
-</aside>'
-                >
-                    <span class="k">&lt;aside</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar sidebar-fullpage"</span
-                    >
-                    <span class="s">id</span>=<span class="cn"
-                        >"fullpage-menu"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar-header"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar-body"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/aside&gt;</span>
-                </div>
-                <button class="lib-copy-btn" onclick="copyCode(this)"
-                    >Copy</button
-                >
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ── Variant 5: Push Right ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">Right — push content</div>
-        <div
-            class="lib-preview"
-            style="padding:0;overflow:hidden;border-radius:var(--radius-lg)"
-        >
+    <Demo is:raw label="Right — push content" previewStyle="padding:0;overflow:hidden;border-radius:var(--radius-lg)" code={rightPushContentCode}>
             <div
                 class="sidebar-layout"
                 style="height:260px;min-height:0;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--sidebar-border)"
@@ -464,53 +359,10 @@
                     </div>
                 </aside>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<div class="sidebar-layout">
-  <div class="sidebar-content"><!-- page --></div>
-  <aside class="sidebar sidebar-push sidebar-right" id="right-panel">
-    ...
-  </aside>
-</div>'
-                >
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar-layout"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar-content"</span
-                    ><span class="k">&gt;</span><span class="c"
-                        >&lt;!-- page --&gt;</span
-                    ><span class="k">&lt;/div&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;aside</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar sidebar-push sidebar-right"</span
-                    >
-                    <span class="s">id</span>=<span class="cn"
-                        >"right-panel"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/aside&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-                <button class="lib-copy-btn" onclick="copyCode(this)"
-                    >Copy</button
-                >
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ── Variant 6: Mini / Icon Rail ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">Mini — icon rail (collapsible)</div>
-        <div
-            class="lib-preview"
-            style="padding:0;overflow:hidden;border-radius:var(--radius-lg)"
-        >
+    <Demo is:raw label="Mini — icon rail (collapsible)" previewStyle="padding:0;overflow:hidden;border-radius:var(--radius-lg)" code={miniIconRailCollapsibleCode}>
             <div
                 class="sidebar-layout"
                 style="height:300px;min-height:0;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--sidebar-border)"
@@ -700,140 +552,24 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<div class="sidebar-layout">
-  <aside class="sidebar sidebar-push sidebar-mini is-open" id="mini-rail">
-    <!-- header: brand logo + sidebar-mini-toggle button -->
-    <!-- body: sidebar-link with <span class="sidebar-link-text">Label</span> -->
-  </aside>
-  <div class="sidebar-content">...</div>
-</div>
-
-<!-- Expand/collapse -->
-sidebarExpandToggle(&apos;mini-rail&apos;)'
-                >
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar-layout"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;aside</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar sidebar-push sidebar-mini is-open"</span
-                    >
-                    <span class="s">id</span>=<span class="cn">"mini-rail"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="c"
-                        >&lt;!-- wrap text in &lt;span
-                        class="sidebar-link-text"&gt; --&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;/aside&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar-content"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span><br /><br />
-                    <span class="fn">sidebarExpandToggle</span>(<span class="cn"
-                        >'mini-rail'</span
-                    >) <span class="c">// expand / collapse</span>
-                </div>
-                <button class="lib-copy-btn" onclick="copyCode(this)"
-                    >Copy</button
-                >
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ── Variant 7: Floating ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">Floating — detached, glass blur</div>
-        <div class="lib-preview" style="gap:12px;flex-wrap:wrap;">
+    <Demo is:raw label="Floating — detached, glass blur" previewStyle="gap:12px;flex-wrap:wrap;" code={floatingDetachedGlassBlurCode}>
             <button
                 class="btn btn-primary"
                 onclick="sidebarOpen('demo-sidebar-float')"
                 >Open Floating Sidebar</button
             >
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<aside class="sidebar sidebar-floating" id="my-float">
-  ...
-</aside>
-<div class="sidebar-backdrop" id="my-float-backdrop"></div>'
-                >
-                    <span class="k">&lt;aside</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar sidebar-floating"</span
-                    >
-                    <span class="s">id</span>=<span class="cn">"my-float"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;...<br />
-                    <span class="k">&lt;/aside&gt;</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"sidebar-backdrop"</span
-                    >
-                    <span class="s">id</span>=<span class="cn"
-                        >"my-float-backdrop"</span
-                    ><span class="k">&gt;&lt;/div&gt;</span>
-                </div>
-                <button class="lib-copy-btn" onclick="copyCode(this)"
-                    >Copy</button
-                >
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ── JS API ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">JS API</div>
-        <div class="lib-preview" style="gap:10px;flex-wrap:wrap;">
+    <Demo is:raw label="JS API" previewStyle="gap:10px;flex-wrap:wrap;" code={jsApiCode}>
             <code style="font-size:13px">sidebarOpen('id')</code>
             <code style="font-size:13px">sidebarClose('id')</code>
             <code style="font-size:13px">sidebarToggle('id')</code>
             <code style="font-size:13px">sidebarExpandToggle('id')</code>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw="sidebarOpen('my-sidebar')         // open overlay
-sidebarClose('my-sidebar')        // close overlay
-sidebarToggle('my-sidebar')       // toggle open/close
-sidebarExpandToggle('mini-rail')  // expand/collapse mini sidebar"
-                >
-                    <span class="fn">sidebarOpen</span>(<span class="cn"
-                        >'my-sidebar'</span
-                    >)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-                        class="c">// open overlay</span
-                    ><br />
-                    <span class="fn">sidebarClose</span>(<span class="cn"
-                        >'my-sidebar'</span
-                    >)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-                        class="c">// close overlay</span
-                    ><br />
-                    <span class="fn">sidebarToggle</span>(<span class="cn"
-                        >'my-sidebar'</span
-                    >)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c"
-                        >// toggle open/close</span
-                    ><br />
-                    <span class="fn">sidebarExpandToggle</span>(<span class="cn"
-                        >'mini-rail'</span
-                    >)&nbsp;&nbsp;<span class="c">// expand/collapse mini</span>
-                </div>
-                <button class="lib-copy-btn" onclick="copyCode(this)"
-                    >Copy</button
-                >
-            </div>
-        </div>
-    </div>
+        </Demo>
 </section>
 
 <!-- ══ DEMO SIDEBARS (rendered outside section flow) ══ -->
