@@ -1,0 +1,105 @@
+---
+import { SIZE_CLASSLESS, SIZE_FULL } from '../../lib/meta';
+const base = import.meta.env.BASE_URL;
+
+---
+
+  <!-- ══════════════════════ HERO ══════════════════════ -->
+  <section class="qs-hero">
+    <div class="qs-badge">⏱ 60-second install</div>
+    <h1 class="qs-h1">
+      <span class="qs-grad">Up and running</span><br />before your coffee.
+    </h1>
+    <p class="qs-sub">
+      One CDN link. Nine themes ready to go. No bundler, no config.
+    </p>
+  </section>
+
+  <!-- ══════════════════════ MODE BAR ══════════════════════ -->
+  <div class="doc-mode-bar" id="qs-mode-bar">
+    <span class="doc-mode-label">Mode</span>
+    <div class="doc-mode-tabs">
+      <button
+        class="doc-mode-tab active"
+        data-mode="full"
+        onclick="qsSyncMode('full')"
+      >
+        <span class="doc-mode-icon">◈</span>
+        njX UI Full
+        <span class="doc-mode-default">RECOMMENDED</span>
+        <span class="doc-mode-size">{SIZE_FULL}</span>
+      </button>
+      <button
+        class="doc-mode-tab"
+        data-mode="classless"
+        onclick="qsSyncMode('classless')"
+      >
+        <span class="doc-mode-icon">&lt;/&gt;</span>
+        Classless Only
+        <span class="doc-mode-default">LITE</span>
+        <span class="doc-mode-size">{SIZE_CLASSLESS}</span>
+      </button>
+      <button
+        class="doc-mode-tab"
+        data-mode="interactive"
+        onclick="qsSyncMode('interactive')"
+      >
+        <span class="doc-mode-icon">JS</span>
+        Interactive
+      </button>
+    </div>
+    <span class="doc-mode-hint" id="qs-mode-hint"
+      >Classless built-in — your HTML is styled automatically</span
+    >
+  </div>
+
+  <!-- ══════════════════════ PATH SELECTOR ══════════════════════ -->
+  <div class="qs-paths">
+    <div class="qs-paths-row" id="qs-paths">
+      <button class="on" data-p="cdn"
+        ><span class="em">⚡</span>CDN <span style="opacity:0.7">· 30s</span
+        ></button
+      >
+      <button data-p="npm"
+        ><span class="em">📦</span>npm <span style="opacity:0.7">· 60s</span
+        ></button
+      >
+      <button data-p="zip"
+        ><span class="em">🗂</span>Download <span style="opacity:0.7"
+          >· 90s</span
+        ></button
+      >
+    </div>
+  </div>
+
+  <!-- ══════════════════════ TIMER ══════════════════════ -->
+  <div class="qs-timer">
+    <span>Progress</span>
+    <div class="qs-timer-bar"><div id="qs-prog"></div></div>
+    <span class="qs-clock" id="qs-clock">0/4</span>
+  </div>
+
+  <!-- ══════════════════════ TRACK ══════════════════════ -->
+  <div class="qs-track" id="qs-track"></div>
+
+  <!-- ══════════════════════ SUCCESS ══════════════════════ -->
+  <div class="qs-success show" id="qs-success">
+    <div class="qs-success-card">
+      <div class="qs-success-em">🎉</div>
+      <h3>You're shipping njX UI.</h3>
+      <p>
+        Every <code>.btn</code>, <code>.tag</code>, <code>.card</code> on your page
+        now responds to <code>data-theme</code>. Want more?
+      </p>
+      <div class="qs-success-ctas">
+        <a class="qs-b qs-b-p" href={`${base}overview`}
+          >Browse 30+ components →</a
+        >
+        <a
+          class="qs-b qs-b-g"
+          href="https://github.com/njbSaab/njx-css-ui"
+          target="_blank">Star on GitHub ★</a
+        >
+      </div>
+    </div>
+  </div>

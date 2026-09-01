@@ -1,0 +1,153 @@
+---
+import CodeBlock from '../shared/CodeBlock.astro';
+import { CDN_BASE } from '../../lib/meta';
+
+const qsLinkFull = `
+<link rel="stylesheet" href="${CDN_BASE}style.min.css">
+`;
+const qsLinkClassless = `
+<link rel="stylesheet" href="${CDN_BASE}classless.min.css">
+`;
+const qsTheme = `
+<html lang="en" data-theme="dark">
+<!-- dark · light · red · blue · green · cyan · yellow · pink · purple -->
+`;
+const qsClassesFull = `
+<button class="btn btn-primary">Click me</button>
+<div class="card">A styled card</div>
+<span class="tag tag-primary">Badge</span>
+`;
+const qsClassesClassless = `
+<button>Click me</button>
+<input type="text" placeholder="email">
+<details><summary>FAQ</summary>Answer</details>
+`;
+const qsBoilerplateFull = `
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+        href="${CDN_BASE}style.min.css">
+  <title>My App</title>
+</head>
+<body>
+
+  <button class="btn btn-primary">Get Started</button>
+
+  <div class="card-glow">
+    <h2 class="text-gradient-primary">Hello njX</h2>
+    <p class="text-muted">Built in 30 seconds.</p>
+  </div>
+
+</body>
+</html>
+`;
+const qsBoilerplateClassless = `
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+        href="${CDN_BASE}classless.min.css">
+  <title>My App</title>
+</head>
+<body>
+
+  <h1>Hello njX</h1>
+  <p>No class names needed.</p>
+  <button>Get Started</button>
+  <input type="text" placeholder="Your name">
+
+</body>
+</html>
+`;
+---
+
+  <!-- ══════════════════════ FROM ZERO ══════════════════════ -->
+  <div class="sc-section" style="padding-top:48px;padding-bottom:48px">
+    <span class="sc-eyebrow">Your first page</span>
+    <h2 class="sc-heading">From zero to styled<br />in 3 steps</h2>
+    <div class="sc-two-col" style="margin-top:24px;align-items:stretch">
+      <div class="sc-steps">
+        <div class="sc-step">
+          <div class="sc-step-left">
+            <div class="sc-step-num">1</div>
+            <div class="sc-step-line"></div>
+          </div>
+          <div class="sc-step-body">
+            <div class="sc-step-title">Connect the stylesheet</div>
+            <div class="sc-step-desc">
+              One <code>&lt;link&gt;</code> tag inside <code>&lt;head&gt;</code
+              >. No JavaScript, no build step, nothing else required.
+            </div>
+            <div data-qs-mode="full interactive">
+              <CodeBlock frame="sc" compact style="margin-top:10px" code={qsLinkFull} />
+            </div>
+            <div data-qs-mode="classless" style="display:none">
+              <CodeBlock frame="sc" compact style="margin-top:10px" code={qsLinkClassless} />
+            </div>
+          </div>
+        </div>
+        <div class="sc-step">
+          <div class="sc-step-left">
+            <div class="sc-step-num">2</div>
+            <div class="sc-step-line"></div>
+          </div>
+          <div class="sc-step-body">
+            <div class="sc-step-title">Pick a theme</div>
+            <div class="sc-step-desc">
+              Set <code>data-theme</code> on the <code>&lt;html&gt;</code> element.
+              Every component adapts automatically — no extra CSS needed.
+            </div>
+            <CodeBlock frame="sc" compact style="margin-top:10px" code={qsTheme} />
+          </div>
+        </div>
+        <!-- Step 3: Full / Interactive -->
+        <div class="sc-step" data-qs-mode="full interactive">
+          <div class="sc-step-left">
+            <div class="sc-step-num">3</div>
+          </div>
+          <div class="sc-step-body">
+            <div class="sc-step-title">Use component classes</div>
+            <div class="sc-step-desc">
+              Add classes like <code>btn btn-primary</code> or <code>card</code
+              >. That's the whole API — just class names on HTML elements.
+            </div>
+            <CodeBlock frame="sc" compact style="margin-top:10px" code={qsClassesFull} />
+          </div>
+        </div>
+        <!-- Step 3: Classless -->
+        <div class="sc-step" data-qs-mode="classless" style="display:none">
+          <div class="sc-step-left">
+            <div class="sc-step-num">3</div>
+          </div>
+          <div class="sc-step-body">
+            <div class="sc-step-title">Write semantic HTML</div>
+            <div class="sc-step-desc">
+              No class names needed. Every native HTML element is styled
+              automatically —
+              <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>,
+              <code>&lt;table&gt;</code>, <code>&lt;details&gt;</code> and more.
+            </div>
+            <CodeBlock frame="sc" compact style="margin-top:10px" code={qsClassesClassless} />
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <div
+          style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--color-muted);margin-bottom:12px"
+        >
+          Complete boilerplate
+        </div>
+        <div data-qs-mode="full interactive" style="flex:1;display:flex;flex-direction:column">
+          <CodeBlock frame="sc" class="qs-bp" label="index.html" style="flex:1;display:flex;flex-direction:column" code={qsBoilerplateFull} />
+        </div>
+        <div data-qs-mode="classless" style="flex:1;display:none;flex-direction:column">
+          <CodeBlock frame="sc" class="qs-bp" label="index.html" style="flex:1;display:flex;flex-direction:column" code={qsBoilerplateClassless} />
+        </div>
+      </div>
+    </div>
+  </div>

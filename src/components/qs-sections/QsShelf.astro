@@ -1,0 +1,95 @@
+---
+import Demo from '../demo/Demo.astro';
+const base = import.meta.env.BASE_URL;
+
+---
+
+  <!-- ══════════════════════ COMPONENT SHELF ══════════════════════ -->
+  <section class="sc-section" style="padding-top:0">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="sc-eyebrow">Component shelf</span>
+      <h2 class="sc-heading">30+ components.<br />One file.</h2>
+      <p class="sc-subheading" style="margin:0 auto">
+        Each tile uses real njX classes — no fake screenshots. Hover to see the
+        lift.
+      </p>
+    </div>
+    <div class="container">
+      <Demo />
+    </div>
+  </section>
+
+  <!-- ══════════════════════ KEEP BUILDING ══════════════════════ -->
+  <div class="sc-section sc-section-center" style="padding-bottom:80px">
+    <span class="sc-eyebrow">What's next</span>
+    <h2 class="sc-heading">Keep building</h2>
+    <p class="sc-subheading center" style="margin-bottom:36px">
+      You're set up. Here's where to go from here.
+    </p>
+    <div class="qs-next-grid">
+      <a href={`${base}documentation`} class="qs-next-card">
+        <span class="qs-next-icon">🧩</span>
+        <div class="qs-next-title">All Components</div>
+        <div class="qs-next-desc">
+          Browse every component with live previews and copy-ready code. 30+
+          components, fully documented.
+        </div>
+        <span class="qs-next-arrow">Browse components →</span>
+      </a>
+      <a href={`${base}documentation`} class="qs-next-card">
+        <span class="qs-next-icon">📖</span>
+        <div class="qs-next-title">Full Documentation</div>
+        <div class="qs-next-desc">
+          Themes, design tokens, CSS variables, customization, and the complete
+          API reference.
+        </div>
+        <span class="qs-next-arrow">Read the docs →</span>
+      </a>
+      <a href={`${base}classless-components`} class="qs-next-card">
+        <span class="qs-next-icon">🌐</span>
+        <div class="qs-next-title">Classless Mode</div>
+        <div class="qs-next-desc">
+          Style plain HTML with zero class names. Drop the stylesheet and your
+          bare tags are themed automatically.
+        </div>
+        <span class="qs-next-arrow">Explore classless →</span>
+      </a>
+      <a href={`${base}overviewnew`} class="qs-next-card">
+        <span class="qs-next-icon">🎨</span>
+        <div class="qs-next-title">Why njX?</div>
+        <div class="qs-next-desc">
+          See how njX compares to Bootstrap, Bulma, Pico CSS, and chota.
+          Interactive demos and live playground.
+        </div>
+        <span class="qs-next-arrow">View overview →</span>
+      </a>
+    </div>
+    <div
+      style="margin-top:56px;padding:40px;border-radius:20px;background:radial-gradient(ellipse 80% 100% at 50% 50%,color-mix(in srgb,var(--color-primary) 10%,transparent),transparent);border:1px solid color-mix(in srgb,var(--color-primary) 18%,transparent);text-align:center"
+    >
+      <div
+        style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--color-primary);margin-bottom:14px"
+      >
+        Open Source
+      </div>
+      <h3
+        style="font-size:clamp(20px,3vw,28px);font-weight:900;letter-spacing:-1px;margin-bottom:12px"
+      >
+        Like njX? Star it on GitHub ⭐
+      </h3>
+      <p
+        style="font-size:15px;color:var(--color-muted);line-height:1.65;margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto"
+      >
+        Free, open-source, MIT licensed. A GitHub star helps others discover the
+        project and keeps development going.
+      </p>
+      <a
+        href="https://github.com/njbSaab/njx-css-ui"
+        target="_blank"
+        class="sc-btn-primary"
+        style="font-size:15px;padding:14px 36px">★ Star on GitHub</a
+      >
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->

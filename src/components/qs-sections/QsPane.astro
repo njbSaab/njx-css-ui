@@ -1,0 +1,232 @@
+---
+
+const base = import.meta.env.BASE_URL;
+
+---
+
+  <!-- ══════════════════════ PANE ══════════════════════ -->
+  <div class="qs3-pane">
+    <div class="qs3-left">
+      <section class="qs3-block" id="qs3-b1">
+        <div class="qs3-n" data-n="1">Install</div>
+        <h2>One line in your <span class="qs3-em">&lt;head&gt;</span>.</h2>
+
+        <!-- Full / Interactive description -->
+        <div data-qs-mode="full interactive">
+          <p>
+            njX UI is a single CSS file. Link it from a CDN, install via npm, or
+            grab the ZIP. The rest of this page assumes the CDN path since it's
+            the fastest.
+          </p>
+          <p>
+            After the &lt;link&gt; loads you instantly have every <code
+              >.btn</code
+            >, <code>.inp</code>, <code>.tag</code>, <code>.card</code>, <code
+              >.tip</code
+            > and 20+ more classes available. No build. No bundler.
+          </p>
+        </div>
+        <!-- Classless description -->
+        <div data-qs-mode="classless" style="display:none">
+          <p>
+            <code>classless.min.css</code> — 47 KB, standalone. One link tag is all
+            you need. No class names, no build step, no bundler.
+          </p>
+          <p>
+            Every <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>,
+            <code>&lt;table&gt;</code>, <code>&lt;details&gt;</code> is styled automatically
+            through native HTML element selectors.
+          </p>
+        </div>
+
+        <div class="qs3-tip">
+          <div>
+            <b>Tip</b><br />The CDN is cached on jsdelivr — 293&nbsp;KB on disk,
+            ~40&nbsp;KB over the wire (gzip). Subsequent visitors hit your CDN
+            cache or theirs.
+          </div>
+        </div>
+      </section>
+
+      <section class="qs3-block" id="qs3-b2">
+        <div class="qs3-n" data-n="2">Theme</div>
+        <h2>One attribute. <span class="qs3-em">Nine themes.</span></h2>
+        <p>
+          Set <code>data-theme</code> on &lt;html&gt; (or any wrapper — it's scoped
+          to the subtree). Every component below that node re-tints automatically
+          through inherited CSS custom properties.
+        </p>
+        <ul>
+          <li><strong>dark</strong>Default. Electric blue on deep black.</li>
+          <li><strong>light</strong>Inverted. Readable on white.</li>
+          <li>
+            <strong>red · blue · green · cyan · yellow · pink · purple</strong
+            >Bold chromatic variants. Swap at any time.
+          </li>
+        </ul>
+        <div class="qs3-tip">
+          <div>
+            <b>Persist it</b><br />Drop this before the library to remember the
+            user's pick across reloads:<br /><code
+              style="background:transparent;padding:0;color:#9ce700"
+              >localStorage.getItem('theme') &amp;&amp;
+              document.documentElement.setAttribute('data-theme',
+              localStorage.getItem('theme'))</code
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="qs3-block" id="qs3-b3">
+        <!-- Full / Interactive: class composition -->
+        <div data-qs-mode="full interactive">
+          <div class="qs3-n" data-n="3">Compose</div>
+          <h2>Stack classes like <span class="qs3-em">Lego</span>.</h2>
+          <p>
+            Every class is additive. Mix a <code>.btn</code> with <code
+              >.btn-primary</code
+            > for color, <code>.btn-sm</code> for size, and <code
+              >.hover-glow</code
+            > for the hover — all on one element.
+          </p>
+          <p>
+            Same pattern for cards, inputs, tags, progress. There's no component
+            "instance" to instantiate and no config file to edit — if you can
+            write HTML, you're styling njX UI.
+          </p>
+          <ul>
+            <li>
+              <strong>Color</strong><code>.btn-primary</code>, <code
+                >.btn-accent</code
+              >, <code>.btn-success</code>, <code>.btn-error</code>, <code
+                >.btn-ghost</code
+              >, <code>.btn-outline</code>
+            </li>
+            <li>
+              <strong>Size</strong><code>.btn-xs</code>, <code>.btn-sm</code>, <code
+                >.btn-lg</code
+              >, <code>.btn-xl</code>
+            </li>
+            <li>
+              <strong>Hover</strong><code>.hover-grow</code>, <code
+                >.hover-lift</code
+              >, <code>.hover-glow</code>, <code>.hover-shimmer</code>, and 25
+              more
+            </li>
+          </ul>
+        </div>
+
+        <!-- Classless: elements reference -->
+        <div data-qs-mode="classless" style="display:none">
+          <div class="qs3-n" data-n="3">Elements</div>
+          <h2>Write HTML. <span class="qs3-em">It just works.</span></h2>
+          <p>
+            Every native HTML element below is styled automatically — no class
+            names, no configuration. Classless mode styles the browser's default
+            elements so your semantic markup looks great out of the box.
+          </p>
+          <ul>
+            <li>
+              <strong>Text</strong><code>&lt;h1&gt;</code>–<code
+                >&lt;h6&gt;</code
+              >, <code>&lt;p&gt;</code>, <code>&lt;blockquote&gt;</code>, <code
+                >&lt;code&gt;</code
+              >, <code>&lt;pre&gt;</code>
+            </li>
+            <li>
+              <strong>Forms</strong><code>&lt;input&gt;</code>, <code
+                >&lt;textarea&gt;</code
+              >, <code>&lt;select&gt;</code>, <code>&lt;button&gt;</code>, <code
+                >&lt;fieldset&gt;</code
+              >
+            </li>
+            <li>
+              <strong>Layout</strong><code>&lt;table&gt;</code>, <code
+                >&lt;ul&gt;</code
+              >, <code>&lt;ol&gt;</code>, <code>&lt;details&gt;</code>, <code
+                >&lt;nav&gt;</code
+              >
+            </li>
+          </ul>
+          <div class="qs3-tip">
+            <div>
+              <b>Want component classes?</b><br />Switch to <strong>Full</strong
+              > mode (<code>style.min.css</code>) — 30+ component classes plus
+              utilities. Use one stylesheet at a time: Full <em>or</em> Classless,
+              they are standalone builds.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="qs3-block" id="qs3-b4">
+        <div class="qs3-n" data-n="4">Brand it</div>
+        <h2>Override <span class="qs3-em">one variable</span>.</h2>
+        <p>
+          You don't need to ship a custom theme. Drop a <code>:root</code> override
+          in your own stylesheet and every component on the page retints. The default
+          palette is nine CSS custom properties; override them to match your brand.
+        </p>
+        <p>
+          Want scoped branding? Apply the same override to a wrapper element
+          instead of <code>:root</code>. Anything inside inherits — anything
+          outside keeps the default.
+        </p>
+        <div class="qs3-tip">
+          <div>
+            <b>Full tokens list</b><br />60+ variables live in the <code
+              >_base.css</code
+            > file — colors, radii, shadows, font stacks, ease curves. Every one is
+            overridable.
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="qs3-right">
+      <div class="qs3-code-card" id="qs3-ccard">
+        <div class="qs3-code-bar">
+          <div class="qs3-code-dots">
+            <span class="qs3-d" style="background:#ff5f57"></span>
+            <span class="qs3-d" style="background:#febc2e"></span>
+            <span class="qs3-d" style="background:#28c840"></span>
+          </div>
+          <span class="qs3-code-fname" id="qs3-cfname">index.html</span>
+          <span class="qs3-code-lang" id="qs3-clang">HTML</span>
+        </div>
+        <div class="qs3-code-tabs" id="qs3-ctabs"></div>
+        <div class="qs3-code-body" id="qs3-cbody">
+          <button class="qs3-code-copy" id="qs3-ccopy">Copy</button>
+          <pre id="qs3-cpre"></pre>
+        </div>
+        <div class="qs3-preview-toggle">
+          <button id="qs3-tb-code" class="on">code</button>
+          <button id="qs3-tb-both">code + preview</button>
+        </div>
+        <div class="qs3-preview-body" id="qs3-cpreview"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ CALLOUT ══════════════════════ -->
+  <section class="qs3-callout">
+    <div class="qs3-callout-card">
+      <div>
+        <h3>That's the whole tour.</h3>
+        <p>
+          30+ components, 9 themes, animations, hovers, gradients — all
+          available from the same CSS file you already linked.
+        </p>
+      </div>
+      <div class="qs3-ctas">
+        <a href={`${base}overview`} class="qs3-btn-pill qs3-p"
+          >Browse Components →</a
+        >
+        <a
+          href="https://github.com/njbSaab/njx-css-ui"
+          target="_blank"
+          class="qs3-btn-pill qs3-g">★ Star on GitHub</a
+        >
+      </div>
+    </div>
+  </section>
