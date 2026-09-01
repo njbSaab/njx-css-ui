@@ -21,6 +21,31 @@ export function escapeHtml(value) {
     .replace(/>/g, '&gt;');
 }
 
+/** Подсветка CSS в словаре секций: .cn свойства, .v значения,
+    .k селекторы/@-правила, .c комментарии (обе разновидности). */
+export function highlightCss(value) {
+  let escaped = escapeHtml(value)
+    .replace(/(&lt;!--[\s\S]*?--&gt;)/g, '<span class="c">$1</span>')
+    .replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="c">$1</span>');
+
+  return escaped
+    .split('\n')
+    .map((line) => {
+      if (line.trimStart().startsWith('<span class="c"')) return line;
+      const prop = line.replace(
+        /^(\s*)(--?[\w-]+|[a-zA-Z-]{2}[\w-]*)(\s*:\s*)([^;{<]*)(;?)/,
+        (_m, sp, name, colon, val, semi) =>
+          `${sp}<span class="cn">${name}</span>${colon}<span class="v">${val}</span>${semi}`,
+      );
+      if (prop !== line) return prop;
+      return line.replace(
+        /^(\s*)([^<{}][^{}]*)(\{)/,
+        (_m, sp, sel, brace) => `${sp}<span class="k">${sel}</span>${brace}`,
+      );
+    })
+    .join('\n');
+}
+
 /** Подсветка HTML в словаре секций: .k теги, .s имена атрибутов,
     .cn значения, .c комментарии (палитры в docs-sections.css). */
 export function highlightHtml(value) {

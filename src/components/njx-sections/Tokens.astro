@@ -493,7 +493,7 @@ if (saved) setTheme(saved);"
   <!-- ═══ END THEME SYSTEM ═══ -->
 
   <!-- ═══ THEME SWITCHER VARIANTS ═══ -->
-  <Demo is:raw label={'Theme switcher variants'} previewClass="sw-showcase" code={themeSwitcherVariantsCode}>
+  <Demo is:raw label={'Theme switcher variants'} previewClass="sw-showcase" lang="js" code={themeSwitcherVariantsCode}>
       <!-- 1. Toggle slide -->
       <div class="sw-card">
         <div class="sw-card-label">Toggle</div>
@@ -681,7 +681,7 @@ if (saved) setTheme(saved);"
       </div>
     </Demo>
 
-  <Demo is:raw label={'Primary shades (100→900)'} code={primaryShades100900Code}>
+  <Demo is:raw label={'Primary shades (100→900)'} lang="css" code={primaryShades100900Code}>
       <div class="color-swatch">
         <div
           class="color-swatch-block"
@@ -756,7 +756,7 @@ if (saved) setTheme(saved);"
       </div>
     </Demo>
 
-  <Demo is:raw label={'Neutrals (50→900)'} code={neutrals50900Code}>
+  <Demo is:raw label={'Neutrals (50→900)'} lang="css" code={neutrals50900Code}>
       <div class="color-swatch">
         <div
           class="color-swatch-block"
@@ -840,7 +840,7 @@ if (saved) setTheme(saved);"
     </Demo>
 
   <!-- ═══ ACCENT SHADES ═══ -->
-  <Demo is:raw label={'Accent shades (100→900)'} code={accentShades100900Code}>
+  <Demo is:raw label={'Accent shades (100→900)'} lang="css" code={accentShades100900Code}>
       <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-accent-100)"></div><div class="color-swatch-label">100</div></div>
       <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-accent-200)"></div><div class="color-swatch-label">200</div></div>
       <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-accent-300)"></div><div class="color-swatch-label">300</div></div>
@@ -853,7 +853,7 @@ if (saved) setTheme(saved);"
     </Demo>
 
   <!-- ═══ SUCCESS / ERROR SHADES ═══ -->
-  <Demo is:raw label={'Success shades (100→800)'} code={successShades100800Code}>
+  <Demo is:raw label={'Success shades (100→800)'} lang="css" code={successShades100800Code}>
       <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-success-100)"></div><div class="color-swatch-label">100</div></div>
       <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-success-200)"></div><div class="color-swatch-label">200</div></div>
       <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-success-300)"></div><div class="color-swatch-label">300</div></div>
@@ -864,7 +864,7 @@ if (saved) setTheme(saved);"
       <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-success-800)"></div><div class="color-swatch-label">800</div></div>
     </Demo>
 
-  <Demo is:raw label={'Error shades (100→800)'} code={errorShades100800Code}>
+  <Demo is:raw label={'Error shades (100→800)'} lang="css" code={errorShades100800Code}>
       <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-error-100)"></div><div class="color-swatch-label">100</div></div>
       <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-error-200)"></div><div class="color-swatch-label">200</div></div>
       <div class="color-swatch"><div class="color-swatch-block" style="background:var(--color-error-300)"></div><div class="color-swatch-label">300</div></div>
@@ -876,7 +876,7 @@ if (saved) setTheme(saved);"
     </Demo>
 
   <!-- ═══ BORDER RADIUS ═══ -->
-  <Demo is:raw label={'Border radius'} previewStyle="flex-wrap:wrap;gap:12px;align-items:flex-end" code={borderRadiusCode}>
+  <Demo is:raw label={'Border radius'} previewStyle="flex-wrap:wrap;gap:12px;align-items:flex-end" lang="css" code={borderRadiusCode}>
       <div class="tk-r-item">
         <div class="tk-r-box" style="border-radius:var(--radius-none)"></div>
         <code class="tk-r-var">--radius-none</code>
@@ -915,7 +915,7 @@ if (saved) setTheme(saved);"
     </Demo>
 
   <!-- ═══ SHADOWS ═══ -->
-  <Demo is:raw label={'Shadows'} previewStyle="flex-wrap:wrap;gap:12px;align-items:stretch" code={shadowsCode}>
+  <Demo is:raw label={'Shadows'} previewStyle="flex-wrap:wrap;gap:12px;align-items:stretch" lang="css" code={shadowsCode}>
       <div class="tk-sh-panel">
         <div class="tk-sh-float" style="box-shadow:var(--shadow-sm)">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
@@ -961,7 +961,7 @@ if (saved) setTheme(saved);"
     </Demo>
 
   <!-- ═══ TRANSITIONS ═══ -->
-  <Demo is:raw label={'Transitions'} previewClass="col" previewStyle="gap:12px" code={transitionsCode}>
+  <Demo is:raw label={'Transitions'} previewClass="col" previewStyle="gap:12px" lang="css" code={transitionsCode}>
       <div class="tk-ease-row">
         <div class="tk-ease-meta">
           <code class="tk-ease-var">--ease-fast</code>
@@ -998,7 +998,7 @@ if (saved) setTheme(saved);"
     </Demo>
 
   <!-- ═══ Z-INDEX ═══ -->
-  <Demo is:raw label={'Z-index scale'} previewStyle="gap:20px;align-items:center;flex-wrap:wrap" code={zIndexScaleCode}>
+  <Demo is:raw label={'Z-index scale'} previewStyle="gap:20px;align-items:center;flex-wrap:wrap" lang="css" code={zIndexScaleCode}>
       <div class="tk-z-stage">
         <div class="tk-z-layer" style="--n:1;--c:rgba(255,255,255,0.04);bottom:0px;left:0px"><span>--z-0 · 0</span></div>
         <div class="tk-z-layer" style="--n:2;--c:rgba(20,160,255,0.08);bottom:12px;left:12px"><span>--z-1 · 1</span></div>
@@ -1018,7 +1018,7 @@ if (saved) setTheme(saved);"
     </Demo>
 
   <!-- ═══ RESPONSIVE TOKENS ═══ -->
-  <Demo is:raw label={'Responsive tokens — automatic scaling'} previewClass="col" previewStyle="gap:0" code={responsiveTokensAutomaticScalingCode}>
+  <Demo is:raw label={'Responsive tokens — automatic scaling'} previewClass="col" previewStyle="gap:0" lang="css" code={responsiveTokensAutomaticScalingCode}>
       <div class="tk-bp-row tk-bp-head">
         <span>Breakpoint</span><span>--fs-base</span><span>--space-4</span><span>--radius-lg</span><span>--grid-gutter</span>
       </div>
@@ -1045,7 +1045,7 @@ if (saved) setTheme(saved);"
       </div>
     </Demo>
 
-  <Demo is:raw label={'Spacing scale'} previewClass="col" code={spacingScaleCode}>
+  <Demo is:raw label={'Spacing scale'} previewClass="col" lang="css" code={spacingScaleCode}>
       <div class="space-demo">
         <div class="space-demo-bar" style="width:4px"></div><span
           >--space-1: 4px</span
