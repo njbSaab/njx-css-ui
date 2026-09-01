@@ -83,8 +83,6 @@ function getRawCode(codeEl) {
 
 function initCodeToggles() {
   document.querySelectorAll('.lib-code-wrapper').forEach((wrapper) => {
-    // Skip elements inside .cl-scope (handled by classless-items initClasslessToggles)
-    if (wrapper.closest('.cl-scope')) return;
     // Skip if already initialized
     if (wrapper.dataset.codeReady) return;
     wrapper.dataset.codeReady = '1';
