@@ -393,6 +393,11 @@ const DOC_FONT_SIZES = [
     { n: 'lg', px: 18 }, { n: 'xl', px: 20 }, { n: '2xl', px: 24 },
     { n: '3xl', px: 30 }, { n: '4xl', px: 36 }, { n: '5xl', px: 48 },
 ];
+const DOC_EASES = [
+    { t: '--ease-fast', v: '0.1s ease' },
+    { t: '--ease', v: '0.2s ease' },
+    { t: '--ease-slow', v: '0.4s ease' },
+];
 const DOC_RADII = [
     { n: 'none', v: '0' }, { n: 'sm', v: '6px' }, { n: 'md', v: '12px' },
     { n: 'lg', v: '20px' }, { n: 'full', v: '9999px' },
@@ -1904,38 +1909,9 @@ const DOC_THEME_SWATCHES = [
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="tok">--space-1</td>
-                                        <td class="val">4px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--space-2</td>
-                                        <td class="val">8px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--space-3</td>
-                                        <td class="val">12px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--space-4</td>
-                                        <td class="val">16px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--space-6</td>
-                                        <td class="val">24px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--space-8</td>
-                                        <td class="val">32px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--space-12</td>
-                                        <td class="val">48px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--space-16</td>
-                                        <td class="val">64px</td>
-                                    </tr>
+                                    {DOC_SPACES.map((x) => (
+                                        <tr><td class="tok">--space-{x.n}</td><td class="val">{x.px}px</td></tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>
@@ -1957,42 +1933,9 @@ const DOC_THEME_SWATCHES = [
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="tok">--fs-xs</td>
-                                        <td class="val">12px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--fs-sm</td>
-                                        <td class="val">14px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--fs-base</td>
-                                        <td class="val">16px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--fs-lg</td>
-                                        <td class="val">18px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--fs-xl</td>
-                                        <td class="val">20px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--fs-2xl</td>
-                                        <td class="val">24px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--fs-3xl</td>
-                                        <td class="val">30px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--fs-4xl</td>
-                                        <td class="val">36px</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tok">--fs-5xl</td>
-                                        <td class="val">48px</td>
-                                    </tr>
+                                    {DOC_FONT_SIZES.map((x) => (
+                                        <tr><td class="tok">--fs-{x.n}</td><td class="val">{x.px}px</td></tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>
@@ -2008,29 +1951,12 @@ const DOC_THEME_SWATCHES = [
                             </div>
                             <div class="doc-token-table-wrap">
                                 <table class="doc-token-table">
-                                    <tbody>
-                                        <tr>
-                                            <td class="tok">--radius-none</td>
-                                            <td class="val">0</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tok">--radius-sm</td>
-                                            <td class="val">6px</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tok">--radius-md</td>
-                                            <td class="val">12px</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tok">--radius-lg</td>
-                                            <td class="val">20px</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tok">--radius-full</td>
-                                            <td class="val">9999px</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <tbody>
+                                    {DOC_RADII.map((x) => (
+                                        <tr><td class="tok">--radius-{x.n}</td><td class="val">{x.v}</td></tr>
+                                    ))}
+                                </tbody>
+                            </table>
                             </div>
                         </div>
                         <div>
@@ -2041,21 +1967,12 @@ const DOC_THEME_SWATCHES = [
                             </div>
                             <div class="doc-token-table-wrap">
                                 <table class="doc-token-table">
-                                    <tbody>
-                                        <tr>
-                                            <td class="tok">--ease-fast</td>
-                                            <td class="val">0.1s ease</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tok">--ease</td>
-                                            <td class="val">0.2s ease</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tok">--ease-slow</td>
-                                            <td class="val">0.4s ease</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <tbody>
+                                    {DOC_EASES.map((x) => (
+                                        <tr><td class="tok">{x.t}</td><td class="val">{x.v}</td></tr>
+                                    ))}
+                                </tbody>
+                            </table>
                             </div>
                         </div>
                     </div>
