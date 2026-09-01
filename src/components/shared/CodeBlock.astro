@@ -127,7 +127,8 @@ const windowLabel = label || filename || 'HTML';
 )}
 
 <style is:global>
-    .lib-code .codeblock-pre {
+    .lib-code .codeblock-pre,
+    .sc-code-body .codeblock-pre {
         margin: 0;
         padding: 0;
         background: transparent !important;
@@ -136,9 +137,15 @@ const windowLabel = label || filename || 'HTML';
         overflow-x: auto;
     }
 
-    .lib-code .codeblock-pre code {
+    /* нейтрализуем страничные стили инлайнового <code> (подложка/цвет/паддинги),
+       которые иначе ложатся на <pre><code> внутри окна */
+    .lib-code .codeblock-pre code,
+    .sc-code-body .codeblock-pre code {
         display: block;
         background: transparent;
+        color: inherit;
+        padding: 0;
+        border-radius: 0;
         font-family: inherit;
         font-size: inherit;
         line-height: inherit;
