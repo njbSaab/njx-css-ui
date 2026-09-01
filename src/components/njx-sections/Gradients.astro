@@ -1,3 +1,98 @@
+---
+import Demo from '../shared/Demo.astro';
+
+const backgroundGradientsMainCode = `
+<!-- _gradients.css — background gradients -->
+<div class="gradient-primary">...</div>
+<div class="gradient-primary-light">...</div>
+<div class="gradient-accent">...</div>
+<div class="gradient-success">...</div>
+`;
+
+const backgroundGradientsCombinedCode = `
+<!-- _gradients.css — combined -->
+<div class="gradient-blue-purple">...</div>
+<div class="gradient-ocean">...</div>
+<div class="gradient-sunset">...</div>
+<div class="gradient-nature">...</div>
+<div class="gradient-gold">...</div>
+<div class="gradient-cosmic">...</div>
+`;
+
+const backgroundGradientsDarkCode = `
+<!-- _gradients.css — dark gradients -->
+<div class="gradient-dark-midnight">...</div>
+<div class="gradient-dark-void">...</div>
+<div class="gradient-dark-blue">...</div>
+<div class="gradient-dark-purple">...</div>
+`;
+
+const textGradientsCode = `
+<!-- _gradients.css — gradient text (background-clip: text) -->
+<h1 class="text-gradient-primary">Primary</h1>
+<h1 class="text-gradient-accent">Accent</h1>
+<h1 class="text-gradient-blue-purple">Blue Purple</h1>
+<h1 class="text-gradient-sunset">Sunset</h1>
+<h1 class="text-gradient-ocean">Ocean</h1>
+<h1 class="text-gradient-gold">Gold</h1>
+<h1 class="text-gradient-cosmic">Cosmic</h1>
+<h1 class="text-gradient-rainbow">Rainbow</h1>
+`;
+
+const gradientBordersCode = `
+<!-- _gradients.css — gradient borders (via mask + padding) -->
+<div class="border-gradient-primary">...</div>
+<div class="border-gradient-accent">...</div>
+<div class="border-gradient-rainbow">...</div>
+<div class="border-gradient-gold">...</div>
+`;
+
+const animatedGradientsCode = `
+<!-- _gradients.css — animated gradients (background-size: 200%) -->
+<div class="gradient-animated">Bright animated</div>
+<div class="gradient-animated-subtle">Soft animated</div>
+`;
+
+const gradientOverlaysCode = `
+<!-- _gradients.css — gradient overlays (::before pseudo) -->
+<!-- Element must have position:relative -->
+<div class="gradient-overlay-dark" style="position:relative">
+  <img src="bg.jpg" />
+  <div style="position:relative;z-index:1">Text above</div>
+</div>
+<div class="gradient-overlay-primary" style="position:relative">...</div>
+`;
+
+const conicGradientsCode = `
+<!-- _gradients.css — conic gradients -->
+<div class="gradient-conic">...</div>
+<div class="gradient-conic-warm">...</div>
+<div class="gradient-conic-cool">...</div>
+<div class="gradient-conic-pie">...</div>
+`;
+
+const meshGradientsCode = `
+<!-- _gradients.css — mesh (multi-point radial gradients) -->
+<div class="gradient-mesh">...</div>
+<div class="gradient-mesh-warm">...</div>
+<div class="gradient-mesh-cool">...</div>
+`;
+
+const shimmerSkeletonLoaderCode = `
+<!-- .gradient-shimmer — animated skeleton loader -->
+<div class="gradient-shimmer" style="height:20px;border-radius:4px"></div>
+<div class="gradient-shimmer" style="height:80px;border-radius:8px"></div>
+`;
+
+const utilityDirectionRadialCode = `
+<!-- Utility classes with CSS vars --gradient-from / --gradient-to -->
+<div class="gradient-horizontal" style="--gradient-from:#f9063f;--gradient-to:#667eea">...</div>
+<div class="gradient-vertical" style="--gradient-from:#f9063f;--gradient-to:#667eea">...</div>
+<div class="gradient-diagonal" style="--gradient-from:#f9063f;--gradient-to:#667eea">...</div>
+<div class="gradient-radial" style="--gradient-from:#f9063f;--gradient-to:transparent">...</div>
+`;
+---
+
 <section class="lib-section" id="gradients">
     <div class="lib-section-title">🌈 Gradients</div>
     <div class="lib-section-desc">
@@ -6,9 +101,7 @@
     </div>
 
     <!-- Background Gradients Primary -->
-    <div class="lib-component">
-        <div class="lib-component-label">🎨 Background Gradients — Main</div>
-        <div class="lib-preview">
+    <Demo is:raw label={'🎨 Background Gradients — Main'} code={backgroundGradientsMainCode}>
             <div
                 class="gradient-primary p-4 rounded-lg"
                 style="min-width:120px;text-align:center;color:#fff;font-weight:700"
@@ -57,53 +150,10 @@
             >
                 .gradient-warning
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- _gradients.css — background gradients -->
-<div class="gradient-primary">...</div>
-<div class="gradient-primary-light">...</div>
-<div class="gradient-accent">...</div>
-<div class="gradient-success">...</div>'
-                >
-                    <span class="c">/* _gradients.css — main */</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-primary"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-primary-light"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-accent"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-success"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Background Gradients Combinations -->
-    <div class="lib-component">
-        <div class="lib-component-label">
-            🌈 Background Gradients — Combined
-        </div>
-        <div class="lib-preview">
+    <Demo is:raw label={'🌈 Background Gradients — Combined'} code={backgroundGradientsCombinedCode}>
             <div
                 class="gradient-blue-purple p-4 rounded-lg"
                 style="min-width:120px;text-align:center;color:#fff;font-weight:700"
@@ -140,65 +190,10 @@
             >
                 .gradient-cosmic
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- _gradients.css — combined -->
-<div class="gradient-blue-purple">...</div>
-<div class="gradient-ocean">...</div>
-<div class="gradient-sunset">...</div>
-<div class="gradient-nature">...</div>
-<div class="gradient-gold">...</div>
-<div class="gradient-cosmic">...</div>'
-                >
-                    <span class="c">/* _gradients.css — combined */</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-blue-purple"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-ocean"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-sunset"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-nature"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-gold"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-cosmic"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Background Gradients Dark -->
-    <div class="lib-component">
-        <div class="lib-component-label">🌑 Background Gradients — Dark</div>
-        <div class="lib-preview">
+    <Demo is:raw label={'🌑 Background Gradients — Dark'} code={backgroundGradientsDarkCode}>
             <div
                 class="gradient-dark-midnight p-4 rounded-lg"
                 style="min-width:120px;text-align:center;color:#fff;font-weight:700"
@@ -223,51 +218,10 @@
             >
                 .gradient-dark-purple
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- _gradients.css — dark gradients -->
-<div class="gradient-dark-midnight">...</div>
-<div class="gradient-dark-void">...</div>
-<div class="gradient-dark-blue">...</div>
-<div class="gradient-dark-purple">...</div>'
-                >
-                    <span class="c">/* _gradients.css — dark */</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-dark-midnight"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-dark-void"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-dark-blue"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-dark-purple"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Text Gradients -->
-    <div class="lib-component">
-        <div class="lib-component-label">✏️ Text Gradients</div>
-        <div class="lib-preview col" style="align-items:flex-start;gap:20px">
+    <Demo is:raw label={'✏️ Text Gradients'} previewClass="col" previewStyle="align-items:flex-start;gap:20px" code={textGradientsCode}>
             <h2 class="text-gradient-primary" style="margin:0;font-size:36px">
                 .text-gradient-primary
             </h2>
@@ -295,80 +249,10 @@
             <h2 class="text-gradient-rainbow" style="margin:0;font-size:36px">
                 .text-gradient-rainbow
             </h2>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- _gradients.css — gradient text (background-clip: text) -->
-<h1 class="text-gradient-primary">Primary</h1>
-<h1 class="text-gradient-accent">Accent</h1>
-<h1 class="text-gradient-blue-purple">Blue Purple</h1>
-<h1 class="text-gradient-sunset">Sunset</h1>
-<h1 class="text-gradient-ocean">Ocean</h1>
-<h1 class="text-gradient-gold">Gold</h1>
-<h1 class="text-gradient-cosmic">Cosmic</h1>
-<h1 class="text-gradient-rainbow">Rainbow</h1>'
-                >
-                    <span class="c">/* _gradients.css — gradient text */</span
-                    ><br />
-                    <span class="k">&lt;h1</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-gradient-primary"</span
-                    ><span class="k">&gt;</span>Primary<span class="k"
-                        >&lt;/h1&gt;</span
-                    ><br />
-                    <span class="k">&lt;h1</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-gradient-accent"</span
-                    ><span class="k">&gt;</span>Accent<span class="k"
-                        >&lt;/h1&gt;</span
-                    ><br />
-                    <span class="k">&lt;h1</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-gradient-blue-purple"</span
-                    ><span class="k">&gt;</span>Blue Purple<span class="k"
-                        >&lt;/h1&gt;</span
-                    ><br />
-                    <span class="k">&lt;h1</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-gradient-sunset"</span
-                    ><span class="k">&gt;</span>Sunset<span class="k"
-                        >&lt;/h1&gt;</span
-                    ><br />
-                    <span class="k">&lt;h1</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-gradient-ocean"</span
-                    ><span class="k">&gt;</span>Ocean<span class="k"
-                        >&lt;/h1&gt;</span
-                    ><br />
-                    <span class="k">&lt;h1</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-gradient-gold"</span
-                    ><span class="k">&gt;</span>Gold<span class="k"
-                        >&lt;/h1&gt;</span
-                    ><br />
-                    <span class="k">&lt;h1</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-gradient-cosmic"</span
-                    ><span class="k">&gt;</span>Cosmic<span class="k"
-                        >&lt;/h1&gt;</span
-                    ><br />
-                    <span class="k">&lt;h1</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"text-gradient-rainbow"</span
-                    ><span class="k">&gt;</span>Rainbow<span class="k"
-                        >&lt;/h1&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Gradient Borders -->
-    <div class="lib-component">
-        <div class="lib-component-label">🔲 Gradient Borders</div>
-        <div class="lib-preview">
+    <Demo is:raw label={'🔲 Gradient Borders'} code={gradientBordersCode}>
             <div
                 class="border-gradient-primary p-4 rounded-lg"
                 style="min-width:140px;text-align:center;"
@@ -401,53 +285,10 @@
                     .border-gradient-gold
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- _gradients.css — gradient borders (via mask + padding) -->
-<div class="border-gradient-primary">...</div>
-<div class="border-gradient-accent">...</div>
-<div class="border-gradient-rainbow">...</div>
-<div class="border-gradient-gold">...</div>'
-                >
-                    <span class="c"
-                        >/* _gradients.css — gradient borders */</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"border-gradient-primary"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"border-gradient-accent"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"border-gradient-rainbow"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"border-gradient-gold"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Animated Gradients -->
-    <div class="lib-component">
-        <div class="lib-component-label">✨ Animated Gradients</div>
-        <div class="lib-preview">
+    <Demo is:raw label={'✨ Animated Gradients'} code={animatedGradientsCode}>
             <div
                 class="gradient-animated p-4 rounded-lg"
                 style="min-width:160px;text-align:center;color:#fff;font-weight:700"
@@ -460,37 +301,10 @@
             >
                 .gradient-animated-subtle
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- _gradients.css — animated gradients (background-size: 200%) -->
-<div class="gradient-animated">Bright animated</div>
-<div class="gradient-animated-subtle">Soft animated</div>'
-                >
-                    <span class="c">/* _gradients.css — animated */</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-animated"</span
-                    ><span class="k">&gt;</span>Vivid<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-animated-subtle"</span
-                    ><span class="k">&gt;</span>Subtle<span class="k"
-                        >&lt;/div&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Gradient Overlays -->
-    <div class="lib-component">
-        <div class="lib-component-label">🎭 Gradient Overlays</div>
-        <div class="lib-preview col" style="align-items:stretch;gap:20px">
+    <Demo is:raw label={'🎭 Gradient Overlays'} previewClass="col" previewStyle="align-items:stretch;gap:20px" code={gradientOverlaysCode}>
             <div
                 class="gradient-overlay-dark p-6 rounded-lg"
                 style="background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23333%22 width=%22100%22 height=%22100%22/></svg>');min-height:120px;position:relative"
@@ -511,56 +325,10 @@
                     .gradient-overlay-primary
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- _gradients.css — gradient overlays (::before pseudo) -->
-<!-- Element must have position:relative -->
-<div class="gradient-overlay-dark" style="position:relative">
-  <img src="bg.jpg" />
-  <div style="position:relative;z-index:1">Text above</div>
-</div>
-<div class="gradient-overlay-primary" style="position:relative">...</div>'
-                >
-                    <span class="c"
-                        >/* _gradients.css — overlays (via ::before) */</span
-                    ><br />
-                    <span class="c">/* position:relative is required */</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-overlay-dark"</span
-                    >
-                    <span class="s">style</span>=<span class="cn"
-                        >"position:relative"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">style</span>=<span class="cn"
-                        >"position:relative;z-index:1"</span
-                    ><span class="k">&gt;</span>Over photo<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-overlay-primary"</span
-                    >
-                    <span class="s">style</span>=<span class="cn"
-                        >"position:relative"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Conic Gradients -->
-    <div class="lib-component">
-        <div class="lib-component-label">🌀 Conic Gradients</div>
-        <div class="lib-preview">
+    <Demo is:raw label={'🌀 Conic Gradients'} code={conicGradientsCode}>
             <div
                 class="gradient-conic p-4 rounded-lg"
                 style="min-width:120px;height:120px;border-radius:50%;text-align:center;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px"
@@ -584,51 +352,10 @@
                 style="width:120px;height:120px;border-radius:50%"
             >
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- _gradients.css — conic gradients -->
-<div class="gradient-conic">...</div>
-<div class="gradient-conic-warm">...</div>
-<div class="gradient-conic-cool">...</div>
-<div class="gradient-conic-pie">...</div>'
-                >
-                    <span class="c">/* _gradients.css — conic */</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-conic"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-conic-warm"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-conic-cool"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-conic-pie"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Mesh Gradients -->
-    <div class="lib-component">
-        <div class="lib-component-label">🕸 Mesh Gradients</div>
-        <div class="lib-preview">
+    <Demo is:raw label={'🕸 Mesh Gradients'} code={meshGradientsCode}>
             <div
                 class="gradient-mesh p-6 rounded-lg"
                 style="min-width:160px;min-height:100px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--color-light)"
@@ -647,46 +374,10 @@
             >
                 .gradient-mesh-cool
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- _gradients.css — mesh (multi-point radial gradients) -->
-<div class="gradient-mesh">...</div>
-<div class="gradient-mesh-warm">...</div>
-<div class="gradient-mesh-cool">...</div>'
-                >
-                    <span class="c"
-                        >/* _gradients.css — mesh (multi-point radial) */</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-mesh"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-mesh-warm"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-mesh-cool"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Shimmer skeleton -->
-    <div class="lib-component">
-        <div class="lib-component-label">💀 Shimmer / Skeleton Loader</div>
-        <div class="lib-preview col" style="align-items:stretch;gap:10px">
+    <Demo is:raw label={'💀 Shimmer / Skeleton Loader'} previewClass="col" previewStyle="align-items:stretch;gap:10px" code={shimmerSkeletonLoaderCode}>
             <div
                 class="gradient-shimmer rounded-md"
                 style="height:20px;max-width:300px"
@@ -702,41 +393,10 @@
                 style="height:80px;max-width:300px;border-radius:8px"
             >
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- .gradient-shimmer — animated skeleton loader -->
-<div class="gradient-shimmer" style="height:20px;border-radius:4px"></div>
-<div class="gradient-shimmer" style="height:80px;border-radius:8px"></div>'
-                >
-                    <span class="c"
-                        >/* .gradient-shimmer — skeleton loader animation */</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-shimmer"</span
-                    >
-                    <span class="s">style</span>=<span class="cn"
-                        >"height:20px;border-radius:4px"</span
-                    ><span class="k">&gt;&lt;/div&gt;</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-shimmer"</span
-                    >
-                    <span class="s">style</span>=<span class="cn"
-                        >"height:80px;border-radius:8px"</span
-                    ><span class="k">&gt;&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Utility: direction & radial -->
-    <div class="lib-component">
-        <div class="lib-component-label">📐 Utility — direction & radial</div>
-        <div class="lib-preview">
+    <Demo is:raw label={'📐 Utility — direction & radial'} code={utilityDirectionRadialCode}>
             <div
                 class="gradient-horizontal p-4 rounded-lg"
                 style="--gradient-from:var(--color-primary);--gradient-to:var(--color-accent);min-width:130px;text-align:center;color:#fff;font-weight:700;font-size:12px"
@@ -761,50 +421,5 @@
             >
                 .gradient-radial
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Utility classes with CSS vars --gradient-from / --gradient-to -->
-<div class="gradient-horizontal" style="--gradient-from:#f9063f;--gradient-to:#667eea">...</div>
-<div class="gradient-vertical" style="--gradient-from:#f9063f;--gradient-to:#667eea">...</div>
-<div class="gradient-diagonal" style="--gradient-from:#f9063f;--gradient-to:#667eea">...</div>
-<div class="gradient-radial" style="--gradient-from:#f9063f;--gradient-to:transparent">...</div>'
-                >
-                    <span class="c"
-                        >/* Utility — use CSS vars to set colors */</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-horizontal"</span
-                    ><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="s">style</span
-                    >=<span class="cn"
-                        >"--gradient-from:#f9063f;--gradient-to:#667eea"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-vertical"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-diagonal"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"gradient-radial"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 </section>
