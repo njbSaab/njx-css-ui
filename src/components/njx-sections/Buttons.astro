@@ -1,207 +1,34 @@
-<section class="lib-section" id="buttons">
-    <div class="lib-section-title">🔲 Buttons</div>
-    <div class="lib-section-desc">
-        All variants from <code>_buttons.css</code>. Base: <code>.btn</code> + variant.
-    </div>
+---
+import Demo from '../shared/Demo.astro';
 
-    <div class="lib-component">
-        <div class="lib-preview">
-            <button class="btn btn-primary">btn-primary</button>
-            <button class="btn btn-accent">btn-accent</button>
-            <button class="btn btn-success">btn-success</button>
-            <button class="btn btn-error">btn-error</button>
-            <button class="btn btn-warning">btn-warning</button>
-            <button class="btn btn-dark">btn-dark</button>
-            <button class="btn btn-light">btn-light</button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<button class="btn btn-primary">Primary</button>
+const unit1Code = `
+<button class="btn btn-primary">Primary</button>
 <button class="btn btn-accent">Accent</button>
 <button class="btn btn-success">Success</button>
 <button class="btn btn-error">Error</button>
-<button class="btn btn-warning">Warning</button>'
-                >
-                    <span class="c"
-                        >/* _buttons.css — base: .btn + variant */</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary"</span
-                    ><span class="k">&gt;</span>Primary<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-accent"</span
-                    ><span class="k">&gt;</span>Accent<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-success"</span
-                    ><span class="k">&gt;</span>Success<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-error"</span
-                    ><span class="k">&gt;</span>Error<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-warning"</span
-                    ><span class="k">&gt;</span>Warning<span class="k"
-                        >&lt;/button&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+<button class="btn btn-warning">Warning</button>
+`;
 
-    <div class="lib-component">
-        <div class="lib-component-label">Outline</div>
-        <div class="lib-preview">
-            <button class="btn btn-outline">btn-outline</button>
-            <button class="btn btn-outline-accent">btn-outline-accent</button>
-            <button class="btn btn-outline-success">btn-outline-success</button>
-            <button class="btn btn-outline-error">btn-outline-error</button>
-            <button class="btn btn-outline-warning">btn-outline-warning</button>
-            <button class="btn btn-outline-white">btn-outline-white</button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<button class="btn btn-outline">Outline</button>
+const outlineCode = `
+<button class="btn btn-outline">Outline</button>
 <button class="btn btn-outline-accent">Accent</button>
 <button class="btn btn-outline-success">Success</button>
 <button class="btn btn-outline-error">Error</button>
 <button class="btn btn-outline-warning">Warning</button>
-<button class="btn btn-outline-white">White</button>'
-                >
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-outline"</span
-                    ><span class="k">&gt;</span>Outline<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-outline-accent"</span
-                    ><span class="k">&gt;</span>Accent<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-outline-success"</span
-                    ><span class="k">&gt;</span>Success<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-outline-error"</span
-                    ><span class="k">&gt;</span>Error<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-outline-warning"</span
-                    ><span class="k">&gt;</span>Warning<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-outline-white"</span
-                    ><span class="k">&gt;</span>White<span class="k"
-                        >&lt;/button&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+<button class="btn btn-outline-white">White</button>
+`;
 
-    <div class="lib-component">
-        <div class="lib-component-label">Ghost</div>
-        <div class="lib-preview">
-            <button class="btn btn-ghost">btn-ghost</button>
-            <button class="btn btn-ghost-primary">btn-ghost-primary</button>
-            <button class="btn btn-ghost-accent">btn-ghost-accent</button>
-            <button class="btn btn-ghost-success">btn-ghost-success</button>
-            <button class="btn btn-ghost-error">btn-ghost-error</button>
-            <button class="btn btn-ghost-warning">btn-ghost-warning</button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<button class="btn btn-ghost">Ghost</button>
+const ghostCode = `
+<button class="btn btn-ghost">Ghost</button>
 <button class="btn btn-ghost-primary">Primary</button>
 <button class="btn btn-ghost-accent">Accent</button>
 <button class="btn btn-ghost-success">Success</button>
 <button class="btn btn-ghost-error">Error</button>
-<button class="btn btn-ghost-warning">Warning</button>'
-                >
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-ghost"</span
-                    ><span class="k">&gt;</span>Ghost<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-ghost-primary"</span
-                    ><span class="k">&gt;</span>Primary<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-ghost-accent"</span
-                    ><span class="k">&gt;</span>Accent<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-ghost-success"</span
-                    ><span class="k">&gt;</span>Success<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-ghost-error"</span
-                    ><span class="k">&gt;</span>Error<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-ghost-warning"</span
-                    ><span class="k">&gt;</span>Warning<span class="k"
-                        >&lt;/button&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+<button class="btn btn-ghost-warning">Warning</button>
+`;
 
-    <!-- ── Soft / Tinted variants ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">Soft / Tinted variants</div>
-        <div class="lib-preview" style="gap:10px;flex-wrap:wrap">
-            <button class="btn btn-soft-primary">soft-primary</button>
-            <button class="btn btn-soft-accent">soft-accent</button>
-            <button class="btn btn-soft-success">soft-success</button>
-            <button class="btn btn-soft-error">soft-error</button>
-            <button class="btn btn-soft-warning">soft-warning</button>
-            <button class="btn btn-soft-info">soft-info</button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Soft: tinted bg + colored text + colored border -->
+const softTintedVariantsCode = `
+<!-- Soft: tinted bg + colored text + colored border -->
 <!-- Great for secondary actions, tags, status chips -->
 <button class="btn btn-soft-primary">Primary</button>
 <button class="btn btn-soft-accent">Accent</button>
@@ -212,59 +39,273 @@
 
 <!-- Combine with sizes -->
 <button class="btn btn-soft-primary btn-sm">Small soft</button>
-<button class="btn btn-soft-error btn-xs">xs soft</button>'
-                >
-                    <span class="c"
-                        >&lt;!-- Soft: tinted bg + colored text + border --&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-soft-primary"</span
-                    ><span class="k">&gt;</span>Primary<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-soft-accent"</span
-                    ><span class="k">&gt;</span>Accent<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-soft-success"</span
-                    ><span class="k">&gt;</span>Success<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-soft-error"</span
-                    ><span class="k">&gt;</span>Delete<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-soft-warning"</span
-                    ><span class="k">&gt;</span>Warning<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-soft-info"</span
-                    ><span class="k">&gt;</span>Info<span class="k"
-                        >&lt;/button&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
+<button class="btn btn-soft-error btn-xs">xs soft</button>
+`;
+
+const linkButtonsFilledCode = `
+<a href="#" class="link-btn link-btn-primary">Primary</a>
+<a href="#" class="link-btn link-btn-accent">Accent</a>
+<a href="#" class="link-btn link-btn-success">Success</a>
+<a href="#" class="link-btn link-btn-error">Error</a>
+<a href="#" class="link-btn link-btn-warning">Warning</a>
+<a href="#" class="link-btn link-btn-dark">Dark</a>
+<a href="#" class="link-btn link-btn-light">Light</a>
+`;
+
+const linkButtonsOutlineCode = `
+<a href="#" class="link-btn link-btn-outline-primary">Primary</a>
+<a href="#" class="link-btn link-btn-outline-accent">Accent</a>
+<a href="#" class="link-btn link-btn-outline-success">Success</a>
+<a href="#" class="link-btn link-btn-outline-error">Error</a>
+<a href="#" class="link-btn link-btn-outline-warning">Warning</a>
+<a href="#" class="link-btn link-btn-outline-dark">Dark</a>
+<a href="#" class="link-btn link-btn-outline-light">Light</a>
+`;
+
+const linkButtonsGhostCode = `
+<a href="#" class="link-btn link-btn-ghost-primary">Primary</a>
+<a href="#" class="link-btn link-btn-ghost-accent">Accent</a>
+<a href="#" class="link-btn link-btn-ghost-success">Success</a>
+<a href="#" class="link-btn link-btn-ghost-error">Error</a>
+<a href="#" class="link-btn link-btn-ghost-warning">Warning</a>
+<a href="#" class="link-btn link-btn-ghost-dark">Dark</a>
+<a href="#" class="link-btn link-btn-ghost-light">Light</a>
+`;
+
+const linkButtonsSizesArrowCode = `
+<!-- Small -->
+<a href="#" class="link-btn link-btn-primary link-btn-sm">Small</a>
+
+<!-- With arrow -->
+<a href="#" class="link-btn link-arrow">With arrow</a>
+<a href="#" class="link-btn link-btn-primary link-arrow">Filled + arrow</a>
+`;
+
+const sizesCode = `
+<button class="btn btn-primary btn-xs">XS</button>
+<button class="btn btn-primary btn-sm">SM</button>
+<button class="btn btn-primary btn-md">MD (default)</button>
+<button class="btn btn-primary btn-lg">LG</button>
+<button class="btn btn-primary btn-xl">XL</button>
+`;
+
+const gradientGlowCode = `
+<!-- _buttons.css — gradient & glow variants -->
+<button class="btn btn-glow-primary">Glow Primary</button>
+<button class="btn btn-glow-accent">Glow Accent</button>
+<button class="btn btn-glow-success">Glow Success</button>
+<button class="btn btn-glow-error">Glow Error</button>
+<button class="btn btn-glow-warning">Glow Warning</button>
+
+<button class="btn btn-gradient btn-gradient-primary-accent">Primary Accent</button>
+<button class="btn btn-gradient btn-gradient-primary-success">Primary Success</button>
+<button class="btn btn-gradient btn-gradient-accent-warning">Accent Warning</button>
+<button class="btn btn-gradient btn-gradient-error-warning">Error Warning</button>
+`;
+
+const outlineGradientBorderTextShimmerCode = `
+<!-- Gradient border + gradient text, no extra markup -->
+<!-- Single colour shimmer -->
+<button class="btn btn-outline-gradient btn-outline-gradient-primary">Primary</button>
+<button class="btn btn-outline-gradient btn-outline-gradient-accent">Accent</button>
+<button class="btn btn-outline-gradient btn-outline-gradient-success">Success</button>
+<button class="btn btn-outline-gradient btn-outline-gradient-error">Error</button>
+<button class="btn btn-outline-gradient btn-outline-gradient-warning">Warning</button>
+
+<!-- Two-colour shimmer -->
+<button class="btn btn-outline-gradient btn-outline-gradient-fire">Fire</button>
+<button class="btn btn-outline-gradient btn-outline-gradient-ocean">Ocean</button>
+<button class="btn btn-outline-gradient btn-outline-gradient-nature">Nature</button>
+`;
+
+const gradientHoverCode = `
+<!-- Animated gradient flow — hover speeds it up -->
+<button class="btn btn-gradient-hover btn-gradient-hover-primary">Primary</button>
+<button class="btn btn-gradient-hover btn-gradient-hover-accent">Accent</button>
+<button class="btn btn-gradient-hover btn-gradient-hover-success">Success</button>
+<button class="btn btn-gradient-hover btn-gradient-hover-error">Error</button>
+<button class="btn btn-gradient-hover btn-gradient-hover-warning">Warning</button>
+<button class="btn btn-gradient-hover btn-gradient-hover-fire">Fire</button>
+<button class="btn btn-gradient-hover btn-gradient-hover-ocean">Ocean</button>
+<button class="btn btn-gradient-hover btn-gradient-hover-nature">Nature</button>
+`;
+
+const shineCode = `
+<!-- Shifting gradient + light sweep on hover -->
+<button class="btn btn-shine btn-shine-primary">Primary</button>
+<button class="btn btn-shine btn-shine-accent">Accent</button>
+<button class="btn btn-shine btn-shine-success">Success</button>
+<button class="btn btn-shine btn-shine-error">Error</button>
+<button class="btn btn-shine btn-shine-warning">Warning</button>
+<button class="btn btn-shine btn-shine-fire">Fire</button>
+<button class="btn btn-shine btn-shine-ocean">Ocean</button>
+<button class="btn btn-shine btn-shine-nature">Nature</button>
+`;
+
+const auraGlowHaloBloomsOnHoverCode = `
+<!-- Aura: solid gradient bg + blurred halo ::before that blooms on hover -->
+<button class="btn btn-aura btn-aura-sunset">Sunset</button>
+<button class="btn btn-aura btn-aura-aurora">Aurora</button>
+<button class="btn btn-aura btn-aura-cosmic">Cosmic</button>
+<button class="btn btn-aura btn-aura-candy">Candy</button>
+<button class="btn btn-aura btn-aura-gold">Gold</button>
+<button class="btn btn-aura btn-aura-ice">Ice</button>
+`;
+
+const rainbowAnimatedBgCode = `
+<button class="btn btn-rainbow">Rainbow</button>
+<button class="btn btn-rainbow-pastel">Pastel</button>
+<button class="btn btn-animated-bg">Animated</button>
+<button class="btn btn-animated-fire">Fire</button>
+<button class="btn btn-animated-ocean">Ocean</button>
+<button class="btn btn-animated-aurora">Aurora</button>
+<button class="btn btn-animated-candy">Candy</button>
+`;
+
+const glowHoverRainbowBorderBloomsOnHoverCode = `
+<!-- Dark bg button — coloured halo border appears on hover -->
+<button class="btn btn-glow-hover">Rainbow</button>
+<button class="btn btn-glow-hover btn-glow-hover-fire">Fire</button>
+<button class="btn btn-glow-hover btn-glow-hover-ocean">Ocean</button>
+<button class="btn btn-glow-hover btn-glow-hover-aurora">Aurora</button>
+<button class="btn btn-glow-hover btn-glow-hover-sunset">Sunset</button>
+<button class="btn btn-glow-hover btn-glow-hover-gold">Gold</button>
+`;
+
+const iconButtonsCode = `
+<!-- btn-icon: square aspect ratio, keeps .btn sizing -->
+<button class="btn btn-primary btn-icon btn-xs"><svg ...></svg></button>
+<button class="btn btn-primary btn-icon btn-sm"><svg ...></svg></button>
+<button class="btn btn-primary btn-icon"><svg ...></svg></button>
+<button class="btn btn-accent btn-icon btn-lg"><svg ...></svg></button>
+<!-- Square (no pill radius) -->
+<button class="btn btn-ghost btn-icon btn-square"><svg ...></svg></button>
+<!-- Icon + Text -->
+<button class="btn btn-success">
+  <svg ...></svg>
+  Download
+</button>
+`;
+
+const buttonGroupCode = `
+<!-- .btn-group wraps any .btn children -->
+<div class="btn-group">
+  <button class="btn btn-primary btn-sm">Left</button>
+  <button class="btn btn-primary btn-sm">Center</button>
+  <button class="btn btn-primary btn-sm">Right</button>
+</div>
+
+<!-- Toggle group -->
+<div class="btn-group">
+  <button class="btn btn-outline btn-sm">Day</button>
+  <button class="btn btn-outline btn-sm">Week</button>
+  <button class="btn btn-outline btn-sm">Month</button>
+</div>
+`;
+
+const loadingDisabledStatesCode = `
+<!-- .btn-loading — hides text, shows spinner -->
+<button class="btn btn-primary btn-loading">Loading</button>
+<button class="btn btn-accent btn-loading btn-sm">Loading</button>
+
+<!-- Disabled states -->
+<button class="btn btn-primary" disabled>Disabled</button>
+<button class="btn btn-error is-disabled">is-disabled</button>
+`;
+
+const glassNeonCode = `
+<!-- Glass: frosted backdrop blur -->
+<button class="btn btn-glass">Glass</button>
+
+<!-- Neon: glowing border + text shadow (uses --color-primary) -->
+<button class="btn btn-neon">Neon</button>
+<button class="btn btn-neon btn-lg">Neon Large</button>
+
+<!-- Glow primary: solid with expanding shadow -->
+<button class="btn btn-glow-primary">Glow Primary</button>
+`;
+
+const u3DDepthClickToFeelThePressCode = `
+<!-- 3D depth: thick bottom border sinks on :active -->
+<button class="btn btn-3d">Primary 3D</button>
+<button class="btn btn-3d-success">Success 3D</button>
+<button class="btn btn-3d-error">Danger 3D</button>
+<button class="btn btn-3d-dark">Dark 3D</button>
+
+<!-- Combine with size modifiers -->
+<button class="btn btn-3d btn-lg">Large 3D</button>
+<button class="btn btn-3d btn-sm">Small 3D</button>
+`;
+
+const badgeButtonsCode = `
+<!-- Badge wrap: relative parent + absolute badge -->
+<span class="btn-badge-wrap">
+  <button class="btn btn-primary btn-sm">Inbox</button>
+  <span class="btn-count">5</span>
+</span>
+
+<!-- Dot indicator (no number) -->
+<span class="btn-badge-wrap">
+  <button class="btn btn-ghost btn-icon btn-sm">
+    <svg .../>
+  </button>
+  <span class="btn-dot"></span>
+</span>
+
+<!-- Custom badge color -->
+<span class="btn-badge-wrap">
+  <button class="btn btn-dark">Notifications</button>
+  <span class="btn-count" style="background:#f59e0b">99+</span>
+</span>
+`;
+---
+
+<section class="lib-section" id="buttons">
+    <div class="lib-section-title">🔲 Buttons</div>
+    <div class="lib-section-desc">
+        All variants from <code>_buttons.css</code>. Base: <code>.btn</code> + variant.
     </div>
 
+    <Demo is:raw code={unit1Code}>
+            <button class="btn btn-primary">btn-primary</button>
+            <button class="btn btn-accent">btn-accent</button>
+            <button class="btn btn-success">btn-success</button>
+            <button class="btn btn-error">btn-error</button>
+            <button class="btn btn-warning">btn-warning</button>
+            <button class="btn btn-dark">btn-dark</button>
+            <button class="btn btn-light">btn-light</button>
+        </Demo>
+
+    <Demo is:raw label={'Outline'} code={outlineCode}>
+            <button class="btn btn-outline">btn-outline</button>
+            <button class="btn btn-outline-accent">btn-outline-accent</button>
+            <button class="btn btn-outline-success">btn-outline-success</button>
+            <button class="btn btn-outline-error">btn-outline-error</button>
+            <button class="btn btn-outline-warning">btn-outline-warning</button>
+            <button class="btn btn-outline-white">btn-outline-white</button>
+        </Demo>
+
+    <Demo is:raw label={'Ghost'} code={ghostCode}>
+            <button class="btn btn-ghost">btn-ghost</button>
+            <button class="btn btn-ghost-primary">btn-ghost-primary</button>
+            <button class="btn btn-ghost-accent">btn-ghost-accent</button>
+            <button class="btn btn-ghost-success">btn-ghost-success</button>
+            <button class="btn btn-ghost-error">btn-ghost-error</button>
+            <button class="btn btn-ghost-warning">btn-ghost-warning</button>
+        </Demo>
+
+    <!-- ── Soft / Tinted variants ── -->
+    <Demo is:raw label={'Soft / Tinted variants'} previewStyle="gap:10px;flex-wrap:wrap" code={softTintedVariantsCode}>
+            <button class="btn btn-soft-primary">soft-primary</button>
+            <button class="btn btn-soft-accent">soft-accent</button>
+            <button class="btn btn-soft-success">soft-success</button>
+            <button class="btn btn-soft-error">soft-error</button>
+            <button class="btn btn-soft-warning">soft-warning</button>
+            <button class="btn btn-soft-info">soft-info</button>
+        </Demo>
+
     <!-- Link buttons: Filled -->
-    <div class="lib-component">
-        <div class="lib-component-label">Link buttons — Filled</div>
-        <div
-            class="lib-preview"
-            style="gap:10px;flex-wrap:wrap;align-items:center"
-        >
+    <Demo is:raw label={'Link buttons — Filled'} previewStyle="gap:10px;flex-wrap:wrap;align-items:center" code={linkButtonsFilledCode}>
             <a href="#" class="link-btn link-btn-primary">Primary</a>
             <a href="#" class="link-btn link-btn-accent">Accent</a>
             <a href="#" class="link-btn link-btn-success">Success</a>
@@ -272,73 +313,10 @@
             <a href="#" class="link-btn link-btn-warning">Warning</a>
             <a href="#" class="link-btn link-btn-dark">Dark</a>
             <a href="#" class="link-btn link-btn-light">Light</a>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<a href="#" class="link-btn link-btn-primary">Primary</a>
-<a href="#" class="link-btn link-btn-accent">Accent</a>
-<a href="#" class="link-btn link-btn-success">Success</a>
-<a href="#" class="link-btn link-btn-error">Error</a>
-<a href="#" class="link-btn link-btn-warning">Warning</a>
-<a href="#" class="link-btn link-btn-dark">Dark</a>
-<a href="#" class="link-btn link-btn-light">Light</a>'
-                >
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-primary"</span
-                    ><span class="k">&gt;</span>Primary<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-accent"</span
-                    ><span class="k">&gt;</span>Accent<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-success"</span
-                    ><span class="k">&gt;</span>Success<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-error"</span
-                    ><span class="k">&gt;</span>Error<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-warning"</span
-                    ><span class="k">&gt;</span>Warning<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-dark"</span
-                    ><span class="k">&gt;</span>Dark<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-light"</span
-                    ><span class="k">&gt;</span>Light<span class="k"
-                        >&lt;/a&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Link buttons: Outline -->
-    <div class="lib-component">
-        <div class="lib-component-label">Link buttons — Outline</div>
-        <div
-            class="lib-preview"
-            style="gap:10px;flex-wrap:wrap;align-items:center"
-        >
+    <Demo is:raw label={'Link buttons — Outline'} previewStyle="gap:10px;flex-wrap:wrap;align-items:center" code={linkButtonsOutlineCode}>
             <a href="#" class="link-btn link-btn-outline-primary">Primary</a>
             <a href="#" class="link-btn link-btn-outline-accent">Accent</a>
             <a href="#" class="link-btn link-btn-outline-success">Success</a>
@@ -346,73 +324,10 @@
             <a href="#" class="link-btn link-btn-outline-warning">Warning</a>
             <a href="#" class="link-btn link-btn-outline-dark">Dark</a>
             <a href="#" class="link-btn link-btn-outline-light">Light</a>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<a href="#" class="link-btn link-btn-outline-primary">Primary</a>
-<a href="#" class="link-btn link-btn-outline-accent">Accent</a>
-<a href="#" class="link-btn link-btn-outline-success">Success</a>
-<a href="#" class="link-btn link-btn-outline-error">Error</a>
-<a href="#" class="link-btn link-btn-outline-warning">Warning</a>
-<a href="#" class="link-btn link-btn-outline-dark">Dark</a>
-<a href="#" class="link-btn link-btn-outline-light">Light</a>'
-                >
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-outline-primary"</span
-                    ><span class="k">&gt;</span>Primary<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-outline-accent"</span
-                    ><span class="k">&gt;</span>Accent<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-outline-success"</span
-                    ><span class="k">&gt;</span>Success<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-outline-error"</span
-                    ><span class="k">&gt;</span>Error<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-outline-warning"</span
-                    ><span class="k">&gt;</span>Warning<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-outline-dark"</span
-                    ><span class="k">&gt;</span>Dark<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-outline-light"</span
-                    ><span class="k">&gt;</span>Light<span class="k"
-                        >&lt;/a&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Link buttons: Ghost -->
-    <div class="lib-component">
-        <div class="lib-component-label">Link buttons — Ghost</div>
-        <div
-            class="lib-preview"
-            style="gap:10px;flex-wrap:wrap;align-items:center"
-        >
+    <Demo is:raw label={'Link buttons — Ghost'} previewStyle="gap:10px;flex-wrap:wrap;align-items:center" code={linkButtonsGhostCode}>
             <a href="#" class="link-btn link-btn-ghost-primary">Primary</a>
             <a href="#" class="link-btn link-btn-ghost-accent">Accent</a>
             <a href="#" class="link-btn link-btn-ghost-success">Success</a>
@@ -420,73 +335,10 @@
             <a href="#" class="link-btn link-btn-ghost-warning">Warning</a>
             <a href="#" class="link-btn link-btn-ghost-dark">Dark</a>
             <a href="#" class="link-btn link-btn-ghost-light">Light</a>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<a href="#" class="link-btn link-btn-ghost-primary">Primary</a>
-<a href="#" class="link-btn link-btn-ghost-accent">Accent</a>
-<a href="#" class="link-btn link-btn-ghost-success">Success</a>
-<a href="#" class="link-btn link-btn-ghost-error">Error</a>
-<a href="#" class="link-btn link-btn-ghost-warning">Warning</a>
-<a href="#" class="link-btn link-btn-ghost-dark">Dark</a>
-<a href="#" class="link-btn link-btn-ghost-light">Light</a>'
-                >
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-ghost-primary"</span
-                    ><span class="k">&gt;</span>Primary<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-ghost-accent"</span
-                    ><span class="k">&gt;</span>Accent<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-ghost-success"</span
-                    ><span class="k">&gt;</span>Success<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-ghost-error"</span
-                    ><span class="k">&gt;</span>Error<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-ghost-warning"</span
-                    ><span class="k">&gt;</span>Warning<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-ghost-dark"</span
-                    ><span class="k">&gt;</span>Dark<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-ghost-light"</span
-                    ><span class="k">&gt;</span>Light<span class="k"
-                        >&lt;/a&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Link buttons: Sizes & Arrow -->
-    <div class="lib-component">
-        <div class="lib-component-label">Link buttons — Sizes &amp; Arrow</div>
-        <div
-            class="lib-preview"
-            style="gap:10px;flex-wrap:wrap;align-items:center"
-        >
+    <Demo is:raw label={'Link buttons — Sizes & Arrow'} previewStyle="gap:10px;flex-wrap:wrap;align-items:center" code={linkButtonsSizesArrowCode}>
             <a href="#" class="link-btn link-btn-primary link-btn-sm"
                 >Small filled</a
             >
@@ -498,104 +350,18 @@
             <a href="#" class="link-btn link-btn-primary link-arrow"
                 >Filled arrow
             </a>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Small -->
-<a href="#" class="link-btn link-btn-primary link-btn-sm">Small</a>
+        </Demo>
 
-<!-- With arrow -->
-<a href="#" class="link-btn link-arrow">With arrow</a>
-<a href="#" class="link-btn link-btn-primary link-arrow">Filled + arrow</a>'
-                >
-                    <span class="c">&lt;!-- Small --&gt;</span><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-primary link-btn-sm"</span
-                    ><span class="k">&gt;</span>Small<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br /><br />
-                    <span class="c">&lt;!-- With arrow --&gt;</span><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-arrow"</span
-                    ><span class="k">&gt;</span>With arrow<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    <span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"link-btn link-btn-primary link-arrow"</span
-                    ><span class="k">&gt;</span>Filled + arrow<span class="k"
-                        >&lt;/a&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="lib-component">
-        <div class="lib-component-label">Sizes</div>
-        <div class="lib-preview">
+    <Demo is:raw label={'Sizes'} code={sizesCode}>
             <button class="btn btn-primary btn-xs">xs</button>
             <button class="btn btn-primary btn-sm">sm</button>
             <button class="btn btn-primary btn-md">md</button>
             <button class="btn btn-primary btn-lg">lg</button>
             <button class="btn btn-primary btn-xl">xl</button>
             <button class="btn btn-primary btn-2xl">2xl</button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<button class="btn btn-primary btn-xs">XS</button>
-<button class="btn btn-primary btn-sm">SM</button>
-<button class="btn btn-primary btn-md">MD (default)</button>
-<button class="btn btn-primary btn-lg">LG</button>
-<button class="btn btn-primary btn-xl">XL</button>'
-                >
-                    <span class="c"
-                        >/* Sizes: xs → sm → md (default) → lg → xl → 2xl */</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary btn-xs"</span
-                    ><span class="k">&gt;</span>XS<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary btn-sm"</span
-                    ><span class="k">&gt;</span>SM<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary"</span
-                    ><span class="k">&gt;</span>MD (default)<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary btn-lg"</span
-                    ><span class="k">&gt;</span>LG<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary btn-xl"</span
-                    ><span class="k">&gt;</span>XL<span class="k"
-                        >&lt;/button&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Gradient & Glow</div>
-        <div class="lib-preview">
+    <Demo is:raw label={'Gradient & Glow'} code={gradientGlowCode}>
             <button class="btn btn-glow-primary">btn-glow-primary</button>
             <button class="btn btn-glow-accent">btn-glow-accent</button>
             <button class="btn btn-glow-success">btn-glow-success</button>
@@ -616,64 +382,9 @@
             <button class="btn btn-gradient btn-gradient-error-warning"
                 >error-warning</button
             >
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- _buttons.css — gradient & glow variants -->
-<button class="btn btn-glow-primary">Glow Primary</button>
-<button class="btn btn-glow-accent">Glow Accent</button>
-<button class="btn btn-glow-success">Glow Success</button>
-<button class="btn btn-glow-error">Glow Error</button>
-<button class="btn btn-glow-warning">Glow Warning</button>
+        </Demo>
 
-<button class="btn btn-gradient btn-gradient-primary-accent">Primary Accent</button>
-<button class="btn btn-gradient btn-gradient-primary-success">Primary Success</button>
-<button class="btn btn-gradient btn-gradient-accent-warning">Accent Warning</button>
-<button class="btn btn-gradient btn-gradient-error-warning">Error Warning</button>'
-                >
-                    <span class="c"
-                        >/* _buttons.css — token gradient &amp; glow */</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-glow-primary"</span
-                    ><span class="k">&gt;</span>Glow Primary<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-glow-accent"</span
-                    ><span class="k">&gt;</span>Glow Accent<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-gradient btn-gradient-primary-accent"</span
-                    ><span class="k">&gt;</span>Primary Accent<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-gradient btn-gradient-primary-success"</span
-                    ><span class="k">&gt;</span>Primary Success<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-gradient btn-gradient-accent-warning"</span
-                    ><span class="k">&gt;</span>Accent Warning<span class="k"
-                        >&lt;/button&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="lib-component">
-        <div class="lib-component-label">Outline Gradient — border &amp; text shimmer</div>
-        <div class="lib-preview" style="gap:12px;flex-wrap:wrap">
+    <Demo is:raw label={'Outline Gradient — border & text shimmer'} previewStyle="gap:12px;flex-wrap:wrap" code={outlineGradientBorderTextShimmerCode}>
             <button class="btn btn-outline-gradient btn-outline-gradient-primary px-6">Primary</button>
             <button class="btn btn-outline-gradient btn-outline-gradient-accent px-6">Accent</button>
             <button class="btn btn-outline-gradient btn-outline-gradient-success px-6">Success</button>
@@ -682,40 +393,9 @@
             <button class="btn btn-outline-gradient btn-outline-gradient-fire px-6">Fire</button>
             <button class="btn btn-outline-gradient btn-outline-gradient-ocean px-6">Ocean</button>
             <button class="btn btn-outline-gradient btn-outline-gradient-nature px-6">Nature</button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Gradient border + gradient text, no extra markup -->
-<!-- Single colour shimmer -->
-<button class="btn btn-outline-gradient btn-outline-gradient-primary">Primary</button>
-<button class="btn btn-outline-gradient btn-outline-gradient-accent">Accent</button>
-<button class="btn btn-outline-gradient btn-outline-gradient-success">Success</button>
-<button class="btn btn-outline-gradient btn-outline-gradient-error">Error</button>
-<button class="btn btn-outline-gradient btn-outline-gradient-warning">Warning</button>
+        </Demo>
 
-<!-- Two-colour shimmer -->
-<button class="btn btn-outline-gradient btn-outline-gradient-fire">Fire</button>
-<button class="btn btn-outline-gradient btn-outline-gradient-ocean">Ocean</button>
-<button class="btn btn-outline-gradient btn-outline-gradient-nature">Nature</button>'
-                >
-                    <span class="c">&lt;!-- Single colour --&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-outline-gradient btn-outline-gradient-primary"</span><span class="k">&gt;</span>Primary<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-outline-gradient btn-outline-gradient-accent"</span><span class="k">&gt;</span>Accent<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-outline-gradient btn-outline-gradient-error"</span><span class="k">&gt;</span>Error<span class="k">&lt;/button&gt;</span><br />
-                    <span class="c">&lt;!-- Two-colour shimmer --&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-outline-gradient btn-outline-gradient-fire"</span><span class="k">&gt;</span>Fire<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-outline-gradient btn-outline-gradient-ocean"</span><span class="k">&gt;</span>Ocean<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-outline-gradient btn-outline-gradient-nature"</span><span class="k">&gt;</span>Nature<span class="k">&lt;/button&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="lib-component">
-        <div class="lib-component-label">Gradient Hover</div>
-        <div class="lib-preview" style="gap:12px;flex-wrap:wrap">
+    <Demo is:raw label={'Gradient Hover'} previewStyle="gap:12px;flex-wrap:wrap" code={gradientHoverCode}>
             <button class="btn btn-gradient-hover btn-gradient-hover-primary px-8" style="font-size:15px">Primary</button>
             <button class="btn btn-gradient-hover btn-gradient-hover-accent px-8" style="font-size:15px">Accent</button>
             <button class="btn btn-gradient-hover btn-gradient-hover-success px-8" style="font-size:15px">Success</button>
@@ -724,34 +404,9 @@
             <button class="btn btn-gradient-hover btn-gradient-hover-fire px-8" style="font-size:15px">Fire</button>
             <button class="btn btn-gradient-hover btn-gradient-hover-ocean px-8" style="font-size:15px">Ocean</button>
             <button class="btn btn-gradient-hover btn-gradient-hover-nature px-8" style="font-size:15px">Nature</button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Animated gradient flow — hover speeds it up -->
-<button class="btn btn-gradient-hover btn-gradient-hover-primary">Primary</button>
-<button class="btn btn-gradient-hover btn-gradient-hover-accent">Accent</button>
-<button class="btn btn-gradient-hover btn-gradient-hover-success">Success</button>
-<button class="btn btn-gradient-hover btn-gradient-hover-error">Error</button>
-<button class="btn btn-gradient-hover btn-gradient-hover-warning">Warning</button>
-<button class="btn btn-gradient-hover btn-gradient-hover-fire">Fire</button>
-<button class="btn btn-gradient-hover btn-gradient-hover-ocean">Ocean</button>
-<button class="btn btn-gradient-hover btn-gradient-hover-nature">Nature</button>'
-                >
-                    <span class="c">&lt;!-- Animated gradient flow — hover speeds it up --&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-gradient-hover btn-gradient-hover-primary"</span><span class="k">&gt;</span>Primary<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-gradient-hover btn-gradient-hover-fire"</span><span class="k">&gt;</span>Fire<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-gradient-hover btn-gradient-hover-ocean"</span><span class="k">&gt;</span>Ocean<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-gradient-hover btn-gradient-hover-nature"</span><span class="k">&gt;</span>Nature<span class="k">&lt;/button&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Shine</div>
-        <div class="lib-preview" style="gap:12px;flex-wrap:wrap">
+    <Demo is:raw label={'Shine'} previewStyle="gap:12px;flex-wrap:wrap" code={shineCode}>
             <button class="btn btn-shine btn-shine-primary px-8">Primary</button>
             <button class="btn btn-shine btn-shine-accent px-8">Accent</button>
             <button class="btn btn-shine btn-shine-success px-8">Success</button>
@@ -760,68 +415,18 @@
             <button class="btn btn-shine btn-shine-fire px-8">Fire</button>
             <button class="btn btn-shine btn-shine-ocean px-8">Ocean</button>
             <button class="btn btn-shine btn-shine-nature px-8">Nature</button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Shifting gradient + light sweep on hover -->
-<button class="btn btn-shine btn-shine-primary">Primary</button>
-<button class="btn btn-shine btn-shine-accent">Accent</button>
-<button class="btn btn-shine btn-shine-success">Success</button>
-<button class="btn btn-shine btn-shine-error">Error</button>
-<button class="btn btn-shine btn-shine-warning">Warning</button>
-<button class="btn btn-shine btn-shine-fire">Fire</button>
-<button class="btn btn-shine btn-shine-ocean">Ocean</button>
-<button class="btn btn-shine btn-shine-nature">Nature</button>'
-                >
-                    <span class="c">&lt;!-- Shifting gradient + light sweep on hover --&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-shine btn-shine-primary"</span><span class="k">&gt;</span>Primary<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-shine btn-shine-fire"</span><span class="k">&gt;</span>Fire<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-shine btn-shine-ocean"</span><span class="k">&gt;</span>Ocean<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-shine btn-shine-nature"</span><span class="k">&gt;</span>Nature<span class="k">&lt;/button&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Aura — glow halo blooms on hover</div>
-        <div class="lib-preview" style="gap:14px;flex-wrap:wrap;padding:32px 24px">
+    <Demo is:raw label={'Aura — glow halo blooms on hover'} previewStyle="gap:14px;flex-wrap:wrap;padding:32px 24px" code={auraGlowHaloBloomsOnHoverCode}>
             <button class="btn btn-aura btn-aura-sunset px-8">Sunset</button>
             <button class="btn btn-aura btn-aura-aurora px-8">Aurora</button>
             <button class="btn btn-aura btn-aura-cosmic px-8">Cosmic</button>
             <button class="btn btn-aura btn-aura-candy px-8">Candy</button>
             <button class="btn btn-aura btn-aura-gold px-8">Gold</button>
             <button class="btn btn-aura btn-aura-ice px-8">Ice</button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Aura: solid gradient bg + blurred halo ::before that blooms on hover -->
-<button class="btn btn-aura btn-aura-sunset">Sunset</button>
-<button class="btn btn-aura btn-aura-aurora">Aurora</button>
-<button class="btn btn-aura btn-aura-cosmic">Cosmic</button>
-<button class="btn btn-aura btn-aura-candy">Candy</button>
-<button class="btn btn-aura btn-aura-gold">Gold</button>
-<button class="btn btn-aura btn-aura-ice">Ice</button>'
-                >
-                    <span class="c">&lt;!-- halo ::before blooms on hover --&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-aura btn-aura-sunset"</span><span class="k">&gt;</span>Sunset<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-aura btn-aura-aurora"</span><span class="k">&gt;</span>Aurora<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-aura btn-aura-cosmic"</span><span class="k">&gt;</span>Cosmic<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-aura btn-aura-candy"</span><span class="k">&gt;</span>Candy<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-aura btn-aura-gold"</span><span class="k">&gt;</span>Gold<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-aura btn-aura-ice"</span><span class="k">&gt;</span>Ice<span class="k">&lt;/button&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Rainbow &amp; Animated BG</div>
-        <div class="lib-preview" style="gap:12px;flex-wrap:wrap">
+    <Demo is:raw label={'Rainbow & Animated BG'} previewStyle="gap:12px;flex-wrap:wrap" code={rainbowAnimatedBgCode}>
             <button class="btn btn-rainbow px-6" style="height:44px">Rainbow</button>
             <button class="btn btn-rainbow-pastel px-6" style="height:44px">Pastel</button>
             <button class="btn btn-animated-bg px-6" style="height:44px">Animated</button>
@@ -829,67 +434,18 @@
             <button class="btn btn-animated-ocean px-6" style="height:44px">Ocean</button>
             <button class="btn btn-animated-aurora px-6" style="height:44px">Aurora</button>
             <button class="btn btn-animated-candy px-6" style="height:44px">Candy</button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<button class="btn btn-rainbow">Rainbow</button>
-<button class="btn btn-rainbow-pastel">Pastel</button>
-<button class="btn btn-animated-bg">Animated</button>
-<button class="btn btn-animated-fire">Fire</button>
-<button class="btn btn-animated-ocean">Ocean</button>
-<button class="btn btn-animated-aurora">Aurora</button>
-<button class="btn btn-animated-candy">Candy</button>'
-                >
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-rainbow"</span><span class="k">&gt;</span>Rainbow<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-rainbow-pastel"</span><span class="k">&gt;</span>Pastel<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-animated-fire"</span><span class="k">&gt;</span>Fire<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-animated-ocean"</span><span class="k">&gt;</span>Ocean<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-animated-aurora"</span><span class="k">&gt;</span>Aurora<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-animated-candy"</span><span class="k">&gt;</span>Candy<span class="k">&lt;/button&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Glow Hover — rainbow border blooms on hover</div>
-        <div class="lib-preview" style="gap:14px;flex-wrap:wrap;padding:28px 24px;background:var(--color-dark)">
+    <Demo is:raw label={'Glow Hover — rainbow border blooms on hover'} previewStyle="gap:14px;flex-wrap:wrap;padding:28px 24px;background:var(--color-dark)" code={glowHoverRainbowBorderBloomsOnHoverCode}>
             <button class="btn btn-glow-hover px-8">Rainbow</button>
             <button class="btn btn-glow-hover btn-glow-hover-fire px-8">Fire</button>
             <button class="btn btn-glow-hover btn-glow-hover-ocean px-8">Ocean</button>
             <button class="btn btn-glow-hover btn-glow-hover-aurora px-8">Aurora</button>
             <button class="btn btn-glow-hover btn-glow-hover-sunset px-8">Sunset</button>
             <button class="btn btn-glow-hover btn-glow-hover-gold px-8">Gold</button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Dark bg button — coloured halo border appears on hover -->
-<button class="btn btn-glow-hover">Rainbow</button>
-<button class="btn btn-glow-hover btn-glow-hover-fire">Fire</button>
-<button class="btn btn-glow-hover btn-glow-hover-ocean">Ocean</button>
-<button class="btn btn-glow-hover btn-glow-hover-aurora">Aurora</button>
-<button class="btn btn-glow-hover btn-glow-hover-sunset">Sunset</button>
-<button class="btn btn-glow-hover btn-glow-hover-gold">Gold</button>'
-                >
-                    <span class="c">&lt;!-- Dark bg — coloured halo appears on hover --&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-glow-hover"</span><span class="k">&gt;</span>Rainbow<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-glow-hover btn-glow-hover-fire"</span><span class="k">&gt;</span>Fire<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-glow-hover btn-glow-hover-ocean"</span><span class="k">&gt;</span>Ocean<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-glow-hover btn-glow-hover-aurora"</span><span class="k">&gt;</span>Aurora<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-glow-hover btn-glow-hover-sunset"</span><span class="k">&gt;</span>Sunset<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span> <span class="s">class</span>=<span class="cn">"btn btn-glow-hover btn-glow-hover-gold"</span><span class="k">&gt;</span>Gold<span class="k">&lt;/button&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Icon Buttons</div>
-        <div class="lib-preview">
+    <Demo is:raw label={'Icon Buttons'} code={iconButtonsCode}>
             <button class="btn btn-primary btn-icon btn-xs" title="xs">
                 <svg
                     width="12"
@@ -1016,69 +572,9 @@
                 >
                 Delete
             </button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- btn-icon: square aspect ratio, keeps .btn sizing -->
-<button class="btn btn-primary btn-icon btn-xs"><svg ...></svg></button>
-<button class="btn btn-primary btn-icon btn-sm"><svg ...></svg></button>
-<button class="btn btn-primary btn-icon"><svg ...></svg></button>
-<button class="btn btn-accent btn-icon btn-lg"><svg ...></svg></button>
-<!-- Square (no pill radius) -->
-<button class="btn btn-ghost btn-icon btn-square"><svg ...></svg></button>
-<!-- Icon + Text -->
-<button class="btn btn-success">
-  <svg ...></svg>
-  Download
-</button>'
-                >
-                    <span class="c"
-                        >/* btn-icon — square aspect ratio, keeps .btn sizing */</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary btn-icon btn-xs"</span
-                    ><span class="k">&gt;</span>&lt;svg&gt;...&lt;/svg&gt;<span
-                        class="k">&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary btn-icon btn-sm"</span
-                    ><span class="k">&gt;</span>&lt;svg&gt;...&lt;/svg&gt;<span
-                        class="k">&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary btn-icon"</span
-                    ><span class="k">&gt;</span>&lt;svg&gt;...&lt;/svg&gt;<span
-                        class="k">&lt;/button&gt;</span
-                    ><br />
-                    <span class="c"
-                        >/* .btn-square — removes pill radius */</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-ghost btn-icon btn-square"</span
-                    ><span class="k">&gt;</span>&lt;svg&gt;...&lt;/svg&gt;<span
-                        class="k">&lt;/button&gt;</span
-                    ><br />
-                    <span class="c">/* Icon + Label */</span><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-success"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;&lt;svg&gt;...&lt;/svg&gt; Download<br />
-                    <span class="k">&lt;/button&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Button Group</div>
-        <div class="lib-preview col" style="align-items:flex-start;gap:16px">
+    <Demo is:raw label={'Button Group'} previewClass="col" previewStyle="align-items:flex-start;gap:16px" code={buttonGroupCode}>
             <div class="btn-group">
                 <button class="btn btn-primary btn-sm">Left</button>
                 <button class="btn btn-primary btn-sm">Center</button>
@@ -1128,246 +624,39 @@
                     >
                 </button>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- .btn-group wraps any .btn children -->
-<div class="btn-group">
-  <button class="btn btn-primary btn-sm">Left</button>
-  <button class="btn btn-primary btn-sm">Center</button>
-  <button class="btn btn-primary btn-sm">Right</button>
-</div>
+        </Demo>
 
-<!-- Toggle group -->
-<div class="btn-group">
-  <button class="btn btn-outline btn-sm">Day</button>
-  <button class="btn btn-outline btn-sm">Week</button>
-  <button class="btn btn-outline btn-sm">Month</button>
-</div>'
-                >
-                    <span class="c">/* .btn-group — chain any .btn */</span><br
-                    />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn-group"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary btn-sm"</span
-                    ><span class="k">&gt;</span>Left<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary btn-sm"</span
-                    ><span class="k">&gt;</span>Center<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary btn-sm"</span
-                    ><span class="k">&gt;</span>Right<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="lib-component">
-        <div class="lib-component-label">Loading & Disabled states</div>
-        <div class="lib-preview">
+    <Demo is:raw label={'Loading & Disabled states'} code={loadingDisabledStatesCode}>
             <button class="btn btn-primary btn-loading">Loading</button>
             <button class="btn btn-accent btn-loading btn-sm">Loading</button>
             <button class="btn btn-success btn-loading btn-lg">Loading</button>
             <button class="btn btn-outline btn-loading">Loading</button>
             <button class="btn btn-primary" disabled>Disabled</button>
             <button class="btn btn-error is-disabled">is-disabled</button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- .btn-loading — hides text, shows spinner -->
-<button class="btn btn-primary btn-loading">Loading</button>
-<button class="btn btn-accent btn-loading btn-sm">Loading</button>
-
-<!-- Disabled states -->
-<button class="btn btn-primary" disabled>Disabled</button>
-<button class="btn btn-error is-disabled">is-disabled</button>'
-                >
-                    <span class="c"
-                        >/* .btn-loading — hides label, shows centered spinner
-                        */</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary btn-loading"</span
-                    ><span class="k">&gt;</span>Loading<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-accent btn-loading btn-sm"</span
-                    ><span class="k">&gt;</span>Loading<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="c">/* Disabled */</span><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary"</span
-                    >
-                    <span class="s">disabled</span><span class="k">&gt;</span
-                    >Disabled<span class="k">&lt;/button&gt;</span><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-error is-disabled"</span
-                    ><span class="k">&gt;</span>is-disabled<span class="k"
-                        >&lt;/button&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ── Glass & Neon ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">Glass &amp; Neon</div>
-        <div
-            class="lib-preview"
-            style="background:linear-gradient(135deg,#0f0f23 0%,#1a0a2e 50%,#0d1b2a 100%);gap:14px;flex-wrap:wrap"
-        >
+    <Demo is:raw label={'Glass & Neon'} previewStyle="background:linear-gradient(135deg,#0f0f23 0%,#1a0a2e 50%,#0d1b2a 100%);gap:14px;flex-wrap:wrap" code={glassNeonCode}>
             <button class="btn btn-glass">btn-glass</button>
             <button class="btn btn-glass btn-sm">Glass sm</button>
             <button class="btn btn-neon">btn-neon</button>
             <button class="btn btn-neon btn-sm">Neon sm</button>
             <button class="btn btn-neon btn-lg">Neon lg</button>
             <button class="btn btn-glow-primary">btn-glow-primary</button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Glass: frosted backdrop blur -->
-<button class="btn btn-glass">Glass</button>
-
-<!-- Neon: glowing border + text shadow (uses --color-primary) -->
-<button class="btn btn-neon">Neon</button>
-<button class="btn btn-neon btn-lg">Neon Large</button>
-
-<!-- Glow primary: solid with expanding shadow -->
-<button class="btn btn-glow-primary">Glow Primary</button>'
-                >
-                    <span class="c"
-                        >&lt;!-- Glass: frosted backdrop blur --&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-glass"</span
-                    ><span class="k">&gt;</span>Glass<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="c"
-                        >&lt;!-- Neon: glowing border + text-shadow --&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-neon"</span
-                    ><span class="k">&gt;</span>Neon<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-neon btn-lg"</span
-                    ><span class="k">&gt;</span>Neon Large<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="c"
-                        >&lt;!-- Glow: solid + shadow pulse --&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-glow-primary"</span
-                    ><span class="k">&gt;</span>Glow Primary<span class="k"
-                        >&lt;/button&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ── 3D Depth ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">
-            3D Depth — click to feel the press
-        </div>
-        <div
-            class="lib-preview"
-            style="gap:14px;flex-wrap:wrap;align-items:flex-end"
-        >
+    <Demo is:raw label={'3D Depth — click to feel the press'} previewStyle="gap:14px;flex-wrap:wrap;align-items:flex-end" code={u3DDepthClickToFeelThePressCode}>
             <button class="btn btn-3d">btn-3d</button>
             <button class="btn btn-3d btn-sm">3D sm</button>
             <button class="btn btn-3d btn-lg">3D lg</button>
             <button class="btn btn-3d-success">3d-success</button>
             <button class="btn btn-3d-error">3d-error</button>
             <button class="btn btn-3d-dark">3d-dark</button>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- 3D depth: thick bottom border sinks on :active -->
-<button class="btn btn-3d">Primary 3D</button>
-<button class="btn btn-3d-success">Success 3D</button>
-<button class="btn btn-3d-error">Danger 3D</button>
-<button class="btn btn-3d-dark">Dark 3D</button>
-
-<!-- Combine with size modifiers -->
-<button class="btn btn-3d btn-lg">Large 3D</button>
-<button class="btn btn-3d btn-sm">Small 3D</button>'
-                >
-                    <span class="c"
-                        >&lt;!-- 3D: thick border-bottom sinks on :active --&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-3d"</span
-                    ><span class="k">&gt;</span>Primary 3D<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-3d-success"</span
-                    ><span class="k">&gt;</span>Success 3D<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-3d-error"</span
-                    ><span class="k">&gt;</span>Danger 3D<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    <span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-3d btn-lg"</span
-                    ><span class="k">&gt;</span>Large 3D<span class="k"
-                        >&lt;/button&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ── Badge buttons ── -->
-    <div class="lib-component">
-        <div class="lib-component-label">Badge buttons</div>
-        <div
-            class="lib-preview"
-            style="gap:20px;flex-wrap:wrap;padding:32px 28px 40px"
-        >
+    <Demo is:raw label={'Badge buttons'} previewStyle="gap:20px;flex-wrap:wrap;padding:32px 28px 40px" code={badgeButtonsCode}>
             <span class="btn-badge-wrap">
                 <button class="btn btn-primary btn-sm">
                     <svg
@@ -1457,72 +746,7 @@
                 </button>
                 <span class="btn-count" style="background:#f59e0b">99+</span>
             </span>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Badge wrap: relative parent + absolute badge -->
-<span class="btn-badge-wrap">
-  <button class="btn btn-primary btn-sm">Inbox</button>
-  <span class="btn-count">5</span>
-</span>
-
-<!-- Dot indicator (no number) -->
-<span class="btn-badge-wrap">
-  <button class="btn btn-ghost btn-icon btn-sm">
-    <svg .../>
-  </button>
-  <span class="btn-dot"></span>
-</span>
-
-<!-- Custom badge color -->
-<span class="btn-badge-wrap">
-  <button class="btn btn-dark">Notifications</button>
-  <span class="btn-count" style="background:#f59e0b">99+</span>
-</span>'
-                >
-                    <span class="c"
-                        >&lt;!-- Badge: .btn-badge-wrap + .btn-count --&gt;</span
-                    ><br />
-                    <span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn-badge-wrap"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-primary btn-sm"</span
-                    ><span class="k">&gt;</span>Inbox<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn-count"</span
-                    ><span class="k">&gt;</span>5<span class="k"
-                        >&lt;/span&gt;</span
-                    ><br />
-                    <span class="k">&lt;/span&gt;</span><br />
-                    <span class="c">&lt;!-- Dot only (no number) --&gt;</span
-                    ><br />
-                    <span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn-badge-wrap"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;button</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn btn-ghost btn-icon"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/button&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"btn-dot"</span
-                    ><span class="k">&gt;&lt;/span&gt;</span><br />
-                    <span class="k">&lt;/span&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- ── Real-world patterns ── -->
     <div class="lib-component">
