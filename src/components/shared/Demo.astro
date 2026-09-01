@@ -1,0 +1,57 @@
+---
+/**
+ * Demo — один демо-юнит документации: превью + код-окно из ОДНОЙ разметки.
+ *
+ * Канонический вид (is:raw обязателен — сохраняет исходное форматирование
+ * и комментарии, компилятор не переписывает разметку):
+ *
+ *   <Demo is:raw label="Outline">
+ *     <button class="btn btn-outline">Outline</button>
+ *   </Demo>
+ *
+ * Отступления (не больше одного на юнит):
+ *  - code="…"          — показываемый/копируемый код НАМЕРЕННО отличается от превью;
+ *  - slot="preview"    — превью нуждается в обёртке, которой не место в коде.
+ *    В этом случае is:raw ставится не на Demo, а на Fragment образца:
+ *      <Demo label="…">
+ *        <div slot="preview">…обёртка…</div>
+ *        <Fragment is:raw>…образец…</Fragment>
+ *      </Demo>
+ *
+ * Эмитит текущий контракт .lib-component / .lib-preview / .lib-code-wrapper —
+ * runtime-хром (Show code, mac-dots, copy) вешает initCodeToggles из lib-docs.js,
+ * мигрированные юниты неотличимы от старых.
+ */
+import CodeBlock from './CodeBlock.astro';
+import { dedent } from './code-utils.js';
+
+interface Props {
+  label?: string; // .lib-component-label (он же лейбл код-окна в initCodeToggles)
+  code?: string; // override показываемого/копируемого кода
+  lang?: string; // 'html' | 'css' | 'js' (не-html пока без подсветки)
+  filename?: string; // подпись-источник, напр. "_buttons.css"
+  previewClass?: string; // модификаторы .lib-preview: 'col', 'no-dot', …
+  class?: string;
+}
+
+const {
+  label,
+  code,
+  lang = 'html',
+  filename,
+  previewClass = '',
+  class: className = '',
+} = Astro.props;
+
+const raw = dedent(await Astro.slots.render('default')).trim();
+const sample = code != null ? dedent(code).trim() : raw;
+const hasPreviewSlot = Astro.slots.has('preview');
+---
+
+<div class={`lib-component ${className}`.trim()}>
+  {label && <div class="lib-component-label">{label}</div>}
+  <div class={`lib-preview ${previewClass}`.trim()}>
+    {hasPreviewSlot ? <slot name="preview" /> : <Fragment set:html={raw} />}
+  </div>
+  <CodeBlock code={sample} lang={lang} filename={filename} />
+</div>

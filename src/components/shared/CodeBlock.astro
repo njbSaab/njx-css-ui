@@ -1,4 +1,6 @@
 ---
+import { dedent, escapeHtml, highlightHtml } from './code-utils.js';
+
 interface Props {
     code: string;
     lang?: string;
@@ -15,33 +17,7 @@ const {
     class: className = '',
 } = Astro.props;
 
-const normalizedCode = code.trim();
-
-function escapeHtml(value: string) {
-    return value
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
-}
-
-function highlightHtml(value: string) {
-    const escaped = escapeHtml(value);
-
-    return escaped
-        .replace(/(&lt;!--[\s\S]*?--&gt;)/g, '<span class="c">$1</span>')
-        .replace(
-            /(&lt;\/?)([a-zA-Z][\w:-]*)([^&]*?)(&gt;)/g,
-            (_match, open, tag, attrs, close) => {
-                const highlightedAttrs = attrs.replace(
-                    /(\s)([a-zA-Z_:][\w:.-]*)(=)("[^"]*"|'[^']*'|[^\s]+)?/g,
-                    (_attrMatch, space, name, eq, attrValue = '') =>
-                        `${space}<span class="s">${name}</span>${eq}<span class="cn">${attrValue}</span>`,
-                );
-
-                return `<span class="k">${open}${tag}</span>${highlightedAttrs}<span class="k">${close}</span>`;
-            },
-        );
-}
+const normalizedCode = dedent(code).trim();
 
 const highlightedCode = lang === 'html'
     ? highlightHtml(normalizedCode)
