@@ -11,6 +11,7 @@
  *
  * Отступления (не больше одного на юнит):
  *  - code="…"          — показываемый/копируемый код НАМЕРЕННО отличается от превью;
+ *  - previewWrap="article" — тег-обёртка превью (нужна стилям, но не коду);
  *  - slot="preview"    — превью нуждается в обёртке, которой не место в коде.
  *    В этом случае is:raw ставится не на Demo, а на Fragment образца:
  *      <Demo label="…">
@@ -32,6 +33,7 @@ interface Props {
   filename?: string; // подпись-источник, напр. "_buttons.css"
   previewClass?: string; // модификаторы .lib-preview: 'col', 'no-dot', …
   previewStyle?: string; // inline-стиль превью (раскладка демо, не часть образца)
+  previewWrap?: string; // тег-обёртка превью, не попадающая в код (classless: 'article')
   class?: string;
 }
 
@@ -42,8 +44,10 @@ const {
   filename,
   previewClass = '',
   previewStyle,
+  previewWrap,
   class: className = '',
 } = Astro.props;
+const Wrap = previewWrap;
 
 const raw = dedent(await Astro.slots.render('default')).trim();
 const sample = code != null ? dedent(code).trim() : raw;
@@ -53,7 +57,15 @@ const hasPreviewSlot = Astro.slots.has('preview');
 <div class={`lib-component ${className}`.trim()}>
   {label && <div class="lib-component-label">{label}</div>}
   <div class={`lib-preview ${previewClass}`.trim()} style={previewStyle}>
-    {hasPreviewSlot ? <slot name="preview" /> : <Fragment set:html={raw} />}
+    {
+      hasPreviewSlot ? (
+        <slot name="preview" />
+      ) : Wrap ? (
+        <Wrap set:html={raw} />
+      ) : (
+        <Fragment set:html={raw} />
+      )
+    }
   </div>
   <CodeBlock code={sample} lang={lang} filename={filename} />
 </div>
