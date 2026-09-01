@@ -1,3 +1,62 @@
+---
+import Demo from '../shared/Demo.astro';
+
+const basicDetailsApiCode = `
+<details class="dropdown">
+  <summary class="dropdown-trigger btn btn-ghost btn-sm">
+    Menu <span class="dropdown-arrow"></span>
+  </summary>
+  <div class="dropdown-menu">
+    <div class="dropdown-label">Section</div>
+    <a href="#" class="dropdown-item">Item</a>
+    <a href="#" class="dropdown-item is-active">Active</a>
+    <div class="dropdown-divider"></div>
+    <a href="#" class="dropdown-item is-danger">Delete</a>
+    <a href="#" class="dropdown-item" disabled>Disabled</a>
+  </div>
+</details>
+`;
+
+const menuPositionsCode = `
+<details class="dropdown">...           <!-- left (default) -->
+<details class="dropdown dropdown-center">...  <!-- center -->
+<details class="dropdown dropdown-right">...   <!-- right -->
+<details class="dropdown dropdown-top">...     <!-- opens upward -->
+`;
+
+const variantsPrimaryDarkCode = `
+<!-- Primary — colored top stripe + themed border -->
+<details class="dropdown dropdown-primary">...</details>
+
+<!-- Dark — always dark menu -->
+<details class="dropdown dropdown-dark">...</details>
+`;
+
+const jsApiDropdowntoggleCode = `
+<div class="dropdown" id="my-dd">
+  <button class="btn btn-ghost btn-sm"
+    onclick="dropdownToggle(this.parentElement)">
+    Menu <span class="dropdown-arrow"></span>
+  </button>
+  <div class="dropdown-menu">
+    <a href="#" class="dropdown-item">Item</a>
+  </div>
+</div>
+
+<script>
+function dropdownToggle(el) {
+  el.classList.toggle("is-open");
+}
+// Close on outside click
+document.addEventListener("click", e => {
+  document.querySelectorAll(".dropdown.is-open").forEach(dd => {
+    if (!dd.contains(e.target)) dd.classList.remove("is-open");
+  });
+});
+</script>
+`;
+---
+
 <section class="lib-section" id="dropdown">
     <div class="lib-section-title">🔽 Dropdown</div>
     <div class="lib-section-desc">
@@ -9,12 +68,7 @@
     </div>
 
     <!-- Basic -->
-    <div class="lib-component">
-        <div class="lib-component-label">Basic — details API</div>
-        <div
-            class="lib-preview"
-            style="gap:16px;flex-wrap:wrap;align-items:flex-start;min-height:180px"
-        >
+    <Demo is:raw label={'Basic — details API'} previewStyle="gap:16px;flex-wrap:wrap;align-items:flex-start;min-height:180px" code={basicDetailsApiCode}>
             <details class="dropdown">
                 <summary class="dropdown-trigger btn btn-ghost btn-sm">
                     Menu <span class="dropdown-arrow"></span>
@@ -144,78 +198,10 @@
                     </a>
                 </div>
             </details>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<details class="dropdown">
-  <summary class="dropdown-trigger btn btn-ghost btn-sm">
-    Menu <span class="dropdown-arrow"></span>
-  </summary>
-  <div class="dropdown-menu">
-    <div class="dropdown-label">Section</div>
-    <a href="#" class="dropdown-item">Item</a>
-    <a href="#" class="dropdown-item is-active">Active</a>
-    <div class="dropdown-divider"></div>
-    <a href="#" class="dropdown-item is-danger">Delete</a>
-    <a href="#" class="dropdown-item" disabled>Disabled</a>
-  </div>
-</details>'
-                >
-                    <span class="k">&lt;details</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;summary</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown-trigger btn btn-ghost btn-sm"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;Menu <span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown-arrow"</span
-                    ><span class="k">&gt;&lt;/span&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;/summary&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown-menu"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown-label"</span
-                    ><span class="k">&gt;</span>Section<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown-item"</span
-                    ><span class="k">&gt;</span>Item<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown-divider"</span
-                    ><span class="k">&gt;&lt;/div&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">&lt;a</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown-item is-danger"</span
-                    ><span class="k">&gt;</span>Delete<span class="k"
-                        >&lt;/a&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;/div&gt;</span><br />
-                    <span class="k">&lt;/details&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Positions -->
-    <div class="lib-component">
-        <div class="lib-component-label">Menu positions</div>
-        <div
-            class="lib-preview"
-            style="gap:12px;flex-wrap:wrap;align-items:flex-start;min-height:200px;justify-content:space-between"
-        >
+    <Demo is:raw label={'Menu positions'} previewStyle="gap:12px;flex-wrap:wrap;align-items:flex-start;min-height:200px;justify-content:space-between" code={menuPositionsCode}>
             <details class="dropdown">
                 <summary class="dropdown-trigger btn btn-ghost btn-sm"
                     >Left (default) <span class="dropdown-arrow"></span>
@@ -246,52 +232,10 @@
                     <a href="#" class="dropdown-item">Option C</a>
                 </div>
             </details>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<details class="dropdown">...           <!-- left (default) -->
-<details class="dropdown dropdown-center">...  <!-- center -->
-<details class="dropdown dropdown-right">...   <!-- right -->
-<details class="dropdown dropdown-top">...     <!-- opens upward -->'
-                >
-                    <span class="k">&lt;details</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown"</span
-                    ><span class="k">&gt;</span>... <span class="c"
-                        >&lt;!-- left --&gt;</span
-                    ><br />
-                    <span class="k">&lt;details</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown dropdown-center"</span
-                    ><span class="k">&gt;</span>... <span class="c"
-                        >&lt;!-- center --&gt;</span
-                    ><br />
-                    <span class="k">&lt;details</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown dropdown-right"</span
-                    ><span class="k">&gt;</span>... <span class="c"
-                        >&lt;!-- right --&gt;</span
-                    ><br />
-                    <span class="k">&lt;details</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown dropdown-top"</span
-                    ><span class="k">&gt;</span>... <span class="c"
-                        >&lt;!-- upward --&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- Variants -->
-    <div class="lib-component">
-        <div class="lib-component-label">Variants — primary / dark</div>
-        <div
-            class="lib-preview"
-            style="gap:16px;flex-wrap:wrap;align-items:flex-start;min-height:200px"
-        >
+    <Demo is:raw label={'Variants — primary / dark'} previewStyle="gap:16px;flex-wrap:wrap;align-items:flex-start;min-height:200px" code={variantsPrimaryDarkCode}>
             <details class="dropdown dropdown-primary">
                 <summary class="dropdown-trigger btn btn-primary btn-sm"
                     >Primary <span class="dropdown-arrow"></span>
@@ -355,46 +299,10 @@
                     </a>
                 </div>
             </details>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- Primary — colored top stripe + themed border -->
-<details class="dropdown dropdown-primary">...</details>
-
-<!-- Dark — always dark menu -->
-<details class="dropdown dropdown-dark">...</details>'
-                >
-                    <span class="c"
-                        >&lt;!-- Primary — colored top stripe + border --&gt;</span
-                    ><br />
-                    <span class="k">&lt;details</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown dropdown-primary"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/details&gt;</span
-                    ><br /><br />
-                    <span class="c">&lt;!-- Dark — always dark menu --&gt;</span
-                    ><br />
-                    <span class="k">&lt;details</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown dropdown-dark"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/details&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
     <!-- JS toggle -->
-    <div class="lib-component">
-        <div class="lib-component-label">JS API — dropdownToggle()</div>
-        <div
-            class="lib-preview"
-            style="gap:16px;align-items:flex-start;min-height:160px"
-        >
+    <Demo is:raw label={'JS API — dropdownToggle()'} previewStyle="gap:16px;align-items:flex-start;min-height:160px" code={jsApiDropdowntoggleCode}>
             <div class="dropdown" id="dd-js-demo">
                 <button
                     class="btn btn-ghost btn-sm"
@@ -419,55 +327,5 @@
                     >
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<div class="dropdown" id="my-dd">
-  <button class="btn btn-ghost btn-sm"
-    onclick="dropdownToggle(this.parentElement)">
-    Menu <span class="dropdown-arrow"></span>
-  </button>
-  <div class="dropdown-menu">
-    <a href="#" class="dropdown-item">Item</a>
-  </div>
-</div>
-
-<script>
-function dropdownToggle(el) {
-  el.classList.toggle("is-open");
-}
-// Close on outside click
-document.addEventListener("click", e => {
-  document.querySelectorAll(".dropdown.is-open").forEach(dd => {
-    if (!dd.contains(e.target)) dd.classList.remove("is-open");
-  });
-});
-</script>'
-                >
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;button</span>
-                    <span class="s">onclick</span>=<span class="cn"
-                        >"dropdownToggle(this.parentElement)"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;Menu <span class="k">&lt;span</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown-arrow"</span
-                    ><span class="k">&gt;&lt;/span&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;/button&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"dropdown-menu"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 </section>
