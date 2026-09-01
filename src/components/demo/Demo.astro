@@ -773,7 +773,7 @@ import '../../styles/demo-scoped.generated.css';
     button: {
       default: {
         html: '<button class="btn btn-primary">Primary</button> <button class="btn btn-accent">Accent</button> <button class="btn btn-ghost">Ghost</button> <button class="btn btn-outline">Outline</button>',
-        code: '<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span><span class="sh-tag">&gt;</span>Primary<span class="sh-tag">&lt;/button&gt;</span>\n<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-accent"</span><span class="sh-tag">&gt;</span>Accent<span class="sh-tag">&lt;/button&gt;</span>\n<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-ghost"</span><span class="sh-tag">&gt;</span>Ghost<span class="sh-tag">&lt;/button&gt;</span>',
+        code: '<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span><span class="sh-tag">&gt;</span>Primary<span class="sh-tag">&lt;/button&gt;</span>\n<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-accent"</span><span class="sh-tag">&gt;</span>Accent<span class="sh-tag">&lt;/button&gt;</span>\n<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-ghost"</span><span class="sh-tag">&gt;</span>Ghost<span class="sh-tag">&lt;/button&gt;</span>\n<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-outline"</span><span class="sh-tag">&gt;</span>Outline<span class="sh-tag">&lt;/button&gt;</span>',
       },
       hover: {
         html: '<button class="btn btn-primary hover-lift">Lift</button> <button class="btn btn-primary hover-scale">Scale</button> <button class="btn btn-accent hover-glow">Glow</button>',
@@ -785,7 +785,7 @@ import '../../styles/demo-scoped.generated.css';
       },
       states: {
         html: '<button class="btn btn-primary">Default</button> <button class="btn btn-primary" disabled style="opacity:0.5">Disabled</button> <button class="btn btn-primary is-loading">Loading&hellip;</button>',
-        code: '<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span><span class="sh-tag">&gt;</span>Default<span class="sh-tag">&lt;/button&gt;</span>\n<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span> <span class="attr">disabled</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/button&gt;</span>',
+        code: '<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span><span class="sh-tag">&gt;</span>Default<span class="sh-tag">&lt;/button&gt;</span>\n<span class="sh-tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span> <span class="attr">disabled</span><span class="sh-tag">&gt;</span>Disabled<span class="sh-tag">&lt;/button&gt;</span>',
       },
     },
     input: {
@@ -845,19 +845,19 @@ import '../../styles/demo-scoped.generated.css';
     card: {
       default: {
         html: '<div class="card" style="padding:18px;width:220px"><div style="font-weight:700;color:var(--color-primary);margin-bottom:6px">Card title</div><div style="font-size:12px;color:var(--color-muted)">Default surface - bg-card + primary border.</div></div>',
-        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span><span class="sh-tag">&gt;</span>Card content<span class="sh-tag">&lt;/div&gt;</span>',
       },
       hover: {
         html: '<div class="card hover-lift" style="padding:18px;width:200px;transition:all 0.3s;cursor:pointer">hover-lift</div> <div class="card hover-glow" style="padding:18px;width:160px;transition:all 0.3s;cursor:pointer">hover-glow</div>',
-        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card hover-lift"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card hover-lift"</span><span class="sh-tag">&gt;</span>Card content<span class="sh-tag">&lt;/div&gt;</span>',
       },
       sizes: {
         html: '<div class="card" style="padding:10px;font-size:12px">sm</div> <div class="card" style="padding:18px">md</div> <div class="card-glass" style="padding:18px;width:150px">card-glass</div>',
-        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card-glass"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card-glass"</span><span class="sh-tag">&gt;</span>Glass card<span class="sh-tag">&lt;/div&gt;</span>',
       },
       states: {
         html: '<div class="card-glow" style="padding:18px;width:200px">card-glow</div> <div class="card-gradient" style="padding:18px;width:150px">card-gradient</div>',
-        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card-glow"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card-glow"</span><span class="sh-tag">&gt;</span>Glow card<span class="sh-tag">&lt;/div&gt;</span>',
       },
     },
     modal: {
@@ -871,11 +871,11 @@ import '../../styles/demo-scoped.generated.css';
       },
       sizes: {
         html: '<div style="opacity:0.6;font-size:13px">.lib-modal-box.is-sm &nbsp; .lib-modal-box.is-lg</div>',
-        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"lib-modal-box is-sm"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"lib-modal-box is-sm"</span><span class="sh-tag">&gt;</span>Modal content<span class="sh-tag">&lt;/div&gt;</span>',
       },
       states: {
         html: '<div style="opacity:0.6;font-size:13px">.is-success &nbsp; .is-error &nbsp; .is-warning</div>',
-        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"lib-modal-box is-success"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"lib-modal-box is-success"</span><span class="sh-tag">&gt;</span>Modal content<span class="sh-tag">&lt;/div&gt;</span>',
       },
     },
     progress: {
@@ -885,7 +885,7 @@ import '../../styles/demo-scoped.generated.css';
       },
       hover: {
         html: '<div style="opacity:0.6;font-size:13px">- shimmer variant</div>',
-        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"progress progress-shimmer"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"progress progress-shimmer"</span><span class="sh-tag">&gt;</span><span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"progress-bar"</span> <span class="attr">style</span>=<span class="str">"width:60%"</span><span class="sh-tag">&gt;&lt;/div&gt;</span><span class="sh-tag">&lt;/div&gt;</span>',
       },
       sizes: {
         html: '<div style="display:flex;flex-direction:column;gap:10px;width:280px"><div style="height:4px;background:color-mix(in srgb,var(--color-primary) 18%,transparent);border-radius:9999px;overflow:hidden"><div style="height:100%;width:40%;background:var(--color-primary)"></div></div><div style="height:8px;background:color-mix(in srgb,var(--color-primary) 18%,transparent);border-radius:9999px;overflow:hidden"><div style="height:100%;width:65%;background:var(--color-primary)"></div></div><div style="height:12px;background:color-mix(in srgb,var(--color-primary) 18%,transparent);border-radius:9999px;overflow:hidden"><div style="height:100%;width:80%;background:var(--color-primary)"></div></div></div>',
@@ -893,7 +893,7 @@ import '../../styles/demo-scoped.generated.css';
       },
       states: {
         html: '<div style="display:flex;flex-direction:column;gap:8px;width:280px"><div style="height:6px;background:color-mix(in srgb,var(--color-success) 18%,transparent);border-radius:9999px;overflow:hidden"><div style="height:100%;width:100%;background:var(--color-success)"></div></div><div style="height:6px;background:color-mix(in srgb,var(--color-danger) 18%,transparent);border-radius:9999px;overflow:hidden"><div style="height:100%;width:25%;background:var(--color-danger)"></div></div></div>',
-        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"progress progress-success"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"progress progress-success"</span><span class="sh-tag">&gt;</span><span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"progress-bar"</span> <span class="attr">style</span>=<span class="str">"width:60%"</span><span class="sh-tag">&gt;&lt;/div&gt;</span><span class="sh-tag">&lt;/div&gt;</span>',
       },
     },
     animations: {
@@ -917,19 +917,19 @@ import '../../styles/demo-scoped.generated.css';
     tip: {
       default: {
         html: '<div style="display:flex;gap:10px;background:color-mix(in srgb,var(--color-primary) 8%,transparent);border-left:3px solid var(--color-primary);padding:12px 14px;border-radius:8px;font-size:13px;max-width:340px"><div><div style="font-weight:700;color:var(--color-primary);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">Tip</div>Switch themes with one attribute.</div></div>',
-        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"tip tip--info"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"tip tip--info"</span><span class="sh-tag">&gt;</span>Tip text<span class="sh-tag">&lt;/div&gt;</span>',
       },
       hover: {
         html: '<div style="display:flex;gap:10px;background:color-mix(in srgb,var(--color-primary) 8%,transparent);border-left:3px solid var(--color-primary);padding:12px 14px;border-radius:8px;font-size:13px;max-width:340px;transition:background 0.2s;cursor:pointer" onmouseenter="this.style.background=\'color-mix(in srgb,var(--color-primary) 15%,transparent)\'" onmouseleave="this.style.background=\'color-mix(in srgb,var(--color-primary) 8%,transparent)\'"><div><div style="font-weight:700;color:var(--color-primary);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">Tip</div>Hover effect on tip.</div></div>',
-        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"tip tip--info hover-bg"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"tip tip--info hover-bg"</span><span class="sh-tag">&gt;</span>Tip text<span class="sh-tag">&lt;/div&gt;</span>',
       },
       sizes: {
         html: '<div style="opacity:0.6;font-size:13px">- same shape, padding adjustable</div>',
-        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"tip tip--info"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"tip tip--info"</span><span class="sh-tag">&gt;</span>Tip text<span class="sh-tag">&lt;/div&gt;</span>',
       },
       states: {
         html: '<div style="display:flex;flex-direction:column;gap:8px;max-width:340px"><div style="background:color-mix(in srgb,#9ce700 8%,transparent);border-left:3px solid #9ce700;padding:10px 14px;border-radius:8px;font-size:13px"><b style="color:#9ce700">DONE</b> - Saved successfully</div><div style="background:color-mix(in srgb,#ffdd00 8%,transparent);border-left:3px solid #ffdd00;padding:10px 14px;border-radius:8px;font-size:13px"><b style="color:#ffdd00">WARN</b> - Check your inputs</div><div style="background:color-mix(in srgb,#f43f5e 8%,transparent);border-left:3px solid #f43f5e;padding:10px 14px;border-radius:8px;font-size:13px"><b style="color:#f43f5e">ERROR</b> - Action failed</div></div>',
-        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"tip tip--success"</span><span class="sh-tag">&gt;</span>&hellip;<span class="sh-tag">&lt;/div&gt;</span>',
+        code: '<span class="sh-tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"tip tip--success"</span><span class="sh-tag">&gt;</span>Tip text<span class="sh-tag">&lt;/div&gt;</span>',
       },
     },
   };
