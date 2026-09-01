@@ -1,3 +1,37 @@
+---
+import Demo from '../shared/Demo.astro';
+
+const featureCardsPageCode = `
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <span class="tag tag-primary">Feature grid</span>
+      <h2 class="title-lg mt-3">Everything a launch page needs.</h2>
+      <p class="text-muted">A full-width cards section with hierarchy and CTA.</p>
+    </div>
+    <div class="grid grid-3 gap-5 mt-8">
+      <article class="card-aura card-aura-primary p-5">...</article>
+      <article class="card-aura card-aura-aurora p-5">...</article>
+      <article class="card-aura card-aura-gold p-5">...</article>
+    </div>
+  </div>
+</section>
+`;
+
+const articleShowcaseCardsPageCode = `
+<section class="section">
+  <div class="container grid grid-2 gap-6">
+    <aside class="card-gradient p-6">...</aside>
+    <div class="grid gap-4">
+      <article class="card-glass p-4">...</article>
+      <article class="card-glass p-4">...</article>
+      <article class="card-glass p-4">...</article>
+    </div>
+  </div>
+</section>
+`;
+---
+
 <section class="lib-section" id="page-cards">
     <div class="lib-section-title">▣ Page Cards</div>
     <div class="lib-section-desc">
@@ -5,9 +39,7 @@
         product galleries.
     </div>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Feature Cards Page</div>
-        <div class="lib-preview page-cards-preview">
+    <Demo is:raw label={'Feature Cards Page'} previewClass="page-cards-preview" code={featureCardsPageCode}>
             <section class="pc-page">
                 <div class="pc-head">
                     <span class="tag tag-primary">Feature grid</span>
@@ -38,35 +70,9 @@
                     </article>
                 </div>
             </section>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<section class="section">
-  <div class="container">
-    <div class="text-center">
-      <span class="tag tag-primary">Feature grid</span>
-      <h2 class="title-lg mt-3">Everything a launch page needs.</h2>
-      <p class="text-muted">A full-width cards section with hierarchy and CTA.</p>
-    </div>
-    <div class="grid grid-3 gap-5 mt-8">
-      <article class="card-aura card-aura-primary p-5">...</article>
-      <article class="card-aura card-aura-aurora p-5">...</article>
-      <article class="card-aura card-aura-gold p-5">...</article>
-    </div>
-  </div>
-</section>'
-                >
-                    <span class="c">&lt;!-- Ready page cards block --&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Article / Showcase Cards Page</div>
-        <div class="lib-preview page-cards-preview">
+    <Demo is:raw label={'Article / Showcase Cards Page'} previewClass="page-cards-preview" code={articleShowcaseCardsPageCode}>
             <section class="pc-page">
                 <div class="pc-layout">
                     <aside class="card-gradient pc-sidebar">
@@ -94,30 +100,10 @@
                     </div>
                 </div>
             </section>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<section class="section">
-  <div class="container grid grid-2 gap-6">
-    <aside class="card-gradient p-6">...</aside>
-    <div class="grid gap-4">
-      <article class="card-glass p-4">...</article>
-      <article class="card-glass p-4">...</article>
-      <article class="card-glass p-4">...</article>
-    </div>
-  </div>
-</section>'
-                >
-                    <span class="c">&lt;!-- Ready article cards page --&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 </section>
 
-<style>
+<style is:global>
     .page-cards-preview {
         display: block;
         padding: 0;

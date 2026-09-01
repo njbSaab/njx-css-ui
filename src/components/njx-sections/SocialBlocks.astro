@@ -1,12 +1,43 @@
+---
+import Demo from '../shared/Demo.astro';
+
+const socialProofStripCode = `
+<section class="section">
+  <div class="container">
+    <span class="tag tag-success">Trusted by builders</span>
+    <h2 class="title-lg mt-3">A small CSS toolkit with real demos.</h2>
+    <div class="grid grid-3 gap-4 mt-6">
+      <article class="card-glass p-5"><strong>40+</strong><span>CodePen demos</span></article>
+      <article class="card-glass p-5"><strong>9</strong><span>themes</span></article>
+      <article class="card-glass p-5"><strong>0</strong><span>dependencies</span></article>
+    </div>
+  </div>
+</section>
+`;
+
+const communityFollowBlockCode = `
+<section class="section">
+  <div class="container card-glass p-6">
+    <span class="tag tag-primary">Community</span>
+    <h2 class="title-lg mt-3">Follow the project and ship with us.</h2>
+    <p class="text-muted">Use this block for footer pages, launch pages and docs home screens.</p>
+    <ul class="social-list social-list-pills mt-6">
+      <li><a href="#" data-net="github">GitHub</a></li>
+      <li><a href="#" data-net="twitter">X / Twitter</a></li>
+      <li><a href="#" data-net="telegram">Telegram</a></li>
+    </ul>
+  </div>
+</section>
+`;
+---
+
 <section class="lib-section" id="social-blocks">
     <div class="lib-section-title">🌐 Social Blocks</div>
     <div class="lib-section-desc">
         Ready social proof, community and follow sections.
     </div>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Social Proof Strip</div>
-        <div class="lib-preview social-block-preview">
+    <Demo is:raw label={'Social Proof Strip'} previewClass="social-block-preview" code={socialProofStripCode}>
             <section class="rs rs-proof">
                 <div>
                     <span class="tag tag-success">Trusted by builders</span>
@@ -18,32 +49,9 @@
                     <article class="card-glass"><strong>0</strong><span>dependencies</span></article>
                 </div>
             </section>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<section class="section">
-  <div class="container">
-    <span class="tag tag-success">Trusted by builders</span>
-    <h2 class="title-lg mt-3">A small CSS toolkit with real demos.</h2>
-    <div class="grid grid-3 gap-4 mt-6">
-      <article class="card-glass p-5"><strong>40+</strong><span>CodePen demos</span></article>
-      <article class="card-glass p-5"><strong>9</strong><span>themes</span></article>
-      <article class="card-glass p-5"><strong>0</strong><span>dependencies</span></article>
-    </div>
-  </div>
-</section>'
-                >
-                    <span class="c">&lt;!-- Social proof strip --&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Community Follow Block</div>
-        <div class="lib-preview social-block-preview">
+    <Demo is:raw label={'Community Follow Block'} previewClass="social-block-preview" code={communityFollowBlockCode}>
             <section class="rs rs-community">
                 <div>
                     <span class="tag tag-primary">Community</span>
@@ -60,32 +68,10 @@
                     <li><a href="#" data-net="linkedin">LinkedIn</a></li>
                 </ul>
             </section>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<section class="section">
-  <div class="container card-glass p-6">
-    <span class="tag tag-primary">Community</span>
-    <h2 class="title-lg mt-3">Follow the project and ship with us.</h2>
-    <p class="text-muted">Use this block for footer pages, launch pages and docs home screens.</p>
-    <ul class="social-list social-list-pills mt-6">
-      <li><a href="#" data-net="github">GitHub</a></li>
-      <li><a href="#" data-net="twitter">X / Twitter</a></li>
-      <li><a href="#" data-net="telegram">Telegram</a></li>
-    </ul>
-  </div>
-</section>'
-                >
-                    <span class="c">&lt;!-- Community follow block --&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 </section>
 
-<style>
+<style is:global>
     .social-block-preview {
         display: block;
         padding: 0;

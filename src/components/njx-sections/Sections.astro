@@ -1,12 +1,181 @@
+---
+import Demo from '../shared/Demo.astro';
+
+const containersContainerCode = `
+<!-- _sections.css: container, container-sm/md/lg/xl, container-fluid -->
+<div class="container">          <!-- max-width: 1280px -->
+  Content
+</div>
+
+<div class="container-sm">       <!-- max-width: 640px -->
+  Content
+</div>
+
+<div class="container-fluid">    <!-- 100% width -->
+  Content
+</div>
+`;
+
+const sectionPaddingVariantsCode = `
+<!-- section | section-sm (32px) | section-lg (96px) -->
+<section class="section">             <!-- padding: 64px 0 -->
+  <div class="container">...</div>
+</section>
+
+<section class="section section-sm">    <!-- padding: 32px 0 -->
+  <div class="container">...</div>
+</section>
+
+<section class="section section-lg">    <!-- padding: 96px 0 -->
+  <div class="container">...</div>
+</section>
+`;
+
+const readyPageBlockSaasLandingCode = `
+<section class="section">
+  <div class="container">
+    <nav class="flex-center-between">
+      <strong>LaunchKit</strong>
+      <div class="flex gap-3">
+        <a class="link" href="#">Features</a>
+        <a class="link" href="#">Pricing</a>
+        <a class="btn btn-primary btn-sm" href="#">Start free</a>
+      </div>
+    </nav>
+
+    <div class="grid grid-2 gap-8 items-center mt-8">
+      <div>
+        <span class="tag tag-primary">New release</span>
+        <h1 class="title-hero fluid mt-4">Ship your next product page before lunch.</h1>
+        <p class="text-lead text-muted mt-4">Hero, feature cards, pricing and CTA blocks built from njX UI primitives.</p>
+        <div class="flex gap-3 mt-6">
+          <a class="btn btn-primary btn-lg" href="#">Get started</a>
+          <a class="btn btn-outline btn-lg" href="#">View docs</a>
+        </div>
+      </div>
+      <div class="card-gradient p-6">...</div>
+    </div>
+  </div>
+</section>
+`;
+
+const readyPageBlockAppDashboardCode = `
+<section class="section">
+  <div class="container grid grid-2 gap-6">
+    <aside class="card-dark p-5">
+      <strong>Orbit CRM</strong>
+      <a class="link" href="#">Overview</a>
+      <a class="link" href="#">Pipeline</a>
+      <a class="link" href="#">Reports</a>
+    </aside>
+
+    <main class="items-wrapper-col gap-5">
+      <header class="flex-center-between">
+        <div>
+          <span class="tag tag-success">Live</span>
+          <h2 class="title-md">Revenue overview</h2>
+        </div>
+        <button class="btn btn-primary btn-sm">Export</button>
+      </header>
+
+      <div class="grid grid-3 gap-4">
+        <article class="card-bg-primary">...</article>
+        <article class="card-bg-success">...</article>
+        <article class="card-bg-warning">...</article>
+      </div>
+    </main>
+  </div>
+</section>
+`;
+
+const readyPageBlockPricingContactCode = `
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <span class="tag tag-accent">Simple plans</span>
+      <h2 class="title-lg mt-3">Start small. Upgrade when needed.</h2>
+      <p class="text-muted">Pricing, trust notes and a contact form in one ready page composition.</p>
+    </div>
+
+    <div class="grid grid-3 gap-5 mt-8">
+      <article class="card-bordered p-5">...</article>
+      <article class="card-glow p-5">...</article>
+      <article class="card-bordered p-5">...</article>
+    </div>
+
+    <form class="card-glass flex gap-3 mt-6">
+      <input class="input" placeholder="Email address">
+      <button class="btn btn-primary">Request demo</button>
+    </form>
+  </div>
+</section>
+`;
+
+const socialListDefaultIconButtonsCode = `
+<ul class="social-list">
+  <li><a href="#" aria-label="GitHub"><svg ...></svg></a></li>
+  <li><a href="#" aria-label="Twitter"><svg ...></svg></a></li>
+  ...
+</ul>
+`;
+
+const socialListGlassCardCode = `
+<ul class="social-list social-list-glass">...</ul>
+`;
+
+const socialListPillsIconLabelCode = `
+<ul class="social-list social-list-pills">
+  <li><a href="#"><svg ...></svg> GitHub</a></li>
+</ul>
+`;
+
+const socialListColoredHoverBrandColorsCode = `
+<ul class="social-list social-list-colored">
+  <li><a href="#" data-net="github">...</a></li>
+  <li><a href="#" data-net="twitter">...</a></li>
+</ul>
+`;
+
+const socialListMinimalGhostCode = `
+<ul class="social-list social-list-minimal">...</ul>
+`;
+
+const socialListVerticalStackCode = `
+<ul class="social-list social-list-vertical">...</ul>
+`;
+
+const socialListOutlinedCode = `
+<ul class="social-list social-list-outlined">...</ul>
+`;
+const sectionBannerFullHeightHeroCode = `
+<section class="section-banner" style="background-image: url(...)">
+  <div class="container">...</div>
+</section>
+`;
+
+const wrappersListsCode = `
+<div class="items-wrapper-col">...</div>
+<div class="list-items-row">...</div>
+`;
+
+const backgroundSupportCode = `
+<section class="section bg" style="background-image: url(...)">...</section>
+`;
+
+const wrapperAgentClassesCode = `
+<div class="wrapper">...</div>
+<img class="agent" src="...">
+`;
+
+---
+
 <section class="lib-section" id="sections">
     <div class="lib-section-title">🔲 Sections & Containers</div>
     <div class="lib-section-desc">
         From <code>_sections.css</code>. Containers and wrappers for layouts.
     </div>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Containers (container-*)</div>
-        <div class="lib-preview col" style="align-items:flex-start;gap:16px">
+    <Demo is:raw label={'Containers (container-*)'} previewClass="col" previewStyle="align-items:flex-start;gap:16px" code={containersContainerCode}>
             <div
                 style="background:var(--color-primary);padding:16px;border-radius:8px;width:100%"
                 class="flex-center"
@@ -45,57 +214,9 @@
             >
                 <span class="text-sm">.container-fluid (100% width)</span>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- _sections.css: container, container-sm/md/lg/xl, container-fluid -->
-<div class="container">          <!-- max-width: 1280px -->
-  Content
-</div>
+        </Demo>
 
-<div class="container-sm">       <!-- max-width: 640px -->
-  Content
-</div>
-
-<div class="container-fluid">    <!-- 100% width -->
-  Content
-</div>'
-                >
-                    <span class="c"
-                        >/* _sections.css: container, container-sm/md/lg/xl,
-                        container-fluid */</span
-                    ><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"container"</span
-                    ><span class="k">&gt;</span>
-                    <span class="c">/* max-width: 1280px */</span><br />
-                    &nbsp;&nbsp;Content<br />
-                    <span class="k">&lt;/div&gt;</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"container-sm"</span
-                    ><span class="k">&gt;</span>
-                    <span class="c">/* max-width: 640px */</span><br />
-                    &nbsp;&nbsp;Content<br />
-                    <span class="k">&lt;/div&gt;</span><br />
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"container-fluid"</span
-                    ><span class="k">&gt;</span>
-                    <span class="c">/* 100% width */</span><br />
-                    &nbsp;&nbsp;Content<br />
-                    <span class="k">&lt;/div&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="lib-component">
-        <div class="lib-component-label">Section (padding variants)</div>
-        <div class="lib-preview col" style="align-items:flex-start;gap:12px">
+    <Demo is:raw label={'Section (padding variants)'} previewClass="col" previewStyle="align-items:flex-start;gap:12px" code={sectionPaddingVariantsCode}>
             <div
                 style="background:var(--lib-preview-bg);padding:24px;border-radius:8px;width:100%;border:2px dashed var(--lib-comp-brd)"
             >
@@ -117,74 +238,9 @@
                     >.section-lg (padding: 96px 0)</span
                 >
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<!-- section | section-sm (32px) | section-lg (96px) -->
-<section class="section">             <!-- padding: 64px 0 -->
-  <div class="container">...</div>
-</section>
+        </Demo>
 
-<section class="section section-sm">    <!-- padding: 32px 0 -->
-  <div class="container">...</div>
-</section>
-
-<section class="section section-lg">    <!-- padding: 96px 0 -->
-  <div class="container">...</div>
-</section>'
-                >
-                    <span class="c"
-                        >/* section | section-sm (32px) | section-lg (96px) */</span
-                    ><br />
-                    <span class="k">&lt;section</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"section"</span
-                    ><span class="k">&gt;</span>
-                    <span class="c">/* padding: 64px 0 */</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"container"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/section&gt;</span><br />
-                    <span class="k">&lt;section</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"section section-sm"</span
-                    ><span class="k">&gt;</span>
-                    <span class="c">/* padding: 32px 0 */</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"container"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/section&gt;</span><br />
-                    <span class="k">&lt;section</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"section section-lg"</span
-                    ><span class="k">&gt;</span>
-                    <span class="c">/* padding: 96px 0 */</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"container"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br />
-                    <span class="k">&lt;/section&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="lib-component">
-        <div class="lib-component-label">Section Banner (full-height hero)</div>
-        <div
-            class="lib-preview col"
-            style="align-items:center;justify-content:center;min-height:200px;background:linear-gradient(135deg, #1a1a2e, #16213e)"
-        >
+    <Demo is:raw label={'Section Banner (full-height hero)'} previewClass="col" previewStyle="align-items:center;justify-content:center;min-height:200px;background:linear-gradient(135deg, #1a1a2e, #16213e)" code={sectionBannerFullHeightHeroCode}>
             <div style="text-align:center">
                 <div class="title-lg" style="color:#fff;margin-bottom:12px">
                     .section-banner
@@ -193,34 +249,9 @@
                     Full screen hero section (min-height: 100dvh)
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div class="lib-code">
-                    <span class="k">&lt;section</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"section-banner"</span
-                    >
-                    <span class="s">style</span>=<span class="cn"
-                        >"background-image: url(...)"</span
-                    ><span class="k">&gt;</span><br />&nbsp;&nbsp;<span
-                        class="k">&lt;div</span
-                    >
-                    <span class="s">class</span>=<span class="cn"
-                        >"container"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br /><span class="k">&lt;/section&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">
-            Ready Page Block — SaaS Landing
-        </div>
-        <div class="lib-preview ready-page-preview">
+    <Demo is:raw label={'Ready Page Block — SaaS Landing'} previewClass="ready-page-preview" code={readyPageBlockSaasLandingCode}>
             <section class="rp-page rp-landing">
                 <nav class="rp-nav">
                     <strong>LaunchKit</strong>
@@ -271,55 +302,9 @@
                     </article>
                 </div>
             </section>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<section class="section">
-  <div class="container">
-    <nav class="flex-center-between">
-      <strong>LaunchKit</strong>
-      <div class="flex gap-3">
-        <a class="link" href="#">Features</a>
-        <a class="link" href="#">Pricing</a>
-        <a class="btn btn-primary btn-sm" href="#">Start free</a>
-      </div>
-    </nav>
+        </Demo>
 
-    <div class="grid grid-2 gap-8 items-center mt-8">
-      <div>
-        <span class="tag tag-primary">New release</span>
-        <h1 class="title-hero fluid mt-4">Ship your next product page before lunch.</h1>
-        <p class="text-lead text-muted mt-4">Hero, feature cards, pricing and CTA blocks built from njX UI primitives.</p>
-        <div class="flex gap-3 mt-6">
-          <a class="btn btn-primary btn-lg" href="#">Get started</a>
-          <a class="btn btn-outline btn-lg" href="#">View docs</a>
-        </div>
-      </div>
-      <div class="card-gradient p-6">...</div>
-    </div>
-  </div>
-</section>'
-                >
-                    <span class="c">&lt;!-- Ready landing page block --&gt;</span><br />
-                    <span class="k">&lt;section</span>
-                    <span class="s">class</span>=<span class="cn">"section"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn">"container"</span
-                    ><span class="k">&gt;</span>...<span class="k">&lt;/div&gt;</span><br />
-                    <span class="k">&lt;/section&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="lib-component">
-        <div class="lib-component-label">
-            Ready Page Block — App Dashboard
-        </div>
-        <div class="lib-preview ready-page-preview">
+    <Demo is:raw label={'Ready Page Block — App Dashboard'} previewClass="ready-page-preview" code={readyPageBlockAppDashboardCode}>
             <section class="rp-page rp-dashboard">
                 <aside class="rp-sidebar card-dark">
                     <strong>Orbit CRM</strong>
@@ -359,52 +344,9 @@
                     </div>
                 </div>
             </section>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<section class="section">
-  <div class="container grid grid-2 gap-6">
-    <aside class="card-dark p-5">
-      <strong>Orbit CRM</strong>
-      <a class="link" href="#">Overview</a>
-      <a class="link" href="#">Pipeline</a>
-      <a class="link" href="#">Reports</a>
-    </aside>
+        </Demo>
 
-    <main class="items-wrapper-col gap-5">
-      <header class="flex-center-between">
-        <div>
-          <span class="tag tag-success">Live</span>
-          <h2 class="title-md">Revenue overview</h2>
-        </div>
-        <button class="btn btn-primary btn-sm">Export</button>
-      </header>
-
-      <div class="grid grid-3 gap-4">
-        <article class="card-bg-primary">...</article>
-        <article class="card-bg-success">...</article>
-        <article class="card-bg-warning">...</article>
-      </div>
-    </main>
-  </div>
-</section>'
-                >
-                    <span class="c">&lt;!-- Ready dashboard page block --&gt;</span><br />
-                    <span class="k">&lt;section</span>
-                    <span class="s">class</span>=<span class="cn">"section"</span
-                    ><span class="k">&gt;</span>...<span class="k">&lt;/section&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="lib-component">
-        <div class="lib-component-label">
-            Ready Page Block — Pricing + Contact
-        </div>
-        <div class="lib-preview ready-page-preview">
+    <Demo is:raw label={'Ready Page Block — Pricing + Contact'} previewClass="ready-page-preview" code={readyPageBlockPricingContactCode}>
             <section class="rp-page rp-pricing">
                 <div class="rp-center">
                     <span class="tag tag-accent">Simple plans</span>
@@ -441,44 +383,9 @@
                     <button class="btn btn-primary">Request demo</button>
                 </form>
             </section>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<section class="section">
-  <div class="container">
-    <div class="text-center">
-      <span class="tag tag-accent">Simple plans</span>
-      <h2 class="title-lg mt-3">Start small. Upgrade when needed.</h2>
-      <p class="text-muted">Pricing, trust notes and a contact form in one ready page composition.</p>
-    </div>
+        </Demo>
 
-    <div class="grid grid-3 gap-5 mt-8">
-      <article class="card-bordered p-5">...</article>
-      <article class="card-glow p-5">...</article>
-      <article class="card-bordered p-5">...</article>
-    </div>
-
-    <form class="card-glass flex gap-3 mt-6">
-      <input class="input" placeholder="Email address">
-      <button class="btn btn-primary">Request demo</button>
-    </form>
-  </div>
-</section>'
-                >
-                    <span class="c">&lt;!-- Ready pricing and contact block --&gt;</span><br />
-                    <span class="k">&lt;section</span>
-                    <span class="s">class</span>=<span class="cn">"section"</span
-                    ><span class="k">&gt;</span>...<span class="k">&lt;/section&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="lib-component">
-        <div class="lib-component-label">Wrappers & Lists</div>
-        <div class="lib-preview col" style="align-items:flex-start;gap:12px">
+    <Demo is:raw label={'Wrappers & Lists'} previewClass="col" previewStyle="align-items:flex-start;gap:12px" code={wrappersListsCode}>
             <div
                 style="background:var(--lib-preview-bg);padding:16px;border-radius:8px;width:100%;border:1px solid var(--lib-sep)"
             >
@@ -522,31 +429,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div class="lib-code">
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"items-wrapper-col"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br /><span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"list-items-row"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">
-            Social List — Default (Icon Buttons)
-        </div>
-        <div class="lib-preview" style="justify-content:center">
+    <Demo is:raw label={'Social List — Default (Icon Buttons)'} previewStyle="justify-content:center" code={socialListDefaultIconButtonsCode}>
             <ul class="social-list">
                 <li>
                     <a href="#" aria-label="GitHub" title="GitHub">
@@ -640,47 +525,9 @@
                     </a>
                 </li>
             </ul>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<ul class="social-list">
-  <li><a href="#" aria-label="GitHub"><svg ...></svg></a></li>
-  <li><a href="#" aria-label="Twitter"><svg ...></svg></a></li>
-  ...
-</ul>'
-                >
-                    <span class="k">&lt;ul</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"social-list"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;li&gt;&lt;a</span>
-                    <span class="s">href</span>=<span class="cn">"#"</span>
-                    <span class="s">aria-label</span>=<span class="cn"
-                        >"GitHub"</span
-                    ><span class="k">&gt;</span><span class="c"
-                        >&lt;svg ...&gt;</span
-                    ><span class="k">&lt;/a&gt;&lt;/li&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;li&gt;&lt;a</span>
-                    <span class="s">href</span>=<span class="cn">"#"</span>
-                    <span class="s">aria-label</span>=<span class="cn"
-                        >"Twitter"</span
-                    ><span class="k">&gt;</span><span class="c"
-                        >&lt;svg ...&gt;</span
-                    ><span class="k">&lt;/a&gt;&lt;/li&gt;</span><br />
-                    <span class="k">&lt;/ul&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Social List — Glass Card</div>
-        <div
-            class="lib-preview"
-            style="justify-content:center;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);min-height:120px"
-        >
+    <Demo is:raw label={'Social List — Glass Card'} previewStyle="justify-content:center;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);min-height:120px" code={socialListGlassCardCode}>
             <ul class="social-list social-list-glass">
                 <li>
                     <a href="#" aria-label="GitHub" title="GitHub">
@@ -748,32 +595,9 @@
                     </a>
                 </li>
             </ul>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<ul class="social-list social-list-glass">...</ul>'
-                >
-                    <span class="k">&lt;ul</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"social-list social-list-glass"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/ul&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">
-            Social List — Pills (Icon + Label)
-        </div>
-        <div
-            class="lib-preview"
-            style="justify-content:center;flex-wrap:wrap;gap:8px"
-        >
+    <Demo is:raw label={'Social List — Pills (Icon + Label)'} previewStyle="justify-content:center;flex-wrap:wrap;gap:8px" code={socialListPillsIconLabelCode}>
             <ul
                 class="social-list social-list-pills"
                 style="flex-wrap:wrap;justify-content:center"
@@ -849,36 +673,9 @@
                     </a>
                 </li>
             </ul>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<ul class="social-list social-list-pills">
-  <li><a href="#"><svg ...></svg> GitHub</a></li>
-</ul>'
-                >
-                    <span class="k">&lt;ul</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"social-list social-list-pills"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;li&gt;&lt;a</span>
-                    <span class="s">href</span>=<span class="cn">"#"</span><span
-                        class="k">&gt;</span
-                    ><span class="c">&lt;svg&gt;</span> GitHub<span class="k"
-                        >&lt;/a&gt;&lt;/li&gt;</span
-                    ><br />
-                    <span class="k">&lt;/ul&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">
-            Social List — Colored Hover (Brand Colors)
-        </div>
-        <div class="lib-preview" style="justify-content:center">
+    <Demo is:raw label={'Social List — Colored Hover (Brand Colors)'} previewStyle="justify-content:center" code={socialListColoredHoverBrandColorsCode}>
             <ul class="social-list social-list-colored">
                 <li>
                     <a
@@ -1025,41 +822,9 @@
                     </a>
                 </li>
             </ul>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<ul class="social-list social-list-colored">
-  <li><a href="#" data-net="github">...</a></li>
-  <li><a href="#" data-net="twitter">...</a></li>
-</ul>'
-                >
-                    <span class="k">&lt;ul</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"social-list social-list-colored"</span
-                    ><span class="k">&gt;</span><br />
-                    &nbsp;&nbsp;<span class="k">&lt;li&gt;&lt;a</span>
-                    <span class="s">data-net</span>=<span class="cn"
-                        >"github"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/a&gt;&lt;/li&gt;</span
-                    ><br />
-                    &nbsp;&nbsp;<span class="k">&lt;li&gt;&lt;a</span>
-                    <span class="s">data-net</span>=<span class="cn"
-                        >"twitter"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/a&gt;&lt;/li&gt;</span
-                    ><br />
-                    <span class="k">&lt;/ul&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Social List — Minimal / Ghost</div>
-        <div class="lib-preview" style="justify-content:center">
+    <Demo is:raw label={'Social List — Minimal / Ghost'} previewStyle="justify-content:center" code={socialListMinimalGhostCode}>
             <ul class="social-list social-list-minimal">
                 <li>
                     <a href="#" aria-label="GitHub">
@@ -1127,27 +892,9 @@
                     </a>
                 </li>
             </ul>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<ul class="social-list social-list-minimal">...</ul>'
-                >
-                    <span class="k">&lt;ul</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"social-list social-list-minimal"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/ul&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Social List — Vertical Stack</div>
-        <div class="lib-preview" style="justify-content:center">
+    <Demo is:raw label={'Social List — Vertical Stack'} previewStyle="justify-content:center" code={socialListVerticalStackCode}>
             <ul
                 class="social-list social-list-vertical"
                 style="max-width:220px;width:100%"
@@ -1223,27 +970,9 @@
                     </a>
                 </li>
             </ul>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<ul class="social-list social-list-vertical">...</ul>'
-                >
-                    <span class="k">&lt;ul</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"social-list social-list-vertical"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/ul&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Social List — Outlined</div>
-        <div class="lib-preview" style="justify-content:center">
+    <Demo is:raw label={'Social List — Outlined'} previewStyle="justify-content:center" code={socialListOutlinedCode}>
             <ul class="social-list social-list-outlined">
                 <li>
                     <a href="#" aria-label="GitHub">
@@ -1324,27 +1053,9 @@
                     </a>
                 </li>
             </ul>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<ul class="social-list social-list-outlined">...</ul>'
-                >
-                    <span class="k">&lt;ul</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"social-list social-list-outlined"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/ul&gt;</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Background Support</div>
-        <div class="lib-preview col" style="align-items:flex-start;gap:12px">
+    <Demo is:raw label={'Background Support'} previewClass="col" previewStyle="align-items:flex-start;gap:12px" code={backgroundSupportCode}>
             <div
                 style="width:100%;height:120px;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);border-radius:8px"
                 class="flex-center"
@@ -1358,26 +1069,9 @@
             >
                 <span class="text-xs text-muted">.bg (utility class)</span>
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div class="lib-code">
-                    <span class="k">&lt;section</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"section bg"</span
-                    >
-                    <span class="s">style</span>=<span class="cn"
-                        >"background-image: url(...)"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/section&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Wrapper & Agent classes</div>
-        <div class="lib-preview col" style="align-items:flex-start;gap:12px">
+    <Demo is:raw label={'Wrapper & Agent classes'} previewClass="col" previewStyle="align-items:flex-start;gap:12px" code={wrapperAgentClassesCode}>
             <div
                 style="background:var(--lib-preview-bg);padding:16px;border-radius:8px;width:100%;border:1px dashed var(--lib-comp-brd)"
             >
@@ -1392,26 +1086,10 @@
                     >.agent — for elements with max-width: 100%</span
                 >
             </div>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div class="lib-code">
-                    <span class="k">&lt;div</span>
-                    <span class="s">class</span>=<span class="cn"
-                        >"wrapper"</span
-                    ><span class="k">&gt;</span>...<span class="k"
-                        >&lt;/div&gt;</span
-                    ><br /><span class="k">&lt;img</span>
-                    <span class="s">class</span>=<span class="cn">"agent"</span>
-                    <span class="s">src</span>=<span class="cn">"..."</span
-                    ><span class="k">&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 </section>
 
-<style>
+<style is:global>
     .ready-page-preview {
         display: block;
         padding: 0;

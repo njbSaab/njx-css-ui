@@ -1,12 +1,41 @@
+---
+import Demo from '../shared/Demo.astro';
+
+const gradientCtaCode = `
+<section class="section">
+  <div class="container card-gradient p-8">
+    <span class="tag">Ready to ship</span>
+    <h2 class="title-lg mt-3">Add njX UI and build the page.</h2>
+    <p>A strong end-of-page block for docs, products and launch pages.</p>
+    <div class="flex gap-3 mt-6">
+      <a class="btn btn-light btn-lg" href="#">Install now</a>
+      <a class="btn btn-outline-white btn-lg" href="#">Open docs</a>
+    </div>
+  </div>
+</section>
+`;
+
+const newsletterCtaCode = `
+<section class="section">
+  <div class="container card-glass p-6">
+    <span class="tag tag-accent">Updates</span>
+    <h2 class="title-md mt-3">Get new components and examples.</h2>
+    <form class="flex gap-3 mt-5">
+      <input class="input" type="email" placeholder="you@example.com">
+      <button class="btn btn-primary">Subscribe</button>
+    </form>
+  </div>
+</section>
+`;
+---
+
 <section class="lib-section" id="cta-blocks">
     <div class="lib-section-title">⚡ CTA Blocks</div>
     <div class="lib-section-desc">
         Ready call-to-action sections for product pages, docs and newsletters.
     </div>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Gradient CTA</div>
-        <div class="lib-preview cta-block-preview">
+    <Demo is:raw label={'Gradient CTA'} previewClass="cta-block-preview" code={gradientCtaCode}>
             <section class="rcta rcta-gradient card-gradient">
                 <div>
                     <span class="tag">Ready to ship</span>
@@ -21,32 +50,9 @@
                     <a class="btn btn-outline-white btn-lg" href="#">Open docs</a>
                 </div>
             </section>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<section class="section">
-  <div class="container card-gradient p-8">
-    <span class="tag">Ready to ship</span>
-    <h2 class="title-lg mt-3">Add njX UI and build the page.</h2>
-    <p>A strong end-of-page block for docs, products and launch pages.</p>
-    <div class="flex gap-3 mt-6">
-      <a class="btn btn-light btn-lg" href="#">Install now</a>
-      <a class="btn btn-outline-white btn-lg" href="#">Open docs</a>
-    </div>
-  </div>
-</section>'
-                >
-                    <span class="c">&lt;!-- Gradient CTA block --&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Newsletter CTA</div>
-        <div class="lib-preview cta-block-preview">
+    <Demo is:raw label={'Newsletter CTA'} previewClass="cta-block-preview" code={newsletterCtaCode}>
             <section class="rcta rcta-news card-glass">
                 <div>
                     <span class="tag tag-accent">Updates</span>
@@ -60,30 +66,10 @@
                     <button class="btn btn-primary">Subscribe</button>
                 </form>
             </section>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<section class="section">
-  <div class="container card-glass p-6">
-    <span class="tag tag-accent">Updates</span>
-    <h2 class="title-md mt-3">Get new components and examples.</h2>
-    <form class="flex gap-3 mt-5">
-      <input class="input" type="email" placeholder="you@example.com">
-      <button class="btn btn-primary">Subscribe</button>
-    </form>
-  </div>
-</section>'
-                >
-                    <span class="c">&lt;!-- Newsletter CTA block --&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 </section>
 
-<style>
+<style is:global>
     .cta-block-preview {
         display: block;
         padding: 0;

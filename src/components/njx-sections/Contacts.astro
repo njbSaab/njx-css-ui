@@ -1,12 +1,49 @@
+---
+import Demo from '../shared/Demo.astro';
+
+const contactPageSectionCode = `
+<section class="section">
+  <div class="container grid grid-2 gap-6">
+    <div>
+      <span class="tag tag-primary">Support</span>
+      <h2 class="title-lg mt-3">Tell us what you are building.</h2>
+      <p class="text-muted">A full contact page block with channel cards and a focused form.</p>
+      <div class="grid grid-3 gap-3 mt-5">
+        <a class="card-glass p-4" href="#">Email</a>
+        <a class="card-glass p-4" href="#">GitHub</a>
+        <a class="card-glass p-4" href="#">Telegram</a>
+      </div>
+    </div>
+    <form class="card-glass p-5 grid gap-3">
+      <input class="input" type="email" placeholder="you@example.com">
+      <textarea class="input" rows="5" placeholder="Message"></textarea>
+      <button class="btn btn-primary">Send message</button>
+    </form>
+  </div>
+</section>
+`;
+
+const compactSupportCardCode = `
+<section class="section">
+  <div class="container card-gradient p-6">
+    <span class="tag">Need help?</span>
+    <h2 class="title-md mt-3">Open an issue or send a message.</h2>
+    <div class="flex gap-3 mt-5">
+      <a class="btn btn-light" href="#">Email support</a>
+      <a class="btn btn-outline-white" href="#">GitHub issue</a>
+    </div>
+  </div>
+</section>
+`;
+---
+
 <section class="lib-section" id="contact-blocks">
     <div class="lib-section-title">✉ Contact Blocks</div>
     <div class="lib-section-desc">
         Ready contact sections with cards, forms and support links.
     </div>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Contact Page Section</div>
-        <div class="lib-preview contact-block-preview">
+    <Demo is:raw label={'Contact Page Section'} previewClass="contact-block-preview" code={contactPageSectionCode}>
             <section class="rc rc-page">
                 <div class="rc-copy">
                     <span class="tag tag-primary">Support</span>
@@ -42,40 +79,9 @@
                     <button class="btn btn-primary">Send message</button>
                 </form>
             </section>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<section class="section">
-  <div class="container grid grid-2 gap-6">
-    <div>
-      <span class="tag tag-primary">Support</span>
-      <h2 class="title-lg mt-3">Tell us what you are building.</h2>
-      <p class="text-muted">A full contact page block with channel cards and a focused form.</p>
-      <div class="grid grid-3 gap-3 mt-5">
-        <a class="card-glass p-4" href="#">Email</a>
-        <a class="card-glass p-4" href="#">GitHub</a>
-        <a class="card-glass p-4" href="#">Telegram</a>
-      </div>
-    </div>
-    <form class="card-glass p-5 grid gap-3">
-      <input class="input" type="email" placeholder="you@example.com">
-      <textarea class="input" rows="5" placeholder="Message"></textarea>
-      <button class="btn btn-primary">Send message</button>
-    </form>
-  </div>
-</section>'
-                >
-                    <span class="c">&lt;!-- Contact page block --&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 
-    <div class="lib-component">
-        <div class="lib-component-label">Compact Support Card</div>
-        <div class="lib-preview contact-block-preview">
+    <Demo is:raw label={'Compact Support Card'} previewClass="contact-block-preview" code={compactSupportCardCode}>
             <section class="rc rc-compact card-gradient">
                 <div>
                     <span class="tag">Need help?</span>
@@ -87,30 +93,10 @@
                     <a class="btn btn-outline-white" href="#">GitHub issue</a>
                 </div>
             </section>
-        </div>
-        <div class="lib-code-wrapper">
-            <div class="lib-code-container">
-                <div
-                    class="lib-code"
-                    data-raw='<section class="section">
-  <div class="container card-gradient p-6">
-    <span class="tag">Need help?</span>
-    <h2 class="title-md mt-3">Open an issue or send a message.</h2>
-    <div class="flex gap-3 mt-5">
-      <a class="btn btn-light" href="#">Email support</a>
-      <a class="btn btn-outline-white" href="#">GitHub issue</a>
-    </div>
-  </div>
-</section>'
-                >
-                    <span class="c">&lt;!-- Compact support card --&gt;</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </Demo>
 </section>
 
-<style>
+<style is:global>
     .contact-block-preview {
         display: block;
         padding: 0;
