@@ -5,8 +5,384 @@ import LibsFooter from '../components/LibsFooter.astro';
 import Sidebar from '../components/Sidebar.astro';
 import DocSidebar from '../components/DocSidebar.astro';
 import Bottombar from '../components/Bottombar.astro';
+import CodeBlock from '../components/shared/CodeBlock.astro';
 import { LIB_VERSION, SIZE_FULL, SIZE_CLASSLESS } from '../lib/meta';
 const base = import.meta.env.BASE_URL;
+
+const qsFullLink = `
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css">
+`;
+
+const qsFullTheme = `
+<html lang="en" data-theme="dark">
+<!-- dark · light · red · blue · green · cyan · yellow · pink · purple -->
+`;
+
+const qsFullPage = `
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css">
+</head>
+<body>
+  <button class="btn btn-primary">Hello njX</button>
+  <div class="card-glow">
+    <h2 class="text-gradient-primary">Works.</h2>
+  </div>
+</body>
+</html>
+`;
+
+const qsFullJs = `
+<!-- Adds: collapseToggle, tabSwitch, dropdownToggle,
+     openModal, closeModal, showToast, initCarousels -->
+<script src="https://cdn.jsdelivr.net/npm/njx-ui/js/njx.js"></script>
+`;
+
+const qsClasslessLink = `
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/classless.min.css">
+`;
+
+const qsClasslessPage = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/classless.min.css">
+</head>
+<body>
+  <button>Hello njX</button>
+  <article>
+    <h2>Works.</h2>
+    <p>No class names needed.</p>
+  </article>
+</body>
+</html>
+`;
+
+const qsClasslessTheme = `
+<html data-theme="dark">
+<!-- dark · light · red · blue · green · cyan · yellow · pink · purple -->
+`;
+
+const qsInteractiveLink = `
+<!-- In <head> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css">
+
+<!-- Before </body> -->
+<script src="https://cdn.jsdelivr.net/npm/njx-ui/js/njx.js"></script>
+`;
+
+const qsInteractiveTheme = `
+<html lang="en" data-theme="dark">
+<!-- dark · light · red · blue · green · cyan · yellow · pink · purple -->
+`;
+
+const qsInteractivePage = `
+<button class="btn btn-primary" onclick="openModal('demo')">Open Modal</button>
+<button class="btn btn-accent" onclick="showToast('Done!','success')">Toast</button>
+
+<div class="modal" id="demo">
+  <div class="modal-box">
+    <h3>Hello from njX JS</h3>
+    <button onclick="closeModal('demo')">Close</button>
+  </div>
+</div>
+`;
+
+const themeSwitchCode = `
+/* Via HTML attribute */
+<html data-theme="purple">
+
+/* Via JavaScript */
+document.documentElement.setAttribute('data-theme', 'purple');
+
+/* With localStorage persistence */
+function setTheme(name) {
+  document.documentElement.setAttribute('data-theme', name);
+  localStorage.setItem('theme', name);
+}
+const saved = localStorage.getItem('theme');
+if (saved) setTheme(saved);
+`;
+
+const nativeNoJs = `
+<!-- Accordion: native open/close -->
+<details>
+  <summary>Click to expand</summary>
+  <p>Content here</p>
+</details>
+
+<!-- Dialog: native modal -->
+<dialog id="dlg">
+  <p>Modal content</p>
+  <button onclick="dlg.close()">Close</button>
+</dialog>
+<button onclick="dlg.showModal()">Open</button>
+`;
+
+const jsConnection = `
+<!-- Add before </body> -->
+  <script src="js/njx.js"></script>
+</body>
+</html>
+`;
+
+const jsCollapse = `
+<div class="collapse">
+  <div class="collapse-header" onclick="collapseToggle(this)">
+    Title <span class="collapse-icon"></span>
+  </div>
+  <div class="collapse-body">Content</div>
+</div>
+`;
+
+const jsAccordion = `
+<div class="accordion">
+  <div class="collapse">
+    <div class="collapse-header" onclick="accordionToggle(this)">Section 1</div>
+    <div class="collapse-body">...</div>
+  </div>
+  <div class="collapse">
+    <div class="collapse-header" onclick="accordionToggle(this)">Section 2</div>
+    <div class="collapse-body">...</div>
+  </div>
+</div>
+`;
+
+const jsDropdown = `
+<div class="dropdown">
+  <button class="btn" onclick="dropdownToggle(this.parentElement)">Menu</button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item">Item</a>
+  </div>
+</div>
+`;
+
+const jsTabs = `
+<div class="tab-wrap">
+  <div class="tab-nav tab-nav-pills">
+    <button class="tab-btn is-active" onclick="tabSwitch(this)">Tab 1</button>
+    <button class="tab-btn" onclick="tabSwitch(this)">Tab 2</button>
+  </div>
+  <div class="tab-content">
+    <div class="tab-panel is-active">Content 1</div>
+    <div class="tab-panel">Content 2</div>
+  </div>
+</div>
+`;
+
+const jsModal = `
+<!-- Trigger -->
+<button onclick="openModal('my-modal')">Open</button>
+
+<!-- Modal -->
+<div id="my-modal" class="lib-modal-overlay"
+     onclick="if(event.target===this)closeModal(this)">
+  <div class="lib-modal-box">
+    <button class="lib-modal-close"
+      onclick="closeModal(document.getElementById('my-modal'))">✕</button>
+    <!-- .is-success .is-error .is-warning .is-info -->
+  </div>
+</div>
+`;
+
+const jsToast = `
+<!-- Required container (place anywhere in body) -->
+<div id="lib-toast-container"></div>
+
+// Usage
+showToast('Saved!', 'success');
+showToast('Something went wrong', 'error', 3000);
+showToast('Info message', 'primary');
+`;
+
+const jsCarousel = `
+// Scroll to slide index 2 programmatically
+const car = document.querySelector('.carousel');
+carouselGo(car, 2);
+
+// Re-init after dynamic content (e.g. AJAX)
+initCarousels();
+`;
+
+const tokensBad = `
+.btn {
+  color: #14a0ff;
+  border: 1px solid #14a0ff;
+  background: rgba(20,160,255,0.1);
+}
+`;
+
+const tokensGood = `
+.btn {
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+`;
+
+const tokensSpacing = `
+.header { padding: var(--space-4) var(--space-6); }
+.card   { padding: var(--space-6); margin-bottom: var(--space-4); }
+.layout { gap: var(--space-4); }
+`;
+
+const tokensTypography = `
+.label   { font-size: var(--fs-xs); text-transform: uppercase; }
+.body    { font-size: var(--fs-base); line-height: 1.6; }
+.heading { font-size: var(--fs-3xl); font-weight: 800; }
+`;
+
+const tokensRadius = `
+.btn   { border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); }
+.card  { border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
+.modal { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+.glow  { box-shadow: var(--shadow-primary); }
+`;
+
+const tokensEase = `
+var(--ease-fast)  /* 0.1s ease — for hover states */
+var(--ease)       /* 0.2s ease — standard default */
+var(--ease-slow)  /* 0.4s ease — smooth reveals */
+
+.btn  { transition: all var(--ease); }
+.card { transition: transform var(--ease), box-shadow var(--ease); }
+`;
+
+const tokensFullExample = `
+.game-card {
+  padding: var(--space-6);
+  border-radius: var(--radius-md);
+  background: var(--color-dark-secondary);
+  box-shadow: var(--shadow-md);
+}
+.game-card__label {
+  font-size: var(--fs-xs);
+  color: var(--color-primary);
+}
+.game-card__title {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--color-light);
+}
+`;
+
+const utilsExample = `
+<div class="flex items-center gap-4 p-6">
+  <button class="btn btn-primary">Action</button>
+  <p class="text-sm text-muted">Helper text</p>
+</div>
+
+<div class="flex-center gap-6 mt-8 mb-4">
+  <span class="tag tag-primary uppercase text-xs">New</span>
+  <h2 class="text-2xl font-bold text-primary">Title</h2>
+</div>
+`;
+
+const animationsExample = `
+<div class="fade-in">Fades in on load</div>
+<button class="btn btn-primary animate-pulse">Pulsing CTA</button>
+<div class="animate-float">Floating element</div>
+<span class="animate-neon text-accent">Neon glow text</span>
+<div class="scale-in anim-delay-1">Delayed scale-in</div>
+`;
+
+const classlessStructure = `
+njx-ui/
+├── classless.min.css   ← 47 KB standalone, no classes
+│
+│  That's it. No JS, no config, no build step.
+│
+│  Internally it contains:
+│  ├── _base.css            ← design tokens + 9 themes
+│  └── _classless-tags.css  ← styles on h1, p, button, input...
+`;
+
+const exClArticle = `
+<article>
+  <h1>Title</h1>
+  <p>Lead paragraph with <strong>bold</strong> and <em>italic</em>.</p>
+  <blockquote>A quoted insight.</blockquote>
+  <p>Read more at <a href="#">this link</a>.</p>
+</article>
+`;
+
+const exClForm = `
+<form>
+  <fieldset>
+    <legend>Contact</legend>
+    <label>Name</label>
+    <input type="text" placeholder="Your name">
+    <label>Email</label>
+    <input type="email" placeholder="you@example.com">
+    <button type="submit">Send</button>
+  </fieldset>
+</form>
+`;
+
+const exClAccordion = `
+<details>
+  <summary>Section one</summary>
+  <p>Content revealed on click — no JS.</p>
+</details>
+<details>
+  <summary>Section two</summary>
+  <p>Another panel.</p>
+</details>
+`;
+
+const exClTable = `
+<table>
+  <thead><tr>
+    <th>Name</th><th>Role</th><th>Status</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>Alice</td><td>Admin</td><td>Active</td></tr>
+    <tr><td>Bob</td><td>Editor</td><td>Inactive</td></tr>
+  </tbody>
+</table>
+`;
+
+const exCard = `
+<div class="card card-glass p-6">
+  <h3 class="text-gradient-primary">Card Title</h3>
+  <p class="text-muted mt-2">Description text...</p>
+  <div class="flex gap-4 mt-6">
+    <button class="btn btn-primary btn-sm">Action</button>
+    <button class="btn btn-outline btn-sm">Cancel</button>
+  </div>
+</div>
+`;
+
+const exForm = `
+<div class="field">
+  <label class="field-label">Email</label>
+  <input class="inp inp-error" type="email" placeholder="test@example.com">
+  <span class="field-error-msg">Invalid email address</span>
+</div>
+<div class="field">
+  <label class="field-label">Password</label>
+  <input class="inp inp-success" type="password">
+  <span class="field-success-msg">Password accepted</span>
+</div>
+`;
+
+const exModal = `
+<div class="lib-modal-overlay" id="modal">
+  <div class="lib-modal-box is-success">
+    <span class="lib-modal-icon">✓</span>
+    <div class="lib-modal-title">Success!</div>
+    <div class="lib-modal-text">Operation completed</div>
+    <div class="lib-modal-actions">
+      <button class="btn btn-success"
+        onclick="document.getElementById('modal').remove()">OK</button>
+    </div>
+  </div>
+</div>
+`;
+
 ---
 
 <BaseLayout
@@ -194,17 +570,7 @@ const base = import.meta.env.BASE_URL;
                                     >&lt;head&gt;</code
                                 >. Nothing else required.
                             </div>
-                            <div class="sc-code-wrap">
-                                <div class="sc-code-body">
-                                    <span class="k">&lt;link</span>
-                                    <span class="t">rel</span>=<span class="s"
-                                        >"stylesheet"</span
-                                    >
-                                    <span class="t">href</span>=<span class="s"
-                                        >"https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css"</span
-                                    ><span class="k">&gt;</span>
-                                </div>
-                            </div>
+                            <CodeBlock frame="sc" lang="html" code={qsFullLink} />
                         </div>
                     </div>
                     <div class="doc-step">
@@ -219,22 +585,7 @@ const base = import.meta.env.BASE_URL;
                                     >&lt;html&gt;</code
                                 > element. All components adapt automatically.
                             </div>
-                            <div class="sc-code-wrap">
-                                <div class="sc-code-body">
-                                    <span class="k">&lt;html</span>
-                                    <span class="t">lang</span>=<span class="s"
-                                        >"en"</span
-                                    >
-                                    <span class="t">data-theme</span>=<span
-                                        class="s">"dark"</span
-                                    ><span class="k">&gt;</span>
-                                    <span class="c"
-                                        >&lt;!-- dark · light · red · blue ·
-                                        green · cyan · yellow · pink · purple
-                                        --&gt;</span
-                                    >
-                                </div>
-                            </div>
+                            <CodeBlock frame="sc" lang="html" code={qsFullTheme} />
                         </div>
                     </div>
                     <div class="doc-step">
@@ -250,83 +601,7 @@ const base = import.meta.env.BASE_URL;
                                 Add class names to HTML elements. Most
                                 components are pure CSS — no JavaScript needed.
                             </div>
-                            <div class="sc-code-wrap">
-                                <div class="sc-code-header">
-                                    <div class="sc-code-dots">
-                                        <div
-                                            class="sc-code-dot"
-                                            style="background:#ff5f57"
-                                        >
-                                        </div>
-                                        <div
-                                            class="sc-code-dot"
-                                            style="background:#febc2e"
-                                        >
-                                        </div>
-                                        <div
-                                            class="sc-code-dot"
-                                            style="background:#28c840"
-                                        >
-                                        </div>
-                                    </div>
-                                    <span class="sc-code-filename"
-                                        >index.html</span
-                                    >
-                                    <button
-                                        class="sc-code-copy"
-                                        onclick="copyBlock('qs-code-full',this)"
-                                        >Copy</button
-                                    >
-                                </div>
-                                <div class="sc-code-body" id="qs-code-full">
-                                    <span class="k">&lt;!DOCTYPE html&gt;</span>
-                                    <span class="k">&lt;html</span>
-                                    <span class="t">lang</span>=<span class="s"
-                                        >"en"</span
-                                    >
-                                    <span class="t">data-theme</span>=<span
-                                        class="s">"dark"</span
-                                    ><span class="k">&gt;</span>
-                                    <span class="k">&lt;head&gt;</span>
-                                    &nbsp;&nbsp;<span class="k">&lt;meta</span>
-                                    <span class="t">charset</span>=<span
-                                        class="s">"UTF-8"</span
-                                    ><span class="k">&gt;</span>
-                                    &nbsp;&nbsp;<span class="k">&lt;link</span>
-                                    <span class="t">rel</span>=<span class="s"
-                                        >"stylesheet"</span
-                                    >
-                                    <span class="t">href</span>=<span class="s"
-                                        >"https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css"</span
-                                    ><span class="k">&gt;</span>
-                                    <span class="k">&lt;/head&gt;</span>
-                                    <span class="k">&lt;body&gt;</span>
-                                    &nbsp;&nbsp;<span class="k">&lt;button</span
-                                    >
-                                    <span class="t">class</span>=<span class="s"
-                                        >"btn btn-primary"</span
-                                    ><span class="k">&gt;</span>Hello njX<span
-                                        class="k">&lt;/button&gt;</span
-                                    >
-                                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                                    <span class="t">class</span>=<span class="s"
-                                        >"card-glow"</span
-                                    ><span class="k">&gt;</span>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                                        >&lt;h2</span
-                                    >
-                                    <span class="t">class</span>=<span class="s"
-                                        >"text-gradient-primary"</span
-                                    ><span class="k">&gt;</span>Works.<span
-                                        class="k">&lt;/h2&gt;</span
-                                    >
-                                    &nbsp;&nbsp;<span class="k"
-                                        >&lt;/div&gt;</span
-                                    >
-                                    <span class="k">&lt;/body&gt;</span>
-                                    <span class="k">&lt;/html&gt;</span>
-                                </div>
-                            </div>
+                            <CodeBlock frame="sc" lang="html" label="index.html" code={qsFullPage} />
                         </div>
                     </div>
                 </div>
@@ -351,22 +626,7 @@ const base = import.meta.env.BASE_URL;
                             Interactive components — collapse, tabs, dropdown,
                             modal, carousel, toast — need one script.
                         </div>
-                        <div class="sc-code-wrap" style="margin-top:12px">
-                            <div class="sc-code-body">
-                                <span class="c"
-                                    >&lt;!-- Adds: collapseToggle, tabSwitch,
-                                    dropdownToggle,</span
-                                >
-                                <span class="c"
-                                    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;openModal,
-                                    closeModal, showToast, initCarousels --&gt;</span
-                                >
-                                <span class="k">&lt;script</span>
-                                <span class="t">src</span>=<span class="s"
-                                    >"https://cdn.jsdelivr.net/npm/njx-ui/js/njx.js"</span
-                                ><span class="k">&gt;&lt;/script&gt;</span>
-                            </div>
-                        </div>
+                        <CodeBlock frame="sc" lang="html" style="margin-top:12px" code={qsFullJs} />
                         <div
                             style="margin-top:10px;font-size:13px;color:var(--color-muted)"
                         >
@@ -398,17 +658,7 @@ const base = import.meta.env.BASE_URL;
                                     >&lt;head&gt;</code
                                 >. No configuration needed.
                             </div>
-                            <div class="sc-code-wrap">
-                                <div class="sc-code-body">
-                                    <span class="k">&lt;link</span>
-                                    <span class="t">rel</span>=<span class="s"
-                                        >"stylesheet"</span
-                                    >
-                                    <span class="t">href</span>=<span class="s"
-                                        >"https://cdn.jsdelivr.net/npm/njx-ui/css/classless.min.css"</span
-                                    ><span class="k">&gt;</span>
-                                </div>
-                            </div>
+                            <CodeBlock frame="sc" lang="html" code={qsClasslessLink} />
                         </div>
                     </div>
                     <div class="doc-step">
@@ -426,80 +676,7 @@ const base = import.meta.env.BASE_URL;
                                     >&lt;details&gt;</code
                                 > — gets styled automatically.
                             </div>
-                            <div class="sc-code-wrap">
-                                <div class="sc-code-header">
-                                    <div class="sc-code-dots">
-                                        <div
-                                            class="sc-code-dot"
-                                            style="background:#ff5f57"
-                                        >
-                                        </div>
-                                        <div
-                                            class="sc-code-dot"
-                                            style="background:#febc2e"
-                                        >
-                                        </div>
-                                        <div
-                                            class="sc-code-dot"
-                                            style="background:#28c840"
-                                        >
-                                        </div>
-                                    </div>
-                                    <span class="sc-code-filename"
-                                        >index.html</span
-                                    >
-                                    <button
-                                        class="sc-code-copy"
-                                        onclick="copyBlock('qs-code-classless',this)"
-                                        >Copy</button
-                                    >
-                                </div>
-                                <div
-                                    class="sc-code-body"
-                                    id="qs-code-classless"
-                                >
-                                    <span class="k">&lt;!DOCTYPE html&gt;</span>
-                                    <span class="k">&lt;html</span>
-                                    <span class="t">lang</span>=<span class="s"
-                                        >"en"</span
-                                    ><span class="k">&gt;</span>
-                                    <span class="k">&lt;head&gt;</span>
-                                    &nbsp;&nbsp;<span class="k">&lt;meta</span>
-                                    <span class="t">charset</span>=<span
-                                        class="s">"UTF-8"</span
-                                    ><span class="k">&gt;</span>
-                                    &nbsp;&nbsp;<span class="k">&lt;link</span>
-                                    <span class="t">rel</span>=<span class="s"
-                                        >"stylesheet"</span
-                                    >
-                                    <span class="t">href</span>=<span class="s"
-                                        >"https://cdn.jsdelivr.net/npm/njx-ui/css/classless.min.css"</span
-                                    ><span class="k">&gt;</span>
-                                    <span class="k">&lt;/head&gt;</span>
-                                    <span class="k">&lt;body&gt;</span>
-                                    &nbsp;&nbsp;<span class="k"
-                                        >&lt;button&gt;</span
-                                    >Hello njX<span class="k"
-                                        >&lt;/button&gt;</span
-                                    >
-                                    &nbsp;&nbsp;<span class="k"
-                                        >&lt;article&gt;</span
-                                    >
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                                        >&lt;h2&gt;</span
-                                    >Works.<span class="k">&lt;/h2&gt;</span>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                                        >&lt;p&gt;</span
-                                    >No class names needed.<span class="k"
-                                        >&lt;/p&gt;</span
-                                    >
-                                    &nbsp;&nbsp;<span class="k"
-                                        >&lt;/article&gt;</span
-                                    >
-                                    <span class="k">&lt;/body&gt;</span>
-                                    <span class="k">&lt;/html&gt;</span>
-                                </div>
-                            </div>
+                            <CodeBlock frame="sc" lang="html" label="index.html" code={qsClasslessPage} />
                         </div>
                     </div>
                     <div class="doc-step">
@@ -518,19 +695,7 @@ const base = import.meta.env.BASE_URL;
                                     >data-theme</code
                                 > to <code>&lt;html&gt;</code> to switch color palettes.
                             </div>
-                            <div class="sc-code-wrap">
-                                <div class="sc-code-body">
-                                    <span class="k">&lt;html</span>
-                                    <span class="t">data-theme</span>=<span
-                                        class="s">"dark"</span
-                                    ><span class="k">&gt;</span>
-                                    <span class="c"
-                                        >&lt;!-- dark · light · red · blue ·
-                                        green · cyan · yellow · pink · purple
-                                        --&gt;</span
-                                    >
-                                </div>
-                            </div>
+                            <CodeBlock frame="sc" lang="html" code={qsClasslessTheme} />
                         </div>
                     </div>
                 </div>
@@ -553,28 +718,7 @@ const base = import.meta.env.BASE_URL;
                                     >&lt;/body&gt;</code
                                 >. JS unlocks modals, tabs, toasts, dropdowns.
                             </div>
-                            <div class="sc-code-wrap">
-                                <div class="sc-code-body">
-                                    <span class="c"
-                                        >&lt;!-- In &lt;head&gt; --&gt;</span
-                                    >
-                                    <span class="k">&lt;link</span>
-                                    <span class="t">rel</span>=<span class="s"
-                                        >"stylesheet"</span
-                                    >
-                                    <span class="t">href</span>=<span class="s"
-                                        >"https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css"</span
-                                    ><span class="k">&gt;</span>
-
-                                    <span class="c"
-                                        >&lt;!-- Before &lt;/body&gt; --&gt;</span
-                                    >
-                                    <span class="k">&lt;script</span>
-                                    <span class="t">src</span>=<span class="s"
-                                        >"https://cdn.jsdelivr.net/npm/njx-ui/js/njx.js"</span
-                                    ><span class="k">&gt;&lt;/script&gt;</span>
-                                </div>
-                            </div>
+                            <CodeBlock frame="sc" lang="html" code={qsInteractiveLink} />
                         </div>
                     </div>
                     <div class="doc-step">
@@ -589,22 +733,7 @@ const base = import.meta.env.BASE_URL;
                                     >&lt;html&gt;</code
                                 >. All components adapt automatically.
                             </div>
-                            <div class="sc-code-wrap">
-                                <div class="sc-code-body">
-                                    <span class="k">&lt;html</span>
-                                    <span class="t">lang</span>=<span class="s"
-                                        >"en"</span
-                                    >
-                                    <span class="t">data-theme</span>=<span
-                                        class="s">"dark"</span
-                                    ><span class="k">&gt;</span>
-                                    <span class="c"
-                                        >&lt;!-- dark · light · red · blue ·
-                                        green · cyan · yellow · pink · purple
-                                        --&gt;</span
-                                    >
-                                </div>
-                            </div>
+                            <CodeBlock frame="sc" lang="html" code={qsInteractiveTheme} />
                         </div>
                     </div>
                     <div class="doc-step">
@@ -619,88 +748,7 @@ const base = import.meta.env.BASE_URL;
                                 Classes work the same as Full. JS functions are
                                 available globally — no import needed.
                             </div>
-                            <div class="sc-code-wrap">
-                                <div class="sc-code-header">
-                                    <div class="sc-code-dots">
-                                        <div
-                                            class="sc-code-dot"
-                                            style="background:#ff5f57"
-                                        >
-                                        </div>
-                                        <div
-                                            class="sc-code-dot"
-                                            style="background:#febc2e"
-                                        >
-                                        </div>
-                                        <div
-                                            class="sc-code-dot"
-                                            style="background:#28c840"
-                                        >
-                                        </div>
-                                    </div>
-                                    <span class="sc-code-filename"
-                                        >index.html</span
-                                    >
-                                    <button
-                                        class="sc-code-copy"
-                                        onclick="copyBlock('qs-code-interactive',this)"
-                                        >Copy</button
-                                    >
-                                </div>
-                                <div
-                                    class="sc-code-body"
-                                    id="qs-code-interactive"
-                                >
-                                    <span class="k">&lt;button</span>
-                                    <span class="t">class</span>=<span class="s"
-                                        >"btn btn-primary"</span
-                                    >
-                                    <span class="t">onclick</span>=<span
-                                        class="s">"openModal('demo')"</span
-                                    ><span class="k">&gt;</span>Open Modal<span
-                                        class="k">&lt;/button&gt;</span
-                                    >
-                                    <span class="k">&lt;button</span>
-                                    <span class="t">class</span>=<span class="s"
-                                        >"btn btn-accent"</span
-                                    >
-                                    <span class="t">onclick</span>=<span
-                                        class="s"
-                                        >"showToast('Done!','success')"</span
-                                    ><span class="k">&gt;</span>Toast<span
-                                        class="k">&lt;/button&gt;</span
-                                    >
-
-                                    <span class="k">&lt;div</span>
-                                    <span class="t">class</span>=<span class="s"
-                                        >"modal"</span
-                                    >
-                                    <span class="t">id</span>=<span class="s"
-                                        >"demo"</span
-                                    ><span class="k">&gt;</span>
-                                    &nbsp;&nbsp;<span class="k">&lt;div</span>
-                                    <span class="t">class</span>=<span class="s"
-                                        >"modal-box"</span
-                                    ><span class="k">&gt;</span>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                                        >&lt;h3&gt;</span
-                                    >Hello from njX JS<span class="k"
-                                        >&lt;/h3&gt;</span
-                                    >
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                                        >&lt;button</span
-                                    >
-                                    <span class="t">onclick</span>=<span
-                                        class="s">"closeModal('demo')"</span
-                                    ><span class="k">&gt;</span>Close<span
-                                        class="k">&lt;/button&gt;</span
-                                    >
-                                    &nbsp;&nbsp;<span class="k"
-                                        >&lt;/div&gt;</span
-                                    >
-                                    <span class="k">&lt;/div&gt;</span>
-                                </div>
-                            </div>
+                            <CodeBlock frame="sc" lang="html" label="index.html" code={qsInteractivePage} />
                             <div
                                 style="margin-top:10px;font-size:13px;color:var(--color-muted)"
                             >
@@ -930,82 +978,7 @@ const base = import.meta.env.BASE_URL;
                     </div>
                 </div>
 
-                <div class="sc-code-wrap">
-                    <div class="sc-code-header">
-                        <div class="sc-code-dots">
-                            <div class="sc-code-dot" style="background:#ff5f57">
-                            </div>
-                            <div class="sc-code-dot" style="background:#febc2e">
-                            </div>
-                            <div class="sc-code-dot" style="background:#28c840">
-                            </div>
-                        </div>
-                        <span class="sc-code-filename">Theme switching</span>
-                        <button
-                            class="sc-code-copy"
-                            onclick="copyBlock('theme-switch',this)"
-                            >Copy</button
-                        >
-                    </div>
-                    <div class="sc-code-body" id="theme-switch">
-                        <span class="c">/* Via HTML attribute */</span>
-                        <span class="k">&lt;html</span>
-                        <span class="t">data-theme</span>=<span class="s"
-                            >"purple"</span
-                        ><span class="k">&gt;</span>
-
-                        <span class="c">/* Via JavaScript */</span>
-                        <span class="v">document</span><span class="p">.</span
-                        ><span class="t">documentElement</span><span class="p"
-                            >.</span
-                        ><span class="v">setAttribute</span><span class="p"
-                            >(</span
-                        ><span class="s">'data-theme'</span><span class="p"
-                            >,</span
-                        >
-                        <span class="s">'purple'</span><span class="p">);</span>
-
-                        <span class="c"
-                            >/* With localStorage persistence */</span
-                        >
-                        <span class="k">function</span>
-                        <span class="v">setTheme</span><span class="p">(</span
-                        ><span class="t">name</span><span class="p"
-                            >) {}
-                            <span class="v">document</span><span class="p"
-                                >.</span
-                            ><span class="t">documentElement</span><span
-                                class="p">.</span
-                            ><span class="v">setAttribute</span><span class="p"
-                                >(</span
-                            ><span class="s">'data-theme'</span><span class="p"
-                                >,</span
-                            >
-                            <span class="t">name</span><span class="p">);</span>
-                            <span class="v">localStorage</span><span class="p"
-                                >.</span
-                            ><span class="v">setItem</span><span class="p"
-                                >(</span
-                            ><span class="s">'theme'</span><span class="p"
-                                >,</span
-                            >
-                            <span class="t">name</span><span class="p">);</span>
-                            <span class="p"></span></span
-                        >
-                        <span class="k">const</span>
-                        <span class="t">saved</span>
-                        <span class="p">=</span>
-                        <span class="v">localStorage</span><span class="p"
-                            >.</span
-                        ><span class="v">getItem</span><span class="p">(</span
-                        ><span class="s">'theme'</span><span class="p">);</span>
-                        <span class="k">if</span>
-                        <span class="p">(</span><span class="t">saved</span
-                        ><span class="p">)</span>
-                        <span class="v">setTheme</span><span class="p">(</span
-                        ><span class="t">saved</span><span class="p">);</span>
-                    </div>
-                </div>
+                <CodeBlock frame="sc" lang="js" label="Theme switching" code={themeSwitchCode} />
             </section>
 
             <div class="doc-divider"></div>
@@ -1360,45 +1333,7 @@ const base = import.meta.env.BASE_URL;
                         >
                             Native HTML — no JS needed
                         </h3>
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-body">
-                                <span class="c"
-                                    >&lt;!-- Accordion: native open/close --&gt;</span
-                                >
-                                <span class="k">&lt;details&gt;</span>
-                                &nbsp;&nbsp;<span class="k"
-                                    >&lt;summary&gt;</span
-                                >Click to expand<span class="k"
-                                    >&lt;/summary&gt;</span
-                                >
-                                &nbsp;&nbsp;<span class="k">&lt;p&gt;</span
-                                >Content here<span class="k">&lt;/p&gt;</span>
-                                <span class="k">&lt;/details&gt;</span>
-                                <br />
-                                <span class="c"
-                                    >&lt;!-- Dialog: native modal --&gt;</span
-                                >
-                                <span class="k">&lt;dialog</span>
-                                <span class="t">id</span>=<span class="s"
-                                    >"dlg"</span
-                                ><span class="k">&gt;</span>
-                                &nbsp;&nbsp;<span class="k">&lt;p&gt;</span
-                                >Modal content<span class="k">&lt;/p&gt;</span>
-                                &nbsp;&nbsp;<span class="k">&lt;button</span>
-                                <span class="t">onclick</span>=<span class="s"
-                                    >"dlg.close()"</span
-                                ><span class="k">&gt;</span>Close<span class="k"
-                                    >&lt;/button&gt;</span
-                                >
-                                <span class="k">&lt;/dialog&gt;</span>
-                                <span class="k">&lt;button</span>
-                                <span class="t">onclick</span>=<span class="s"
-                                    >"dlg.showModal()"</span
-                                ><span class="k">&gt;</span>Open<span class="k"
-                                    >&lt;/button&gt;</span
-                                >
-                            </div>
-                        </div>
+                        <CodeBlock frame="sc" lang="html" code={nativeNoJs} />
                     </div>
                 </div><!-- /classless -->
 
@@ -1420,39 +1355,7 @@ const base = import.meta.env.BASE_URL;
                     >
                         Connection
                     </h3>
-                    <div class="sc-code-wrap" style="margin-bottom:28px">
-                        <div class="sc-code-header">
-                            <div class="sc-code-dots">
-                                <div
-                                    class="sc-code-dot"
-                                    style="background:#ff5f57"
-                                >
-                                </div>
-                                <div
-                                    class="sc-code-dot"
-                                    style="background:#febc2e"
-                                >
-                                </div>
-                                <div
-                                    class="sc-code-dot"
-                                    style="background:#28c840"
-                                >
-                                </div>
-                            </div>
-                            <span class="sc-code-filename">index.html</span>
-                        </div>
-                        <div class="sc-code-body">
-                            <span class="c"
-                                >&lt;!-- Add before &lt;/body&gt; --&gt;</span
-                            >
-                            <span class="k">&lt;script</span>
-                            <span class="t">src</span>=<span class="s"
-                                >"js/njx.js"</span
-                            ><span class="k">&gt;&lt;/script&gt;</span>
-                            <span class="k">&lt;/body&gt;</span>
-                            <span class="k">&lt;/html&gt;</span>
-                        </div>
-                    </div>
+                    <CodeBlock frame="sc" lang="html" label="index.html" style="margin-bottom:28px" code={jsConnection} />
 
                     <!-- Which components need JS -->
                     <h3
@@ -1594,33 +1497,7 @@ const base = import.meta.env.BASE_URL;
                                 >.collapse</code
                             > element.
                         </p>
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-body">
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"collapse"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"collapse-header"</span
-                                >
-                                <span class="t">onclick</span>=<span class="s"
-                                    >"collapseToggle(this)"</span
-                                ><span class="k">&gt;</span>
-                                Title <span class="k">&lt;span</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"collapse-icon"</span
-                                ><span class="k">&gt;&lt;/span&gt;</span>
-                                <span class="k">&lt;/div&gt;</span>
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"collapse-body"</span
-                                ><span class="k">&gt;</span>Content<span
-                                    class="k">&lt;/div&gt;</span
-                                >
-                                <span class="k">&lt;/div&gt;</span>
-                            </div>
-                        </div>
+                        <CodeBlock frame="sc" lang="html" code={jsCollapse} />
                     </div>
 
                     <!-- accordionToggle -->
@@ -1647,55 +1524,7 @@ const base = import.meta.env.BASE_URL;
                                 >.accordion</code
                             > wrapper first.
                         </p>
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-body">
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"accordion"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"collapse"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"collapse-header"</span
-                                >
-                                <span class="t">onclick</span>=<span class="s"
-                                    >"accordionToggle(this)"</span
-                                ><span class="k">&gt;</span>Section 1<span
-                                    class="k">&lt;/div&gt;</span
-                                >
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"collapse-body"</span
-                                ><span class="k">&gt;</span>...<span class="k"
-                                    >&lt;/div&gt;</span
-                                >
-                                <span class="k">&lt;/div&gt;</span>
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"collapse"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"collapse-header"</span
-                                >
-                                <span class="t">onclick</span>=<span class="s"
-                                    >"accordionToggle(this)"</span
-                                ><span class="k">&gt;</span>Section 2<span
-                                    class="k">&lt;/div&gt;</span
-                                >
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"collapse-body"</span
-                                ><span class="k">&gt;</span>...<span class="k"
-                                    >&lt;/div&gt;</span
-                                >
-                                <span class="k">&lt;/div&gt;</span>
-                                <span class="k">&lt;/div&gt;</span>
-                            </div>
-                        </div>
+                        <CodeBlock frame="sc" lang="html" code={jsAccordion} />
                     </div>
 
                     <!-- dropdownToggle -->
@@ -1721,35 +1550,7 @@ const base = import.meta.env.BASE_URL;
                             <code>.dropdown</code> element. All other open dropdowns
                             are closed first. Outside-click listener is added automatically.
                         </p>
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-body">
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"dropdown"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;button</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"btn"</span
-                                >
-                                <span class="t">onclick</span>=<span class="s"
-                                    >"dropdownToggle(this.parentElement)"</span
-                                ><span class="k">&gt;</span>Menu<span class="k"
-                                    >&lt;/button&gt;</span
-                                >
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"dropdown-menu"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;a</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"dropdown-item"</span
-                                ><span class="k">&gt;</span>Item<span class="k"
-                                    >&lt;/a&gt;</span
-                                >
-                                <span class="k">&lt;/div&gt;</span>
-                                <span class="k">&lt;/div&gt;</span>
-                            </div>
-                        </div>
+                        <CodeBlock frame="sc" lang="html" code={jsDropdown} />
                     </div>
 
                     <!-- tabSwitch -->
@@ -1777,55 +1578,7 @@ const base = import.meta.env.BASE_URL;
                             > by index inside
                             <code>.tab-wrap</code>.
                         </p>
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-body">
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"tab-wrap"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"tab-nav tab-nav-pills"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;button</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"tab-btn is-active"</span
-                                >
-                                <span class="t">onclick</span>=<span class="s"
-                                    >"tabSwitch(this)"</span
-                                ><span class="k">&gt;</span>Tab 1<span class="k"
-                                    >&lt;/button&gt;</span
-                                >
-                                <span class="k">&lt;button</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"tab-btn"</span
-                                >
-                                <span class="t">onclick</span>=<span class="s"
-                                    >"tabSwitch(this)"</span
-                                ><span class="k">&gt;</span>Tab 2<span class="k"
-                                    >&lt;/button&gt;</span
-                                >
-                                <span class="k">&lt;/div&gt;</span>
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"tab-content"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"tab-panel is-active"</span
-                                ><span class="k">&gt;</span>Content 1<span
-                                    class="k">&lt;/div&gt;</span
-                                >
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"tab-panel"</span
-                                ><span class="k">&gt;</span>Content 2<span
-                                    class="k">&lt;/div&gt;</span
-                                >
-                                <span class="k">&lt;/div&gt;</span>
-                                <span class="k">&lt;/div&gt;</span>
-                            </div>
-                        </div>
+                        <CodeBlock frame="sc" lang="html" code={jsTabs} />
                     </div>
 
                     <!-- openModal / closeModal -->
@@ -1851,48 +1604,7 @@ const base = import.meta.env.BASE_URL;
                             reference. Escape key auto-closes all open modals.
                             Click on overlay background also closes.
                         </p>
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-body">
-                                <span class="c">&lt;!-- Trigger --&gt;</span>
-                                <span class="k">&lt;button</span>
-                                <span class="t">onclick</span>=<span class="s"
-                                    >"openModal('my-modal')"</span
-                                ><span class="k">&gt;</span>Open<span class="k"
-                                    >&lt;/button&gt;</span
-                                >
-
-                                <span class="c">&lt;!-- Modal --&gt;</span>
-                                <span class="k">&lt;div</span>
-                                <span class="t">id</span>=<span class="s"
-                                    >"my-modal"</span
-                                >
-                                <span class="t">class</span>=<span class="s"
-                                    >"lib-modal-overlay"</span
-                                >
-                                <span class="t">onclick</span>=<span class="s"
-                                    >"if(event.target===this)closeModal(this)"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"lib-modal-box"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;button</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"lib-modal-close"</span
-                                >
-                                <span class="t">onclick</span>=<span class="s"
-                                    >"closeModal(document.getElementById('my-modal'))"</span
-                                ><span class="k">&gt;</span>✕<span class="k"
-                                    >&lt;/button&gt;</span
-                                >
-                                <span class="c"
-                                    >&lt;!-- .is-success .is-error .is-warning
-                                    .is-info --&gt;</span
-                                >
-                                <span class="k">&lt;/div&gt;</span>
-                                <span class="k">&lt;/div&gt;</span>
-                            </div>
-                        </div>
+                        <CodeBlock frame="sc" lang="html" code={jsModal} />
                     </div>
 
                     <!-- showToast -->
@@ -1923,44 +1635,7 @@ const base = import.meta.env.BASE_URL;
                                 id="lib-toast-container"&gt;&lt;/div&gt;</code
                             > in the page.
                         </p>
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-body">
-                                <span class="c"
-                                    >&lt;!-- Required container (place anywhere
-                                    in body) --&gt;</span
-                                >
-                                <span class="k">&lt;div</span>
-                                <span class="t">id</span>=<span class="s"
-                                    >"lib-toast-container"</span
-                                ><span class="k">&gt;&lt;/div&gt;</span>
-
-                                <span class="c">// Usage</span>
-                                <span class="v">showToast</span><span class="p"
-                                    >(</span
-                                ><span class="s">'Saved!'</span><span class="p"
-                                    >,</span
-                                >
-                                <span class="s">'success'</span><span class="p"
-                                    >);</span
-                                >
-                                <span class="v">showToast</span><span class="p"
-                                    >(</span
-                                ><span class="s">'Something went wrong'</span
-                                ><span class="p">,</span>
-                                <span class="s">'error'</span><span class="p"
-                                    >,</span
-                                >
-                                <span class="p">3000);</span>
-                                <span class="v">showToast</span><span class="p"
-                                    >(</span
-                                ><span class="s">'Info message'</span><span
-                                    class="p">,</span
-                                >
-                                <span class="s">'primary'</span><span class="p"
-                                    >);</span
-                                >
-                            </div>
-                        </div>
+                        <CodeBlock frame="sc" lang="html" code={jsToast} />
                     </div>
 
                     <!-- initCarousels / carouselGo -->
@@ -1990,37 +1665,7 @@ const base = import.meta.env.BASE_URL;
                             >. <code>carouselGo(el, idx)</code>
                             programmatically scrolls to a slide by 0-based index.
                         </p>
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-body">
-                                <span class="c"
-                                    >// Scroll to slide index 2 programmatically</span
-                                >
-                                <span class="k">const</span>
-                                <span class="t">car</span>
-                                <span class="p">=</span>
-                                <span class="v">document</span><span class="p"
-                                    >.</span
-                                ><span class="v">querySelector</span><span
-                                    class="p">(</span
-                                ><span class="s">'.carousel'</span><span
-                                    class="p">);</span
-                                >
-                                <span class="v">carouselGo</span><span class="p"
-                                    >(</span
-                                ><span class="t">car</span><span class="p"
-                                    >,</span
-                                >
-                                <span class="p">2);</span>
-
-                                <span class="c"
-                                    >// Re-init after dynamic content (e.g.
-                                    AJAX)</span
-                                >
-                                <span class="v">initCarousels</span><span
-                                    class="p">();</span
-                                >
-                            </div>
-                        </div>
+                        <CodeBlock frame="sc" lang="js" code={jsCarousel} />
                     </div>
 
                     <div class="doc-tip">
@@ -2416,23 +2061,7 @@ const base = import.meta.env.BASE_URL;
                             >
                                 ❌ Bad — hardcoded
                             </div>
-                            <div class="sc-code-wrap">
-                                <div
-                                    class="sc-code-body"
-                                    style="color:var(--color-error)"
-                                >
-                                    .btn <span class="p"
-                                        >{}
-                                        color: <span class="s">#14a0ff</span>;
-                                        border: 1px solid <span class="s"
-                                            >#14a0ff</span
-                                        >; background: <span class="s"
-                                            >rgba(20,160,255,0.1)</span
-                                        >;
-                                        <span class="p"></span></span
-                                    >
-                                </div>
-                            </div>
+                            <CodeBlock frame="sc" lang="css" code={tokensBad} />
                         </div>
                         <div>
                             <div
@@ -2441,25 +2070,7 @@ const base = import.meta.env.BASE_URL;
                             >
                                 ✅ Good — uses tokens
                             </div>
-                            <div class="sc-code-wrap">
-                                <div
-                                    class="sc-code-body"
-                                    style="color:var(--color-success)"
-                                >
-                                    .btn <span class="p"
-                                        >{}
-                                        color: <span class="v"
-                                            >var(--color-primary)</span
-                                        >; border: 1px solid <span class="v"
-                                            >var(--color-primary)</span
-                                        >; background: color-mix(in srgb,
-                                        <span class="v"
-                                            >var(--color-primary)</span
-                                        > 12%, transparent);
-                                        <span class="p"></span></span
-                                    >
-                                </div>
-                            </div>
+                            <CodeBlock frame="sc" lang="css" code={tokensGood} />
                         </div>
                     </div>
                 </div>
@@ -2565,28 +2176,7 @@ const base = import.meta.env.BASE_URL;
                             </div>
                         </div>
                     </div>
-                    <div class="sc-code-wrap">
-                        <div class="sc-code-body">
-                            .header <span class="p"
-                                >{} padding: <span class="v"
-                                    >var(--space-4)</span
-                                >
-                                <span class="v">var(--space-6)</span>; <span
-                                    class="p"></span></span
-                            >
-                            .card <span class="p"
-                                >{} padding: <span class="v"
-                                    >var(--space-6)</span
-                                >; margin-bottom: <span class="v"
-                                    >var(--space-4)</span
-                                >; <span class="p"></span></span
-                            >
-                            .layout <span class="p"
-                                >{} gap: <span class="v">var(--space-4)</span>; <span
-                                    class="p"></span></span
-                            >
-                        </div>
-                    </div>
+                    <CodeBlock frame="sc" lang="css" code={tokensSpacing} />
                 </div>
 
                 <!-- 3. Typography -->
@@ -2643,28 +2233,7 @@ const base = import.meta.env.BASE_URL;
                             <div class="doc-font-label">--fs-5xl<br />48px</div>
                         </div>
                     </div>
-                    <div class="sc-code-wrap">
-                        <div class="sc-code-body">
-                            .label <span class="p"
-                                >{} font-size: <span class="v"
-                                    >var(--fs-xs)</span
-                                >; text-transform: uppercase; <span class="p"
-                                ></span></span
-                            >
-                            .body <span class="p"
-                                >{} font-size: <span class="v"
-                                    >var(--fs-base)</span
-                                >; line-height: 1.6; <span class="p"
-                                ></span></span
-                            >
-                            .heading <span class="p"
-                                >{} font-size: <span class="v"
-                                    >var(--fs-3xl)</span
-                                >; font-weight: 800; <span class="p"
-                                ></span></span
-                            >
-                        </div>
-                    </div>
+                    <CodeBlock frame="sc" lang="css" code={tokensTypography} />
                 </div>
 
                 <!-- 4. Font Families -->
@@ -2973,36 +2542,7 @@ const base = import.meta.env.BASE_URL;
                             </div>
                         </div>
                     </div>
-                    <div class="sc-code-wrap">
-                        <div class="sc-code-body">
-                            .btn <span class="p"
-                                >{} border-radius: <span class="v"
-                                    >var(--radius-sm)</span
-                                >; box-shadow: <span class="v"
-                                    >var(--shadow-sm)</span
-                                >; <span class="p"></span></span
-                            >
-                            .card <span class="p"
-                                >{} border-radius: <span class="v"
-                                    >var(--radius-md)</span
-                                >; box-shadow: <span class="v"
-                                    >var(--shadow-md)</span
-                                >; <span class="p"></span></span
-                            >
-                            .modal <span class="p"
-                                >{} border-radius: <span class="v"
-                                    >var(--radius-lg)</span
-                                >; box-shadow: <span class="v"
-                                    >var(--shadow-lg)</span
-                                >; <span class="p"></span></span
-                            >
-                            .glow <span class="p"
-                                >{} box-shadow: <span class="v"
-                                    >var(--shadow-primary)</span
-                                >; <span class="p"></span></span
-                            >
-                        </div>
-                    </div>
+                    <CodeBlock frame="sc" lang="css" code={tokensRadius} />
                 </div>
 
                 <!-- 5. Transitions -->
@@ -3019,34 +2559,7 @@ const base = import.meta.env.BASE_URL;
                             Transitions — <code>--ease-*</code>
                         </h3>
                     </div>
-                    <div class="sc-code-wrap">
-                        <div class="sc-code-body">
-                            <span class="v">var(--ease-fast)</span>
-                            <span class="c"
-                                >/* 0.1s ease — for hover states */</span
-                            >
-                            <span class="v">var(--ease)</span>
-                            <span class="c"
-                                >/* 0.2s ease — standard default */</span
-                            >
-                            <span class="v">var(--ease-slow)</span>
-                            <span class="c"
-                                >/* 0.4s ease — smooth reveals */</span
-                            >
-
-                            .btn <span class="p"
-                                >{} transition: all <span class="v"
-                                    >var(--ease)</span
-                                >; <span class="p"></span></span
-                            >
-                            .card <span class="p"
-                                >{} transition: transform <span class="v"
-                                    >var(--ease)</span
-                                >, box-shadow <span class="v">var(--ease)</span
-                                >; <span class="p"></span></span
-                            >
-                        </div>
-                    </div>
+                    <CodeBlock frame="sc" lang="css" code={tokensEase} />
                 </div>
 
                 <!-- 6. Full example -->
@@ -3100,44 +2613,7 @@ const base = import.meta.env.BASE_URL;
                             >
                                 CSS
                             </div>
-                            <div class="sc-code-wrap">
-                                <div
-                                    class="sc-code-body"
-                                    style="font-size:11.5px"
-                                >
-                                    .game-card <span class="p"
-                                        >{}
-                                        padding: <span class="v"
-                                            >var(--space-6)</span
-                                        >; border-radius: <span class="v"
-                                            >var(--radius-md)</span
-                                        >; background: <span class="v"
-                                            >var(--color-dark-secondary)</span
-                                        >; box-shadow: <span class="v"
-                                            >var(--shadow-md)</span
-                                        >;
-                                        <span class="p"></span></span
-                                    >
-                                    .game-card__label <span class="p"
-                                        >{}
-                                        font-size: <span class="v"
-                                            >var(--fs-xs)</span
-                                        >; color: <span class="v"
-                                            >var(--color-primary)</span
-                                        >;
-                                        <span class="p"></span></span
-                                    >
-                                    .game-card__title <span class="p"
-                                        >{}
-                                        font-size: <span class="v"
-                                            >var(--fs-2xl)</span
-                                        >; font-weight: 800; color: <span
-                                            class="v">var(--color-light)</span
-                                        >;
-                                        <span class="p"></span></span
-                                    >
-                                </div>
-                            </div>
+                            <CodeBlock frame="sc" lang="css" code={tokensFullExample} />
                         </div>
                     </div>
                 </div>
@@ -3289,70 +2765,7 @@ const base = import.meta.env.BASE_URL;
                         </div>
                     </div>
 
-                    <div class="sc-code-wrap">
-                        <div class="sc-code-header">
-                            <div class="sc-code-dots">
-                                <div
-                                    class="sc-code-dot"
-                                    style="background:#ff5f57"
-                                >
-                                </div>
-                                <div
-                                    class="sc-code-dot"
-                                    style="background:#febc2e"
-                                >
-                                </div>
-                                <div
-                                    class="sc-code-dot"
-                                    style="background:#28c840"
-                                >
-                                </div>
-                            </div>
-                            <span class="sc-code-filename">Usage example</span>
-                            <button
-                                class="sc-code-copy"
-                                onclick="copyBlock('utils-code',this)"
-                                >Copy</button
-                            >
-                        </div>
-                        <div class="sc-code-body" id="utils-code">
-                            <span class="k">&lt;div</span>
-                            <span class="t">class</span>=<span class="s"
-                                >"flex items-center gap-4 p-6"</span
-                            ><span class="k">&gt;</span>
-                            <span class="k">&lt;button</span>
-                            <span class="t">class</span>=<span class="s"
-                                >"btn btn-primary"</span
-                            ><span class="k">&gt;</span>Action<span class="k"
-                                >&lt;/button&gt;</span
-                            >
-                            <span class="k">&lt;p</span>
-                            <span class="t">class</span>=<span class="s"
-                                >"text-sm text-muted"</span
-                            ><span class="k">&gt;</span>Helper text<span
-                                class="k">&lt;/p&gt;</span
-                            >
-                            <span class="k">&lt;/div&gt;</span>
-
-                            <span class="k">&lt;div</span>
-                            <span class="t">class</span>=<span class="s"
-                                >"flex-center gap-6 mt-8 mb-4"</span
-                            ><span class="k">&gt;</span>
-                            <span class="k">&lt;span</span>
-                            <span class="t">class</span>=<span class="s"
-                                >"tag tag-primary uppercase text-xs"</span
-                            ><span class="k">&gt;</span>New<span class="k"
-                                >&lt;/span&gt;</span
-                            >
-                            <span class="k">&lt;h2</span>
-                            <span class="t">class</span>=<span class="s"
-                                >"text-2xl font-bold text-primary"</span
-                            ><span class="k">&gt;</span>Title<span class="k"
-                                >&lt;/h2&gt;</span
-                            >
-                            <span class="k">&lt;/div&gt;</span>
-                        </div>
-                    </div>
+                    <CodeBlock frame="sc" lang="html" label="Usage example" code={utilsExample} />
                 </div><!-- /full interactive -->
             </section>
 
@@ -3469,40 +2882,7 @@ const base = import.meta.env.BASE_URL;
                         </div>
                     </div>
 
-                    <div class="sc-code-wrap">
-                        <div class="sc-code-body">
-                            <span class="k">&lt;div</span>
-                            <span class="t">class</span>=<span class="s"
-                                >"fade-in"</span
-                            ><span class="k">&gt;</span>Fades in on load<span
-                                class="k">&lt;/div&gt;</span
-                            >
-                            <span class="k">&lt;button</span>
-                            <span class="t">class</span>=<span class="s"
-                                >"btn btn-primary animate-pulse"</span
-                            ><span class="k">&gt;</span>Pulsing CTA<span
-                                class="k">&lt;/button&gt;</span
-                            >
-                            <span class="k">&lt;div</span>
-                            <span class="t">class</span>=<span class="s"
-                                >"animate-float"</span
-                            ><span class="k">&gt;</span>Floating element<span
-                                class="k">&lt;/div&gt;</span
-                            >
-                            <span class="k">&lt;span</span>
-                            <span class="t">class</span>=<span class="s"
-                                >"animate-neon text-accent"</span
-                            ><span class="k">&gt;</span>Neon glow text<span
-                                class="k">&lt;/span&gt;</span
-                            >
-                            <span class="k">&lt;div</span>
-                            <span class="t">class</span>=<span class="s"
-                                >"scale-in anim-delay-1"</span
-                            ><span class="k">&gt;</span>Delayed scale-in<span
-                                class="k">&lt;/div&gt;</span
-                            >
-                        </div>
-                    </div>
+                    <CodeBlock frame="sc" lang="html" code={animationsExample} />
                 </div><!-- /full interactive -->
             </section>
 
@@ -3519,26 +2899,7 @@ const base = import.meta.env.BASE_URL;
                             Classless mode — one file, zero dependencies.
                         </p>
                     </div>
-                    <div class="sc-code-wrap">
-                        <div class="sc-code-body">
-                            <span class="dir">njx-ui/</span>
-                            <span class="file">├── classless.min.css</span>
-                            <span class="c">← 47 KB standalone, no classes</span
-                            >
-                            <span class="file">│</span>
-                            <span class="c"
-                                >│ That's it. No JS, no config, no build step.</span
-                            >
-                            <span class="file">│</span>
-                            <span class="c">│ Internally it contains:</span>
-                            <span class="file">│ ├── _base.css</span>
-                            <span class="c">← design tokens + 9 themes</span>
-                            <span class="file">│ └── _classless-tags.css</span>
-                            <span class="c"
-                                >← styles on h1, p, button, input...</span
-                            >
-                        </div>
-                    </div>
+                    <CodeBlock frame="sc" lang="txt" code={classlessStructure} />
                     <div class="doc-tip" style="margin-top:16px">
                         <span class="doc-tip-icon">💡</span>
                         <div class="doc-tip-text">
@@ -3622,244 +2983,10 @@ const base = import.meta.env.BASE_URL;
                         </p>
                     </div>
                     <div style="display:flex;flex-direction:column;gap:20px">
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-header">
-                                <div class="sc-code-dots">
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#ff5f57"
-                                    >
-                                    </div>
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#febc2e"
-                                    >
-                                    </div>
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#28c840"
-                                    >
-                                    </div>
-                                </div>
-                                <span class="sc-code-filename"
-                                    >Article page</span
-                                >
-                                <button
-                                    class="sc-code-copy"
-                                    onclick="copyBlock('ex-cl-article',this)"
-                                    >Copy</button
-                                >
-                            </div>
-                            <div class="sc-code-body" id="ex-cl-article">
-                                <span class="k">&lt;article&gt;</span>
-                                &nbsp;&nbsp;<span class="k">&lt;h1&gt;</span
-                                >Title<span class="k">&lt;/h1&gt;</span>
-                                &nbsp;&nbsp;<span class="k">&lt;p&gt;</span>Lead
-                                paragraph with <span class="k"
-                                    >&lt;strong&gt;</span
-                                >bold<span class="k">&lt;/strong&gt;</span> and <span
-                                    class="k">&lt;em&gt;</span
-                                >italic<span class="k">&lt;/em&gt;</span>.<span
-                                    class="k">&lt;/p&gt;</span
-                                >
-                                &nbsp;&nbsp;<span class="k"
-                                    >&lt;blockquote&gt;</span
-                                >A quoted insight.<span class="k"
-                                    >&lt;/blockquote&gt;</span
-                                >
-                                &nbsp;&nbsp;<span class="k">&lt;p&gt;</span>Read
-                                more at <span class="k">&lt;a</span>
-                                <span class="t">href</span>=<span class="s"
-                                    >"#"</span
-                                ><span class="k">&gt;</span>this link<span
-                                    class="k">&lt;/a&gt;</span
-                                >.<span class="k">&lt;/p&gt;</span>
-                                <span class="k">&lt;/article&gt;</span>
-                            </div>
-                        </div>
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-header">
-                                <div class="sc-code-dots">
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#ff5f57"
-                                    >
-                                    </div>
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#febc2e"
-                                    >
-                                    </div>
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#28c840"
-                                    >
-                                    </div>
-                                </div>
-                                <span class="sc-code-filename">Form</span>
-                                <button
-                                    class="sc-code-copy"
-                                    onclick="copyBlock('ex-cl-form',this)"
-                                    >Copy</button
-                                >
-                            </div>
-                            <div class="sc-code-body" id="ex-cl-form">
-                                <span class="k">&lt;form&gt;</span>
-                                &nbsp;&nbsp;<span class="k"
-                                    >&lt;fieldset&gt;</span
-                                >
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                                    >&lt;legend&gt;</span
-                                >Contact<span class="k">&lt;/legend&gt;</span>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                                    >&lt;label&gt;</span
-                                >Name<span class="k">&lt;/label&gt;</span>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                                    >&lt;input</span
-                                >
-                                <span class="t">type</span>=<span class="s"
-                                    >"text"</span
-                                >
-                                <span class="t">placeholder</span>=<span
-                                    class="s">"Your name"</span
-                                ><span class="k">&gt;</span>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                                    >&lt;label&gt;</span
-                                >Email<span class="k">&lt;/label&gt;</span>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                                    >&lt;input</span
-                                >
-                                <span class="t">type</span>=<span class="s"
-                                    >"email"</span
-                                >
-                                <span class="t">placeholder</span>=<span
-                                    class="s">"you@example.com"</span
-                                ><span class="k">&gt;</span>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                                    >&lt;button</span
-                                >
-                                <span class="t">type</span>=<span class="s"
-                                    >"submit"</span
-                                ><span class="k">&gt;</span>Send<span class="k"
-                                    >&lt;/button&gt;</span
-                                >
-                                &nbsp;&nbsp;<span class="k"
-                                    >&lt;/fieldset&gt;</span
-                                >
-                                <span class="k">&lt;/form&gt;</span>
-                            </div>
-                        </div>
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-header">
-                                <div class="sc-code-dots">
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#ff5f57"
-                                    >
-                                    </div>
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#febc2e"
-                                    >
-                                    </div>
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#28c840"
-                                    >
-                                    </div>
-                                </div>
-                                <span class="sc-code-filename">Accordion</span>
-                                <button
-                                    class="sc-code-copy"
-                                    onclick="copyBlock('ex-cl-acc',this)"
-                                    >Copy</button
-                                >
-                            </div>
-                            <div class="sc-code-body" id="ex-cl-acc">
-                                <span class="k">&lt;details&gt;</span>
-                                &nbsp;&nbsp;<span class="k"
-                                    >&lt;summary&gt;</span
-                                >Section one<span class="k"
-                                    >&lt;/summary&gt;</span
-                                >
-                                &nbsp;&nbsp;<span class="k">&lt;p&gt;</span
-                                >Content revealed on click — no JS.<span
-                                    class="k">&lt;/p&gt;</span
-                                >
-                                <span class="k">&lt;/details&gt;</span>
-                                <span class="k">&lt;details&gt;</span>
-                                &nbsp;&nbsp;<span class="k"
-                                    >&lt;summary&gt;</span
-                                >Section two<span class="k"
-                                    >&lt;/summary&gt;</span
-                                >
-                                &nbsp;&nbsp;<span class="k">&lt;p&gt;</span
-                                >Another panel.<span class="k">&lt;/p&gt;</span>
-                                <span class="k">&lt;/details&gt;</span>
-                            </div>
-                        </div>
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-header">
-                                <div class="sc-code-dots">
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#ff5f57"
-                                    >
-                                    </div>
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#febc2e"
-                                    >
-                                    </div>
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#28c840"
-                                    >
-                                    </div>
-                                </div>
-                                <span class="sc-code-filename">Data table</span>
-                                <button
-                                    class="sc-code-copy"
-                                    onclick="copyBlock('ex-cl-table',this)"
-                                    >Copy</button
-                                >
-                            </div>
-                            <div class="sc-code-body" id="ex-cl-table">
-                                <span class="k">&lt;table&gt;</span>
-                                &nbsp;&nbsp;<span class="k"
-                                    >&lt;thead&gt;&lt;tr&gt;</span
-                                >
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                                    >&lt;th&gt;</span
-                                >Name<span class="k">&lt;/th&gt;&lt;th&gt;</span
-                                >Role<span class="k">&lt;/th&gt;&lt;th&gt;</span
-                                >Status<span class="k">&lt;/th&gt;</span>
-                                &nbsp;&nbsp;<span class="k"
-                                    >&lt;/tr&gt;&lt;/thead&gt;</span
-                                >
-                                &nbsp;&nbsp;<span class="k">&lt;tbody&gt;</span>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                                    >&lt;tr&gt;&lt;td&gt;</span
-                                >Alice<span class="k"
-                                    >&lt;/td&gt;&lt;td&gt;</span
-                                >Admin<span class="k"
-                                    >&lt;/td&gt;&lt;td&gt;</span
-                                >Active<span class="k"
-                                    >&lt;/td&gt;&lt;/tr&gt;</span
-                                >
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="k"
-                                    >&lt;tr&gt;&lt;td&gt;</span
-                                >Bob<span class="k">&lt;/td&gt;&lt;td&gt;</span
-                                >Editor<span class="k"
-                                    >&lt;/td&gt;&lt;td&gt;</span
-                                >Inactive<span class="k"
-                                    >&lt;/td&gt;&lt;/tr&gt;</span
-                                >
-                                &nbsp;&nbsp;<span class="k">&lt;/tbody&gt;</span
-                                >
-                                <span class="k">&lt;/table&gt;</span>
-                            </div>
-                        </div>
+                        <CodeBlock frame="sc" lang="html" label="Article page" code={exClArticle} />
+                        <CodeBlock frame="sc" lang="html" label="Form" code={exClForm} />
+                        <CodeBlock frame="sc" lang="html" label="Accordion" code={exClAccordion} />
+                        <CodeBlock frame="sc" lang="html" label="Data table" code={exClTable} />
                     </div>
                 </div><!-- /classless -->
 
@@ -3874,230 +3001,11 @@ const base = import.meta.env.BASE_URL;
                     </div>
 
                     <div style="display:flex;flex-direction:column;gap:20px">
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-header">
-                                <div class="sc-code-dots">
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#ff5f57"
-                                    >
-                                    </div>
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#febc2e"
-                                    >
-                                    </div>
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#28c840"
-                                    >
-                                    </div>
-                                </div>
-                                <span class="sc-code-filename"
-                                    >Card with actions</span
-                                >
-                                <button
-                                    class="sc-code-copy"
-                                    onclick="copyBlock('ex-card',this)"
-                                    >Copy</button
-                                >
-                            </div>
-                            <div class="sc-code-body" id="ex-card">
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"card card-glass p-6"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;h3</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"text-gradient-primary"</span
-                                ><span class="k">&gt;</span>Card Title<span
-                                    class="k">&lt;/h3&gt;</span
-                                >
-                                <span class="k">&lt;p</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"text-muted mt-2"</span
-                                ><span class="k">&gt;</span>Description text...<span
-                                    class="k">&lt;/p&gt;</span
-                                >
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"flex gap-4 mt-6"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;button</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"btn btn-primary btn-sm"</span
-                                ><span class="k">&gt;</span>Action<span
-                                    class="k">&lt;/button&gt;</span
-                                >
-                                <span class="k">&lt;button</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"btn btn-outline btn-sm"</span
-                                ><span class="k">&gt;</span>Cancel<span
-                                    class="k">&lt;/button&gt;</span
-                                >
-                                <span class="k">&lt;/div&gt;</span>
-                                <span class="k">&lt;/div&gt;</span>
-                            </div>
-                        </div>
+                        <CodeBlock frame="sc" lang="html" label="Card with actions" code={exCard} />
 
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-header">
-                                <div class="sc-code-dots">
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#ff5f57"
-                                    >
-                                    </div>
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#febc2e"
-                                    >
-                                    </div>
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#28c840"
-                                    >
-                                    </div>
-                                </div>
-                                <span class="sc-code-filename"
-                                    >Form with validation states</span
-                                >
-                                <button
-                                    class="sc-code-copy"
-                                    onclick="copyBlock('ex-form',this)"
-                                    >Copy</button
-                                >
-                            </div>
-                            <div class="sc-code-body" id="ex-form">
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"field"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;label</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"field-label"</span
-                                ><span class="k">&gt;</span>Email<span class="k"
-                                    >&lt;/label&gt;</span
-                                >
-                                <span class="k">&lt;input</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"inp inp-error"</span
-                                >
-                                <span class="t">type</span>=<span class="s"
-                                    >"email"</span
-                                >
-                                <span class="t">placeholder</span>=<span
-                                    class="s">"test@example.com"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;span</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"field-error-msg"</span
-                                ><span class="k">&gt;</span>Invalid email
-                                address<span class="k">&lt;/span&gt;</span>
-                                <span class="k">&lt;/div&gt;</span>
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"field"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;label</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"field-label"</span
-                                ><span class="k">&gt;</span>Password<span
-                                    class="k">&lt;/label&gt;</span
-                                >
-                                <span class="k">&lt;input</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"inp inp-success"</span
-                                >
-                                <span class="t">type</span>=<span class="s"
-                                    >"password"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;span</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"field-success-msg"</span
-                                ><span class="k">&gt;</span>Password accepted<span
-                                    class="k">&lt;/span&gt;</span
-                                >
-                                <span class="k">&lt;/div&gt;</span>
-                            </div>
-                        </div>
+                        <CodeBlock frame="sc" lang="html" label="Form with validation states" code={exForm} />
 
-                        <div class="sc-code-wrap">
-                            <div class="sc-code-header">
-                                <div class="sc-code-dots">
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#ff5f57"
-                                    >
-                                    </div>
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#febc2e"
-                                    >
-                                    </div>
-                                    <div
-                                        class="sc-code-dot"
-                                        style="background:#28c840"
-                                    >
-                                    </div>
-                                </div>
-                                <span class="sc-code-filename"
-                                    >Modal dialog</span
-                                >
-                                <button
-                                    class="sc-code-copy"
-                                    onclick="copyBlock('ex-modal',this)"
-                                    >Copy</button
-                                >
-                            </div>
-                            <div class="sc-code-body" id="ex-modal">
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"lib-modal-overlay"</span
-                                >
-                                <span class="t">id</span>=<span class="s"
-                                    >"modal"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"lib-modal-box is-success"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;span</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"lib-modal-icon"</span
-                                ><span class="k">&gt;</span>✓<span class="k"
-                                    >&lt;/span&gt;</span
-                                >
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"lib-modal-title"</span
-                                ><span class="k">&gt;</span>Success!<span
-                                    class="k">&lt;/div&gt;</span
-                                >
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"lib-modal-text"</span
-                                ><span class="k">&gt;</span>Operation completed<span
-                                    class="k">&lt;/div&gt;</span
-                                >
-                                <span class="k">&lt;div</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"lib-modal-actions"</span
-                                ><span class="k">&gt;</span>
-                                <span class="k">&lt;button</span>
-                                <span class="t">class</span>=<span class="s"
-                                    >"btn btn-success"</span
-                                >
-                                <span class="t">onclick</span>=<span class="s"
-                                    >"document.getElementById('modal').remove()"</span
-                                ><span class="k">&gt;</span>OK<span class="k"
-                                    >&lt;/button&gt;</span
-                                >
-                                <span class="k">&lt;/div&gt;</span>
-                                <span class="k">&lt;/div&gt;</span>
-                                <span class="k">&lt;/div&gt;</span>
-                            </div>
-                        </div>
+                        <CodeBlock frame="sc" lang="html" label="Modal dialog" code={exModal} />
                     </div>
                 </div><!-- /full interactive -->
             </section>
@@ -4289,6 +3197,9 @@ const base = import.meta.env.BASE_URL;
         line-height: 1.9;
     }
 
+    /* One-Dark в каноническом словаре подсветки (.k теги/селекторы,
+       .s имена атрибутов, .cn значения/строки/CSS-свойства, .v CSS-значения,
+       .c комментарии) — код теперь генерирует CodeBlock */
     .doc-main .sc-code-body .c {
         color: #555;
         font-style: italic;
@@ -4299,31 +3210,15 @@ const base = import.meta.env.BASE_URL;
     }
 
     .doc-main .sc-code-body .s {
+        color: #e5c07b;
+    }
+
+    .doc-main .sc-code-body .cn {
         color: #98c379;
     }
 
     .doc-main .sc-code-body .v {
         color: #61afef;
-    }
-
-    .doc-main .sc-code-body .n {
-        color: #c678dd;
-    }
-
-    .doc-main .sc-code-body .t {
-        color: #e5c07b;
-    }
-
-    .doc-main .sc-code-body .p {
-        color: #abb2bf;
-    }
-
-    .doc-main .sc-code-body .ok {
-        color: #98c379;
-    }
-
-    .doc-main .sc-code-body .err {
-        color: #e06c75;
     }
 
     code {
@@ -5041,15 +3936,6 @@ const base = import.meta.env.BASE_URL;
     // .doc-theme-swatch сам
     function switchTheme(swatch, theme) {
         njxApplyTheme(theme);
-    }
-
-    // ── COPY ──
-    function copyBlock(id, btn) {
-        njxCopyBtn(btn, document.getElementById(id).innerText, {
-            ms: 2000,
-            onDone: (b) => (b.style.color = '#98c379'),
-            onRestore: (b) => (b.style.color = ''),
-        });
     }
 
     // ── SIDEBAR ACTIVE ON SCROLL ── (njxScrollSpy — из njx-site.js)

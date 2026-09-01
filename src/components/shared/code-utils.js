@@ -28,12 +28,12 @@ export function highlightCss(value) {
     .replace(/(&lt;!--[\s\S]*?--&gt;)/g, '<span class="c">$1</span>')
     .replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="c">$1</span>');
 
-  return escaped
+  const lined = escaped
     .split('\n')
     .map((line) => {
       if (line.trimStart().startsWith('<span class="c"')) return line;
       const prop = line.replace(
-        /^(\s*)(--?[\w-]+|[a-zA-Z-]{2}[\w-]*)(\s*:\s*)([^;{<]*)(;?)/,
+        /^(\s*)(--[\w-]+|[a-zA-Z-]{2}[\w-]*)(\s*:\s*)([^;{<]*)(;?)/,
         (_m, sp, name, colon, val, semi) =>
           `${sp}<span class="cn">${name}</span>${colon}<span class="v">${val}</span>${semi}`,
       );
@@ -44,6 +44,16 @@ export function highlightCss(value) {
       );
     })
     .join('\n');
+
+  // var(--x) вне уже расставленных span'ов (однострочные правила, списки токенов)
+  return lined
+    .split(/(<span[^>]*>[\s\S]*?<\/span>)/)
+    .map((part, i) =>
+      i % 2
+        ? part
+        : part.replace(/var\((--[\w-]+)\)/g, '<span class="v">var($1)</span>'),
+    )
+    .join('');
 }
 
 /** Подсветка HTML в словаре секций: .k теги, .s имена атрибутов,

@@ -6,8 +6,10 @@ interface Props {
     lang?: string;
     label?: string; // подпись в шапке окна (plain text)
     filename?: string;
+    frame?: 'lib' | 'sc'; // lib — секции (сворачиваемое окно); sc — documentation (всегда открыто)
     compact?: boolean;
     class?: string;
+    style?: string;
 }
 
 const {
@@ -15,8 +17,10 @@ const {
     lang = 'html',
     label,
     filename,
+    frame = 'lib',
     compact = false,
     class: className = '',
+    style,
 } = Astro.props;
 
 const normalizedCode = dedent(code).trim();
@@ -35,6 +39,27 @@ const windowLabel = label || filename || 'HTML';
     делегированные обработчики в njx-site.js (data-code-toggle/data-code-copy).
     data-code-ready="1" — initCodeToggles из lib-docs.js пропускает такие окна
     (runtime-инъекция осталась только для легаси: classless + Tokens showcase). */}
+{frame === 'sc' && (
+    <div class={`sc-code-wrap ${className}`.trim()} style={style} data-code-block>
+        <div class="sc-code-header">
+            <div class="sc-code-dots">
+                <div class="sc-code-dot" style="background:#ff5f57"></div>
+                <div class="sc-code-dot" style="background:#febc2e"></div>
+                <div class="sc-code-dot" style="background:#28c840"></div>
+            </div>
+            {(label || filename) && (
+                <span class="sc-code-filename">{label || filename}</span>
+            )}
+            <button class="sc-code-copy" type="button" data-code-copy>Copy</button>
+        </div>
+        <div class="sc-code-body" data-raw={normalizedCode}>
+            <pre
+                class={`codeblock-pre language-${lang}`}><code set:html={highlightedCode} /></pre>
+        </div>
+    </div>
+)}
+{frame === 'lib' && (
+<Fragment>
 <button class="lib-code-reveal-btn" type="button" data-code-toggle>
     <svg
         width="13"
@@ -98,6 +123,8 @@ const windowLabel = label || filename || 'HTML';
         </div>
     </div>
 </div>
+</Fragment>
+)}
 
 <style is:global>
     .lib-code .codeblock-pre {

@@ -232,11 +232,11 @@
             return;
         }
 
-        var copy = e.target.closest('.lib-copy-btn[data-code-copy]');
+        var copy = e.target.closest('[data-code-copy]');
         if (copy) {
             e.stopPropagation();
-            var wrap = copy.closest('.lib-code-wrapper');
-            var codeEl = wrap && wrap.querySelector('.lib-code');
+            var wrap = copy.closest('.lib-code-wrapper, .sc-code-wrap');
+            var codeEl = wrap && wrap.querySelector('.lib-code, .sc-code-body');
             if (!codeEl) return;
             njxCopyBtn(copy, codeEl.dataset.raw || codeEl.innerText.trim(), {
                 done:
