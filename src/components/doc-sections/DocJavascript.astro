@@ -2,6 +2,22 @@
 import CodeBlock from '../shared/CodeBlock.astro';
 import { CDN_JS } from '../../lib/meta';
 
+const base = import.meta.env.BASE_URL;
+
+// Alpine-рецепты (roadmap 4.1): njx.js опционален — те же классы, стейт в x-data
+const jsAlpine = `
+<!-- Alpine.js from CDN — njx.js becomes optional -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
+<!-- Same markup, same .is-open class — Alpine just toggles it -->
+<div class="collapse" x-data="{ open: false }" :class="{ 'is-open': open }">
+  <div class="collapse-header" @click="open = !open">
+    Title <span class="collapse-icon"></span>
+  </div>
+  <div class="collapse-body">Content</div>
+</div>
+`;
+
 const nativeNoJs = `
 <!-- Accordion: native open/close -->
 <details>
@@ -480,5 +496,35 @@ initCarousels();
                             > — the browser handles open/close natively, zero JS needed.
                         </div>
                     </div>
+
+                    <!-- Alpine.js recipes -->
+                    <h3
+                        id="alpine"
+                        style="font-size:16px;font-weight:700;margin:28px 0 10px"
+                    >
+                        Alpine.js — njx.js is optional
+                    </h3>
+                    <p
+                        style="font-size:13px;color:var(--color-muted);margin-bottom:12px;line-height:1.7"
+                    >
+                        Every interactive component works by toggling a single
+                        state class (<code>.is-open</code>, <code>.is-active</code>,
+                        <code>.open</code>). njx.js is one way to toggle it —
+                        <a
+                            href="https://alpinejs.dev"
+                            target="_blank"
+                            rel="noopener">Alpine.js</a
+                        > is another: keep the same markup and drive the class from
+                        <code>x-data</code>. Ready-made recipes live on the
+                        components page — look for the <strong>Alpine.js</strong> tab
+                        in the code windows of
+                        <a href={`${base}#collapse`}>Collapse</a>,
+                        <a href={`${base}#tabs`}>Tabs</a>,
+                        <a href={`${base}#dropdown`}>Dropdown</a>,
+                        <a href={`${base}#popups`}>Modal</a>,
+                        <a href={`${base}#notifications`}>Toast</a> and
+                        <a href={`${base}#carousel`}>Carousel</a>.
+                    </p>
+                    <CodeBlock frame="sc" lang="html" code={jsAlpine} />
                 </div><!-- /full interactive -->
             </section>
