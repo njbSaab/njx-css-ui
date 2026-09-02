@@ -1,6 +1,13 @@
 ---
 import { dedent, escapeHtml, highlightHtml, highlightCss, highlightJs } from './code-utils.js';
 
+interface CodeVariant {
+    id: string; // 'html' | 'alpine' | 'js' — значение data-code-variant
+    label: string; // подпись таба
+    lang?: string; // default — lang окна
+    code: string;
+}
+
 interface Props {
     code: string;
     lang?: string;
@@ -8,6 +15,7 @@ interface Props {
     filename?: string;
     frame?: 'lib' | 'sc'; // lib — секции (сворачиваемое окно); sc — documentation (всегда открыто)
     compact?: boolean;
+    variants?: CodeVariant[]; // ≥2 варианта кода → табы в шапке вместо лейбла (только frame="lib")
     class?: string;
     style?: string;
 }
@@ -19,20 +27,29 @@ const {
     filename,
     frame = 'lib',
     compact = false,
+    variants,
     class: className = '',
     style,
 } = Astro.props;
 
-const normalizedCode = dedent(code).trim();
+const highlight = (src: string, l: string) =>
+    l === 'html'
+        ? highlightHtml(src)
+        : l === 'css'
+          ? highlightCss(src)
+          : l === 'js'
+            ? highlightJs(src)
+            : escapeHtml(src);
 
-const highlightedCode =
-    lang === 'html'
-        ? highlightHtml(normalizedCode)
-        : lang === 'css'
-          ? highlightCss(normalizedCode)
-          : lang === 'js'
-            ? highlightJs(normalizedCode)
-            : escapeHtml(normalizedCode);
+const normalizedCode = dedent(code).trim();
+const highlightedCode = highlight(normalizedCode, lang);
+
+// Табы вариантов (HTML / +Alpine / …): первый вариант активен, копируется активный
+const codeVariants = (variants ?? []).map((v) => {
+    const src = dedent(v.code).trim();
+    return { ...v, code: src, html: highlight(src, v.lang ?? lang) };
+});
+const hasTabs = frame === 'lib' && codeVariants.length > 1;
 
 const windowLabel = label || filename || 'HTML';
 ---
@@ -100,7 +117,23 @@ const windowLabel = label || filename || 'HTML';
                 <div class="lib-code-mac-dot" style="background:#febc2e"></div>
                 <div class="lib-code-mac-dot" style="background:#28c840"></div>
             </div>
-            <span class="lib-code-label">{windowLabel}</span>
+            {
+                hasTabs ? (
+                    <div class="lib-code-tabs" role="tablist">
+                        {codeVariants.map((v, i) => (
+                            <button
+                                class={`lib-code-tab ${i === 0 ? 'is-active' : ''}`.trim()}
+                                type="button"
+                                data-code-tab={v.id}
+                            >
+                                {v.label}
+                            </button>
+                        ))}
+                    </div>
+                ) : (
+                    <span class="lib-code-label">{windowLabel}</span>
+                )
+            }
             <button class="lib-copy-btn" type="button" data-code-copy>
                 <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor">
                     <path
@@ -114,14 +147,28 @@ const windowLabel = label || filename || 'HTML';
             </button>
         </div>
         <div class="lib-code-container">
-            <div
-                class="lib-code"
-                data-raw={normalizedCode}
-                data-code-filename={filename}
-            >
-                <pre
-                    class={`codeblock-pre language-${lang}`}><code set:html={highlightedCode} /></pre>
-            </div>
+            {
+                hasTabs ? (
+                    codeVariants.map((v, i) => (
+                        <div
+                            class={`lib-code ${i === 0 ? 'is-active' : ''}`.trim()}
+                            data-raw={v.code}
+                            data-code-variant={v.id}
+                        >
+                            <pre class={`codeblock-pre language-${v.lang ?? lang}`}><code set:html={v.html} /></pre>
+                        </div>
+                    ))
+                ) : (
+                    <div
+                        class="lib-code"
+                        data-raw={normalizedCode}
+                        data-code-filename={filename}
+                    >
+                        <pre
+                            class={`codeblock-pre language-${lang}`}><code set:html={highlightedCode} /></pre>
+                    </div>
+                )
+            }
         </div>
     </div>
 </div>
@@ -129,6 +176,43 @@ const windowLabel = label || filename || 'HTML';
 )}
 
 <style is:global>
+    /* Табы вариантов кода (HTML / Alpine.js …) — переключение в njx-site.js [data-code-tab] */
+    .lib-code-tabs {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        min-width: 0;
+    }
+
+    .lib-code-tab {
+        appearance: none;
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-size: 11px;
+        font-family: 'Roboto Mono', monospace;
+        color: #555;
+        cursor: pointer;
+        transition: color 0.15s ease, background 0.15s ease;
+        white-space: nowrap;
+    }
+
+    .lib-code-tab:hover {
+        color: #999;
+    }
+
+    .lib-code-tab.is-active {
+        color: #c9c9c9;
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .lib-code-container .lib-code[data-code-variant]:not(.is-active) {
+        display: none;
+    }
+
     .lib-code .codeblock-pre,
     .sc-code-body .codeblock-pre {
         margin: 0;

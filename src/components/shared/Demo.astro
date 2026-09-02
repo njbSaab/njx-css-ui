@@ -19,6 +19,16 @@
  *        <Fragment is:raw>…образец…</Fragment>
  *      </Demo>
  *
+ * Варианты кода (Alpine-рецепты, roadmap 4.1): слот "alpine" добавляет второй
+ * таб в код-окно («HTML + njx.js» / «Alpine.js»). is:raw на теге Demo сделал бы
+ * именованный слот сырым текстом, поэтому is:raw ставится на внутренние Fragment:
+ *      <Demo label="…">
+ *        <Fragment is:raw>…образец (превью + таб HTML)…</Fragment>
+ *        <Fragment slot="alpine" is:raw>…тот же компонент на x-data…</Fragment>
+ *      </Demo>
+ * Превью всегда рендерится из default-слота (njx.js-вариант) — живого
+ * Alpine-превью нет намеренно, чтобы njx.js и Alpine не конфликтовали.
+ *
  * Эмитит текущий контракт .lib-component / .lib-preview / .lib-code-wrapper —
  * runtime-хром (Show code, mac-dots, copy) вешает initCodeToggles из lib-docs.js,
  * мигрированные юниты неотличимы от старых.
@@ -52,6 +62,15 @@ const Wrap = previewWrap;
 const raw = dedent(await Astro.slots.render('default')).trim();
 const sample = code != null ? dedent(code).trim() : raw;
 const hasPreviewSlot = Astro.slots.has('preview');
+const alpineSample = Astro.slots.has('alpine')
+  ? dedent(await Astro.slots.render('alpine')).trim()
+  : null;
+const variants = alpineSample
+  ? [
+      { id: 'html', label: 'HTML + njx.js', lang, code: sample },
+      { id: 'alpine', label: 'Alpine.js', lang: 'html', code: alpineSample },
+    ]
+  : undefined;
 // лейбл окна кода — plain text (label может содержать разметку)
 const plainLabel = label
   ? label
@@ -75,5 +94,11 @@ const plainLabel = label
       )
     }
   </div>
-  <CodeBlock code={sample} lang={lang} filename={filename} label={plainLabel} />
+  <CodeBlock
+    code={sample}
+    lang={lang}
+    filename={filename}
+    label={plainLabel}
+    variants={variants}
+  />
 </div>
