@@ -1,39 +1,9 @@
 ---
 import CodeBlock from '../shared/CodeBlock.astro';
 
-const classlessStructure = `
-njx-ui/
-├── classless.min.css   ← 47 KB standalone, no classes
-│
-│  That's it. No JS, no config, no build step.
-│
-│  Internally it contains:
-│  ├── _base.css            ← design tokens + 9 themes
-│  └── _classless-tags.css  ← styles on h1, p, button, input...
-`;
 ---
 
 <section class="doc-section" id="structure">
-                <!-- classless: minimal structure -->
-                <div data-flavor-code="classless" style="display:none">
-                    <div class="doc-section-header">
-                        <span class="sc-eyebrow">Project</span>
-                        <h2 class="sc-heading">File Structure</h2>
-                        <p class="sc-subheading">
-                            Classless mode — one file, zero dependencies.
-                        </p>
-                    </div>
-                    <CodeBlock frame="sc" lang="txt" code={classlessStructure} />
-                    <div class="doc-tip" style="margin-top:16px">
-                        <span class="doc-tip-icon">💡</span>
-                        <div class="doc-tip-text">
-                            Want component classes too? Switch to <code
-                                >style.min.css</code
-                            > (Full) — it styles components via classes. Full and
-                            Classless are standalone builds: use one, not both.
-                        </div>
-                    </div>
-                </div><!-- /classless -->
 
                 <!-- full/interactive: full structure -->
                 <div data-flavor-code="full interactive">

@@ -5,7 +5,7 @@ import LibsFooter from '../components/LibsFooter.astro';
 import Sidebar from '../components/Sidebar.astro';
 import DocSidebar from '../components/DocSidebar.astro';
 import Bottombar from '../components/Bottombar.astro';
-import { SIZE_FULL, SIZE_CLASSLESS } from '../lib/meta';
+import { SIZE_FULL } from '../lib/meta';
 import DocQuickstart from '../components/doc-sections/DocQuickstart.astro';
 import DocThemes from '../components/doc-sections/DocThemes.astro';
 import DocComponents from '../components/doc-sections/DocComponents.astro';
@@ -20,7 +20,7 @@ import DocExamples from '../components/doc-sections/DocExamples.astro';
 
 <BaseLayout
     title="Documentation — njX UI · Components, Tokens, JavaScript Reference"
-    description="Full reference for njX UI: design tokens, component classes, JavaScript helpers, themes and classless mode. Everything in one place."
+    description="Full reference for njX UI: design tokens, component classes, JavaScript helpers and themes. Everything in one place."
     withDocsShell={true}
     withDocsScripts={true}
 >
@@ -47,16 +47,6 @@ import DocExamples from '../components/doc-sections/DocExamples.astro';
                     </button>
                     <button
                         class="doc-mode-tab"
-                        data-mode="classless"
-                        onclick="pageSyncFlavor('classless')"
-                    >
-                        <span class="doc-mode-icon">&lt;/&gt;</span>
-                        Classless Only
-                        <span class="doc-mode-default">LITE</span>
-                        <span class="doc-mode-size">{SIZE_CLASSLESS}</span>
-                    </button>
-                    <button
-                        class="doc-mode-tab"
                         data-mode="interactive"
                         onclick="pageSyncFlavor('interactive')"
                     >
@@ -65,7 +55,7 @@ import DocExamples from '../components/doc-sections/DocExamples.astro';
                     </button>
                 </div>
                 <span class="doc-mode-hint" id="doc-mode-hint">
-                    Classless built-in — your HTML is styled automatically
+                    Pure CSS — components, utilities and 9 themes, no JS required
                 </span>
             </div>
 
@@ -856,9 +846,6 @@ import DocExamples from '../components/doc-sections/DocExamples.astro';
                     transparent
                 );
     }
-    .doc-flavor-card[data-flavor-card='classless'] {
-        --doc-fc-color: #4ade80;
-    }
     .doc-flavor-card[data-flavor-card='full'] {
         --doc-fc-color: var(--color-primary);
     }
@@ -960,9 +947,6 @@ import DocExamples from '../components/doc-sections/DocExamples.astro';
             var(--color-neutral-600) 15%,
             transparent
         );
-    }
-    .doc-mode-hint.classless-hint {
-        color: #4ade80;
     }
     .doc-mode-hint.interactive-hint {
         color: #facc15;

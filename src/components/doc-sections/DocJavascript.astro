@@ -112,47 +112,6 @@ initCarousels();
 ---
 
 <section class="doc-section" id="javascript">
-                <!-- ── Classless: no JS needed ── -->
-                <div data-flavor-code="classless" style="display:none">
-                    <div class="doc-section-header">
-                        <span class="sc-eyebrow">Reference</span>
-                        <h2 class="sc-heading">JavaScript</h2>
-                        <p class="sc-subheading">
-                            Classless mode requires <strong
-                                >zero JavaScript</strong
-                            >. Interactive elements work natively via HTML.
-                        </p>
-                    </div>
-                    <div class="doc-tip">
-                        <span class="doc-tip-icon">💡</span>
-                        <div class="doc-tip-text">
-                            <strong>Collapse / Accordion</strong> — use <code
-                                >&lt;details&gt;&lt;summary&gt;</code
-                            >, browser handles open/close natively.<br />
-                            <strong>Dialogs</strong> — use <code
-                                >&lt;dialog&gt;</code
-                            > with <code>showModal()</code> — no library needed.<br
-                            />
-                            <strong>Forms</strong> — native validation with <code
-                                >required</code
-                            >, <code>pattern</code>, <code>type</code> attributes.<br
-                            /><br />
-                            Want <code>openModal()</code>, <code
-                                >showToast()</code
-                            >, <code>tabSwitch()</code>? Switch to <strong
-                                >Interactive</strong
-                            > mode.
-                        </div>
-                    </div>
-                    <div style="margin-top:24px">
-                        <h3
-                            style="font-size:15px;font-weight:700;margin-bottom:12px;color:var(--color-light)"
-                        >
-                            Native HTML — no JS needed
-                        </h3>
-                        <CodeBlock frame="sc" lang="html" code={nativeNoJs} />
-                    </div>
-                </div><!-- /classless -->
 
                 <!-- ── Full / Interactive: njx.js reference ── -->
                 <div data-flavor-code="full interactive">
