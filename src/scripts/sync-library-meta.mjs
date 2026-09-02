@@ -92,10 +92,6 @@ const targets = [
     replacements: [cdnMajorReplacement, ...commonVersionReplacements, ...commonSizeReplacements],
   },
   {
-    file: 'src/pages/classless-components.astro',
-    replacements: [cdnMajorReplacement, ...commonVersionReplacements, ...commonSizeReplacements],
-  },
-  {
     file: 'src/pages/demo.astro',
     replacements: [cdnMajorReplacement, ...commonVersionReplacements, ...commonSizeReplacements],
   },

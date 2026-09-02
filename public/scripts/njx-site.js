@@ -60,7 +60,7 @@
         { sel: '.sc-tpill',               key: function (el) { return el.dataset.t; },     cls: 'active' },   // overview: пилюли
         { sel: '#ov-tswatches .s',        key: function (el) { return el.dataset.t; },     cls: 'on' },       // overview: свотчи
         { sel: '.doc-theme-swatch',       key: function (el) { return el.dataset.tc; },    cls: 'selected' }, // documentation
-        { sel: '.theme-card[data-theme]', key: function (el) { return el.dataset.theme; }, cls: 'active' },   // classless: карточки
+        { sel: '.theme-card[data-theme]', key: function (el) { return el.dataset.theme; }, cls: 'active' },
         { sel: '.lib-theme-pill',         key: function (el) { return (el.title || '').toLowerCase(); }, cls: 'active' }, // libs topbar
         { sel: '.ts-tile',                key: function (el) { return el.dataset.ts; },    cls: 'active' },   // theme showcase
     ];

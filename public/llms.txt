@@ -1,6 +1,6 @@
 # njX UI
 
-> njX UI is a lightweight, dependency-free CSS component library: 30+ components, 9 built-in themes switched with a single `data-theme` HTML attribute, zero build tools. 308 KB minified (44 KB gzipped). A classless mode (~48 KB) styles plain semantic HTML with zero classes. MIT license.
+> njX UI is a lightweight, dependency-free CSS component library: 30+ components, 9 built-in themes switched with a single `data-theme` HTML attribute, zero build tools. 308 KB minified (44 KB gzipped). MIT license. A separate classless product lives at https://classless.njxui.dev.
 
 ## Install
 
@@ -33,6 +33,6 @@ Buttons (50+ variants incl. gradient/glow/shine), Cards (30+), Navbar (5 variant
 - Quick Start: https://njxui.dev/quickstart
 - Full documentation (components, tokens, JS reference): https://njxui.dev/documentation
 - Component gallery: https://njxui.dev/
-- Classless components: https://njxui.dev/classless-components
+- Classless (separate product): https://classless.njxui.dev
 - Live theme playground: https://njxui.dev/overview
 - GitHub: https://github.com/njbSaab/njx-css-ui

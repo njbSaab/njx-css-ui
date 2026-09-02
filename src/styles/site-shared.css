@@ -1,7 +1,7 @@
 /* ============================================================
    site-shared.css — паттерны, повторяющиеся на нескольких страницах.
    Грузится безусловно из BaseLayout.
-   Сейчас: mode-бар Full/Classless/Interactive (documentation + quickstart).
+   Сейчас: mode-бар Full/Astro/Interactive (documentation + quickstart).
    Дельты страниц — в их собственных <style> (sticky/фон/радиус у doc,
    #qs-mode-bar и заливка табов у quickstart).
    ============================================================ */

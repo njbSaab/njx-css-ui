@@ -133,40 +133,15 @@ https://cdn.jsdelivr.net/npm/njx-ui/
 
 ---
 
-## Classless Mode — zero classes required
+## Classless — now a separate project
 
-Don't want to add class names to every element? **njX UI ships a second stylesheet — `classless.min.css` (48 KB min, ~7 KB gzip)** — that styles plain, semantic HTML automatically. No `.btn`, no `.card`, no configuration.
+The classless stylesheet (`classless.min.css`, ~7 KB gzip — styles plain semantic HTML with zero class names) has grown into its own product: **[classless.njxui.dev](https://classless.njxui.dev)**. The file still ships in this package for compatibility:
 
 ```html
-<!-- One link -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/classless.min.css">
-
-<!-- Then write plain HTML — nothing else needed -->
-<main>
-  <h1>Hello World</h1>
-  <p>No classes. No setup. Just HTML.</p>
-  <button>Get started</button>
-  <input type="email" placeholder="your@email.com">
-</main>
 ```
 
-**Why use classless mode?**
-
-| | Full (`style.min.css`) | Classless (`classless.min.css`) |
-|---|:---:|:---:|
-| Utility classes | ✅ | ❌ |
-| Component classes (`.btn`, `.card`…) | ✅ | ❌ |
-| Semantic HTML styled automatically | ❌ | ✅ |
-| 9 themes via `data-theme` | ✅ | ✅ |
-| Variants via `data-variant` | ✅ | ✅ |
-| Works alongside Full library | — | ✅ scoped |
-| Size (min / gzip) | 308 KB / **44 KB** | 48 KB / **~7 KB** |
-
-Both files share the same 9 themes — switch between them with `data-theme` on `<html>` exactly the same way.
-
-> **Scoping:** classless styles only activate inside `<main>`, `<article>`, `<section>`, or `<form>` elements with no class — so it never conflicts with the Full library.
-
-Full reference → [classless.md](classless.md)
+Reference → [classless.md](classless.md)
 
 ---
 

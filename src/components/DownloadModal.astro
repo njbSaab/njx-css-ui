@@ -2,8 +2,6 @@
 import {
     SIZE_FULL,
     SIZE_FULL_GZIP,
-    SIZE_CLASSLESS,
-    SIZE_CLASSLESS_SRC,
     SIZE_JS,
 } from '../lib/meta';
 ---
@@ -93,22 +91,22 @@ import {
                         </div>
                     </label>
 
-                    <!-- Classless -->
-                    <label class="njx-vc" data-variant="classless">
-                        <input type="radio" name="njx-def-variant" value="classless" hidden />
-                        <div class="njx-vc-accent njx-vc-accent--classless"></div>
-                        <div class="njx-vc-icon njx-vc-icon--classless">
+                    <!-- Full + njx.js (interactive) -->
+                    <label class="njx-vc" data-variant="js">
+                        <input type="radio" name="njx-def-variant" value="js" hidden />
+                        <div class="njx-vc-accent njx-vc-accent--js"></div>
+                        <div class="njx-vc-icon njx-vc-icon--js">
                             <svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
                                 <path d="M4 4l-3 4 3 4M12 4l3 4-3 4M9 2l-2 12"/>
                             </svg>
                         </div>
                         <div class="njx-vc-body">
-                            <div class="njx-vc-name">Classless</div>
-                            <div class="njx-vc-file">classless.min.css</div>
-                            <div class="njx-vc-desc">Zero class names needed</div>
+                            <div class="njx-vc-name">Full + njx.js</div>
+                            <div class="njx-vc-file">style.min.css + njx.js</div>
+                            <div class="njx-vc-desc">Interactive — modals, tabs, toasts</div>
                         </div>
                         <div class="njx-vc-meta">
-                            <span class="njx-vc-size">{SIZE_CLASSLESS}</span>
+                            <span class="njx-vc-size">+{SIZE_JS} js</span>
                             <div class="njx-vc-check">
                                 <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
                             </div>
@@ -260,7 +258,7 @@ import {
                     </div>
                     <div class="njx-all-banner-stats">
                         <div class="njx-all-stat">
-                            <span class="njx-all-stat-val">4</span>
+                            <span class="njx-all-stat-val">2</span>
                             <span class="njx-all-stat-lbl">files</span>
                         </div>
                         <div class="njx-all-stat">
@@ -284,24 +282,6 @@ import {
                             <span class="njx-all-file-desc">Full UI — 30+ components, 9 themes, utility classes</span>
                         </div>
                         <span class="njx-all-file-size">{SIZE_FULL} · {SIZE_FULL_GZIP} gz</span>
-                    </div>
-
-                    <div class="njx-all-file">
-                        <div class="njx-all-file-type njx-all-file-type--css">CSS</div>
-                        <div class="njx-all-file-info">
-                            <span class="njx-all-file-name">classless.css</span>
-                            <span class="njx-all-file-desc">Classless — style semantic HTML, zero class names</span>
-                        </div>
-                        <span class="njx-all-file-size">{SIZE_CLASSLESS_SRC}</span>
-                    </div>
-
-                    <div class="njx-all-file">
-                        <div class="njx-all-file-type njx-all-file-type--min">MIN</div>
-                        <div class="njx-all-file-info">
-                            <span class="njx-all-file-name">classless.min.css</span>
-                            <span class="njx-all-file-desc">Classless minified — production-ready</span>
-                        </div>
-                        <span class="njx-all-file-size">{SIZE_CLASSLESS}</span>
                     </div>
 
                     <div class="njx-all-file">
@@ -350,9 +330,7 @@ import {
         var path = window.location.pathname;
         var tab = 'default';
         var variant = 'full';
-        if (path.includes('classless')) {
-            variant = 'classless';
-        } else if (path.includes('documentation')) {
+        if (path.includes('documentation')) {
             tab = 'custom';
         }
 
@@ -490,7 +468,7 @@ import {
 
     var DEF_CDN_RAW = {
         full: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/style.min.css">',
-        classless: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/classless.min.css">'
+        js: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/style.min.css">\n<script src="https://cdn.jsdelivr.net/npm/njx-ui@1/js/njx.js"><\/script>'
     };
 
     var escHtml = window.njxEscHtml; // общий хелпер из njx-site.js
@@ -578,10 +556,10 @@ import {
         if (_activeTab === 'default') {
             var sel = document.querySelector('input[name="njx-def-variant"]:checked');
             var v = sel ? sel.value : 'full';
-            var labels = { full: 'style.min.css', classless: 'classless.min.css' };
+            var labels = { full: 'style.min.css', js: 'style.min.css + njx.js' };
             countEl.textContent = labels[v] || 'style.min.css';
         } else if (_activeTab === 'all') {
-            countEl.textContent = '5 files — complete package';
+            countEl.textContent = '2 files — complete package';
         } else {
             dlUpdateCount();
         }
@@ -644,14 +622,17 @@ import {
         var variant = sel ? sel.value : 'full';
 
         var files = {
-            full:      [{ src: 'css/style.min.css',      dest: 'njx-ui/css/style.min.css' }],
-            classless: [{ src: 'css/classless.min.css',  dest: 'njx-ui/css/classless.min.css' }]
+            full: [{ src: 'css/style.min.css', dest: 'njx-ui/css/style.min.css' }],
+            js: [
+                { src: 'css/style.min.css', dest: 'njx-ui/css/style.min.css' },
+                { src: 'js/njx.js',         dest: 'njx-ui/js/njx.js' }
+            ]
         };
         var readmes = {
-            full:      '# njX UI\nConnect: <link rel="stylesheet" href="css/style.min.css">\n<html data-theme="dark">\nMIT License\n',
-            classless: '# njX Classless\nConnect: <link rel="stylesheet" href="classless.min.css">\n<html data-theme="dark">\nMIT License\n'
+            full: '# njX UI\nConnect: <link rel="stylesheet" href="css/style.min.css">\n<html data-theme="dark">\nMIT License\n',
+            js:   '# njX UI + njx.js\nConnect: <link rel="stylesheet" href="css/style.min.css">\nThen before </body>: <script src="js/njx.js"></script>\n<html data-theme="dark">\nMIT License\n'
         };
-        var zipNames = { full: 'njx-ui-full.zip', classless: 'njx-classless.zip' };
+        var zipNames = { full: 'njx-ui-full.zip', js: 'njx-ui-js.zip' };
 
         return njxZipDownload({
             files: files[variant] || files.full,
@@ -662,21 +643,13 @@ import {
 
     // ── All Files download ──
     window.njxDownloadAll = function () {
-        var README_ALL = '# njX UI — Complete Package\n\ncss/style.min.css     Full UI\ncss/classless.css     Classless\ncss/classless.min.css Classless minified\njs/njx.js             JS helper\n\nUse ONE stylesheet at a time: Full or Classless.\n\nMIT License\n';
+        var README_ALL = '# njX UI — Complete Package\n\ncss/style.min.css  Full UI\njs/njx.js          JS helper\n\nMIT License\n';
 
         return njxZipDownload({
             files: [
-                { src: 'css/style.min.css',     dest: 'njx-ui/css/style.min.css' },
-                { src: 'css/classless.min.css', dest: 'njx-ui/css/classless.min.css' },
-                { src: 'js/njx.js',             dest: 'njx-ui/js/njx.js' }
+                { src: 'css/style.min.css', dest: 'njx-ui/css/style.min.css' },
+                { src: 'js/njx.js',         dest: 'njx-ui/js/njx.js' }
             ],
-            // classless.css в репо — @import-заглушка; для ZIP склеиваем реальное содержимое
-            extra: async function (zip) {
-                var parts = await Promise.all(['css/_base.css', 'css/_native.css'].map(async function (src) {
-                    try { var res = await fetch(src); return res.ok ? await res.text() : ''; } catch (e) { return ''; }
-                }));
-                zip.file('njx-ui/css/classless.css', '/* njX UI — classless bundle (_base + _native) */\n' + parts.join('\n'));
-            },
             readme: README_ALL,
             name: 'njx-ui-complete.zip',
             toast: 'Complete package downloaded!',
@@ -854,7 +827,7 @@ import {
     }
     .njx-vc.is-selected .njx-vc-accent { opacity: 1; }
     .njx-vc-accent--full      { background: var(--color-primary); }
-    .njx-vc-accent--classless { background: #22d3ee; }
+    .njx-vc-accent--js        { background: #facc15; }
 
     /* Icon box */
     .njx-vc-icon {
@@ -869,10 +842,10 @@ import {
         border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
         color: var(--color-primary);
     }
-    .njx-vc-icon--classless {
-        background: rgba(34,211,238,0.1);
-        border: 1px solid rgba(34,211,238,0.22);
-        color: #22d3ee;
+    .njx-vc-icon--js {
+        background: rgba(250,204,21,0.1);
+        border: 1px solid rgba(250,204,21,0.22);
+        color: #facc15;
     }
 
     /* Body text */

@@ -4,7 +4,7 @@
 /* ============================================================
    docs-sections.css — карточки компонентов и демо-секции
    (.lib-section/.lib-component, theme showcase, формы, код-блоки).
-   Нужен: index, classless-components; /demo получает его же,
+   Нужен: index; /demo получает его же,
    обёрнутым в @scope(.demo-ce) (см. scripts/build-demo-css.cjs).
    ============================================================ */
     /* ═══ THEME SYSTEM SHOWCASE ═══ */
