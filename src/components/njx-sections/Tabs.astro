@@ -77,8 +77,24 @@ const sizesSmDefaultLgCode = `
     JS: <code>tabSwitch(btn)</code>.
   </div>
 
-  <!-- Underline (default) -->
-  <Demo is:raw label={'Default — underline'} previewClass="col" previewStyle="align-items:stretch" code={defaultUnderlineCode}>
+  <!-- Underline (default) · Alpine-рецепт вторым табом -->
+  <Demo label={'Default — underline'} previewClass="col" previewStyle="align-items:stretch" code={defaultUnderlineCode}>
+    <Fragment slot="alpine" is:raw>
+<!-- Alpine drives the same .is-active classes — no tabSwitch() needed -->
+<div class="tab-wrap" x-data="{ tab: 0 }">
+  <div class="tab-nav">
+    <button class="tab-btn" :class="{ 'is-active': tab === 0 }" @click="tab = 0">Tab 1</button>
+    <button class="tab-btn" :class="{ 'is-active': tab === 1 }" @click="tab = 1">Tab 2</button>
+    <button class="tab-btn" :class="{ 'is-active': tab === 2 }" @click="tab = 2">Tab 3</button>
+  </div>
+  <div class="tab-content">
+    <div class="tab-panel" :class="{ 'is-active': tab === 0 }">Content 1</div>
+    <div class="tab-panel" :class="{ 'is-active': tab === 1 }">Content 2</div>
+    <div class="tab-panel" :class="{ 'is-active': tab === 2 }">Content 3</div>
+  </div>
+</div>
+    </Fragment>
+    <Fragment is:raw>
       <div class="tab-wrap">
         <div class="tab-nav">
           <button class="tab-btn is-active" onclick="tabSwitch(this)"
@@ -106,7 +122,8 @@ const sizesSmDefaultLgCode = `
           </div>
         </div>
       </div>
-    </Demo>
+    </Fragment>
+  </Demo>
 
   <!-- Pills -->
   <Demo is:raw label={'Pills'} previewClass="col" previewStyle="align-items:stretch" code={pillsCode}>

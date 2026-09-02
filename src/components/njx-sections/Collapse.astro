@@ -90,8 +90,34 @@ const accordionFlushConnectedCode = `
             </details>
           </Demo>
 
-        <!-- Basic collapse (JS API) -->
-        <Demo is:raw label="Basic — JS API (.is-open)" previewClass="col" previewStyle="align-items:stretch" code={basicJsApiIsOpenCode}>
+        <!-- Basic collapse (JS API) · Alpine-рецепт вторым табом -->
+        <Demo label="Basic — JS API (.is-open)" previewClass="col" previewStyle="align-items:stretch" code={basicJsApiIsOpenCode}>
+          <Fragment slot="alpine" is:raw>
+<!-- Same .is-open class — Alpine just toggles it. njx.js not needed. -->
+<div class="collapse" x-data="{ open: false }" :class="{ 'is-open': open }">
+  <div class="collapse-header" @click="open = !open">
+    Title <span class="collapse-icon"></span>
+  </div>
+  <div class="collapse-body">Content</div>
+</div>
+
+<!-- Exclusive accordion — one item open at a time -->
+<div class="accordion" x-data="{ active: null }">
+  <div class="collapse" :class="{ 'is-open': active === 1 }">
+    <div class="collapse-header" @click="active = active === 1 ? null : 1">
+      Section A <span class="collapse-icon"></span>
+    </div>
+    <div class="collapse-body">Content A</div>
+  </div>
+  <div class="collapse" :class="{ 'is-open': active === 2 }">
+    <div class="collapse-header" @click="active = active === 2 ? null : 2">
+      Section B <span class="collapse-icon"></span>
+    </div>
+    <div class="collapse-body">Content B</div>
+  </div>
+</div>
+          </Fragment>
+          <Fragment is:raw>
             <div class="collapse" id="col-js-1">
               <div class="collapse-header" onclick="collapseToggle(this)">What is a JS collapse? <span
                   class="collapse-icon"></span></div>
@@ -104,7 +130,8 @@ const accordionFlushConnectedCode = `
               <div class="collapse-body">Pre-open by adding <code>.is-open</code> to the wrapper div in HTML. No JS
                 needed at load time.</div>
             </div>
-          </Demo>
+          </Fragment>
+        </Demo>
 
         <!-- Variants -->
         <Demo is:raw label="Variants — plus / ghost / primary" previewClass="col" previewStyle="align-items:stretch" code={variantsPlusGhostPrimaryCode}>
