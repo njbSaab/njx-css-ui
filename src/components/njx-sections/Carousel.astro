@@ -503,7 +503,33 @@ const cssClassesReferenceCode = `
              JS CAROUSELS
         ══════════════════════════ -->
 
-    <Demo is:raw label={'JS — Sequential prev/next + dots'} previewStyle="display:block;padding:0" code={jsSequentialPrevNextDotsCode}>
+    <Demo label={'JS — Sequential prev/next + dots'} previewStyle="display:block;padding:0" code={jsSequentialPrevNextDotsCode}>
+        <Fragment slot="alpine" is:raw>
+<!-- Alpine drives the same track transform — njx.js carousel not needed -->
+<div class="js-carousel-wrap" x-data="{ i: 0, n: 3 }">
+  <div style="position:relative">
+    <div class="js-carousel">
+      <div class="js-carousel-track"
+           :style="'transform: translateX(-' + (i * 100) + '%)'">
+        <div>Slide 1</div>
+        <div>Slide 2</div>
+        <div>Slide 3</div>
+      </div>
+    </div>
+    <button class="js-carousel-btn js-prev" aria-label="Previous"
+            @click="i = (i - 1 + n) % n"></button>
+    <button class="js-carousel-btn js-next" aria-label="Next"
+            @click="i = (i + 1) % n"></button>
+  </div>
+  <div class="js-dots">
+    <template x-for="d in n" :key="d">
+      <button class="js-dot" :class="{ 'is-active': i === d - 1 }"
+              @click="i = d - 1"></button>
+    </template>
+  </div>
+</div>
+        </Fragment>
+        <Fragment is:raw>
             <div style="max-width:480px;margin:0 auto">
                 <div class="js-carousel-wrap">
                     <div class="js-carousel">
@@ -584,7 +610,8 @@ const cssClassesReferenceCode = `
                     </div>
                 </div>
             </div>
-        </Demo>
+        </Fragment>
+    </Demo>
 
     <Demo is:raw label={'JS — Autoplay (pauses on hover)'} previewStyle="display:block;padding:0" code={jsAutoplayPausesOnHoverCode}>
             <div style="max-width:480px;margin:0 auto">

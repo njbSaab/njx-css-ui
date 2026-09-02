@@ -600,7 +600,30 @@ const loadersCode = `
     <!-- ══════════════════════════
              TOAST TRIGGERS
         ══════════════════════════ -->
-    <Demo is:raw label={'Toast Notifications — click to trigger · auto-dismiss · stackable'} previewClass="col" previewStyle="gap:16px" code={toastNotificationsClickToTriggerAutoDismCode}>
+    <Demo label={'Toast Notifications — click to trigger · auto-dismiss · stackable'} previewClass="col" previewStyle="gap:16px" code={toastNotificationsClickToTriggerAutoDismCode}>
+        <Fragment slot="alpine" is:raw>
+<!-- Same .lib-toast classes — Alpine manages the stack, showToast() not needed -->
+<div x-data="{
+  toasts: [], id: 0,
+  fire(msg, type) {
+    const t = { id: ++this.id, msg, type };
+    this.toasts.push(t);
+    setTimeout(() => this.dismiss(t.id), 2200);
+  },
+  dismiss(id) { this.toasts = this.toasts.filter(t => t.id !== id); }
+}">
+  <button class="btn btn-primary btn-sm" @click="fire('Saved!', 'success')">Success</button>
+  <button class="btn btn-ghost btn-sm" @click="fire('Error occurred', 'error')">Error</button>
+
+  <div id="lib-toast-container">
+    <template x-for="t in toasts" :key="t.id">
+      <div class="lib-toast" :class="'lib-toast-' + t.type"
+           @click="dismiss(t.id)" x-text="t.msg"></div>
+    </template>
+  </div>
+</div>
+        </Fragment>
+        <Fragment is:raw>
             <div class="njx-trigger-grid">
                 <button
                     class="njx-trigger-btn t-success"
@@ -654,7 +677,8 @@ const loadersCode = `
                     >+ Subscribe</button
                 >
             </div>
-        </Demo>
+        </Fragment>
+    </Demo>
 
     <!-- ══════════════════════════
              BELL DROPDOWN
