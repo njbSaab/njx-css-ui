@@ -301,8 +301,21 @@ document.addEventListener("click", e => {
             </details>
         </Demo>
 
-    <!-- JS toggle -->
-    <Demo is:raw label={'JS API — dropdownToggle()'} previewStyle="gap:16px;align-items:flex-start;min-height:160px" code={jsApiDropdowntoggleCode}>
+    <!-- JS toggle · Alpine-рецепт вторым табом -->
+    <Demo label={'JS API — dropdownToggle()'} previewStyle="gap:16px;align-items:flex-start;min-height:160px" code={jsApiDropdowntoggleCode}>
+        <Fragment slot="alpine" is:raw>
+<!-- Same .is-open class; @click.outside replaces the document listener -->
+<div class="dropdown" x-data="{ open: false }"
+     :class="{ 'is-open': open }" @click.outside="open = false">
+  <button class="btn btn-ghost btn-sm" @click="open = !open">
+    Menu <span class="dropdown-arrow"></span>
+  </button>
+  <div class="dropdown-menu">
+    <a href="#" class="dropdown-item" @click="open = false">Item</a>
+  </div>
+</div>
+        </Fragment>
+        <Fragment is:raw>
             <div class="dropdown" id="dd-js-demo">
                 <button
                     class="btn btn-ghost btn-sm"
@@ -327,5 +340,6 @@ document.addEventListener("click", e => {
                     >
                 </div>
             </div>
-        </Demo>
+        </Fragment>
+    </Demo>
 </section>

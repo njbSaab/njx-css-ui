@@ -175,6 +175,28 @@ document.addEventListener("keydown", e => {
 </script>
 `;
 
+// Alpine-рецепт: тот же .open на оверлее, openModal/closeModal не нужны
+const fullHtmlAlpineCode = `
+<!-- Same .open class on the overlay — Alpine replaces openModal/closeModal -->
+<div x-data="{ open: false }" @keydown.escape.window="open = false">
+  <button class="btn btn-primary" @click="open = true">Open</button>
+
+  <div class="lib-modal-overlay" :class="{ open }" @click.self="open = false">
+    <div class="lib-modal-box is-primary">
+      <button class="lib-modal-close" @click="open = false">✕</button>
+      <div class="lib-modal-icon-wrap">🔷</div>
+      <div class="lib-modal-title">Title here</div>
+      <div class="lib-modal-text">Description text.</div>
+      <div class="lib-modal-divider"></div>
+      <div class="lib-modal-actions">
+        <button class="btn btn-primary btn-sm" @click="open = false">Confirm</button>
+        <button class="btn btn-ghost btn-sm" @click="open = false">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 ---
 
 <section class="lib-section" id="popups">
@@ -258,7 +280,13 @@ document.addEventListener("keydown", e => {
     <!-- HTML structure reference -->
     <div class="lib-component">
         <div class="lib-component-label">Full HTML structure</div>
-        <CodeBlock code={fullHtmlStructureCode} />
+        <CodeBlock
+            code={fullHtmlStructureCode}
+            variants={[
+                { id: 'html', label: 'HTML + njx.js', code: fullHtmlStructureCode },
+                { id: 'alpine', label: 'Alpine.js', code: fullHtmlAlpineCode },
+            ]}
+        />
     </div>
 
     <!-- Interactive preview grid -->
