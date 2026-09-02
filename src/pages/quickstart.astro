@@ -173,87 +173,11 @@ const base = import.meta.env.BASE_URL;
       ],
     };
 
-    // Classless-specific path steps
-    var CLASSLESS_PATHS = {
-      cdn: [
-        {
-          h: 'Drop the link',
-          meta: '~10s',
-          d: 'Paste this single &lt;link&gt; into your &lt;head&gt;. One file — 47 KB standalone.',
-          get code() {
-            return '&lt;<span class="sh-tag">link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"https://cdn.jsdelivr.net/npm/njx-ui@1/css/classless.min.css"</span>&gt;';
-          },
-          check: 'Pasted',
-        },
-        {
-          h: 'Pick a theme',
-          meta: '~5s',
-          d: 'Set <code>data-theme</code> on &lt;html&gt;. 9 built-in themes, all work in classless mode.',
-          code: '&lt;<span class="sh-tag">html</span> <span class="attr">lang</span>=<span class="str">"en"</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;',
-          check: 'Themed',
-        },
-        {
-          h: 'Write HTML',
-          meta: '~5s',
-          d: 'No class names needed. Every native element is styled automatically.',
-          code: '&lt;<span class="sh-tag">button</span>&gt;Click me&lt;/<span class="sh-tag">button</span>&gt;\n&lt;<span class="sh-tag">input</span> <span class="attr">type</span>=<span class="str">"text"</span> <span class="attr">placeholder</span>=<span class="str">"email"</span>&gt;\n&lt;<span class="sh-tag">details</span>&gt;&lt;<span class="sh-tag">summary</span>&gt;FAQ&lt;/<span class="sh-tag">summary</span>&gt;Answer&lt;/<span class="sh-tag">details</span>&gt;',
-          check: 'Done!',
-        },
-      ],
-      npm: [
-        {
-          h: 'Install package',
-          meta: '~30s',
-          d: 'Add the package. Works with npm, pnpm, yarn or bun.',
-          code: '<span class="com"># pick your manager</span>\nnpm  install njx-ui\npnpm add     njx-ui',
-          check: 'Installed',
-        },
-        {
-          h: 'Import classless CSS',
-          meta: '~5s',
-          d: 'Import only the classless file — 47 KB, no component classes.',
-          code: '<span class="com">// src/main.ts (or main.js)</span>\n<span class="sh-tag">import</span> <span class="str">"njx-ui/css/classless.min.css"</span>;',
-          check: 'Imported',
-        },
-        {
-          h: 'Write HTML',
-          meta: '~5s',
-          d: 'No class names needed. Semantic HTML is styled automatically.',
-          code: '<span class="com">&lt;!-- Just write HTML --&gt;</span>\n&lt;<span class="sh-tag">h1</span>&gt;Hello&lt;/<span class="sh-tag">h1</span>&gt;\n&lt;<span class="sh-tag">button</span>&gt;Action&lt;/<span class="sh-tag">button</span>&gt;',
-          check: 'Done!',
-        },
-      ],
-      zip: [
-        {
-          h: 'Download source ZIP',
-          meta: '~20s',
-          d: 'Grab the latest source ZIP from GitHub (main branch).',
-          dl: 'https://github.com/njbSaab/njx-css-ui/archive/refs/heads/main.zip',
-          check: 'Downloaded',
-        },
-        {
-          h: 'Copy the file',
-          meta: '~10s',
-          d: 'Drop <code>classless.min.css</code> into your project.',
-          code: '<span class="com"># tree</span>\nyour-project/\n&#x251C;&#x2500; index.html\n&#x2514;&#x2500; vendor/\n   &#x2514;&#x2500; classless.min.css',
-          check: 'Copied',
-        },
-        {
-          h: 'Link the file',
-          meta: '~10s',
-          d: "One link tag. That's it.",
-          code: '&lt;<span class="sh-tag">link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span>\n      <span class="attr">href</span>=<span class="str">"./vendor/classless.min.css"</span>&gt;',
-          check: 'Done!',
-        },
-      ],
-    };
-
     var curP = 'cdn';
     var done = {};
 
     function render() {
-      var activePaths =
-        window._qsMode === 'classless' ? CLASSLESS_PATHS : PATHS;
+      var activePaths = PATHS;
       var steps = activePaths[curP] || activePaths['cdn'];
       track.innerHTML = '';
       steps.forEach(function (st, i) {
@@ -311,8 +235,7 @@ const base = import.meta.env.BASE_URL;
     }
 
     function updateProgress() {
-      var activePaths =
-        window._qsMode === 'classless' ? CLASSLESS_PATHS : PATHS;
+      var activePaths = PATHS;
       var steps = activePaths[curP] || activePaths['cdn'];
       var completed = steps.reduce(function (n, _, i) {
         return n + (done[curP + '-' + i] ? 1 : 0);
@@ -353,7 +276,6 @@ const base = import.meta.env.BASE_URL;
       done = {};
       render();
     };
-    window._qsClasslessPaths = CLASSLESS_PATHS;
   }
 
   function initQs3Pane() {
@@ -381,18 +303,7 @@ const base = import.meta.env.BASE_URL;
   &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Ship it&lt;/<span class="sh-tag">button</span>&gt;
 &lt;/<span class="sh-tag">body</span>&gt;
 &lt;/<span class="sh-tag">html</span>&gt;`,
-            classlessCode: `<span class="com">&lt;!-- index.html --&gt;</span>
-&lt;<span class="sh-tag">!DOCTYPE</span> html&gt;
-&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;
-&lt;<span class="sh-tag">head</span>&gt;
-  <span class="hi">&lt;<span class="sh-tag">link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"https://cdn.jsdelivr.net/npm/njx-ui@1/css/classless.min.css"</span>&gt;
-</span>&lt;/<span class="sh-tag">head</span>&gt;
-&lt;<span class="sh-tag">body</span>&gt;
-  &lt;<span class="sh-tag">button</span>&gt;Ship it&lt;/<span class="sh-tag">button</span>&gt;
-&lt;/<span class="sh-tag">body</span>&gt;
-&lt;/<span class="sh-tag">html</span>&gt;`,
             preview: `<button class="btn btn-primary">Ship it</button>`,
-            classlessPreview: `<button>Ship it</button>`,
           },
           {
             k: 'npm',
@@ -439,10 +350,6 @@ createApp(App).mount(<span class="str">"#app"</span>);`,
 </span>  &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
   &lt;<span class="sh-tag">span</span> <span class="attr">class</span>=<span class="str">"tag tag-primary"</span>&gt;live&lt;/<span class="sh-tag">span</span>&gt;
 &lt;/<span class="sh-tag">html</span>&gt;`,
-            classlessCode: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"dark"</span>&gt;
-</span>  &lt;<span class="sh-tag">button</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
-  &lt;<span class="sh-tag">p</span>&gt;Styled automatically.&lt;/<span class="sh-tag">p</span>&gt;
-&lt;/<span class="sh-tag">html</span>&gt;`,
             themePreview: 'dark',
           },
           {
@@ -453,10 +360,6 @@ createApp(App).mount(<span class="str">"#app"</span>);`,
 </span>  &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
   &lt;<span class="sh-tag">span</span> <span class="attr">class</span>=<span class="str">"tag tag-primary"</span>&gt;live&lt;/<span class="sh-tag">span</span>&gt;
 &lt;/<span class="sh-tag">html</span>&gt;`,
-            classlessCode: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"purple"</span>&gt;
-</span>  &lt;<span class="sh-tag">button</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
-  &lt;<span class="sh-tag">p</span>&gt;Styled automatically.&lt;/<span class="sh-tag">p</span>&gt;
-&lt;/<span class="sh-tag">html</span>&gt;`,
             themePreview: 'purple',
           },
           {
@@ -466,10 +369,6 @@ createApp(App).mount(<span class="str">"#app"</span>);`,
             code: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"green"</span>&gt;
 </span>  &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
   &lt;<span class="sh-tag">span</span> <span class="attr">class</span>=<span class="str">"tag tag-primary"</span>&gt;live&lt;/<span class="sh-tag">span</span>&gt;
-&lt;/<span class="sh-tag">html</span>&gt;`,
-            classlessCode: `<span class="hi">&lt;<span class="sh-tag">html</span> <span class="attr">data-theme</span>=<span class="str">"green"</span>&gt;
-</span>  &lt;<span class="sh-tag">button</span>&gt;Primary&lt;/<span class="sh-tag">button</span>&gt;
-  &lt;<span class="sh-tag">p</span>&gt;Styled automatically.&lt;/<span class="sh-tag">p</span>&gt;
 &lt;/<span class="sh-tag">html</span>&gt;`,
             themePreview: 'green',
           },
@@ -528,48 +427,6 @@ createApp(App).mount(<span class="str">"#app"</span>);`,
 &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary hover-glow"</span>&gt;Glow&lt;/<span class="sh-tag">button</span>&gt;
 &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary hover-shimmer"</span>&gt;Shimmer&lt;/<span class="sh-tag">button</span>&gt;`,
             preview: `<button class="btn btn-primary btn-sm hover-grow">Grow</button> <button class="btn btn-primary btn-sm hover-lift">Lift</button> <button class="btn btn-primary btn-sm hover-glow">Glow</button>`,
-          },
-        ],
-        classlessTabs: [
-          {
-            k: 'text',
-            name: 'Text',
-            lang: 'HTML',
-            fname: 'index.html',
-            code: `&lt;<span class="sh-tag">h1</span>&gt;Heading&lt;/<span class="sh-tag">h1</span>&gt;
-&lt;<span class="sh-tag">h2</span>&gt;Subheading&lt;/<span class="sh-tag">h2</span>&gt;
-&lt;<span class="sh-tag">p</span>&gt;A paragraph of text.&lt;/<span class="sh-tag">p</span>&gt;
-&lt;<span class="sh-tag">blockquote</span>&gt;A notable quote.&lt;/<span class="sh-tag">blockquote</span>&gt;
-&lt;<span class="sh-tag">code</span>&gt;inline code&lt;/<span class="sh-tag">code</span>&gt;`,
-            preview: `<h2 style="margin:0 0 4px;font-size:1em">Heading</h2><p style="margin:0 0 4px">A paragraph.</p><code>inline code</code>`,
-          },
-          {
-            k: 'forms',
-            name: 'Forms',
-            lang: 'HTML',
-            fname: 'index.html',
-            code: `&lt;<span class="sh-tag">input</span> <span class="attr">type</span>=<span class="str">"text"</span> <span class="attr">placeholder</span>=<span class="str">"Name"</span>&gt;
-&lt;<span class="sh-tag">input</span> <span class="attr">type</span>=<span class="str">"email"</span> <span class="attr">placeholder</span>=<span class="str">"Email"</span>&gt;
-&lt;<span class="sh-tag">button</span>&gt;Submit&lt;/<span class="sh-tag">button</span>&gt;
-&lt;<span class="sh-tag">select</span>&gt;
-  &lt;<span class="sh-tag">option</span>&gt;Option 1&lt;/<span class="sh-tag">option</span>&gt;
-&lt;/<span class="sh-tag">select</span>&gt;`,
-            preview: `<input type="text" placeholder="Name" style="max-width:110px;margin:2px"> <button style="margin:2px">Submit</button>`,
-          },
-          {
-            k: 'layout',
-            name: 'Layout',
-            lang: 'HTML',
-            fname: 'index.html',
-            code: `&lt;<span class="sh-tag">details</span>&gt;
-  &lt;<span class="sh-tag">summary</span>&gt;FAQ item&lt;/<span class="sh-tag">summary</span>&gt;
-  Answer text here.
-&lt;/<span class="sh-tag">details</span>&gt;
-&lt;<span class="sh-tag">table</span>&gt;
-  &lt;<span class="sh-tag">tr</span>&gt;&lt;<span class="sh-tag">th</span>&gt;Name&lt;/<span class="sh-tag">th</span>&gt;&lt;<span class="sh-tag">th</span>&gt;Role&lt;/<span class="sh-tag">th</span>&gt;&lt;/<span class="sh-tag">tr</span>&gt;
-  &lt;<span class="sh-tag">tr</span>&gt;&lt;<span class="sh-tag">td</span>&gt;Alice&lt;/<span class="sh-tag">td</span>&gt;&lt;<span class="sh-tag">td</span>&gt;Dev&lt;/<span class="sh-tag">td</span>&gt;&lt;/<span class="sh-tag">tr</span>&gt;
-&lt;/<span class="sh-tag">table</span>&gt;`,
-            preview: `<details><summary>FAQ item</summary><p style="margin:4px 0">Answer text.</p></details>`,
           },
         ],
       },
@@ -632,8 +489,7 @@ createApp(App).mount(<span class="str">"#app"</span>);`,
 
     function renderTabs() {
       var b = BLOCKS[curBlock];
-      var useClassless = window._qsMode === 'classless';
-      var tabs = useClassless && b.classlessTabs ? b.classlessTabs : b.tabs;
+      var tabs = b.tabs;
       tabsEl.innerHTML = '';
       tabs.forEach(function (t, i) {
         var btn = document.createElement('button');
@@ -649,18 +505,13 @@ createApp(App).mount(<span class="str">"#app"</span>);`,
     }
     function renderTab() {
       var b = BLOCKS[curBlock];
-      var useClassless = window._qsMode === 'classless';
-      var tabs = useClassless && b.classlessTabs ? b.classlessTabs : b.tabs;
+      var tabs = b.tabs;
       var t = tabs[curTab] || tabs[0];
-      preEl.innerHTML =
-        useClassless && t.classlessCode ? t.classlessCode : t.code;
+      preEl.innerHTML = t.code;
       if (window._qsApplyModeToCode) window._qsApplyModeToCode(preEl);
       fnameEl.textContent = t.fname || b.fname;
       langEl.textContent = t.lang || 'HTML';
-      previewEl.innerHTML =
-        useClassless && t.classlessPreview
-          ? t.classlessPreview
-          : t.preview || '';
+      previewEl.innerHTML = t.preview || '';
       if (t.themePreview) {
         previewEl.innerHTML =
           '<button class="btn btn-primary btn-sm">Primary</button> <span class="tag tag-primary">live</span>';
@@ -732,7 +583,6 @@ createApp(App).mount(<span class="str">"#app"</span>);`,
   // njx-site.js; ниже только специфика quickstart (рендер трека/кода)
   var QS_CSS_FILE = {
     full: 'style.min.css',
-    classless: 'classless.min.css',
     interactive: 'style.min.css',
   };
 

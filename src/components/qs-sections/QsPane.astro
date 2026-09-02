@@ -11,38 +11,23 @@ const base = import.meta.env.BASE_URL;
         <div class="qs3-n" data-n="1">Install</div>
         <h2>One line in your <span class="qs3-em">&lt;head&gt;</span>.</h2>
 
-        <!-- Full / Interactive description -->
-        <div data-qs-mode="full interactive">
-          <p>
-            njX UI is a single CSS file. Link it from a CDN, install via npm, or
-            grab the ZIP. The rest of this page assumes the CDN path since it's
-            the fastest.
-          </p>
-          <p>
-            After the &lt;link&gt; loads you instantly have every <code
-              >.btn</code
-            >, <code>.inp</code>, <code>.tag</code>, <code>.card</code>, <code
-              >.tip</code
-            > and 20+ more classes available. No build. No bundler.
-          </p>
-        </div>
-        <!-- Classless description -->
-        <div data-qs-mode="classless" style="display:none">
-          <p>
-            <code>classless.min.css</code> — 47 KB, standalone. One link tag is all
-            you need. No class names, no build step, no bundler.
-          </p>
-          <p>
-            Every <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>,
-            <code>&lt;table&gt;</code>, <code>&lt;details&gt;</code> is styled automatically
-            through native HTML element selectors.
-          </p>
-        </div>
+        <p>
+          njX UI is a single CSS file. Link it from a CDN, install via npm, or
+          grab the ZIP. The rest of this page assumes the CDN path since it's
+          the fastest.
+        </p>
+        <p>
+          After the &lt;link&gt; loads you instantly have every <code
+            >.btn</code
+          >, <code>.inp</code>, <code>.tag</code>, <code>.card</code>, <code
+            >.tip</code
+          > and 20+ more classes available. No build. No bundler.
+        </p>
 
         <div class="qs3-tip">
           <div>
-            <b>Tip</b><br />The CDN is cached on jsdelivr — 293&nbsp;KB on disk,
-            ~40&nbsp;KB over the wire (gzip). Subsequent visitors hit your CDN
+            <b>Tip</b><br />The CDN is cached on jsdelivr — 308&nbsp;KB on disk,
+            44&nbsp;KB over the wire (gzip). Subsequent visitors hit your CDN
             cache or theirs.
           </div>
         </div>
@@ -78,8 +63,7 @@ const base = import.meta.env.BASE_URL;
       </section>
 
       <section class="qs3-block" id="qs3-b3">
-        <!-- Full / Interactive: class composition -->
-        <div data-qs-mode="full interactive">
+        <div>
           <div class="qs3-n" data-n="3">Compose</div>
           <h2>Stack classes like <span class="qs3-em">Lego</span>.</h2>
           <p>
@@ -116,47 +100,6 @@ const base = import.meta.env.BASE_URL;
           </ul>
         </div>
 
-        <!-- Classless: elements reference -->
-        <div data-qs-mode="classless" style="display:none">
-          <div class="qs3-n" data-n="3">Elements</div>
-          <h2>Write HTML. <span class="qs3-em">It just works.</span></h2>
-          <p>
-            Every native HTML element below is styled automatically — no class
-            names, no configuration. Classless mode styles the browser's default
-            elements so your semantic markup looks great out of the box.
-          </p>
-          <ul>
-            <li>
-              <strong>Text</strong><code>&lt;h1&gt;</code>–<code
-                >&lt;h6&gt;</code
-              >, <code>&lt;p&gt;</code>, <code>&lt;blockquote&gt;</code>, <code
-                >&lt;code&gt;</code
-              >, <code>&lt;pre&gt;</code>
-            </li>
-            <li>
-              <strong>Forms</strong><code>&lt;input&gt;</code>, <code
-                >&lt;textarea&gt;</code
-              >, <code>&lt;select&gt;</code>, <code>&lt;button&gt;</code>, <code
-                >&lt;fieldset&gt;</code
-              >
-            </li>
-            <li>
-              <strong>Layout</strong><code>&lt;table&gt;</code>, <code
-                >&lt;ul&gt;</code
-              >, <code>&lt;ol&gt;</code>, <code>&lt;details&gt;</code>, <code
-                >&lt;nav&gt;</code
-              >
-            </li>
-          </ul>
-          <div class="qs3-tip">
-            <div>
-              <b>Want component classes?</b><br />Switch to <strong>Full</strong
-              > mode (<code>style.min.css</code>) — 30+ component classes plus
-              utilities. Use one stylesheet at a time: Full <em>or</em> Classless,
-              they are standalone builds.
-            </div>
-          </div>
-        </div>
       </section>
 
       <section class="qs3-block" id="qs3-b4">

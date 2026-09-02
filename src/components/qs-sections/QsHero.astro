@@ -1,5 +1,5 @@
 ---
-import { SIZE_CLASSLESS, SIZE_FULL } from '../../lib/meta';
+import { SIZE_FULL } from '../../lib/meta';
 const base = import.meta.env.BASE_URL;
 
 ---
@@ -31,16 +31,6 @@ const base = import.meta.env.BASE_URL;
       </button>
       <button
         class="doc-mode-tab"
-        data-mode="classless"
-        onclick="qsSyncMode('classless')"
-      >
-        <span class="doc-mode-icon">&lt;/&gt;</span>
-        Classless Only
-        <span class="doc-mode-default">LITE</span>
-        <span class="doc-mode-size">{SIZE_CLASSLESS}</span>
-      </button>
-      <button
-        class="doc-mode-tab"
         data-mode="interactive"
         onclick="qsSyncMode('interactive')"
       >
@@ -49,7 +39,7 @@ const base = import.meta.env.BASE_URL;
       </button>
     </div>
     <span class="doc-mode-hint" id="qs-mode-hint"
-      >Classless built-in — your HTML is styled automatically</span
+      >Pure CSS — components, utilities and 9 themes, no JS required</span
     >
   </div>
 
