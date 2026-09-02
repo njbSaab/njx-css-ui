@@ -232,11 +232,36 @@
             return;
         }
 
+        /* Табы вариантов кода (HTML / Alpine.js) — статический хром CodeBlock */
+        var tab = e.target.closest('.lib-code-tab[data-code-tab]');
+        if (tab) {
+            var tabWrap = tab.closest('.lib-code-wrapper');
+            if (tabWrap) {
+                var id = tab.getAttribute('data-code-tab');
+                tabWrap.querySelectorAll('.lib-code-tab').forEach(function (t) {
+                    t.classList.toggle('is-active', t === tab);
+                });
+                tabWrap
+                    .querySelectorAll('.lib-code[data-code-variant]')
+                    .forEach(function (c) {
+                        c.classList.toggle(
+                            'is-active',
+                            c.getAttribute('data-code-variant') === id
+                        );
+                    });
+            }
+            return;
+        }
+
         var copy = e.target.closest('[data-code-copy]');
         if (copy) {
             e.stopPropagation();
             var wrap = copy.closest('.lib-code-wrapper, .sc-code-wrap');
-            var codeEl = wrap && wrap.querySelector('.lib-code, .sc-code-body');
+            // при табах вариантов копируем активный .lib-code
+            var codeEl =
+                wrap &&
+                (wrap.querySelector('.lib-code.is-active') ||
+                    wrap.querySelector('.lib-code, .sc-code-body'));
             if (!codeEl) return;
             njxCopyBtn(copy, codeEl.dataset.raw || codeEl.innerText.trim(), {
                 done:
