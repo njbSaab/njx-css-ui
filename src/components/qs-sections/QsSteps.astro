@@ -1,9 +1,28 @@
 ---
 import CodeBlock from '../shared/CodeBlock.astro';
-import { CDN_BASE } from '../../lib/meta';
+import { CDN_BASE, CDN_JS } from '../../lib/meta';
 
+const base = import.meta.env.BASE_URL;
 const qsLinkFull = `
 <link rel="stylesheet" href="${CDN_BASE}style.min.css">
+`;
+const qsLinkInteractive = `
+<link rel="stylesheet" href="${CDN_BASE}style.min.css">
+
+<!-- Option A — Alpine.js: your state, njX classes -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
+<!-- Option B — njx.js: zero-config helpers -->
+<script src="${CDN_JS}"></script>
+`;
+const qsAlpineTaste = `
+<!-- Same njX classes — Alpine just toggles .is-open -->
+<div class="collapse" x-data="{ open: false }" :class="{ 'is-open': open }">
+  <div class="collapse-header" @click="open = !open">
+    FAQ item <span class="collapse-icon"></span>
+  </div>
+  <div class="collapse-body">Answer</div>
+</div>
 `;
 const qsAstroImport = `
 ---
@@ -81,12 +100,19 @@ const qsBoilerplateFull = `
           </div>
           <div class="sc-step-body">
             <div class="sc-step-title">Connect the stylesheet</div>
-            <div data-qs-mode="full interactive">
+            <div data-qs-mode="full">
               <div class="sc-step-desc">
                 One <code>&lt;link&gt;</code> tag inside <code>&lt;head&gt;</code
                 >. No JavaScript, no build step, nothing else required.
               </div>
               <CodeBlock frame="sc" compact style="margin-top:10px" code={qsLinkFull} />
+            </div>
+            <div data-qs-mode="interactive" style="display:none">
+              <div class="sc-step-desc">
+                Stylesheet plus a driver: <strong>Alpine.js</strong> or
+                <strong>njx.js</strong> — both toggle the same state classes.
+              </div>
+              <CodeBlock frame="sc" compact style="margin-top:10px" code={qsLinkInteractive} />
             </div>
             <div data-qs-mode="astro" style="display:none">
               <div class="sc-step-desc">
@@ -122,6 +148,20 @@ const qsBoilerplateFull = `
               >. That's the whole API — just class names on HTML elements.
             </div>
             <CodeBlock frame="sc" compact style="margin-top:10px" code={qsClassesFull} />
+          </div>
+        </div>
+        <!-- Step 4: Interactive only — Alpine taste -->
+        <div class="sc-step" data-qs-mode="interactive" style="display:none">
+          <div class="sc-step-left">
+            <div class="sc-step-num">4</div>
+          </div>
+          <div class="sc-step-body">
+            <div class="sc-step-title">Bring it to life</div>
+            <div class="sc-step-desc">
+              With Alpine the state lives in the markup — full recipe set in the
+              <a href={`${base}documentation#alpine`} style="color:var(--color-primary)">Alpine.js section</a> of the docs.
+            </div>
+            <CodeBlock frame="sc" compact style="margin-top:10px" code={qsAlpineTaste} />
           </div>
         </div>
       </div>

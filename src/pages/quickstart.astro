@@ -640,10 +640,6 @@ createApp(App).mount(<span class="str">"#app"</span>);`,
       el.textContent = window._qsCssFile;
     });
 
-    // JS step (interactive only)
-    document.querySelectorAll('[data-qs-jsonly]').forEach(function (el) {
-      el.style.display = flavor === 'interactive' ? '' : 'none';
-    });
   }
 
   // Init from saved flavor (общий ключ с documentation)
