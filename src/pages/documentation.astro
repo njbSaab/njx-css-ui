@@ -47,11 +47,20 @@ import DocExamples from '../components/doc-sections/DocExamples.astro';
                     </button>
                     <button
                         class="doc-mode-tab"
+                        data-mode="astro"
+                        onclick="pageSyncFlavor('astro')"
+                    >
+                        <span class="doc-mode-icon">🚀</span>
+                        Astro
+                    </button>
+                    <button
+                        class="doc-mode-tab"
                         data-mode="interactive"
                         onclick="pageSyncFlavor('interactive')"
                     >
                         <span class="doc-mode-icon">JS</span>
                         Interactive
+                        <span class="doc-mode-default">ALPINE · JS</span>
                     </button>
                 </div>
                 <span class="doc-mode-hint" id="doc-mode-hint">
@@ -848,6 +857,9 @@ import DocExamples from '../components/doc-sections/DocExamples.astro';
     }
     .doc-flavor-card[data-flavor-card='full'] {
         --doc-fc-color: var(--color-primary);
+    }
+    .doc-flavor-card[data-flavor-card='astro'] {
+        --doc-fc-color: #ff5d01; /* фирменный оранжевый Astro */
     }
     .doc-flavor-card[data-flavor-card='interactive'] {
         --doc-fc-color: #facc15;

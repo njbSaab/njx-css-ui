@@ -133,20 +133,22 @@
             .replace(/"/g, '&quot;');
     };
 
-    /* ── Flavor/mode: full | classless | interactive ─────────────────
+    /* ── Flavor/mode: full | astro | interactive ─────────────────────
        Общая часть переключателей режима на quickstart и documentation.
        Тексты подсказок и ключ localStorage (njx-flavor) — единственная
        связь между страницами, поэтому живут здесь, а не в инлайнах. */
     window.NJX_MODE_HINTS = {
-        full: 'Classless built-in — your HTML is styled automatically',
-        classless: 'Standalone — no component classes, 47 KB',
-        interactive: 'Full library + JS: modals, tabs, toasts and more',
+        full: 'Pure CSS — components, utilities and 9 themes, no JS required',
+        astro: 'npm i njx-ui + one import in your Layout — that’s the whole setup',
+        interactive: 'Bring components to life — Alpine.js or vanilla njx.js',
     };
 
-    /** Сохранённый режим (общий для quickstart/documentation). */
+    /** Сохранённый режим (общий для quickstart/documentation).
+        Незнакомые значения (в т.ч. удалённый 'classless') → 'full'. */
     window.njxSavedFlavor = function () {
         try {
-            return localStorage.getItem('njx-flavor') || 'full';
+            var f = localStorage.getItem('njx-flavor');
+            return NJX_MODE_HINTS[f] ? f : 'full';
         } catch (e) {
             return 'full';
         }

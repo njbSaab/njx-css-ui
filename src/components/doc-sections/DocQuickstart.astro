@@ -30,11 +30,43 @@ const qsFullJs = `
      openModal, closeModal, showToast, initCarousels -->
 <script src="${CDN_JS}"></script>
 `;
+const qsAstroInstall = `
+npm install njx-ui
+`;
+const qsAstroLayout = `
+---
+// src/layouts/Layout.astro
+import 'njx-ui/css/style.min.css';
+---
+<html lang="en" data-theme="dark">
+  <body><slot /></body>
+</html>
+`;
+const qsAstroPage = `
+---
+// src/pages/index.astro — any page or component
+---
+<button class="btn btn-primary">Hello njX</button>
+<div class="card-glow">
+  <h2 class="text-gradient-primary">Works.</h2>
+</div>
+`;
+const qsAstroInteractive = `
+<!-- Option A — Alpine.js: state lives in the markup, survives navigation -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
+<!-- Option B — njx.js: with <ClientRouter /> re-init carousels after swaps -->
+<script src="${CDN_JS}"></script>
+<script>document.addEventListener('astro:page-load', () => initCarousels());</script>
+`;
 const qsInteractiveLink = `
 <!-- In <head> -->
 <link rel="stylesheet" href="${CDN_BASE}style.min.css">
 
-<!-- Before </body> -->
+<!-- Option A — Alpine.js: your state, njX classes -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
+<!-- Option B — njx.js: zero-config helpers, before </body> -->
 <script src="${CDN_JS}"></script>
 `;
 const qsInteractiveTheme = `
@@ -66,19 +98,51 @@ const qsInteractivePage = `
                 </div>
                 <div
                     class="doc-section-header"
+                    data-flavor-code="astro"
+                    style="display:none"
+                >
+                    <span class="sc-eyebrow">Getting started</span>
+                    <h1 class="sc-heading">Quick Start — Astro</h1>
+                    <p class="sc-subheading">
+                        njX UI is zero-JS by default — a natural fit for Astro.
+                        One <code>npm install</code>, one import in your Layout,
+                        and every page ships pure CSS components.
+                    </p>
+                </div>
+                <div
+                    class="doc-section-header"
                     data-flavor-code="interactive"
                     style="display:none"
                 >
                     <span class="sc-eyebrow">Getting started</span>
                     <h1 class="sc-heading">Quick Start — Interactive</h1>
                     <p class="sc-subheading">
-                        Full CSS components plus JavaScript-powered interactions
-                        out of the box — modals, tabs, toasts, dropdowns.
+                        Bring components to life with the driver you prefer:
+                        <strong>Alpine.js</strong> (your state, njX classes) or
+                        vanilla <strong>njx.js</strong> (zero-config helpers) —
+                        modals, tabs, toasts, dropdowns.
                     </p>
                 </div>
 
                 <!-- ── Version selector cards ── -->
                 <div class="doc-flavor-cards">
+                    <div
+                        class="doc-flavor-card"
+                        data-flavor-card="astro"
+                        onclick="pageSyncFlavor('astro')"
+                    >
+                        <div class="doc-flavor-card-icon" style="color:#ff5d01">
+                            🚀
+                        </div>
+                        <div class="doc-flavor-card-title">Astro</div>
+                        <div class="doc-flavor-card-desc">
+                            npm install + one import in your Layout. Zero-JS by
+                            default — made for content sites and landings.
+                        </div>
+                        <div class="doc-flavor-card-badge">
+                            import 'njx-ui/css/style.min.css'
+                        </div>
+                    </div>
                     <div
                         class="doc-flavor-card active"
                         data-flavor-card="full"
@@ -115,11 +179,11 @@ const qsInteractivePage = `
                         </div>
                         <div class="doc-flavor-card-title">Interactive</div>
                         <div class="doc-flavor-card-desc">
-                            Everything in Full plus JS-powered modals, tabs,
-                            toasts, dropdowns and more.
+                            Everything in Full plus live modals, tabs, toasts,
+                            dropdowns — driven by Alpine.js or vanilla njx.js.
                         </div>
                         <div class="doc-flavor-card-badge">
-                            style.min.css + njx.js
+                            + Alpine.js / njx.js
                         </div>
                     </div>
                 </div>
@@ -209,6 +273,90 @@ const qsInteractivePage = `
                     </div>
                 </div>
 
+                <!-- ── Steps: Astro ── -->
+                <div
+                    class="doc-steps"
+                    data-flavor-code="astro"
+                    style="display:none"
+                >
+                    <div class="doc-step">
+                        <div class="doc-step-left">
+                            <div class="doc-step-num">1</div>
+                            <div class="doc-step-line"></div>
+                        </div>
+                        <div class="doc-step-body">
+                            <div class="doc-step-title">Install the package</div>
+                            <div class="doc-step-desc">
+                                Works with npm, pnpm, yarn or bun. No config, no
+                                integration to register.
+                            </div>
+                            <CodeBlock frame="sc" lang="txt" code={qsAstroInstall} />
+                        </div>
+                    </div>
+                    <div class="doc-step">
+                        <div class="doc-step-left">
+                            <div class="doc-step-num">2</div>
+                            <div class="doc-step-line"></div>
+                        </div>
+                        <div class="doc-step-body">
+                            <div class="doc-step-title">
+                                Import once in your Layout
+                            </div>
+                            <div class="doc-step-desc">
+                                Astro bundles the CSS automatically. Set <code
+                                    >data-theme</code
+                                > on <code>&lt;html&gt;</code> right here.
+                            </div>
+                            <CodeBlock frame="sc" lang="js" label="Layout.astro" code={qsAstroLayout} />
+                        </div>
+                    </div>
+                    <div class="doc-step">
+                        <div class="doc-step-left">
+                            <div class="doc-step-num">3</div>
+                            <div class="doc-step-line"></div>
+                        </div>
+                        <div class="doc-step-body">
+                            <div class="doc-step-title">
+                                Use classes in any page
+                            </div>
+                            <div class="doc-step-desc">
+                                Components are plain CSS classes — they work in
+                                <code>.astro</code> files, Markdown and any
+                                framework island alike.
+                            </div>
+                            <CodeBlock frame="sc" lang="js" label="index.astro" code={qsAstroPage} />
+                        </div>
+                    </div>
+                    <div class="doc-step">
+                        <div class="doc-step-left">
+                            <div class="doc-step-num">4</div>
+                        </div>
+                        <div class="doc-step-body">
+                            <div class="doc-step-title">
+                                Interactivity <span
+                                    style="font-size:12px;font-weight:400;color:var(--color-muted)"
+                                    >(optional)</span
+                                >
+                            </div>
+                            <div class="doc-step-desc">
+                                Pick a driver for modals, tabs and toasts —
+                                Alpine.js pairs naturally with Astro's
+                                zero-JS philosophy.
+                            </div>
+                            <CodeBlock frame="sc" lang="html" code={qsAstroInteractive} />
+                            <div
+                                style="margin-top:10px;font-size:13px;color:var(--color-muted)"
+                            >
+                                Ready-made Alpine recipes: see the <a
+                                    href="#alpine"
+                                    style="color:var(--color-primary)"
+                                    >Alpine.js section</a
+                                > below.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- ── Steps: Interactive ── -->
                 <div
                     class="doc-steps"
@@ -221,11 +369,13 @@ const qsInteractivePage = `
                             <div class="doc-step-line"></div>
                         </div>
                         <div class="doc-step-body">
-                            <div class="doc-step-title">Add CSS + JS</div>
+                            <div class="doc-step-title">
+                                Add CSS + pick a driver
+                            </div>
                             <div class="doc-step-desc">
-                                Two tags in <code>&lt;head&gt;</code> and before <code
-                                    >&lt;/body&gt;</code
-                                >. JS unlocks modals, tabs, toasts, dropdowns.
+                                One stylesheet plus <strong>Alpine.js</strong> or
+                                <strong>njx.js</strong> — both toggle the same
+                                state classes, pick what fits your stack.
                             </div>
                             <CodeBlock frame="sc" lang="html" code={qsInteractiveLink} />
                         </div>
@@ -271,7 +421,11 @@ const qsInteractivePage = `
                                     href="#javascript"
                                     style="color:var(--color-primary)"
                                     >JavaScript reference</a
-                                >.
+                                > — or the <a
+                                    href="#alpine"
+                                    style="color:var(--color-primary)"
+                                    >Alpine.js recipes</a
+                                > if you prefer markup-driven state.
                             </div>
                         </div>
                     </div>
