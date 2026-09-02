@@ -1,25 +1,29 @@
-<div align="center">
-
 # njX UI
 
-### The simplest CSS library for modern landing pages.
-### Drop in one link — get themes, components, and utility classes instantly.
+**njX UI** (npm: [`njx-ui`](https://www.npmjs.com/package/njx-ui)) is a zero-dependency CSS component library for landing pages, docs and prototypes: **9 themes, 30+ components, Tailwind-style utilities and a classless mode** — 308 KB minified, **44 KB gzip over the wire**, no build step.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![CSS](https://img.shields.io/badge/CSS-Pure-1572B6?logo=css3&logoColor=white)](css/style.css)
-[![JS](https://img.shields.io/badge/JS-Vanilla-F7DF1E?logo=javascript&logoColor=black)](js/njx.js)
-[![Themes](https://img.shields.io/badge/themes-9-blueviolet)](#themes)
-[![Components](https://img.shields.io/badge/components-30+-orange)](#components)
+One link — everything works:
 
-[How to use from GitHub](GITHUB.md) · [Contributing](CONTRIBUTING.md) · [Deploy to CDN](DEPLOY.md) · [Documentation](css/CSS-DOCS.en.md)
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/style.min.css">
+<!-- optional interactivity helpers (modals, toasts, sidebar…) -->
+<script src="https://cdn.jsdelivr.net/npm/njx-ui@1/js/njx.js"></script>
+```
 
-</div>
-
----
+Docs & live demo: **[njxui.dev](https://njxui.dev)**
 
 <div align="center">
 
 ![njX UI — library overview](img/gif/overview-1.gif)
+
+[![npm](https://img.shields.io/npm/v/njx-ui?color=cb3837&logo=npm)](https://www.npmjs.com/package/njx-ui)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![CSS](https://img.shields.io/badge/CSS-Pure-1572B6?logo=css3&logoColor=white)](css/style.css)
+[![JS](https://img.shields.io/badge/JS-Vanilla-F7DF1E?logo=javascript&logoColor=black)](js/njx.js)
+[![Themes](https://img.shields.io/badge/themes-9-blueviolet)](#1-9-themes--one-attribute)
+[![Components](https://img.shields.io/badge/components-30+-orange)](#components)
+
+[How to use from GitHub](GITHUB.md) · [Contributing](CONTRIBUTING.md) · [Documentation](css/CSS-DOCS.en.md)
 
 </div>
 
@@ -39,11 +43,11 @@ No install. Just add to your HTML:
 <!DOCTYPE html>
 <html data-theme="dark">
 <head>
-  <!-- Latest version -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/style.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/njx-ui/js/njx.js"></script>
+  <!-- Major version — always current v1.x (recommended) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/style.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/njx-ui@1/js/njx.js"></script>
 
-  <!-- Pinned version (recommended for production — won't change) -->
+  <!-- Or pinned to an exact version — never changes -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1.1.4/css/style.min.css">
 </head>
 <body>
@@ -84,24 +88,19 @@ Works immediately after `git push`, without publishing to npm:
 ### Option 4 — npm install
 
 ```bash
-mkdir my-project && cd my-project
 npm install njx-ui
 ```
 
 Then in your HTML:
 
 ```html
-<!DOCTYPE html>
-<html data-theme="dark">
-<head>
-  <link rel="stylesheet" href="node_modules/njx-ui/css/style.min.css">
-</head>
-<body>
-  <button class="btn btn-primary">Primary</button>
-  <button class="btn btn-accent">Accent</button>
-  <div class="card mt-4">Card test</div>
-</body>
-</html>
+<link rel="stylesheet" href="node_modules/njx-ui/css/style.min.css">
+```
+
+Or in a bundler / Astro / Vite project:
+
+```js
+import 'njx-ui/css/style.min.css';
 ```
 
 Verify installed files:
@@ -136,11 +135,11 @@ https://cdn.jsdelivr.net/npm/njx-ui/
 
 ## Classless Mode — zero classes required
 
-Don't want to add class names to every element? **njX ships a second stylesheet — `classless.min.css` (~47 KB)** — that styles plain, semantic HTML automatically. No `.btn`, no `.card`, no configuration.
+Don't want to add class names to every element? **njX UI ships a second stylesheet — `classless.min.css` (48 KB min, ~7 KB gzip)** — that styles plain, semantic HTML automatically. No `.btn`, no `.card`, no configuration.
 
 ```html
 <!-- One link -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui/css/classless.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/classless.min.css">
 
 <!-- Then write plain HTML — nothing else needed -->
 <main>
@@ -161,7 +160,7 @@ Don't want to add class names to every element? **njX ships a second stylesheet 
 | 9 themes via `data-theme` | ✅ | ✅ |
 | Variants via `data-variant` | ✅ | ✅ |
 | Works alongside Full library | — | ✅ scoped |
-| Bundle size | 293 KB | **47 KB** |
+| Size (min / gzip) | 308 KB / **44 KB** | 48 KB / **~7 KB** |
 
 Both files share the same 9 themes — switch between them with `data-theme` on `<html>` exactly the same way.
 
@@ -356,20 +355,24 @@ No framework. No dependencies. Every component is plain CSS — ready to paste i
 
 ## Comparison
 
-| | chota | Pico CSS | Bulma | Bootstrap | **njX** |
+Honest numbers — pick the right tool:
+
+| | Pico CSS | Water.css | Bulma | Tailwind CSS | **njX UI** (`njx-ui`) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| Themes | ❌ | 2 | ❌ | 2 | **9** |
-| CSS Variables | partial | ✅ | ❌ | partial | **✅ full** |
-| Utility classes | ❌ | ❌ | partial | partial | **✅ Tailwind-style** |
-| Responsive prefixes | ❌ | ❌ | ❌ | ❌ | **✅ sm/md/lg/xl** |
-| Fluid typography | ❌ | ❌ | ❌ | ❌ | **✅ clamp()** |
-| Hover FX | ❌ | ❌ | ❌ | ❌ | **✅ 30+** |
-| Gradients | ❌ | ❌ | ❌ | ❌ | **✅ 15+** |
-| Text Gradients | ❌ | ❌ | ❌ | ❌ | **✅** |
-| Animations | ❌ | ❌ | ❌ | ❌ | **✅** |
-| Bulma-compatible | ❌ | ❌ | — | ❌ | **✅** |
-| JS dependencies | 0 | 0 | 0 | required | **0** |
-| Build step required | No | No | No | No | **No** |
+| Size (gzip) | **~10 KB** | **~3 KB** | ~30 KB | varies (JIT) | 44 KB |
+| Build step required | No | No | No | **Yes** | **No** |
+| Built-in themes | 2 + palettes | 2 (auto) | ❌ | ❌ (DIY) | **9** |
+| Theme switch | attribute | prefers-color-scheme | — | class + config | **1 attribute** |
+| Component classes (`.btn`, `.card`…) | ❌ (classless) | ❌ (classless) | ✅ | ❌ (utilities) | **✅ 30+** |
+| Classless mode | ✅ | ✅ | ❌ | ❌ | **✅ separate 7 KB file** |
+| Utility classes | ❌ | ❌ | partial | ✅ full | ✅ Tailwind-style subset |
+| Responsive prefixes | ❌ | ❌ | ❌ | ✅ | ✅ `sm:/md:/lg:/xl:` |
+| Hover FX / gradients / animations | ❌ | ❌ | ❌ | DIY | **✅ built in** |
+| Fluid typography (`clamp()`) | ❌ | ❌ | ❌ | v4 | ✅ |
+| Bulma-compatible classes | ❌ | ❌ | — | ❌ | ✅ core |
+| Ecosystem & community | large | large | huge | huge | **young** — growing |
+
+**Where njX UI loses:** it's bigger than Pico/Water (44 KB gzip vs 3–10 KB — you're getting components + utilities + 9 themes for that) and it's a young project without a large plugin ecosystem. **Where it wins:** it's the only one that ships themed components, Tailwind-style utilities *and* a classless mode in one zero-build package. Think *DaisyUI vibes, but without the Tailwind dependency*.
 
 ---
 
@@ -576,8 +579,6 @@ Bundle all files into a single minified CSS:
 npx lightningcss --bundle --minify css/style.css -o css/style.min.css
 ```
 
-See [DEPLOY.md](DEPLOY.md) for full CDN deployment guide.
-
 ---
 
 ## License
@@ -592,15 +593,13 @@ See [DEPLOY.md](DEPLOY.md) for full CDN deployment guide.
 |---|---|
 | [GITHUB.md](GITHUB.md) | How to use from GitHub — CDN, download, clone, fork |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to add components, utilities, and submit PRs |
-| [DEPLOY.md](DEPLOY.md) | How to deploy to CDN — jsDelivr, npm, GitHub Pages |
 | [css/CSS-DOCS.en.md](css/CSS-DOCS.en.md) | Full CSS reference — all classes and variables |
-| [css/CSS-DOCS.md](css/CSS-DOCS.md) | CSS reference in Russian |
 | [classless.md](classless.md) | Classless mode — all elements, variants, and tokens |
 
 ---
 
 <div align="center">
 
-Made by [njbSaab](https://github.com/njbSaab)
+**njX UI** · npm [`njx-ui`](https://www.npmjs.com/package/njx-ui) · [njxui.dev](https://njxui.dev) · Made by [njbSaab](https://github.com/njbSaab)
 
 </div>
