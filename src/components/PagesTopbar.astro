@@ -2,7 +2,6 @@
 interface Props {
   activePage?:
     | 'njxUIComponents'
-    | 'classlessComponents'
     | 'documentation'
     | 'quickstart'
     | 'overview'
@@ -225,9 +224,8 @@ const base = import.meta.env.BASE_URL;
     <a href={base} class={activePage === 'njxUIComponents' ? 'active' : ''}
       >njxUI Components</a
     >
-    <a
-      href={`${base}classless-components`}
-      class={activePage === 'classlessComponents' ? 'active' : ''}
+    {/* Classless — отдельный продукт на своём домене */}
+    <a href="https://classless.njxui.dev" target="_blank" rel="noopener"
       >classlessComponents</a
     >
     <a

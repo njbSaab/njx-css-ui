@@ -7,7 +7,7 @@ interface Props {
         | 'overview'
         | 'donate'
         | 'contact'
-        | 'classless';
+;
 }
 const { activePage } = Astro.props;
 const base = import.meta.env.BASE_URL;
@@ -19,9 +19,8 @@ const base = import.meta.env.BASE_URL;
         <a href={base} class={activePage === 'njxUIComponents' ? 'active' : ''}
             >Components</a
         >
-        <a
-            href={`${base}classless-components`}
-            class={activePage === 'classless' ? 'active' : ''}>Classless</a
+        <a href="https://classless.njxui.dev" target="_blank" rel="noopener"
+            >Classless</a
         >
         <a
             href={`${base}documentation`}
