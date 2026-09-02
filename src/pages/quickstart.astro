@@ -173,11 +173,37 @@ const base = import.meta.env.BASE_URL;
       ],
     };
 
+    // Astro-режим: один путь (npm + import), селектор путей скрыт
+    var ASTRO_STEPS = [
+      {
+        h: 'Install njx-ui',
+        meta: '~20s',
+        d: 'Works with npm, pnpm, yarn or bun. No integration to register.',
+        code: '<span class="com"># pick your manager</span>\nnpm  install njx-ui\npnpm add     njx-ui',
+        check: 'Installed',
+      },
+      {
+        h: 'Import in your Layout',
+        meta: '~10s',
+        d: 'Astro bundles the CSS automatically. Set <code>data-theme</code> on &lt;html&gt; here too.',
+        code: '<span class="com">// src/layouts/Layout.astro</span>\n<span class="sh-tag">import</span> <span class="str">"njx-ui/css/style.min.css"</span>;',
+        check: 'Imported',
+      },
+      {
+        h: 'Use the classes',
+        meta: '~10s',
+        d: 'Plain CSS classes — they work in .astro files, Markdown and framework islands alike.',
+        code: '&lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-primary"</span>&gt;Ship it&lt;/<span class="sh-tag">button</span>&gt;',
+        check: 'Done!',
+      },
+    ];
+    var ASTRO_PATHS = { cdn: ASTRO_STEPS, npm: ASTRO_STEPS, zip: ASTRO_STEPS };
+
     var curP = 'cdn';
     var done = {};
 
     function render() {
-      var activePaths = PATHS;
+      var activePaths = window._qsMode === 'astro' ? ASTRO_PATHS : PATHS;
       var steps = activePaths[curP] || activePaths['cdn'];
       track.innerHTML = '';
       steps.forEach(function (st, i) {
@@ -235,7 +261,7 @@ const base = import.meta.env.BASE_URL;
     }
 
     function updateProgress() {
-      var activePaths = PATHS;
+      var activePaths = window._qsMode === 'astro' ? ASTRO_PATHS : PATHS;
       var steps = activePaths[curP] || activePaths['cdn'];
       var completed = steps.reduce(function (n, _, i) {
         return n + (done[curP + '-' + i] ? 1 : 0);
@@ -583,6 +609,7 @@ createApp(App).mount(<span class="str">"#app"</span>);`,
   // njx-site.js; ниже только специфика quickstart (рендер трека/кода)
   var QS_CSS_FILE = {
     full: 'style.min.css',
+    astro: 'style.min.css',
     interactive: 'style.min.css',
   };
 

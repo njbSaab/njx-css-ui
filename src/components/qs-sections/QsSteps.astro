@@ -5,6 +5,36 @@ import { CDN_BASE } from '../../lib/meta';
 const qsLinkFull = `
 <link rel="stylesheet" href="${CDN_BASE}style.min.css">
 `;
+const qsAstroImport = `
+---
+// src/layouts/Layout.astro
+import 'njx-ui/css/style.min.css';
+---
+`;
+const qsBoilerplateAstro = `
+---
+// src/layouts/Layout.astro
+import 'njx-ui/css/style.min.css';
+---
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>My App</title>
+</head>
+<body>
+
+  <button class="btn btn-primary">Get Started</button>
+
+  <div class="card-glow">
+    <h2 class="text-gradient-primary">Hello njX</h2>
+    <p class="text-muted">Astro + njX UI — zero JS shipped.</p>
+  </div>
+
+  <slot />
+
+</body>
+</html>
+`;
 const qsTheme = `
 <html lang="en" data-theme="dark">
 <!-- dark · light · red · blue · green · cyan · yellow · pink · purple -->
@@ -51,11 +81,20 @@ const qsBoilerplateFull = `
           </div>
           <div class="sc-step-body">
             <div class="sc-step-title">Connect the stylesheet</div>
-            <div class="sc-step-desc">
-              One <code>&lt;link&gt;</code> tag inside <code>&lt;head&gt;</code
-              >. No JavaScript, no build step, nothing else required.
+            <div data-qs-mode="full interactive">
+              <div class="sc-step-desc">
+                One <code>&lt;link&gt;</code> tag inside <code>&lt;head&gt;</code
+                >. No JavaScript, no build step, nothing else required.
+              </div>
+              <CodeBlock frame="sc" compact style="margin-top:10px" code={qsLinkFull} />
             </div>
-            <CodeBlock frame="sc" compact style="margin-top:10px" code={qsLinkFull} />
+            <div data-qs-mode="astro" style="display:none">
+              <div class="sc-step-desc">
+                One import in your Layout — Astro bundles the CSS
+                automatically. No integration needed.
+              </div>
+              <CodeBlock frame="sc" compact lang="js" style="margin-top:10px" code={qsAstroImport} />
+            </div>
           </div>
         </div>
         <div class="sc-step">
@@ -92,7 +131,12 @@ const qsBoilerplateFull = `
         >
           Complete boilerplate
         </div>
-        <CodeBlock frame="sc" class="qs-bp" label="index.html" style="flex:1;display:flex;flex-direction:column" code={qsBoilerplateFull} />
+        <div data-qs-mode="full interactive" style="flex:1;display:flex;flex-direction:column">
+          <CodeBlock frame="sc" class="qs-bp" label="index.html" style="flex:1;display:flex;flex-direction:column" code={qsBoilerplateFull} />
+        </div>
+        <div data-qs-mode="astro" style="flex:1;display:none;flex-direction:column">
+          <CodeBlock frame="sc" class="qs-bp" lang="js" label="Layout.astro" style="flex:1;display:flex;flex-direction:column" code={qsBoilerplateAstro} />
+        </div>
       </div>
     </div>
   </div>

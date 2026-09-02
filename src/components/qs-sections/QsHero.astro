@@ -31,11 +31,20 @@ const base = import.meta.env.BASE_URL;
       </button>
       <button
         class="doc-mode-tab"
+        data-mode="astro"
+        onclick="qsSyncMode('astro')"
+      >
+        <span class="doc-mode-icon">🚀</span>
+        Astro
+      </button>
+      <button
+        class="doc-mode-tab"
         data-mode="interactive"
         onclick="qsSyncMode('interactive')"
       >
         <span class="doc-mode-icon">JS</span>
         Interactive
+        <span class="doc-mode-default">ALPINE · JS</span>
       </button>
     </div>
     <span class="doc-mode-hint" id="qs-mode-hint"
@@ -44,7 +53,8 @@ const base = import.meta.env.BASE_URL;
   </div>
 
   <!-- ══════════════════════ PATH SELECTOR ══════════════════════ -->
-  <div class="qs-paths">
+  {/* в astro-режиме путь один (npm) — селектор прячется */}
+  <div class="qs-paths" data-qs-mode="full interactive">
     <div class="qs-paths-row" id="qs-paths">
       <button class="on" data-p="cdn"
         ><span class="em">⚡</span>CDN <span style="opacity:0.7">· 30s</span
