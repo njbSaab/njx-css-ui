@@ -90,47 +90,11 @@ const ogImageURL = new URL('/img/og-image.png', Astro.site);
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700;800;900&family=Roboto:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;700&display=swap"
             rel="stylesheet"
         />
-
-        <!-- Clicky Analytics -->
-        <script
-            is:inline
-            async
-            data-id="101505163"
-            src="//static.getclicky.com/js"></script>
-        <noscript
-            ><p class="absolute">
-                <img
-                    alt="Clicky"
-                    width="1"
-                    height="1"
-                    src="//in.getclicky.com/101505163ns.gif"
-                />
-            </p></noscript
-        >
-
-        <!-- Google Analytics -->
-        <script
-            is:inline
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-969JS8G6QK"
-        ></script>
+        <!-- Аналитика: только Cloudflare Web Analytics (бескуковая, на уровне
+             хостинга) — Clicky и GA4 удалены сознательно (privacy).
+             njxTrack оставлен no-op'ом: вызовы разбросаны по сайту. -->
         <script is:inline>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag('js', new Date());
-            // page_view при навигации через View Transitions ловит сам GA4:
-            // enhanced measurement «Page changes based on browser history events»
-            // (включено по умолчанию) реагирует на pushState Astro ClientRouter.
-            // Вручную page_view не шлём — иначе задвоится.
-            gtag('config', 'G-969JS8G6QK');
-            // Общий помощник для кастомных событий (copy_cdn, github_click, …)
-            window.njxTrack = function (name, params) {
-                try {
-                    gtag('event', name, params || {});
-                } catch (e) {}
-            };
+            window.njxTrack = function () {};
         </script>
 
         <!-- njX JS (всегда — theme, tabs, modal, accordion, toast) -->
