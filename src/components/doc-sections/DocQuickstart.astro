@@ -127,6 +127,29 @@ const qsInteractivePage = `
                 <!-- ── Version selector cards ── -->
                 <div class="doc-flavor-cards">
                     <div
+                        class="doc-flavor-card active"
+                        data-flavor-card="full"
+                        onclick="pageSyncFlavor('full')"
+                    >
+                        <div class="doc-flavor-card-label-default">
+                            RECOMMENDED
+                        </div>
+                        <div
+                            class="doc-flavor-card-icon"
+                            style="color:var(--color-primary)"
+                        >
+                            ◈
+                        </div>
+                        <div class="doc-flavor-card-title">Full CSS + JS</div>
+                        <div class="doc-flavor-card-desc">
+                            The classic path — 30+ component classes, utilities
+                            and 9 themes; add njx.js when you need interactivity.
+                        </div>
+                        <div class="doc-flavor-card-badge">
+                            style.min.css · 308 KB
+                        </div>
+                    </div>
+                    <div
                         class="doc-flavor-card"
                         data-flavor-card="astro"
                         onclick="pageSyncFlavor('astro')"
@@ -141,32 +164,6 @@ const qsInteractivePage = `
                         </div>
                         <div class="doc-flavor-card-badge">
                             import 'njx-ui/css/style.min.css'
-                        </div>
-                    </div>
-                    <div
-                        class="doc-flavor-card active"
-                        data-flavor-card="full"
-                        onclick="pageSyncFlavor('full')"
-                    >
-                        <div class="doc-flavor-card-label-default">
-                            RECOMMENDED
-                        </div>
-                        <div
-                            class="doc-flavor-card-icon"
-                            style="color:var(--color-primary)"
-                        >
-                            ◈
-                        </div>
-                        <div class="doc-flavor-card-title">Full</div>
-                        <div class="doc-flavor-card-desc">
-                            30+ component classes — <code>.btn</code>, <code
-                                >.card</code
-                            >,
-                            <code>.tag</code> and more, plus utilities and 9
-                            themes.
-                        </div>
-                        <div class="doc-flavor-card-badge">
-                            style.min.css · 308 KB
                         </div>
                     </div>
                     <div

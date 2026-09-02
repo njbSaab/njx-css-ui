@@ -138,7 +138,7 @@
        Тексты подсказок и ключ localStorage (njx-flavor) — единственная
        связь между страницами, поэтому живут здесь, а не в инлайнах. */
     window.NJX_MODE_HINTS = {
-        full: 'Pure CSS — components, utilities and 9 themes, no JS required',
+        full: 'The classic path — full CSS library, add njx.js when you need it',
         astro: 'npm i njx-ui + one import in your Layout — that’s the whole setup',
         interactive: 'Bring components to life — Alpine.js or vanilla njx.js',
     };
