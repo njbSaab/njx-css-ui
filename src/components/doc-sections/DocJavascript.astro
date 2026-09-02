@@ -5,10 +5,11 @@ import { CDN_JS } from '../../lib/meta';
 const base = import.meta.env.BASE_URL;
 
 // Alpine-рецепты (roadmap 4.1): njx.js опционален — те же классы, стейт в x-data
-const jsAlpine = `
+const jsAlpineSetup = `
 <!-- Alpine.js from CDN — njx.js becomes optional -->
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
-
+`;
+const jsAlpineCollapse = `
 <!-- Same markup, same .is-open class — Alpine just toggles it -->
 <div class="collapse" x-data="{ open: false }" :class="{ 'is-open': open }">
   <div class="collapse-header" @click="open = !open">
@@ -16,6 +17,85 @@ const jsAlpine = `
   </div>
   <div class="collapse-body">Content</div>
 </div>
+
+<!-- Exclusive accordion — one item open at a time -->
+<div class="accordion" x-data="{ active: null }">
+  <div class="collapse" :class="{ 'is-open': active === 1 }">
+    <div class="collapse-header" @click="active = active === 1 ? null : 1">
+      Section A <span class="collapse-icon"></span>
+    </div>
+    <div class="collapse-body">Content A</div>
+  </div>
+</div>
+`;
+const jsAlpineTabs = `
+<div class="tab-wrap" x-data="{ tab: 0 }">
+  <div class="tab-nav">
+    <button class="tab-btn" :class="{ 'is-active': tab === 0 }" @click="tab = 0">Tab 1</button>
+    <button class="tab-btn" :class="{ 'is-active': tab === 1 }" @click="tab = 1">Tab 2</button>
+  </div>
+  <div class="tab-content">
+    <div class="tab-panel" :class="{ 'is-active': tab === 0 }">Content 1</div>
+    <div class="tab-panel" :class="{ 'is-active': tab === 1 }">Content 2</div>
+  </div>
+</div>
+`;
+const jsAlpineDropdown = `
+<div class="dropdown" x-data="{ open: false }"
+     :class="{ 'is-open': open }" @click.outside="open = false">
+  <button class="btn btn-ghost btn-sm" @click="open = !open">
+    Menu <span class="dropdown-arrow"></span>
+  </button>
+  <div class="dropdown-menu">
+    <a href="#" class="dropdown-item" @click="open = false">Item</a>
+  </div>
+</div>
+`;
+const jsAlpineModal = `
+<div x-data="{ open: false }" @keydown.escape.window="open = false">
+  <button class="btn btn-primary" @click="open = true">Open</button>
+
+  <div class="lib-modal-overlay" :class="{ open }" @click.self="open = false">
+    <div class="lib-modal-box is-primary">
+      <button class="lib-modal-close" @click="open = false">✕</button>
+      <div class="lib-modal-title">Title here</div>
+      <div class="lib-modal-actions">
+        <button class="btn btn-primary btn-sm" @click="open = false">Confirm</button>
+        <button class="btn btn-ghost btn-sm" @click="open = false">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+const jsAlpineToast = `
+<div x-data="{
+  toasts: [], id: 0,
+  fire(msg, type) {
+    const t = { id: ++this.id, msg, type };
+    this.toasts.push(t);
+    setTimeout(() => this.dismiss(t.id), 2200);
+  },
+  dismiss(id) { this.toasts = this.toasts.filter(t => t.id !== id); }
+}">
+  <button class="btn btn-primary btn-sm" @click="fire('Saved!', 'success')">Success</button>
+  <button class="btn btn-ghost btn-sm" @click="fire('Error occurred', 'error')">Error</button>
+
+  <div id="lib-toast-container">
+    <template x-for="t in toasts" :key="t.id">
+      <div class="lib-toast" :class="'lib-toast-' + t.type"
+           @click="dismiss(t.id)" x-text="t.msg"></div>
+    </template>
+  </div>
+</div>
+`;
+const jsAlpineThemeToggle = `
+<!-- Dark/light toggle with localStorage — one line of state -->
+<button class="btn btn-ghost btn-sm"
+        x-data="{ t: document.documentElement.dataset.theme || 'dark' }"
+        @click="t = t === 'dark' ? 'light' : 'dark';
+                document.documentElement.dataset.theme = t;
+                localStorage.setItem('theme', t)"
+        x-text="t === 'dark' ? '☀ Light' : '🌙 Dark'"></button>
 `;
 
 const nativeNoJs = `
@@ -484,6 +564,183 @@ initCarousels();
                         <a href={`${base}#notifications`}>Toast</a> and
                         <a href={`${base}#carousel`}>Carousel</a>.
                     </p>
-                    <CodeBlock frame="sc" lang="html" code={jsAlpine} />
+                    <CodeBlock frame="sc" lang="html" style="margin-bottom:28px" code={jsAlpineSetup} />
+
+                    <h3
+                        style="font-size:16px;font-weight:700;margin-bottom:16px"
+                    >
+                        Alpine recipes
+                    </h3>
+
+                    <!-- Collapse / Accordion -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:#77c1d2"
+                                >x-data="&#123; open: false &#125;"</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:rgba(119,193,210,0.12);color:#77c1d2"
+                                >collapse · accordion</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            Alpine toggles the same <code>.is-open</code> class
+                            that <code>collapseToggle()</code> would. The
+                            accordion variant keeps one item open via a shared
+                            <code>active</code> index.
+                        </p>
+                        <CodeBlock frame="sc" lang="html" code={jsAlpineCollapse} />
+                    </div>
+
+                    <!-- Tabs -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:#77c1d2"
+                                >x-data="&#123; tab: 0 &#125;"</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:rgba(119,193,210,0.12);color:#77c1d2"
+                                >tabs</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            One number of state. Buttons and panels share the
+                            same <code>.is-active</code> binding — no <code
+                                >tabSwitch()</code
+                            > needed.
+                        </p>
+                        <CodeBlock frame="sc" lang="html" code={jsAlpineTabs} />
+                    </div>
+
+                    <!-- Dropdown -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:#77c1d2"
+                                >@click.outside</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:rgba(119,193,210,0.12);color:#77c1d2"
+                                >dropdown</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            <code>@click.outside</code> replaces the global
+                            document listener that njx.js registers — the menu
+                            closes itself.
+                        </p>
+                        <CodeBlock frame="sc" lang="html" code={jsAlpineDropdown} />
+                    </div>
+
+                    <!-- Modal -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:#77c1d2"
+                                >@keydown.escape.window</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:rgba(119,193,210,0.12);color:#77c1d2"
+                                >modal</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            The same <code>.open</code> class on the overlay —
+                            <code>@click.self</code> closes on the backdrop,
+                            Escape closes from anywhere. No <code
+                                >openModal/closeModal</code
+                            >.
+                        </p>
+                        <CodeBlock frame="sc" lang="html" code={jsAlpineModal} />
+                    </div>
+
+                    <!-- Toast -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:#77c1d2"
+                                >template x-for</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:rgba(119,193,210,0.12);color:#77c1d2"
+                                >toast</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            A toast stack as plain state: <code>fire()</code>
+                            pushes, <code>setTimeout</code> auto-dismisses. Same
+                            <code>.lib-toast</code> classes as <code
+                                >showToast()</code
+                            >.
+                        </p>
+                        <CodeBlock frame="sc" lang="html" code={jsAlpineToast} />
+                    </div>
+
+                    <!-- Theme toggle -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:#77c1d2"
+                                >data-theme + localStorage</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:rgba(119,193,210,0.12);color:#77c1d2"
+                                >theme toggle</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            Dark/light switch in one button — Alpine holds the
+                            state, <code>data-theme</code> does the styling,
+                            localStorage remembers the pick.
+                        </p>
+                        <CodeBlock frame="sc" lang="html" code={jsAlpineThemeToggle} />
+                    </div>
+
+                    <div class="doc-tip">
+                        <span class="doc-tip-icon">⚡</span>
+                        <div class="doc-tip-text">
+                            <strong>Live previews:</strong> every recipe above has
+                            a working demo on the components page — switch the
+                            code window to the <strong>Alpine.js</strong> tab.
+                        </div>
+                    </div>
                 </div><!-- /full interactive -->
             </section>
