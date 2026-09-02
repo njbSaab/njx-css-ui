@@ -127,3 +127,19 @@ export function highlightHtml(value) {
       },
     );
 }
+
+/** Шелл-команды (инсталл-сниппеты): # — комментарий, первое слово — .k,
+    подкоманда — .v, имя пакета — .cn. Больше ничего не выдумываем. */
+export function highlightShell(value) {
+  return escapeHtml(value)
+    .split('\n')
+    .map((line) => {
+      if (/^\s*#/.test(line)) return `<span class="c">${line}</span>`;
+      return line.replace(
+        /^(\s*)(\S+)(\s+)(\S+)(\s+)(\S+)(\s*)$/,
+        (_m, s1, cmd, s2, sub, s3, pkg, s4) =>
+          `${s1}<span class="k">${cmd}</span>${s2}<span class="v">${sub}</span>${s3}<span class="cn">${pkg}</span>${s4}`,
+      );
+    })
+    .join('\n');
+}

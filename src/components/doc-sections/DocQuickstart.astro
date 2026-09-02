@@ -77,6 +77,18 @@ const qsInteractiveTheme = `
 <html lang="en" data-theme="dark">
 <!-- dark · light · red · blue · green · cyan · yellow · pink · purple -->
 `;
+const qsInteractiveAlpine = `
+<div x-data="{ open: false }" @keydown.escape.window="open = false">
+  <button class="btn btn-primary" @click="open = true">Open Modal</button>
+
+  <div class="lib-modal-overlay" :class="{ open }" @click.self="open = false">
+    <div class="lib-modal-box is-primary">
+      <h3>Hello from Alpine</h3>
+      <button class="btn btn-ghost btn-sm" @click="open = false">Close</button>
+    </div>
+  </div>
+</div>
+`;
 const qsInteractivePage = `
 <button class="btn btn-primary" onclick="openModal('demo')">Open Modal</button>
 <button class="btn btn-accent" onclick="showToast('Done!','success')">Toast</button>
@@ -291,7 +303,7 @@ const qsInteractivePage = `
                                 Works with npm, pnpm, yarn or bun. No config, no
                                 integration to register.
                             </div>
-                            <CodeBlock frame="sc" lang="txt" code={qsAstroInstall} />
+                            <CodeBlock frame="sc" lang="sh" code={qsAstroInstall} />
                         </div>
                     </div>
                     <div class="doc-step">
@@ -399,10 +411,31 @@ const qsInteractivePage = `
                     <div class="doc-step">
                         <div class="doc-step-left">
                             <div class="doc-step-num">3</div>
+                            <div class="doc-step-line"></div>
                         </div>
                         <div class="doc-step-body">
                             <div class="doc-step-title">
-                                Use components + JS API
+                                Option A — drive it with Alpine
+                            </div>
+                            <div class="doc-step-desc">
+                                State lives in the markup: <code>x-data</code>
+                                toggles the same njX classes. Full recipe set —
+                                in the <a
+                                    href="#alpine"
+                                    style="color:var(--color-primary)"
+                                    >Alpine.js section</a
+                                >.
+                            </div>
+                            <CodeBlock frame="sc" lang="html" label="index.html" code={qsInteractiveAlpine} />
+                        </div>
+                    </div>
+                    <div class="doc-step">
+                        <div class="doc-step-left">
+                            <div class="doc-step-num">4</div>
+                        </div>
+                        <div class="doc-step-body">
+                            <div class="doc-step-title">
+                                Option B — the njx.js API
                             </div>
                             <div class="doc-step-desc">
                                 Classes work the same as Full. JS functions are

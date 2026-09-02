@@ -1,5 +1,5 @@
 ---
-import { dedent, escapeHtml, highlightHtml, highlightCss, highlightJs } from './code-utils.js';
+import { dedent, escapeHtml, highlightHtml, highlightCss, highlightJs, highlightShell } from './code-utils.js';
 
 interface CodeVariant {
     id: string; // 'html' | 'alpine' | 'js' — значение data-code-variant
@@ -39,7 +39,9 @@ const highlight = (src: string, l: string) =>
           ? highlightCss(src)
           : l === 'js'
             ? highlightJs(src)
-            : escapeHtml(src);
+            : l === 'sh'
+              ? highlightShell(src)
+              : escapeHtml(src);
 
 const normalizedCode = dedent(code).trim();
 const highlightedCode = highlight(normalizedCode, lang);
