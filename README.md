@@ -1,6 +1,6 @@
 # njX UI
 
-**njX UI** (npm: [`njx-ui`](https://www.npmjs.com/package/njx-ui)) is a zero-dependency CSS component library for landing pages, docs and prototypes: **9 themes, 30+ components, Tailwind-style utilities and a classless mode** — 308 KB minified, **44 KB gzip over the wire**, no build step.
+**njX UI** (npm: [`njx-ui`](https://www.npmjs.com/package/njx-ui)) is a zero-dependency CSS component library for landing pages, docs and prototypes: **9 themes, 30+ components, Tailwind-style utilities** — 308 KB minified, **44 KB gzip over the wire**, no build step. Plays great with [Astro](#use-with-astro-) and [Alpine.js](#alpinejs--the-ui-kit-alpine-was-missing-).
 
 One link — everything works:
 
@@ -130,6 +130,83 @@ Open this URL to see all files available in the package:
 ```
 https://cdn.jsdelivr.net/npm/njx-ui/
 ```
+
+---
+
+## Use with Astro 🚀
+
+njX UI is zero-JS by default — a natural fit for Astro. The whole setup is one install and one import (no integration to register). The njX UI docs site itself is built with Astro.
+
+```bash
+npm install njx-ui   # pnpm add / yarn add / bun add
+```
+
+```astro
+---
+// src/layouts/Layout.astro
+import 'njx-ui/css/style.min.css';
+---
+<html lang="en" data-theme="dark">
+  <body><slot /></body>
+</html>
+```
+
+Component classes now work in every `.astro` file, Markdown page and framework island:
+
+```astro
+<button class="btn btn-primary">Hello njX</button>
+<div class="card-glow">
+  <h2 class="text-gradient-primary">Works.</h2>
+</div>
+```
+
+**Theme without flash (FOUC):** restore the saved theme before first paint with an inline script in `<head>`:
+
+```html
+<script is:inline>
+  const t = localStorage.getItem('theme');
+  if (t) document.documentElement.dataset.theme = t;
+</script>
+```
+
+**Using `<ClientRouter />` (view transitions)?** njx.js initializes on `DOMContentLoaded`, so re-init carousels after navigation — or use Alpine.js, whose state lives in the markup and survives swaps:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/njx-ui@1/js/njx.js"></script>
+<script>document.addEventListener('astro:page-load', () => initCarousels());</script>
+```
+
+---
+
+## Alpine.js — the UI kit Alpine was missing 🏔
+
+Every interactive njX component works by toggling a single state class (`.is-open`, `.is-active`, `.open`). njx.js is one way to toggle it — **Alpine.js is another**: keep the same markup and drive the class from `x-data`. No njX JavaScript required.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/style.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+```
+
+```html
+<!-- Accordion: same .is-open class njx.js would toggle -->
+<div class="collapse" x-data="{ open: false }" :class="{ 'is-open': open }">
+  <div class="collapse-header" @click="open = !open">
+    Title <span class="collapse-icon"></span>
+  </div>
+  <div class="collapse-body">Content</div>
+</div>
+
+<!-- Dropdown with outside-click close -->
+<div class="dropdown" x-data="{ open: false }"
+     :class="{ 'is-open': open }" @click.outside="open = false">
+  <button class="btn btn-ghost btn-sm" @click="open = !open">Menu</button>
+  <div class="dropdown-menu">
+    <a href="#" class="dropdown-item" @click="open = false">Item</a>
+  </div>
+</div>
+```
+
+Ready-made recipes for tabs, modal (Escape + backdrop close), toast stack and a dark/light theme toggle: **[njxui.dev/documentation#alpine](https://njxui.dev/documentation#alpine)** — plus live demos with an Alpine.js tab in the code windows on the components page.
 
 ---
 
