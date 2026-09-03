@@ -116,11 +116,7 @@
   color: var(--form-placeholder);
 }
 
-/* Inside .input-group the float label needs headroom, placeholder stays hidden */
-.input-group .input {
-  padding: 1.2rem 1rem 0.5rem;
-}
-
+/* Float label overlays the input — placeholder stays hidden inside .input-group */
 .input-group .input::placeholder {
   color: transparent;
 }
