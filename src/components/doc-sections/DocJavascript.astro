@@ -9,6 +9,40 @@ const jsAlpineSetup = `
 <!-- Alpine.js from CDN — njx.js becomes optional -->
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
 `;
+const jsAlpinePresets = `
+<!-- njx-alpine.js: Alpine.data() presets — one word instead of a hand-written object.
+     Load it BEFORE Alpine (both defer — document order decides). -->
+<script defer src="https://cdn.jsdelivr.net/npm/njx-ui@1/js/njx-alpine.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
+<!-- before: x-data="{ open: false }" + :class bindings
+     after:  one preset name, classes are synced for you -->
+<div class="collapse" x-data="njxCollapse">
+  <button class="collapse-header" @click="toggle()">Question</button>
+  <div class="collapse-body">Answer</div>
+</div>
+
+<div class="tab-wrap" x-data="njxTabs">
+  <div class="tab-nav">
+    <button class="tab-btn" :class="{ 'is-active': isActive(0) }" @click="select(0)">One</button>
+    <button class="tab-btn" :class="{ 'is-active': isActive(1) }" @click="select(1)">Two</button>
+  </div>
+</div>
+
+<div class="js-carousel-wrap" x-data="njxCarousel(0, 4000)"> <!-- auto count · autoplay 4s -->
+  <div class="js-carousel">
+    <div class="js-carousel-track" :style="offset">…slides…</div>
+  </div>
+  <button class="js-carousel-btn js-prev" @click="prev()">&lsaquo;</button>
+  <button class="js-carousel-btn js-next" @click="next()">&rsaquo;</button>
+</div>
+
+<button x-data="njxTheme" @click="toggle()" x-text="t === 'dark' ? '☀️' : '🌙'"></button>
+
+<!-- All presets: njxCollapse · njxAccordion · njxTabs · njxDropdown
+     njxModal · njxToasts · njxCarousel · njxTheme -->
+`;
+
 const jsAlpineCollapse = `
 <!-- Same markup, same .is-open class — Alpine just toggles it -->
 <div class="collapse" x-data="{ open: false }" :class="{ 'is-open': open }">
@@ -565,6 +599,30 @@ initCarousels();
                         <a href={`${base}#carousel`}>Carousel</a>.
                     </p>
                     <CodeBlock frame="sc" lang="html" style="margin-bottom:28px" code={jsAlpineSetup} />
+
+                    <!-- njx-alpine.js presets -->
+                    <h3
+                        id="njx-alpine"
+                        style="font-size:16px;font-weight:700;margin:28px 0 10px"
+                    >
+                        njx-alpine.js — presets, one word per component
+                    </h3>
+                    <p
+                        style="font-size:13px;color:var(--color-muted);margin-bottom:12px;line-height:1.7"
+                    >
+                        The raw recipes below show <em>how</em> it works. When you
+                        just want it working, ship
+                        <code>js/njx-alpine.js</code> (~3 KB) — it registers
+                        <code>Alpine.data()</code> presets for every interactive
+                        component: <code>njxCollapse</code>,
+                        <code>njxAccordion</code>, <code>njxTabs</code>,
+                        <code>njxDropdown</code>, <code>njxModal</code>,
+                        <code>njxToasts</code>, <code>njxCarousel</code>,
+                        <code>njxTheme</code>. Presets toggle the same classes
+                        njx.js uses, handle outside-click / Escape / body-scroll
+                        for you, and read slide counts from the markup.
+                    </p>
+                    <CodeBlock frame="sc" lang="html" style="margin-bottom:28px" code={jsAlpinePresets} />
 
                     <h3
                         style="font-size:16px;font-weight:700;margin-bottom:16px"
