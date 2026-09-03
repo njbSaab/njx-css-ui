@@ -55,7 +55,8 @@
     "dev": "npm run prebuild && astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "examples:zip": "node scripts/build-starter-zip.cjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

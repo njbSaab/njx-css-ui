@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!-- ═══════════════════════════════════════════════════════════════
+     njX UI starter — your project begins here
+     CSS:   njX UI via CDN (no build step) + css/style.css for your own styles
+     JS:    Alpine.js — theme switcher, mobile burger menu
+     Docs:  https://njxui.dev · npm: njx-ui
+     Structure:
+       index.html        — this file
+       css/style.css     — your custom styles (hero glow + helpers included)
+       assets/           — favicon, images
+     ═══════════════════════════════════════════════════════════════ -->
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>njX UI Starter — Your Project</title>
+  <meta name="description" content="A landing page starter built with njX UI + Alpine.js. Copy, rename, ship." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/style.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+  <script>
+    // restore saved theme before first paint (no flash)
+    const t = localStorage.getItem('theme');
+    if (t) document.documentElement.dataset.theme = t;
+  </script>
+</head>
+<body x-data="{ menu: false,
+                themes: ['dark','light','red','blue','green','cyan','yellow','pink','purple'],
+                colors: { dark:'#4a4a56', light:'#e2e8f0', red:'#f43f5e', blue:'#3b82f6', green:'#22c55e',
+                          cyan:'#00e5ff', yellow:'#facc15', pink:'#ec4899', purple:'#a855f7' },
+                theme: document.documentElement.dataset.theme || 'dark',
+                setTheme(t) { this.theme = t;
+                              document.documentElement.dataset.theme = t;
+                              localStorage.setItem('theme', t); } }">
+
+  <!-- ── TOPBAR: logo + name · links · all themes · burger on mobile ── -->
+  <nav class="nav nav-solid">
+    <div class="nav-left">
+      <a class="nav-brand flex items-center gap-2" href="#">
+        <img src="assets/favicon.svg" alt="" width="22" height="22" />
+        <span class="text-gradient-primary font-bold">Your Project</span>
+      </a>
+    </div>
+    <div class="nav-center starter-links">
+      <a href="#hero" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#cards" class="nav-link">Features</a>
+      <a href="#social" class="nav-link">Social</a>
+    </div>
+    <div class="nav-right flex items-center gap-3">
+      <!-- all njX themes as dots -->
+      <div class="starter-themes" title="Switch theme">
+        <template x-for="t in themes" :key="t">
+          <button class="starter-dot" :class="{ 'is-active': theme === t }"
+                  :style="'background:' + colors[t]" :aria-label="t"
+                  @click="setTheme(t)"></button>
+        </template>
+      </div>
+      <!-- burger (mobile only) -->
+      <button class="btn btn-ghost btn-sm starter-burger" aria-label="Menu"
+              @click="menu = !menu" x-text="menu ? '✕' : '☰'"></button>
+    </div>
+  </nav>
+
+  <!-- mobile dropdown menu (links + themes) -->
+  <div class="starter-menu" x-show="menu" x-cloak>
+    <a href="#hero" class="nav-link" @click="menu = false">Home</a>
+    <a href="#about" class="nav-link" @click="menu = false">About</a>
+    <a href="#cards" class="nav-link" @click="menu = false">Features</a>
+    <a href="#social" class="nav-link" @click="menu = false">Social</a>
+    <div class="starter-themes" style="padding:8px 12px">
+      <template x-for="t in themes" :key="t">
+        <button class="starter-dot" :class="{ 'is-active': theme === t }"
+                :style="'background:' + colors[t]" :aria-label="t"
+                @click="setTheme(t)"></button>
+      </template>
+    </div>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section class="section hero-glow" id="hero">
+    <div class="container text-center" style="max-width:820px">
+      <span class="tag tag-primary">njX UI starter · rename me</span>
+      <h1 class="title-hero fluid mt-4" style="margin-bottom: var(--space-4) !important;">
+        Start here.<br /><span class="text-gradient-primary">Ship today.</span>
+      </h1>
+      <p class="text-lead text-muted mt-4">
+        This is your hero section. One CDN link for the styles, Alpine for the
+        interactivity — everything else is just HTML. Replace this text and go.
+      </p>
+      <div class="flex justify-center gap-3 mt-6 flex-wrap">
+        <a class="btn btn-gradient btn-lg hover-lift" href="#cards">Explore features →</a>
+        <a class="btn btn-outline btn-lg" href="https://njxui.dev/documentation" target="_blank" rel="noopener">Read the docs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section class="section" id="about">
+    <div class="container grid-col-2 gap-8 items-center">
+      <div>
+        <span class="tag tag-accent">About</span>
+        <h2 class="title-lg mt-3">Tell your story</h2>
+        <p class="text-muted mt-3">
+          Two columns: text on one side, a glass card on the other. Swap the
+          numbers for your own stats — or drop an image here instead.
+        </p>
+        <a class="btn btn-outline-gradient btn-outline-gradient-ocean btn-sm mt-4" href="#social">Get in touch</a>
+      </div>
+      <div class="card-glass p-6 text-center animate-fade-in-up">
+        <div class="text-6xl">🚀</div>
+        <div class="grid-col-3 gap-4 mt-5">
+          <div><div class="text-2xl font-bold text-gradient-primary">1</div><div class="text-sm text-muted">CDN link</div></div>
+          <div><div class="text-2xl font-bold text-gradient-primary">0</div><div class="text-sm text-muted">build steps</div></div>
+          <div><div class="text-2xl font-bold text-gradient-primary">9</div><div class="text-sm text-muted">themes</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CARDS (showcase: card-aura / card-shine / card-outline-gradient) ── -->
+  <section class="section" id="cards">
+    <div class="container">
+      <div class="text-center mb-8">
+        <span class="tag tag-primary">Features</span>
+        <h2 class="title-lg mt-3">Three cards, three styles</h2>
+      </div>
+      <div class="grid-col-3 gap-6">
+        <div class="card-aura hover-lift p-6">
+          <div class="text-3xl">✨</div>
+          <h3 class="mt-3">Aura card</h3>
+          <p class="text-muted mt-2">Glows on hover. Put your first selling point here.</p>
+        </div>
+        <div class="card-shine hover-lift p-6">
+          <div class="text-3xl">⚡</div>
+          <h3 class="mt-3">Shine card</h3>
+          <p class="mt-2" style="opacity:.85">Gradient with a moving highlight. Second point goes here.</p>
+        </div>
+        <div class="card-outline-gradient hover-lift p-6">
+          <div class="text-3xl">🎯</div>
+          <h3 class="mt-3">Outline gradient</h3>
+          <p class="text-muted mt-2">Animated gradient border. And the third one here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOCIAL (library .social-list-pills) ── -->
+  <section class="section" id="social">
+    <div class="container text-center">
+      <h2 class="title-lg">Find me everywhere</h2>
+      <p class="text-muted mt-3 mb-5">Swap the links for your own profiles.</p>
+      <ul class="social-list social-list-pills" style="justify-content:center">
+        <li><a href="#" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.2-.4-1.3.1-2.6 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.4.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 22 12c0-5.5-4.5-10-10-10z"/></svg>
+          GitHub</a></li>
+        <li><a href="#" aria-label="X">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.3 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.5 2h6.4l4.4 5.8L18.9 2zm-1.1 18h1.7L7 3.7H5.1L17.8 20z"/></svg>
+          X / Twitter</a></li>
+        <li><a href="#" aria-label="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.2 2.4 4.2 5.4v6.3zM5.3 7.4a2 2 0 1 1 0-4.1 2 2 0 0 1 0 4.1zM7.1 20.4H3.6V9h3.5v11.4z"/></svg>
+          LinkedIn</a></li>
+        <li><a href="#" aria-label="Telegram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.8 1.3-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-.9.5l.3-4.6 8.4-7.6c.4-.3-.1-.5-.6-.2L7.2 13.1 2.7 11.7c-1-.3-1-1 .2-1.4l17.7-6.8c.8-.3 1.5.2 1.3.8z"/></svg>
+          Telegram</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="section text-center text-muted text-sm">
+    <div class="container">
+      Your Project · Built with <a class="link" href="https://njxui.dev">njX UI</a> + Alpine.js — one CDN link each, zero build.
+    </div>
+  </footer>
+
+</body>
+</html>

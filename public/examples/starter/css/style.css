@@ -1,0 +1,89 @@
+/* ═══════════════════════════════════════════════════════════════
+   Your project styles.
+   njX UI does the heavy lifting from the CDN — this file is for the
+   few things that are yours: the hero glow, the theme dots, the
+   mobile menu, and whatever you add next.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── njX signature hero gradient — full-width banner ── */
+.hero-glow {
+  position: relative;
+  overflow: hidden;
+}
+.hero-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 30% 20%,
+      color-mix(in srgb, var(--color-primary) 22%, transparent), transparent),
+    radial-gradient(ellipse 50% 50% at 80% 80%,
+      color-mix(in srgb, var(--color-accent) 12%, transparent), transparent);
+  pointer-events: none;
+}
+.hero-glow > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Theme switcher dots in the topbar ── */
+.starter-themes {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.starter-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.starter-dot:hover {
+  transform: scale(1.2);
+}
+.starter-dot.is-active {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 2px var(--color-dark-secondary), 0 0 0 4px currentColor;
+}
+
+/* ── Mobile: burger + dropdown menu ── */
+.starter-burger {
+  display: none;
+}
+[x-cloak] {
+  display: none !important;
+}
+.starter-menu {
+  position: sticky;
+  top: 64px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 20px;
+  background: var(--color-dark-secondary);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
+}
+@media (max-width: 768px) {
+  .starter-links {
+    display: none;
+  }
+  .starter-burger {
+    display: inline-flex;
+  }
+  /* topbar dots move into the burger menu on mobile */
+  .nav .starter-themes {
+    display: none;
+  }
+}
+@media (min-width: 769px) {
+  .starter-menu {
+    display: none !important;
+  }
+}
+
+/* ── Your styles below ── */

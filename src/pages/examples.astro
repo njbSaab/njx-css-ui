@@ -7,7 +7,18 @@ const base = import.meta.env.BASE_URL;
 
 // Готовые лендинги: один файл = один продукт позиционирования
 // «поставь CDN → собирай из готового» (STRATEGY-TWO-LIBS, фаза 1.3)
+// live/download задаются явно у стартера (папка + zip); у остальных — из file
 const EXAMPLES = [
+  {
+    file: 'starter/index',
+    icon: '🚀',
+    title: 'Starter — your project',
+    desc: 'A ready folder structure: index.html with CDN + Alpine, css/style.css for your own styles, assets with a favicon. Topbar with logo, all 9 themes and a mobile burger; hero, about, cards, social and footer sections.',
+    alpine: 'theme switcher · burger menu',
+    theme: 'dark',
+    download: 'njxui-your-project.zip',
+    downloadLabel: 'Download starter (.zip)',
+  },
   {
     file: 'saas',
     icon: '☁️',
@@ -87,8 +98,9 @@ const EXAMPLES = [
               >
               <a
                 class="sc-btn-ghost ex-btn"
-                href={`${base}examples/${ex.file}.html`}
-                download={`${ex.file}.html`}>Download HTML</a
+                href={`${base}examples/${ex.download ?? `${ex.file}.html`}`}
+                download={ex.download ?? `${ex.file}.html`}
+                >{ex.downloadLabel ?? 'Download HTML'}</a
               >
             </div>
           </div>
