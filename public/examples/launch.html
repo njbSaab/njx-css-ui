@@ -53,7 +53,7 @@
   <section class="section hero-glow" x-data="{ open: false }" @keydown.escape.window="open = false">
     <div class="container text-center" style="max-width:820px">
       <span class="tag tag-primary animate-fade-in-up">Launching this fall</span>
-      <h1 class="title-hero fluid mt-4">
+      <h1 class="title-hero fluid mt-4" style="margin-bottom: var(--space-4) !important;">
         Your calendar,<br /><span class="text-gradient-primary">on autopilot</span>
       </h1>
       <p class="text-lead text-muted mt-4">
@@ -62,9 +62,11 @@
       </p>
       <div class="flex justify-center gap-3 mt-6 flex-wrap">
         <a class="btn btn-gradient btn-xl hover-lift" href="#waitlist">Join the waitlist →</a>
-        <button class="btn btn-outline btn-xl" @click="open = true">▶ Watch demo</button>
+        <button class="btn btn-outline-gradient btn-outline-gradient-ocean btn-xl" @click="open = true">▶ Watch demo</button>
       </div>
-      <p class="text-sm text-muted mt-4">2,431 people already in line</p>
+      <p class="text-sm text-muted mt-4 flex justify-center items-center gap-2">
+        <span class="badge badge-primary" style="padding:0 10px">2,431</span> people already in line
+      </p>
     </div>
 
     <!-- modal -->
@@ -81,46 +83,55 @@
     </div>
   </section>
 
-  <!-- ── HOW IT WORKS ── -->
+  <!-- ── HOW IT WORKS (showcase cards: card-outline-gradient / card-aura / card-shine + text-gradient numbers) ── -->
   <section class="section">
     <div class="container grid-col-3 gap-6">
-      <div class="card hover-lift p-6">
-        <span class="tag tag-accent">01</span>
+      <div class="card-outline-gradient hover-lift p-6">
+        <div class="text-3xl font-bold text-gradient-primary">01</div>
         <h3 class="mt-3">Connect calendars</h3>
         <p class="text-muted mt-2">Google, Outlook, iCloud — Orbit merges them into one truth.</p>
       </div>
-      <div class="card hover-lift p-6">
-        <span class="tag tag-accent">02</span>
+      <div class="card-aura hover-lift p-6">
+        <div class="text-3xl font-bold text-gradient-primary">02</div>
         <h3 class="mt-3">Set your rules</h3>
         <p class="text-muted mt-2">“Focus till noon”, “no Fridays” — plain-language preferences.</p>
       </div>
-      <div class="card hover-lift p-6">
-        <span class="tag tag-accent">03</span>
+      <div class="card-shine hover-lift p-6">
+        <div class="text-3xl font-bold">03</div>
         <h3 class="mt-3">Let it fly</h3>
-        <p class="text-muted mt-2">Orbit negotiates times and reshuffles conflicts silently.</p>
+        <p class="mt-2" style="opacity:.85">Orbit negotiates times and reshuffles conflicts silently.</p>
       </div>
     </div>
   </section>
 
-  <!-- ── TESTIMONIALS (Alpine carousel — state in the markup) ── -->
+  <!-- ── TESTIMONIALS (library .js-carousel look, driven by Alpine instead of njx.js) ── -->
   <section class="section">
-    <div class="container text-center" style="max-width:680px"
-         x-data="{ i: 0, n: 3, quotes: [
-           ['Orbit gave me back four hours a week. Four.', 'Maya, design lead'],
-           ['The first scheduling tool my whole team actually kept.', 'Tomas, CTO'],
-           ['Set it up Monday, forgot about calendars by Friday.', 'Priya, founder'],
-         ] }">
+    <div class="container text-center" style="max-width:680px" x-data="{ i: 0, n: 3 }">
       <h2 class="title-lg mb-5">Loved by early birds</h2>
-      <div class="card-glass p-6">
-        <blockquote class="text-lead" x-text="'“' + quotes[i][0] + '”'"></blockquote>
-        <p class="text-sm text-muted mt-3" x-text="'— ' + quotes[i][1]"></p>
+      <div style="position:relative">
+        <div class="js-carousel">
+          <div class="js-carousel-track" :style="'transform:translateX(-' + (i * 100) + '%)'">
+            <div class="card-glass p-6">
+              <blockquote class="text-lead">“Orbit gave me back four hours a week. Four.”</blockquote>
+              <p class="text-sm text-muted mt-3">— Maya, design lead</p>
+            </div>
+            <div class="card-glass p-6">
+              <blockquote class="text-lead">“The first scheduling tool my whole team actually kept.”</blockquote>
+              <p class="text-sm text-muted mt-3">— Tomas, CTO</p>
+            </div>
+            <div class="card-glass p-6">
+              <blockquote class="text-lead">“Set it up Monday, forgot about calendars by Friday.”</blockquote>
+              <p class="text-sm text-muted mt-3">— Priya, founder</p>
+            </div>
+          </div>
+        </div>
+        <button class="js-carousel-btn js-prev" aria-label="Previous" @click="i = (i - 1 + n) % n">‹</button>
+        <button class="js-carousel-btn js-next" aria-label="Next" @click="i = (i + 1) % n">›</button>
       </div>
-      <div class="flex justify-center items-center gap-3 mt-4">
-        <button class="btn btn-ghost btn-sm" @click="i = (i - 1 + n) % n">‹</button>
+      <div class="js-dots mt-4">
         <template x-for="d in n" :key="d">
           <button class="js-dot" :class="{ 'is-active': i === d - 1 }" @click="i = d - 1"></button>
         </template>
-        <button class="btn btn-ghost btn-sm" @click="i = (i + 1) % n">›</button>
       </div>
     </div>
   </section>
@@ -130,12 +141,14 @@
     <div class="container text-center card-gradient p-8" style="max-width:680px"
          x-data="{ email: '', sent: false }">
       <h2 class="title-lg">Get early access</h2>
-      <p class="text-lead mt-3">First 500 sign-ups get a lifetime discount.</p>
+      <p class="text-lead mt-3 flex justify-center items-center gap-2 flex-wrap">
+        <span class="badge badge-warning" style="padding:0 10px">First 500</span> sign-ups get a lifetime discount.
+      </p>
       <form class="flex justify-center gap-3 mt-5 flex-wrap"
             x-show="!sent" @submit.prevent="if (email.includes('@')) sent = true">
         <input class="input" type="email" placeholder="you@work.com"
                x-model="email" style="min-width:260px" />
-        <button class="btn btn-primary hover-glow" type="submit">Join waitlist</button>
+        <button class="btn btn-light" type="submit">Join waitlist</button>
       </form>
       <p class="tag tag-success mt-5" x-show="sent" x-cloak>
         ✓ You're in! Check your inbox for a confirmation.

@@ -63,7 +63,7 @@
     <div class="container grid-col-2 gap-8 items-center">
       <div>
         <span class="tag tag-primary">Public beta · v2.0</span>
-        <h1 class="title-hero fluid mt-4">
+        <h1 class="title-hero fluid mt-4" style="margin-bottom: var(--space-4) !important;">
           Ship your product <span class="text-gradient-primary">weeks earlier</span>
         </h1>
         <p class="text-lead text-muted mt-4">
@@ -77,26 +77,38 @@
         <p class="text-sm text-muted mt-4">No credit card · Free tier forever</p>
       </div>
       <div class="card-glass p-6 animate-fade-in-up">
-        <div class="flex items-center gap-2 mb-4">
-          <span class="tag tag-success">deploy · live</span>
+        <div class="flex items-center justify-between gap-2 mb-4 flex-wrap">
+          <span class="tag tag-success animate-pulse">● deploy · live</span>
           <span class="text-sm text-muted">main → production</span>
         </div>
         <div class="progress"><div class="progress-bar" style="width:82%"></div></div>
-        <div class="grid-col-2 gap-4 mt-5">
-          <div class="card p-4">
-            <div class="text-2xl font-bold">1.9s</div>
-            <div class="text-sm text-muted">avg build</div>
-          </div>
-          <div class="card p-4">
-            <div class="text-2xl font-bold">99.99%</div>
-            <div class="text-sm text-muted">uptime</div>
-          </div>
+        <div class="flex items-center justify-between text-sm text-muted mt-2">
+          <span>build 82%</span><span>~24s left</span>
+        </div>
+        <div class="grid-col-3 gap-4 mt-5 text-center">
+          <div><div class="text-2xl font-bold text-gradient-primary">1.9s</div><div class="text-sm text-muted">avg build</div></div>
+          <div><div class="text-2xl font-bold text-gradient-primary">99.99%</div><div class="text-sm text-muted">uptime</div></div>
+          <div><div class="text-2xl font-bold text-gradient-primary">140+</div><div class="text-sm text-muted">deploys/day</div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── FEATURES ── -->
+  <!-- ── SOCIAL PROOF (njX tags as a logo strip) ── -->
+  <section class="section" style="padding-top:0;padding-bottom:24px">
+    <div class="container text-center">
+      <p class="text-sm text-muted mb-3">Trusted by teams shipping every day</p>
+      <div class="flex justify-center items-center gap-3 flex-wrap">
+        <span class="tag tag-primary">▲ Vantage</span>
+        <span class="tag tag-accent">◆ Kite Labs</span>
+        <span class="tag tag-success">● Loopdesk</span>
+        <span class="tag tag-warning">■ Fathom</span>
+        <span class="tag tag-filled-primary">✦ Northbeam</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURES (showcase cards: card-aura / card-shine / card-outline-gradient) ── -->
   <section class="section" id="features">
     <div class="container">
       <div class="text-center mb-8">
@@ -104,17 +116,17 @@
         <h2 class="title-lg mt-3">Everything you need to ship</h2>
       </div>
       <div class="grid-col-3 gap-6">
-        <div class="card hover-lift p-6">
+        <div class="card-aura hover-lift p-6">
           <div class="text-3xl">⚡</div>
           <h3 class="mt-3">Instant previews</h3>
           <p class="text-muted mt-2">Every branch gets a live URL. Share it with the team before merging.</p>
         </div>
-        <div class="card hover-lift p-6">
+        <div class="card-shine hover-lift p-6">
           <div class="text-3xl">↩️</div>
           <h3 class="mt-3">One-click rollbacks</h3>
-          <p class="text-muted mt-2">Bad deploy? Roll back to any previous build in seconds, zero downtime.</p>
+          <p class="mt-2" style="opacity:.85">Bad deploy? Roll back to any previous build in seconds, zero downtime.</p>
         </div>
-        <div class="card hover-lift p-6">
+        <div class="card-outline-gradient hover-lift p-6">
           <div class="text-3xl">📊</div>
           <h3 class="mt-3">Built-in analytics</h3>
           <p class="text-muted mt-2">Traffic, errors and web vitals — without adding a single script.</p>
@@ -123,7 +135,7 @@
     </div>
   </section>
 
-  <!-- ── PRICING (Alpine: monthly/yearly toggle) ── -->
+  <!-- ── PRICING (Alpine monthly/yearly toggle · card-outline-gradient, badge checkmarks, text-gradient prices) ── -->
   <section class="section" id="pricing" x-data="{ yearly: false }">
     <div class="container">
       <div class="text-center mb-6">
@@ -139,42 +151,42 @@
       <div class="grid-col-3 gap-6 items-stretch">
         <div class="card p-6">
           <h3>Hobby</h3>
-          <div class="text-3xl font-bold mt-3">$0</div>
+          <div class="text-3xl font-bold mt-3 text-gradient-primary">$0</div>
           <p class="text-sm text-muted">forever</p>
-          <ul class="mt-4 text-muted">
-            <li>1 project</li>
-            <li>Preview deploys</li>
-            <li>Community support</li>
+          <ul class="mt-4 text-muted" style="list-style:none;padding:0">
+            <li class="flex items-center gap-2 mt-2"><span class="badge badge-success">✓</span> 1 project</li>
+            <li class="flex items-center gap-2 mt-2"><span class="badge badge-success">✓</span> Preview deploys</li>
+            <li class="flex items-center gap-2 mt-2"><span class="badge badge-success">✓</span> Community support</li>
           </ul>
           <a class="btn btn-outline mt-5" style="width:100%;justify-content:center" href="#">Start free</a>
         </div>
-        <div class="card-glow p-6">
+        <div class="card-outline-gradient p-6">
           <div class="flex items-center gap-2">
-            <h3>Pro</h3><span class="tag tag-primary">Popular</span>
+            <h3>Pro</h3><span class="badge badge-primary" style="padding:0 10px">Popular</span>
           </div>
-          <div class="text-3xl font-bold mt-3">
+          <div class="text-3xl font-bold mt-3 text-gradient-primary">
             $<span x-text="yearly ? 15 : 19">19</span><span class="text-sm text-muted">/mo</span>
           </div>
           <p class="text-sm text-muted" x-text="yearly ? 'billed yearly' : 'billed monthly'">billed monthly</p>
-          <ul class="mt-4 text-muted">
-            <li>Unlimited projects</li>
-            <li>Rollbacks & analytics</li>
-            <li>Priority support</li>
+          <ul class="mt-4 text-muted" style="list-style:none;padding:0">
+            <li class="flex items-center gap-2 mt-2"><span class="badge badge-success">✓</span> Unlimited projects</li>
+            <li class="flex items-center gap-2 mt-2"><span class="badge badge-success">✓</span> Rollbacks & analytics</li>
+            <li class="flex items-center gap-2 mt-2"><span class="badge badge-success">✓</span> Priority support</li>
           </ul>
           <a class="btn btn-gradient mt-5 hover-lift" style="width:100%;justify-content:center" href="#">Start 14-day trial</a>
         </div>
         <div class="card p-6">
           <h3>Team</h3>
-          <div class="text-3xl font-bold mt-3">
+          <div class="text-3xl font-bold mt-3 text-gradient-primary">
             $<span x-text="yearly ? 39 : 49">49</span><span class="text-sm text-muted">/mo</span>
           </div>
           <p class="text-sm text-muted" x-text="yearly ? 'billed yearly' : 'billed monthly'">billed monthly</p>
-          <ul class="mt-4 text-muted">
-            <li>Everything in Pro</li>
-            <li>SSO & audit log</li>
-            <li>SLA 99.99%</li>
+          <ul class="mt-4 text-muted" style="list-style:none;padding:0">
+            <li class="flex items-center gap-2 mt-2"><span class="badge badge-success">✓</span> Everything in Pro</li>
+            <li class="flex items-center gap-2 mt-2"><span class="badge badge-success">✓</span> SSO & audit log</li>
+            <li class="flex items-center gap-2 mt-2"><span class="badge badge-success">✓</span> SLA 99.99%</li>
           </ul>
-          <a class="btn btn-outline mt-5" style="width:100%;justify-content:center" href="#">Contact sales</a>
+          <a class="btn btn-outline-gradient btn-outline-gradient-ocean mt-5" style="width:100%;justify-content:center" href="#">Contact sales</a>
         </div>
       </div>
     </div>
@@ -206,7 +218,7 @@
     <div class="container text-center card-gradient p-8">
       <h2 class="title-lg">Ready to ship faster?</h2>
       <p class="text-lead mt-3">Connect your repo — first deploy in under two minutes.</p>
-      <a class="btn btn-primary btn-xl mt-5 hover-glow" href="#">Start free →</a>
+      <a class="btn btn-shine btn-xl mt-5" href="#">Start free →</a>
     </div>
   </section>
 
