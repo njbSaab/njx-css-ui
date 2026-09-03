@@ -2,27 +2,55 @@
 import Demo from '../shared/Demo.astro';
 
 const gradientCtaCode = `
+<!-- End-of-page CTA: gradient card, pulse label, primary + ghost action -->
 <section class="section">
   <div class="container card-gradient p-8">
-    <span class="tag">Ready to ship</span>
-    <h2 class="title-lg mt-3">Add njX UI and build the page.</h2>
-    <p>A strong end-of-page block for docs, products and launch pages.</p>
+    <span class="tag animate-pulse">● Free & open source</span>
+    <h2 class="title-lg mt-3">Start your landing tonight.</h2>
+    <p>One CDN link, nine themes, zero build steps. Copy a block from the docs and ship.</p>
     <div class="flex gap-3 mt-6">
-      <a class="btn btn-light btn-lg" href="#">Install now</a>
-      <a class="btn btn-outline-white btn-lg" href="#">Open docs</a>
+      <a class="btn btn-light btn-lg hover-lift" href="#">Get njX UI →</a>
+      <a class="btn btn-outline-white btn-lg" href="#">Browse examples</a>
     </div>
+    <p class="text-sm mt-4" style="opacity:.75">MIT license · no sign-up · 44 KB gzip</p>
+  </div>
+</section>
+`;
+
+const metricsCtaCode = `
+<!-- CTA with metrics: outline-gradient card + text-gradient numbers -->
+<section class="section">
+  <div class="container card-outline-gradient p-8 text-center">
+    <h2 class="title-lg">Why wait? The numbers are in.</h2>
+    <div class="grid-col-3 gap-6 mt-6">
+      <div>
+        <div class="text-3xl font-bold text-gradient-primary">44 KB</div>
+        <div class="text-sm text-muted">gzipped</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-gradient-primary">9</div>
+        <div class="text-sm text-muted">themes</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-gradient-primary">0</div>
+        <div class="text-sm text-muted">build steps</div>
+      </div>
+    </div>
+    <a class="btn btn-shine btn-xl mt-6" href="#">Start building →</a>
   </div>
 </section>
 `;
 
 const newsletterCtaCode = `
+<!-- Newsletter CTA: glass card + inline form -->
 <section class="section">
   <div class="container card-glass p-6">
-    <span class="tag tag-accent">Updates</span>
-    <h2 class="title-md mt-3">Get new components and examples.</h2>
+    <span class="tag tag-accent">✉ Updates</span>
+    <h2 class="title-md mt-3">New components, straight to your inbox.</h2>
+    <p class="text-muted">One email a month: new blocks, themes and examples. No spam, unsubscribe anytime.</p>
     <form class="flex gap-3 mt-5">
       <input class="input" type="email" placeholder="you@example.com">
-      <button class="btn btn-primary">Subscribe</button>
+      <button class="btn btn-primary hover-glow">Subscribe</button>
     </form>
   </div>
 </section>
@@ -38,32 +66,55 @@ const newsletterCtaCode = `
     <Demo is:raw label={'Gradient CTA'} previewClass="cta-block-preview" code={gradientCtaCode}>
             <section class="rcta rcta-gradient card-gradient">
                 <div>
-                    <span class="tag">Ready to ship</span>
-                    <h2 class="title-lg">Add njX UI and build the page.</h2>
+                    <span class="tag animate-pulse">● Free &amp; open source</span>
+                    <h2 class="title-lg">Start your landing tonight.</h2>
                     <p>
-                        A strong end-of-page block for docs, products and
-                        launch pages.
+                        One CDN link, nine themes, zero build steps. Copy a
+                        block from the docs and ship.
                     </p>
+                    <p class="rcta-note">MIT license · no sign-up · 44 KB gzip</p>
                 </div>
                 <div class="rcta-actions">
-                    <a class="btn btn-light btn-lg" href="#">Install now</a>
-                    <a class="btn btn-outline-white btn-lg" href="#">Open docs</a>
+                    <a class="btn btn-light btn-lg hover-lift" href="#">Get njX UI →</a>
+                    <a class="btn btn-outline-white btn-lg" href="#">Browse examples</a>
                 </div>
+            </section>
+        </Demo>
+
+    <Demo is:raw label={'CTA with Metrics'} previewClass="cta-block-preview" code={metricsCtaCode}>
+            <section class="rcta rcta-metrics card-outline-gradient">
+                <h2 class="title-lg">Why wait? The numbers are in.</h2>
+                <div class="rcta-stats">
+                    <div>
+                        <div class="rcta-num text-gradient-primary">44 KB</div>
+                        <div class="text-sm text-muted">gzipped</div>
+                    </div>
+                    <div>
+                        <div class="rcta-num text-gradient-primary">9</div>
+                        <div class="text-sm text-muted">themes</div>
+                    </div>
+                    <div>
+                        <div class="rcta-num text-gradient-primary">0</div>
+                        <div class="text-sm text-muted">build steps</div>
+                    </div>
+                </div>
+                <a class="btn btn-shine btn-xl" href="#">Start building →</a>
             </section>
         </Demo>
 
     <Demo is:raw label={'Newsletter CTA'} previewClass="cta-block-preview" code={newsletterCtaCode}>
             <section class="rcta rcta-news card-glass">
                 <div>
-                    <span class="tag tag-accent">Updates</span>
-                    <h2 class="title-md">Get new components and examples.</h2>
+                    <span class="tag tag-accent">✉ Updates</span>
+                    <h2 class="title-md">New components, straight to your inbox.</h2>
                     <p class="text-muted">
-                        A compact signup CTA for docs and blog pages.
+                        One email a month: new blocks, themes and examples.
+                        No spam, unsubscribe anytime.
                     </p>
                 </div>
                 <form class="rcta-form">
                     <input class="input" type="email" placeholder="you@example.com" />
-                    <button class="btn btn-primary">Subscribe</button>
+                    <button class="btn btn-primary hover-glow">Subscribe</button>
                 </form>
             </section>
         </Demo>
@@ -96,6 +147,32 @@ const newsletterCtaCode = `
     .rcta-gradient p {
         color: color-mix(in srgb, #fff 76%, transparent);
         line-height: 1.6;
+    }
+
+    .rcta-note {
+        font-size: 13px;
+        opacity: 0.75;
+    }
+
+    .rcta-metrics {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .rcta-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 32px;
+        margin: 22px 0 26px;
+    }
+
+    .rcta-num {
+        font-size: 34px;
+        font-weight: 900;
+        letter-spacing: -1px;
+        margin-bottom: 4px;
     }
 
     .rcta-actions,

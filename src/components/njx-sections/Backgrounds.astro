@@ -1,0 +1,106 @@
+---
+import Demo from '../shared/Demo.astro';
+
+const bgTintsCode = `
+<!-- Quiet solid washes with hairline borders — from _backgrounds.css -->
+<section class="section bg-tint">…</section>            <!-- neutral, dark-secondary 45% -->
+<section class="section bg-tint-primary">…</section>    <!-- primary 6% -->
+<section class="section bg-tint-accent">…</section>     <!-- accent 6% -->
+<section class="section bg-tint-success">…</section>    <!-- success 5% -->
+`;
+
+const bgFadesCode = `
+<!-- Vertical washes that dissolve into the page -->
+<section class="section bg-fade-down">…</section>  <!-- solid on top → transparent -->
+<section class="section bg-fade-up">…</section>    <!-- transparent → solid on bottom -->
+`;
+
+const bgGlowsCode = `
+<!-- Soft radial color pools (njX hero style, dimmed).
+     ::before covers the block, children stay above it. -->
+<section class="section bg-glow">…</section>          <!-- primary + accent corners -->
+<section class="section bg-glow-primary">…</section>  <!-- primary pool from the top -->
+<section class="section bg-glow-accent">…</section>   <!-- accent pool from the bottom -->
+
+<!-- Wrap several sections to run one glow through all of them -->
+<div class="bg-glow">
+  <section class="section">…</section>
+  <section class="section">…</section>
+</div>
+`;
+
+const bgPatternsCode = `
+<!-- Barely-there dot and line grids -->
+<section class="section bg-dots">…</section>        <!-- 22px dot grid -->
+<section class="section bg-grid-lines">…</section>  <!-- 40px line grid -->
+`;
+---
+
+<section class="lib-section" id="backgrounds">
+    <div class="lib-section-title">🌫 Background Blocks</div>
+    <div class="lib-section-desc">
+        From <code>_backgrounds.css</code>. Muted section backdrops built from
+        the palette: tints, fades, soft glows and subtle patterns. Apply to
+        <code>&lt;section&gt;</code> or any wrapper.
+    </div>
+
+    <Demo is:raw label={'Tints (bg-tint-*)'} previewClass="col" previewStyle="align-items:stretch;gap:12px" code={bgTintsCode}>
+            <div class="bg-tint bgd-strip">
+                <span class="text-sm">.bg-tint — neutral wash</span>
+            </div>
+            <div class="bg-tint-primary bgd-strip">
+                <span class="text-sm">.bg-tint-primary</span>
+            </div>
+            <div class="bg-tint-accent bgd-strip">
+                <span class="text-sm">.bg-tint-accent</span>
+            </div>
+            <div class="bg-tint-success bgd-strip">
+                <span class="text-sm">.bg-tint-success</span>
+            </div>
+        </Demo>
+
+    <Demo is:raw label={'Fades (bg-fade-*)'} previewClass="col" previewStyle="align-items:stretch;gap:12px" code={bgFadesCode}>
+            <div class="bg-fade-down bgd-strip bgd-tall">
+                <span class="text-sm">.bg-fade-down — dissolves downward</span>
+            </div>
+            <div class="bg-fade-up bgd-strip bgd-tall">
+                <span class="text-sm">.bg-fade-up — dissolves upward</span>
+            </div>
+        </Demo>
+
+    <Demo is:raw label={'Soft Glows (bg-glow-*)'} previewClass="col" previewStyle="align-items:stretch;gap:12px" code={bgGlowsCode}>
+            <div class="bg-glow bgd-strip bgd-tall">
+                <span class="text-sm">.bg-glow — primary + accent corners</span>
+            </div>
+            <div class="bg-glow-primary bgd-strip bgd-tall">
+                <span class="text-sm">.bg-glow-primary — pool from the top</span>
+            </div>
+            <div class="bg-glow-accent bgd-strip bgd-tall">
+                <span class="text-sm">.bg-glow-accent — pool from the bottom</span>
+            </div>
+        </Demo>
+
+    <Demo is:raw label={'Patterns (bg-dots · bg-grid-lines)'} previewClass="col" previewStyle="align-items:stretch;gap:12px" code={bgPatternsCode}>
+            <div class="bg-dots bgd-strip bgd-tall">
+                <span class="text-sm">.bg-dots — 22px dot grid</span>
+            </div>
+            <div class="bg-grid-lines bgd-strip bgd-tall">
+                <span class="text-sm">.bg-grid-lines — 40px line grid</span>
+            </div>
+        </Demo>
+</section>
+
+<style is:global>
+    .bgd-strip {
+        width: 100%;
+        border-radius: 10px;
+        padding: 22px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bgd-tall {
+        min-height: 110px;
+    }
+</style>

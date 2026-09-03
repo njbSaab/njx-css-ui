@@ -148,8 +148,17 @@ const socialListOutlinedCode = `
 <ul class="social-list social-list-outlined">...</ul>
 `;
 const sectionBannerFullHeightHeroCode = `
-<section class="section-banner" style="background-image: url(...)">
-  <div class="container">...</div>
+<!-- .section-banner: full-screen hero (min-height: 100dvh, bg cover) -->
+<section class="section-banner" style="background-image: url(hero.jpg)">
+  <div class="container text-center">
+    <span class="tag tag-primary">v2.0 is live</span>
+    <h1 class="title-hero fluid mt-4">Launch your product<br>with one CDN link</h1>
+    <p class="text-lead text-muted mt-4">A full-height opening screen: background image or gradient, headline, actions.</p>
+    <div class="flex justify-center gap-3 mt-6">
+      <a class="btn btn-gradient btn-lg hover-lift" href="#">Get started →</a>
+      <a class="btn btn-outline btn-lg" href="#">See examples</a>
+    </div>
+  </div>
 </section>
 `;
 
@@ -240,13 +249,19 @@ const wrapperAgentClassesCode = `
             </div>
         </Demo>
 
-    <Demo is:raw label={'Section Banner (full-height hero)'} previewClass="col" previewStyle="align-items:center;justify-content:center;min-height:200px;background:linear-gradient(135deg, #1a1a2e, #16213e)" code={sectionBannerFullHeightHeroCode}>
-            <div style="text-align:center">
-                <div class="title-lg" style="color:#fff;margin-bottom:12px">
-                    .section-banner
+    <Demo is:raw label={'Section Banner (full-height hero)'} previewClass="col" previewStyle="align-items:center;justify-content:center;min-height:280px;background:radial-gradient(ellipse 70% 60% at 30% 20%, color-mix(in srgb, var(--color-primary) 26%, transparent), transparent), radial-gradient(ellipse 50% 50% at 80% 80%, color-mix(in srgb, var(--color-accent) 14%, transparent), transparent), var(--сolor-dark)" code={sectionBannerFullHeightHeroCode}>
+            <div style="text-align:center;padding:24px">
+                <span class="tag tag-primary">v2.0 is live</span>
+                <div class="title-lg" style="margin:14px 0 10px">
+                    Launch your product<br />with one CDN link
                 </div>
-                <div class="text-sm text-muted">
-                    Full screen hero section (min-height: 100dvh)
+                <div class="text-sm text-muted" style="max-width:420px;margin:0 auto 18px">
+                    .section-banner — full-height opening screen
+                    (min-height: 100dvh, background cover)
+                </div>
+                <div class="flex justify-center gap-3 flex-wrap">
+                    <a class="btn btn-gradient btn-sm hover-lift" href="#">Get started →</a>
+                    <a class="btn btn-outline btn-sm" href="#">See examples</a>
                 </div>
             </div>
         </Demo>

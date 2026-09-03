@@ -1,0 +1,114 @@
+/* ============================================================
+   _backgrounds.css — Background blocks
+   Muted section backdrops built from the palette variables:
+   tints, soft glows, fades and subtle patterns.
+   Apply to <section> or any wrapper block.
+   ============================================================ */
+
+/* ── Tints — quiet solid washes with hairline borders ── */
+.bg-tint {
+  background: color-mix(in srgb, var(--color-dark-secondary, #1a1a2e) 45%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--color-neutral-600, #444) 22%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600, #444) 22%, transparent);
+}
+
+.bg-tint-primary {
+  background: color-mix(in srgb, var(--color-primary) 6%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--color-primary) 14%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 14%, transparent);
+}
+
+.bg-tint-accent {
+  background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--color-accent) 14%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 14%, transparent);
+}
+
+.bg-tint-success {
+  background: color-mix(in srgb, var(--color-success) 5%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--color-success) 12%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-success) 12%, transparent);
+}
+
+/* ── Fades — vertical washes that dissolve into the page ── */
+.bg-fade-down {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-dark-secondary, #1a1a2e) 65%, transparent),
+    transparent
+  );
+}
+
+.bg-fade-up {
+  background: linear-gradient(
+    0deg,
+    color-mix(in srgb, var(--color-dark-secondary, #1a1a2e) 65%, transparent),
+    transparent
+  );
+}
+
+/* ── Glows — soft radial color pools (njX hero style, dimmed) ──
+   ::before covers the block; children are lifted above it. */
+.bg-glow,
+.bg-glow-primary,
+.bg-glow-accent {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-glow > *,
+.bg-glow-primary > *,
+.bg-glow-accent > * {
+  position: relative;
+  z-index: 1;
+}
+
+.bg-glow::before,
+.bg-glow-primary::before,
+.bg-glow-accent::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bg-glow::before {
+  background:
+    radial-gradient(ellipse 45% 50% at 88% 12%,
+      color-mix(in srgb, var(--color-accent) 10%, transparent), transparent),
+    radial-gradient(ellipse 40% 45% at 8% 88%,
+      color-mix(in srgb, var(--color-primary) 12%, transparent), transparent);
+}
+
+.bg-glow-primary::before {
+  background: radial-gradient(ellipse 60% 55% at 50% 0%,
+    color-mix(in srgb, var(--color-primary) 14%, transparent), transparent);
+}
+
+.bg-glow-accent::before {
+  background: radial-gradient(ellipse 60% 55% at 50% 100%,
+    color-mix(in srgb, var(--color-accent) 12%, transparent), transparent);
+}
+
+/* ── Patterns — barely-there dot and line grids ── */
+.bg-dots {
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--color-neutral-600, #444) 35%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+}
+
+.bg-grid-lines {
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, var(--color-neutral-600, #444) 16%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-neutral-600, #444) 16%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 40px 40px;
+}
