@@ -48,7 +48,7 @@ No install. Just add to your HTML:
   <script src="https://cdn.jsdelivr.net/npm/njx-ui@1/js/njx.js"></script>
 
   <!-- Or pinned to an exact version — never changes -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1.1.5/css/style.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1.1.6/css/style.min.css">
 </head>
 <body>
   <button class="btn btn-primary">Primary</button>
@@ -71,7 +71,7 @@ Works immediately after `git push`, without publishing to npm:
 <script src="https://cdn.jsdelivr.net/gh/njbSaab/njx-ui@main/js/njx.js"></script>
 
 <!-- Pinned to a specific tag -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-ui@v1.1.5/css/style.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbSaab/njx-ui@v1.1.6/css/style.min.css">
 ```
 
 ---

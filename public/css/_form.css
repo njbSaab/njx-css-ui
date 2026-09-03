@@ -103,7 +103,7 @@
   border: 1.5px solid var(--form-border);
   border-radius: var(--form-radius);
   background: var(--form-bg-input);
-  padding: 1.2rem 1rem 0.5rem;
+  padding: 1rem 0.5rem;
   font-size: var(--fs-sm);
   font-family: inherit;
   color: var(--form-text);
@@ -113,6 +113,15 @@
 }
 
 .input::placeholder {
+  color: var(--form-placeholder);
+}
+
+/* Inside .input-group the float label needs headroom, placeholder stays hidden */
+.input-group .input {
+  padding: 1.2rem 1rem 0.5rem;
+}
+
+.input-group .input::placeholder {
   color: transparent;
 }
 
