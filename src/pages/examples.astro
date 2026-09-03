@@ -41,9 +41,11 @@ const EXAMPLES = [
 >
   <PagesTopbar activePage="examples" />
 
-  <section class="sc-section">
+  <section class="sc-section ex-hero">
     <span class="sc-eyebrow">Ready-made landings</span>
-    <h1 class="sc-heading">Copy the file.<br />Replace the words. Ship.</h1>
+    <h1 class="sc-heading">
+      Copy the file.<br /><span class="ex-grad">Replace the words. Ship.</span>
+    </h1>
     <p class="sc-subheading">
       Each example is one self-contained <code>index.html</code>: njX UI from
       CDN for the look, Alpine.js for the interactivity. No build step, no
@@ -100,6 +102,43 @@ const EXAMPLES = [
 </BaseLayout>
 
 <style is:global>
+  /* фирменный градиент-баннер hero — как на quickstart (.qs-hero::before) */
+  .ex-hero {
+    position: relative;
+    overflow: hidden;
+  }
+  .ex-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        ellipse 70% 60% at 30% 20%,
+        color-mix(in srgb, var(--color-primary) 22%, transparent),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 50% 50% at 80% 80%,
+        color-mix(in srgb, var(--color-accent) 12%, transparent),
+        transparent
+      );
+    pointer-events: none;
+  }
+  .ex-hero > * {
+    position: relative;
+    z-index: 2;
+  }
+  .ex-grad {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   .ex-grid {
     display: grid;
     gap: 32px;
