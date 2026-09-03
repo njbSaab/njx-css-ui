@@ -144,7 +144,7 @@
   </section>
 
   <!-- ── FEATURES — showcase cards: card-aura / card-shine / card-outline-gradient ── -->
-  <section class="section sec-tint" id="features">
+  <section class="section" id="features">
     <div class="container">
       <div class="sec-head">
         <span class="tag tag-primary">Features</span>
@@ -214,59 +214,62 @@
     </div>
   </section>
 
-  <!-- ── REVIEWS — library .testi-slider (stars, avatar, counter, swipe) ── -->
+  <!-- ── REVIEWS — library .hero-slider: autoplay · progress bar · prev/next · dots (Alpine) ── -->
   <section class="section sec-tint" id="reviews">
-    <div class="container" style="max-width:680px" x-data="{ i: 0, n: 3, sx: 0 }">
+    <div class="container" style="max-width:760px">
       <div class="sec-head text-center">
         <span class="tag tag-primary">Reviews</span>
         <h2 class="title-lg">Developers about njX</h2>
       </div>
-      <div class="testi-slider"
+      <div class="hero-slider"
+           x-data="{ i: 0, n: 3, iv: 4500, timer: null, sx: 0,
+                     go(idx) { this.i = (idx + this.n) % this.n; this.prog(); },
+                     prog() { const p = this.$refs.progress;
+                              p.style.transition = 'none'; p.style.width = '0%';
+                              requestAnimationFrame(() => requestAnimationFrame(() => {
+                                p.style.transition = 'width ' + this.iv + 'ms linear';
+                                p.style.width = '100%'; })); },
+                     reset() { clearInterval(this.timer);
+                               this.timer = setInterval(() => this.go(this.i + 1), this.iv); } }"
+           x-init="prog(); timer = setInterval(() => go(i + 1), iv)"
+           @mouseenter="clearInterval(timer)" @mouseleave="reset()"
            @touchstart.passive="sx = $event.touches[0].clientX"
            @touchend="const dx = $event.changedTouches[0].clientX - sx;
-                      if (Math.abs(dx) > 40) i = (i + (dx < 0 ? 1 : -1) + n) % n">
-        <div class="testi-track" :style="'transform:translateX(-' + (i * 100) + '%)'">
-          <div class="testi-slide">
-            <div class="testi-stars">★★★★★</div>
-            <div class="testi-quote">Pasted the CDN link at 9am, the landing was live before lunch. That's the whole review.</div>
-            <div class="testi-user">
-              <div class="testi-avatar" style="background:color-mix(in srgb,var(--color-primary) 16%,transparent);color:var(--color-primary)">D</div>
-              <div>
-                <div class="testi-name">Dario</div>
-                <div class="testi-role">Indie hacker · Milan</div>
-              </div>
+                      if (Math.abs(dx) > 40) { go(i + (dx < 0 ? 1 : -1)); reset(); }">
+        <div class="hero-slider-track" :style="'transform:translateX(-' + (i * 100) + '%)'">
+          <div class="hero-slider-slide" style="background:linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 40%, #0c1524), color-mix(in srgb, var(--color-primary) 12%, #0c1524))">
+            <div class="hero-slider-body">
+              <div class="hero-slider-label">★★★★★ · Indie hacker · Milan</div>
+              <div class="hero-slider-title">“Pasted the CDN link at 9am, the landing was live before lunch.”</div>
+              <div class="hero-slider-desc">— Dario, shipped three client landings on njX this quarter.</div>
             </div>
           </div>
-          <div class="testi-slide">
-            <div class="testi-stars">★★★★★</div>
-            <div class="testi-quote">Finally gradients and glow cards that don't require a design system meeting.</div>
-            <div class="testi-user">
-              <div class="testi-avatar" style="background:color-mix(in srgb,var(--color-accent) 16%,transparent);color:var(--color-accent)">S</div>
-              <div>
-                <div class="testi-name">Sasha</div>
-                <div class="testi-role">Frontend dev · Warsaw</div>
-              </div>
+          <div class="hero-slider-slide" style="background:linear-gradient(135deg, color-mix(in srgb, var(--color-accent) 38%, #140f0a), color-mix(in srgb, var(--color-accent) 10%, #140f0a))">
+            <div class="hero-slider-body">
+              <div class="hero-slider-label">★★★★★ · Frontend dev · Warsaw</div>
+              <div class="hero-slider-title">“Finally gradients and glow cards that don't require a design system meeting.”</div>
+              <div class="hero-slider-desc">— Sasha, moved the team's marketing pages off a heavy framework.</div>
             </div>
           </div>
-          <div class="testi-slide">
-            <div class="testi-stars">★★★★★</div>
-            <div class="testi-quote">The Alpine recipes in the docs saved me from writing a single line of custom JS.</div>
-            <div class="testi-user">
-              <div class="testi-avatar" style="background:color-mix(in srgb,var(--color-success) 16%,transparent);color:var(--color-success)">K</div>
-              <div>
-                <div class="testi-name">Kenji</div>
-                <div class="testi-role">Freelancer · Osaka</div>
-              </div>
+          <div class="hero-slider-slide" style="background:linear-gradient(135deg, color-mix(in srgb, var(--color-success) 32%, #0a1410), color-mix(in srgb, var(--color-success) 8%, #0a1410))">
+            <div class="hero-slider-body">
+              <div class="hero-slider-label">★★★★★ · Freelancer · Osaka</div>
+              <div class="hero-slider-title">“The Alpine recipes in the docs saved me from writing custom JS at all.”</div>
+              <div class="hero-slider-desc">— Kenji, builds one-pagers for local businesses.</div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="testi-controls">
-        <div class="testi-nav">
-          <button class="testi-btn" aria-label="Previous" @click="i = (i - 1 + n) % n">‹</button>
-          <button class="testi-btn" aria-label="Next" @click="i = (i + 1) % n">›</button>
+        <div class="hero-slider-nav">
+          <button class="hero-slider-btn" aria-label="Previous" @click="go(i - 1); reset()">‹</button>
+          <button class="hero-slider-btn" aria-label="Next" @click="go(i + 1); reset()">›</button>
         </div>
-        <div class="testi-counter" x-text="(i + 1) + ' / ' + n">1 / 3</div>
+        <div class="hero-slider-dots">
+          <template x-for="d in n" :key="d">
+            <button class="hero-slider-dot" :class="{ 'is-active': i === d - 1 }"
+                    :aria-label="'Slide ' + d" @click="go(d - 1); reset()"></button>
+          </template>
+        </div>
+        <div class="hero-slider-progress" x-ref="progress"></div>
       </div>
     </div>
   </section>
