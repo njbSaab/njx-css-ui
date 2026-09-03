@@ -1,9 +1,13 @@
 /* ═══════════════════════════════════════════════════════════════
-   Your project styles.
-   njX UI does the heavy lifting from the CDN — this file is for the
-   few things that are yours: the hero glow, the theme dots, the
-   mobile menu, and whatever you add next.
+   Starter styles.
+   njX UI does the heavy lifting from the CDN — this file holds the
+   site chrome (navbar like njxui.dev, full-screen hero, form layout)
+   and whatever you add next.
    ═══════════════════════════════════════════════════════════════ */
+
+[x-cloak] {
+  display: none !important;
+}
 
 /* ── njX signature hero gradient — full-width banner ── */
 .hero-glow {
@@ -26,7 +30,130 @@
   z-index: 2;
 }
 
-/* ── Theme switcher dots in the topbar ── */
+/* ── HERO: full viewport, tidy vertical rhythm ── */
+.hero-full {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px 40px;
+}
+.hero-title {
+  margin: 20px 0 16px;
+}
+.hero-full .text-lead {
+  max-width: 640px;
+  margin: 0 auto 28px;
+}
+.hero-full .flex {
+  margin-top: 28px;
+}
+
+/* CDN tag pill — click to copy */
+.cdn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  padding: 10px 18px;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  color: var(--color-light);
+  font-family: 'Roboto Mono', ui-monospace, monospace;
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.cdn-pill:hover {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+  transform: translateY(-2px);
+}
+.cdn-pill b {
+  color: var(--color-primary);
+}
+.cdn-pill-lt {
+  color: var(--color-muted);
+}
+.cdn-pill-copy {
+  opacity: 0.6;
+}
+
+/* ── HEADER — chrome like njxui.dev ── */
+.snav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 24px;
+  background: color-mix(in srgb, var(--сolor-dark) 85%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+}
+.snav-logo {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.snav-ver {
+  font-size: 11px;
+  font-family: 'Roboto Mono', ui-monospace, monospace;
+  color: var(--color-muted);
+  opacity: 0.5;
+}
+.snav-links {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.snav-links a {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+}
+.snav-links a:hover {
+  color: var(--color-light);
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+.snav-spacer {
+  flex: 1;
+}
+.snav-github {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--color-primary);
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--color-primary) 40%, transparent);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.snav-github:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--color-primary) 50%, transparent);
+}
+
+/* ── Theme switcher dots ── */
 .starter-themes {
   display: flex;
   align-items: center;
@@ -50,17 +177,107 @@
   box-shadow: 0 0 0 2px var(--color-dark-secondary), 0 0 0 4px currentColor;
 }
 
+/* ── Sections: one place for heading rhythm (no mt/mb soup in markup) ── */
+.sec-head {
+  margin-bottom: 36px;
+  text-align: center;
+}
+.sec-head .title-lg {
+  margin: 14px 0 12px;
+}
+.sec-sub {
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+#features h3,
+#showcase h2 {
+  margin: 12px 0 8px;
+}
+#features p {
+  margin: 0;
+}
+#showcase p {
+  margin: 0 0 18px;
+}
+#showcase .tag {
+  margin-bottom: 4px;
+}
+
+/* metrics under About */
+.metric-num {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  margin-bottom: 6px;
+}
+
+/* check-list in Showcase */
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+}
+.check-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: var(--color-muted);
+}
+
+/* showcase mini-cards */
+.showcase-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.25s;
+}
+.showcase-card:hover {
+  transform: translateY(-4px);
+}
+.showcase-card h3 {
+  margin: 10px 0 4px;
+}
+.showcase-card p {
+  margin: 0;
+}
+
+/* ── Contact form ── */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.contact-form textarea.input {
+  resize: vertical;
+  min-height: 110px;
+}
+/* float label anchors to the top edge for multiline fields */
+.contact-form textarea.input ~ .user-label {
+  top: 22px;
+}
+
+/* success toast — fixed bottom center */
+.starter-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 9500;
+  pointer-events: none;
+}
+
 /* ── Mobile: burger + dropdown menu ── */
 .starter-burger {
   display: none;
 }
-[x-cloak] {
-  display: none !important;
-}
 .starter-menu {
   position: sticky;
-  top: 64px;
-  z-index: 90;
+  top: 60px;
+  z-index: 190;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -68,19 +285,21 @@
   background: var(--color-dark-secondary);
   border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-600) 25%, transparent);
 }
-@media (max-width: 768px) {
-  .starter-links {
+@media (max-width: 900px) {
+  .snav-links {
     display: none;
   }
   .starter-burger {
     display: inline-flex;
   }
-  /* topbar dots move into the burger menu on mobile */
-  .nav .starter-themes {
+  .snav .starter-themes {
     display: none;
   }
+  .snav-github {
+    padding: 8px 12px;
+  }
 }
-@media (min-width: 769px) {
+@media (min-width: 901px) {
   .starter-menu {
     display: none !important;
   }
