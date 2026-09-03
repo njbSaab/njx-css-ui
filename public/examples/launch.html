@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- ═══════════════════════════════════════════════════════════════
+     njX UI example — Product launch landing (single file, copy & ship)
+     CSS:   njX UI via CDN (no build step)
+     JS:    Alpine.js — testimonial carousel, waitlist form, video modal
+     Docs:  https://njxui.dev · npm: njx-ui
+     ═══════════════════════════════════════════════════════════════ -->
+<html lang="en" data-theme="cyan">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Orbit — Your calendar, on autopilot</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/style.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+  <script>
+    const t = localStorage.getItem('theme');
+    if (t) document.documentElement.dataset.theme = t;
+  </script>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav nav-solid">
+    <div class="nav-left"><a class="nav-brand" href="#">🛰 Orbit</a></div>
+    <div class="nav-right flex items-center gap-2">
+      <button class="btn btn-ghost btn-sm"
+              x-data="{ t: document.documentElement.dataset.theme || 'cyan' }"
+              @click="t = t === 'cyan' ? 'dark' : 'cyan';
+                      document.documentElement.dataset.theme = t;
+                      localStorage.setItem('theme', t)"
+              x-text="t === 'cyan' ? '🌙' : '💠'"></button>
+      <a class="btn btn-primary btn-sm" href="#waitlist">Join waitlist</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO + VIDEO MODAL (Alpine: same .open class as njx.js) ── -->
+  <section class="section" x-data="{ open: false }" @keydown.escape.window="open = false">
+    <div class="container text-center" style="max-width:820px">
+      <span class="tag tag-primary animate-fade-in-up">Launching this fall</span>
+      <h1 class="title-hero fluid mt-4">
+        Your calendar,<br /><span class="text-gradient-primary">on autopilot</span>
+      </h1>
+      <p class="text-lead text-muted mt-4">
+        Orbit schedules meetings, guards your focus time and reschedules
+        conflicts automatically. You just show up.
+      </p>
+      <div class="flex justify-center gap-3 mt-6 flex-wrap">
+        <a class="btn btn-gradient btn-xl hover-lift" href="#waitlist">Join the waitlist →</a>
+        <button class="btn btn-outline btn-xl" @click="open = true">▶ Watch demo</button>
+      </div>
+      <p class="text-sm text-muted mt-4">2,431 people already in line</p>
+    </div>
+
+    <!-- modal -->
+    <div class="lib-modal-overlay" :class="{ open }" @click.self="open = false">
+      <div class="lib-modal-box is-primary">
+        <button class="lib-modal-close" @click="open = false">✕</button>
+        <div class="lib-modal-icon-wrap">🎬</div>
+        <div class="lib-modal-title">Product demo</div>
+        <div class="lib-modal-text">Drop your 90-second demo video embed right here.</div>
+        <div class="lib-modal-actions">
+          <button class="btn btn-primary btn-sm" @click="open = false">Close</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="section">
+    <div class="container grid-col-3 gap-6">
+      <div class="card hover-lift p-6">
+        <span class="tag tag-accent">01</span>
+        <h3 class="mt-3">Connect calendars</h3>
+        <p class="text-muted mt-2">Google, Outlook, iCloud — Orbit merges them into one truth.</p>
+      </div>
+      <div class="card hover-lift p-6">
+        <span class="tag tag-accent">02</span>
+        <h3 class="mt-3">Set your rules</h3>
+        <p class="text-muted mt-2">“Focus till noon”, “no Fridays” — plain-language preferences.</p>
+      </div>
+      <div class="card hover-lift p-6">
+        <span class="tag tag-accent">03</span>
+        <h3 class="mt-3">Let it fly</h3>
+        <p class="text-muted mt-2">Orbit negotiates times and reshuffles conflicts silently.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS (Alpine carousel — state in the markup) ── -->
+  <section class="section">
+    <div class="container text-center" style="max-width:680px"
+         x-data="{ i: 0, n: 3, quotes: [
+           ['Orbit gave me back four hours a week. Four.', 'Maya, design lead'],
+           ['The first scheduling tool my whole team actually kept.', 'Tomas, CTO'],
+           ['Set it up Monday, forgot about calendars by Friday.', 'Priya, founder'],
+         ] }">
+      <h2 class="title-lg mb-5">Loved by early birds</h2>
+      <div class="card-glass p-6">
+        <blockquote class="text-lead" x-text="'“' + quotes[i][0] + '”'"></blockquote>
+        <p class="text-sm text-muted mt-3" x-text="'— ' + quotes[i][1]"></p>
+      </div>
+      <div class="flex justify-center items-center gap-3 mt-4">
+        <button class="btn btn-ghost btn-sm" @click="i = (i - 1 + n) % n">‹</button>
+        <template x-for="d in n" :key="d">
+          <button class="js-dot" :class="{ 'is-active': i === d - 1 }" @click="i = d - 1"></button>
+        </template>
+        <button class="btn btn-ghost btn-sm" @click="i = (i + 1) % n">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WAITLIST (Alpine: optimistic submit) ── -->
+  <section class="section" id="waitlist">
+    <div class="container text-center card-gradient p-8" style="max-width:680px"
+         x-data="{ email: '', sent: false }">
+      <h2 class="title-lg">Get early access</h2>
+      <p class="text-lead mt-3">First 500 sign-ups get a lifetime discount.</p>
+      <form class="flex justify-center gap-3 mt-5 flex-wrap"
+            x-show="!sent" @submit.prevent="if (email.includes('@')) sent = true">
+        <input class="input" type="email" placeholder="you@work.com"
+               x-model="email" style="min-width:260px" />
+        <button class="btn btn-primary hover-glow" type="submit">Join waitlist</button>
+      </form>
+      <p class="tag tag-success mt-5" x-show="sent" x-cloak>
+        ✓ You're in! Check your inbox for a confirmation.
+      </p>
+    </div>
+  </section>
+
+  <footer class="section text-center text-muted text-sm">
+    <div class="container">
+      🛰 Orbit · Built with <a class="link" href="https://njxui.dev">njX UI</a> + Alpine.js — zero build step.
+    </div>
+  </footer>
+
+</body>
+</html>

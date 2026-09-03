@@ -1,6 +1,6 @@
 ---
 interface Props {
-    activePage?: 'overview' | 'njxUIComponents' | 'documentation' | 'quickstart' | 'donate' | 'contact';
+    activePage?: 'overview' | 'njxUIComponents' | 'documentation' | 'quickstart' | 'examples' | 'donate' | 'contact';
 }
 const { activePage } = Astro.props;
 const base = import.meta.env.BASE_URL;
@@ -19,6 +19,7 @@ const base = import.meta.env.BASE_URL;
         <a href="https://classless.njxui.dev">Classless</a>
         <a href={`${base}documentation`} class={activePage === 'documentation' ? 'active' : ''}>Documentation</a>
         <a href={`${base}quickstart`} class={activePage === 'quickstart' ? 'active' : ''}>Quick Start</a>
+        <a href={`${base}examples`} class={activePage === 'examples' ? 'active' : ''}>Examples</a>
         <a href={`${base}overview`} class={activePage === 'overview' ? 'active' : ''}>Overview</a>
         <a href={`${base}donate`} class={activePage === 'donate' ? 'active' : ''}>Donate</a>
         <a href={`${base}contact`} class={activePage === 'contact' ? 'active' : ''}>Contact</a>

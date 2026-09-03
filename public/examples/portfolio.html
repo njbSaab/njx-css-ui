@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!-- ═══════════════════════════════════════════════════════════════
+     njX UI example — Portfolio landing (single file, copy & ship)
+     CSS:   njX UI via CDN (no build step)
+     JS:    Alpine.js for project filter tabs + theme switch
+     Docs:  https://njxui.dev · npm: njx-ui
+     ═══════════════════════════════════════════════════════════════ -->
+<html lang="en" data-theme="purple">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alex Voss — Product Engineer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/style.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+  <script>
+    const t = localStorage.getItem('theme');
+    if (t) document.documentElement.dataset.theme = t;
+  </script>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav nav-solid">
+    <div class="nav-left"><a class="nav-brand" href="#">AV</a></div>
+    <div class="nav-center">
+      <a href="#work" class="nav-link">Work</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+    <div class="nav-right flex items-center gap-2">
+      <!-- Alpine: cycle through a few themes -->
+      <button class="btn btn-ghost btn-sm"
+              x-data="{ themes: ['purple','dark','cyan','pink'], i: 0 }"
+              @click="i = (i + 1) % themes.length;
+                      document.documentElement.dataset.theme = themes[i];
+                      localStorage.setItem('theme', themes[i])">
+        🎨 theme
+      </button>
+      <a class="btn btn-primary btn-sm" href="#contact">Hire me</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="section">
+    <div class="container grid-col-2 gap-8 items-center">
+      <div>
+        <span class="tag tag-primary">Available for freelance</span>
+        <h1 class="title-hero fluid mt-4">
+          Hi, I'm <span class="text-gradient-primary">Alex</span>.<br />
+          I build products people use.
+        </h1>
+        <p class="text-lead text-muted mt-4">
+          Product engineer with 8 years across fintech and dev-tools.
+          Design-minded, performance-obsessed, ships on Fridays.
+        </p>
+        <div class="flex gap-3 mt-6 flex-wrap">
+          <a class="btn btn-gradient btn-lg hover-lift" href="#work">See my work →</a>
+          <a class="btn btn-outline btn-lg" href="#contact">Get in touch</a>
+        </div>
+        <div class="flex gap-2 mt-5 flex-wrap">
+          <span class="tag">TypeScript</span><span class="tag">Astro</span>
+          <span class="tag">Alpine.js</span><span class="tag">Node</span>
+          <span class="tag">Postgres</span><span class="tag">CSS</span>
+        </div>
+      </div>
+      <div class="card-glass p-6 text-center animate-fade-in-up">
+        <div class="text-6xl">👨‍💻</div>
+        <div class="grid-col-3 gap-4 mt-5">
+          <div><div class="text-2xl font-bold">8y</div><div class="text-sm text-muted">experience</div></div>
+          <div><div class="text-2xl font-bold">40+</div><div class="text-sm text-muted">projects</div></div>
+          <div><div class="text-2xl font-bold">12</div><div class="text-sm text-muted">clients</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WORK (Alpine: filter tabs, same .is-active classes as njx.js) ── -->
+  <section class="section" id="work" x-data="{ tab: 'all' }">
+    <div class="container">
+      <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
+        <h2 class="title-lg">Selected work</h2>
+        <div class="tab-nav tab-nav-pills">
+          <button class="tab-btn" :class="{ 'is-active': tab === 'all' }" @click="tab = 'all'">All</button>
+          <button class="tab-btn" :class="{ 'is-active': tab === 'web' }" @click="tab = 'web'">Web apps</button>
+          <button class="tab-btn" :class="{ 'is-active': tab === 'oss' }" @click="tab = 'oss'">Open source</button>
+        </div>
+      </div>
+      <div class="grid-col-3 gap-6">
+        <a class="card hover-lift p-6" href="#" x-show="tab === 'all' || tab === 'web'">
+          <div class="text-3xl">💳</div>
+          <h3 class="mt-3">Ledgerly</h3>
+          <p class="text-muted mt-2">Bookkeeping SaaS — from prototype to 20k users in a year.</p>
+          <span class="tag tag-accent mt-3">Web app</span>
+        </a>
+        <a class="card hover-lift p-6" href="#" x-show="tab === 'all' || tab === 'oss'">
+          <div class="text-3xl">🧰</div>
+          <h3 class="mt-3">hookform-kit</h3>
+          <p class="text-muted mt-2">Form helpers with 2k GitHub stars. Maintained since 2022.</p>
+          <span class="tag tag-success mt-3">Open source</span>
+        </a>
+        <a class="card hover-lift p-6" href="#" x-show="tab === 'all' || tab === 'web'">
+          <div class="text-3xl">📦</div>
+          <h3 class="mt-3">Shipmate</h3>
+          <p class="text-muted mt-2">Logistics dashboard — real-time tracking for 3PL warehouses.</p>
+          <span class="tag tag-accent mt-3">Web app</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section class="section" id="about">
+    <div class="container grid-col-2 gap-8 items-center">
+      <div class="card-glass p-6">
+        <blockquote>
+          “Alex took our messy prototype and turned it into a product our
+          customers actually love. Rare mix of speed and taste.”
+        </blockquote>
+        <p class="text-sm text-muted mt-3">— Dana K., CTO at Ledgerly</p>
+      </div>
+      <div>
+        <h2 class="title-lg">A little about me</h2>
+        <p class="text-muted mt-3">
+          I care about the boring things that make products feel great:
+          load time, empty states, keyboard flows. Outside work — cycling
+          and film photography.
+        </p>
+        <div class="flex gap-3 mt-5">
+          <a class="btn btn-ghost btn-sm" href="#">GitHub</a>
+          <a class="btn btn-ghost btn-sm" href="#">LinkedIn</a>
+          <a class="btn btn-ghost btn-sm" href="#">X</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section class="section" id="contact">
+    <div class="container text-center card-gradient p-8">
+      <h2 class="title-lg">Have a project in mind?</h2>
+      <p class="text-lead mt-3">Booking new work for next month. Tell me what you're building.</p>
+      <a class="btn btn-primary btn-xl mt-5 hover-glow" href="mailto:hi@example.com">hi@example.com</a>
+    </div>
+  </section>
+
+  <footer class="section text-center text-muted text-sm">
+    <div class="container">
+      Built with <a class="link" href="https://njxui.dev">njX UI</a> + Alpine.js — one CDN link each, zero build.
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!-- ═══════════════════════════════════════════════════════════════
+     njX UI example — SaaS landing (single file, copy & ship)
+     CSS:   njX UI via CDN (no build step)
+     JS:    Alpine.js for pricing toggle, theme switch, mobile menu
+     Docs:  https://njxui.dev · npm: njx-ui
+     ═══════════════════════════════════════════════════════════════ -->
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nimbus — Ship your product faster</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/njx-ui@1/css/style.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+  <script>
+    // restore saved theme before first paint (no flash)
+    const t = localStorage.getItem('theme');
+    if (t) document.documentElement.dataset.theme = t;
+  </script>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav nav-solid">
+    <div class="nav-left">
+      <a class="nav-brand" href="#">☁️ Nimbus</a>
+    </div>
+    <div class="nav-center">
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+    </div>
+    <div class="nav-right flex items-center gap-2">
+      <!-- Alpine theme toggle: data-theme + localStorage, one button -->
+      <button class="btn btn-ghost btn-sm"
+              x-data="{ t: document.documentElement.dataset.theme || 'dark' }"
+              @click="t = t === 'dark' ? 'light' : 'dark';
+                      document.documentElement.dataset.theme = t;
+                      localStorage.setItem('theme', t)"
+              x-text="t === 'dark' ? '☀️' : '🌙'"></button>
+      <a class="btn btn-primary btn-sm" href="#pricing">Get started</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="section">
+    <div class="container grid-col-2 gap-8 items-center">
+      <div>
+        <span class="tag tag-primary">Public beta · v2.0</span>
+        <h1 class="title-hero fluid mt-4">
+          Ship your product <span class="text-gradient-primary">weeks earlier</span>
+        </h1>
+        <p class="text-lead text-muted mt-4">
+          Nimbus handles deploys, previews and rollbacks so your team ships
+          features — not infrastructure. Connect a repo and go live in minutes.
+        </p>
+        <div class="flex gap-3 mt-6 flex-wrap">
+          <a class="btn btn-gradient btn-lg hover-lift" href="#pricing">Start free →</a>
+          <a class="btn btn-outline btn-lg" href="#features">See how it works</a>
+        </div>
+        <p class="text-sm text-muted mt-4">No credit card · Free tier forever</p>
+      </div>
+      <div class="card-glass p-6 animate-fade-in-up">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="tag tag-success">deploy · live</span>
+          <span class="text-sm text-muted">main → production</span>
+        </div>
+        <div class="progress"><div class="progress-bar" style="width:82%"></div></div>
+        <div class="grid-col-2 gap-4 mt-5">
+          <div class="card p-4">
+            <div class="text-2xl font-bold">1.9s</div>
+            <div class="text-sm text-muted">avg build</div>
+          </div>
+          <div class="card p-4">
+            <div class="text-2xl font-bold">99.99%</div>
+            <div class="text-sm text-muted">uptime</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ── -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="text-center mb-8">
+        <span class="tag tag-accent">Why Nimbus</span>
+        <h2 class="title-lg mt-3">Everything you need to ship</h2>
+      </div>
+      <div class="grid-col-3 gap-6">
+        <div class="card hover-lift p-6">
+          <div class="text-3xl">⚡</div>
+          <h3 class="mt-3">Instant previews</h3>
+          <p class="text-muted mt-2">Every branch gets a live URL. Share it with the team before merging.</p>
+        </div>
+        <div class="card hover-lift p-6">
+          <div class="text-3xl">↩️</div>
+          <h3 class="mt-3">One-click rollbacks</h3>
+          <p class="text-muted mt-2">Bad deploy? Roll back to any previous build in seconds, zero downtime.</p>
+        </div>
+        <div class="card hover-lift p-6">
+          <div class="text-3xl">📊</div>
+          <h3 class="mt-3">Built-in analytics</h3>
+          <p class="text-muted mt-2">Traffic, errors and web vitals — without adding a single script.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRICING (Alpine: monthly/yearly toggle) ── -->
+  <section class="section" id="pricing" x-data="{ yearly: false }">
+    <div class="container">
+      <div class="text-center mb-6">
+        <span class="tag tag-primary">Pricing</span>
+        <h2 class="title-lg mt-3">Simple plans, no surprises</h2>
+        <div class="flex justify-center items-center gap-3 mt-5">
+          <button class="btn btn-sm" :class="yearly ? 'btn-ghost' : 'btn-primary'" @click="yearly = false">Monthly</button>
+          <button class="btn btn-sm" :class="yearly ? 'btn-primary' : 'btn-ghost'" @click="yearly = true">
+            Yearly <span class="tag tag-success">−20%</span>
+          </button>
+        </div>
+      </div>
+      <div class="grid-col-3 gap-6 items-stretch">
+        <div class="card p-6">
+          <h3>Hobby</h3>
+          <div class="text-3xl font-bold mt-3">$0</div>
+          <p class="text-sm text-muted">forever</p>
+          <ul class="mt-4 text-muted">
+            <li>1 project</li>
+            <li>Preview deploys</li>
+            <li>Community support</li>
+          </ul>
+          <a class="btn btn-outline mt-5" style="width:100%;justify-content:center" href="#">Start free</a>
+        </div>
+        <div class="card-glow p-6">
+          <div class="flex items-center gap-2">
+            <h3>Pro</h3><span class="tag tag-primary">Popular</span>
+          </div>
+          <div class="text-3xl font-bold mt-3">
+            $<span x-text="yearly ? 15 : 19">19</span><span class="text-sm text-muted">/mo</span>
+          </div>
+          <p class="text-sm text-muted" x-text="yearly ? 'billed yearly' : 'billed monthly'">billed monthly</p>
+          <ul class="mt-4 text-muted">
+            <li>Unlimited projects</li>
+            <li>Rollbacks & analytics</li>
+            <li>Priority support</li>
+          </ul>
+          <a class="btn btn-gradient mt-5 hover-lift" style="width:100%;justify-content:center" href="#">Start 14-day trial</a>
+        </div>
+        <div class="card p-6">
+          <h3>Team</h3>
+          <div class="text-3xl font-bold mt-3">
+            $<span x-text="yearly ? 39 : 49">49</span><span class="text-sm text-muted">/mo</span>
+          </div>
+          <p class="text-sm text-muted" x-text="yearly ? 'billed yearly' : 'billed monthly'">billed monthly</p>
+          <ul class="mt-4 text-muted">
+            <li>Everything in Pro</li>
+            <li>SSO & audit log</li>
+            <li>SLA 99.99%</li>
+          </ul>
+          <a class="btn btn-outline mt-5" style="width:100%;justify-content:center" href="#">Contact sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ (native <details> — zero JS) ── -->
+  <section class="section" id="faq">
+    <div class="container" style="max-width:720px">
+      <h2 class="title-lg text-center mb-6">Questions & answers</h2>
+      <div class="accordion">
+        <details class="collapse">
+          <summary class="collapse-header">Can I self-host? <span class="collapse-icon"></span></summary>
+          <div class="collapse-body">Yes — the Team plan includes a self-hosted runner you can drop into your own cloud.</div>
+        </details>
+        <details class="collapse">
+          <summary class="collapse-header">What frameworks are supported? <span class="collapse-icon"></span></summary>
+          <div class="collapse-body">Anything that builds to static files or a Node server: Astro, Next, plain HTML — you name it.</div>
+        </details>
+        <details class="collapse">
+          <summary class="collapse-header">How do rollbacks work? <span class="collapse-icon"></span></summary>
+          <div class="collapse-body">Every deploy is immutable. Rolling back just re-points traffic to a previous build — instant and safe.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="section">
+    <div class="container text-center card-gradient p-8">
+      <h2 class="title-lg">Ready to ship faster?</h2>
+      <p class="text-lead mt-3">Connect your repo — first deploy in under two minutes.</p>
+      <a class="btn btn-primary btn-xl mt-5 hover-glow" href="#">Start free →</a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="section text-center text-muted text-sm">
+    <div class="container">
+      ☁️ Nimbus · Built with <a class="link" href="https://njxui.dev">njX UI</a> — one CDN link, zero build step.
+    </div>
+  </footer>
+
+</body>
+</html>
