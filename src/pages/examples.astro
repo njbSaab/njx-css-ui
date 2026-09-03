@@ -41,16 +41,23 @@ const EXAMPLES = [
 >
   <PagesTopbar activePage="examples" />
 
-  <section class="sc-section ex-hero">
-    <span class="sc-eyebrow">Ready-made landings</span>
-    <h1 class="sc-heading">
-      Copy the file.<br /><span class="ex-grad">Replace the words. Ship.</span>
-    </h1>
-    <p class="sc-subheading">
-      Each example is one self-contained <code>index.html</code>: njX UI from
-      CDN for the look, Alpine.js for the interactivity. No build step, no
-      dependencies to install — open the file, make it yours, deploy anywhere.
-    </p>
+  <section class="ex-hero">
+    <div class="ex-wrap">
+      <div class="ex-label">
+        <span class="ex-pulse"></span>
+        Ready-made landings · copy &amp; ship
+      </div>
+      <h1>
+        Copy the file.<br />
+        <span class="ex-grad">Replace the words.</span>
+        <span class="ex-dim">Ship.</span>
+      </h1>
+      <p class="ex-sub">
+        Each example is one self-contained <code>index.html</code>: njX UI from
+        CDN for the look, Alpine.js for the interactivity. No build step, no
+        dependencies to install — open the file, make it yours, deploy anywhere.
+      </p>
+    </div>
   </section>
 
   <section class="sc-section" style="padding-top:0">
@@ -102,9 +109,10 @@ const EXAMPLES = [
 </BaseLayout>
 
 <style is:global>
-  /* фирменный градиент-баннер hero — как на quickstart (.qs-hero::before) */
+  /* ── HERO — стайл-гайд overview: full-bleed градиент + .wrap ── */
   .ex-hero {
     position: relative;
+    padding: 80px 0 64px;
     overflow: hidden;
   }
   .ex-hero::before {
@@ -124,9 +132,52 @@ const EXAMPLES = [
       );
     pointer-events: none;
   }
-  .ex-hero > * {
+  .ex-wrap {
     position: relative;
-    z-index: 2;
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .ex-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+  }
+  .ex-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow: 0 0 10px var(--color-primary);
+    animation: ex-pulse 1.8s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes ex-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+  .ex-hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(48px, 6vw, 84px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    margin-bottom: 24px;
   }
   .ex-grad {
     background: linear-gradient(
@@ -137,6 +188,15 @@ const EXAMPLES = [
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+  .ex-dim {
+    color: var(--color-muted);
+  }
+  .ex-sub {
+    font-size: 17px;
+    color: var(--color-muted);
+    line-height: 1.7;
+    max-width: 640px;
   }
 
   .ex-grid {
