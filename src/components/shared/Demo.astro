@@ -39,6 +39,8 @@ import { dedent } from './code-utils.js';
 interface Props {
   label?: string; // .lib-component-label (он же лейбл код-окна в initCodeToggles)
   code?: string; // override показываемого/копируемого кода
+  alpineCode?: string; // Alpine-вариант константой (альтернатива слоту "alpine" — удобно при is:raw на Demo)
+  htmlTabLabel?: string; // лейбл первого таба при вариантах (по умолчанию 'HTML + njx.js'; для inline-JS юнитов — 'JS')
   lang?: string; // 'html' | 'css' | 'js' (не-html пока без подсветки)
   filename?: string; // подпись-источник, напр. "_buttons.css"
   previewClass?: string; // модификаторы .lib-preview: 'col', 'no-dot', …
@@ -50,6 +52,8 @@ interface Props {
 const {
   label,
   code,
+  alpineCode,
+  htmlTabLabel = 'HTML + njx.js',
   lang = 'html',
   filename,
   previewClass = '',
@@ -64,10 +68,12 @@ const sample = code != null ? dedent(code).trim() : raw;
 const hasPreviewSlot = Astro.slots.has('preview');
 const alpineSample = Astro.slots.has('alpine')
   ? dedent(await Astro.slots.render('alpine')).trim()
-  : null;
+  : alpineCode != null
+    ? dedent(alpineCode).trim()
+    : null;
 const variants = alpineSample
   ? [
-      { id: 'html', label: 'HTML + njx.js', lang, code: sample },
+      { id: 'html', label: htmlTabLabel, lang, code: sample },
       { id: 'alpine', label: 'Alpine.js', lang: 'html', code: alpineSample },
     ]
   : undefined;

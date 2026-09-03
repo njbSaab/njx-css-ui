@@ -108,36 +108,37 @@ const heroSliderAutoplayProgressBarPrevNextDotCode = `
 </div>
 
 <script>
-(function(){
-  var track = document.getElementById("myTrack");
-  var n = track.children.length, cur = 0;
-  var INTERVAL = 4500;
-  var progressEl = document.getElementById("myProgress");
-  var dotsEl = document.getElementById("myDots");
-  for(var i=0;i<n;i++){
-    var d=document.createElement("button");
-    d.className="hero-slider-dot"+(i===0?" is-active":"");
-    d.dataset.i=i;
-    d.addEventListener("click",function(){ goTo(+this.dataset.i); resetAuto(); });
+(() => {
+  const track = document.getElementById("myTrack");
+  const n = track.children.length;
+  const INTERVAL = 4500;
+  const progressEl = document.getElementById("myProgress");
+  const dotsEl = document.getElementById("myDots");
+  let cur = 0;
+  for (let i = 0; i < n; i++) {
+    const d = document.createElement("button");
+    d.className = "hero-slider-dot" + (i === 0 ? " is-active" : "");
+    d.dataset.i = i;
+    d.addEventListener("click", () => { goTo(+d.dataset.i); resetAuto(); });
     dotsEl.appendChild(d);
   }
-  function goTo(idx){
-    cur=(idx+n)%n;
-    track.style.transform="translateX(-"+(cur*100)+"%)";
-    dotsEl.querySelectorAll(".hero-slider-dot").forEach(function(d,i){ d.classList.toggle("is-active",i===cur); });
+  function goTo(idx) {
+    cur = (idx + n) % n;
+    track.style.transform = "translateX(-" + (cur * 100) + "%)";
+    dotsEl.querySelectorAll(".hero-slider-dot").forEach((d, i) => d.classList.toggle("is-active", i === cur));
     resetProgress();
   }
-  function resetProgress(){
-    progressEl.style.transition="none"; progressEl.style.width="0%";
-    requestAnimationFrame(function(){ requestAnimationFrame(function(){
-      progressEl.style.transition="width "+INTERVAL+"ms linear";
-      progressEl.style.width="100%";
-    }); });
+  function resetProgress() {
+    progressEl.style.transition = "none"; progressEl.style.width = "0%";
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      progressEl.style.transition = "width " + INTERVAL + "ms linear";
+      progressEl.style.width = "100%";
+    }));
   }
-  var timer = setInterval(function(){ goTo(cur+1); }, INTERVAL);
-  function resetAuto(){ clearInterval(timer); timer=setInterval(function(){ goTo(cur+1); },INTERVAL); }
-  document.getElementById("myPrev").onclick=function(){ goTo(cur-1); resetAuto(); };
-  document.getElementById("myNext").onclick=function(){ goTo(cur+1); resetAuto(); };
+  let timer = setInterval(() => goTo(cur + 1), INTERVAL);
+  function resetAuto() { clearInterval(timer); timer = setInterval(() => goTo(cur + 1), INTERVAL); }
+  document.getElementById("myPrev").onclick = () => { goTo(cur - 1); resetAuto(); };
+  document.getElementById("myNext").onclick = () => { goTo(cur + 1); resetAuto(); };
   resetProgress();
 })();
 </script>
@@ -169,23 +170,24 @@ const testimonialsSliderSwipePrevNextCounterCode = `
 </div>
 
 <script>
-(function(){
-  var track = document.getElementById("tsTrack");
-  var n = track.children.length, cur = 0;
-  var counter = document.getElementById("tsCnt");
-  function goTo(idx){
-    cur=(idx+n)%n;
-    track.style.transform="translateX(-"+(cur*100)+"%)";
-    counter.textContent=(cur+1)+" / "+n;
+(() => {
+  const track = document.getElementById("tsTrack");
+  const n = track.children.length;
+  const counter = document.getElementById("tsCnt");
+  let cur = 0;
+  function goTo(idx) {
+    cur = (idx + n) % n;
+    track.style.transform = "translateX(-" + (cur * 100) + "%)";
+    counter.textContent = (cur + 1) + " / " + n;
   }
-  document.getElementById("tsPrev").onclick=function(){ goTo(cur-1); };
-  document.getElementById("tsNext").onclick=function(){ goTo(cur+1); };
+  document.getElementById("tsPrev").onclick = () => goTo(cur - 1);
+  document.getElementById("tsNext").onclick = () => goTo(cur + 1);
   // Swipe
-  var sx=0;
-  track.parentElement.addEventListener("touchstart",function(e){ sx=e.touches[0].clientX; },{passive:true});
-  track.parentElement.addEventListener("touchend",function(e){
-    var dx=e.changedTouches[0].clientX-sx;
-    if(Math.abs(dx)>40) goTo(dx<0?cur+1:cur-1);
+  let sx = 0;
+  track.parentElement.addEventListener("touchstart", (e) => { sx = e.touches[0].clientX; }, { passive: true });
+  track.parentElement.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 40) goTo(dx < 0 ? cur + 1 : cur - 1);
   });
 })();
 </script>
@@ -239,6 +241,118 @@ const cssClassesReferenceCode = `
 <!-- 3. JS autoplay — add data-autoplay="ms" -->
 <div class="js-carousel-wrap" data-autoplay="3000">...</div>
 `;
+const jsSequentialAlpineCode = `
+<!-- Same .js-carousel classes — Alpine drives the track, njx.js not needed -->
+<div class="js-carousel-wrap" x-data="{ i: 0, n: 3 }">
+  <div style="position:relative">
+    <div class="js-carousel">
+      <div class="js-carousel-track" :style="'transform:translateX(-' + (i * 100) + '%)'">
+        <div>Slide 1</div>
+        <div>Slide 2</div>
+        <div>Slide 3</div>
+      </div>
+    </div>
+    <button class="js-carousel-btn js-prev" aria-label="Previous" @click="i = (i - 1 + n) % n">&lsaquo;</button>
+    <button class="js-carousel-btn js-next" aria-label="Next" @click="i = (i + 1) % n">&rsaquo;</button>
+  </div>
+  <div class="js-dots">
+    <template x-for="d in n" :key="d">
+      <button class="js-dot" :class="{ 'is-active': i === d - 1 }" @click="i = d - 1"></button>
+    </template>
+  </div>
+</div>
+`;
+
+const jsAutoplayAlpineCode = `
+<!-- Autoplay with Alpine: setInterval in x-init, pauses on hover -->
+<div class="js-carousel-wrap"
+     x-data="{ i: 0, n: 2, t: null,
+               start() { this.t = setInterval(() => this.i = (this.i + 1) % this.n, 3000) } }"
+     x-init="start()" @mouseenter="clearInterval(t)" @mouseleave="start()">
+  <div class="js-carousel">
+    <div class="js-carousel-track" :style="'transform:translateX(-' + (i * 100) + '%)'">
+      <div>Slide 1</div>
+      <div>Slide 2</div>
+    </div>
+  </div>
+  <div class="js-dots">
+    <template x-for="d in n" :key="d">
+      <button class="js-dot" :class="{ 'is-active': i === d - 1 }" @click="i = d - 1"></button>
+    </template>
+  </div>
+</div>
+`;
+
+const heroSliderAlpineCode = `
+<!-- Same .hero-slider classes — Alpine state instead of the inline script -->
+<div class="hero-slider"
+     x-data="{ i: 0, n: 3, iv: 4500, timer: null,
+               go(idx) { this.i = (idx + this.n) % this.n; this.prog(); },
+               prog() { const p = this.$refs.progress;
+                        p.style.transition = 'none'; p.style.width = '0%';
+                        requestAnimationFrame(() => requestAnimationFrame(() => {
+                          p.style.transition = 'width ' + this.iv + 'ms linear';
+                          p.style.width = '100%'; })); },
+               reset() { clearInterval(this.timer);
+                         this.timer = setInterval(() => this.go(this.i + 1), this.iv); } }"
+     x-init="prog(); timer = setInterval(() => go(i + 1), iv)"
+     @mouseenter="clearInterval(timer)" @mouseleave="reset()">
+  <div class="hero-slider-track" :style="'transform:translateX(-' + (i * 100) + '%)'">
+    <div class="hero-slider-slide" style="background:linear-gradient(135deg,#001830,#002a50)">
+      <div class="hero-slider-body">
+        <div class="hero-slider-label">Label</div>
+        <div class="hero-slider-title">Slide Title</div>
+        <div class="hero-slider-desc">Description text here.</div>
+        <button class="btn btn-primary btn-sm">CTA</button>
+      </div>
+    </div>
+    <!-- more .hero-slider-slide items -->
+  </div>
+  <div class="hero-slider-nav">
+    <button class="hero-slider-btn" @click="go(i - 1); reset()">&lsaquo;</button>
+    <button class="hero-slider-btn" @click="go(i + 1); reset()">&rsaquo;</button>
+  </div>
+  <div class="hero-slider-dots">
+    <template x-for="d in n" :key="d">
+      <button class="hero-slider-dot" :class="{ 'is-active': i === d - 1 }" @click="go(d - 1); reset()"></button>
+    </template>
+  </div>
+  <div class="hero-slider-progress" x-ref="progress"></div>
+</div>
+`;
+
+const testimonialsSliderAlpineCode = `
+<!-- Same .testi-* classes — Alpine drives the track, counter and swipe -->
+<div x-data="{ i: 0, n: 3, sx: 0 }">
+  <div class="testi-slider"
+       @touchstart.passive="sx = $event.touches[0].clientX"
+       @touchend="const dx = $event.changedTouches[0].clientX - sx;
+                  if (Math.abs(dx) > 40) i = (i + (dx < 0 ? 1 : -1) + n) % n">
+    <div class="testi-track" :style="'transform:translateX(-' + (i * 100) + '%)'">
+      <div class="testi-slide">
+        <div class="testi-stars">&starf;&starf;&starf;&starf;&starf;</div>
+        <div class="testi-quote">Your review text here...</div>
+        <div class="testi-user">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Name</div>
+            <div class="testi-role">Role &middot; Location</div>
+          </div>
+        </div>
+      </div>
+      <!-- more .testi-slide items -->
+    </div>
+  </div>
+  <div class="testi-controls">
+    <div class="testi-nav">
+      <button class="testi-btn" @click="i = (i - 1 + n) % n">&lsaquo;</button>
+      <button class="testi-btn" @click="i = (i + 1) % n">&rsaquo;</button>
+    </div>
+    <div class="testi-counter" x-text="(i + 1) + ' / ' + n">1 / 3</div>
+  </div>
+</div>
+`;
+
 ---
 
 <section class="lib-section" id="carousel">
@@ -503,7 +617,7 @@ const cssClassesReferenceCode = `
              JS CAROUSELS
         ══════════════════════════ -->
 
-    <Demo label={'JS — Sequential prev/next + dots'} previewStyle="display:block;padding:0" code={jsSequentialPrevNextDotsCode}>
+    <Demo label={'JS — Sequential prev/next + dots'} previewStyle="display:block;padding:0" code={jsSequentialPrevNextDotsCode} alpineCode={jsSequentialAlpineCode}>
         <Fragment slot="alpine" is:raw>
 <!-- Alpine drives the same track transform — njx.js carousel not needed -->
 <div class="js-carousel-wrap" x-data="{ i: 0, n: 3 }">
@@ -613,7 +727,7 @@ const cssClassesReferenceCode = `
         </Fragment>
     </Demo>
 
-    <Demo is:raw label={'JS — Autoplay (pauses on hover)'} previewStyle="display:block;padding:0" code={jsAutoplayPausesOnHoverCode}>
+    <Demo is:raw label={'JS — Autoplay (pauses on hover)'} previewStyle="display:block;padding:0" code={jsAutoplayPausesOnHoverCode} alpineCode={jsAutoplayAlpineCode}>
             <div style="max-width:480px;margin:0 auto">
                 <div class="js-carousel-wrap" data-autoplay="2500">
                     <div class="js-carousel">
@@ -677,7 +791,7 @@ const cssClassesReferenceCode = `
     <!-- ══════════════════════════
              HERO SLIDER
         ══════════════════════════ -->
-    <Demo is:raw label={'Hero Slider — autoplay · progress bar · prev/next · dots'} previewStyle="display:block;padding:0" code={heroSliderAutoplayProgressBarPrevNextDotCode}>
+    <Demo is:raw label={'Hero Slider — autoplay · progress bar · prev/next · dots'} previewStyle="display:block;padding:0" code={heroSliderAutoplayProgressBarPrevNextDotCode} alpineCode={heroSliderAlpineCode} htmlTabLabel="JS">
             <div style="max-width:560px;margin:0 auto">
                 <div class="hero-slider" id="sec-heroSlider">
                     <div class="hero-slider-track" id="sec-heroTrack">
@@ -829,7 +943,7 @@ const cssClassesReferenceCode = `
     <!-- ══════════════════════════
              TESTIMONIALS SLIDER
         ══════════════════════════ -->
-    <Demo is:raw label={'Testimonials Slider — swipe · prev/next · counter'} previewStyle="display:block;padding:0" code={testimonialsSliderSwipePrevNextCounterCode}>
+    <Demo is:raw label={'Testimonials Slider — swipe · prev/next · counter'} previewStyle="display:block;padding:0" code={testimonialsSliderSwipePrevNextCounterCode} alpineCode={testimonialsSliderAlpineCode} htmlTabLabel="JS">
             <div style="max-width:560px;margin:0 auto">
                 <div class="testi-slider" id="sec-testiSlider">
                     <div class="testi-track" id="sec-testiTrack">

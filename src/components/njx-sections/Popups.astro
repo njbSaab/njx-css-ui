@@ -667,7 +667,7 @@ const fullHtmlAlpineCode = `
     window.__njxModalsInit = true;
 
     window.openModal = function(id) {
-        var el = document.getElementById(id);
+        const el = document.getElementById(id);
         if (!el) return;
         el.classList.add('open');
         document.body.style.overflow = 'hidden';
