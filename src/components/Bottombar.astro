@@ -4,6 +4,7 @@ interface Props {
         | 'overview'
         | 'documentation'
         | 'quickstart'
+        | 'examples'
         | 'index'
         | 'donate'
         | 'contact';
@@ -125,6 +126,26 @@ const base = import.meta.env.BASE_URL;
                 >
                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"
                     ></polygon>
+                </svg>
+            </a>
+            <a
+                href={`${base}examples`}
+                class={`bb-nav-btn${activePage === 'examples' ? ' active' : ''}`}
+                data-tip="Examples"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                    <line x1="2" y1="8" x2="22" y2="8"></line>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
                 </svg>
             </a>
             <a
