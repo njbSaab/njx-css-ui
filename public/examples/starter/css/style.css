@@ -38,8 +38,9 @@
   justify-content: center;
   padding: 80px 20px 40px;
 }
-.hero-title {
+.hero-full .hero-title {
   margin: 20px 0 16px;
+  font-size: clamp(38px, 5vw, 64px);
 }
 .hero-full .text-lead {
   max-width: 640px;
@@ -53,8 +54,9 @@
 .cdn-pill {
   display: inline-flex;
   align-items: center;
+  flex-wrap: nowrap;
   gap: 10px;
-  max-width: 100%;
+  max-width: min(92vw, 640px);
   padding: 10px 18px;
   border-radius: 9999px;
   border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
@@ -70,11 +72,15 @@
   background: color-mix(in srgb, var(--color-primary) 14%, transparent);
   transform: translateY(-2px);
 }
-.cdn-pill b {
+.cdn-pill-url {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: var(--color-primary);
 }
 .cdn-pill-lt {
   color: var(--color-muted);
+  flex-shrink: 0;
 }
 .cdn-pill-copy {
   opacity: 0.6;
@@ -226,6 +232,11 @@
   color: var(--color-muted);
 }
 
+/* showcase: grid centering without the library's flex .items-center */
+.showcase-grid {
+  align-items: center;
+}
+
 /* showcase mini-cards */
 .showcase-card {
   text-decoration: none;
@@ -243,19 +254,68 @@
   margin: 0;
 }
 
-/* ── Contact form ── */
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+/* ── Contact form — styled after njxui.dev/contact ── */
+.contact-shell {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: clamp(22px, 4vw, 32px);
+  border-radius: 24px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+  background:
+    radial-gradient(circle at 8% 0,
+      color-mix(in srgb, var(--color-primary) 22%, transparent), transparent 20rem),
+    radial-gradient(circle at 100% 18%,
+      color-mix(in srgb, var(--color-accent) 16%, transparent), transparent 18rem),
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--color-dark-secondary) 94%, transparent),
+      color-mix(in srgb, var(--сolor-dark) 86%, transparent));
+  box-shadow: 0 30px 90px color-mix(in srgb, #000 24%, transparent);
 }
-.contact-form textarea.input {
+.contact-shell label {
+  display: grid;
+  gap: 8px;
+  text-align: left;
+  color: var(--color-light);
+  font-size: 13px;
+  font-weight: 800;
+}
+.contact-shell label.full {
+  grid-column: 1 / -1;
+}
+.contact-shell input,
+.contact-shell textarea {
+  width: 100%;
+  border: 1px solid color-mix(in srgb, var(--color-neutral-600) 34%, transparent);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--сolor-dark) 78%, transparent);
+  color: var(--color-light);
+  padding: 13px 14px;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+}
+.contact-shell textarea {
   resize: vertical;
-  min-height: 110px;
+  min-height: 130px;
 }
-/* float label anchors to the top edge for multiline fields */
-.contact-form textarea.input ~ .user-label {
-  top: 22px;
+.contact-shell input:focus,
+.contact-shell textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 14%, transparent);
+}
+.contact-shell input::placeholder,
+.contact-shell textarea::placeholder {
+  color: var(--color-muted);
+}
+.contact-shell button {
+  grid-column: 1 / -1;
+  justify-content: center;
+}
+@media (max-width: 640px) {
+  .contact-shell {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* success toast — fixed bottom center */
@@ -303,6 +363,31 @@
   .starter-menu {
     display: none !important;
   }
+}
+
+/* ── Section decor: alternating tint + soft color glows ── */
+.sec-tint {
+  background: color-mix(in srgb, var(--color-dark-secondary) 45%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--color-primary) 10%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+.sec-glow {
+  position: relative;
+  overflow: hidden;
+}
+.sec-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 45% 50% at 88% 12%,
+      color-mix(in srgb, var(--color-accent) 10%, transparent), transparent),
+    radial-gradient(ellipse 40% 45% at 8% 88%,
+      color-mix(in srgb, var(--color-primary) 12%, transparent), transparent);
+}
+.sec-glow > * {
+  position: relative;
 }
 
 /* ── Your styles below ── */

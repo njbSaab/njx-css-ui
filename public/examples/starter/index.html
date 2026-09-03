@@ -98,7 +98,7 @@
       <!-- CDN tag — click to copy -->
       <button class="cdn-pill" @click="copyCdn()" title="Copy the <link> tag">
         <span class="cdn-pill-lt">&lt;link&gt;</span>
-        cdn.jsdelivr.net/npm/<b>njx-ui@1</b>/css/style.min.css
+        <span class="cdn-pill-url">https://cdn.jsdelivr.net/npm/njx-ui@1/css/style.min.css</span>
         <span class="tag tag-success" x-show="copied" x-cloak>✓ copied</span>
         <span class="cdn-pill-copy" x-show="!copied">⧉</span>
       </button>
@@ -144,7 +144,7 @@
   </section>
 
   <!-- ── FEATURES — showcase cards: card-aura / card-shine / card-outline-gradient ── -->
-  <section class="section" id="features">
+  <section class="section sec-tint" id="features">
     <div class="container">
       <div class="sec-head">
         <span class="tag tag-primary">Features</span>
@@ -171,8 +171,8 @@
   </section>
 
   <!-- ── SHOWCASE — article + ready-made pages promo ── -->
-  <section class="section" id="showcase">
-    <div class="container grid-col-2 gap-8 items-center">
+  <section class="section sec-glow" id="showcase">
+    <div class="container grid-col-2 gap-8 showcase-grid">
       <div>
         <span class="tag tag-accent">Showcase</span>
         <h2 class="title-lg">Full pages, already built</h2>
@@ -215,7 +215,7 @@
   </section>
 
   <!-- ── REVIEWS — library .testi-slider (stars, avatar, counter, swipe) ── -->
-  <section class="section" id="reviews">
+  <section class="section sec-tint" id="reviews">
     <div class="container" style="max-width:680px" x-data="{ i: 0, n: 3, sx: 0 }">
       <div class="sec-head text-center">
         <span class="tag tag-primary">Reviews</span>
@@ -271,7 +271,8 @@
     </div>
   </section>
 
-  <!-- ── CONTACT — float-label form (.input-group + .user-label) + toast on submit ── -->
+  <!-- ── CONTACT + SOCIAL — one shared glow backdrop for visual continuity ── -->
+  <div class="sec-glow">
   <section class="section" id="contact"
            x-data="{ name: '', email: '', msg: '', sent: false,
                      send() { if (!this.email.includes('@')) return;
@@ -284,20 +285,21 @@
         <h2 class="title-lg">Tell us what you're building</h2>
         <p class="text-muted sec-sub">Questions, ideas, a component you're missing — write to us.</p>
       </div>
-      <form class="card-glass p-6 contact-form" @submit.prevent="send()">
-        <div class="input-group">
-          <input class="input" type="text" placeholder=" " x-model="name" required />
-          <label class="user-label">Your name</label>
-        </div>
-        <div class="input-group">
-          <input class="input" type="email" placeholder=" " x-model="email" required />
-          <label class="user-label">Email</label>
-        </div>
-        <div class="input-group">
-          <textarea class="input" rows="4" placeholder=" " x-model="msg" required></textarea>
-          <label class="user-label">Message</label>
-        </div>
-        <button class="btn btn-gradient hover-lift" type="submit" style="width:100%;justify-content:center">Send message</button>
+      <!-- form styled after njxui.dev/contact -->
+      <form class="contact-shell" @submit.prevent="send()">
+        <label>
+          Your name
+          <input type="text" placeholder="Alex" x-model="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" placeholder="you@work.com" x-model="email" required />
+        </label>
+        <label class="full">
+          Message
+          <textarea rows="5" placeholder="What are you building? What component are you missing?" x-model="msg" required></textarea>
+        </label>
+        <button class="btn btn-gradient btn-lg hover-lift" type="submit">Send message</button>
       </form>
       <!-- success toast (library .toast) -->
       <div class="starter-toast" x-show="sent" x-cloak>
@@ -327,6 +329,7 @@
       </ul>
     </div>
   </section>
+  </div>
 
   <!-- ── FOOTER ── -->
   <footer class="section text-center text-muted text-sm">
