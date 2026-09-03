@@ -407,7 +407,7 @@ No framework. No dependencies. Every component is plain CSS — ready to paste i
 
 ## Comparison
 
-Honest numbers — pick the right tool:
+njX UI isn't a framework you learn — it's a toolkit you drop in to ship a landing fast. Honest numbers vs what you might otherwise reach for:
 
 | | Pico CSS | Water.css | Bulma | Tailwind CSS | **njX UI** (`njx-ui`) |
 |---|:---:|:---:|:---:|:---:|:---:|
