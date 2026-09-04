@@ -190,6 +190,11 @@
   gap: 6px;
   padding: 4px 0;
 }
+  .carousel-dots button {
+    font-size: 0;
+    line-height: 0;
+    padding: 0;
+  }
 
 .carousel-dot {
   display: block;
@@ -528,6 +533,9 @@
   position: relative;
   z-index: 2;
   width: 100%;
+  /* слайд даёт 2rem, стрелки (12px + 38px) доходят до ~50px от края —
+     добиваем боковой паддинг, чтобы текст не уходил под кнопки */
+  padding: 0 28px;
 }
 .hero-slider-label {
   font-size: 10px;
