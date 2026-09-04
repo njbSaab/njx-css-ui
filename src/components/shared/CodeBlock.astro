@@ -15,7 +15,7 @@ interface Props {
     filename?: string;
     frame?: 'lib' | 'sc'; // lib — секции (сворачиваемое окно); sc — documentation (всегда открыто)
     compact?: boolean;
-    variants?: CodeVariant[]; // ≥2 варианта кода → табы в шапке вместо лейбла (только frame="lib")
+    variants?: CodeVariant[]; // ≥2 варианта кода → табы в шапке вместо лейбла (lib и sc)
     class?: string;
     style?: string;
 }
@@ -51,7 +51,7 @@ const codeVariants = (variants ?? []).map((v) => {
     const src = dedent(v.code).trim();
     return { ...v, code: src, html: highlight(src, v.lang ?? lang) };
 });
-const hasTabs = frame === 'lib' && codeVariants.length > 1;
+const hasTabs = codeVariants.length > 1;
 
 const windowLabel = label || filename || 'HTML';
 ---
@@ -68,15 +68,45 @@ const windowLabel = label || filename || 'HTML';
                 <div class="sc-code-dot" style="background:#febc2e"></div>
                 <div class="sc-code-dot" style="background:#28c840"></div>
             </div>
-            {(label || filename) && (
-                <span class="sc-code-filename">{label || filename}</span>
-            )}
+            {
+                hasTabs ? (
+                    <div class="lib-code-tabs" role="tablist">
+                        {codeVariants.map((v, i) => (
+                            <button
+                                class={`lib-code-tab ${i === 0 ? 'is-active' : ''}`.trim()}
+                                type="button"
+                                data-code-tab={v.id}
+                            >
+                                {v.label}
+                            </button>
+                        ))}
+                    </div>
+                ) : (
+                    (label || filename) && (
+                        <span class="sc-code-filename">{label || filename}</span>
+                    )
+                )
+            }
             <button class="sc-code-copy" type="button" data-code-copy>Copy</button>
         </div>
-        <div class="sc-code-body" data-raw={normalizedCode}>
-            <pre
-                class={`codeblock-pre language-${lang}`}><code set:html={highlightedCode} /></pre>
-        </div>
+        {
+            hasTabs ? (
+                codeVariants.map((v, i) => (
+                    <div
+                        class={`sc-code-body ${i === 0 ? 'is-active' : ''}`.trim()}
+                        data-raw={v.code}
+                        data-code-variant={v.id}
+                    >
+                        <pre class={`codeblock-pre language-${v.lang ?? lang}`}><code set:html={v.html} /></pre>
+                    </div>
+                ))
+            ) : (
+                <div class="sc-code-body" data-raw={normalizedCode}>
+                    <pre
+                        class={`codeblock-pre language-${lang}`}><code set:html={highlightedCode} /></pre>
+                </div>
+            )
+        }
     </div>
 )}
 {frame === 'lib' && (
@@ -211,7 +241,8 @@ const windowLabel = label || filename || 'HTML';
         border-color: rgba(255, 255, 255, 0.08);
     }
 
-    .lib-code-container .lib-code[data-code-variant]:not(.is-active) {
+    .lib-code-container .lib-code[data-code-variant]:not(.is-active),
+    .sc-code-wrap .sc-code-body[data-code-variant]:not(.is-active) {
         display: none;
     }
 

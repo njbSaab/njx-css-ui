@@ -294,7 +294,10 @@ const SECTION_GROUPS = {
   breadcrumb: 'Components', pagination: 'Components',
   notifications: 'Components', progress: 'Components', links: 'Components',
   dropdown: 'Components', carousel: 'Components', social: 'Components', sidebar: 'Components',
-  animations: 'Visual', gradients: 'Visual', hovers: 'Visual', skeleton: 'Visual', 'hover-tips': 'Visual'
+  'hero-blocks': 'Components', 'page-cards': 'Components', 'social-blocks': 'Components',
+  'cta-blocks': 'Components', 'contact-blocks': 'Components',
+  animations: 'Visual', gradients: 'Visual', backgrounds: 'Visual', hovers: 'Visual',
+  skeleton: 'Visual', 'hover-tips': 'Visual'
 };
 
 function initSectionHeaders() {

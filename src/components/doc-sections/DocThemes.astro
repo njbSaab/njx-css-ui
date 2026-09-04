@@ -16,6 +16,23 @@ function setTheme(name) {
 const saved = localStorage.getItem('theme');
 if (saved) setTheme(saved);
 `;
+
+const themeSwitchAlpineCode = `
+/* njx-alpine.js preset — load it before Alpine, zero helpers to write */
+<script defer src="https://cdn.jsdelivr.net/npm/njx-ui@1/js/njx-alpine.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
+/* Toggle dark / light */
+<button x-data="njxTheme" @click="toggle()">Toggle theme</button>
+
+/* Set a specific theme */
+<div x-data="njxTheme">
+  <button @click="set('purple')" :class="{ active: t === 'purple' }">Purple</button>
+  <button @click="set('cyan')"   :class="{ active: t === 'cyan' }">Cyan</button>
+</div>
+
+/* data-theme on <html> + localStorage persistence — handled by the preset */
+`;
 const DOC_THEME_SWATCHES = [
     {
         name: "dark",
@@ -121,5 +138,14 @@ const DOC_THEME_SWATCHES = [
                     ))}
                 </div>
 
-                <CodeBlock frame="sc" lang="js" label="Theme switching" code={themeSwitchCode} />
+                <CodeBlock
+                    frame="sc"
+                    lang="js"
+                    label="Theme switching"
+                    code={themeSwitchCode}
+                    variants={[
+                        { id: 'js', label: 'JS', code: themeSwitchCode },
+                        { id: 'alpine', label: 'Alpine.js', code: themeSwitchAlpineCode },
+                    ]}
+                />
             </section>

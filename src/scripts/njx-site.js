@@ -234,17 +234,18 @@
             return;
         }
 
-        /* Табы вариантов кода (HTML / Alpine.js) — статический хром CodeBlock */
+        /* Табы вариантов кода (HTML / Alpine.js) — статический хром CodeBlock,
+           обе рамки: .lib-code-wrapper (секции) и .sc-code-wrap (documentation) */
         var tab = e.target.closest('.lib-code-tab[data-code-tab]');
         if (tab) {
-            var tabWrap = tab.closest('.lib-code-wrapper');
+            var tabWrap = tab.closest('.lib-code-wrapper, .sc-code-wrap');
             if (tabWrap) {
                 var id = tab.getAttribute('data-code-tab');
                 tabWrap.querySelectorAll('.lib-code-tab').forEach(function (t) {
                     t.classList.toggle('is-active', t === tab);
                 });
                 tabWrap
-                    .querySelectorAll('.lib-code[data-code-variant]')
+                    .querySelectorAll('[data-code-variant]')
                     .forEach(function (c) {
                         c.classList.toggle(
                             'is-active',
@@ -259,10 +260,10 @@
         if (copy) {
             e.stopPropagation();
             var wrap = copy.closest('.lib-code-wrapper, .sc-code-wrap');
-            // при табах вариантов копируем активный .lib-code
+            // при табах вариантов копируем активный вариант
             var codeEl =
                 wrap &&
-                (wrap.querySelector('.lib-code.is-active') ||
+                (wrap.querySelector('.lib-code.is-active, .sc-code-body.is-active') ||
                     wrap.querySelector('.lib-code, .sc-code-body'));
             if (!codeEl) return;
             njxCopyBtn(copy, codeEl.dataset.raw || codeEl.innerText.trim(), {

@@ -1,5 +1,49 @@
 ---
 import Demo from '../shared/Demo.astro';
+import { dedent, highlightJs } from '../shared/code-utils.js';
+
+// Alpine-вариант для легаси-окна «Theme system» (подсветка на билде)
+const themeSystemAlpineCode = dedent(`
+/* njx-alpine.js preset — load it before Alpine, that's all the JS */
+<script defer src="https://cdn.jsdelivr.net/npm/njx-ui@1/js/njx-alpine.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
+/* Toggle dark / light */
+<button x-data="njxTheme" @click="toggle()"
+        x-text="t === 'dark' ? 'Light' : 'Dark'"></button>
+
+/* Pick any of the 9 themes */
+<div x-data="njxTheme">
+  <button @click="set('purple')">Purple</button>
+  <button @click="set('cyan')">Cyan</button>
+  <button @click="set('pink')">Pink</button>
+</div>
+
+/* data-theme on <html> + localStorage persistence — handled by the preset */
+`).trim();
+const themeSystemAlpineHtml = highlightJs(themeSystemAlpineCode);
+
+const themeSwitcherVariantsAlpineCode = `
+/* njx-alpine.js preset — zero helpers to write:
+   <script defer src="https://cdn.jsdelivr.net/npm/njx-ui@1/js/njx-alpine.js"></script>
+   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script> */
+
+/* 1. Toggle variant */
+<button x-data="njxTheme" @click="toggle()">...</button>
+
+/* 2. Segmented variant */
+<div class="sw-seg" x-data="njxTheme">
+  <button @click="set('dark')"  :class="{ active: t === 'dark' }">Dark</button>
+  <button @click="set('light')" :class="{ active: t === 'light' }">Light</button>
+</div>
+
+/* 3. Icon / settings row — the same one-liners */
+<button x-data="njxTheme" @click="set('purple')">Purple</button>
+
+/* 4. CSS active states (pure CSS, no JS) */
+html:not([data-theme="light"]) .dark-btn { background: var(--color-primary); }
+html[data-theme="light"]       .light-btn { background: var(--color-primary); }
+`;
 
 const themeSwitcherVariantsCode = `
 /* 1. JS helpers (add once to your project) */
@@ -439,11 +483,41 @@ padding: var(--space-6) var(--space-4);  /* 24px 16px */
       </div><!-- /ts-body -->
     </div><!-- /ts-stage -->
 
-    <!-- Code block -->
-    <div class="lib-code-wrapper">
+    <!-- Code block — статический хром (data-code-ready="1", делегаты njx-site.js),
+         табы JS | Alpine.js; в JS-варианте живёт live-спан #tsCodeTheme -->
+    <button class="lib-code-reveal-btn" type="button" data-code-toggle>
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" style="flex-shrink:0;opacity:.75">
+        <path d="M5.78 4.03a.75.75 0 0 1 0 1.06L3.87 7l1.91 1.91a.75.75 0 1 1-1.06 1.06l-2.47-2.47a.75.75 0 0 1 0-1.06l2.47-2.47a.75.75 0 0 1 1.06 0zm4.44 0a.75.75 0 0 1 1.06 0l2.47 2.47a.75.75 0 0 1 0 1.06l-2.47 2.47a.75.75 0 1 1-1.06-1.06L12.13 7l-1.91-1.91a.75.75 0 0 1 0-1.06z"></path>
+      </svg>
+      <span class="lib-crb-text">Show code</span>
+      <svg class="lib-crb-chevron" width="12" height="12" viewBox="0 0 16 16" fill="currentColor" style="flex-shrink:0">
+        <path d="M3.22 6.03a.75.75 0 0 1 1.06 0L8 9.75l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L3.22 7.09a.75.75 0 0 1 0-1.06z"></path>
+      </svg>
+    </button>
+    <div class="lib-code-wrapper" data-code-block data-code-ready="1">
+      <div class="lib-code-inner">
+        <div class="lib-code-header">
+          <div class="lib-code-mac-dots">
+            <div class="lib-code-mac-dot" style="background:#ff5f57"></div>
+            <div class="lib-code-mac-dot" style="background:#febc2e"></div>
+            <div class="lib-code-mac-dot" style="background:#28c840"></div>
+          </div>
+          <div class="lib-code-tabs" role="tablist">
+            <button class="lib-code-tab is-active" type="button" data-code-tab="js">JS</button>
+            <button class="lib-code-tab" type="button" data-code-tab="alpine">Alpine.js</button>
+          </div>
+          <button class="lib-copy-btn" type="button" data-code-copy>
+            <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path>
+              <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+            </svg>
+            Copy
+          </button>
+        </div>
       <div class="lib-code-container">
         <div
-          class="lib-code"
+          class="lib-code is-active"
+          data-code-variant="js"
           data-raw="/* Via HTML attribute */
 <html data-theme=&quot;dark&quot;>
 
@@ -487,13 +561,21 @@ if (saved) setTheme(saved);"
           <span class="k">if</span> (saved) <span class="s">setTheme</span
           >(saved);
         </div>
+        <div
+          class="lib-code"
+          data-code-variant="alpine"
+          data-raw={themeSystemAlpineCode}
+        >
+          <pre class="codeblock-pre language-js"><code set:html={themeSystemAlpineHtml} /></pre>
+        </div>
+      </div>
       </div>
     </div>
   </div>
   <!-- ═══ END THEME SYSTEM ═══ -->
 
   <!-- ═══ THEME SWITCHER VARIANTS ═══ -->
-  <Demo is:raw label={'Theme switcher variants'} previewClass="sw-showcase" lang="js" code={themeSwitcherVariantsCode}>
+  <Demo is:raw label={'Theme switcher variants'} previewClass="sw-showcase" lang="js" code={themeSwitcherVariantsCode} alpineCode={themeSwitcherVariantsAlpineCode} htmlTabLabel="JS">
       <!-- 1. Toggle slide -->
       <div class="sw-card">
         <div class="sw-card-label">Toggle</div>
