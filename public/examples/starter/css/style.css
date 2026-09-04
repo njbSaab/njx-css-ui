@@ -452,6 +452,19 @@
   }
 }
 
+/* ── Mobile: keep the small cards paired (2×2), hero without top padding ── */
+@media (max-width: 599px) {
+  .hero-full {
+    padding: 0 20px 40px;
+  }
+  #about .grid-col-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .showcase-grid .grid-col-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* keep slider text clear of the arrow buttons (fixed in njx-ui 1.2.0 —
    safe to delete once the CDN serves it) */
 .hero-slider-body {
