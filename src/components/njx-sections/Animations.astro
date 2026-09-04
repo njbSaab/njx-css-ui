@@ -66,6 +66,17 @@ void el.offsetWidth; // force reflow
 el.classList.add("animate-shake");
 `;
 
+const shakeWiggleAttentionAlpineCode = `
+<!-- Alpine replay: toggle the class off, re-add next tick -->
+<div x-data="{ on: false, replay() { this.on = false; this.$nextTick(() => this.on = true) } }">
+  <div :class="{ 'animate-shake': on }" @click="replay()">Error state</div>
+  <button class="btn btn-sm" @click="replay()">Shake it</button>
+</div>
+
+<!-- Loop animations (wiggle / heartbeat) are plain classes — no JS at all -->
+<div class="animate-wiggle">Wiggling...</div>
+`;
+
 const pulseScaleHoverToReplayCode = `
 <!-- Subtle scale pulse (loop) -->
 <div class="animate-pulse">Scale 1→1.05</div>
@@ -556,7 +567,7 @@ const staggerChildrenAppearInSequenceCode = `
         </Demo>
 
     <!-- ── Shake, Wiggle & Attention ── -->
-    <Demo is:raw label={'Shake, Wiggle & Attention — click to trigger'} previewStyle="display:block;padding:20px" code={shakeWiggleAttentionClickToTriggerCode}>
+    <Demo is:raw label={'Shake, Wiggle & Attention — click to trigger'} previewStyle="display:block;padding:20px" code={shakeWiggleAttentionClickToTriggerCode} alpineCode={shakeWiggleAttentionAlpineCode}>
             <div class="anim-grid">
                 <div
                     class="anim-tile"

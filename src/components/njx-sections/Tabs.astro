@@ -35,6 +35,22 @@ const pillsCode = `
 </div>
 `;
 
+const pillsAlpineCode = `
+<!-- njx-alpine.js preset: x-data="njxTabs" — select(i) / isActive(i), no tabSwitch() -->
+<div class="tab-wrap" x-data="njxTabs">
+  <div class="tab-nav tab-nav-pills">
+    <button class="tab-btn" :class="{ 'is-active': isActive(0) }" @click="select(0)">Daily</button>
+    <button class="tab-btn" :class="{ 'is-active': isActive(1) }" @click="select(1)">Weekly</button>
+    <button class="tab-btn" :class="{ 'is-active': isActive(2) }" @click="select(2)">Monthly</button>
+  </div>
+  <div class="tab-content">
+    <div class="tab-panel" :class="{ 'is-active': isActive(0) }">Stats for today</div>
+    <div class="tab-panel" :class="{ 'is-active': isActive(1) }">Stats for this week</div>
+    <div class="tab-panel" :class="{ 'is-active': isActive(2) }">Stats for this month</div>
+  </div>
+</div>
+`;
+
 const boxedCode = `
 <div class="tab-nav tab-nav-boxed">...</div>
 <div class="tab-content tab-content-bordered">...</div>
@@ -47,6 +63,20 @@ const cardTopBorderVsCodeStyleCode = `
 </div>
 `;
 
+const cardTopBorderAlpineCode = `
+<!-- njx-alpine.js preset: x-data="njxTabs" — same .tab-nav-card classes -->
+<div class="tab-wrap" x-data="njxTabs">
+  <div class="tab-nav tab-nav-card">
+    <button class="tab-btn" :class="{ 'is-active': isActive(0) }" @click="select(0)">index.html</button>
+    <button class="tab-btn" :class="{ 'is-active': isActive(1) }" @click="select(1)">style.css</button>
+  </div>
+  <div class="tab-content tab-content-bordered">
+    <div class="tab-panel" :class="{ 'is-active': isActive(0) }">...</div>
+    <div class="tab-panel" :class="{ 'is-active': isActive(1) }">...</div>
+  </div>
+</div>
+`;
+
 const badgesFullWidthCode = `
 <!-- Full-width tabs with badges -->
 <div class="tab-nav is-full">
@@ -56,6 +86,24 @@ const badgesFullWidthCode = `
   <button class="tab-btn" onclick="tabSwitch(this)">
     Sent <span class="tab-badge">12</span>
   </button>
+</div>
+`;
+
+const badgesFullWidthAlpineCode = `
+<!-- njx-alpine.js preset: x-data="njxTabs" -->
+<div class="tab-wrap" x-data="njxTabs">
+  <div class="tab-nav is-full">
+    <button class="tab-btn" :class="{ 'is-active': isActive(0) }" @click="select(0)">
+      Inbox <span class="tab-badge">4</span>
+    </button>
+    <button class="tab-btn" :class="{ 'is-active': isActive(1) }" @click="select(1)">
+      Sent <span class="tab-badge">12</span>
+    </button>
+  </div>
+  <div class="tab-content">
+    <div class="tab-panel" :class="{ 'is-active': isActive(0) }">4 unread messages.</div>
+    <div class="tab-panel" :class="{ 'is-active': isActive(1) }">12 sent messages.</div>
+  </div>
 </div>
 `;
 
@@ -126,7 +174,7 @@ const sizesSmDefaultLgCode = `
   </Demo>
 
   <!-- Pills -->
-  <Demo is:raw label={'Pills'} previewClass="col" previewStyle="align-items:stretch" code={pillsCode}>
+  <Demo is:raw label={'Pills'} previewClass="col" previewStyle="align-items:stretch" code={pillsCode} alpineCode={pillsAlpineCode} htmlTabLabel="JS">
       <div class="tab-wrap">
         <div class="tab-nav tab-nav-pills" style="align-self:flex-start">
           <button class="tab-btn is-active" onclick="tabSwitch(this)"
@@ -174,7 +222,7 @@ const sizesSmDefaultLgCode = `
     </Demo>
 
   <!-- Card (VS Code style) -->
-  <Demo is:raw label={'Card — top border (VS Code style)'} previewClass="col" previewStyle="align-items:stretch" code={cardTopBorderVsCodeStyleCode}>
+  <Demo is:raw label={'Card — top border (VS Code style)'} previewClass="col" previewStyle="align-items:stretch" code={cardTopBorderVsCodeStyleCode} alpineCode={cardTopBorderAlpineCode} htmlTabLabel="JS">
       <div class="tab-wrap">
         <div class="tab-nav tab-nav-card">
           <button class="tab-btn is-active" onclick="tabSwitch(this)"
@@ -198,7 +246,7 @@ const sizesSmDefaultLgCode = `
     </Demo>
 
   <!-- With badges + full width -->
-  <Demo is:raw label={'Badges + full width'} previewClass="col" previewStyle="align-items:stretch" code={badgesFullWidthCode}>
+  <Demo is:raw label={'Badges + full width'} previewClass="col" previewStyle="align-items:stretch" code={badgesFullWidthCode} alpineCode={badgesFullWidthAlpineCode} htmlTabLabel="JS">
       <div class="tab-wrap">
         <div class="tab-nav is-full">
           <button class="tab-btn is-active" onclick="tabSwitch(this)">

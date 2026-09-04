@@ -43,6 +43,32 @@ document.addEventListener("keydown", e => {
 </script>
 `;
 
+const allVariantsAlpineCode = `
+<!-- One Alpine root drives every variant: open = 'success' | 'error' | … -->
+<!-- Single modal? Take the njx-alpine.js preset: x-data="njxModal" (show/hide, Escape, scroll lock) -->
+<div x-data="{ open: null }" @keydown.escape.window="open = null">
+  <button class="btn btn-success btn-sm" @click="open = 'success'">✅ Success</button>
+  <button class="btn btn-danger btn-sm"  @click="open = 'error'">❌ Error</button>
+
+  <div class="lib-modal-overlay" :class="{ open: open === 'success' }" @click.self="open = null">
+    <div class="lib-modal-box is-success">
+      <button class="lib-modal-close" @click="open = null">✕</button>
+      <div class="lib-modal-icon-wrap">✅</div>
+      <div class="lib-modal-title">Success!</div>
+      <div class="lib-modal-text">Description of the action or result.</div>
+      <div class="lib-modal-actions">
+        <button class="btn btn-success btn-sm" @click="open = null">Great!</button>
+        <button class="btn btn-ghost btn-sm" @click="open = null">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="lib-modal-overlay" :class="{ open: open === 'error' }" @click.self="open = null">
+    <div class="lib-modal-box is-error">...</div>
+  </div>
+</div>
+`;
+
 const sizeVariantsIsSmIsLgCode = `
 <!-- Small: max-width 340px -->
 <div class="lib-modal-box is-sm">...</div>
@@ -138,6 +164,34 @@ document.addEventListener("keydown", e => {
 });
 </script>
 `;
+const interactivePreviewAlpineCode = `
+<!-- njx-alpine.js preset: x-data="njxModal" — show()/hide(), Escape,
+     backdrop click and body scroll lock handled by the preset -->
+<div x-data="njxModal">
+  <div class="card hover-lift" @click="show()">
+    <div class="lib-modal-title">Default modal</div>
+    <div class="text-sm text-muted">Click to preview</div>
+  </div>
+
+  <div class="lib-modal-overlay">
+    <div class="lib-modal-box">
+      <button class="lib-modal-close" @click="hide()">✕</button>
+      <div class="lib-modal-icon-wrap">⬜</div>
+      <div class="lib-modal-title">Default</div>
+      <div class="lib-modal-text">Neutral styling, no color tint.</div>
+      <div class="lib-modal-actions">
+        <button class="btn btn-primary btn-sm" @click="hide()">Confirm</button>
+        <button class="btn btn-ghost btn-sm" @click="hide()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Color / size variants — the same .lib-modal-box modifiers -->
+<div class="lib-modal-box is-success">...</div>
+<div class="lib-modal-box is-sm is-primary">...</div>
+`;
+
 const fullHtmlStructureCode = `
 <!-- Trigger button -->
 <button onclick="openModal('my-modal')">Open</button>
@@ -209,7 +263,7 @@ const fullHtmlAlpineCode = `
     </div>
 
     <!-- All variants -->
-    <Demo is:raw label={'All variants — colored overlays'} previewStyle="gap:10px;flex-wrap:wrap" code={allVariantsColoredOverlaysCode}>
+    <Demo is:raw label={'All variants — colored overlays'} previewStyle="gap:10px;flex-wrap:wrap" code={allVariantsColoredOverlaysCode} alpineCode={allVariantsAlpineCode} htmlTabLabel="JS">
             <button
                 class="btn btn-ghost btn-sm"
                 onclick="openModal('modal-default')">Default</button
@@ -290,7 +344,7 @@ const fullHtmlAlpineCode = `
     </div>
 
     <!-- Interactive preview grid -->
-    <Demo is:raw label={'Interactive preview — click any card'} previewStyle="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;padding:4px" code={interactivePreviewClickAnyCardCode}>
+    <Demo is:raw label={'Interactive preview — click any card'} previewStyle="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;padding:4px" code={interactivePreviewClickAnyCardCode} alpineCode={interactivePreviewAlpineCode} htmlTabLabel="JS">
             <div
                 onclick="openModal('modal-default')"
                 style="padding:20px 16px;border-radius:12px;cursor:pointer;background:var(--color-dark-secondary);border:1px solid color-mix(in srgb,var(--color-neutral-600) 16%,transparent);transition:transform .18s,box-shadow .18s,border-color .18s"

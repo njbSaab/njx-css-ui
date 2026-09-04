@@ -24,6 +24,29 @@ const leftOverlayDefaultCode = `
 </aside>
 `;
 
+const leftOverlayAlpineCode = `
+<!-- Same .is-open / .is-visible classes — sidebarOpen()/sidebarClose() not needed -->
+<div x-data="{ open: false }" @keydown.escape.window="open = false">
+  <button class="btn btn-primary" @click="open = true">Open</button>
+
+  <div class="sidebar-backdrop" :class="{ 'is-visible': open }" @click="open = false"></div>
+
+  <aside class="sidebar" :class="{ 'is-open': open }">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Menu</span>
+      <button class="sidebar-close" @click="open = false">✕</button>
+    </div>
+    <div class="sidebar-body">
+      <nav class="sidebar-nav">
+        <a class="sidebar-link is-active" href="#">Dashboard</a>
+        <a class="sidebar-link" href="#">Profile</a>
+        <a class="sidebar-link" href="#">Settings</a>
+      </nav>
+    </div>
+  </aside>
+</div>
+`;
+
 const rightOverlayCode = `
 <aside class="sidebar sidebar-right" id="my-sidebar-right">
   ...
@@ -72,6 +95,18 @@ const miniIconRailCollapsibleCode = `
 sidebarExpandToggle('mini-rail')
 `;
 
+const miniIconRailAlpineCode = `
+<!-- .is-expanded via a binding — sidebarExpandToggle() not needed -->
+<div class="sidebar-layout" x-data="{ wide: false }">
+  <aside class="sidebar sidebar-push sidebar-mini is-open" :class="{ 'is-expanded': wide }">
+    <!-- header: brand logo + toggle -->
+    <button class="sidebar-mini-toggle" @click="wide = !wide">⇔</button>
+    <!-- body: sidebar-link with <span class="sidebar-link-text">Label</span> -->
+  </aside>
+  <div class="sidebar-content">...</div>
+</div>
+`;
+
 const floatingDetachedGlassBlurCode = `
 <aside class="sidebar sidebar-floating" id="my-float">
   ...
@@ -85,6 +120,23 @@ sidebarClose('my-sidebar')        // close overlay
 sidebarToggle('my-sidebar')       // toggle open/close
 sidebarExpandToggle('mini-rail')  // expand/collapse mini sidebar
 `;
+
+const jsApiAlpineCode = `
+/* The same API in Alpine — state instead of function calls */
+
+x-data="{ open: false }"                     // one boolean per sidebar
+
+:class="{ 'is-open': open }"                 // on .sidebar
+:class="{ 'is-visible': open }"              // on .sidebar-backdrop
+
+@click="open = true"                         // sidebarOpen
+@click="open = false"                        // sidebarClose
+@click="open = !open"                        // sidebarToggle
+@keydown.escape.window="open = false"        // Escape to close
+
+x-data="{ wide: false }"                     // mini rail
+:class="{ 'is-expanded': wide }"             // sidebarExpandToggle
+`;
 ---
 
 <section class="lib-section" id="sidebar">
@@ -97,7 +149,7 @@ sidebarExpandToggle('mini-rail')  // expand/collapse mini sidebar
     </div>
 
     <!-- ── Variant 1: Left Overlay ── -->
-    <Demo is:raw label="Left — overlay (default)" previewStyle="gap:12px;flex-wrap:wrap;" code={leftOverlayDefaultCode}>
+    <Demo is:raw label="Left — overlay (default)" previewStyle="gap:12px;flex-wrap:wrap;" code={leftOverlayDefaultCode} alpineCode={leftOverlayAlpineCode}>
             <button
                 class="btn btn-primary"
                 onclick="sidebarOpen('demo-sidebar-left')"
@@ -362,7 +414,7 @@ sidebarExpandToggle('mini-rail')  // expand/collapse mini sidebar
         </Demo>
 
     <!-- ── Variant 6: Mini / Icon Rail ── -->
-    <Demo is:raw label="Mini — icon rail (collapsible)" previewStyle="padding:0;overflow:hidden;border-radius:var(--radius-lg)" code={miniIconRailCollapsibleCode}>
+    <Demo is:raw label="Mini — icon rail (collapsible)" previewStyle="padding:0;overflow:hidden;border-radius:var(--radius-lg)" code={miniIconRailCollapsibleCode} alpineCode={miniIconRailAlpineCode}>
             <div
                 class="sidebar-layout"
                 style="height:300px;min-height:0;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--sidebar-border)"
@@ -564,7 +616,7 @@ sidebarExpandToggle('mini-rail')  // expand/collapse mini sidebar
         </Demo>
 
     <!-- ── JS API ── -->
-    <Demo is:raw label="JS API" previewStyle="gap:10px;flex-wrap:wrap;" code={jsApiCode}>
+    <Demo is:raw label="JS API" previewStyle="gap:10px;flex-wrap:wrap;" code={jsApiCode} alpineCode={jsApiAlpineCode} htmlTabLabel="JS">
             <code style="font-size:13px">sidebarOpen('id')</code>
             <code style="font-size:13px">sidebarClose('id')</code>
             <code style="font-size:13px">sidebarToggle('id')</code>

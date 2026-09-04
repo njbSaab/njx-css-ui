@@ -33,6 +33,34 @@ const notificationBellClickToOpenMarkAsReadBadCode = `
    njxMarkAllRead()  — mark all read, clear badge */
 `;
 
+const notificationBellAlpineCode = `
+<!-- Alpine state in the markup: items[], computed unread, outside click -->
+<div style="position:relative" @click.outside="open = false" x-data="{
+  open: false,
+  items: [
+    { id: 1, who: 'alex_dev', text: 'pushed to main',      time: '2 min ago', read: false },
+    { id: 2, who: 'mona',     text: 'commented on PR #38', time: '1 h ago',   read: false },
+  ],
+  get unread() { return this.items.filter(n => !n.read).length },
+}">
+  <button class="njx-bell-btn" @click="open = !open">🔔
+    <span class="njx-bell-badge" x-show="unread > 0" x-text="unread"></span>
+  </button>
+  <div class="njx-notif-dropdown" :class="{ open }">
+    <template x-for="n in items" :key="n.id">
+      <div class="njx-notif-item" :class="{ unread: !n.read }" @click="n.read = true">
+        <div class="njx-notif-avatar" x-text="n.who[0].toUpperCase()"></div>
+        <div class="njx-notif-body">
+          <div class="njx-notif-text"><b x-text="n.who"></b> <span x-text="n.text"></span></div>
+          <div class="njx-notif-time" x-text="n.time"></div>
+        </div>
+      </div>
+    </template>
+    <button class="njx-inbox-action-btn" @click="items.forEach(n => n.read = true)">✓✓ Mark all read</button>
+  </div>
+</div>
+`;
+
 const inlineAlertsClickToDismissSmoothCollapseCode = `
 <!-- njx-ni-success | njx-ni-error | njx-ni-warning | njx-ni-info | njx-ni-dark -->
 <div class="njx-notif-inline njx-ni-success">
@@ -46,6 +74,19 @@ const inlineAlertsClickToDismissSmoothCollapseCode = `
 
 /* njxDismissAlert(btn) — collapses parent alert smoothly */
 /* njxRestoreAlerts()   — restores all dismissed alerts   */
+`;
+
+const inlineAlertsAlpineCode = `
+<!-- x-show + x-collapse-style transition — njxDismissAlert() not needed -->
+<div class="njx-notif-inline njx-ni-success" x-data="{ show: true }" x-show="show"
+     x-transition.duration.250ms>
+  <span class="njx-notif-inline-icon">✅</span>
+  <div class="njx-notif-inline-body">
+    <div class="njx-notif-inline-title">Deployment successful</div>
+    <div class="njx-notif-inline-msg">Version 1.0.6 is live.</div>
+  </div>
+  <button class="njx-notif-inline-close" @click="show = false">×</button>
+</div>
 `;
 
 const messageInboxClickToReadBadgeCounterCode = `
@@ -72,6 +113,48 @@ const messageInboxClickToReadBadgeCounterCode = `
 
 /* njxReadMsg(el)    — mark message read, update badge
    njxMarkAllMsgs() — mark all read */
+`;
+
+const messageInboxAlpineCode = `
+<!-- messages[] in x-data — badge and dots are just bindings -->
+<div class="njx-inbox" x-data="{
+  msgs: [
+    { id: 1, who: 'alex_dev', subj: 'Re: PR #38',     preview: 'Looks great! One question...', time: '2m',  read: false },
+    { id: 2, who: 'mona',     subj: 'Design review',  preview: 'Updated the mockups —',        time: '1h',  read: false },
+  ],
+  get unread() { return this.msgs.filter(m => !m.read).length },
+}">
+  <div class="njx-inbox-header">
+    <div class="njx-inbox-title">Messages
+      <span class="badge badge-primary" x-show="unread > 0" x-text="unread"></span>
+    </div>
+    <div class="njx-inbox-actions">
+      <button class="njx-inbox-action-btn" @click="msgs.forEach(m => m.read = true)">✓✓</button>
+    </div>
+  </div>
+  <template x-for="m in msgs" :key="m.id">
+    <div class="njx-msg-item" :class="{ unread: !m.read }" @click="m.read = true">
+      <div class="njx-msg-avatar" x-text="m.who[0].toUpperCase()"></div>
+      <div class="njx-msg-content">
+        <div class="njx-msg-top">
+          <span class="njx-msg-name" x-text="m.who"></span>
+          <span class="njx-msg-time" x-text="m.time"></span>
+        </div>
+        <div class="njx-msg-subject" x-text="m.subj"></div>
+        <div class="njx-msg-preview" x-text="m.preview"></div>
+      </div>
+      <div class="njx-msg-dot" x-show="!m.read"></div>
+    </div>
+  </template>
+</div>
+`;
+
+const notificationStaticVariantsAlpineCode = `
+<!-- Dismiss via x-show — no inline style juggling -->
+<div class="notification is-success" x-data="{ show: true }" x-show="show" x-transition.duration.200ms>
+  <button class="delete is-small" @click="show = false"></button>
+  Completed successfully
+</div>
 `;
 
 const notificationStaticVariantsCode = `
@@ -683,7 +766,7 @@ const loadersCode = `
     <!-- ══════════════════════════
              BELL DROPDOWN
         ══════════════════════════ -->
-    <Demo is:raw label={'Notification Bell — click to open · mark as read · badge counter'} previewStyle="gap:32px;align-items:flex-start;flex-wrap:wrap;overflow:visible" code={notificationBellClickToOpenMarkAsReadBadCode}>
+    <Demo is:raw label={'Notification Bell — click to open · mark as read · badge counter'} previewStyle="gap:32px;align-items:flex-start;flex-wrap:wrap;overflow:visible" code={notificationBellClickToOpenMarkAsReadBadCode} alpineCode={notificationBellAlpineCode} htmlTabLabel="JS">
             <!-- Bell + dropdown -->
             <div
                 style="position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:6px"
@@ -894,7 +977,7 @@ const loadersCode = `
     <!-- ══════════════════════════
              INLINE ALERTS
         ══════════════════════════ -->
-    <Demo is:raw label={'Inline Alerts — click × to dismiss · smooth collapse'} previewClass="col" previewStyle="align-items:stretch;gap:0" code={inlineAlertsClickToDismissSmoothCollapseCode}>
+    <Demo is:raw label={'Inline Alerts — click × to dismiss · smooth collapse'} previewClass="col" previewStyle="align-items:stretch;gap:0" code={inlineAlertsClickToDismissSmoothCollapseCode} alpineCode={inlineAlertsAlpineCode} htmlTabLabel="JS">
             <div class="njx-alert-stack" id="njxAlertStack">
                 <div class="njx-notif-inline njx-ni-success">
                     <span class="njx-notif-inline-icon">✅</span>
@@ -990,7 +1073,7 @@ const loadersCode = `
     <!-- ══════════════════════════
              MESSAGE INBOX
         ══════════════════════════ -->
-    <Demo is:raw label={'Message Inbox — click to read · badge counter'} previewClass="col" previewStyle="align-items:stretch;padding:0" code={messageInboxClickToReadBadgeCounterCode}>
+    <Demo is:raw label={'Message Inbox — click to read · badge counter'} previewClass="col" previewStyle="align-items:stretch;padding:0" code={messageInboxClickToReadBadgeCounterCode} alpineCode={messageInboxAlpineCode} htmlTabLabel="JS">
             <div class="njx-inbox">
                 <div class="njx-inbox-header">
                     <div class="njx-inbox-title">
@@ -1145,7 +1228,7 @@ const loadersCode = `
     <!-- ══════════════════════════
              STATIC NOTIFICATIONS
         ══════════════════════════ -->
-    <Demo is:raw label={'Notification — static variants'} previewClass="col" previewStyle="align-items:stretch" code={notificationStaticVariantsCode}>
+    <Demo is:raw label={'Notification — static variants'} previewClass="col" previewStyle="align-items:stretch" code={notificationStaticVariantsCode} alpineCode={notificationStaticVariantsAlpineCode} htmlTabLabel="JS">
             <div class="notification">
                 <span style="margin-right:8px">🔔</span>Basic notification —
                 default style
