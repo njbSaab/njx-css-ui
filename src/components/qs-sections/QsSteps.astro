@@ -1,6 +1,6 @@
 ---
 import CodeBlock from '../shared/CodeBlock.astro';
-import { CDN_BASE, CDN_JS } from '../../lib/meta';
+import { CDN_BASE, CDN_JS, CDN_ALPINE_PRESETS } from '../../lib/meta';
 
 const base = import.meta.env.BASE_URL;
 const qsLinkFull = `
@@ -9,19 +9,26 @@ const qsLinkFull = `
 const qsLinkInteractive = `
 <link rel="stylesheet" href="${CDN_BASE}style.min.css">
 
-<!-- Option A — Alpine.js: your state, njX classes -->
+<!-- Option A — Alpine.js + njX presets (load presets first) -->
+<script defer src="${CDN_ALPINE_PRESETS}"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
 
 <!-- Option B — njx.js: zero-config helpers -->
 <script src="${CDN_JS}"></script>
 `;
 const qsAlpineTaste = `
-<!-- Same njX classes — Alpine just toggles .is-open -->
-<div class="collapse" x-data="{ open: false }" :class="{ 'is-open': open }">
-  <div class="collapse-header" @click="open = !open">
+<!-- njx-alpine.js preset — one word of x-data -->
+<div class="collapse" x-data="njxCollapse">
+  <div class="collapse-header" @click="toggle()">
     FAQ item <span class="collapse-icon"></span>
   </div>
   <div class="collapse-body">Answer</div>
+</div>
+
+<!-- No presets? Raw x-data flips the same class -->
+<div class="collapse" x-data="{ open: false }" :class="{ 'is-open': open }">
+  <div class="collapse-header" @click="open = !open">...</div>
+  <div class="collapse-body">...</div>
 </div>
 `;
 const qsAstroImport = `
@@ -158,7 +165,9 @@ const qsBoilerplateFull = `
           <div class="sc-step-body">
             <div class="sc-step-title">Bring it to life</div>
             <div class="sc-step-desc">
-              With Alpine the state lives in the markup — full recipe set in the
+              With Alpine the state lives in the markup. Eight ready presets in the
+              <a href={`${base}documentation#njx-alpine`} style="color:var(--color-primary)">njx-alpine section</a>,
+              raw recipes in the
               <a href={`${base}documentation#alpine`} style="color:var(--color-primary)">Alpine.js section</a> of the docs.
             </div>
             <CodeBlock frame="sc" compact style="margin-top:10px" code={qsAlpineTaste} />

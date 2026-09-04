@@ -124,6 +124,45 @@ const base = import.meta.env.BASE_URL;
           </div>
         </div>
       </section>
+
+      <!-- Interactive-режим: пятый блок про драйверы (скрыт в full/astro) -->
+      <section class="qs3-block" id="qs3-b5" data-qs-mode="interactive" style="display:none">
+        <div class="qs3-n" data-n="5">Interact</div>
+        <h2>One word of <span class="qs3-em">state</span>.</h2>
+        <p>
+          The CSS ships the states — <code>.is-open</code>, <code>.is-active</code>,
+          <code>.open</code>. A driver just flips them. Pick either one; the markup
+          and classes stay identical.
+        </p>
+        <ul>
+          <li>
+            <strong>njx-alpine.js</strong>Alpine presets: <code
+              >x-data="njxCollapse"</code
+            >, <code>njxTabs</code>, <code>njxModal</code>, <code>njxToasts</code
+            >, <code>njxCarousel</code>, <code>njxTheme</code> — one word per
+            component, ~3&nbsp;KB.
+          </li>
+          <li>
+            <strong>njx.js</strong>Zero-config helpers: <code
+              >collapseToggle()</code
+            >, <code>sidebarOpen()</code>, <code>showToast()</code> — plain
+            functions, no framework.
+          </li>
+          <li>
+            <strong>Raw x-data</strong>No presets needed either — an inline <code
+              >x-data="&#123; open: false &#125;"</code
+            > works with the same classes.
+          </li>
+        </ul>
+        <div class="qs3-tip">
+          <div>
+            <b>Full recipe set</b><br />Every interactive component on the docs
+            has a <strong>JS | Alpine.js</strong> code tab, and the
+            <a href={`${base}documentation#njx-alpine`} style="color:var(--color-primary)">njx-alpine section</a>
+            lists all eight presets.
+          </div>
+        </div>
+      </section>
     </div>
 
     <div class="qs3-right">

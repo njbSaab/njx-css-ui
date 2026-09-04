@@ -199,12 +199,64 @@ const base = import.meta.env.BASE_URL;
     ];
     var ASTRO_PATHS = { cdn: ASTRO_STEPS, npm: ASTRO_STEPS, zip: ASTRO_STEPS };
 
+    // Interactive-режим: два дополнительных шага — драйвер (после link)
+    // и живое состояние (в конце). Оба драйвера щёлкают одни и те же классы.
+    var DRIVER_STEP_CDN = {
+      h: 'Wire a driver',
+      meta: '~10s',
+      d: '<strong>Alpine.js</strong> + njx-alpine presets for state in the markup, or zero-config <strong>njx.js</strong> — both flip the same classes.',
+      code:
+        '<span class="com">&lt;!-- Option A — Alpine + presets --&gt;</span>\n' +
+        '&lt;<span class="sh-tag">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="str">"https://cdn.jsdelivr.net/npm/njx-ui@1/js/njx-alpine.js"</span>&gt;&lt;/<span class="sh-tag">script</span>&gt;\n' +
+        '&lt;<span class="sh-tag">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="str">"https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"</span>&gt;&lt;/<span class="sh-tag">script</span>&gt;\n\n' +
+        '<span class="com">&lt;!-- Option B — njx.js, zero config --&gt;</span>\n' +
+        '&lt;<span class="sh-tag">script</span> <span class="attr">src</span>=<span class="str">"https://cdn.jsdelivr.net/npm/njx-ui@1/js/njx.js"</span>&gt;&lt;/<span class="sh-tag">script</span>&gt;',
+      check: 'Wired',
+    };
+    var DRIVER_STEPS = {
+      cdn: DRIVER_STEP_CDN,
+      zip: DRIVER_STEP_CDN,
+      npm: {
+        h: 'Wire a driver',
+        meta: '~15s',
+        d: '<strong>Alpine.js</strong> + njx-alpine presets, or zero-config <strong>njx.js</strong> — both ship inside the njx-ui package.',
+        code:
+          '<span class="com">// Option A — Alpine + presets</span>\n' +
+          '<span class="kw">import</span> Alpine <span class="kw">from</span> <span class="str">"alpinejs"</span>;\n' +
+          '<span class="kw">import</span> <span class="str">"njx-ui/js/njx-alpine.js"</span>;\n' +
+          'window.Alpine = Alpine;\nAlpine.start();\n\n' +
+          '<span class="com">// Option B — njx.js helpers</span>\n' +
+          '<span class="kw">import</span> <span class="str">"njx-ui/js/njx.js"</span>;',
+        check: 'Wired',
+      },
+    };
+    var INTERACTIVE_FINAL = {
+      h: 'Flip some state',
+      meta: '~10s',
+      d: 'One word of <code>x-data</code> — the preset toggles the same <code>.is-open</code> class the CSS already styles.',
+      code:
+        '&lt;<span class="sh-tag">div</span> <span class="attr">class</span>=<span class="str">"collapse"</span> <span class="attr">x-data</span>=<span class="str">"njxCollapse"</span>&gt;\n' +
+        '  &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"collapse-header"</span> <span class="attr">@click</span>=<span class="str">"toggle()"</span>&gt;FAQ item&lt;/<span class="sh-tag">button</span>&gt;\n' +
+        '  &lt;<span class="sh-tag">div</span> <span class="attr">class</span>=<span class="str">"collapse-body"</span>&gt;Answer&lt;/<span class="sh-tag">div</span>&gt;\n' +
+        '&lt;/<span class="sh-tag">div</span>&gt;',
+      check: 'Alive!',
+    };
+
+    function stepsFor() {
+      var activePaths = window._qsMode === 'astro' ? ASTRO_PATHS : PATHS;
+      var steps = activePaths[curP] || activePaths['cdn'];
+      if (window._qsMode === 'interactive') {
+        var drv = DRIVER_STEPS[curP] || DRIVER_STEP_CDN;
+        steps = [steps[0], drv].concat(steps.slice(1)).concat([INTERACTIVE_FINAL]);
+      }
+      return steps;
+    }
+
     var curP = 'cdn';
     var done = {};
 
     function render() {
-      var activePaths = window._qsMode === 'astro' ? ASTRO_PATHS : PATHS;
-      var steps = activePaths[curP] || activePaths['cdn'];
+      var steps = stepsFor();
       track.innerHTML = '';
       steps.forEach(function (st, i) {
         var isDone = !!done[curP + '-' + i];
@@ -261,8 +313,7 @@ const base = import.meta.env.BASE_URL;
     }
 
     function updateProgress() {
-      var activePaths = window._qsMode === 'astro' ? ASTRO_PATHS : PATHS;
-      var steps = activePaths[curP] || activePaths['cdn'];
+      var steps = stepsFor();
       var completed = steps.reduce(function (n, _, i) {
         return n + (done[curP + '-' + i] ? 1 : 0);
       }, 0);
@@ -500,6 +551,52 @@ createApp(App).mount(<span class="str">"#app"</span>);`,
   <span class="attr">--radius-full</span>:    <span class="str">9999px</span>;
 }`,
             preview: `<div style="font-family:'Roboto Mono',monospace;font-size:12px;color:var(--color-muted)">60+ tokens in <code style="color:var(--color-primary)">_base.css</code></div>`,
+          },
+        ],
+      },
+      // Interactive-режим: блок «Interact» (пейн qs3-b5 скрыт в full/astro,
+      // так что скролл-спай сюда просто не доедет в других режимах)
+      b5: {
+        title: 'Interact',
+        fname: 'index.html',
+        tabs: [
+          {
+            k: 'preset',
+            name: 'Alpine preset',
+            lang: 'HTML',
+            code: `<span class="com">&lt;!-- njx-alpine.js before Alpine — one word of x-data --&gt;</span>
+<span class="hi">&lt;<span class="sh-tag">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="str">"https://cdn.jsdelivr.net/npm/njx-ui@1/js/njx-alpine.js"</span>&gt;&lt;/<span class="sh-tag">script</span>&gt;
+</span>&lt;<span class="sh-tag">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="str">"https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"</span>&gt;&lt;/<span class="sh-tag">script</span>&gt;
+
+&lt;<span class="sh-tag">div</span> <span class="attr">class</span>=<span class="str">"collapse"</span> <span class="hi"><span class="attr">x-data</span>=<span class="str">"njxCollapse"</span></span>&gt;
+  &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"collapse-header"</span> <span class="attr">@click</span>=<span class="str">"toggle()"</span>&gt;FAQ item&lt;/<span class="sh-tag">button</span>&gt;
+  &lt;<span class="sh-tag">div</span> <span class="attr">class</span>=<span class="str">"collapse-body"</span>&gt;Answer&lt;/<span class="sh-tag">div</span>&gt;
+&lt;/<span class="sh-tag">div</span>&gt;`,
+            preview: `<div class="collapse is-open" style="max-width:280px"><div class="collapse-header">FAQ item <span class="collapse-icon"></span></div><div class="collapse-body">Answer</div></div>`,
+          },
+          {
+            k: 'xdata',
+            name: 'Raw x-data',
+            lang: 'HTML',
+            code: `<span class="com">&lt;!-- no presets — inline state flips the same class --&gt;</span>
+&lt;<span class="sh-tag">div</span> <span class="attr">class</span>=<span class="str">"collapse"</span> <span class="hi"><span class="attr">x-data</span>=<span class="str">"{ open: false }"</span> <span class="attr">:class</span>=<span class="str">"{ 'is-open': open }"</span></span>&gt;
+  &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"collapse-header"</span> <span class="attr">@click</span>=<span class="str">"open = !open"</span>&gt;FAQ item&lt;/<span class="sh-tag">button</span>&gt;
+  &lt;<span class="sh-tag">div</span> <span class="attr">class</span>=<span class="str">"collapse-body"</span>&gt;Answer&lt;/<span class="sh-tag">div</span>&gt;
+&lt;/<span class="sh-tag">div</span>&gt;`,
+            preview: `<div class="collapse is-open" style="max-width:280px"><div class="collapse-header">FAQ item <span class="collapse-icon"></span></div><div class="collapse-body">Answer</div></div>`,
+          },
+          {
+            k: 'njxjs',
+            name: 'njx.js',
+            lang: 'HTML',
+            code: `<span class="com">&lt;!-- zero config — plain helper functions --&gt;</span>
+<span class="hi">&lt;<span class="sh-tag">script</span> <span class="attr">src</span>=<span class="str">"https://cdn.jsdelivr.net/npm/njx-ui@1/js/njx.js"</span>&gt;&lt;/<span class="sh-tag">script</span>&gt;
+</span>
+&lt;<span class="sh-tag">div</span> <span class="attr">class</span>=<span class="str">"collapse"</span>&gt;
+  &lt;<span class="sh-tag">button</span> <span class="attr">class</span>=<span class="str">"collapse-header"</span> <span class="attr">onclick</span>=<span class="str">"collapseToggle(this)"</span>&gt;FAQ item&lt;/<span class="sh-tag">button</span>&gt;
+  &lt;<span class="sh-tag">div</span> <span class="attr">class</span>=<span class="str">"collapse-body"</span>&gt;Answer&lt;/<span class="sh-tag">div</span>&gt;
+&lt;/<span class="sh-tag">div</span>&gt;`,
+            preview: `<div class="collapse is-open" style="max-width:280px"><div class="collapse-header">FAQ item <span class="collapse-icon"></span></div><div class="collapse-body">Answer</div></div>`,
           },
         ],
       },
