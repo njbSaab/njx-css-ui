@@ -1,5 +1,6 @@
 ---
 import Demo from '../shared/Demo.astro';
+import { LIB_VERSION } from '../../lib/meta';
 
 const leftOverlayDefaultCode = `
 <!-- Trigger -->
@@ -1108,7 +1109,7 @@ x-data="{ wide: false }"                     // mini rail
     </div>
     <div class="sidebar-footer">
         <span style="font-size:var(--fs-xs);color:var(--color-muted)"
-            >njX UI v1.0.5</span
+            >njX UI v{LIB_VERSION}</span
         >
     </div>
 </aside>
