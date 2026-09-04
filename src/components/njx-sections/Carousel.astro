@@ -241,28 +241,6 @@ const cssClassesReferenceCode = `
 <!-- 3. JS autoplay — add data-autoplay="ms" -->
 <div class="js-carousel-wrap" data-autoplay="3000">...</div>
 `;
-const jsSequentialAlpineCode = `
-<!-- Same .js-carousel classes — Alpine drives the track, njx.js not needed -->
-<div class="js-carousel-wrap" x-data="{ i: 0, n: 3 }">
-  <div style="position:relative">
-    <div class="js-carousel">
-      <div class="js-carousel-track" :style="'transform:translateX(-' + (i * 100) + '%)'">
-        <div>Slide 1</div>
-        <div>Slide 2</div>
-        <div>Slide 3</div>
-      </div>
-    </div>
-    <button class="js-carousel-btn js-prev" aria-label="Previous" @click="i = (i - 1 + n) % n">&lsaquo;</button>
-    <button class="js-carousel-btn js-next" aria-label="Next" @click="i = (i + 1) % n">&rsaquo;</button>
-  </div>
-  <div class="js-dots">
-    <template x-for="d in n" :key="d">
-      <button class="js-dot" :class="{ 'is-active': i === d - 1 }" @click="i = d - 1"></button>
-    </template>
-  </div>
-</div>
-`;
-
 const jsAutoplayAlpineCode = `
 <!-- Autoplay with Alpine: setInterval in x-init, pauses on hover -->
 <div class="js-carousel-wrap"
@@ -617,7 +595,7 @@ const testimonialsSliderAlpineCode = `
              JS CAROUSELS
         ══════════════════════════ -->
 
-    <Demo label={'JS — Sequential prev/next + dots'} previewStyle="display:block;padding:0" code={jsSequentialPrevNextDotsCode} alpineCode={jsSequentialAlpineCode}>
+    <Demo label={'JS — Sequential prev/next + dots'} previewStyle="display:block;padding:0" code={jsSequentialPrevNextDotsCode}>
         <Fragment slot="alpine" is:raw>
 <!-- Alpine drives the same track transform — njx.js carousel not needed -->
 <div class="js-carousel-wrap" x-data="{ i: 0, n: 3 }">

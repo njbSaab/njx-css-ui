@@ -77,6 +77,20 @@ const exModal = `
   </div>
 </div>
 `;
+const exModalAlpine = `
+<div x-data="{ open: true }" @keydown.escape.window="open = false">
+  <div class="lib-modal-overlay" :class="{ open }" @click.self="open = false">
+    <div class="lib-modal-box is-success">
+      <span class="lib-modal-icon">✓</span>
+      <div class="lib-modal-title">Success!</div>
+      <div class="lib-modal-text">Operation completed</div>
+      <div class="lib-modal-actions">
+        <button class="btn btn-success" @click="open = false">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
 ---
 
 <section class="doc-section" id="examples">
@@ -96,7 +110,16 @@ const exModal = `
 
                         <CodeBlock frame="sc" lang="html" label="Form with validation states" code={exForm} />
 
-                        <CodeBlock frame="sc" lang="html" label="Modal dialog" code={exModal} />
+                        <CodeBlock
+                            frame="sc"
+                            lang="html"
+                            label="Modal dialog"
+                            code={exModal}
+                            variants={[
+                                { id: 'js', label: 'JS', code: exModal },
+                                { id: 'alpine', label: 'Alpine.js', code: exModalAlpine },
+                            ]}
+                        />
                     </div>
                 </div><!-- /full interactive -->
             </section>

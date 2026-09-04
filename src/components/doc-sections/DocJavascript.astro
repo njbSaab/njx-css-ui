@@ -122,6 +122,47 @@ const jsAlpineToast = `
   </div>
 </div>
 `;
+const jsAlpineAccordion = `
+<!-- Exclusive accordion: one shared index instead of collapseToggle() -->
+<div class="accordion" x-data="{ active: null }">
+  <div class="collapse" :class="{ 'is-open': active === 0 }">
+    <button class="collapse-header" @click="active = active === 0 ? null : 0">
+      First question <span class="collapse-icon"></span>
+    </button>
+    <div class="collapse-body">Answer one.</div>
+  </div>
+  <div class="collapse" :class="{ 'is-open': active === 1 }">
+    <button class="collapse-header" @click="active = active === 1 ? null : 1">
+      Second question <span class="collapse-icon"></span>
+    </button>
+    <div class="collapse-body">Answer two.</div>
+  </div>
+</div>
+
+<!-- Or the njx-alpine.js preset: x-data="njxAccordion" → toggle(i) / isOpen(i) -->
+`;
+
+const jsAlpineCarousel = `
+<!-- Track position is derived state — one :style binding -->
+<div class="js-carousel-wrap" x-data="{ i: 0, n: 3 }">
+  <div class="js-carousel">
+    <div class="js-carousel-track"
+         :style="'transform: translateX(-' + i * 100 + '%)'">
+      <div>Slide 1</div><div>Slide 2</div><div>Slide 3</div>
+    </div>
+  </div>
+  <button class="js-carousel-btn js-prev" @click="i = (i - 1 + n) % n">‹</button>
+  <button class="js-carousel-btn js-next" @click="i = (i + 1) % n">›</button>
+  <div class="js-dots">
+    <template x-for="d in n" :key="d">
+      <button class="js-dot" :class="{ 'is-active': i === d - 1 }" @click="i = d - 1"></button>
+    </template>
+  </div>
+</div>
+
+<!-- Or the njx-alpine.js preset: x-data="njxCarousel(0, 4000)" — autoplay, hover pause, auto slide count -->
+`;
+
 const jsAlpineThemeToggle = `
 <!-- Dark/light toggle with localStorage — one line of state -->
 <button class="btn btn-ghost btn-sm"
@@ -657,6 +698,33 @@ initCarousels();
                         <CodeBlock frame="sc" lang="html" code={jsAlpineCollapse} />
                     </div>
 
+                    <!-- Accordion -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:#77c1d2"
+                                >x-data="&#123; active: null &#125;"</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:rgba(119,193,210,0.12);color:#77c1d2"
+                                >accordion</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            Exclusive open — the shared <code>active</code> index
+                            closes the previous item automatically. Same <code
+                                >.is-open</code
+                            > class on <code>.collapse</code>.
+                        </p>
+                        <CodeBlock frame="sc" lang="html" code={jsAlpineAccordion} />
+                    </div>
+
                     <!-- Tabs -->
                     <div
                         style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
@@ -764,6 +832,34 @@ initCarousels();
                             >.
                         </p>
                         <CodeBlock frame="sc" lang="html" code={jsAlpineToast} />
+                    </div>
+
+                    <!-- Carousel -->
+                    <div
+                        style="margin-bottom:20px;padding:20px;background:var(--color-dark-secondary);border-radius:12px;border:1px solid color-mix(in srgb,var(--color-neutral-600) 18%,transparent)"
+                    >
+                        <div
+                            style="display:flex;align-items:center;gap:10px;margin-bottom:8px"
+                        >
+                            <code
+                                style="font-size:14px;font-weight:700;color:#77c1d2"
+                                >:style="translateX(-i * 100%)"</code
+                            >
+                            <span
+                                style="font-size:11px;padding:2px 8px;border-radius:99px;background:rgba(119,193,210,0.12);color:#77c1d2"
+                                >carousel</span
+                            >
+                        </div>
+                        <p
+                            style="font-size:13px;color:var(--color-muted);margin-bottom:12px"
+                        >
+                            The track offset is derived from one index — prev /
+                            next / dots all just change <code>i</code>. Works with
+                            <code>.js-carousel-track</code>, <code
+                                >.hero-slider-track</code
+                            > and <code>.testi-track</code> alike.
+                        </p>
+                        <CodeBlock frame="sc" lang="html" code={jsAlpineCarousel} />
                     </div>
 
                     <!-- Theme toggle -->
