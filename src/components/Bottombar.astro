@@ -5,6 +5,7 @@ interface Props {
         | 'documentation'
         | 'quickstart'
         | 'examples'
+        | 'themes'
         | 'index'
         | 'donate'
         | 'contact';
@@ -129,9 +130,9 @@ const base = import.meta.env.BASE_URL;
                 </svg>
             </a>
             <a
-                href={`${base}examples`}
-                class={`bb-nav-btn${activePage === 'examples' ? ' active' : ''}`}
-                data-tip="Examples"
+                href={`${base}themes`}
+                class={`bb-nav-btn${activePage === 'themes' ? ' active' : ''}`}
+                data-tip="Themes"
             >
                 <svg
                     width="16"
