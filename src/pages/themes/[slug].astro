@@ -12,6 +12,14 @@ const { theme: t } = Astro.props;
 const briefHref = `/themes#brief`;
 const nameParts = t.name.split('-');
 const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
+
+// Payments: when Lemon Squeezy checkout URLs land in CF Pages env
+// (PUBLIC_LS_DARK_LUX_SINGLE / PUBLIC_LS_DARK_LUX_UNLIMITED etc.),
+// Buy buttons switch from the brief form to real checkout — no code changes.
+const envKey = t.slug.toUpperCase().replace(/-/g, '_');
+const buySingleHref = import.meta.env[`PUBLIC_LS_${envKey}_SINGLE`] || briefHref;
+const buyUnlimitedHref = import.meta.env[`PUBLIC_LS_${envKey}_UNLIMITED`] || briefHref;
+const checkoutLive = buySingleHref !== briefHref;
 ---
 
 <BaseLayout
@@ -111,11 +119,15 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
                                 </button>
                             )}
                             {t.pro.ready ? (
-                                <a class="tp-btn tp-btn-primary tp-btn-block" href={briefHref}>Buy Pro — ${t.pro.single}</a>
+                                <a class="tp-btn tp-btn-primary tp-btn-block" href={buySingleHref} {...(checkoutLive ? { target: '_blank', rel: 'noopener' } : {})}>Buy Pro — ${t.pro.single}</a>
                             ) : (
                                 <a class="tp-btn tp-btn-primary tp-btn-block" href={briefHref}>Get notified — launching soon</a>
                             )}
-                            {t.pro.ready && <p class="tp-price-small">Checkout launching shortly — the button opens a short form, we reply with a payment link the same day.</p>}
+                            {t.pro.ready && (checkoutLive ? (
+                                <p class="tp-price-small">Secure checkout · instant download · VAT invoices handled by Lemon Squeezy.</p>
+                            ) : (
+                                <p class="tp-price-small">Checkout launching shortly — the button opens a short form, we reply with a payment link the same day.</p>
+                            ))}
                         </article>
 
                         <!-- Pro unlimited -->
@@ -129,7 +141,7 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
                                 <li>Lifetime updates — pay once</li>
                                 <li>Priority email support</li>
                             </ul>
-                            <a class="tp-btn tp-btn-secondary tp-btn-block" href={briefHref}>{t.pro.ready ? `Buy Unlimited — $${t.pro.unlimited}` : 'Get notified'}</a>
+                            <a class="tp-btn tp-btn-secondary tp-btn-block" href={t.pro.ready ? buyUnlimitedHref : briefHref} {...(t.pro.ready && buyUnlimitedHref !== briefHref ? { target: '_blank', rel: 'noopener' } : {})}>{t.pro.ready ? `Buy Unlimited — $${t.pro.unlimited}` : 'Get notified'}</a>
                         </article>
                     </>
                 )}
