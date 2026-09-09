@@ -98,21 +98,26 @@ const SITES: Theme[] = [
 ---
 
 <BaseLayout
-    title="Astro Themes by njX — free ecommerce & landing themes"
-    description="Free open-source Astro themes: Shopify-ready ecommerce storefronts and landing pages. Fork on GitHub, rebrand in two files, deploy in minutes. Pro versions coming soon."
+    title="Astro Ecommerce Themes & Shopify Templates — Free & Pro | njX"
+    description="Free open-source Astro ecommerce themes and Shopify storefront templates: headless Shopify-ready storefronts plus landing page themes. Fork on GitHub, rebrand in two files, deploy free. Pro versions and setup service coming soon."
 >
     <PagesTopbar activePage="themes" />
 
     <div class="th-page">
         <!-- HERO -->
         <div class="th-hero">
-            <span class="th-badge">Free &amp; open source</span>
-            <h1>Astro themes by <em>njX</em></h1>
+            <span class="tag tag-primary">Free &amp; open source</span>
+            <h1>Astro ecommerce themes <span class="text-main-gradient">&amp; Shopify templates</span></h1>
             <p>
-                Production-grade Astro themes — Shopify-ready storefronts and
-                landing pages. Every demo below is the theme itself running on
-                mock data: fork it, rebrand two files, deploy for free.
+                Production-grade Astro themes — headless Shopify-ready
+                ecommerce storefront templates and landing pages. Every demo
+                below is the theme itself running on mock data: fork it,
+                rebrand two files, deploy for free.
             </p>
+            <div class="th-hero-actions">
+                <a class="btn btn-primary btn-lg" href="#brief">Start your project brief</a>
+                <a class="btn btn-outline btn-lg" href="https://github.com/njbSaab" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
         </div>
 
         <!-- ECOMMERCE -->
@@ -121,8 +126,10 @@ const SITES: Theme[] = [
                 <h2>Ecommerce storefronts</h2>
                 <p>
                     Astro 5 + Tailwind v4, static build, provider-agnostic
-                    commerce layer: mock JSON out of the box, your live Shopify
-                    catalog with one env var. Hosted checkout stays on Shopify.
+                    commerce layer: each ecommerce template runs on mock JSON
+                    out of the box and becomes a headless Shopify storefront
+                    with one env var — your live catalog, Shopify's hosted
+                    checkout.
                 </p>
             </div>
             <div class="th-grid">
@@ -263,19 +270,167 @@ const SITES: Theme[] = [
             </div>
         </section>
 
-        <!-- CTA -->
+        <!-- CTA → brief form -->
         <div class="th-cta">
             <h2>Need it wired to a real store?</h2>
             <p>
-                Setup and branding services ship together with the Pro versions.
-                Questions, custom work, or a theme request —
-                <a href={`${base}contact`}>write to us</a>. If a theme saved you
-                time, a star on GitHub keeps this project alive ♡
+                Pro versions, Shopify setup, branding or custom work — tell us
+                what you're building and we'll reply with a plan and a quote.
+                If a theme saved you time, a star on GitHub keeps this project
+                alive ♡
             </p>
+            <a class="btn btn-primary btn-lg th-cta-btn" href="#brief">Fill the brief ↓</a>
         </div>
+
+        <!-- Brief form -->
+        <section class="th-brief card-glass" id="brief">
+            <div class="th-brief-copy">
+                <span class="tag tag-success">Project brief</span>
+                <h2>Tell us about your store</h2>
+                <p>
+                    The more you tell us, the more precise the first reply —
+                    usually within a day. The form sends an email through
+                    njxui.dev; if the service is unavailable, it opens your
+                    mail app with a prepared draft.
+                </p>
+                <div class="th-brief-points">
+                    <span>Reply within a day</span>
+                    <span>No obligation quote</span>
+                    <span>Private by default</span>
+                </div>
+            </div>
+            <form class="th-brief-form" id="briefForm">
+                <input id="briefCompany" name="company" type="text" autocomplete="off" tabindex="-1" aria-hidden="true" class="th-honey" />
+                <label>
+                    What do you need
+                    <select id="briefNeed" name="need">
+                        <option value="Pro version">Pro version (when it ships)</option>
+                        <option value="Setup service">Setup — connect my Shopify store</option>
+                        <option value="Branding package">Branding — colors, fonts, logo, copy</option>
+                        <option value="Custom work">Custom work / new features</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </label>
+                <label>
+                    Theme
+                    <select id="briefTheme" name="theme">
+                        <option value="astro-njx-dark-lux">astro-njx-dark-lux</option>
+                        <option value="astro-njx-verdant">astro-njx-verdant</option>
+                        <option value="astro-njx-boutique">astro-njx-boutique</option>
+                        <option value="astro-njx-store">astro-njx-store</option>
+                        <option value="landing themes">Landing theme (saas / portfolio / launch)</option>
+                        <option value="not sure">Not sure yet — advise me</option>
+                    </select>
+                </label>
+                <label>
+                    Your email
+                    <input id="briefReply" name="reply" type="email" placeholder="you@example.com" />
+                </label>
+                <label>
+                    Store platform
+                    <select id="briefPlatform" name="platform">
+                        <option value="Shopify — live store">Shopify — live store</option>
+                        <option value="Shopify — starting now">Shopify — starting now</option>
+                        <option value="No store yet">No store yet</option>
+                        <option value="Other platform">Other platform</option>
+                    </select>
+                </label>
+                <label>
+                    Budget
+                    <select id="briefBudget" name="budget">
+                        <option value="$50–150">$50–150</option>
+                        <option value="$150–500">$150–500</option>
+                        <option value="$500–1500">$500–1500</option>
+                        <option value="$1500+">$1500+</option>
+                        <option value="Not sure">Not sure yet</option>
+                    </select>
+                </label>
+                <label>
+                    Timeline
+                    <select id="briefTimeline" name="timeline">
+                        <option value="ASAP">ASAP</option>
+                        <option value="2–4 weeks">2–4 weeks</option>
+                        <option value="Flexible">Flexible</option>
+                    </select>
+                </label>
+                <label class="full">
+                    About the project
+                    <textarea id="briefMessage" name="message" rows="6" placeholder="What do you sell? Links to your current store, references, must-have features…"></textarea>
+                </label>
+                <button class="btn btn-success btn-lg" type="submit">Send the brief</button>
+                <p class="th-brief-status" id="briefFormStatus" role="status"></p>
+            </form>
+        </section>
     </div>
 
     <PagesFooter />
+
+    <script is:inline>
+        (function () {
+            var form = document.getElementById('briefForm');
+            if (!form) return;
+            var statusEl = document.getElementById('briefFormStatus');
+            var email = 'sdr.expert@gmail.com';
+            function val(id) {
+                var el = document.getElementById(id);
+                return el ? el.value.trim() : '';
+            }
+            function setStatus(text, kind) {
+                statusEl.textContent = text;
+                statusEl.style.color =
+                    kind === 'error' ? '#f43f5e' : kind === 'ok' ? '#22c55e' : '';
+            }
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var need = val('briefNeed');
+                var summary = [
+                    'Need: ' + need,
+                    'Theme: ' + val('briefTheme'),
+                    'Platform: ' + val('briefPlatform'),
+                    'Budget: ' + val('briefBudget'),
+                    'Timeline: ' + val('briefTimeline'),
+                    '',
+                    val('briefMessage') || '(no message)',
+                ].join('\n');
+                var reply = val('briefReply');
+                if (!reply) {
+                    setStatus('Please add your email so we can reply.', 'error');
+                    return;
+                }
+                var btn = form.querySelector('button[type=submit]');
+                if (btn) btn.disabled = true;
+                setStatus('Sending…', '');
+                fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        topic: 'Theme brief — ' + need,
+                        replyEmail: reply,
+                        message: summary,
+                        company: val('briefCompany'),
+                    }),
+                })
+                    .then(function (r) {
+                        return r.json().catch(function () { return { ok: false }; })
+                            .then(function (d) {
+                                if (!r.ok || !d.ok) throw new Error('send failed');
+                                setStatus('Brief sent — we reply within a day ✓', 'ok');
+                                form.reset();
+                            });
+                    })
+                    .catch(function () {
+                        setStatus('Service unavailable — opening your mail app…', 'error');
+                        window.location.href =
+                            'mailto:' + email +
+                            '?subject=' + encodeURIComponent('njX Themes — brief: ' + need) +
+                            '&body=' + encodeURIComponent(summary + '\n\nReply email: ' + reply);
+                    })
+                    .finally(function () {
+                        if (btn) btn.disabled = false;
+                    });
+            });
+        })();
+    </script>
 </BaseLayout>
 
 <!-- ── themes-page styles (is:global = no Astro scoping) ── -->
@@ -513,5 +668,111 @@ const SITES: Theme[] = [
     }
     .th-cta a {
         color: var(--color-primary);
+    }
+    .th-cta .th-cta-btn {
+        display: inline-block;
+        margin-top: 20px;
+        color: #fff;
+    }
+    .th-hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    /* ── Brief form ── */
+    .th-brief {
+        margin-top: 40px;
+        display: grid;
+        gap: 32px;
+        padding: 32px;
+        border-radius: 16px;
+        grid-template-columns: 0.9fr 1.1fr;
+    }
+    @media (max-width: 860px) {
+        .th-brief {
+            grid-template-columns: 1fr;
+        }
+    }
+    .th-brief-copy h2 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 24px;
+        font-weight: 800;
+        margin-top: 14px;
+    }
+    .th-brief-copy p {
+        margin-top: 10px;
+        opacity: 0.8;
+        line-height: 1.6;
+        font-size: 15px;
+    }
+    .th-brief-points {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 18px;
+    }
+    .th-brief-points span {
+        font-size: 12px;
+        padding: 4px 12px;
+        border-radius: 999px;
+        border: 1px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+        color: var(--color-primary);
+    }
+    .th-brief-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 16px;
+        align-content: start;
+    }
+    .th-brief-form label {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+    .th-brief-form label.full {
+        grid-column: 1 / -1;
+    }
+    .th-brief-form select,
+    .th-brief-form input,
+    .th-brief-form textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-family: inherit;
+        color: inherit;
+        background: color-mix(in srgb, currentColor 5%, transparent);
+        border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    }
+    .th-brief-form select:focus,
+    .th-brief-form input:focus,
+    .th-brief-form textarea:focus {
+        outline: none;
+        border-color: var(--color-primary);
+    }
+    .th-brief-form button {
+        grid-column: 1 / -1;
+        justify-self: start;
+    }
+    .th-brief-status {
+        grid-column: 1 / -1;
+        min-height: 1.2em;
+        font-size: 13px;
+    }
+    .th-honey {
+        position: absolute;
+        left: -9999px;
+        opacity: 0;
+        pointer-events: none;
+    }
+    @media (max-width: 560px) {
+        .th-brief-form {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
