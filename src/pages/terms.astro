@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PagesTopbar from '../components/PagesTopbar.astro';
+import PagesFooter from '../components/PagesFooter.astro';
+---
+
+<BaseLayout
+    title="Terms of Service & Refund Policy — njX UI"
+    description="Terms for purchasing njX theme licenses: what you get, how licenses work, delivery, refunds and support."
+>
+    <PagesTopbar />
+
+    <main class="pv-page">
+        <span class="tag tag-primary">Terms</span>
+        <h1>Terms of Service &amp; Refund Policy</h1>
+        <p class="pv-updated">Last updated: September 2026</p>
+
+        <section>
+            <h2>Who we are</h2>
+            <p>
+                njX (njxui.dev) sells premium website theme licenses — digital
+                products built on the Astro framework — by an independent
+                developer. Free Lite versions are open source under the MIT
+                license; these terms cover the paid <strong>Pro</strong>
+                licenses and services listed on
+                <a href="/themes">njxui.dev/themes</a>.
+            </p>
+            <p>
+                Orders may be processed by our authorized reseller and
+                Merchant of Record, which handles payment, taxes and invoicing
+                for the transaction.
+            </p>
+        </section>
+
+        <section>
+            <h2>What you buy</h2>
+            <ul>
+                <li>
+                    <strong>Pro · Single site license</strong> — use the theme
+                    on <strong>one</strong> production website. Includes 12
+                    months of updates and email support.
+                </li>
+                <li>
+                    <strong>Pro · Unlimited license</strong> — use the theme on
+                    any number of your own or client projects. Includes
+                    lifetime updates and priority email support.
+                </li>
+                <li>
+                    Delivery is digital and instant: after payment you receive
+                    a download link with the full theme source code.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>What you may not do</h2>
+            <ul>
+                <li>Resell, redistribute or republish the theme source code as-is or as a competing template.</li>
+                <li>Share your download or license with third parties (clients you build a site for are fine under Unlimited).</li>
+                <li>Claim authorship of the theme itself.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Refund policy</h2>
+            <p>
+                We want you to buy with confidence — every theme has a free
+                open-source Lite version and a full live demo of the Pro
+                version, so you can evaluate everything before paying.
+            </p>
+            <ul>
+                <li>
+                    <strong>14-day refunds:</strong> if the theme has a defect
+                    we cannot fix, or it genuinely does not do what the product
+                    page promises, contact us within 14 days of purchase and we
+                    will refund you in full.
+                </li>
+                <li>
+                    Because the product is source code delivered instantly,
+                    refunds for "changed my mind" after downloading are decided
+                    case by case — write to us, we are reasonable people.
+                </li>
+                <li>
+                    To request a refund, reply to your purchase email or write
+                    to <strong>support@njxui.dev</strong> with your order
+                    number.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Support</h2>
+            <p>
+                License support covers theme defects and setup per the
+                documentation. Custom feature work, branding and integrations
+                are separate paid services — see
+                <a href="/themes#brief">the services section</a>. Support
+                requests: <strong>support@njxui.dev</strong>, we reply within
+                one business day.
+            </p>
+        </section>
+
+        <section>
+            <h2>The fine print</h2>
+            <p>
+                Prices may change; the price at checkout is the one you pay.
+                Themes are provided "as is" beyond the guarantees above. We may
+                update these terms — the date above always tells you when.
+                Questions before buying?
+                <a href="/contact">Write to us</a> — honest answers within a
+                day.
+            </p>
+        </section>
+    </main>
+
+    <PagesFooter />
+</BaseLayout>
+
+<style is:global>
+    .pv-page {
+        width: min(760px, 100%);
+        margin-inline: auto;
+        padding: 48px 20px 96px;
+    }
+    .pv-page h1 {
+        margin-top: 14px;
+        font-family: 'Poppins', sans-serif;
+        font-size: clamp(28px, 4vw, 40px);
+        font-weight: 900;
+        color: var(--color-light);
+    }
+    .pv-updated {
+        margin-top: 8px;
+        color: var(--color-muted);
+        font-size: 14px;
+    }
+    .pv-page section {
+        margin-top: 34px;
+    }
+    .pv-page h2 {
+        font-size: 20px;
+        font-weight: 900;
+        color: var(--color-light);
+    }
+    .pv-page p,
+    .pv-page li {
+        margin-top: 10px;
+        color: var(--color-muted);
+        line-height: 1.7;
+        font-size: 15px;
+    }
+    .pv-page ul {
+        margin-top: 8px;
+        padding-left: 20px;
+        list-style: disc;
+    }
+    .pv-page a {
+        color: var(--color-primary);
+    }
+</style>
