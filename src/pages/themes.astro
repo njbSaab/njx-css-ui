@@ -224,7 +224,14 @@ const base = import.meta.env.BASE_URL;
                                 </div>
                                 <div class="th-actions">
                                     <a class="btn btn-primary btn-sm" href={`/themes/${t.slug}`}>Live demo</a>
-                                    <a class="btn btn-outline btn-sm" href={t.repo} target="_blank" rel="noopener">GitHub ↗</a>
+                                    <a class="btn btn-outline btn-sm" href={t.repo} target="_blank" rel="noopener">Free theme · GitHub ↗</a>
+                                </div>
+                                <div class="th-pro">
+                                    <span class="th-pro-badge th-badge-ui">100% njX UI</span>
+                                    <span class="th-pro-note">
+                                        9 runtime themes · 1-file rebrand ·{' '}
+                                        <a href={`/themes/${t.slug}`}>Details →</a>
+                                    </span>
                                 </div>
                             </div>
                         </article>
@@ -765,6 +772,10 @@ const base = import.meta.env.BASE_URL;
         color: var(--color-primary);
         text-decoration: underline;
         text-underline-offset: 2px;
+    }
+    .th-badge-ui {
+        background: linear-gradient(135deg, #22c55e, #06b6d4);
+        box-shadow: 0 8px 20px color-mix(in srgb, #06b6d4 24%, transparent);
     }
 
     /* ── brief form (contact-form-card pattern) ── */
