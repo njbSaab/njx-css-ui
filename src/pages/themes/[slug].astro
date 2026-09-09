@@ -45,8 +45,10 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
                         </a>
                     </div>
                     <div class="tp-pills">
-                        {t.tags.map((tag) => <span class="tp-pill">{tag}</span>)}
-                        <span class="tp-pill"><strong>MIT</strong>&nbsp;Lite license</span>
+                        {t.tags.map((tag, i) => (
+                            <span class:list={['tag', ['tag-primary', 'tag-success', 'tag-accent'][i % 3]]}>{tag}</span>
+                        ))}
+                        <span class="tag tag-warning"><strong>MIT</strong>&nbsp;· Lite license</span>
                     </div>
                 </div>
 
@@ -306,7 +308,8 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
         color: var(--color-light);
     }
     .tp-btn-block { width: 100%; justify-content: center; }
-    .tp-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tp-pills { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .tp-pills .tag strong { font-weight: 800; }
     .tp-pill {
         display: inline-flex;
         align-items: center;
