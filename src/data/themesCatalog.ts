@@ -80,7 +80,7 @@ export const ECOMMERCE: ThemeProduct[] = [
   },
   {
     slug: 'verdant',
-    stats: [{ value: '28+', label: 'static pages' }, { value: '14', label: 'SKU demo catalog' }, { value: '2', label: 'themes — light & dark' }],
+    stats: [{ value: '28+', label: 'static pages' }, { value: '38', label: 'SKU demo catalog' }, { value: '2', label: 'themes — light & dark' }],
     name: 'astro-njx-verdant',
     tagline: 'Botanical apothecary',
     desc: 'Deep forest green with a brass accent and a clean white light mode. Made for skincare, spa and any brand with a garden-first voice.',
@@ -105,7 +105,7 @@ export const ECOMMERCE: ThemeProduct[] = [
       demo: 'https://astro-njx-verdant-pro.pages.dev',
       ready: true,
       features: [
-        '21-SKU botanical demo catalog with brands (vendors)',
+        '38-SKU botanical demo catalog with brands (vendors)',
         'Reviews & ratings + schema.org stars in Google',
         'Reviews page with Questions & Answers tabs',
         'Full customer account — 7-tab dashboard: stats, orders, favorites, compare, addresses CRUD, profile, settings',
