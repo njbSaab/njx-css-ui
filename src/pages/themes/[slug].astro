@@ -47,16 +47,22 @@ const checkoutLive = buySingleHref !== briefHref;
                         {t.pro?.demo && (
                             <a class="tp-btn tp-btn-secondary" href={t.pro.demo} target="_blank" rel="noopener">Pro demo ↗</a>
                         )}
-                        <a class="tp-btn tp-btn-ghost" href={t.repo} target="_blank" rel="noopener">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.05c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.77 1.05.77 2.13v3.16c0 .3.2.66.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" /></svg>
-                            Free theme
-                        </a>
+                        {!t.premium && (
+                            <a class="tp-btn tp-btn-ghost" href={t.repo} target="_blank" rel="noopener">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.05c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.77 1.05.77 2.13v3.16c0 .3.2.66.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" /></svg>
+                                Free theme
+                            </a>
+                        )}
                     </div>
                     <div class="tp-pills">
                         {t.tags.map((tag, i) => (
                             <span class:list={['tag', ['tag-primary', 'tag-success', 'tag-accent'][i % 3]]}>{tag}</span>
                         ))}
-                        <span class="tag tag-warning"><strong>MIT</strong>&nbsp;· Lite license</span>
+                        {t.premium ? (
+                            <span class="tag tag-warning"><strong>Premium</strong>&nbsp;· commercial license</span>
+                        ) : (
+                            <span class="tag tag-warning"><strong>MIT</strong>&nbsp;· Lite license</span>
+                        )}
                     </div>
                 </div>
 
@@ -82,8 +88,9 @@ const checkoutLive = buySingleHref !== briefHref;
         <!-- Pricing -->
         <section class="tp-section">
             <h2 class="tp-h2">Pricing</h2>
-            <div class="tp-pricing">
+            <div class:list={['tp-pricing', t.premium && 'tp-pricing-2']}>
                 <!-- Free -->
+                {!t.premium && (
                 <article class="tp-price-card">
                     <p class="tp-price-name">Lite</p>
                     <p class="tp-price-value">Free</p>
@@ -99,17 +106,18 @@ const checkoutLive = buySingleHref !== briefHref;
                     )}
                     <a class="tp-btn tp-btn-ghost tp-btn-block" href={t.repo} target="_blank" rel="noopener">Get free theme on GitHub</a>
                 </article>
+                )}
 
                 {t.pro && (
                     <>
                         <!-- Pro single -->
                         <article class="tp-price-card tp-featured">
                             <span class="tp-badge">{t.pro.ready ? 'Most popular' : 'Coming soon'}</span>
-                            <p class="tp-price-name">Pro · Single site</p>
+                            <p class="tp-price-name">{t.premium ? 'Single site' : 'Pro · Single site'}</p>
                             <p class="tp-price-value">${t.pro.single}</p>
                             <p class="tp-price-note">One-time · 12 months of updates · email support</p>
                             <ul class:list={['tp-features', t.pro.features.length > 6 && 'is-clamped']}>
-                                <li><strong>Everything in Lite, plus:</strong></li>
+                                {!t.premium && <li><strong>Everything in Lite, plus:</strong></li>}
                                 {t.pro.features.map((f) => <li>{f}</li>)}
                             </ul>
                             {t.pro.features.length > 6 && (
@@ -119,7 +127,7 @@ const checkoutLive = buySingleHref !== briefHref;
                                 </button>
                             )}
                             {t.pro.ready ? (
-                                <a class="tp-btn tp-btn-primary tp-btn-block" href={buySingleHref} {...(checkoutLive ? { target: '_blank', rel: 'noopener' } : {})}>Buy Pro — ${t.pro.single}</a>
+                                <a class="tp-btn tp-btn-primary tp-btn-block" href={buySingleHref} {...(checkoutLive ? { target: '_blank', rel: 'noopener' } : {})}>{t.premium ? `Buy — $${t.pro.single}` : `Buy Pro — $${t.pro.single}`}</a>
                             ) : (
                                 <a class="tp-btn tp-btn-primary tp-btn-block" href={briefHref}>Get notified — launching soon</a>
                             )}
@@ -132,11 +140,11 @@ const checkoutLive = buySingleHref !== briefHref;
 
                         <!-- Pro unlimited -->
                         <article class="tp-price-card">
-                            <p class="tp-price-name">Pro · Unlimited</p>
+                            <p class="tp-price-name">{t.premium ? 'Unlimited' : 'Pro · Unlimited'}</p>
                             <p class="tp-price-value">${t.pro.unlimited}</p>
                             <p class="tp-price-note">Unlimited sites · lifetime updates · priority support (24–48h)</p>
                             <ul>
-                                <li>Everything in Pro Single</li>
+                                <li>{t.premium ? 'Everything in Single' : 'Everything in Pro Single'}</li>
                                 <li>Use on any number of client projects</li>
                                 <li>Lifetime updates — pay once</li>
                                 <li>Priority email support</li>
@@ -414,6 +422,7 @@ const checkoutLive = buySingleHref !== briefHref;
 
     /* ── Pricing ── */
     .tp-pricing { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: start; }
+    .tp-pricing-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 860px; }
     .tp-price-card {
         position: relative;
         display: flex; flex-direction: column;

@@ -13,7 +13,9 @@ export type ThemeProduct = {
   demo: string;
   repo: string;
   img: string;
-  category: 'ecommerce' | 'site';
+  category: 'ecommerce' | 'site' | 'modern';
+  /** Paid-only theme: no Lite tier, no public repo button, commercial license. */
+  premium?: boolean;
   stats?: { value: string; label: string }[];
   liteFeatures: string[];
   pro?: {
@@ -29,6 +31,111 @@ export const SERVICES = [
   { name: 'Setup service', price: '$99–149', desc: 'We connect the theme to your live Shopify store: catalog, tokens, checkout, deploy to Cloudflare Pages. Ready in one working day.' },
   { name: 'Branding package', price: '$199–249', desc: 'Your colors, fonts, logo and copy applied through the design tokens and constants — a store that looks like yours, not a template.' },
   { name: 'Custom work', price: 'from $80/hour', desc: 'New sections, integrations, features beyond the theme — scoped and quoted from your brief before any work starts.' },
+];
+
+export const MODERN: ThemeProduct[] = [
+  {
+    slug: 'prism',
+    premium: true,
+    stats: [{ value: '3×5', label: 'editions × palettes' }, { value: '33', label: 'SKU demo catalog' }, { value: '⌘K', label: 'command search' }],
+    name: 'astro-njx-prism',
+    tagline: 'Three stores, one engine',
+    desc: 'Three switchable shop editions (gear, luxury, techwear) with five neon palettes, a mega menu, faceted super-filter with live counts and a full account dashboard.',
+    longDesc: 'One storefront that ships as three: switch between a peripherals lab, a luxury atelier and a techwear drop — each edition swaps catalog, copy and palette live, no reload. Five neon palettes, ⌘K command search, a faceted super-filter where every count is recalculated under your other active filters, quick view, compare matrix and a complete customer account. Astro 5 + Tailwind v4, mock data out of the box, Shopify Storefront API with two env vars.',
+    tags: ['Multi-store', 'Shopify-ready', 'Tailwind v4'],
+    demo: 'https://astro-njx-prism.pages.dev',
+    repo: 'https://github.com/njbSaab/astro-njx-prism',
+    img: '/img/themes/prism.jpg',
+    category: 'modern',
+    liteFeatures: [],
+    pro: {
+      single: 99,
+      unlimited: 129,
+      ready: true,
+      features: [
+        'Three switchable store editions — catalog, copy and palette swap live, no reload',
+        'Five neon palettes on CSS variables, persisted per visitor',
+        '33-SKU demo catalog with real photography',
+        'Mega menu: categories with counts + spotlight drop + trust blocks',
+        '⌘K command search: category chips, trending queries, live results',
+        'Faceted super-filter with self-excluding live counts — zero-result options dim out',
+        'Dual-thumb price slider with inputs, sort, grid/large/list views, filter chips',
+        'Quick view with color & size pickers, compare matrix, wishlist',
+        'Cart drawer: free-shipping progress, promo codes, qty controls',
+        'Full account dashboard: KPI stats, spend chart, orders master-detail with stepper, favourites, addresses CRUD, settings',
+        'Static product pages for SEO: Product + AggregateRating JSON-LD, OG per page',
+        'Mock JSON or Shopify Storefront API — two env vars',
+      ],
+    },
+  },
+  {
+    slug: 'atelier',
+    premium: true,
+    stats: [{ value: '54', label: 'SKU demo catalog' }, { value: '3', label: 'typography systems' }, { value: '5', label: 'switchable palettes' }],
+    name: 'astro-njx-atelier',
+    tagline: 'Flagship editions, editorial type',
+    desc: 'Serif luxury meets techwear: three flagship stores with per-store typography, wishlist drawer, confetti checkout and an analytics-grade account dashboard.',
+    longDesc: 'Three flagship stores in one theme, each with its own typographic voice: a serif haute-horlogerie atelier, a grotesk gear lab and a display-face streetwear drop. Editions swap fonts, palette, free-shipping threshold and warranty live. A 54-SKU catalog with real photography, faceted filter with live counts, wishlist drawer, promo codes and an order-placed confetti moment. The account is analytics-grade: KPI deltas vs previous period, spend chart, donut by store, tier progress, orders with tracking and one-click reorder.',
+    tags: ['Multi-store', 'Shopify-ready', 'Tailwind v4'],
+    demo: 'https://astro-njx-atelier.pages.dev',
+    repo: 'https://github.com/njbSaab/astro-njx-atelier',
+    img: '/img/themes/atelier.jpg',
+    category: 'modern',
+    liteFeatures: [],
+    pro: {
+      single: 99,
+      unlimited: 129,
+      ready: true,
+      features: [
+        'Three flagship editions with per-store typography (serif / grotesk / display) and palettes',
+        '54-SKU demo catalog with real photography — filters stay populated in any combination',
+        'Faceted super-filter with self-excluding live counts and dimmed zero-result options',
+        'Search with quick-access products: Popular now · On sale · New arrivals per store',
+        'Wishlist drawer with add-to-cart, compare matrix (3 products)',
+        'Quick view with color names, sizes (rings, apparel) and spec grid',
+        'Cart: per-store free-express progress, promo codes, confetti order-placed state',
+        'Analytics-grade account: KPI deltas vs previous period, spend chart, donut by store, status bars, tier progress',
+        'Orders master-detail: stepper, tracking numbers, promo discounts, one-click reorder',
+        'Registration with validation + password strength meter, demo login',
+        'Static product pages for SEO: Product + AggregateRating JSON-LD',
+        'Mock JSON or Shopify Storefront API — two env vars',
+      ],
+    },
+  },
+  {
+    slug: 'orbit',
+    premium: true,
+    stats: [{ value: '54', label: 'SKU demo catalog' }, { value: '5', label: 'dark gradient palettes' }, { value: '01–03', label: 'store editions' }],
+    name: 'astro-njx-orbit',
+    tagline: 'Orbital hero, pill-shaped UI',
+    desc: 'A spinning orbital hero with 92px display type, full-width mega menu, palette dropdown and a pill-shaped UI across three numbered store editions.',
+    longDesc: 'The boldest of the three: a centered hero with spinning orbital rings and display type up to 92px, a pill-shaped UI language, and three numbered store editions (01 gear lab, 02 luxury atelier, 03 streetwear tech) switched from tabs right in the header. Five dark gradient palettes in a named dropdown, a full-width mega menu with two-column categories, search on ⌘K and “/”, and a customer account with five order statuses including refunds, loyalty points and KPI analytics.',
+    tags: ['Multi-store', 'Shopify-ready', 'Tailwind v4'],
+    demo: 'https://astro-njx-orbit.pages.dev',
+    repo: 'https://github.com/njbSaab/astro-njx-orbit',
+    img: '/img/themes/orbit.jpg',
+    category: 'modern',
+    liteFeatures: [],
+    pro: {
+      single: 99,
+      unlimited: 129,
+      ready: true,
+      features: [
+        'Orbital hero: spinning rings, radial glow, display type up to 92px',
+        'Pill-shaped UI language across the whole theme',
+        'Three numbered store editions switched from header tabs — palette, copy and catalog swap live',
+        'Palette dropdown with five named dark gradients, persisted per visitor',
+        'Full-width mega menu: two-column categories with tags + counts, spotlight card, trust blocks',
+        'Search on ⌘K and “/” with quick-access products: Popular · On sale · New arrivals',
+        '54-SKU demo catalog with real photography and product descriptions in list view',
+        'Faceted super-filter with self-excluding live counts, compare checkboxes on cards',
+        'Quick view with sizes, wishlist drawer, cart with promo + confetti checkout',
+        'Account: five order statuses incl. Refunded, loyalty points, KPI deltas, donut by store, tracking + reorder',
+        'Static product pages for SEO: Product + AggregateRating JSON-LD',
+        'Mock JSON or Shopify Storefront API — two env vars',
+      ],
+    },
+  },
 ];
 
 export const ECOMMERCE: ThemeProduct[] = [
@@ -255,4 +362,4 @@ export const SITES: ThemeProduct[] = [
   },
 ];
 
-export const ALL_THEMES = [...ECOMMERCE, ...SITES];
+export const ALL_THEMES = [...MODERN, ...ECOMMERCE, ...SITES];

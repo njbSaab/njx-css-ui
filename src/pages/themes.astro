@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PagesTopbar from '../components/PagesTopbar.astro';
 import PagesFooter from '../components/PagesFooter.astro';
-import { ECOMMERCE, SITES } from '../data/themesCatalog';
+import { MODERN, ECOMMERCE, SITES } from '../data/themesCatalog';
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -38,6 +38,14 @@ const base = import.meta.env.BASE_URL;
 
             <aside class="contact-hero-panel" aria-label="Fastest paths">
                 <span class="contact-panel-kicker">Fastest paths</span>
+                <a class="contact-path" href="#modern">
+                    <span class="contact-path-icon">◈</span>
+                    <span>
+                        <strong>Modern collection</strong>
+                        <small>3 premium multi-store themes</small>
+                    </span>
+                    <span class="contact-path-arrow">→</span>
+                </a>
                 <a class="contact-path" href="#storefronts">
                     <span class="contact-path-icon">EC</span>
                     <span>
@@ -132,8 +140,65 @@ const base = import.meta.env.BASE_URL;
             </article>
         </section>
 
+        <!-- CATEGORY TABS -->
+        <div class="th-tabs" role="tablist" aria-label="Theme categories">
+            <button class="th-tab is-active" data-th-tab="all" role="tab">All</button>
+            <button class="th-tab" data-th-tab="modern" role="tab">Modern</button>
+            <button class="th-tab" data-th-tab="storefronts" role="tab">Storefronts</button>
+        </div>
+
+        <!-- MODERN PREMIUM THEMES -->
+        <section class="th-section" id="modern" data-th-cat="modern">
+            <div class="th-section-head">
+                <h2>Modern collection</h2>
+                <p>
+                    Premium multi-store themes: three switchable shop editions
+                    in every theme, five palettes, faceted super-filters with
+                    live counts and full account dashboards. Paid only — these
+                    are the flagship builds.
+                </p>
+            </div>
+            <div class="th-grid th-grid-3">
+                {
+                    MODERN.map((t) => (
+                        <article class="th-card th-card-premium" id={t.slug}>
+                            <a class="th-shot" href={`/themes/${t.slug}`}>
+                                <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
+                                <span class="th-shot-hint">Open theme →</span>
+                            </a>
+                            <div class="th-body">
+                                <div class="th-name-row">
+                                    <h3><a href={`/themes/${t.slug}`}>{t.name}</a></h3>
+                                    <span class="th-premium">Premium</span>
+                                </div>
+                                <div class="th-tagline">{t.tagline}</div>
+                                <p class="th-desc">{t.desc}</p>
+                                <div class="th-tags">
+                                    {t.tags.map((tag, i) => (
+                                        <span class={['is-blue', 'is-green', 'is-red'][i % 3]}>{tag}</span>
+                                    ))}
+                                </div>
+                                <div class="th-actions">
+                                    <a class="btn btn-primary btn-sm" href={`/themes/${t.slug}`}>Live demo</a>
+                                    <a class="btn btn-outline btn-sm" href={`/themes/${t.slug}`}>Pricing &amp; details</a>
+                                </div>
+                                {t.pro && (
+                                    <div class="th-pro">
+                                        <span class="th-pro-badge">${t.pro.single} single · ${t.pro.unlimited} unlimited</span>
+                                        <span class="th-pro-note">
+                                            <a href={t.demo} target="_blank" rel="noopener">Open demo ↗</a>
+                                        </span>
+                                    </div>
+                                )}
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </section>
+
         <!-- ECOMMERCE THEMES -->
-        <section class="th-section" id="storefronts">
+        <section class="th-section" id="storefronts" data-th-cat="storefronts">
             <div class="th-section-head">
                 <h2>Ecommerce storefronts</h2>
                 <p>
@@ -193,7 +258,7 @@ const base = import.meta.env.BASE_URL;
         </section>
 
         <!-- LANDING THEMES -->
-        <section class="th-section" id="sites">
+        <section class="th-section" id="sites" data-th-cat="sites">
             <div class="th-section-head">
                 <h2>Landing &amp; site themes</h2>
                 <p>
@@ -683,6 +748,56 @@ const base = import.meta.env.BASE_URL;
         border-radius: 999px;
         padding: 2px 10px;
     }
+    .th-premium {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-accent, #c04cff));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        border: 1px solid color-mix(in srgb, var(--color-primary) 45%, transparent);
+        border-radius: 999px;
+        padding: 2px 10px;
+    }
+    .th-card-premium {
+        border-color: color-mix(in srgb, var(--color-primary) 35%, transparent);
+    }
+    .th-card-premium:hover {
+        border-color: var(--color-primary);
+        box-shadow: 0 18px 50px color-mix(in srgb, var(--color-primary) 18%, transparent);
+    }
+
+    /* category tabs */
+    .th-tabs {
+        display: flex;
+        gap: 6px;
+        margin: 34px 0 -8px;
+        padding: 4px;
+        width: fit-content;
+        border: 1px solid var(--color-border, rgba(255, 255, 255, 0.12));
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--color-light) 4%, transparent);
+    }
+    .th-tab {
+        border: 0;
+        background: transparent;
+        color: var(--color-muted);
+        font: inherit;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 8px 18px;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .th-tab:hover { color: var(--color-light); }
+    .th-tab.is-active {
+        background: var(--color-primary);
+        color: var(--color-dark, #0b0b12);
+    }
+    .th-section[data-th-cat].is-tab-hidden { display: none; }
     .th-tagline {
         margin-top: 4px;
         font-size: 13px;
@@ -962,6 +1077,24 @@ const base = import.meta.env.BASE_URL;
     }
 </style>
 
+<script is:inline>
+    // category tabs — delegated on document so View Transitions can't drop the listener
+    (function () {
+        if (window.__thTabsBound) return;
+        window.__thTabsBound = true;
+        document.addEventListener('click', function (e) {
+            var tab = e.target.closest('[data-th-tab]');
+            if (!tab) return;
+            var cat = tab.dataset.thTab;
+            document.querySelectorAll('[data-th-tab]').forEach(function (b) {
+                b.classList.toggle('is-active', b === tab);
+            });
+            document.querySelectorAll('[data-th-cat]').forEach(function (sec) {
+                sec.classList.toggle('is-tab-hidden', cat !== 'all' && sec.dataset.thCat !== cat);
+            });
+        });
+    })();
+</script>
 <script is:inline>
     (function () {
         var form = document.getElementById('briefForm');
