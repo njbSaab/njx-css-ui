@@ -212,6 +212,14 @@ export async function onRequestPost(context) {
 
   if (command) {
     if (command === 'start') {
+      // Deep-link payload = traffic source: t.me/njxui_bot?start=<src> arrives as "/start <src>"
+      const src = text.split(/\s+/)[1] || 'direct';
+      if (chatId !== adminChat) {
+        const from = msg.from || {};
+        const who = [from.first_name, from.last_name].filter(Boolean).join(' ') || 'Unknown';
+        const username = from.username ? `@${from.username}` : 'no username';
+        await send(env, adminChat, `👤 /start (${src}): ${who} (${username}) #uid${from.id}`);
+      }
       await send(env, chatId, REPLIES.start, { reply_markup: MENU_KB });
       return json({ ok: true });
     }
