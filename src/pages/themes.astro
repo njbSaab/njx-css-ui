@@ -32,7 +32,7 @@ const ECOMMERCE: Theme[] = [
         slug: 'verdant',
         name: 'astro-njx-verdant',
         tagline: 'Botanical apothecary',
-        desc: 'Deep forest green with a brass accent and a parchment light mode. Made for skincare, spa and any brand with a garden-first voice.',
+        desc: 'Deep forest green with a brass accent and a clean white light mode. Made for skincare, spa and any brand with a garden-first voice.',
         tags: ['Ecommerce', 'Shopify-ready', 'Tailwind v4'],
         demo: 'https://astro-njx-verdant.pages.dev',
         repo: 'https://github.com/njbSaab/astro-njx-verdant',
@@ -103,25 +103,128 @@ const SITES: Theme[] = [
 >
     <PagesTopbar activePage="themes" />
 
-    <div class="th-page">
-        <!-- HERO -->
-        <div class="th-hero">
-            <span class="tag tag-primary">Free &amp; open source</span>
-            <h1>Astro ecommerce themes <span class="text-main-gradient">&amp; Shopify templates</span></h1>
-            <p>
-                Production-grade Astro themes — headless Shopify-ready
-                ecommerce storefront templates and landing pages. Every demo
-                below is the theme itself running on mock data: fork it,
-                rebrand two files, deploy for free.
-            </p>
-            <div class="th-hero-actions">
-                <a class="btn btn-primary btn-lg" href="#brief">Start your project brief</a>
-                <a class="btn btn-outline btn-lg" href="https://github.com/njbSaab" target="_blank" rel="noopener">GitHub ↗</a>
+    <main class="themes-page">
+        <!-- HERO: copy left, fastest paths right (contact-page pattern) -->
+        <section class="contact-hero">
+            <div class="contact-hero-copy">
+                <span class="tag tag-primary">Free &amp; open source</span>
+                <h1>
+                    Astro themes <span class="text-main-gradient">&amp; Shopify templates</span>
+                </h1>
+                <p>
+                    Production-grade Astro ecommerce themes — headless
+                    Shopify-ready storefront templates and landing pages. Every
+                    demo is the theme itself on mock data: fork it, rebrand two
+                    files, deploy for free.
+                </p>
+                <div class="contact-actions">
+                    <a class="btn btn-primary btn-lg" href="#brief">
+                        Start your project brief
+                    </a>
+                    <a class="btn btn-outline btn-lg" href="#storefronts">
+                        Browse themes
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <!-- ECOMMERCE -->
-        <section class="th-section">
+            <aside class="contact-hero-panel" aria-label="Fastest paths">
+                <span class="contact-panel-kicker">Fastest paths</span>
+                <a class="contact-path" href="#storefronts">
+                    <span class="contact-path-icon">EC</span>
+                    <span>
+                        <strong>Ecommerce storefronts</strong>
+                        <small>4 Shopify-ready templates</small>
+                    </span>
+                    <span class="contact-path-arrow">→</span>
+                </a>
+                <a class="contact-path" href="#sites">
+                    <span class="contact-path-icon">LP</span>
+                    <span>
+                        <strong>Landing themes</strong>
+                        <small>SaaS, portfolio, launch</small>
+                    </span>
+                    <span class="contact-path-arrow">→</span>
+                </a>
+                <a class="contact-path" href="#brief">
+                    <span class="contact-path-icon">✉</span>
+                    <span>
+                        <strong>Project brief</strong>
+                        <small>Pro, setup or custom — get a quote</small>
+                    </span>
+                    <span class="contact-path-arrow">→</span>
+                </a>
+            </aside>
+        </section>
+
+        <!-- SERVICE CARDS: what you can pay for -->
+        <section class="contact-grid" aria-label="Services">
+            <article class="contact-card card-aura card-aura-primary">
+                <div class="contact-icon">PRO</div>
+                <div>
+                    <h2>Pro versions</h2>
+                    <p>
+                        Reviews, customer accounts, richer catalog, SEO pack —
+                        everything the free themes leave for later. One
+                        license, lifetime demo parity.
+                    </p>
+                </div>
+                <div class="contact-card-actions">
+                    <a class="btn btn-primary btn-sm" href="#brief">Get notified</a>
+                    <span>from $59 · coming soon</span>
+                </div>
+            </article>
+
+            <article class="contact-card card-aura card-aura-aurora">
+                <div class="contact-icon">⚙</div>
+                <div>
+                    <h2>Setup service</h2>
+                    <p>
+                        We connect the theme to your live Shopify store:
+                        catalog, tokens, checkout, deploy to Cloudflare Pages —
+                        ready in one working day.
+                    </p>
+                </div>
+                <div class="contact-card-actions">
+                    <a class="btn btn-outline btn-sm" href="#brief">Request setup</a>
+                    <span>$99–149 · 1 day</span>
+                </div>
+            </article>
+
+            <article class="contact-card card-aura card-aura-cosmic">
+                <div class="contact-icon">🎨</div>
+                <div>
+                    <h2>Branding package</h2>
+                    <p>
+                        Your colors, fonts, logo and copy applied through the
+                        theme's design tokens and constants — a store that
+                        looks like yours, not like a template.
+                    </p>
+                </div>
+                <div class="contact-card-actions">
+                    <a class="btn btn-outline btn-sm" href="#brief">Request branding</a>
+                    <span>$199–249</span>
+                </div>
+            </article>
+
+            <article class="contact-card card-aura card-aura-ocean">
+                <div class="contact-icon">＋</div>
+                <div>
+                    <h2>Custom work</h2>
+                    <p>
+                        New sections, integrations, features beyond the theme —
+                        scoped and quoted from your brief before any work
+                        starts.
+                    </p>
+                </div>
+                <div class="contact-card-actions">
+                    <a class="btn btn-primary btn-sm" href="#brief">Describe the task</a>
+                    <span>from $80/hour</span>
+                </div>
+            </article>
+        </section>
+
+        <!-- ECOMMERCE THEMES -->
+        <section class="th-section" id="storefronts">
             <div class="th-section-head">
                 <h2>Ecommerce storefronts</h2>
                 <p>
@@ -136,19 +239,8 @@ const SITES: Theme[] = [
                 {
                     ECOMMERCE.map((t) => (
                         <article class="th-card" id={t.slug}>
-                            <a
-                                class="th-shot"
-                                href={t.demo}
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                <img
-                                    src={t.img}
-                                    alt={`${t.name} home page`}
-                                    loading="lazy"
-                                    width="1280"
-                                    height="720"
-                                />
+                            <a class="th-shot" href={t.demo} target="_blank" rel="noopener">
+                                <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
                             </a>
                             <div class="th-body">
                                 <div class="th-name-row">
@@ -163,38 +255,15 @@ const SITES: Theme[] = [
                                     ))}
                                 </div>
                                 <div class="th-actions">
-                                    <a
-                                        class="th-btn th-btn-primary"
-                                        href={t.demo}
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        Live demo
-                                    </a>
-                                    <a
-                                        class="th-btn"
-                                        href={t.repo}
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        GitHub ↗
-                                    </a>
+                                    <a class="btn btn-primary btn-sm" href={t.demo} target="_blank" rel="noopener">Live demo</a>
+                                    <a class="btn btn-outline btn-sm" href={t.repo} target="_blank" rel="noopener">GitHub ↗</a>
                                 </div>
                                 {t.pro && (
                                     <div class="th-pro">
-                                        <span class="th-pro-badge">
-                                            Pro · from ${t.pro.from}
-                                        </span>
+                                        <span class="th-pro-badge">Pro · from ${t.pro.from}</span>
                                         <span class="th-pro-note">
                                             {t.pro.note} — coming soon.{' '}
-                                            <a
-                                                href={t.repo}
-                                                target="_blank"
-                                                rel="noopener"
-                                            >
-                                                Watch the repo
-                                            </a>{' '}
-                                            to get notified.
+                                            <a href="#brief">Get notified</a>
                                         </span>
                                     </div>
                                 )}
@@ -205,8 +274,8 @@ const SITES: Theme[] = [
             </div>
         </section>
 
-        <!-- SITES -->
-        <section class="th-section">
+        <!-- LANDING THEMES -->
+        <section class="th-section" id="sites">
             <div class="th-section-head">
                 <h2>Landing &amp; site themes</h2>
                 <p>
@@ -219,19 +288,8 @@ const SITES: Theme[] = [
                 {
                     SITES.map((t) => (
                         <article class="th-card" id={t.slug}>
-                            <a
-                                class="th-shot"
-                                href={t.demo}
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                <img
-                                    src={t.img}
-                                    alt={`${t.name} home page`}
-                                    loading="lazy"
-                                    width="1280"
-                                    height="720"
-                                />
+                            <a class="th-shot" href={t.demo} target="_blank" rel="noopener">
+                                <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
                             </a>
                             <div class="th-body">
                                 <div class="th-name-row">
@@ -246,22 +304,8 @@ const SITES: Theme[] = [
                                     ))}
                                 </div>
                                 <div class="th-actions">
-                                    <a
-                                        class="th-btn th-btn-primary"
-                                        href={t.demo}
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        Live demo
-                                    </a>
-                                    <a
-                                        class="th-btn"
-                                        href={t.repo}
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        GitHub ↗
-                                    </a>
+                                    <a class="btn btn-primary btn-sm" href={t.demo} target="_blank" rel="noopener">Live demo</a>
+                                    <a class="btn btn-outline btn-sm" href={t.repo} target="_blank" rel="noopener">GitHub ↗</a>
                                 </div>
                             </div>
                         </article>
@@ -270,37 +314,26 @@ const SITES: Theme[] = [
             </div>
         </section>
 
-        <!-- CTA → brief form -->
-        <div class="th-cta">
-            <h2>Need it wired to a real store?</h2>
-            <p>
-                Pro versions, Shopify setup, branding or custom work — tell us
-                what you're building and we'll reply with a plan and a quote.
-                If a theme saved you time, a star on GitHub keeps this project
-                alive ♡
-            </p>
-            <a class="btn btn-primary btn-lg th-cta-btn" href="#brief">Fill the brief ↓</a>
-        </div>
-
-        <!-- Brief form -->
-        <section class="th-brief card-glass" id="brief">
-            <div class="th-brief-copy">
+        <!-- BRIEF FORM (contact-form-card pattern) -->
+        <section class="contact-form-card" id="brief">
+            <div class="contact-form-copy">
                 <span class="tag tag-success">Project brief</span>
                 <h2>Tell us about your store</h2>
                 <p>
-                    The more you tell us, the more precise the first reply —
-                    usually within a day. The form sends an email through
-                    njxui.dev; if the service is unavailable, it opens your
-                    mail app with a prepared draft.
+                    Pro versions, Shopify setup, branding or custom work — the
+                    more you tell us, the more precise the first reply, usually
+                    within a day. If the service is unavailable, the form opens
+                    your mail app with a prepared draft.
                 </p>
-                <div class="th-brief-points">
+                <div class="contact-form-points">
                     <span>Reply within a day</span>
-                    <span>No obligation quote</span>
+                    <span>No-obligation quote</span>
                     <span>Private by default</span>
                 </div>
             </div>
-            <form class="th-brief-form" id="briefForm">
-                <input id="briefCompany" name="company" type="text" autocomplete="off" tabindex="-1" aria-hidden="true" class="th-honey" />
+
+            <form class="contact-form" id="briefForm">
+                <input id="briefCompany" name="company" type="text" autocomplete="off" tabindex="-1" aria-hidden="true" class="contact-honey" />
                 <label>
                     What do you need
                     <select id="briefNeed" name="need">
@@ -358,132 +391,280 @@ const SITES: Theme[] = [
                     <textarea id="briefMessage" name="message" rows="6" placeholder="What do you sell? Links to your current store, references, must-have features…"></textarea>
                 </label>
                 <button class="btn btn-success btn-lg" type="submit">Send the brief</button>
-                <p class="th-brief-status" id="briefFormStatus" role="status"></p>
+                <p class="contact-form-status" id="briefFormStatus" role="status"></p>
             </form>
         </section>
-    </div>
+
+        <!-- Star tip -->
+        <section class="contact-tips card-glass">
+            <div>
+                <h2>Just taking a free theme?</h2>
+                <p>
+                    Go for it — that's what they're for. If a theme saves you
+                    time, a star on GitHub keeps this project alive, and
+                    watching the repo gets you notified the day Pro ships.
+                </p>
+            </div>
+            <div class="contact-tip-grid">
+                <span>MIT licensed</span>
+                <span>Rebrand = two files</span>
+                <span>Deploys free on CF Pages</span>
+                <span>Pro &amp; services on the way</span>
+            </div>
+        </section>
+    </main>
 
     <PagesFooter />
-
-    <script is:inline>
-        (function () {
-            var form = document.getElementById('briefForm');
-            if (!form) return;
-            var statusEl = document.getElementById('briefFormStatus');
-            var email = 'sdr.expert@gmail.com';
-            function val(id) {
-                var el = document.getElementById(id);
-                return el ? el.value.trim() : '';
-            }
-            function setStatus(text, kind) {
-                statusEl.textContent = text;
-                statusEl.style.color =
-                    kind === 'error' ? '#f43f5e' : kind === 'ok' ? '#22c55e' : '';
-            }
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                var need = val('briefNeed');
-                var summary = [
-                    'Need: ' + need,
-                    'Theme: ' + val('briefTheme'),
-                    'Platform: ' + val('briefPlatform'),
-                    'Budget: ' + val('briefBudget'),
-                    'Timeline: ' + val('briefTimeline'),
-                    '',
-                    val('briefMessage') || '(no message)',
-                ].join('\n');
-                var reply = val('briefReply');
-                if (!reply) {
-                    setStatus('Please add your email so we can reply.', 'error');
-                    return;
-                }
-                var btn = form.querySelector('button[type=submit]');
-                if (btn) btn.disabled = true;
-                setStatus('Sending…', '');
-                fetch('/api/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        topic: 'Theme brief — ' + need,
-                        replyEmail: reply,
-                        message: summary,
-                        company: val('briefCompany'),
-                    }),
-                })
-                    .then(function (r) {
-                        return r.json().catch(function () { return { ok: false }; })
-                            .then(function (d) {
-                                if (!r.ok || !d.ok) throw new Error('send failed');
-                                setStatus('Brief sent — we reply within a day ✓', 'ok');
-                                form.reset();
-                            });
-                    })
-                    .catch(function () {
-                        setStatus('Service unavailable — opening your mail app…', 'error');
-                        window.location.href =
-                            'mailto:' + email +
-                            '?subject=' + encodeURIComponent('njX Themes — brief: ' + need) +
-                            '&body=' + encodeURIComponent(summary + '\n\nReply email: ' + reply);
-                    })
-                    .finally(function () {
-                        if (btn) btn.disabled = false;
-                    });
-            });
-        })();
-    </script>
 </BaseLayout>
 
-<!-- ── themes-page styles (is:global = no Astro scoping) ── -->
 <style is:global>
-    .th-page {
-        max-width: 1160px;
-        margin: 0 auto;
-        padding: 0 24px 60px;
+    /* ── page shell: contact-page pattern ── */
+    .themes-page {
+        min-height: 100vh;
+        background:
+            radial-gradient(
+                circle at 14% 0,
+                color-mix(in srgb, var(--color-primary) 16%, transparent),
+                transparent 34rem
+            ),
+            radial-gradient(
+                circle at 88% 18%,
+                color-mix(in srgb, var(--color-accent) 12%, transparent),
+                transparent 28rem
+            ),
+            var(--сolor-dark);
+        padding: 0 24px 96px;
     }
-    .th-hero {
-        text-align: center;
-        padding: 64px 0 40px;
+
+    .themes-page .contact-hero,
+    .themes-page .contact-grid,
+    .themes-page .contact-form-card,
+    .themes-page .contact-tips,
+    .themes-page .th-section {
+        width: min(1120px, 100%);
+        margin-inline: auto;
     }
-    .th-badge {
-        display: inline-block;
-        padding: 6px 14px;
-        border-radius: 999px;
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.4px;
+
+    /* ── hero (contact pattern) ── */
+    .contact-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+        gap: clamp(28px, 5vw, 64px);
+        align-items: center;
+        padding: 58px 0 46px;
+    }
+    .contact-hero-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 16px 0;
+        position: relative;
+    }
+    .contact-hero-copy::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -18px;
+        width: min(420px, 70%);
+        height: 2px;
+        background: linear-gradient(
+            90deg,
+            var(--color-primary),
+            color-mix(in srgb, var(--color-accent) 70%, transparent),
+            transparent
+        );
+        pointer-events: none;
+    }
+    .contact-hero-copy > * {
+        position: relative;
+        z-index: 1;
+    }
+    .contact-hero h1 {
+        margin: 20px 0 0;
+        max-width: 720px;
+        font-size: clamp(44px, 6.5vw, 76px);
+        line-height: 0.98;
+        font-weight: 950;
+        letter-spacing: 0;
+    }
+    .contact-hero p {
+        max-width: 640px;
+        margin: 22px 0 0;
+        color: var(--color-muted);
+        font-size: 18px;
+        line-height: 1.75;
+    }
+    .contact-actions {
+        display: flex;
+        gap: 14px;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+    .contact-hero-panel {
+        display: grid;
+        gap: 12px;
+        padding: 8px 0 8px 18px;
+        border-left: 1px solid
+            color-mix(in srgb, var(--color-primary) 24%, transparent);
+    }
+    .contact-panel-kicker {
         color: var(--color-primary);
-        background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+        font-size: 12px;
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+    .contact-path {
+        display: grid;
+        grid-template-columns: 42px minmax(0, 1fr) 34px;
+        gap: 12px;
+        align-items: center;
+        padding: 12px 0;
         border: 1px solid
-            color-mix(in srgb, var(--color-primary) 30%, transparent);
+            color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+        border-width: 0 0 1px;
+        background: transparent;
+        color: var(--color-light);
+        text-decoration: none;
+        transition:
+            transform 0.18s ease,
+            color 0.18s ease;
     }
-    .th-hero h1 {
-        margin: 18px 0 12px;
-        font-family: 'Poppins', sans-serif;
-        font-size: clamp(32px, 5vw, 48px);
-        font-weight: 800;
-    }
-    .th-hero h1 em {
-        font-style: normal;
+    .contact-path:hover {
+        transform: translateX(4px);
         color: var(--color-primary);
     }
-    .th-hero p {
-        max-width: 62ch;
-        margin: 0 auto;
-        opacity: 0.8;
-        line-height: 1.6;
+    .contact-path-icon,
+    .contact-path-arrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        background: color-mix(in srgb, var(--color-primary) 11%, transparent);
+        color: var(--color-primary);
+        font-size: 13px;
+        font-weight: 950;
     }
+    .contact-path-arrow {
+        justify-self: end;
+        background: transparent;
+        color: var(--color-muted);
+        font-size: 20px;
+    }
+    .contact-path strong {
+        display: block;
+        font-size: 16px;
+        font-weight: 900;
+    }
+    .contact-path small {
+        display: block;
+        margin-top: 2px;
+        color: var(--color-muted);
+        font-size: 13px;
+        line-height: 1.35;
+    }
+
+    /* ── service cards (contact-grid pattern) ── */
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+    }
+    .contact-card {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        min-height: 292px;
+        padding: 22px;
+        border-radius: var(--radius-lg);
+        border: 1px solid color-mix(in srgb, #fff 8%, transparent);
+        box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 8%, transparent);
+        transition:
+            transform 0.18s ease,
+            box-shadow 0.18s ease,
+            border-color 0.18s ease;
+    }
+    .contact-card:hover {
+        transform: translateY(-5px);
+        border-color: color-mix(in srgb, var(--color-primary) 42%, transparent);
+        box-shadow: 0 26px 70px color-mix(in srgb, #000 22%, transparent);
+    }
+    .contact-card.card-aura-primary {
+        --card-aura-bg: linear-gradient(
+            160deg,
+            color-mix(in srgb, var(--color-primary) 12%, var(--bg-secondary)),
+            color-mix(in srgb, var(--color-accent) 7%, var(--сolor-dark))
+        );
+    }
+    .contact-card.card-aura-ocean {
+        --card-aura-bg: linear-gradient(160deg, #00101a, #061724);
+    }
+    .contact-card.card-aura-aurora {
+        --card-aura-bg: linear-gradient(160deg, #07111e, #101424);
+    }
+    .contact-card.card-aura-cosmic {
+        --card-aura-bg: linear-gradient(160deg, #100819, #15101f);
+    }
+    .contact-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        border-radius: 16px;
+        background: color-mix(in srgb, var(--color-primary) 16%, transparent);
+        color: var(--color-primary);
+        font-weight: 950;
+        font-size: 13px;
+    }
+    .contact-card h2,
+    .contact-form-copy h2,
+    .contact-tips h2 {
+        margin: 0;
+        color: var(--color-light);
+        font-size: 22px;
+        line-height: 1.2;
+        font-weight: 900;
+    }
+    .contact-card p,
+    .contact-form-copy p,
+    .contact-tips p {
+        margin: 10px 0 0;
+        color: var(--color-muted);
+        line-height: 1.65;
+        font-size: 14px;
+    }
+    .contact-card-actions {
+        margin-top: auto;
+        display: grid;
+        gap: 10px;
+        align-items: end;
+    }
+    .contact-card-actions span {
+        color: var(--color-primary);
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.45;
+        word-break: break-word;
+        text-align: center;
+    }
+
+    /* ── theme sections & cards ── */
     .th-section {
-        margin-top: 40px;
+        margin-top: 56px;
     }
     .th-section-head h2 {
         font-family: 'Poppins', sans-serif;
         font-size: 26px;
         font-weight: 800;
+        color: var(--color-light);
     }
     .th-section-head p {
         max-width: 70ch;
         margin: 8px 0 22px;
-        opacity: 0.75;
+        color: var(--color-muted);
         line-height: 1.55;
         font-size: 15px;
     }
@@ -495,33 +676,29 @@ const SITES: Theme[] = [
     .th-grid-3 {
         grid-template-columns: repeat(3, 1fr);
     }
-    @media (max-width: 900px) {
-        .th-grid,
-        .th-grid-3 {
-            grid-template-columns: 1fr;
-        }
-    }
     .th-card {
         display: flex;
         flex-direction: column;
-        border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
-        border-radius: 14px;
+        border: 1px solid color-mix(in srgb, #fff 10%, transparent);
+        border-radius: 16px;
         overflow: hidden;
-        background: color-mix(in srgb, currentColor 4%, transparent);
+        background: color-mix(in srgb, #fff 3%, transparent);
+        box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 6%, transparent);
         transition:
             transform 0.2s ease,
-            border-color 0.2s ease;
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
     }
     .th-card:hover {
-        transform: translateY(-3px);
-        border-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
+        transform: translateY(-4px);
+        border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+        box-shadow: 0 26px 70px color-mix(in srgb, #000 22%, transparent);
     }
     .th-shot {
         display: block;
         aspect-ratio: 16/9;
         overflow: hidden;
-        border-bottom: 1px solid
-            color-mix(in srgb, currentColor 12%, transparent);
+        border-bottom: 1px solid color-mix(in srgb, #fff 8%, transparent);
     }
     .th-shot img {
         width: 100%;
@@ -549,6 +726,7 @@ const SITES: Theme[] = [
         font-size: 17px;
         font-weight: 700;
         font-family: 'Roboto Mono', monospace;
+        color: var(--color-light);
     }
     .th-free {
         font-size: 12px;
@@ -570,7 +748,7 @@ const SITES: Theme[] = [
         margin: 10px 0 0;
         font-size: 14px;
         line-height: 1.55;
-        opacity: 0.8;
+        color: var(--color-muted);
     }
     .th-tags {
         display: flex;
@@ -582,46 +760,18 @@ const SITES: Theme[] = [
         font-size: 12px;
         padding: 3px 10px;
         border-radius: 999px;
-        border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
-        opacity: 0.75;
+        border: 1px solid color-mix(in srgb, #fff 16%, transparent);
+        color: var(--color-muted);
     }
     .th-actions {
         display: flex;
         gap: 10px;
         margin-top: 16px;
     }
-    .th-btn {
-        display: inline-block;
-        padding: 9px 18px;
-        border-radius: 10px;
-        font-size: 14px;
-        font-weight: 600;
-        text-decoration: none;
-        color: inherit;
-        border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
-        transition:
-            background 0.15s ease,
-            border-color 0.15s ease,
-            color 0.15s ease;
-    }
-    .th-btn:hover {
-        border-color: color-mix(in srgb, var(--color-primary) 60%, transparent);
-        color: var(--color-primary);
-    }
-    .th-btn-primary {
-        background: var(--color-primary);
-        border-color: var(--color-primary);
-        color: #fff;
-    }
-    .th-btn-primary:hover {
-        opacity: 0.88;
-        color: #fff;
-    }
     .th-pro {
         margin-top: 16px;
         padding-top: 14px;
-        border-top: 1px dashed
-            color-mix(in srgb, currentColor 18%, transparent);
+        border-top: 1px dashed color-mix(in srgb, #fff 16%, transparent);
         display: flex;
         flex-wrap: wrap;
         align-items: baseline;
@@ -640,139 +790,276 @@ const SITES: Theme[] = [
         font-size: 12px;
     }
     .th-pro-note {
-        opacity: 0.75;
+        color: var(--color-muted);
     }
     .th-pro-note a {
         color: var(--color-primary);
         text-decoration: underline;
         text-underline-offset: 2px;
     }
-    .th-cta {
-        margin-top: 64px;
-        text-align: center;
-        padding: 36px 24px;
-        border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
-        border-radius: 16px;
-    }
-    .th-cta h2 {
-        font-family: 'Poppins', sans-serif;
-        font-size: 24px;
-        font-weight: 800;
-    }
-    .th-cta p {
-        max-width: 62ch;
-        margin: 10px auto 0;
-        opacity: 0.8;
-        line-height: 1.6;
-        font-size: 15px;
-    }
-    .th-cta a {
-        color: var(--color-primary);
-    }
-    .th-cta .th-cta-btn {
-        display: inline-block;
-        margin-top: 20px;
-        color: #fff;
-    }
-    .th-hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-        margin-top: 24px;
-    }
 
-    /* ── Brief form ── */
-    .th-brief {
-        margin-top: 40px;
+    /* ── brief form (contact-form-card pattern) ── */
+    .contact-form-card {
         display: grid;
-        gap: 32px;
-        padding: 32px;
-        border-radius: 16px;
-        grid-template-columns: 0.9fr 1.1fr;
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        gap: 26px;
+        align-items: start;
+        margin-top: 56px;
+        padding: clamp(22px, 4vw, 36px);
+        border-radius: 28px;
+        border: 1px solid
+            color-mix(in srgb, var(--color-primary) 30%, transparent);
+        background:
+            radial-gradient(
+                circle at 8% 0,
+                color-mix(in srgb, var(--color-primary) 24%, transparent),
+                transparent 24rem
+            ),
+            radial-gradient(
+                circle at 100% 18%,
+                color-mix(in srgb, var(--color-accent) 18%, transparent),
+                transparent 22rem
+            ),
+            linear-gradient(
+                135deg,
+                color-mix(in srgb, var(--color-dark-secondary) 94%, transparent),
+                color-mix(in srgb, var(--сolor-dark) 86%, transparent)
+            );
+        box-shadow: 0 30px 90px color-mix(in srgb, #000 24%, transparent);
     }
-    @media (max-width: 860px) {
-        .th-brief {
-            grid-template-columns: 1fr;
-        }
-    }
-    .th-brief-copy h2 {
-        font-family: 'Poppins', sans-serif;
-        font-size: 24px;
-        font-weight: 800;
-        margin-top: 14px;
-    }
-    .th-brief-copy p {
-        margin-top: 10px;
-        opacity: 0.8;
-        line-height: 1.6;
-        font-size: 15px;
-    }
-    .th-brief-points {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 18px;
-    }
-    .th-brief-points span {
-        font-size: 12px;
-        padding: 4px 12px;
-        border-radius: 999px;
-        border: 1px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
-        color: var(--color-primary);
-    }
-    .th-brief-form {
+    .contact-form-copy {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px 16px;
-        align-content: start;
+        gap: 16px;
+        padding-top: 4px;
     }
-    .th-brief-form label {
+    .contact-form-points {
+        display: grid;
+        gap: 10px;
+        margin-top: 8px;
+    }
+    .contact-form-points span {
         display: flex;
-        flex-direction: column;
-        gap: 6px;
-        font-size: 13px;
-        font-weight: 600;
-    }
-    .th-brief-form label.full {
-        grid-column: 1 / -1;
-    }
-    .th-brief-form select,
-    .th-brief-form input,
-    .th-brief-form textarea {
-        width: 100%;
+        align-items: center;
+        min-height: 42px;
         padding: 10px 12px;
-        border-radius: 10px;
-        font-size: 14px;
-        font-family: inherit;
-        color: inherit;
-        background: color-mix(in srgb, currentColor 5%, transparent);
-        border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
-    }
-    .th-brief-form select:focus,
-    .th-brief-form input:focus,
-    .th-brief-form textarea:focus {
-        outline: none;
-        border-color: var(--color-primary);
-    }
-    .th-brief-form button {
-        grid-column: 1 / -1;
-        justify-self: start;
-    }
-    .th-brief-status {
-        grid-column: 1 / -1;
-        min-height: 1.2em;
+        border: 1px solid
+            color-mix(in srgb, var(--color-primary) 22%, transparent);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--color-primary) 9%, transparent);
+        color: var(--color-light);
         font-size: 13px;
+        font-weight: 800;
     }
-    .th-honey {
+    .contact-form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        padding: 20px;
+        border: 1px solid
+            color-mix(in srgb, var(--color-neutral-600) 28%, transparent);
+        border-radius: 22px;
+        background: color-mix(in srgb, var(--сolor-dark) 74%, transparent);
+        box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 8%, transparent);
+    }
+    .contact-honey {
         position: absolute;
         left: -9999px;
+        width: 1px;
+        height: 1px;
         opacity: 0;
         pointer-events: none;
     }
+    .contact-form label {
+        display: grid;
+        gap: 8px;
+        color: var(--color-light);
+        font-size: 13px;
+        font-weight: 800;
+    }
+    .contact-form label.full {
+        grid-column: 1 / -1;
+    }
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+        width: 100%;
+        border: 1px solid
+            color-mix(in srgb, var(--color-neutral-600) 34%, transparent);
+        border-radius: 16px;
+        background: color-mix(in srgb, var(--сolor-dark) 78%, transparent);
+        color: var(--color-light);
+        padding: 13px 14px;
+        outline: none;
+        font-family: inherit;
+        font-size: 14px;
+    }
+    .contact-form textarea {
+        resize: vertical;
+        min-height: 140px;
+    }
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 4px
+            color-mix(in srgb, var(--color-primary) 14%, transparent);
+    }
+    .contact-form button {
+        width: fit-content;
+    }
+    .contact-form-status {
+        align-self: center;
+        min-height: 24px;
+        margin: 0;
+        color: var(--color-muted);
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.45;
+    }
+    .contact-form-status.is-success {
+        color: var(--color-success);
+    }
+    .contact-form-status.is-error {
+        color: var(--color-warning);
+    }
+
+    /* ── bottom tips ── */
+    .contact-tips {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 24px;
+        align-items: center;
+        margin-top: 18px;
+        padding: clamp(22px, 4vw, 34px);
+        border-radius: 28px;
+    }
+    .contact-tip-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+    .contact-tip-grid span {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        padding: 10px 12px;
+        border: 1px solid
+            color-mix(in srgb, var(--color-primary) 18%, transparent);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+        color: var(--color-light);
+        font-size: 13px;
+        font-weight: 800;
+    }
+
+    /* ── responsive ── */
+    @media (max-width: 1024px) {
+        .contact-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+    @media (max-width: 900px) {
+        .contact-hero {
+            grid-template-columns: 1fr;
+            padding-top: 40px;
+        }
+        .th-grid,
+        .th-grid-3 {
+            grid-template-columns: 1fr;
+        }
+        .contact-form-card,
+        .contact-tips {
+            grid-template-columns: 1fr;
+        }
+    }
     @media (max-width: 560px) {
-        .th-brief-form {
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+        .contact-form {
             grid-template-columns: 1fr;
         }
     }
 </style>
+
+<script is:inline>
+    (function () {
+        var form = document.getElementById('briefForm');
+        if (!form) return;
+        var statusEl = document.getElementById('briefFormStatus');
+        var email = 'sdr.expert@gmail.com';
+        function val(id) {
+            var el = document.getElementById(id);
+            return el ? el.value.trim() : '';
+        }
+        function setStatus(text, kind) {
+            statusEl.textContent = text;
+            statusEl.classList.toggle('is-success', kind === 'ok');
+            statusEl.classList.toggle('is-error', kind === 'error');
+        }
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var need = val('briefNeed');
+            var summary = [
+                'Need: ' + need,
+                'Theme: ' + val('briefTheme'),
+                'Platform: ' + val('briefPlatform'),
+                'Budget: ' + val('briefBudget'),
+                'Timeline: ' + val('briefTimeline'),
+                '',
+                val('briefMessage') || '(no message)',
+            ].join('\n');
+            var reply = val('briefReply');
+            if (!reply) {
+                setStatus('Please add your email so we can reply.', 'error');
+                return;
+            }
+            var btn = form.querySelector('button[type=submit]');
+            if (btn) btn.disabled = true;
+            setStatus('Sending…', '');
+            fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    topic: 'Theme brief — ' + need,
+                    replyEmail: reply,
+                    message: summary,
+                    company: val('briefCompany'),
+                }),
+            })
+                .then(function (r) {
+                    return r
+                        .json()
+                        .catch(function () {
+                            return { ok: false };
+                        })
+                        .then(function (d) {
+                            if (!r.ok || !d.ok) throw new Error('send failed');
+                            setStatus(
+                                'Brief sent — we reply within a day ✓',
+                                'ok'
+                            );
+                            form.reset();
+                        });
+                })
+                .catch(function () {
+                    setStatus(
+                        'Service unavailable — opening your mail app…',
+                        'error'
+                    );
+                    window.location.href =
+                        'mailto:' +
+                        email +
+                        '?subject=' +
+                        encodeURIComponent('njX Themes — brief: ' + need) +
+                        '&body=' +
+                        encodeURIComponent(
+                            summary + '\n\nReply email: ' + reply
+                        );
+                })
+                .finally(function () {
+                    if (btn) btn.disabled = false;
+                });
+        });
+    })();
+</script>
