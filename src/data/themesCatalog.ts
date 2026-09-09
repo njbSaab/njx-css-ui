@@ -14,6 +14,7 @@ export type ThemeProduct = {
   repo: string;
   img: string;
   category: 'ecommerce' | 'site';
+  stats?: { value: string; label: string }[];
   liteFeatures: string[];
   pro?: {
     single: number;
@@ -33,6 +34,7 @@ export const SERVICES = [
 export const ECOMMERCE: ThemeProduct[] = [
   {
     slug: 'dark-lux',
+    stats: [{ value: '48', label: 'SKU demo catalog' }, { value: '117', label: 'pages generated' }, { value: '12', label: 'Pro feature packs' }],
     name: 'astro-njx-dark-lux',
     tagline: 'Monochrome dark luxury',
     desc: 'Hairline borders, zero radius, overlay search, quick-view popups, cart with saved-for-later. A full design system for brands that sell in black and white.',
@@ -76,6 +78,7 @@ export const ECOMMERCE: ThemeProduct[] = [
   },
   {
     slug: 'verdant',
+    stats: [{ value: '28+', label: 'static pages' }, { value: '14', label: 'SKU demo catalog' }, { value: '2', label: 'themes — light & dark' }],
     name: 'astro-njx-verdant',
     tagline: 'Botanical apothecary',
     desc: 'Deep forest green with a brass accent and a clean white light mode. Made for skincare, spa and any brand with a garden-first voice.',
@@ -102,6 +105,7 @@ export const ECOMMERCE: ThemeProduct[] = [
   },
   {
     slug: 'boutique',
+    stats: [{ value: '20', label: 'static pages' }, { value: '3:4', label: 'lookbook photography' }, { value: '2', label: 'themes — light & dark' }],
     name: 'astro-njx-boutique',
     tagline: 'Editorial fashion',
     desc: 'Serif display type, full-bleed imagery, 3:4 photography and an oxblood accent. An editorial storefront for ateliers and small fashion brands.',
@@ -127,6 +131,7 @@ export const ECOMMERCE: ThemeProduct[] = [
   },
   {
     slug: 'store',
+    stats: [{ value: '18', label: 'static pages' }, { value: '1', label: 'env var to go live' }, { value: '2', label: 'themes — light & dark' }],
     name: 'astro-njx-store',
     tagline: 'Warm paper & pine',
     desc: 'The original: 18 static pages, cart with hosted checkout, filters, search, favorites and dark mode. Friendly, versatile, ready for any catalog.',
@@ -155,6 +160,7 @@ export const ECOMMERCE: ThemeProduct[] = [
 export const SITES: ThemeProduct[] = [
   {
     slug: 'saas',
+    stats: [{ value: '9', label: 'runtime color themes' }, { value: '1', label: 'config file to rebrand' }, { value: '0', label: 'build steps required' }],
     name: 'astro-njx-saas',
     tagline: 'Product landing',
     desc: 'Glow hero, reviews slider, 9 runtime themes — a complete product landing built 100% with njX UI and Alpine.js.',
@@ -168,6 +174,7 @@ export const SITES: ThemeProduct[] = [
   },
   {
     slug: 'portfolio',
+    stats: [{ value: '9', label: 'runtime color themes' }, { value: '1', label: 'config file to rebrand' }, { value: '0', label: 'build steps required' }],
     name: 'astro-njx-portfolio',
     tagline: 'Personal portfolio',
     desc: 'Filterable project grid, glass stat card, gradient CTA — a personal site you rebrand in one config file.',
@@ -181,6 +188,7 @@ export const SITES: ThemeProduct[] = [
   },
   {
     slug: 'launch',
+    stats: [{ value: '9', label: 'runtime color themes' }, { value: '1', label: 'config file to rebrand' }, { value: '0', label: 'build steps required' }],
     name: 'astro-njx-launch',
     tagline: 'Launch / waitlist',
     desc: 'Waitlist counter, video modal, testimonial slider and an optimistic signup form — everything a launch page needs.',

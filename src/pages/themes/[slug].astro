@@ -10,6 +10,8 @@ export function getStaticPaths() {
 
 const { theme: t } = Astro.props;
 const briefHref = `/themes#brief`;
+const nameParts = t.name.split('-');
+const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
 ---
 
 <BaseLayout
@@ -19,32 +21,57 @@ const briefHref = `/themes#brief`;
     <PagesTopbar activePage="themes" />
 
     <main class="themes-page tp-page">
-        <!-- Hero -->
-        <section class="tp-hero">
-            <div class="tp-hero-copy">
-                <a href="/themes" class="tp-back">← All themes</a>
-                <span class="tag tag-primary">{t.tagline}</span>
-                <h1>{t.name}</h1>
-                <p>{t.longDesc}</p>
-                <div class="contact-actions">
-                    <a class="btn btn-primary btn-lg" href={`/themes/${t.slug}/preview`}>Live preview</a>
-                    {t.pro?.demo && (
-                        <a class="btn btn-outline btn-lg" href={t.pro.demo} target="_blank" rel="noopener">Pro demo</a>
-                    )}
-                    <a class="btn btn-outline btn-lg" href={t.repo} target="_blank" rel="noopener">Free theme · GitHub ↗</a>
+        <!-- HERO: shell with auras, kicker, stats — same language as the njX UI home hero -->
+        <section class="tp-shell">
+            <div class="tp-hero">
+                <div class="tp-hero-copy">
+                    <a href="/themes" class="tp-back">← All themes</a>
+                    <span class="tp-kicker">{t.tagline}</span>
+                    <h1 class="tp-title">
+                        astro-njx-<strong>{nameTail}</strong>
+                    </h1>
+                    <p class="tp-text">{t.longDesc}</p>
+                    <div class="tp-actions">
+                        <a class="tp-btn tp-btn-primary" href={`/themes/${t.slug}/preview`}>
+                            Live preview
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                        </a>
+                        {t.pro?.demo && (
+                            <a class="tp-btn tp-btn-secondary" href={t.pro.demo} target="_blank" rel="noopener">Pro demo ↗</a>
+                        )}
+                        <a class="tp-btn tp-btn-ghost" href={t.repo} target="_blank" rel="noopener">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.05c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.77 1.05.77 2.13v3.16c0 .3.2.66.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" /></svg>
+                            Free theme
+                        </a>
+                    </div>
+                    <div class="tp-pills">
+                        {t.tags.map((tag) => <span class="tp-pill">{tag}</span>)}
+                        <span class="tp-pill"><strong>MIT</strong>&nbsp;Lite license</span>
+                    </div>
                 </div>
-                <div class="th-tags tp-tags">
-                    {t.tags.map((tag) => <span>{tag}</span>)}
+
+                <div class="tp-hero-side">
+                    <a class="tp-shot" href={`/themes/${t.slug}/preview`}>
+                        <img src={t.img} alt={`${t.name} home page`} width="1280" height="720" />
+                        <span class="tp-shot-hint">Open live preview →</span>
+                    </a>
+                    {t.stats && (
+                        <div class="tp-stats">
+                            {t.stats.map((s) => (
+                                <div class="tp-stat">
+                                    <span class="tp-stat-value">{s.value}</span>
+                                    <span class="tp-stat-label">{s.label}</span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
-            <a class="tp-shot" href={`/themes/${t.slug}/preview`}>
-                <img src={t.img} alt={`${t.name} home page`} width="1280" height="720" />
-            </a>
         </section>
 
         <!-- Pricing -->
         <section class="tp-section">
-            <h2>Pricing</h2>
+            <h2 class="tp-h2">Pricing</h2>
             <div class="tp-pricing">
                 <!-- Free -->
                 <article class="tp-price-card">
@@ -61,6 +88,7 @@ const briefHref = `/themes#brief`;
                     <>
                         <!-- Pro single -->
                         <article class="tp-price-card tp-featured">
+                            <span class="tp-badge">{t.pro.ready ? 'Most popular' : 'Coming soon'}</span>
                             <p class="tp-price-name">Pro · Single site</p>
                             <p class="tp-price-value">${t.pro.single}</p>
                             <p class="tp-price-note">One-time · 12 months of updates · email support</p>
@@ -69,9 +97,9 @@ const briefHref = `/themes#brief`;
                                 {t.pro.features.map((f) => <li>{f}</li>)}
                             </ul>
                             {t.pro.ready ? (
-                                <a class="btn btn-primary" href={briefHref}>Buy Pro — ${t.pro.single}</a>
+                                <a class="tp-btn tp-btn-primary tp-btn-block" href={briefHref}>Buy Pro — ${t.pro.single}</a>
                             ) : (
-                                <a class="btn btn-primary" href={briefHref}>Get notified — launching soon</a>
+                                <a class="tp-btn tp-btn-primary tp-btn-block" href={briefHref}>Get notified — launching soon</a>
                             )}
                             {t.pro.ready && <p class="tp-price-small">Checkout launching shortly — the button opens a short form, we reply with a payment link the same day.</p>}
                         </article>
@@ -99,13 +127,17 @@ const briefHref = `/themes#brief`;
 
         <!-- Services -->
         <section class="tp-section">
-            <h2>Services</h2>
+            <h2 class="tp-h2">Services</h2>
             <div class="tp-services">
-                {SERVICES.map((s) => (
-                    <article class="tp-service">
-                        <p class="tp-service-name">{s.name} <span>{s.price}</span></p>
-                        <p class="tp-service-desc">{s.desc}</p>
-                        <a href={briefHref} class="tp-service-link">Request →</a>
+                {SERVICES.map((s, i) => (
+                    <article class:list={['contact-card card-aura tp-service', ['card-aura-aurora', 'card-aura-cosmic', 'card-aura-ocean'][i % 3]]}>
+                        <div>
+                            <h3 class="tp-service-name">{s.name} <span>{s.price}</span></h3>
+                            <p class="tp-service-desc">{s.desc}</p>
+                        </div>
+                        <div class="contact-card-actions">
+                            <a href={briefHref} class="btn btn-outline btn-sm">Request</a>
+                        </div>
                     </article>
                 ))}
             </div>
@@ -123,7 +155,7 @@ const briefHref = `/themes#brief`;
             </div>
             <div class="contact-tip-grid">
                 <a href={briefHref} class="tp-cta-btn btn btn-primary btn-lg">Ask / start a brief</a>
-                <a href={t.demo} target="_blank" rel="noopener" class="btn btn-outline btn-lg">Open the demo</a>
+                <a href={`/themes/${t.slug}/preview`} class="btn btn-outline btn-lg">Open live preview</a>
             </div>
         </div>
     </main>
@@ -133,70 +165,235 @@ const briefHref = `/themes#brief`;
 
 <style is:global>
     .tp-page { padding-bottom: 96px; }
+
+    /* ── Hero shell: auras + glow, same language as the home hero ── */
+    .tp-shell {
+        position: relative;
+        overflow: hidden;
+        width: min(1180px, 100%);
+        margin: 28px auto 0;
+        border-radius: 28px;
+        border: 1px solid color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+        background:
+            radial-gradient(circle at top right, color-mix(in srgb, var(--color-primary) 12%, transparent), transparent 30%),
+            radial-gradient(circle at bottom left, color-mix(in srgb, var(--color-accent) 10%, transparent), transparent 32%),
+            linear-gradient(145deg, color-mix(in srgb, var(--color-dark-secondary) 88%, var(--сolor-dark)), color-mix(in srgb, var(--сolor-dark) 82%, var(--color-dark-secondary)));
+        box-shadow:
+            0 22px 60px color-mix(in srgb, #000 20%, transparent),
+            inset 0 1px 0 color-mix(in srgb, #fff 4%, transparent);
+    }
+    .tp-shell::before,
+    .tp-shell::after {
+        content: '';
+        position: absolute;
+        border-radius: 999px;
+        filter: blur(14px);
+        pointer-events: none;
+    }
+    .tp-shell::before {
+        top: -90px; right: -70px; width: 260px; height: 260px;
+        background: radial-gradient(circle, color-mix(in srgb, var(--color-primary) 18%, transparent), transparent 72%);
+    }
+    .tp-shell::after {
+        left: -70px; bottom: -100px; width: 220px; height: 220px;
+        background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 16%, transparent), transparent 72%);
+    }
     .tp-hero {
-        width: min(1120px, 100%);
-        margin-inline: auto;
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-        gap: clamp(28px, 4vw, 56px);
+        grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.95fr);
+        gap: clamp(24px, 3.5vw, 44px);
+        padding: clamp(24px, 3.5vw, 40px);
         align-items: center;
-        padding: 48px 0 8px;
     }
     .tp-back {
         display: inline-block;
-        margin-bottom: 14px;
+        margin-bottom: 16px;
         color: var(--color-muted);
         font-size: 13px;
         text-decoration: underline;
         text-underline-offset: 3px;
     }
     .tp-back:hover { color: var(--color-light); }
-    .tp-hero h1 {
-        margin-top: 14px;
-        font-family: 'Roboto Mono', monospace;
-        font-size: clamp(26px, 3.6vw, 40px);
+    .tp-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        margin: 0 0 16px 14px;
+        border-radius: 999px;
+        border: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+        background: color-mix(in srgb, var(--color-primary) 9%, transparent);
+        color: var(--color-primary);
+        font-size: 11px;
         font-weight: 700;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
     }
-    .tp-hero p { margin-top: 14px; color: var(--color-muted); line-height: 1.7; font-size: 15px; }
-    .tp-hero .contact-actions { margin-top: 22px; }
-    .tp-tags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
-    .tp-tags span {
-        font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-        padding: 4px 10px; border-radius: 999px;
-        border: 1px solid color-mix(in srgb, #fff 14%, transparent);
+    .tp-kicker::before {
+        content: '';
+        width: 7px; height: 7px;
+        border-radius: 50%;
+        background: currentColor;
+        box-shadow: 0 0 14px currentColor;
+    }
+    .tp-title {
+        margin: 0 0 14px;
+        color: var(--color-light);
+        font-family: 'Space Grotesk', 'Roboto', sans-serif;
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1;
+        letter-spacing: -1.5px;
+        overflow-wrap: anywhere;
+    }
+    .tp-title strong { color: var(--color-primary); }
+    .tp-text {
+        margin: 0 0 20px;
         color: var(--color-muted);
+        font-size: 15px;
+        line-height: 1.72;
     }
+    .tp-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+    .tp-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 0 18px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    }
+    .tp-btn:hover { transform: translateY(-1px); }
+    .tp-btn-primary {
+        background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-accent) 55%, var(--color-primary)));
+        color: #fff;
+        box-shadow: 0 12px 30px color-mix(in srgb, var(--color-primary) 28%, transparent);
+    }
+    .tp-btn-secondary {
+        border: 1px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
+        background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+        color: var(--color-primary);
+    }
+    .tp-btn-ghost {
+        border: 1px solid color-mix(in srgb, var(--color-neutral-600) 26%, transparent);
+        background: color-mix(in srgb, var(--сolor-dark) 35%, transparent);
+        color: var(--color-light);
+    }
+    .tp-btn-block { width: 100%; justify-content: center; }
+    .tp-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tp-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 32px;
+        padding: 0 12px;
+        border-radius: 999px;
+        border: 1px solid color-mix(in srgb, var(--color-neutral-600) 18%, transparent);
+        background: color-mix(in srgb, var(--сolor-dark) 26%, transparent);
+        color: var(--color-muted);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+    }
+    .tp-pill strong { color: var(--color-light); }
+
+    .tp-hero-side { display: grid; gap: 14px; align-content: center; min-width: 0; }
     .tp-shot {
+        position: relative;
         display: block;
         overflow: hidden;
-        border-radius: 16px;
+        border-radius: 18px;
         border: 1px solid color-mix(in srgb, #fff 12%, transparent);
-        box-shadow: 0 30px 90px color-mix(in srgb, #000 30%, transparent);
+        box-shadow: 0 26px 70px color-mix(in srgb, #000 34%, transparent);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .tp-shot:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 34px 90px color-mix(in srgb, #000 42%, transparent);
     }
     .tp-shot img { display: block; width: 100%; height: auto; }
+    .tp-shot-hint {
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        padding: 26px 16px 12px;
+        background: linear-gradient(transparent, color-mix(in srgb, #000 72%, transparent));
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+    .tp-shot:hover .tp-shot-hint { opacity: 1; }
+    .tp-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .tp-stat {
+        padding: 14px 12px;
+        border-radius: 16px;
+        border: 1px solid color-mix(in srgb, var(--color-neutral-600) 14%, transparent);
+        background: color-mix(in srgb, var(--сolor-dark) 32%, transparent);
+    }
+    .tp-stat-value {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--color-light);
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: -0.8px;
+    }
+    .tp-stat-label { color: var(--color-muted); font-size: 11px; line-height: 1.4; }
 
-    .tp-section { width: min(1120px, 100%); margin: 56px auto 0; }
-    .tp-section > h2 {
+    /* ── Sections ── */
+    .tp-section { width: min(1180px, 100%); margin: 56px auto 0; }
+    .tp-h2 {
+        display: flex;
+        align-items: center;
+        gap: 14px;
         font-family: 'Poppins', sans-serif;
         font-size: 26px;
         font-weight: 800;
         color: var(--color-light);
-        margin-bottom: 20px;
+        margin-bottom: 22px;
+    }
+    .tp-h2::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 45%, transparent), transparent);
     }
 
+    /* ── Pricing ── */
     .tp-pricing { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: start; }
     .tp-price-card {
+        position: relative;
         display: flex; flex-direction: column;
         border: 1px solid color-mix(in srgb, #fff 10%, transparent);
-        border-radius: 16px;
+        border-radius: 20px;
         background: color-mix(in srgb, #fff 3%, transparent);
-        padding: 24px;
+        padding: 26px 24px;
     }
     .tp-featured {
         border-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
         background:
             radial-gradient(circle at 20% 0, color-mix(in srgb, var(--color-primary) 16%, transparent), transparent 20rem),
             color-mix(in srgb, #fff 3%, transparent);
+        box-shadow: 0 24px 60px color-mix(in srgb, var(--color-primary) 14%, transparent);
+    }
+    .tp-badge {
+        position: absolute;
+        top: -12px;
+        left: 24px;
+        padding: 5px 12px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-accent) 55%, var(--color-primary)));
+        color: #fff;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        box-shadow: 0 8px 20px color-mix(in srgb, var(--color-primary) 30%, transparent);
     }
     .tp-price-name { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-primary); }
     .tp-price-value { margin-top: 8px; font-size: 40px; font-weight: 900; color: var(--color-light); }
@@ -207,27 +404,29 @@ const briefHref = `/themes#brief`;
         font-size: 13.5px; line-height: 1.5; color: var(--color-muted);
     }
     .tp-price-card li::before { content: '✓'; position: absolute; left: 0; color: var(--color-primary); font-weight: 900; }
+    .tp-price-card li strong { color: var(--color-light); }
     .tp-price-card .btn { justify-content: center; }
     .tp-price-small { margin-top: 10px; font-size: 12px; line-height: 1.5; color: var(--color-muted); }
     .tp-support-note { margin-top: 18px; font-size: 13px; color: var(--color-muted); }
 
+    /* ── Services: aura cards from the site's library ── */
     .tp-services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-    .tp-service {
-        border: 1px solid color-mix(in srgb, #fff 10%, transparent);
-        border-radius: 16px; padding: 20px;
-        background: color-mix(in srgb, #fff 3%, transparent);
+    .tp-service { display: flex; flex-direction: column; gap: 16px; }
+    .tp-service-name {
+        display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+        font-weight: 800; color: var(--color-light); font-size: 16px;
     }
-    .tp-service-name { display: flex; justify-content: space-between; gap: 10px; font-weight: 800; color: var(--color-light); font-size: 15px; }
-    .tp-service-name span { color: var(--color-primary); white-space: nowrap; }
+    .tp-service-name span { color: var(--color-primary); white-space: nowrap; font-size: 14px; }
     .tp-service-desc { margin-top: 8px; font-size: 13.5px; line-height: 1.6; color: var(--color-muted); }
-    .tp-service-link { display: inline-block; margin-top: 12px; color: var(--color-primary); font-size: 13px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 
-    .tp-cta { width: min(1120px, 100%); margin: 56px auto 0; }
+    .tp-cta { width: min(1180px, 100%); margin: 56px auto 0; }
     .tp-cta .contact-tip-grid { grid-template-columns: 1fr; }
     .tp-cta .btn { justify-content: center; }
 
     @media (max-width: 960px) {
-        .tp-hero { grid-template-columns: 1fr; padding-top: 32px; }
+        .tp-hero { grid-template-columns: 1fr; }
         .tp-pricing, .tp-services { grid-template-columns: 1fr; }
+        .tp-shell { border-radius: 20px; }
+        .tp-featured { margin-top: 10px; }
     }
 </style>
