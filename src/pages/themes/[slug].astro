@@ -27,7 +27,7 @@ const briefHref = `/themes#brief`;
                 <h1>{t.name}</h1>
                 <p>{t.longDesc}</p>
                 <div class="contact-actions">
-                    <a class="btn btn-primary btn-lg" href={t.demo} target="_blank" rel="noopener">Live demo</a>
+                    <a class="btn btn-primary btn-lg" href={`/themes/${t.slug}/preview`}>Live preview</a>
                     {t.pro?.demo && (
                         <a class="btn btn-outline btn-lg" href={t.pro.demo} target="_blank" rel="noopener">Pro demo</a>
                     )}
@@ -37,7 +37,7 @@ const briefHref = `/themes#brief`;
                     {t.tags.map((tag) => <span>{tag}</span>)}
                 </div>
             </div>
-            <a class="tp-shot" href={t.demo} target="_blank" rel="noopener">
+            <a class="tp-shot" href={`/themes/${t.slug}/preview`}>
                 <img src={t.img} alt={`${t.name} home page`} width="1280" height="720" />
             </a>
         </section>
@@ -159,7 +159,13 @@ const briefHref = `/themes#brief`;
     }
     .tp-hero p { margin-top: 14px; color: var(--color-muted); line-height: 1.7; font-size: 15px; }
     .tp-hero .contact-actions { margin-top: 22px; }
-    .tp-tags { margin-top: 18px; }
+    .tp-tags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .tp-tags span {
+        font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+        padding: 4px 10px; border-radius: 999px;
+        border: 1px solid color-mix(in srgb, #fff 14%, transparent);
+        color: var(--color-muted);
+    }
     .tp-shot {
         display: block;
         overflow: hidden;

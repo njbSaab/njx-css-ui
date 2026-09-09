@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { ALL_THEMES } from '../../../data/themesCatalog';
+
+export function getStaticPaths() {
+  return ALL_THEMES.map((t) => ({ params: { slug: t.slug }, props: { theme: t } }));
+}
+
+const { theme: t } = Astro.props;
+---
+
+<BaseLayout
+    title={`${t.name} — live preview | njX Astro Themes`}
+    description={`Responsive preview of ${t.name}: desktop 1920, laptop 1440 and iPhone widths.`}
+>
+    <div class="pv-stage" data-pv-stage>
+        <div class="pv-frame-wrap" data-pv-wrap>
+            <iframe data-pv-frame src={t.demo} title={`${t.name} demo`} loading="eager"></iframe>
+        </div>
+
+        <!-- Floating controls: right side, vertically centered -->
+        <aside class="pv-panel" aria-label="Preview controls">
+            <a href={`/themes/${t.slug}`} class="pv-btn" title="Back to theme page" aria-label="Back to theme page">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5" /><path d="m12 19-7-7 7-7" /></svg>
+            </a>
+
+            <div class="pv-sep"></div>
+
+            <button type="button" class="pv-btn is-active" data-pv-size="fit" title="Fit to window" aria-label="Fit to window">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3" /><path d="M16 3h3a2 2 0 0 1 2 2v3" /><path d="M8 21H5a2 2 0 0 1-2-2v-3" /><path d="M16 21h3a2 2 0 0 0 2-2v-3" /></svg>
+            </button>
+            <button type="button" class="pv-btn" data-pv-size="1920" title="Desktop · 1920" aria-label="Desktop 1920px">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8" /><path d="M12 17v4" /></svg>
+            </button>
+            <button type="button" class="pv-btn" data-pv-size="1440" title="Laptop · 1440" aria-label="Laptop 1440px">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="11" rx="1.5" /><path d="M2 19h20" /></svg>
+            </button>
+            <button type="button" class="pv-btn" data-pv-size="390" title="iPhone · 390" aria-label="Phone 390px">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2.5" /><path d="M11 18.5h2" /></svg>
+            </button>
+
+            <div class="pv-sep"></div>
+
+            <a href={t.repo} target="_blank" rel="noopener" class="pv-btn pv-star" title="Star the free theme on GitHub" aria-label="Star the free theme on GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+            </a>
+            {t.pro?.demo && (
+                <button type="button" class="pv-btn pv-pro" data-pv-pro={t.pro.demo} data-pv-lite={t.demo} title="Switch Lite / Pro demo" aria-label="Switch Lite / Pro demo">
+                    PRO
+                </button>
+            )}
+        </aside>
+
+        <div class="pv-badge" data-pv-badge>Fit</div>
+    </div>
+</BaseLayout>
+
+<style is:global>
+    /* preview page owns the viewport — hide site chrome scroll */
+    body:has(.pv-stage) { overflow: hidden; }
+
+    .pv-stage {
+        position: fixed;
+        inset: 0;
+        background:
+            radial-gradient(circle at 50% 0, color-mix(in srgb, var(--color-primary) 7%, transparent), transparent 40rem),
+            #0b0e13;
+        z-index: 50;
+    }
+    .pv-frame-wrap {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        transition: padding 0.2s ease;
+    }
+    .pv-frame-wrap iframe {
+        border: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        transform-origin: top center;
+        transition: width 0.25s ease, border-radius 0.25s ease;
+    }
+    /* device mode: framed viewport */
+    .pv-frame-wrap.is-device { padding: 20px 0; }
+    .pv-frame-wrap.is-device iframe {
+        border-radius: 12px;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px color-mix(in srgb, #fff 14%, transparent);
+    }
+    .pv-frame-wrap.is-phone iframe { border-radius: 28px; }
+
+    .pv-panel {
+        position: fixed;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 6px;
+        border-radius: 14px;
+        border: 1px solid color-mix(in srgb, #fff 14%, transparent);
+        background: color-mix(in srgb, #0b0e13 82%, transparent);
+        backdrop-filter: blur(10px);
+        z-index: 60;
+    }
+    .pv-btn {
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+        color: var(--color-muted);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+    .pv-btn:hover { color: var(--color-light); background: color-mix(in srgb, #fff 8%, transparent); }
+    .pv-btn.is-active {
+        color: var(--color-primary);
+        border-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
+        background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    }
+    .pv-star { color: #f5c518; }
+    .pv-star:hover { color: #ffd84d; background: color-mix(in srgb, #f5c518 12%, transparent); }
+    .pv-sep { width: 22px; height: 1px; background: color-mix(in srgb, #fff 14%, transparent); margin: 2px 0; }
+
+    .pv-badge {
+        position: fixed;
+        left: 50%;
+        bottom: 14px;
+        transform: translateX(-50%);
+        padding: 6px 14px;
+        border-radius: 999px;
+        border: 1px solid color-mix(in srgb, #fff 14%, transparent);
+        background: color-mix(in srgb, #0b0e13 82%, transparent);
+        backdrop-filter: blur(10px);
+        color: var(--color-muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        z-index: 60;
+        pointer-events: none;
+    }
+
+    @media (max-width: 640px) {
+        .pv-panel {
+            top: auto;
+            right: 50%;
+            bottom: 12px;
+            transform: translateX(50%);
+            flex-direction: row;
+        }
+        .pv-sep { width: 1px; height: 22px; margin: 0 2px; }
+        .pv-badge { display: none; }
+    }
+</style>
+
+<script is:inline>
+    (function () {
+        var wrap = document.querySelector('[data-pv-wrap]');
+        var frame = document.querySelector('[data-pv-frame]');
+        var badge = document.querySelector('[data-pv-badge]');
+        var buttons = [].slice.call(document.querySelectorAll('[data-pv-size]'));
+        var mode = 'fit';
+
+        var labels = { fit: 'Fit', 1920: 'Desktop · 1920', 1440: 'Laptop · 1440', 390: 'iPhone · 390' };
+
+        function apply() {
+            var isFit = mode === 'fit';
+            var target = isFit ? 0 : parseInt(mode, 10);
+            wrap.classList.toggle('is-device', !isFit);
+            wrap.classList.toggle('is-phone', mode === '390');
+            badge.textContent = labels[mode];
+
+            if (isFit) {
+                frame.style.width = '100%';
+                frame.style.height = '100%';
+                frame.style.transform = '';
+                return;
+            }
+            var pad = 40; /* is-device vertical padding ×2 */
+            var availW = wrap.clientWidth - 16;
+            var availH = wrap.clientHeight - pad;
+            var scale = Math.min(1, availW / target);
+            frame.style.width = target + 'px';
+            frame.style.height = availH / scale + 'px';
+            frame.style.transform = scale < 1 ? 'scale(' + scale + ')' : '';
+        }
+
+        buttons.forEach(function (b) {
+            b.addEventListener('click', function () {
+                mode = b.dataset.pvSize;
+                buttons.forEach(function (x) { x.classList.toggle('is-active', x === b); });
+                apply();
+            });
+        });
+        window.addEventListener('resize', apply);
+
+        var proBtn = document.querySelector('[data-pv-pro]');
+        if (proBtn) {
+            var showingPro = false;
+            proBtn.addEventListener('click', function () {
+                showingPro = !showingPro;
+                frame.src = showingPro ? proBtn.dataset.pvPro : proBtn.dataset.pvLite;
+                proBtn.classList.toggle('is-active', showingPro);
+                proBtn.title = showingPro ? 'Showing Pro demo — click for Lite' : 'Switch Lite / Pro demo';
+            });
+        }
+        apply();
+    })();
+</script>
