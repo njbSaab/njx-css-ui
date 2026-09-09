@@ -13,7 +13,7 @@ type Theme = {
     demo: string;
     repo: string;
     img: string;
-    pro?: { from: number; note: string };
+    pro?: { from: number; note: string; demo?: string };
 };
 
 const ECOMMERCE: Theme[] = [
@@ -26,7 +26,7 @@ const ECOMMERCE: Theme[] = [
         demo: 'https://astro-njx-dark-lux.pages.dev',
         repo: 'https://github.com/njbSaab/astro-njx-dark-lux',
         img: '/img/themes/dark-lux.jpg',
-        pro: { from: 79, note: 'reviews · customer accounts · command palette' },
+        pro: { from: 79, note: 'reviews · customer accounts · advanced catalog · SEO pack', demo: 'https://astro-njx-dark-lux-pro.pages.dev' },
     },
     {
         slug: 'verdant',
@@ -261,10 +261,19 @@ const SITES: Theme[] = [
                                 {t.pro && (
                                     <div class="th-pro">
                                         <span class="th-pro-badge">Pro · from ${t.pro.from}</span>
-                                        <span class="th-pro-note">
-                                            {t.pro.note} — coming soon.{' '}
-                                            <a href="#brief">Get notified</a>
-                                        </span>
+                                        {t.pro.demo ? (
+                                            <span class="th-pro-note">
+                                                {t.pro.note} —{' '}
+                                                <a href={t.pro.demo} target="_blank" rel="noopener">Pro demo</a>{' '}
+                                                ·{' '}
+                                                <a href="#brief">Buy / get notified</a>
+                                            </span>
+                                        ) : (
+                                            <span class="th-pro-note">
+                                                {t.pro.note} — coming soon.{' '}
+                                                <a href="#brief">Get notified</a>
+                                            </span>
+                                        )}
                                     </div>
                                 )}
                             </div>
