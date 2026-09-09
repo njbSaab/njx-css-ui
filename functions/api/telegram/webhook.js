@@ -68,6 +68,7 @@ const MENU_KB = {
       { text: '🛟 Support', callback_data: 'menu:support' },
       { text: '🎨 Themes', callback_data: 'menu:themes' },
     ],
+    [{ text: '✍️ Ask a question', callback_data: 'menu:ask' }],
   ],
 };
 
@@ -109,6 +110,13 @@ const MENU_TEXT = {
     '',
     'Free ecommerce storefronts (Shopify-ready) and landing themes.',
     'Open a live demo below, or see the full catalog with upcoming Pro versions:',
+  ].join('\n'),
+  ask: [
+    '✍️ Describe your question in one message — anything about njX UI, the Astro themes, Pro versions or custom work.',
+    '',
+    'It goes straight to the author; the reply arrives right here in this chat, usually within a day.',
+    '',
+    'Attach links (CodePen, repo, your store) if relevant. Please do not send tokens or passwords.',
   ].join('\n'),
 };
 
@@ -165,6 +173,7 @@ export async function onRequestPost(context) {
     if (cbChat) {
       if (action === 'themes') await send(env, cbChat, MENU_TEXT.themes, { reply_markup: THEMES_KB });
       else if (action === 'support') await send(env, cbChat, MENU_TEXT.support, { reply_markup: SUPPORT_KB });
+      else if (action === 'ask') await send(env, cbChat, MENU_TEXT.ask, { reply_markup: { force_reply: true, input_field_placeholder: 'Type your question…' } });
       else await send(env, cbChat, MENU_TEXT.main, { reply_markup: MENU_KB });
     }
     return json({ ok: true });
