@@ -158,8 +158,9 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
         </section>
 
         <!-- CTA -->
-        <div class="contact-tips card-glass tp-cta">
-            <div>
+        <section class="tp-cta">
+            <div class="tp-cta-copy">
+                <span class="tp-kicker">We reply within a day</span>
                 <h2>Questions before buying?</h2>
                 <p>
                     Licensing, Shopify specifics, a feature you need — send a short
@@ -167,11 +168,14 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
                     if custom work is involved.
                 </p>
             </div>
-            <div class="contact-tip-grid">
-                <a href={briefHref} class="tp-cta-btn btn btn-primary btn-lg">Ask / start a brief</a>
-                <a href={`/themes/${t.slug}/preview`} class="btn btn-outline btn-lg">Open live preview</a>
+            <div class="tp-cta-actions">
+                <a href={briefHref} class="tp-btn tp-btn-primary tp-btn-block">
+                    Ask / start a brief
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                </a>
+                <a href={`/themes/${t.slug}/preview`} class="tp-btn tp-btn-ghost tp-btn-block">Open live preview</a>
             </div>
-        </div>
+        </section>
     </main>
 
     <PagesFooter />
@@ -483,9 +487,50 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
     .tp-service-name span { color: var(--color-primary); white-space: nowrap; font-size: 14px; }
     .tp-service-desc { margin-top: 8px; font-size: 13.5px; line-height: 1.6; color: var(--color-muted); }
 
-    .tp-cta { width: min(1180px, 100%); margin: 56px auto 0; }
-    .tp-cta .contact-tip-grid { grid-template-columns: 1fr; }
-    .tp-cta .btn { justify-content: center; }
+    .tp-cta {
+        position: relative;
+        overflow: hidden;
+        width: min(1180px, 100%);
+        margin: 56px auto 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
+        gap: clamp(24px, 3.5vw, 44px);
+        align-items: center;
+        padding: clamp(24px, 3.5vw, 40px);
+        border-radius: 28px;
+        border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+        background:
+            radial-gradient(circle at top left, color-mix(in srgb, var(--color-primary) 14%, transparent), transparent 32%),
+            radial-gradient(circle at bottom right, color-mix(in srgb, var(--color-accent) 12%, transparent), transparent 34%),
+            linear-gradient(145deg, color-mix(in srgb, var(--color-dark-secondary) 88%, var(--сolor-dark)), color-mix(in srgb, var(--сolor-dark) 82%, var(--color-dark-secondary)));
+        box-shadow:
+            0 22px 60px color-mix(in srgb, #000 22%, transparent),
+            inset 0 1px 0 color-mix(in srgb, #fff 4%, transparent);
+    }
+    .tp-cta::after {
+        content: '';
+        position: absolute;
+        right: -70px; top: -90px;
+        width: 240px; height: 240px;
+        border-radius: 999px;
+        filter: blur(14px);
+        background: radial-gradient(circle, color-mix(in srgb, var(--color-primary) 18%, transparent), transparent 72%);
+        pointer-events: none;
+    }
+    .tp-cta-copy .tp-kicker { margin-left: 0; }
+    .tp-cta-copy h2 {
+        margin: 0 0 12px;
+        color: var(--color-light);
+        font-family: 'Space Grotesk', 'Roboto', sans-serif;
+        font-size: clamp(24px, 3vw, 34px);
+        letter-spacing: -1px;
+    }
+    .tp-cta-copy p { margin: 0; color: var(--color-muted); font-size: 15px; line-height: 1.7; }
+    .tp-cta-actions { display: grid; gap: 12px; position: relative; z-index: 1; }
+
+    @media (max-width: 960px) {
+        .tp-cta { grid-template-columns: 1fr; border-radius: 20px; }
+    }
 
     @media (max-width: 960px) {
         .tp-hero { grid-template-columns: 1fr; }
