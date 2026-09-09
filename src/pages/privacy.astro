@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PagesTopbar from '../components/PagesTopbar.astro';
+import PagesFooter from '../components/PagesFooter.astro';
+---
+
+<BaseLayout
+    title="Privacy Policy — njX UI"
+    description="What njX UI collects through the website, contact form and the @njxui_bot Telegram bot — and what we never do with it."
+>
+    <PagesTopbar />
+
+    <main class="pv-page">
+        <span class="tag tag-primary">Privacy</span>
+        <h1>Privacy Policy</h1>
+        <p class="pv-updated">Last updated: September 2026</p>
+
+        <section>
+            <h2>Who we are</h2>
+            <p>
+                njX UI (njxui.dev) is an open-source CSS library and a
+                collection of Astro themes by an independent developer. This
+                policy covers the website, the contact &amp; brief forms and
+                the <strong>@njxui_bot</strong> Telegram bot.
+            </p>
+        </section>
+
+        <section>
+            <h2>What we collect</h2>
+            <ul>
+                <li>
+                    <strong>Contact &amp; brief forms:</strong> the message you
+                    type and, if you provide it, your email address — used only
+                    to reply to you.
+                </li>
+                <li>
+                    <strong>Telegram bot:</strong> when you message
+                    @njxui_bot, the author sees your message, your Telegram
+                    name, username and numeric user id — that's how a reply
+                    finds its way back to you. Messages are private: other
+                    users never see them.
+                </li>
+                <li>
+                    <strong>Website analytics:</strong> cookieless, aggregate
+                    Cloudflare Web Analytics — no personal profiles, no ad
+                    trackers.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>What we never do</h2>
+            <ul>
+                <li>No selling or sharing of your data with third parties.</li>
+                <li>No marketing emails unless you explicitly asked for them.</li>
+                <li>No ad tracking, no fingerprinting.</li>
+            </ul>
+            <p>
+                Please never send tokens, passwords or private credentials
+                through the forms or the bot.
+            </p>
+        </section>
+
+        <section>
+            <h2>Where it lives &amp; your rights</h2>
+            <p>
+                Form submissions arrive as email (Resend) and as Telegram
+                notifications to the author. Bot messages live in Telegram.
+                Want something deleted? Email
+                <a href="mailto:sdr.expert@gmail.com">sdr.expert@gmail.com</a>
+                or message the bot — it's done within 30 days, usually much
+                faster.
+            </p>
+        </section>
+    </main>
+
+    <PagesFooter />
+</BaseLayout>
+
+<style is:global>
+    .pv-page {
+        width: min(760px, 100%);
+        margin-inline: auto;
+        padding: 56px 24px 96px;
+        min-height: 60vh;
+    }
+    .pv-page h1 {
+        margin-top: 16px;
+        font-size: clamp(36px, 5vw, 52px);
+        font-weight: 950;
+    }
+    .pv-updated {
+        margin-top: 8px;
+        color: var(--color-muted);
+        font-size: 14px;
+    }
+    .pv-page section {
+        margin-top: 34px;
+    }
+    .pv-page h2 {
+        font-size: 20px;
+        font-weight: 900;
+        color: var(--color-light);
+    }
+    .pv-page p,
+    .pv-page li {
+        margin-top: 10px;
+        color: var(--color-muted);
+        line-height: 1.7;
+        font-size: 15px;
+    }
+    .pv-page ul {
+        margin-top: 8px;
+        padding-left: 20px;
+        list-style: disc;
+    }
+    .pv-page a {
+        color: var(--color-primary);
+    }
+</style>
