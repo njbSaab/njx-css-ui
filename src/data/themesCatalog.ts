@@ -34,7 +34,7 @@ export const SERVICES = [
 export const ECOMMERCE: ThemeProduct[] = [
   {
     slug: 'dark-lux',
-    stats: [{ value: '48', label: 'SKU demo catalog' }, { value: '117', label: 'pages generated' }, { value: '12', label: 'Pro feature packs' }],
+    stats: [{ value: '48', label: 'SKU demo catalog' }, { value: '117', label: 'pages generated' }, { value: '14', label: 'Pro feature packs' }],
     name: 'astro-njx-dark-lux',
     tagline: 'Monochrome dark luxury',
     desc: 'Hairline borders, zero radius, overlay search, quick-view popups, cart with saved-for-later. A full design system for brands that sell in black and white.',
@@ -64,7 +64,9 @@ export const ECOMMERCE: ThemeProduct[] = [
         '48-SKU demo catalog with brands (vendors)',
         'Reviews & ratings + schema.org stars in Google',
         'Reviews page with Questions & Answers tabs',
-        'Customer account: orders with progress tracking, favorites, compare, addresses CRUD, profile, settings',
+        'Full customer account — 7-tab dashboard: stats overview, orders, favorites, compare, addresses CRUD, profile, settings',
+        'Order tracking: status filter chips, newest/oldest sort, order details with a progress stepper (processing → shipped → delivered, refund & archive states)',
+        'Auth works two ways: instant mock sign-in for the demo, or real Shopify customer accounts via Storefront API — login, register, password recovery, live order history, one-click reorder',
         'Mock checkout flow: customer form, delivery methods, payment options',
         'Advanced catalog: price slider with inputs, brand/options/rating dropdown filters, grid/list views, per-page, load more',
         'Product comparison (one category, floating access, compare page)',
