@@ -62,6 +62,56 @@ const REPLIES = {
   ack: 'Thanks, message received ✓ A human will reply here — for bugs, a CodePen or repo link helps a lot.',
 };
 
+const MENU_KB = {
+  inline_keyboard: [
+    [
+      { text: '🛟 Support', callback_data: 'menu:support' },
+      { text: '🎨 Themes', callback_data: 'menu:themes' },
+    ],
+  ],
+};
+
+const THEMES_KB = {
+  inline_keyboard: [
+    [
+      { text: '🖤 dark-lux', url: 'https://astro-njx-dark-lux.pages.dev' },
+      { text: '🌿 verdant', url: 'https://astro-njx-verdant.pages.dev' },
+    ],
+    [
+      { text: '👗 boutique', url: 'https://astro-njx-boutique.pages.dev' },
+      { text: '📦 store', url: 'https://astro-njx-store.pages.dev' },
+    ],
+    [{ text: 'All themes & Pro →', url: LINKS.themes }],
+    [{ text: '← Back', callback_data: 'menu:main' }],
+  ],
+};
+
+const SUPPORT_KB = {
+  inline_keyboard: [
+    [{ text: 'GitHub Issues', url: LINKS.issues }],
+    [{ text: 'Docs', url: LINKS.docs }],
+    [{ text: '← Back', callback_data: 'menu:main' }],
+  ],
+};
+
+const MENU_TEXT = {
+  main: 'Pick a section — or just type your question, it goes straight to the author:',
+  support: [
+    'Support 🛟',
+    '',
+    'Type your question, bug or feedback right here — a human reads every message and replies in this chat.',
+    '',
+    'For bugs: njX UI version, browser, CDN/npm, and a CodePen or repo link help a lot.',
+    'Please do not send tokens, passwords or private credentials.',
+  ].join('\n'),
+  themes: [
+    'Astro themes 🎨',
+    '',
+    'Free ecommerce storefronts (Shopify-ready) and landing themes.',
+    'Open a live demo below, or see the full catalog with upcoming Pro versions:',
+  ].join('\n'),
+};
+
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), {
     status,
@@ -106,6 +156,20 @@ export async function onRequestPost(context) {
     return json({ ok: true });
   }
 
+  // ── Inline menu buttons ──
+  const cb = update.callback_query;
+  if (cb) {
+    const cbChat = cb.message?.chat?.id;
+    const action = (cb.data || '').replace('menu:', '');
+    await tg(env, 'answerCallbackQuery', { callback_query_id: cb.id });
+    if (cbChat) {
+      if (action === 'themes') await send(env, cbChat, MENU_TEXT.themes, { reply_markup: THEMES_KB });
+      else if (action === 'support') await send(env, cbChat, MENU_TEXT.support, { reply_markup: SUPPORT_KB });
+      else await send(env, cbChat, MENU_TEXT.main, { reply_markup: MENU_KB });
+    }
+    return json({ ok: true });
+  }
+
   const msg = update.message;
   // Always 200 to Telegram — otherwise it retries the same update forever.
   if (!msg || !msg.chat || msg.from?.is_bot) return json({ ok: true });
@@ -124,8 +188,10 @@ export async function onRequestPost(context) {
       await send(env, adminChat, ok ? 'Delivered ✓' : 'Failed to deliver ✗', {
         reply_to_message_id: msg.message_id,
       });
+      return json({ ok: true });
     }
-    return json({ ok: true });
+    // The owner's private chat doubles as the admin chat — commands still work here.
+    if (!text.startsWith('/')) return json({ ok: true });
   }
 
   // ── User side ──
@@ -135,7 +201,15 @@ export async function onRequestPost(context) {
   const command = text.startsWith('/') ? text.split(/[\s@]/)[0].slice(1).toLowerCase() : null;
 
   if (command) {
-    const known = { start: 1, help: 1, docs: 1, themes: 1, github: 1, npm: 1, bug: 1, contact: 1 };
+    if (command === 'start') {
+      await send(env, chatId, REPLIES.start, { reply_markup: MENU_KB });
+      return json({ ok: true });
+    }
+    if (command === 'themes') {
+      await send(env, chatId, MENU_TEXT.themes, { reply_markup: THEMES_KB });
+      return json({ ok: true });
+    }
+    const known = { help: 1, docs: 1, github: 1, npm: 1, bug: 1, contact: 1 };
     const reply = known[command] ? REPLIES[command] : REPLIES.help;
     await send(env, chatId, reply);
     return json({ ok: true });
