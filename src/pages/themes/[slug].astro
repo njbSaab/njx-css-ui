@@ -78,9 +78,15 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
                     <p class="tp-price-name">Lite</p>
                     <p class="tp-price-value">Free</p>
                     <p class="tp-price-note">Open source · MIT · fork and ship</p>
-                    <ul>
+                    <ul class:list={['tp-features', t.liteFeatures.length > 6 && 'is-clamped']}>
                         {t.liteFeatures.map((f) => <li>{f}</li>)}
                     </ul>
+                    {t.liteFeatures.length > 6 && (
+                        <button type="button" class="tp-more" data-tp-more>
+                            <span data-more-label>All {t.liteFeatures.length} features</span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+                        </button>
+                    )}
                     <a class="btn btn-outline" href={t.repo} target="_blank" rel="noopener">Get free theme on GitHub</a>
                 </article>
 
@@ -92,10 +98,16 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
                             <p class="tp-price-name">Pro · Single site</p>
                             <p class="tp-price-value">${t.pro.single}</p>
                             <p class="tp-price-note">One-time · 12 months of updates · email support</p>
-                            <ul>
+                            <ul class:list={['tp-features', t.pro.features.length > 6 && 'is-clamped']}>
                                 <li><strong>Everything in Lite, plus:</strong></li>
                                 {t.pro.features.map((f) => <li>{f}</li>)}
                             </ul>
+                            {t.pro.features.length > 6 && (
+                                <button type="button" class="tp-more" data-tp-more>
+                                    <span data-more-label>All {t.pro.features.length} Pro features</span>
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+                                </button>
+                            )}
                             {t.pro.ready ? (
                                 <a class="tp-btn tp-btn-primary tp-btn-block" href={briefHref}>Buy Pro — ${t.pro.single}</a>
                             ) : (
@@ -162,6 +174,18 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
 
     <PagesFooter />
 </BaseLayout>
+
+<script is:inline>
+    document.querySelectorAll('[data-tp-more]').forEach(function (btn) {
+        var card = btn.closest('.tp-price-card');
+        var label = btn.querySelector('[data-more-label]');
+        var full = label.textContent;
+        btn.addEventListener('click', function () {
+            var open = card.classList.toggle('is-open');
+            label.textContent = open ? 'Show less' : full;
+        });
+    });
+</script>
 
 <style is:global>
     .tp-page { padding-bottom: 96px; }
@@ -404,6 +428,43 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
         font-size: 13.5px; line-height: 1.5; color: var(--color-muted);
     }
     .tp-price-card li::before { content: '✓'; position: absolute; left: 0; color: var(--color-primary); font-weight: 900; }
+    /* feature accordion: clamp + fade, chevron toggle */
+    .tp-features.is-clamped {
+        position: relative;
+        max-height: 296px;
+        overflow: hidden;
+        margin-bottom: 0;
+        flex: none;
+    }
+    .tp-features.is-clamped::after {
+        content: '';
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        height: 72px;
+        background: linear-gradient(transparent, var(--tp-card-bg, #0d0f14));
+        pointer-events: none;
+    }
+    .tp-more {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        align-self: flex-start;
+        margin: 6px 0 18px;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--color-primary);
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    .tp-more svg { transition: transform 0.2s ease; }
+    .tp-more:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .tp-price-card.is-open .tp-features.is-clamped { max-height: none; }
+    .tp-price-card.is-open .tp-features.is-clamped::after { display: none; }
+    .tp-price-card.is-open .tp-more svg { transform: rotate(180deg); }
     .tp-price-card li strong { color: var(--color-light); }
     .tp-price-card .btn { justify-content: center; }
     .tp-price-small { margin-top: 10px; font-size: 12px; line-height: 1.5; color: var(--color-muted); }
