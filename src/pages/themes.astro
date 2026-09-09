@@ -2,99 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PagesTopbar from '../components/PagesTopbar.astro';
 import PagesFooter from '../components/PagesFooter.astro';
+import { ECOMMERCE, SITES } from '../data/themesCatalog';
 const base = import.meta.env.BASE_URL;
-
-type Theme = {
-    slug: string;
-    name: string;
-    tagline: string;
-    desc: string;
-    tags: string[];
-    demo: string;
-    repo: string;
-    img: string;
-    pro?: { from: number; note: string; demo?: string };
-};
-
-const ECOMMERCE: Theme[] = [
-    {
-        slug: 'dark-lux',
-        name: 'astro-njx-dark-lux',
-        tagline: 'Monochrome dark luxury',
-        desc: 'Hairline borders, zero radius, overlay search, quick-view popups, cart with saved-for-later. A full design system for brands that sell in black and white.',
-        tags: ['Ecommerce', 'Shopify-ready', 'Tailwind v4'],
-        demo: 'https://astro-njx-dark-lux.pages.dev',
-        repo: 'https://github.com/njbSaab/astro-njx-dark-lux',
-        img: '/img/themes/dark-lux.jpg',
-        pro: { from: 79, note: 'reviews · customer accounts · advanced catalog · SEO pack', demo: 'https://astro-njx-dark-lux-pro.pages.dev' },
-    },
-    {
-        slug: 'verdant',
-        name: 'astro-njx-verdant',
-        tagline: 'Botanical apothecary',
-        desc: 'Deep forest green with a brass accent and a clean white light mode. Made for skincare, spa and any brand with a garden-first voice.',
-        tags: ['Ecommerce', 'Shopify-ready', 'Tailwind v4'],
-        demo: 'https://astro-njx-verdant.pages.dev',
-        repo: 'https://github.com/njbSaab/astro-njx-verdant',
-        img: '/img/themes/verdant.jpg',
-        pro: { from: 69, note: 'reviews · customer accounts · richer catalog' },
-    },
-    {
-        slug: 'boutique',
-        name: 'astro-njx-boutique',
-        tagline: 'Editorial fashion',
-        desc: 'Serif display type, full-bleed imagery, 3:4 photography and an oxblood accent. An editorial storefront for ateliers and small fashion brands.',
-        tags: ['Ecommerce', 'Shopify-ready', 'Tailwind v4'],
-        demo: 'https://astro-njx-boutique.pages.dev',
-        repo: 'https://github.com/njbSaab/astro-njx-boutique',
-        img: '/img/themes/boutique.jpg',
-        pro: { from: 59, note: 'reviews · customer accounts · lookbook pages' },
-    },
-    {
-        slug: 'store',
-        name: 'astro-njx-store',
-        tagline: 'Warm paper & pine',
-        desc: 'The original: 18 static pages, cart with hosted checkout, filters, search, favorites and dark mode. Friendly, versatile, ready for any catalog.',
-        tags: ['Ecommerce', 'Shopify-ready', 'Tailwind v4'],
-        demo: 'https://astro-njx-store.pages.dev',
-        repo: 'https://github.com/njbSaab/astro-njx-store',
-        img: '/img/themes/store.jpg',
-        pro: { from: 69, note: 'reviews · customer accounts · pagination & swatches' },
-    },
-];
-
-const SITES: Theme[] = [
-    {
-        slug: 'saas',
-        name: 'astro-njx-saas',
-        tagline: 'Product landing',
-        desc: 'Glow hero, reviews slider, 9 runtime themes — a complete product landing built 100% with njX UI and Alpine.js.',
-        tags: ['Landing', 'njX UI', 'Alpine.js'],
-        demo: 'https://astro-njx-saas.pages.dev',
-        repo: 'https://github.com/njbSaab/astro-njx-saas',
-        img: '/img/themes/saas.jpg',
-    },
-    {
-        slug: 'portfolio',
-        name: 'astro-njx-portfolio',
-        tagline: 'Personal portfolio',
-        desc: 'Filterable project grid, glass stat card, gradient CTA — a personal site you rebrand in one config file.',
-        tags: ['Portfolio', 'njX UI', 'Alpine.js'],
-        demo: 'https://astro-njx-portfolio.pages.dev',
-        repo: 'https://github.com/njbSaab/astro-njx-portfolio',
-        img: '/img/themes/portfolio.jpg',
-    },
-    {
-        slug: 'launch',
-        name: 'astro-njx-launch',
-        tagline: 'Launch / waitlist',
-        desc: 'Waitlist counter, video modal, testimonial slider and an optimistic signup form — everything a launch page needs.',
-        tags: ['Landing', 'njX UI', 'Alpine.js'],
-        demo: 'https://astro-njx-launch.pages.dev',
-        repo: 'https://github.com/njbSaab/astro-njx-launch',
-        img: '/img/themes/launch.jpg',
-    },
-];
 ---
 
 <BaseLayout
@@ -239,12 +148,12 @@ const SITES: Theme[] = [
                 {
                     ECOMMERCE.map((t) => (
                         <article class="th-card" id={t.slug}>
-                            <a class="th-shot" href={t.demo} target="_blank" rel="noopener">
+                            <a class="th-shot" href={`/themes/${t.slug}`}>
                                 <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
                             </a>
                             <div class="th-body">
                                 <div class="th-name-row">
-                                    <h3>{t.name}</h3>
+                                    <h3><a href={`/themes/${t.slug}`}>{t.name}</a></h3>
                                     <span class="th-free">Free</span>
                                 </div>
                                 <div class="th-tagline">{t.tagline}</div>
@@ -256,22 +165,21 @@ const SITES: Theme[] = [
                                 </div>
                                 <div class="th-actions">
                                     <a class="btn btn-primary btn-sm" href={t.demo} target="_blank" rel="noopener">Live demo</a>
-                                    <a class="btn btn-outline btn-sm" href={t.repo} target="_blank" rel="noopener">GitHub ↗</a>
+                                    <a class="btn btn-outline btn-sm" href={t.repo} target="_blank" rel="noopener">Free theme · GitHub ↗</a>
                                 </div>
                                 {t.pro && (
                                     <div class="th-pro">
-                                        <span class="th-pro-badge">Pro · from ${t.pro.from}</span>
-                                        {t.pro.demo ? (
+                                        <span class="th-pro-badge">Pro · from ${t.pro.single}</span>
+                                        {t.pro.ready ? (
                                             <span class="th-pro-note">
-                                                {t.pro.note} —{' '}
                                                 <a href={t.pro.demo} target="_blank" rel="noopener">Pro demo</a>{' '}
                                                 ·{' '}
-                                                <a href="#brief">Buy / get notified</a>
+                                                <a href={`/themes/${t.slug}`}>Pricing &amp; details →</a>
                                             </span>
                                         ) : (
                                             <span class="th-pro-note">
-                                                {t.pro.note} — coming soon.{' '}
-                                                <a href="#brief">Get notified</a>
+                                                coming soon ·{' '}
+                                                <a href={`/themes/${t.slug}`}>Details →</a>
                                             </span>
                                         )}
                                     </div>
@@ -297,12 +205,12 @@ const SITES: Theme[] = [
                 {
                     SITES.map((t) => (
                         <article class="th-card" id={t.slug}>
-                            <a class="th-shot" href={t.demo} target="_blank" rel="noopener">
+                            <a class="th-shot" href={`/themes/${t.slug}`}>
                                 <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
                             </a>
                             <div class="th-body">
                                 <div class="th-name-row">
-                                    <h3>{t.name}</h3>
+                                    <h3><a href={`/themes/${t.slug}`}>{t.name}</a></h3>
                                     <span class="th-free">Free</span>
                                 </div>
                                 <div class="th-tagline">{t.tagline}</div>
@@ -737,6 +645,8 @@ const SITES: Theme[] = [
         font-family: 'Roboto Mono', monospace;
         color: var(--color-light);
     }
+    .th-name-row h3 a { color: inherit; text-decoration: none; }
+    .th-name-row h3 a:hover { color: var(--color-primary); }
     .th-free {
         font-size: 12px;
         font-weight: 700;
