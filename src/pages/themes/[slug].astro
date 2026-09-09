@@ -182,15 +182,20 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
 </BaseLayout>
 
 <script is:inline>
-    document.querySelectorAll('[data-tp-more]').forEach(function (btn) {
-        var card = btn.closest('.tp-price-card');
-        var label = btn.querySelector('[data-more-label]');
-        var full = label.textContent;
-        btn.addEventListener('click', function () {
+    // Delegated: survives View Transitions swaps (direct listeners are lost on client-side nav)
+    if (!window.__tpMoreBound) {
+        window.__tpMoreBound = true;
+        document.addEventListener('click', function (e) {
+            var btn = e.target.closest && e.target.closest('[data-tp-more]');
+            if (!btn) return;
+            var card = btn.closest('.tp-price-card');
+            var label = btn.querySelector('[data-more-label]');
+            if (!card || !label) return;
+            if (!btn.dataset.fullLabel) btn.dataset.fullLabel = label.textContent;
             var open = card.classList.toggle('is-open');
-            label.textContent = open ? 'Show less' : full;
+            label.textContent = open ? 'Show less' : btn.dataset.fullLabel;
         });
-    });
+    }
 </script>
 
 <style is:global>
