@@ -89,7 +89,7 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg>
                         </button>
                     )}
-                    <a class="btn btn-outline" href={t.repo} target="_blank" rel="noopener">Get free theme on GitHub</a>
+                    <a class="tp-btn tp-btn-ghost tp-btn-block" href={t.repo} target="_blank" rel="noopener">Get free theme on GitHub</a>
                 </article>
 
                 {t.pro && (
@@ -129,7 +129,7 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
                                 <li>Lifetime updates — pay once</li>
                                 <li>Priority email support</li>
                             </ul>
-                            <a class="btn btn-outline" href={briefHref}>{t.pro.ready ? `Buy Unlimited — $${t.pro.unlimited}` : 'Get notified'}</a>
+                            <a class="tp-btn tp-btn-secondary tp-btn-block" href={briefHref}>{t.pro.ready ? `Buy Unlimited — $${t.pro.unlimited}` : 'Get notified'}</a>
                         </article>
                     </>
                 )}
