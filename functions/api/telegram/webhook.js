@@ -23,12 +23,13 @@ const REPLIES = {
     `GitHub: ${LINKS.github}`,
     'npm: npm i njx-ui',
     '',
-    'Commands: /help /docs /themes /github /npm /bug /contact',
+    'Commands: /ask /help /docs /themes /github /npm /bug /contact',
     '',
     'Please do not send tokens, passwords or private credentials.',
   ].join('\n'),
   help: [
     'What I can do:',
+    '/ask — ask a question (goes to the author)',
     '/docs — documentation',
     '/themes — free Astro themes & Pro',
     '/github — source code',
@@ -55,7 +56,7 @@ const REPLIES = {
   ].join('\n'),
   contact: [
     'Other channels:',
-    `Email: sdr.expert@gmail.com`,
+    `Email: support@njxui.dev`,
     `GitHub Issues: ${LINKS.issues}`,
     `Contact form: ${LINKS.docs}/contact`,
   ].join('\n'),
@@ -216,6 +217,10 @@ export async function onRequestPost(context) {
     }
     if (command === 'themes') {
       await send(env, chatId, MENU_TEXT.themes, { reply_markup: THEMES_KB });
+      return json({ ok: true });
+    }
+    if (command === 'ask') {
+      await send(env, chatId, MENU_TEXT.ask, { reply_markup: { force_reply: true, input_field_placeholder: 'Type your question…' } });
       return json({ ok: true });
     }
     const known = { help: 1, docs: 1, github: 1, npm: 1, bug: 1, contact: 1 };
