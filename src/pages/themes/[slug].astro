@@ -552,6 +552,8 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
 
     /* order brief popup */
     .tp-order-root { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .tp-order-root[hidden] { display: none; }
+    [data-order-form-wrap][hidden], [data-order-done][hidden] { display: none; }
     .tp-order-dim { position: absolute; inset: 0; background: rgb(0 0 0 / 0.6); backdrop-filter: blur(4px); }
     .tp-order-card {
         position: relative; width: min(520px, 100%); max-height: 90vh; overflow: auto;
