@@ -621,16 +621,10 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
         overflow: hidden;
         border-radius: 18px;
         border: 1px solid color-mix(in srgb, var(--color-light) 12%, transparent);
-        box-shadow:
-            0 26px 70px color-mix(in srgb, #000 30%, transparent),
-            0 10px 46px color-mix(in srgb, var(--color-primary) 16%, transparent);
         transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
     .tp-shot:hover {
-        transform: translateY(-3px);
-        box-shadow:
-            0 34px 90px color-mix(in srgb, #000 36%, transparent),
-            0 14px 60px color-mix(in srgb, var(--color-primary) 26%, transparent);
+        border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
     }
     .tp-shot img { display: block; width: 100%; height: auto; }
     .tp-shot-hint {
