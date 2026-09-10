@@ -420,7 +420,7 @@ const base = import.meta.env.BASE_URL;
     }
     .th-row {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 480px) 1fr;
         border: 1px solid color-mix(in srgb, var(--color-light) 12%, transparent);
         border-radius: 18px;
         overflow: hidden;
