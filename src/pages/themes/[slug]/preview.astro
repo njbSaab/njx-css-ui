@@ -9,7 +9,7 @@ export function getStaticPaths() {
 const { theme: t } = Astro.props;
 ---
 
-<BaseLayout
+<BaseLayout canonical={new URL(`/themes/${t.slug}/preview/`, 'https://themes.njxui.dev')}
     title={`${t.name} — live preview | njX Astro Themes`}
     description={`Responsive preview of ${t.name}: desktop 1920, laptop 1440 and iPhone widths.`}
 >

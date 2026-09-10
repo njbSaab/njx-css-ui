@@ -18,7 +18,7 @@ const {
     withDocsScripts = false,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = Astro.props.canonical ?? new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL('/img/og-image.png', Astro.site);
 ---
 

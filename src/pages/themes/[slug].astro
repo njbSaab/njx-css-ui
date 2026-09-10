@@ -20,9 +20,10 @@ const envKey = t.slug.toUpperCase().replace(/-/g, '_');
 const buySingleHref = import.meta.env[`PUBLIC_LS_${envKey}_SINGLE`] || briefHref;
 const buyUnlimitedHref = import.meta.env[`PUBLIC_LS_${envKey}_UNLIMITED`] || briefHref;
 const checkoutLive = buySingleHref !== briefHref;
+const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
 ---
 
-<BaseLayout
+<BaseLayout canonical={canonical}
     title={`${t.name} — ${t.tagline} | njX Astro Themes`}
     description={t.desc}
 >

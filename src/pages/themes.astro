@@ -4,6 +4,8 @@ import PagesTopbar from '../components/PagesTopbar.astro';
 import PagesFooter from '../components/PagesFooter.astro';
 import { MODERN, ECOMMERCE, SITES } from '../data/themesCatalog';
 const base = import.meta.env.BASE_URL;
+// on the main site product pages live on the approved store subdomain
+const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui.dev';
 ---
 
 <BaseLayout
@@ -91,13 +93,13 @@ const base = import.meta.env.BASE_URL;
                 {
                     MODERN.map((t) => (
                         <article class="th-row" id={t.slug}>
-                            <a class="th-row-shot" href={`/themes/${t.slug}`}>
+                            <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
                                 <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
                                 <span class="th-shot-hint">Open theme →</span>
                             </a>
                             <div class="th-row-body">
                                 <div class="th-row-head">
-                                    <h3><a href={`/themes/${t.slug}`}>{t.name}</a></h3>
+                                    <h3><a href={`${storeBase}/themes/${t.slug}`}>{t.name}</a></h3>
                                     <span class="th-premium">Premium</span>
                                     {t.pro && !t.pro.ready && <span class="th-soon">Coming soon</span>}
                                 </div>
@@ -119,11 +121,11 @@ const base = import.meta.env.BASE_URL;
                                     )}
                                     <div class="th-row-actions">
                                         {t.pro?.ready ? (
-                                            <a class="th-buy" href={`/themes/${t.slug}`}>Buy this theme →</a>
+                                            <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
                                         ) : (
-                                            <a class="th-notify" href={`/contact?about=${t.slug}`}>Get notified →</a>
+                                            <a class="th-notify" href={`${storeBase}/contact?about=${t.slug}`}>Get notified →</a>
                                         )}
-                                        <a class="btn btn-outline btn-sm" href={`/themes/${t.slug}/preview`}>Live demo</a>
+                                        <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
                                     </div>
                                 </div>
                             </div>
@@ -149,13 +151,13 @@ const base = import.meta.env.BASE_URL;
                 {
                     ECOMMERCE.map((t) => (
                         <article class="th-row" id={t.slug}>
-                            <a class="th-row-shot" href={`/themes/${t.slug}`}>
+                            <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
                                 <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
                                 <span class="th-shot-hint">Open theme →</span>
                             </a>
                             <div class="th-row-body">
                                 <div class="th-row-head">
-                                    <h3><a href={`/themes/${t.slug}`}>{t.name}</a></h3>
+                                    <h3><a href={`${storeBase}/themes/${t.slug}`}>{t.name}</a></h3>
                                     <span class="th-free">Free + Pro</span>
                                 </div>
                                 <div class="th-tagline">{t.tagline}</div>
@@ -180,8 +182,8 @@ const base = import.meta.env.BASE_URL;
                                         </div>
                                     )}
                                     <div class="th-row-actions">
-                                        <a class="th-buy" href={`/themes/${t.slug}`}>{t.pro ? 'Get this theme →' : 'Open theme →'}</a>
-                                        <a class="btn btn-outline btn-sm" href={`/themes/${t.slug}/preview`}>Live demo</a>
+                                        <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>{t.pro ? 'Get this theme →' : 'Open theme →'}</a>
+                                        <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
                                         <a class="th-gh" href={t.repo} target="_blank" rel="noopener">
                                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.05c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.77 1.05.77 2.13v3.16c0 .3.2.66.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" /></svg>
                                             Free Lite on GitHub
@@ -209,13 +211,13 @@ const base = import.meta.env.BASE_URL;
                 {
                     SITES.map((t) => (
                         <article class="th-card" id={t.slug}>
-                            <a class="th-shot" href={`/themes/${t.slug}`}>
+                            <a class="th-shot" href={`${storeBase}/themes/${t.slug}`}>
                                 <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
                                 <span class="th-shot-hint">Open theme →</span>
                             </a>
                             <div class="th-body">
                                 <div class="th-name-row">
-                                    <h3><a href={`/themes/${t.slug}`}>{t.name}</a></h3>
+                                    <h3><a href={`${storeBase}/themes/${t.slug}`}>{t.name}</a></h3>
                                     <span class="th-free">Free</span>
                                 </div>
                                 <div class="th-tagline">{t.tagline}</div>
@@ -226,14 +228,14 @@ const base = import.meta.env.BASE_URL;
                                     ))}
                                 </div>
                                 <div class="th-actions">
-                                    <a class="btn btn-primary btn-sm" href={`/themes/${t.slug}`}>Live demo</a>
+                                    <a class="btn btn-primary btn-sm" href={`${storeBase}/themes/${t.slug}`}>Live demo</a>
                                     <a class="btn btn-outline btn-sm" href={t.repo} target="_blank" rel="noopener">Free theme · GitHub ↗</a>
                                 </div>
                                 <div class="th-pro">
                                     <span class="th-pro-badge th-badge-ui">100% njX UI</span>
                                     <span class="th-pro-note">
                                         9 runtime themes · 1-file rebrand ·{' '}
-                                        <a href={`/themes/${t.slug}`}>Details →</a>
+                                        <a href={`${storeBase}/themes/${t.slug}`}>Details →</a>
                                     </span>
                                 </div>
                             </div>
