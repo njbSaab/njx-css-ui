@@ -19,3 +19,17 @@ cat > "$D/_redirects" <<'EOF'
 EOF
 echo "store dist ready: $(find "$D" -name index.html | wc -l | tr -d ' ') pages"
 find "$D" -maxdepth 2 -name index.html | sed 's|dist/||; s|/index.html||' | sort
+
+# snapshot the built store into the private product repo (if checked out)
+SNAP="$(dirname "$0")/../../njx-themes-site"
+if [ -d "$SNAP/.git" ]; then
+  rsync -a --delete "$D/" "$SNAP/site/"
+  git -C "$SNAP" add -A
+  if ! git -C "$SNAP" diff --cached --quiet; then
+    git -C "$SNAP" commit -q -m "Store snapshot $(date +%Y-%m-%d_%H:%M)"
+    git -C "$SNAP" push -q || echo "snapshot commit made; push failed (offline?)"
+    echo "snapshot pushed to njx-themes-site"
+  else
+    echo "snapshot unchanged"
+  fi
+fi
