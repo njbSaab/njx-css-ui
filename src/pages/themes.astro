@@ -29,17 +29,25 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                     files, deploy for free.
                 </p>
                 <div class="contact-actions">
-                    <a class="btn btn-primary btn-lg" href="#modern">
-                        Browse premium themes
+                    <a class="btn btn-primary btn-lg" href="#storefronts">
+                        Ready Pro storefronts
                     </a>
-                    <a class="btn btn-outline btn-lg" href="#storefronts">
-                        Free storefronts
+                    <a class="btn btn-outline btn-lg" href="#classic">
+                        Premium collections
                     </a>
                 </div>
             </div>
 
             <aside class="contact-hero-panel" aria-label="Fastest paths">
                 <span class="contact-panel-kicker">Fastest paths</span>
+                <a class="contact-path" href="#storefronts">
+                    <span class="contact-path-icon">EC</span>
+                    <span>
+                        <strong>Ecommerce storefronts</strong>
+                        <small>Pro ready today · 4 free Lite tiers</small>
+                    </span>
+                    <span class="contact-path-arrow">→</span>
+                </a>
                 <a class="contact-path" href="#classic">
                     <span class="contact-path-icon">❦</span>
                     <span>
@@ -53,14 +61,6 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                     <span>
                         <strong>Modern collection</strong>
                         <small>{MODERN.length} premium multi-store themes</small>
-                    </span>
-                    <span class="contact-path-arrow">→</span>
-                </a>
-                <a class="contact-path" href="#storefronts">
-                    <span class="contact-path-icon">EC</span>
-                    <span>
-                        <strong>Ecommerce storefronts</strong>
-                        <small>4 Shopify-ready templates</small>
                     </span>
                     <span class="contact-path-arrow">→</span>
                 </a>
@@ -80,126 +80,11 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
             <div class="th-tabs" role="tablist" aria-label="Theme categories">
                 <span class="th-tab-glider" aria-hidden="true"></span>
                 <button class="th-tab is-active" data-th-tab="all" role="tab">All</button>
+                <button class="th-tab" data-th-tab="storefronts" role="tab">Storefronts</button>
                 <button class="th-tab" data-th-tab="classic" role="tab">Classic</button>
                 <button class="th-tab" data-th-tab="modern" role="tab">Modern</button>
-                <button class="th-tab" data-th-tab="storefronts" role="tab">Storefronts</button>
             </div>
         </div>
-
-        <!-- CLASSIC PREMIUM THEMES -->
-        <section class="th-section" id="classic" data-th-cat="classic">
-            <div class="th-section-head">
-                <h2>Classic collection</h2>
-                <p>
-                    The calm side of the catalogue: light, editorial themes
-                    with serif typography, hairline rules and warm paper
-                    backgrounds — built for stores that sell craft, heritage
-                    and one-of-one pieces rather than gadgets and neon.
-                </p>
-            </div>
-            <div class="th-list">
-                {
-                    CLASSIC.map((t) => (
-                        <article class="th-row" id={t.slug}>
-                            <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
-                                <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
-                                <span class="th-shot-hint">Open theme →</span>
-                            </a>
-                            <div class="th-row-body">
-                                <div class="th-row-head">
-                                    <h3><a href={`${storeBase}/themes/${t.slug}`}>{t.name}</a></h3>
-                                    <span class="th-premium">Premium</span>
-                                    {t.pro && !t.pro.ready && <span class="th-soon">Coming soon</span>}
-                                </div>
-                                <div class="th-tagline">{t.tagline}</div>
-                                <p class="th-row-desc">{t.desc}</p>
-                                {t.pro && (
-                                    <ul class="th-row-feats">
-                                        {t.pro.features.slice(0, 3).map((f) => (
-                                            <li>{f}</li>
-                                        ))}
-                                    </ul>
-                                )}
-                                <div class="th-row-cta">
-                                    {t.pro && (
-                                        <div class="th-row-price">
-                                            <span class="th-price-big">${t.pro.single}</span>
-                                            <span class="th-price-note">Single site · ${t.pro.unlimited} Unlimited{!t.pro.ready && ' · launch pricing'}</span>
-                                        </div>
-                                    )}
-                                    <div class="th-row-actions">
-                                        {t.pro?.ready ? (
-                                            <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
-                                        ) : (
-                                            <a class="th-notify" href={`${storeBase}/contact?about=${t.slug}`}>Get notified →</a>
-                                        )}
-                                        <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    ))
-                }
-            </div>
-        </section>
-
-        <!-- MODERN PREMIUM THEMES -->
-        <section class="th-section" id="modern" data-th-cat="modern">
-            <div class="th-section-head">
-                <h2>Modern collection</h2>
-                <p>
-                    Premium multi-store themes: three switchable shop editions
-                    in every theme, five palettes, faceted super-filters with
-                    live counts and full account dashboards. The collection is
-                    in active development — final releases are coming soon;
-                    demos are live already.
-                </p>
-            </div>
-            <div class="th-list">
-                {
-                    MODERN.map((t) => (
-                        <article class="th-row" id={t.slug}>
-                            <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
-                                <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
-                                <span class="th-shot-hint">Open theme →</span>
-                            </a>
-                            <div class="th-row-body">
-                                <div class="th-row-head">
-                                    <h3><a href={`${storeBase}/themes/${t.slug}`}>{t.name}</a></h3>
-                                    <span class="th-premium">Premium</span>
-                                    {t.pro && !t.pro.ready && <span class="th-soon">Coming soon</span>}
-                                </div>
-                                <div class="th-tagline">{t.tagline}</div>
-                                <p class="th-row-desc">{t.desc}</p>
-                                {t.pro && (
-                                    <ul class="th-row-feats">
-                                        {t.pro.features.slice(0, 3).map((f) => (
-                                            <li>{f}</li>
-                                        ))}
-                                    </ul>
-                                )}
-                                <div class="th-row-cta">
-                                    {t.pro && (
-                                        <div class="th-row-price">
-                                            <span class="th-price-big">${t.pro.single}</span>
-                                            <span class="th-price-note">Single site · ${t.pro.unlimited} Unlimited{!t.pro.ready && ' · launch pricing'}</span>
-                                        </div>
-                                    )}
-                                    <div class="th-row-actions">
-                                        {t.pro?.ready ? (
-                                            <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
-                                        ) : (
-                                            <a class="th-notify" href={`${storeBase}/contact?about=${t.slug}`}>Get notified →</a>
-                                        )}
-                                        <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    ))
-                }
-            </div>
-        </section>
 
         <!-- ECOMMERCE THEMES -->
         <section class="th-section" id="storefronts" data-th-cat="storefronts">
@@ -263,6 +148,122 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
             </div>
         </section>
 
+        <!-- CLASSIC PREMIUM THEMES -->
+        <section class="th-section" id="classic" data-th-cat="classic">
+            <div class="th-section-head">
+                <h2>Classic collection</h2>
+                <p>
+                    The calm side of the catalogue: light, editorial themes
+                    with serif typography, hairline rules and warm paper
+                    backgrounds — built for stores that sell craft, heritage
+                    and one-of-one pieces rather than gadgets and neon.
+                </p>
+            </div>
+            <div class="th-list">
+                {
+                    CLASSIC.map((t) => (
+                        <article class="th-row" id={t.slug}>
+                            <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
+                                <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
+                                <span class="th-shot-hint">Open theme →</span>
+                            </a>
+                            <div class="th-row-body">
+                                <div class="th-row-head">
+                                    <h3><a href={`${storeBase}/themes/${t.slug}`}>{t.name}</a></h3>
+                                    <span class="th-premium">Premium</span>
+                                    {t.pro && !t.pro.ready && <span class="th-soon">Made to order</span>}
+                                </div>
+                                <div class="th-tagline">{t.tagline}</div>
+                                <p class="th-row-desc">{t.desc}</p>
+                                {t.pro && (
+                                    <ul class="th-row-feats">
+                                        {t.pro.features.slice(0, 3).map((f) => (
+                                            <li>{f}</li>
+                                        ))}
+                                    </ul>
+                                )}
+                                <div class="th-row-cta">
+                                    {t.pro && (
+                                        <div class="th-row-price">
+                                            <span class="th-price-big">${t.pro.single}</span>
+                                            <span class="th-price-note">Single site · ${t.pro.unlimited} Unlimited{!t.pro.ready && ' · launch pricing'}</span>
+                                        </div>
+                                    )}
+                                    <div class="th-row-actions">
+                                        {t.pro?.ready ? (
+                                            <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
+                                        ) : (
+                                            <a class="th-notify" href={`${storeBase}/contact?about=${t.slug}`}>Order this build →</a>
+                                        )}
+                                        <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </section>
+
+        <!-- MODERN PREMIUM THEMES -->
+        <section class="th-section" id="modern" data-th-cat="modern">
+            <div class="th-section-head">
+                <h2>Modern collection</h2>
+                <p>
+                    Premium multi-store themes: three switchable shop editions
+                    in every theme, five palettes, faceted super-filters with
+                    live counts and full account dashboards. Every theme is
+                    finished to order — buy now and yours is completed first,
+                    delivered in days. Demos are live already.
+                </p>
+            </div>
+            <div class="th-list">
+                {
+                    MODERN.map((t) => (
+                        <article class="th-row" id={t.slug}>
+                            <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
+                                <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
+                                <span class="th-shot-hint">Open theme →</span>
+                            </a>
+                            <div class="th-row-body">
+                                <div class="th-row-head">
+                                    <h3><a href={`${storeBase}/themes/${t.slug}`}>{t.name}</a></h3>
+                                    <span class="th-premium">Premium</span>
+                                    {t.pro && !t.pro.ready && <span class="th-soon">Made to order</span>}
+                                </div>
+                                <div class="th-tagline">{t.tagline}</div>
+                                <p class="th-row-desc">{t.desc}</p>
+                                {t.pro && (
+                                    <ul class="th-row-feats">
+                                        {t.pro.features.slice(0, 3).map((f) => (
+                                            <li>{f}</li>
+                                        ))}
+                                    </ul>
+                                )}
+                                <div class="th-row-cta">
+                                    {t.pro && (
+                                        <div class="th-row-price">
+                                            <span class="th-price-big">${t.pro.single}</span>
+                                            <span class="th-price-note">Single site · ${t.pro.unlimited} Unlimited{!t.pro.ready && ' · launch pricing'}</span>
+                                        </div>
+                                    )}
+                                    <div class="th-row-actions">
+                                        {t.pro?.ready ? (
+                                            <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
+                                        ) : (
+                                            <a class="th-notify" href={`${storeBase}/contact?about=${t.slug}`}>Order this build →</a>
+                                        )}
+                                        <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </section>
+
+
         <!-- LANDING THEMES -->
         <section class="th-section" id="sites" data-th-cat="sites">
             <div class="th-section-head">
@@ -320,7 +321,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                 <p>
                     Go for it — that's what they're for. If a theme saves you
                     time, a star on GitHub keeps this project alive, and
-                    watching the repo gets you notified the day Pro ships.
+                    every Pro theme can be ordered today — made-to-order builds ship in days.
                 </p>
             </div>
             <div class="contact-tip-grid">

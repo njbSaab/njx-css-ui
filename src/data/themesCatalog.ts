@@ -585,4 +585,4 @@ export const SITES: ThemeProduct[] = [
   },
 ];
 
-export const ALL_THEMES = [...CLASSIC, ...MODERN, ...ECOMMERCE, ...SITES];
+export const ALL_THEMES = [...ECOMMERCE, ...CLASSIC, ...MODERN, ...SITES];

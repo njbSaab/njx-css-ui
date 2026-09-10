@@ -113,7 +113,7 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
                     <>
                         <!-- Pro single -->
                         <article class="tp-price-card tp-featured">
-                            <span class="tp-badge">{t.pro.ready ? 'Most popular' : 'Coming soon'}</span>
+                            <span class="tp-badge">{t.pro.ready ? 'Most popular' : 'Made to order'}</span>
                             <p class="tp-price-name">{t.premium ? 'Single site' : 'Pro · Single site'}</p>
                             <p class="tp-price-value">${t.pro.single}</p>
                             <p class="tp-price-note">One-time · 12 months of updates · email support</p>
@@ -130,13 +130,15 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
                             {t.pro.ready ? (
                                 <a class="tp-btn tp-btn-primary tp-btn-block" href={buySingleHref} {...(checkoutLive ? { target: '_blank', rel: 'noopener' } : {})}>{t.premium ? `Buy — $${t.pro.single}` : `Buy Pro — $${t.pro.single}`}</a>
                             ) : (
-                                <a class="tp-btn tp-btn-primary tp-btn-block" href={briefHref}>Get notified — launching soon</a>
+                                <a class="tp-btn tp-btn-primary tp-btn-block" href={briefHref}>Order this build — ${t.pro.single}</a>
                             )}
-                            {t.pro.ready && (checkoutLive ? (
+                            {t.pro.ready ? (checkoutLive ? (
                                 <p class="tp-price-small">Secure checkout · instant download · VAT invoices handled by our Merchant of Record.</p>
                             ) : (
                                 <p class="tp-price-small">Checkout launching shortly — the button opens a short form, we reply with a payment link the same day.</p>
-                            ))}
+                            )) : (
+                                <p class="tp-price-small">Made to order: the button opens a short form. Your order moves this theme to the front of our build queue — we finish it first and deliver in days, at launch pricing.</p>
+                            )}
                         </article>
 
                         <!-- Pro unlimited -->
@@ -150,7 +152,7 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
                                 <li>Lifetime updates — pay once</li>
                                 <li>Priority email support</li>
                             </ul>
-                            <a class="tp-btn tp-btn-secondary tp-btn-block" href={t.pro.ready ? buyUnlimitedHref : briefHref} {...(t.pro.ready && buyUnlimitedHref !== briefHref ? { target: '_blank', rel: 'noopener' } : {})}>{t.pro.ready ? `Buy Unlimited — $${t.pro.unlimited}` : 'Get notified'}</a>
+                            <a class="tp-btn tp-btn-secondary tp-btn-block" href={t.pro.ready ? buyUnlimitedHref : briefHref} {...(t.pro.ready && buyUnlimitedHref !== briefHref ? { target: '_blank', rel: 'noopener' } : {})}>{t.pro.ready ? `Buy Unlimited — $${t.pro.unlimited}` : `Order Unlimited — $${t.pro.unlimited}`}</a>
                         </article>
                     </>
                 )}
