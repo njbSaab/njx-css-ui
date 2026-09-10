@@ -193,7 +193,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                                         {t.pro?.ready ? (
                                             <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
                                         ) : (
-                                            <a class="th-notify" href={`${storeBase}/contact?about=${t.slug}`}>Order this build →</a>
+                                            <a class="th-notify" href={`${storeBase}/themes/${t.slug}`}>Order this build →</a>
                                         )}
                                         <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
                                     </div>
@@ -251,7 +251,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                                         {t.pro?.ready ? (
                                             <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
                                         ) : (
-                                            <a class="th-notify" href={`${storeBase}/contact?about=${t.slug}`}>Order this build →</a>
+                                            <a class="th-notify" href={`${storeBase}/themes/${t.slug}`}>Order this build →</a>
                                         )}
                                         <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
                                     </div>

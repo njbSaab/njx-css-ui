@@ -86,6 +86,24 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
             </div>
         </section>
 
+        <!-- About / full details (Eclipse-style long copy) -->
+        {t.details && t.details.length > 0 && (
+            <section class="tp-section" id="details">
+                <h2 class="tp-h2">About this theme</h2>
+                <div class="tp-details">
+                    {t.details.map((block) =>
+                        block.startsWith('## ') ? (
+                            <h3 class="tp-details-h">{block.slice(3)}</h3>
+                        ) : block.startsWith('- ') ? (
+                            <li class="tp-details-li">{block.slice(2)}</li>
+                        ) : (
+                            <p class="tp-details-p">{block}</p>
+                        )
+                    )}
+                </div>
+            </section>
+        )}
+
         <!-- Pricing -->
         <section class="tp-section">
             <h2 class="tp-h2">Pricing</h2>
@@ -130,7 +148,7 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
                             {t.pro.ready ? (
                                 <a class="tp-btn tp-btn-primary tp-btn-block" href={buySingleHref} {...(checkoutLive ? { target: '_blank', rel: 'noopener' } : {})}>{t.premium ? `Buy — $${t.pro.single}` : `Buy Pro — $${t.pro.single}`}</a>
                             ) : (
-                                <a class="tp-btn tp-btn-primary tp-btn-block" href={briefHref}>Order this build — ${t.pro.single}</a>
+                                <button type="button" class="tp-btn tp-btn-primary tp-btn-block" data-order-open data-license="single">Order this build — ${t.pro.single}</button>
                             )}
                             {t.pro.ready ? (checkoutLive ? (
                                 <p class="tp-price-small">Secure checkout · instant download · VAT invoices handled by our Merchant of Record.</p>
@@ -152,7 +170,11 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
                                 <li>Lifetime updates — pay once</li>
                                 <li>Priority email support</li>
                             </ul>
-                            <a class="tp-btn tp-btn-secondary tp-btn-block" href={t.pro.ready ? buyUnlimitedHref : briefHref} {...(t.pro.ready && buyUnlimitedHref !== briefHref ? { target: '_blank', rel: 'noopener' } : {})}>{t.pro.ready ? `Buy Unlimited — $${t.pro.unlimited}` : `Order Unlimited — $${t.pro.unlimited}`}</a>
+                            {t.pro.ready ? (
+                                <a class="tp-btn tp-btn-secondary tp-btn-block" href={buyUnlimitedHref} {...(buyUnlimitedHref !== briefHref ? { target: '_blank', rel: 'noopener' } : {})}>Buy Unlimited — ${t.pro.unlimited}</a>
+                            ) : (
+                                <button type="button" class="tp-btn tp-btn-secondary tp-btn-block" data-order-open data-license="unlimited">Order Unlimited — ${t.pro.unlimited}</button>
+                            )}
                         </article>
                     </>
                 )}
@@ -182,6 +204,56 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
         </section>
     </main>
 
+    <!-- Order brief popup: no live checkout yet, so orders open a short form.
+         POSTs to the same /api/contact worker (Resend + Telegram mirror). -->
+    {t.pro && !t.pro.ready && (
+        <div class="tp-order-root" id="orderRoot" hidden>
+            <div class="tp-order-dim" data-order-close></div>
+            <div class="tp-order-card" role="dialog" aria-modal="true" aria-labelledby="orderTitle">
+                <button type="button" class="tp-order-x" data-order-close aria-label="Close">✕</button>
+                <div data-order-form-wrap>
+                    <span class="tag tag-warning">Made to order</span>
+                    <h3 id="orderTitle" class="tp-order-title">Order {t.name}</h3>
+                    <p class="tp-order-sub">
+                        Leave your details — your order moves this theme to the front of
+                        our build queue. We reply within a day with a payment link;
+                        delivery in days, launch pricing locked.
+                    </p>
+                    <form id="orderForm" class="tp-order-form">
+                        <div class="tp-order-licenses">
+                            <label class="tp-order-license">
+                                <input type="radio" name="license" value={`Single site — $${t.pro.single}`} checked />
+                                <span><strong>Single site</strong><small>${t.pro.single} · 12 months of updates</small></span>
+                            </label>
+                            <label class="tp-order-license">
+                                <input type="radio" name="license" value={`Unlimited — $${t.pro.unlimited}`} />
+                                <span><strong>Unlimited</strong><small>${t.pro.unlimited} · lifetime updates</small></span>
+                            </label>
+                        </div>
+                        <label class="tp-order-field">
+                            <span>Email *</span>
+                            <input type="email" name="email" required placeholder="you@company.com" />
+                        </label>
+                        <label class="tp-order-field">
+                            <span>Anything we should know? (optional)</span>
+                            <textarea name="message" rows="3" placeholder="Timeline, Shopify or mock data, customization wishes…"></textarea>
+                        </label>
+                        <button type="submit" class="tp-btn tp-btn-primary tp-btn-block" data-order-submit>Send order request</button>
+                        <p class="tp-order-note" data-order-status>No payment now — we confirm by email first.</p>
+                    </form>
+                </div>
+                <div data-order-done hidden>
+                    <h3 class="tp-order-title">Request received ✓</h3>
+                    <p class="tp-order-sub">
+                        Thanks — {t.name} just moved to the front of our build queue.
+                        Expect a reply with a payment link within a day.
+                    </p>
+                    <button type="button" class="tp-btn tp-btn-secondary tp-btn-block" data-order-close>Close</button>
+                </div>
+            </div>
+        </div>
+    )}
+
     <PagesFooter />
 </BaseLayout>
 
@@ -198,6 +270,76 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
             if (!btn.dataset.fullLabel) btn.dataset.fullLabel = label.textContent;
             var open = card.classList.toggle('is-open');
             label.textContent = open ? 'Show less' : btn.dataset.fullLabel;
+        });
+    }
+
+    // Order brief popup (made-to-order themes) — delegated for the same reason
+    if (!window.__tpOrderBound) {
+        window.__tpOrderBound = true;
+        var orderRootSel = '#orderRoot';
+        document.addEventListener('click', function (e) {
+            var root = document.querySelector(orderRootSel);
+            if (!root) return;
+            var open = e.target.closest && e.target.closest('[data-order-open]');
+            if (open) {
+                root.hidden = false;
+                document.body.style.overflow = 'hidden';
+                var lic = open.getAttribute('data-license');
+                var radios = root.querySelectorAll('input[name="license"]');
+                if (radios.length === 2) radios[lic === 'unlimited' ? 1 : 0].checked = true;
+                var email = root.querySelector('input[name="email"]');
+                if (email) setTimeout(function () { email.focus(); }, 50);
+                return;
+            }
+            if (e.target.closest && e.target.closest('[data-order-close]')) {
+                root.hidden = true;
+                document.body.style.overflow = '';
+            }
+        });
+        document.addEventListener('keydown', function (e) {
+            var root = document.querySelector(orderRootSel);
+            if (e.key === 'Escape' && root && !root.hidden) {
+                root.hidden = true;
+                document.body.style.overflow = '';
+            }
+        });
+        document.addEventListener('submit', function (e) {
+            var form = e.target.closest && e.target.closest('#orderForm');
+            if (!form) return;
+            e.preventDefault();
+            var root = document.querySelector(orderRootSel);
+            var status = root.querySelector('[data-order-status]');
+            var submitBtn = root.querySelector('[data-order-submit]');
+            var fd = new FormData(form);
+            var themeName = (root.querySelector('.tp-order-title') || {}).textContent || 'theme';
+            submitBtn.disabled = true;
+            status.textContent = 'Sending…';
+            fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    topic: themeName.replace('Order ', 'Order: ') + ' · ' + fd.get('license'),
+                    email: fd.get('email'),
+                    message:
+                        'MADE-TO-ORDER REQUEST\n' +
+                        'License: ' + fd.get('license') + '\n' +
+                        'Notes: ' + (fd.get('message') || '—'),
+                }),
+            })
+                .then(function (r) { return r.json(); })
+                .then(function (d) {
+                    if (d && d.ok) {
+                        root.querySelector('[data-order-form-wrap]').hidden = true;
+                        root.querySelector('[data-order-done]').hidden = false;
+                    } else {
+                        status.textContent = 'Something went wrong — email support@njxui.dev';
+                        submitBtn.disabled = false;
+                    }
+                })
+                .catch(function () {
+                    status.textContent = 'Network error — try again or email support@njxui.dev';
+                    submitBtn.disabled = false;
+                });
         });
     }
 </script>
@@ -407,6 +549,51 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
     /* ── Pricing ── */
     .tp-pricing { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: start; }
     .tp-pricing-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 860px; }
+
+    /* order brief popup */
+    .tp-order-root { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .tp-order-dim { position: absolute; inset: 0; background: rgb(0 0 0 / 0.6); backdrop-filter: blur(4px); }
+    .tp-order-card {
+        position: relative; width: min(520px, 100%); max-height: 90vh; overflow: auto;
+        border: 1px solid color-mix(in srgb, #fff 14%, transparent);
+        border-radius: 20px; padding: 28px 26px;
+        background: color-mix(in srgb, var(--color-bg, #0b0d12) 92%, #fff 8%);
+        box-shadow: 0 30px 80px rgb(0 0 0 / 0.5);
+    }
+    .tp-order-x { position: absolute; right: 14px; top: 14px; width: 34px; height: 34px; border: 1px solid color-mix(in srgb, #fff 14%, transparent); border-radius: 10px; background: none; color: inherit; cursor: pointer; }
+    .tp-order-title { margin: 12px 0 8px; font-size: 22px; }
+    .tp-order-sub { margin: 0 0 18px; opacity: 0.75; font-size: 14px; line-height: 1.6; }
+    .tp-order-form { display: flex; flex-direction: column; gap: 14px; }
+    .tp-order-licenses { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .tp-order-license { display: flex; }
+    .tp-order-license input { position: absolute; opacity: 0; }
+    .tp-order-license span {
+        flex: 1; display: flex; flex-direction: column; gap: 3px; padding: 12px 14px;
+        border: 1px solid color-mix(in srgb, #fff 14%, transparent); border-radius: 14px; cursor: pointer;
+        font-size: 14px; transition: border-color .15s ease, background .15s ease;
+    }
+    .tp-order-license small { opacity: 0.65; font-size: 12px; }
+    .tp-order-license input:checked + span {
+        border-color: color-mix(in srgb, var(--color-primary) 65%, transparent);
+        background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    }
+    .tp-order-field { display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+    .tp-order-field span { opacity: 0.75; }
+    .tp-order-field input, .tp-order-field textarea {
+        border: 1px solid color-mix(in srgb, #fff 14%, transparent); border-radius: 12px;
+        background: color-mix(in srgb, #fff 4%, transparent); color: inherit;
+        padding: 11px 13px; font: inherit; font-size: 14px; outline: none; resize: vertical;
+    }
+    .tp-order-field input:focus, .tp-order-field textarea:focus { border-color: color-mix(in srgb, var(--color-primary) 60%, transparent); }
+    .tp-order-note { margin: 2px 0 0; text-align: center; font-size: 12px; opacity: 0.6; }
+    @media (max-width: 480px) { .tp-order-licenses { grid-template-columns: 1fr; } }
+
+    /* about / details */
+    .tp-details { max-width: 820px; display: flex; flex-direction: column; gap: 10px; }
+    .tp-details-p { margin: 0; line-height: 1.75; opacity: 0.85; }
+    .tp-details-h { margin: 16px 0 2px; font-size: 18px; }
+    .tp-details-li { margin-left: 20px; line-height: 1.7; opacity: 0.85; }
+
     .tp-price-card {
         position: relative;
         display: flex; flex-direction: column;

@@ -17,6 +17,9 @@ export type ThemeProduct = {
   /** Paid-only theme: no Lite tier, no public repo button, commercial license. */
   premium?: boolean;
   stats?: { value: string; label: string }[];
+  /** Optional long-form "About this theme" blocks: plain paragraph,
+   *  '## ' heading, or '- ' list item — rendered on the theme page. */
+  details?: string[];
   liteFeatures: string[];
   pro?: {
     single: number;
