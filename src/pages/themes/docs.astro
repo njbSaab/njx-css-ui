@@ -1,0 +1,248 @@
+---
+// Theme documentation — install, connect Shopify, deploy, customize.
+// Built on the quickstart design system (qs-hero, sc-steps, CodeBlock).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PagesTopbar from '../../components/PagesTopbar.astro';
+import PagesFooter from '../../components/PagesFooter.astro';
+import CodeBlock from '../../components/shared/CodeBlock.astro';
+import '../../styles/quickstart-page.css';
+
+const codeInstall = `
+unzip astro-njx-<theme>-v1.0.zip
+cd astro-njx-<theme>
+npm install
+`;
+const codeDev = `
+npm run dev
+# → http://localhost:4321 — full demo catalog, cart,
+#   filters and account run on bundled mock data
+`;
+const codeBuild = `
+npm run build
+# → static site in dist/ — ready for any hosting
+`;
+const codeEnv = `
+# .env  (copy from .env.example)
+COMMERCE_PROVIDER=shopify
+PUBLIC_SHOPIFY_DOMAIN=your-store.myshopify.com
+PUBLIC_SHOPIFY_STOREFRONT_TOKEN=shpat_xxxxxxxxxxxx
+`;
+const codeDeployCf = `
+npm run build
+npx wrangler pages deploy dist --project-name my-store
+# → https://my-store.pages.dev (attach your domain in the dashboard)
+`;
+const codeDeployOther = `
+# Netlify:  build command "npm run build", publish directory "dist"
+# Vercel:   framework preset "Astro" — zero config
+# Any host: dist/ is plain static files — upload anywhere
+`;
+const codeTokens = `
+/* src/styles/global.css — one @theme block drives the whole look */
+@theme {
+  --color-base: #100c09;   /* page background   */
+  --color-a1:   #ff9a1f;   /* primary accent    */
+  --color-a2:   #ff4d1f;   /* gradient partner  */
+  --font-display: 'Cormorant Garamond', serif;
+}
+`;
+const codeGa = `
+# .env — optional analytics
+PUBLIC_GA4_ID=G-XXXXXXXXXX
+# GA4 ecommerce events (view_item, add_to_cart, begin_checkout)
+# fire automatically once the id is set
+`;
+---
+
+<BaseLayout
+  title="Theme Documentation — install, connect Shopify, deploy | njX Themes"
+  description="How to install an njX Astro theme: run the demo on mock data, connect your Shopify store with two env vars, deploy to Cloudflare Pages, Netlify or Vercel, and customize design tokens."
+>
+  <PagesTopbar activePage="themes" />
+
+  <!-- ══ HERO ══ -->
+  <section class="qs-hero">
+    <div class="qs-badge">📦 Theme documentation</div>
+    <h1 class="qs-h1">
+      <span class="qs-grad">From zip to live store</span><br />in ten minutes.
+    </h1>
+    <p class="qs-sub">
+      Every njX theme follows the same layout, the same commerce layer and the
+      same two-variable Shopify hookup — learn it once, use it for any theme.
+    </p>
+  </section>
+
+  <!-- ══ INSTALL ══ -->
+  <div class="sc-section" style="padding-top:24px;padding-bottom:48px">
+    <span class="sc-eyebrow">Install &amp; run</span>
+    <h2 class="sc-heading">Demo running in 3 steps</h2>
+    <div class="sc-steps" style="margin-top:24px;max-width:760px">
+      <div class="sc-step">
+        <div class="sc-step-left">
+          <div class="sc-step-num">1</div>
+          <div class="sc-step-line"></div>
+        </div>
+        <div class="sc-step-body">
+          <div class="sc-step-title">Unzip &amp; install</div>
+          <div class="sc-step-desc">
+            Your purchase email contains the theme archive. Node.js 18+ is the
+            only prerequisite.
+          </div>
+          <CodeBlock frame="sc" compact lang="shell" style="margin-top:10px" code={codeInstall} />
+        </div>
+      </div>
+      <div class="sc-step">
+        <div class="sc-step-left">
+          <div class="sc-step-num">2</div>
+          <div class="sc-step-line"></div>
+        </div>
+        <div class="sc-step-body">
+          <div class="sc-step-title">Run the demo</div>
+          <div class="sc-step-desc">
+            No keys, no accounts — the theme ships with a full mock catalog, so
+            everything works out of the box: filters, cart, checkout flow, the
+            customer account.
+          </div>
+          <CodeBlock frame="sc" compact lang="shell" style="margin-top:10px" code={codeDev} />
+        </div>
+      </div>
+      <div class="sc-step">
+        <div class="sc-step-left">
+          <div class="sc-step-num">3</div>
+        </div>
+        <div class="sc-step-body">
+          <div class="sc-step-title">Build for production</div>
+          <div class="sc-step-desc">
+            The output is a fully static site — fast, cheap to host and easy to
+            cache.
+          </div>
+          <CodeBlock frame="sc" compact lang="shell" style="margin-top:10px" code={codeBuild} />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SHOPIFY ══ -->
+  <div class="sc-section" style="padding-top:24px;padding-bottom:48px">
+    <span class="sc-eyebrow">Go live</span>
+    <h2 class="sc-heading">Connect your Shopify store<br />with two variables</h2>
+    <div class="sc-steps" style="margin-top:24px;max-width:760px">
+      <div class="sc-step">
+        <div class="sc-step-left">
+          <div class="sc-step-num">1</div>
+          <div class="sc-step-line"></div>
+        </div>
+        <div class="sc-step-body">
+          <div class="sc-step-title">Create a Storefront API token</div>
+          <div class="sc-step-desc">
+            In Shopify admin: <strong>Settings → Apps and sales channels →
+            Develop apps → Create an app</strong>. Under <em>API credentials</em>
+            enable the <strong>Storefront API</strong> scopes
+            (<code>unauthenticated_read_product_listings</code>,
+            <code>unauthenticated_read_checkouts</code>), install the app and
+            copy the Storefront access token.
+          </div>
+        </div>
+      </div>
+      <div class="sc-step">
+        <div class="sc-step-left">
+          <div class="sc-step-num">2</div>
+          <div class="sc-step-line"></div>
+        </div>
+        <div class="sc-step-body">
+          <div class="sc-step-title">Set the env vars</div>
+          <div class="sc-step-desc">
+            Copy <code>.env.example</code> to <code>.env</code> and fill in your
+            store domain and token — that is the entire integration.
+          </div>
+          <CodeBlock frame="sc" compact lang="shell" style="margin-top:10px" code={codeEnv} />
+        </div>
+      </div>
+      <div class="sc-step">
+        <div class="sc-step-left">
+          <div class="sc-step-num">3</div>
+        </div>
+        <div class="sc-step-body">
+          <div class="sc-step-title">Rebuild — your catalog is live</div>
+          <div class="sc-step-desc">
+            <code>npm run build</code> now pulls products, collections, prices
+            and stock from your store. Product pages are generated per item,
+            and checkout hands off to <strong>Shopify's hosted checkout</strong>
+            — payments, taxes and shipping stay on Shopify.
+          </div>
+          <div class="sc-step-desc" style="margin-top:8px">
+            Remove the variables (or set
+            <code>COMMERCE_PROVIDER=mock</code>) to switch back to demo data at
+            any time.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ DEPLOY ══ -->
+  <div class="sc-section" style="padding-top:24px;padding-bottom:48px">
+    <span class="sc-eyebrow">Deploy</span>
+    <h2 class="sc-heading">Host it anywhere static files live</h2>
+    <div class="sc-two-col" style="margin-top:24px;align-items:start">
+      <div>
+        <div class="sc-step-title" style="margin-bottom:6px">Cloudflare Pages (recommended)</div>
+        <div class="sc-step-desc">
+          Free tier, global CDN, one command. All our demos run on it.
+        </div>
+        <CodeBlock frame="sc" compact lang="shell" style="margin-top:10px" code={codeDeployCf} />
+      </div>
+      <div>
+        <div class="sc-step-title" style="margin-bottom:6px">Netlify · Vercel · anything</div>
+        <div class="sc-step-desc">
+          The build is plain HTML/CSS/JS in <code>dist/</code> — no server, no
+          functions required.
+        </div>
+        <CodeBlock frame="sc" compact lang="shell" style="margin-top:10px" code={codeDeployOther} />
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CUSTOMIZE ══ -->
+  <div class="sc-section" style="padding-top:24px;padding-bottom:48px">
+    <span class="sc-eyebrow">Customize</span>
+    <h2 class="sc-heading">Rebrand in two files</h2>
+    <div class="sc-two-col" style="margin-top:24px;align-items:start">
+      <div>
+        <div class="sc-step-title" style="margin-bottom:6px">Design tokens</div>
+        <div class="sc-step-desc">
+          Colors, fonts and radii live in one <code>@theme</code> block —
+          change a few variables and the whole theme follows, including hovers,
+          gradients and glows.
+        </div>
+        <CodeBlock frame="sc" compact lang="css" style="margin-top:10px" code={codeTokens} />
+      </div>
+      <div>
+        <div class="sc-step-title" style="margin-bottom:6px">Everything else</div>
+        <div class="sc-step-desc" style="line-height:1.9">
+          <strong>Texts &amp; brand</strong> — <code>src/constants/</code> (header, footer, page copy)<br />
+          <strong>Demo catalog</strong> — <code>src/data/mock-catalog.json</code><br />
+          <strong>Product photos</strong> — <code>public/products/</code><br />
+          <strong>Analytics</strong> — set <code>PUBLIC_GA4_ID</code>, events fire automatically<br />
+          <strong>Demo-only bits</strong> — blocks marked <code>demo-only</code> in
+          <code>Layout.astro</code> are safe to delete for production
+        </div>
+        <CodeBlock frame="sc" compact lang="shell" style="margin-top:10px" code={codeGa} />
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SUPPORT ══ -->
+  <div class="sc-section" style="padding-top:24px;padding-bottom:72px">
+    <span class="sc-eyebrow">Support</span>
+    <h2 class="sc-heading">Stuck? We answer within a day</h2>
+    <p class="sc-step-desc" style="max-width:640px;margin-top:14px">
+      Every license includes 12 months of updates and email support for defects
+      and setup questions per this documentation. Write to
+      <a href="/contact">our contact page</a> or reply to your purchase email —
+      include your theme name and what you tried, and we'll get you unstuck.
+    </p>
+  </div>
+
+  <PagesFooter />
+</BaseLayout>
