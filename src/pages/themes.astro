@@ -935,8 +935,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         left: 0;
         width: 0;
         border-radius: 999px;
-        background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 40%, #c04cff));
-        box-shadow: 0 0 22px color-mix(in srgb, var(--color-primary) 55%, transparent);
+        background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 88%, #000));
         transition:
             left 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
             width 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -960,8 +959,8 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         transition: color 0.25s;
     }
     .th-tab:hover { color: var(--color-light); }
-    .th-tab.is-active { color: var(--color-dark, #0b0b12); }
-    .th-tab.is-active:hover { color: var(--color-dark, #0b0b12); }
+    .th-tab.is-active { color: #fff; }
+    .th-tab.is-active:hover { color: #fff; }
     .th-section[data-th-cat].is-tab-hidden { display: none; }
     @keyframes thSectionIn {
         from { opacity: 0; transform: translateY(14px); }
