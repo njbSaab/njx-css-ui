@@ -45,7 +45,7 @@ export const MODERN: ThemeProduct[] = [
     pro: {
       single: 99,
       unlimited: 129,
-      ready: true,
+      ready: false,
       features: [
         'Three switchable store editions — catalog, copy and palette swap live, no reload',
         'Five neon palettes on CSS variables, persisted per visitor',
@@ -79,7 +79,7 @@ export const MODERN: ThemeProduct[] = [
     pro: {
       single: 99,
       unlimited: 129,
-      ready: true,
+      ready: false,
       features: [
         'Three flagship editions with per-store typography (serif / grotesk / display) and palettes',
         '54-SKU demo catalog with real photography — filters stay populated in any combination',
@@ -113,7 +113,7 @@ export const MODERN: ThemeProduct[] = [
     pro: {
       single: 99,
       unlimited: 129,
-      ready: true,
+      ready: false,
       features: [
         'Orbital hero: spinning rings, radial glow, display type up to 92px',
         'Pill-shaped UI language across the whole theme',
@@ -147,7 +147,7 @@ export const MODERN: ThemeProduct[] = [
     pro: {
       single: 99,
       unlimited: 129,
-      ready: true,
+      ready: false,
       features: [
         'Three concept stores — the gradient theme follows the store (cyan / crimson / violet)',
         'Adapted from a React + TypeScript prototype into zero-framework Astro',

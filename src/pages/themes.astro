@@ -82,8 +82,9 @@ const base = import.meta.env.BASE_URL;
                 <p>
                     Premium multi-store themes: three switchable shop editions
                     in every theme, five palettes, faceted super-filters with
-                    live counts and full account dashboards. Paid only — these
-                    are the flagship builds.
+                    live counts and full account dashboards. The collection is
+                    in active development — final releases are coming soon;
+                    demos are live already.
                 </p>
             </div>
             <div class="th-list">
@@ -98,6 +99,7 @@ const base = import.meta.env.BASE_URL;
                                 <div class="th-row-head">
                                     <h3><a href={`/themes/${t.slug}`}>{t.name}</a></h3>
                                     <span class="th-premium">Premium</span>
+                                    {t.pro && !t.pro.ready && <span class="th-soon">Coming soon</span>}
                                 </div>
                                 <div class="th-tagline">{t.tagline}</div>
                                 <p class="th-row-desc">{t.desc}</p>
@@ -112,11 +114,15 @@ const base = import.meta.env.BASE_URL;
                                     {t.pro && (
                                         <div class="th-row-price">
                                             <span class="th-price-big">${t.pro.single}</span>
-                                            <span class="th-price-note">Single site · ${t.pro.unlimited} Unlimited</span>
+                                            <span class="th-price-note">Single site · ${t.pro.unlimited} Unlimited{!t.pro.ready && ' · launch pricing'}</span>
                                         </div>
                                     )}
                                     <div class="th-row-actions">
-                                        <a class="th-buy" href={`/themes/${t.slug}`}>Buy this theme →</a>
+                                        {t.pro?.ready ? (
+                                            <a class="th-buy" href={`/themes/${t.slug}`}>Buy this theme →</a>
+                                        ) : (
+                                            <a class="th-notify" href={`mailto:support@njxui.dev?subject=Notify%20me%20—%20${t.name}`}>Get notified →</a>
+                                        )}
                                         <a class="btn btn-outline btn-sm" href={`/themes/${t.slug}/preview`}>Live demo</a>
                                     </div>
                                 </div>
@@ -554,6 +560,35 @@ const base = import.meta.env.BASE_URL;
         transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
         box-shadow: 0 8px 26px color-mix(in srgb, #22c55e 30%, transparent);
         white-space: nowrap;
+    }
+    .th-soon {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: #f59e0b;
+        border: 1px solid color-mix(in srgb, #f59e0b 45%, transparent);
+        border-radius: 999px;
+        padding: 2px 10px;
+    }
+    .th-notify {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        border: 1px solid color-mix(in srgb, #f59e0b 55%, transparent);
+        color: #f59e0b;
+        font-weight: 800;
+        font-size: 14px;
+        padding: 12px 22px;
+        border-radius: 11px;
+        text-decoration: none;
+        transition: background 0.2s, transform 0.2s;
+        white-space: nowrap;
+    }
+    .th-notify:hover {
+        background: color-mix(in srgb, #f59e0b 12%, transparent);
+        transform: translateY(-1px);
     }
     .th-gh {
         display: inline-flex;
