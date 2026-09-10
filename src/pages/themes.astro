@@ -121,7 +121,7 @@ const base = import.meta.env.BASE_URL;
                                         {t.pro?.ready ? (
                                             <a class="th-buy" href={`/themes/${t.slug}`}>Buy this theme →</a>
                                         ) : (
-                                            <a class="th-notify" href={`mailto:support@njxui.dev?subject=Notify%20me%20—%20${t.name}`}>Get notified →</a>
+                                            <a class="th-notify" href={`/contact?about=${t.slug}`}>Get notified →</a>
                                         )}
                                         <a class="btn btn-outline btn-sm" href={`/themes/${t.slug}/preview`}>Live demo</a>
                                     </div>

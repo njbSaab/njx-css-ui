@@ -9,7 +9,7 @@ export function getStaticPaths() {
 }
 
 const { theme: t } = Astro.props;
-const briefHref = 'mailto:support@njxui.dev?subject=Theme%20license%20question';
+const briefHref = '/contact';
 const nameParts = t.name.split('-');
 const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
 
