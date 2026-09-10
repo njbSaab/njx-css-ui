@@ -102,10 +102,6 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                 {
                     ECOMMERCE.map((t) => (
                         <article class="th-row" id={t.slug}>
-                            <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
-                                <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
-                                <span class="th-shot-hint">Open theme →</span>
-                            </a>
                             <div class="th-row-body">
                                 <div class="th-row-head">
                                     <h3><a href={`${storeBase}/themes/${t.slug}`}>{t.name}</a></h3>
@@ -120,26 +116,30 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                                         ))}
                                     </ul>
                                 )}
-                                <div class="th-row-cta">
-                                    {t.pro ? (
-                                        <div class="th-row-price">
-                                            <span class="th-price-big">${t.pro.single}</span>
-                                            <span class="th-price-note">Pro Single · ${t.pro.unlimited} Unlimited · free Lite on GitHub</span>
-                                        </div>
-                                    ) : (
-                                        <div class="th-row-price">
-                                            <span class="th-price-big">Free</span>
-                                            <span class="th-price-note">MIT · open source</span>
-                                        </div>
-                                    )}
-                                    <div class="th-row-actions">
-                                        <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>{t.pro ? 'Get this theme →' : 'Open theme →'}</a>
-                                        <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
-                                        <a class="th-gh" href={t.repo} target="_blank" rel="noopener">
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.05c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.77 1.05.77 2.13v3.16c0 .3.2.66.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" /></svg>
-                                            Free Lite on GitHub
-                                        </a>
+                                {t.pro ? (
+                                    <div class="th-row-price">
+                                        <span class="th-price-big">${t.pro.single}</span>
+                                        <span class="th-price-note">Pro Single · ${t.pro.unlimited} Unlimited · free Lite on GitHub</span>
                                     </div>
+                                ) : (
+                                    <div class="th-row-price">
+                                        <span class="th-price-big">Free</span>
+                                        <span class="th-price-note">MIT · open source</span>
+                                    </div>
+                                )}
+                            </div>
+                            <div class="th-row-stage">
+                                <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
+                                    <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
+                                    <span class="th-shot-hint">Open theme →</span>
+                                </a>
+                                <div class="th-row-actions">
+                                    <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>{t.pro ? 'Get this theme →' : 'Open theme →'}</a>
+                                    <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
+                                    <a class="th-gh" href={t.repo} target="_blank" rel="noopener">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.05c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.77 1.05.77 2.13v3.16c0 .3.2.66.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" /></svg>
+                                        Free Lite on GitHub
+                                    </a>
                                 </div>
                             </div>
                         </article>
@@ -493,31 +493,58 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         gap: 22px;
         margin-top: 26px;
     }
+    /* layered composition (tk-z-stage language): the description card sits
+       underneath; the screenshot is the top layer overhanging it on the right */
     .th-row {
+        position: relative;
         display: grid;
-        grid-template-columns: minmax(0, 480px) 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
+        align-items: center;
+        gap: 30px;
+        padding: 44px 34px 44px 0;
+    }
+    .th-row::before {
+        /* bottom layer: the description card */
+        content: '';
+        position: absolute;
+        inset: 20px 96px 20px 0;
         border: 1px solid color-mix(in srgb, var(--color-light) 12%, transparent);
         border-radius: 18px;
-        overflow: hidden;
         background:
             radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent 42%),
             radial-gradient(circle at 30% 100%, color-mix(in srgb, var(--color-accent) 6%, transparent), transparent 36%),
             linear-gradient(150deg, color-mix(in srgb, var(--color-light) 6%, transparent), color-mix(in srgb, var(--color-light) 2%, transparent) 60%);
         box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-light) 7%, transparent);
-        transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+        transition: border-color 0.25s;
     }
-    .th-row:hover {
-        border-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
-        transform: translateY(-2px);
-        box-shadow:
-            0 18px 50px color-mix(in srgb, var(--color-primary) 16%, transparent),
-            inset 0 1px 0 color-mix(in srgb, var(--color-light) 7%, transparent);
+    .th-row:hover::before {
+        border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+    }
+    .th-row-stage {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
     }
     .th-row-shot {
         position: relative;
         display: block;
-        min-height: 100%;
-        border-right: 1px solid color-mix(in srgb, var(--color-light) 8%, transparent);
+        aspect-ratio: 16 / 10;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid color-mix(in srgb, var(--color-light) 16%, transparent);
+        box-shadow:
+            0 30px 70px rgb(0 0 0 / 0.4),
+            0 12px 44px color-mix(in srgb, var(--color-primary) 18%, transparent);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .th-row:hover .th-row-shot {
+        transform: translateY(-4px);
+        box-shadow:
+            0 38px 86px rgb(0 0 0 / 0.46),
+            0 16px 56px color-mix(in srgb, var(--color-primary) 26%, transparent);
     }
     .th-row-shot img {
         position: absolute;
@@ -525,7 +552,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: left center;
+        object-position: left top;
         display: block;
     }
     .th-row-shot .th-shot-hint {
@@ -534,10 +561,12 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         bottom: 12px;
     }
     .th-row-body {
+        position: relative;
+        z-index: 1;
         display: flex;
         flex-direction: column;
         gap: 8px;
-        padding: 20px 26px 18px;
+        padding: 24px 0 24px 30px;
         min-width: 0;
     }
     .th-row-head {
@@ -590,21 +619,14 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         color: #22c55e;
         font-weight: 900;
     }
-    .th-row-cta {
-        margin-top: auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-        flex-wrap: wrap;
-        padding-top: 12px;
-        border-top: 1px dashed color-mix(in srgb, var(--color-light) 12%, transparent);
-    }
     .th-row-price {
         display: flex;
         align-items: baseline;
         gap: 10px;
         flex-wrap: wrap;
+        margin-top: 8px;
+        padding-top: 14px;
+        border-top: 1px dashed color-mix(in srgb, var(--color-light) 12%, transparent);
     }
     .th-price-big {
         font-size: 30px;
@@ -684,11 +706,19 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         box-shadow: 0 12px 32px color-mix(in srgb, #22c55e 40%, transparent);
     }
     @media (max-width: 900px) {
-        .th-row { grid-template-columns: 1fr; }
-        .th-row-shot { aspect-ratio: 16 / 9; min-height: 0; }
-        .th-row-shot img { position: static; }
-        .th-row-body { padding: 20px; }
-        .th-row-cta { flex-direction: column; align-items: stretch; }
+        /* collapse the layers into one plain card */
+        .th-row { grid-template-columns: 1fr; gap: 16px; padding: 0 0 20px; }
+        .th-row::before { inset: 0; }
+        .th-row-stage { order: -1; gap: 12px; }
+        .th-row-shot {
+            aspect-ratio: 16 / 9;
+            border-radius: 18px 18px 0 0;
+            border: 0;
+            box-shadow: none;
+        }
+        .th-row:hover .th-row-shot { transform: none; box-shadow: none; }
+        .th-row-actions { padding: 0 20px; }
+        .th-row-body { padding: 0 20px; }
         .th-buy { justify-content: center; }
     }
     /* ── service cards (contact-grid pattern) ── */
