@@ -18,6 +18,7 @@ const DL_BASE = 'https://njx-dl.sdr-expert.workers.dev';
     <PagesTopbar />
 
     <main class="pv-page ty-page">
+        <Fragment set:html={'<!--email_off-->'} />
         <span class="tag tag-success">Payment received</span>
         <h1>Thank you! Your theme is on its way</h1>
 
@@ -53,6 +54,7 @@ const DL_BASE = 'https://njx-dl.sdr-expert.workers.dev';
                 <a href="/terms">Terms &amp; Refunds</a>.
             </p>
         </section>
+        <Fragment set:html={'<!--/email_off-->'} />
     </main>
 
     <PagesFooter />

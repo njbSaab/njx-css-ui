@@ -16,6 +16,7 @@ const telegramBot = 'https://t.me/njxui_bot?start=contact';
     <PagesTopbar activePage="contact" />
 
     <main class="contact-page">
+        <Fragment set:html={'<!--email_off-->'} />
         <section class="contact-hero">
             <div class="contact-hero-copy">
                 <span class="tag tag-primary">Support & feedback</span>
@@ -256,6 +257,7 @@ const telegramBot = 'https://t.me/njxui_bot?start=contact';
                 <span>CodePen / repo</span>
             </div>
         </section>
+        <Fragment set:html={'<!--/email_off-->'} />
     </main>
 
     <PagesFooter activePage="contact" />

@@ -11,6 +11,7 @@ import PagesFooter from '../components/PagesFooter.astro';
     <PagesTopbar />
 
     <main class="pv-page">
+        <Fragment set:html={'<!--email_off-->'} />
         <span class="tag tag-primary">Terms</span>
         <h1>Terms of Service &amp; Refund Policy</h1>
         <p class="pv-updated">Last updated: September 2026</p>
@@ -110,6 +111,7 @@ import PagesFooter from '../components/PagesFooter.astro';
                 day.
             </p>
         </section>
+        <Fragment set:html={'<!--/email_off-->'} />
     </main>
 
     <PagesFooter />
