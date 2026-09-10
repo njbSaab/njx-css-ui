@@ -851,9 +851,14 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
         position: absolute;
         inset-inline: 0;
         bottom: 0;
-        height: 64px;
-        /* fade into the hero shell background — must follow the theme switcher */
-        background: linear-gradient(transparent, color-mix(in srgb, var(--color-dark-secondary) 85%, var(--сolor-dark)));
+        height: 56px;
+        /* soft blur fade instead of a solid gradient — barely-there veil that
+           still follows the theme background */
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        mask-image: linear-gradient(transparent, #000 65%);
+        -webkit-mask-image: linear-gradient(transparent, #000 65%);
+        background: linear-gradient(transparent, color-mix(in srgb, var(--color-dark-secondary) 35%, transparent));
         pointer-events: none;
     }
     .tp-hero-desc.is-clamped.is-open { max-height: none; }
