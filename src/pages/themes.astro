@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PagesTopbar from '../components/PagesTopbar.astro';
 import PagesFooter from '../components/PagesFooter.astro';
-import { MODERN, ECOMMERCE, SITES } from '../data/themesCatalog';
+import { CLASSIC, MODERN, ECOMMERCE, SITES } from '../data/themesCatalog';
 const base = import.meta.env.BASE_URL;
 // on the main site product pages live on the approved store subdomain
 const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui.dev';
@@ -40,6 +40,14 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
 
             <aside class="contact-hero-panel" aria-label="Fastest paths">
                 <span class="contact-panel-kicker">Fastest paths</span>
+                <a class="contact-path" href="#classic">
+                    <span class="contact-path-icon">❦</span>
+                    <span>
+                        <strong>Classic collection</strong>
+                        <small>{CLASSIC.length === 1 ? 'the first light editorial theme' : `${CLASSIC.length} light editorial themes`}</small>
+                    </span>
+                    <span class="contact-path-arrow">→</span>
+                </a>
                 <a class="contact-path" href="#modern">
                     <span class="contact-path-icon">◈</span>
                     <span>
@@ -72,10 +80,68 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
             <div class="th-tabs" role="tablist" aria-label="Theme categories">
                 <span class="th-tab-glider" aria-hidden="true"></span>
                 <button class="th-tab is-active" data-th-tab="all" role="tab">All</button>
+                <button class="th-tab" data-th-tab="classic" role="tab">Classic</button>
                 <button class="th-tab" data-th-tab="modern" role="tab">Modern</button>
                 <button class="th-tab" data-th-tab="storefronts" role="tab">Storefronts</button>
             </div>
         </div>
+
+        <!-- CLASSIC PREMIUM THEMES -->
+        <section class="th-section" id="classic" data-th-cat="classic">
+            <div class="th-section-head">
+                <h2>Classic collection</h2>
+                <p>
+                    The calm side of the catalogue: light, editorial themes
+                    with serif typography, hairline rules and warm paper
+                    backgrounds — built for stores that sell craft, heritage
+                    and one-of-one pieces rather than gadgets and neon.
+                </p>
+            </div>
+            <div class="th-list">
+                {
+                    CLASSIC.map((t) => (
+                        <article class="th-row" id={t.slug}>
+                            <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
+                                <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
+                                <span class="th-shot-hint">Open theme →</span>
+                            </a>
+                            <div class="th-row-body">
+                                <div class="th-row-head">
+                                    <h3><a href={`${storeBase}/themes/${t.slug}`}>{t.name}</a></h3>
+                                    <span class="th-premium">Premium</span>
+                                    {t.pro && !t.pro.ready && <span class="th-soon">Coming soon</span>}
+                                </div>
+                                <div class="th-tagline">{t.tagline}</div>
+                                <p class="th-row-desc">{t.desc}</p>
+                                {t.pro && (
+                                    <ul class="th-row-feats">
+                                        {t.pro.features.slice(0, 3).map((f) => (
+                                            <li>{f}</li>
+                                        ))}
+                                    </ul>
+                                )}
+                                <div class="th-row-cta">
+                                    {t.pro && (
+                                        <div class="th-row-price">
+                                            <span class="th-price-big">${t.pro.single}</span>
+                                            <span class="th-price-note">Single site · ${t.pro.unlimited} Unlimited{!t.pro.ready && ' · launch pricing'}</span>
+                                        </div>
+                                    )}
+                                    <div class="th-row-actions">
+                                        {t.pro?.ready ? (
+                                            <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
+                                        ) : (
+                                            <a class="th-notify" href={`${storeBase}/contact?about=${t.slug}`}>Get notified →</a>
+                                        )}
+                                        <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </section>
 
         <!-- MODERN PREMIUM THEMES -->
         <section class="th-section" id="modern" data-th-cat="modern">
