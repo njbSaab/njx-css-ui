@@ -4,28 +4,39 @@ interface Props {
 }
 const { activePage } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const storeMode = !!import.meta.env.PUBLIC_STORE_MODE;
 ---
 
 <footer class="sc-footer">
-    <div class="sc-footer-logo">njX UI</div>
+    <div class="sc-footer-logo">{storeMode ? 'njX Themes' : 'njX UI'}</div>
     <p
         style="font-size:14px;color:var(--color-muted);margin-bottom:20px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.6"
     >
-        A modern CSS component library built for developers who value speed and
-        simplicity.
+        {storeMode
+            ? 'Premium Astro theme licenses for modern storefronts — full source, documentation and 12 months of updates.'
+            : 'A modern CSS component library built for developers who value speed and simplicity.'}
     </p>
     <div class="sc-footer-links">
-        <a href={base} class={activePage === 'njxUIComponents' ? 'active' : ''}>Components</a>
-        <a href="https://classless.njxui.dev">Classless</a>
-        <a href={`${base}documentation`} class={activePage === 'documentation' ? 'active' : ''}>Documentation</a>
-        <a href={`${base}quickstart`} class={activePage === 'quickstart' ? 'active' : ''}>Quick Start</a>
-        <a href={`${base}themes`}>Themes</a>
-        <a href={`${base}overview`} class={activePage === 'overview' ? 'active' : ''}>Overview</a>
-        <a href={`${base}contact`} class={activePage === 'contact' ? 'active' : ''}>Contact</a>
-        <a href="https://github.com/njbSaab/njx-css-ui" target="_blank">GitHub</a>
+        {storeMode ? (
+            <>
+                <a href={`${base}themes`}>Themes</a>
+                <a href={`${base}contact`} class={activePage === 'contact' ? 'active' : ''}>Contact</a>
+            </>
+        ) : (
+            <>
+                <a href={base} class={activePage === 'njxUIComponents' ? 'active' : ''}>Components</a>
+                <a href="https://classless.njxui.dev">Classless</a>
+                <a href={`${base}documentation`} class={activePage === 'documentation' ? 'active' : ''}>Documentation</a>
+                <a href={`${base}quickstart`} class={activePage === 'quickstart' ? 'active' : ''}>Quick Start</a>
+                <a href={`${base}themes`}>Themes</a>
+                <a href={`${base}overview`} class={activePage === 'overview' ? 'active' : ''}>Overview</a>
+                <a href={`${base}contact`} class={activePage === 'contact' ? 'active' : ''}>Contact</a>
+                <a href="https://github.com/njbSaab/njx-css-ui" target="_blank">GitHub</a>
+            </>
+        )}
     </div>
     <p class="sc-footer-copy">
-        MIT License · Open Source · Built with ❤️ and pure CSS
+        {storeMode ? 'njX Themes · njxui.dev product line' : 'MIT License · Open Source · Built with ❤️ and pure CSS'}
         · <a href="/terms">Terms &amp; Refunds</a>
         · <a href="/privacy">Privacy</a>
     </p>
