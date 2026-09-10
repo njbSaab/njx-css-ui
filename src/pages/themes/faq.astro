@@ -194,6 +194,28 @@ const faqLd = JSON.stringify({
     gap: clamp(28px, 5vw, 64px);
     align-items: center;
     padding: 58px 0 46px;
+    position: relative;
+  }
+  .faq-page .contact-hero::before {
+    content: '';
+    position: absolute;
+    inset: -40px -60px 0;
+    background:
+      radial-gradient(
+        ellipse 70% 60% at 30% 20%,
+        color-mix(in srgb, var(--color-primary) 22%, transparent),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 50% 50% at 80% 80%,
+        color-mix(in srgb, var(--color-accent) 12%, transparent),
+        transparent
+      );
+    pointer-events: none;
+  }
+  .faq-page .contact-hero > * {
+    position: relative;
+    z-index: 2;
   }
   .faq-page .contact-hero-copy {
     display: flex;
