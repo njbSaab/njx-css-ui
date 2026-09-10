@@ -500,17 +500,17 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
     .th-row {
         position: relative;
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(360px, 640px);
+        grid-template-columns: minmax(0, 1fr) minmax(380px, 720px);
         align-items: center;
         gap: 32px;
-        padding: 24px 10px 40px 0;
+        padding: 24px 0 40px 0;
     }
     .th-row::before {
         /* bottom layer: the description card — the shot overhangs it by the
-           same 64px above the top edge as past the right edge */
+           same ~94px above the top edge as past the right edge */
         content: '';
         position: absolute;
-        inset: 88px 94px 20px 0;
+        inset: 118px 94px 20px 0;
         border: 1px solid color-mix(in srgb, var(--color-light) 12%, transparent);
         border-radius: 18px;
         background:
@@ -570,7 +570,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         display: flex;
         flex-direction: column;
         gap: 8px;
-        padding: 88px 40px 24px 30px;
+        padding: 118px 40px 24px 30px;
         min-width: 0;
     }
     .th-row-head {
