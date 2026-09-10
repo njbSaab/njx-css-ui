@@ -163,10 +163,6 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                 {
                     CLASSIC.map((t) => (
                         <article class="th-row" id={t.slug}>
-                            <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
-                                <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
-                                <span class="th-shot-hint">Open theme →</span>
-                            </a>
                             <div class="th-row-body">
                                 <div class="th-row-head">
                                     <h3><a href={`${storeBase}/themes/${t.slug}`}>{t.name}</a></h3>
@@ -182,22 +178,26 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                                         ))}
                                     </ul>
                                 )}
-                                <div class="th-row-cta">
-                                    {t.pro && (
-                                        <div class="th-row-price">
-                                            <span class="th-price-big">${t.pro.single}</span>
-                                            <span class="th-price-note">Single site · ${t.pro.unlimited} Unlimited{!t.pro.ready && ' · launch pricing'}</span>
-                                        </div>
-                                    )}
-                                    <div class="th-row-actions">
-                                        {t.pro?.ready ? (
-                                            <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
-                                        ) : (
-                                            <a class="th-notify" href={`${storeBase}/themes/${t.slug}`}>Order this build →</a>
-                                        )}
-                                        <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
+                                {t.pro && (
+                                    <div class="th-row-price">
+                                        <span class="th-price-big">${t.pro.single}</span>
+                                        <span class="th-price-note">Single site · ${t.pro.unlimited} Unlimited{!t.pro.ready && ' · launch pricing'}</span>
                                     </div>
+                                )}
+                                <div class="th-row-actions">
+                                    {t.pro?.ready ? (
+                                        <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
+                                    ) : (
+                                        <a class="th-notify" href={`${storeBase}/themes/${t.slug}`}>Order this build →</a>
+                                    )}
+                                    <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
                                 </div>
+                            </div>
+                            <div class="th-row-stage">
+                                <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
+                                    <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
+                                    <span class="th-shot-hint">Open theme →</span>
+                                </a>
                             </div>
                         </article>
                     ))
@@ -221,10 +221,6 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                 {
                     MODERN.map((t) => (
                         <article class="th-row" id={t.slug}>
-                            <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
-                                <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
-                                <span class="th-shot-hint">Open theme →</span>
-                            </a>
                             <div class="th-row-body">
                                 <div class="th-row-head">
                                     <h3><a href={`${storeBase}/themes/${t.slug}`}>{t.name}</a></h3>
@@ -240,22 +236,26 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                                         ))}
                                     </ul>
                                 )}
-                                <div class="th-row-cta">
-                                    {t.pro && (
-                                        <div class="th-row-price">
-                                            <span class="th-price-big">${t.pro.single}</span>
-                                            <span class="th-price-note">Single site · ${t.pro.unlimited} Unlimited{!t.pro.ready && ' · launch pricing'}</span>
-                                        </div>
-                                    )}
-                                    <div class="th-row-actions">
-                                        {t.pro?.ready ? (
-                                            <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
-                                        ) : (
-                                            <a class="th-notify" href={`${storeBase}/themes/${t.slug}`}>Order this build →</a>
-                                        )}
-                                        <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
+                                {t.pro && (
+                                    <div class="th-row-price">
+                                        <span class="th-price-big">${t.pro.single}</span>
+                                        <span class="th-price-note">Single site · ${t.pro.unlimited} Unlimited{!t.pro.ready && ' · launch pricing'}</span>
                                     </div>
+                                )}
+                                <div class="th-row-actions">
+                                    {t.pro?.ready ? (
+                                        <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
+                                    ) : (
+                                        <a class="th-notify" href={`${storeBase}/themes/${t.slug}`}>Order this build →</a>
+                                    )}
+                                    <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
                                 </div>
+                            </div>
+                            <div class="th-row-stage">
+                                <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
+                                    <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
+                                    <span class="th-shot-hint">Open theme →</span>
+                                </a>
                             </div>
                         </article>
                     ))
