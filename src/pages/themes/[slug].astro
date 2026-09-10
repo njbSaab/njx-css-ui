@@ -86,16 +86,6 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
                             </button>
                         )}
                     </a>
-                    {t.stats && (
-                        <div class="tp-stats">
-                            {t.stats.map((s) => (
-                                <div class="tp-stat">
-                                    <span class="tp-stat-value">{s.value}</span>
-                                    <span class="tp-stat-label">{s.label}</span>
-                                </div>
-                            ))}
-                        </div>
-                    )}
                 </div>
             </div>
         </section>
@@ -508,7 +498,7 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
     }
     .tp-hero {
         display: grid;
-        grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.15fr);
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: clamp(24px, 3.5vw, 44px);
         padding: clamp(24px, 3.5vw, 40px);
         align-items: center;
@@ -741,29 +731,6 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
         transition: opacity 0.35s ease;
     }
     .tp-live-frame.is-ready { opacity: 1; }
-    .tp-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-    .tp-stat {
-        padding: 14px 12px;
-        border-radius: 16px;
-        border: 1px solid color-mix(in srgb, var(--color-neutral-600) 14%, transparent);
-        background:
-            radial-gradient(circle at 50% -30%, color-mix(in srgb, var(--color-primary) 9%, transparent), transparent 75%),
-            color-mix(in srgb, var(--сolor-dark) 32%, transparent);
-        box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-light) 5%, transparent);
-    }
-    .tp-stat-value {
-        display: block;
-        margin-bottom: 4px;
-        color: var(--color-light);
-        font-size: 22px;
-        font-weight: 900;
-        letter-spacing: -0.8px;
-        background: linear-gradient(120deg, var(--color-light), color-mix(in srgb, var(--color-light) 45%, var(--color-primary)));
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    .tp-stat-label { color: var(--color-muted); font-size: 11px; line-height: 1.4; }
 
     /* ── Sections ── */
     .tp-section { width: min(1180px, 100%); margin: 56px auto 0; }
