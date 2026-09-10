@@ -283,7 +283,11 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
         }
         function scaleFrame(shot) {
             var f = shot.querySelector('.tp-live-frame');
-            if (f) f.style.transform = 'scale(' + shot.clientWidth / 1280 + ')';
+            if (!f) return;
+            var s = shot.clientWidth / 1280;
+            f.style.transform = 'scale(' + s + ')';
+            /* follow the box height so resizing grows the demo viewport */
+            f.style.height = Math.round(shot.clientHeight / s) + 'px';
         }
         function mount(shot) {
             if (!shot.dataset.demo || shot.classList.contains('is-live')) return;
@@ -307,6 +311,8 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
         function unmount(shot) {
             shot.querySelectorAll('.tp-live-frame, .tp-live-loading').forEach(function (n) { n.remove(); });
             shot.classList.remove('is-live');
+            shot.style.width = '';
+            shot.style.height = ''; /* undo any manual resize */
             setLabel(shot, 'Live');
         }
         function sync(shot) {
@@ -324,6 +330,9 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
                     shot.dataset.inView = entries[0].isIntersecting ? '1' : '';
                     if (shot.dataset.started) sync(shot);
                 }, { threshold: 0.25 }).observe(shot);
+            }
+            if ('ResizeObserver' in window) {
+                new ResizeObserver(function () { scaleFrame(shot); }).observe(shot);
             }
             setTimeout(function () {
                 shot.dataset.started = '1';
@@ -681,6 +690,12 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
     }
     .tp-shot.is-live .tp-live-dot { background: #f87171; box-shadow: 0 0 10px #f87171; }
     .tp-shot.is-live .tp-shot-hint { display: none; }
+    /* textarea-style resize while the live demo is on */
+    .tp-shot.is-live {
+        resize: both;
+        min-width: 320px;
+        min-height: 220px;
+    }
     .tp-live-loading {
         position: absolute;
         inset: 0;
