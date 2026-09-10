@@ -8,6 +8,7 @@ interface Props {
     | 'overview'
     | 'themes'
     | 'docs'
+    | 'faq'
     | 'donate'
     | 'contact'
     | 'terms'
@@ -235,9 +236,10 @@ const storeMode = !!import.meta.env.PUBLIC_STORE_MODE;
       <>
         <a href={`${base}themes`} class={activePage === 'themes' ? 'active' : ''}>Themes</a>
         <a href={`${base}themes/docs`} class={activePage === 'docs' ? 'active' : ''}>Docs</a>
+        <a href={`${base}themes/faq`} class={activePage === 'faq' ? 'active' : ''}>FAQ</a>
         <a href={`${base}contact`} class={activePage === 'contact' ? 'active' : ''}>Contact</a>
-        <a href={`${base}terms`} class={activePage === 'terms' ? 'active' : ''}>Terms &amp; Refunds</a>
-        <a href={`${base}privacy`} class={activePage === 'privacy' ? 'active' : ''}>Privacy</a>
+        <a href={`${base}terms`} class={activePage === 'terms' ? 'active' : ''}>Terms</a>
+        <a href="https://njxui.dev" target="_blank" rel="noopener">Open Source ↗</a>
       </>
     ) : (
       <>

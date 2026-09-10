@@ -1,0 +1,165 @@
+---
+// FAQ — licensing, support, updates and customization questions for theme buyers.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PagesTopbar from '../../components/PagesTopbar.astro';
+import PagesFooter from '../../components/PagesFooter.astro';
+
+const faqs = [
+  {
+    q: 'What exactly do I get after purchase?',
+    a: `A zip archive with the complete, unminified source code of the theme (Astro + Tailwind + TypeScript), a DIST-README with setup steps, and the full demo catalog so it runs out of the box. Your license includes <strong>12 months of updates</strong> delivered to your purchase email. No encrypted files, no license keys, no phoning home — the code is fully yours to modify.`,
+  },
+  {
+    q: 'What is the difference between Single and Unlimited licenses?',
+    a: `<strong>Single site</strong> — one production website (yours or a client's). <strong>Unlimited</strong> — any number of your own or client projects, forever, plus lifetime updates and priority support. If you build sites for clients regularly, Unlimited pays for itself on the second project.`,
+  },
+  {
+    q: 'What is the difference between Lite and Pro storefronts?',
+    a: `Lite versions are free and open source (MIT) — a complete working storefront you can fork on GitHub. Pro adds the heavy machinery: customer accounts, reviews and Q&amp;A, advanced filters, comparison, journal/blog, richer catalogs, SEO packs and more. The Modern collection has no Lite tier — those are premium-only builds.`,
+  },
+  {
+    q: 'Do I need a Shopify store to use a theme?',
+    a: `No. Every theme ships with a bundled demo catalog and runs fully without any accounts or keys — you can replace the mock data with your own products and use it as a static catalog site. When you want live commerce, two env variables connect your Shopify store: your real products, prices, stock — and Shopify's hosted checkout handles payments, taxes and shipping.`,
+  },
+  {
+    q: 'How do updates work?',
+    a: `When a theme gets fixes or new features, we send the new version to your purchase email with a short changelog. Updates within your license period are free (12 months on Single, lifetime on Unlimited). Because you own the source, updating is a diff-and-merge — the changelog highlights exactly which files changed.`,
+  },
+  {
+    q: 'What does support cover — and will you help me customize?',
+    a: `Support covers <strong>theme defects</strong> (bugs — fixed for everyone in an update) and <strong>setup questions</strong> per the documentation: installing, connecting Shopify, deploying, changing design tokens. We answer within a working day. We are also happy to point you to the right file or approach for a customization you're doing yourself. Custom feature development is not sold on this site.`,
+  },
+  {
+    q: 'Which parts of a theme can I customize easily?',
+    a: `The themes are built for rebranding: one <code>@theme</code> block holds all colors, fonts and radii; all texts live in <code>src/constants/</code>; the catalog is a single JSON file; photos are plain files in <code>public/products/</code>. The <a href="/themes/docs">documentation</a> walks through each. Everything beyond that is regular Astro + Tailwind code — no framework lock-in, no black boxes.`,
+  },
+  {
+    q: 'What are the technical requirements?',
+    a: `Node.js 18+ to build. The output is a fully static site — host it on Cloudflare Pages, Netlify, Vercel or any static hosting, including the free tiers. No server, no database, no runtime dependencies.`,
+  },
+  {
+    q: 'Can I get a refund?',
+    a: `Yes — within <strong>14 days</strong> if the theme has a defect we cannot fix or it does not work as described. Since this is source code that cannot be "returned", we don't refund change-of-mind purchases — please use the live demos and free Lite versions to evaluate before buying. Full policy: <a href="/terms">Terms &amp; Refunds</a>.`,
+  },
+  {
+    q: 'Can I resell or redistribute a theme?',
+    a: `No. Licenses cover building websites with the theme — for yourself or clients — but not reselling, redistributing or repackaging the theme itself (including as part of a site-builder or template collection). Your clients don't need their own license for a site you build them.`,
+  },
+  {
+    q: 'Who processes my payment? Will I get an invoice?',
+    a: `Orders are processed by our Merchant of Record, which handles payment security, VAT/sales tax and invoicing — you'll receive a proper tax invoice by email automatically. We never see your card details.`,
+  },
+  {
+    q: 'Are the demo photos included?',
+    a: `The demo catalog (including photography sourced from Unsplash under their license) is included so the theme runs instantly. For production you'll replace catalog data and photos with your own products — the docs show where everything lives.`,
+  },
+];
+---
+
+<BaseLayout
+  title="FAQ — licenses, support, updates | njX Themes"
+  description="Frequently asked questions about njX theme licenses: what's included, Single vs Unlimited, Shopify setup, updates, support scope, refunds and customization."
+>
+  <PagesTopbar activePage="faq" />
+
+  <main class="pv-page faq-page">
+    <span class="tag tag-primary">FAQ</span>
+    <h1>Questions, answered honestly</h1>
+    <p class="faq-sub">
+      Everything buyers ask before and after purchase. Not covered here? Write
+      via the <a href="/contact">contact page</a> — we reply within a working
+      day.
+    </p>
+
+    <div class="faq-list">
+      {faqs.map((f) => (
+        <details class="faq-item">
+          <summary>
+            <span>{f.q}</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq-a" set:html={f.a} />
+        </details>
+      ))}
+    </div>
+  </main>
+
+  <PagesFooter />
+</BaseLayout>
+
+<style is:global>
+  .pv-page {
+    width: min(760px, 100%);
+    margin-inline: auto;
+    padding: 48px 20px 96px;
+  }
+  .pv-page h1 {
+    margin-top: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 900;
+    color: var(--color-light);
+  }
+  .faq-sub {
+    margin-top: 10px;
+    color: var(--color-muted);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .faq-sub a,
+  .faq-a a {
+    color: var(--color-primary);
+  }
+  .faq-list {
+    margin-top: 30px;
+    display: grid;
+    gap: 10px;
+  }
+  .faq-item {
+    border: 1px solid color-mix(in srgb, var(--color-light) 12%, transparent);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--color-light) 3%, transparent);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .faq-item[open],
+  .faq-item:hover {
+    border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+  }
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--color-light);
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item summary svg {
+    flex: none;
+    color: var(--color-muted);
+    transition: transform 0.25s;
+  }
+  .faq-item[open] summary svg {
+    transform: rotate(180deg);
+    color: var(--color-primary);
+  }
+  .faq-a {
+    padding: 0 20px 18px;
+    color: var(--color-muted);
+    font-size: 14.5px;
+    line-height: 1.75;
+  }
+  .faq-a code {
+    font-size: 13px;
+    background: color-mix(in srgb, var(--color-light) 8%, transparent);
+    border-radius: 5px;
+    padding: 1px 6px;
+  }
+</style>
