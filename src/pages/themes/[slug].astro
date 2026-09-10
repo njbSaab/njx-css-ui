@@ -495,10 +495,17 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
         left: -70px; bottom: -100px; width: 220px; height: 220px;
         background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 16%, transparent), transparent 72%);
     }
-    /* full-width live stage above the hero card */
+    /* full-width live stage above the hero card — full width, capped height */
     .tp-live-wide {
         width: min(1180px, 100%);
         margin: 28px auto 0;
+    }
+    .tp-live-wide .tp-shot { height: clamp(360px, 44vw, 520px); }
+    .tp-live-wide .tp-shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
     }
     .tp-hero {
         display: grid;
@@ -841,28 +848,18 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
     .tp-price-card li::before { content: '✓'; position: absolute; left: 0; color: var(--color-primary); font-weight: 900; }
     /* feature accordion: clamp + fade, chevron toggle */
     /* hero long-copy: clamp + fade, same pattern as price features */
-    .tp-hero-desc.is-clamped {
-        position: relative;
-        max-height: 148px;
+    /* plain line clamp with an ellipsis — no overlay to catch the eye */
+    .tp-hero-desc.is-clamped .tp-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        line-clamp: 5;
+        -webkit-box-orient: vertical;
         overflow: hidden;
     }
-    .tp-hero-desc.is-clamped::after {
-        content: '';
-        position: absolute;
-        inset-inline: 0;
-        bottom: 0;
-        height: 56px;
-        /* soft blur fade instead of a solid gradient — barely-there veil that
-           still follows the theme background */
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        mask-image: linear-gradient(transparent, #000 65%);
-        -webkit-mask-image: linear-gradient(transparent, #000 65%);
-        background: linear-gradient(transparent, color-mix(in srgb, var(--color-dark-secondary) 35%, transparent));
-        pointer-events: none;
+    .tp-hero-desc.is-clamped.is-open .tp-text {
+        display: block;
+        overflow: visible;
     }
-    .tp-hero-desc.is-clamped.is-open { max-height: none; }
-    .tp-hero-desc.is-clamped.is-open::after { display: none; }
     [data-hero-more].is-open svg { transform: rotate(180deg); }
 
     .tp-features.is-clamped {
