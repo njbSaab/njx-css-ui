@@ -37,6 +37,30 @@ const codeDeployOther = `
 # Vercel:   framework preset "Astro" — zero config
 # Any host: dist/ is plain static files — upload anywhere
 `;
+const codeApi = `
+// src/lib/commerce — one contract, two providers
+export interface CommerceProvider {
+  listProducts(opts?: { collection?: string }): Promise<Product[]>;
+  getProduct(handle: string): Promise<Product | null>;
+  listCollections(): Promise<Collection[]>;
+  checkoutUrl(lines: CartLine[]): Promise<string>;
+}
+
+// pages never import a provider directly:
+const products = await commerce.listProducts();
+// COMMERCE_PROVIDER=mock    → bundled JSON catalog
+// COMMERCE_PROVIDER=shopify → Storefront GraphQL API
+`;
+const codeStores = `
+// client state — nanostores, persisted to localStorage
+import { cartLines, addLine } from '../lib/cart';
+import { favorites, toggleFavorite } from '../lib/favorites';
+
+// UI talks through events, never window globals:
+document.dispatchEvent(
+  new CustomEvent('theme:add', { detail: cartLine })
+);
+`;
 const codeTokens = `
 /* src/styles/global.css — one @theme block drives the whole look */
 @theme {
@@ -72,8 +96,35 @@ PUBLIC_GA4_ID=G-XXXXXXXXXX
     </p>
   </section>
 
+  <!-- ══ SECTION NAV (doc-mode-bar style) ══ -->
+  <div class="doc-mode-bar" id="td-nav" style="position:sticky;top:60px;z-index:90">
+    <span class="doc-mode-label">Guide</span>
+    <div class="doc-mode-tabs">
+      <button class="doc-mode-tab active" data-sec="install" data-hint="Unzip, install, run the demo on mock data">
+        <span class="doc-mode-icon">📦</span> Install
+        <span class="doc-mode-default">START HERE</span>
+      </button>
+      <button class="doc-mode-tab" data-sec="shopify" data-hint="Two env vars connect your live Shopify store">
+        <span class="doc-mode-icon">🛍</span> Shopify
+      </button>
+      <button class="doc-mode-tab" data-sec="api" data-hint="The provider-agnostic commerce layer and client state">
+        <span class="doc-mode-icon">⚙︎</span> Commerce API
+      </button>
+      <button class="doc-mode-tab" data-sec="deploy" data-hint="Cloudflare Pages, Netlify, Vercel — any static host">
+        <span class="doc-mode-icon">🚀</span> Deploy
+      </button>
+      <button class="doc-mode-tab" data-sec="customize" data-hint="Design tokens, texts, catalog, analytics">
+        <span class="doc-mode-icon">🎨</span> Customize
+      </button>
+      <button class="doc-mode-tab" data-sec="support" data-hint="12 months of updates · answers within a day">
+        <span class="doc-mode-icon">✉</span> Support
+      </button>
+    </div>
+    <span class="doc-mode-hint" id="td-nav-hint">Unzip, install, run the demo on mock data</span>
+  </div>
+
   <!-- ══ INSTALL ══ -->
-  <div class="sc-section" style="padding-top:24px;padding-bottom:48px">
+  <div class="sc-section" id="install" style="padding-top:24px;padding-bottom:48px">
     <span class="sc-eyebrow">Install &amp; run</span>
     <h2 class="sc-heading">Demo running in 3 steps</h2>
     <div class="sc-steps" style="margin-top:24px;max-width:760px">
@@ -88,7 +139,7 @@ PUBLIC_GA4_ID=G-XXXXXXXXXX
             Your purchase email contains the theme archive. Node.js 18+ is the
             only prerequisite.
           </div>
-          <CodeBlock frame="sc" compact lang="shell" style="margin-top:10px" code={codeInstall} />
+          <CodeBlock frame="sc" compact lang="sh" style="margin-top:10px" code={codeInstall} />
         </div>
       </div>
       <div class="sc-step">
@@ -103,7 +154,7 @@ PUBLIC_GA4_ID=G-XXXXXXXXXX
             everything works out of the box: filters, cart, checkout flow, the
             customer account.
           </div>
-          <CodeBlock frame="sc" compact lang="shell" style="margin-top:10px" code={codeDev} />
+          <CodeBlock frame="sc" compact lang="sh" style="margin-top:10px" code={codeDev} />
         </div>
       </div>
       <div class="sc-step">
@@ -116,14 +167,14 @@ PUBLIC_GA4_ID=G-XXXXXXXXXX
             The output is a fully static site — fast, cheap to host and easy to
             cache.
           </div>
-          <CodeBlock frame="sc" compact lang="shell" style="margin-top:10px" code={codeBuild} />
+          <CodeBlock frame="sc" compact lang="sh" style="margin-top:10px" code={codeBuild} />
         </div>
       </div>
     </div>
   </div>
 
   <!-- ══ SHOPIFY ══ -->
-  <div class="sc-section" style="padding-top:24px;padding-bottom:48px">
+  <div class="sc-section" id="shopify" style="padding-top:24px;padding-bottom:48px">
     <span class="sc-eyebrow">Go live</span>
     <h2 class="sc-heading">Connect your Shopify store<br />with two variables</h2>
     <div class="sc-steps" style="margin-top:24px;max-width:760px">
@@ -155,7 +206,7 @@ PUBLIC_GA4_ID=G-XXXXXXXXXX
             Copy <code>.env.example</code> to <code>.env</code> and fill in your
             store domain and token — that is the entire integration.
           </div>
-          <CodeBlock frame="sc" compact lang="shell" style="margin-top:10px" code={codeEnv} />
+          <CodeBlock frame="sc" compact lang="sh" style="margin-top:10px" code={codeEnv} />
         </div>
       </div>
       <div class="sc-step">
@@ -180,8 +231,36 @@ PUBLIC_GA4_ID=G-XXXXXXXXXX
     </div>
   </div>
 
+  <!-- ══ COMMERCE API ══ -->
+  <div class="sc-section" id="api" style="padding-top:24px;padding-bottom:48px">
+    <span class="sc-eyebrow">Under the hood</span>
+    <h2 class="sc-heading">One commerce API —<br />mock and Shopify speak it</h2>
+    <div class="sc-two-col" style="margin-top:24px;align-items:start">
+      <div>
+        <div class="sc-step-title" style="margin-bottom:6px">Provider-agnostic contract</div>
+        <div class="sc-step-desc">
+          Every page talks to a single typed interface. Swapping the demo
+          catalog for your live store is a config change, not a refactor — the
+          same code renders both.
+        </div>
+        <CodeBlock frame="sc" compact lang="js" style="margin-top:10px" code={codeApi} />
+      </div>
+      <div>
+        <div class="sc-step-title" style="margin-bottom:6px">Client state &amp; the account</div>
+        <div class="sc-step-desc">
+          Cart, wishlist and compare live in persisted nanostores; components
+          communicate over CustomEvents. The customer account works two ways:
+          <strong>instant mock sign-in</strong> for demos, or
+          <strong>real Shopify customer accounts</strong> via the Storefront
+          API — login, order history, one-click reorder.
+        </div>
+        <CodeBlock frame="sc" compact lang="js" style="margin-top:10px" code={codeStores} />
+      </div>
+    </div>
+  </div>
+
   <!-- ══ DEPLOY ══ -->
-  <div class="sc-section" style="padding-top:24px;padding-bottom:48px">
+  <div class="sc-section" id="deploy" style="padding-top:24px;padding-bottom:48px">
     <span class="sc-eyebrow">Deploy</span>
     <h2 class="sc-heading">Host it anywhere static files live</h2>
     <div class="sc-two-col" style="margin-top:24px;align-items:start">
@@ -190,7 +269,7 @@ PUBLIC_GA4_ID=G-XXXXXXXXXX
         <div class="sc-step-desc">
           Free tier, global CDN, one command. All our demos run on it.
         </div>
-        <CodeBlock frame="sc" compact lang="shell" style="margin-top:10px" code={codeDeployCf} />
+        <CodeBlock frame="sc" compact lang="sh" style="margin-top:10px" code={codeDeployCf} />
       </div>
       <div>
         <div class="sc-step-title" style="margin-bottom:6px">Netlify · Vercel · anything</div>
@@ -198,13 +277,13 @@ PUBLIC_GA4_ID=G-XXXXXXXXXX
           The build is plain HTML/CSS/JS in <code>dist/</code> — no server, no
           functions required.
         </div>
-        <CodeBlock frame="sc" compact lang="shell" style="margin-top:10px" code={codeDeployOther} />
+        <CodeBlock frame="sc" compact lang="sh" style="margin-top:10px" code={codeDeployOther} />
       </div>
     </div>
   </div>
 
   <!-- ══ CUSTOMIZE ══ -->
-  <div class="sc-section" style="padding-top:24px;padding-bottom:48px">
+  <div class="sc-section" id="customize" style="padding-top:24px;padding-bottom:48px">
     <span class="sc-eyebrow">Customize</span>
     <h2 class="sc-heading">Rebrand in two files</h2>
     <div class="sc-two-col" style="margin-top:24px;align-items:start">
@@ -227,13 +306,13 @@ PUBLIC_GA4_ID=G-XXXXXXXXXX
           <strong>Demo-only bits</strong> — blocks marked <code>demo-only</code> in
           <code>Layout.astro</code> are safe to delete for production
         </div>
-        <CodeBlock frame="sc" compact lang="shell" style="margin-top:10px" code={codeGa} />
+        <CodeBlock frame="sc" compact lang="sh" style="margin-top:10px" code={codeGa} />
       </div>
     </div>
   </div>
 
   <!-- ══ SUPPORT ══ -->
-  <div class="sc-section" style="padding-top:24px;padding-bottom:72px">
+  <div class="sc-section" id="support" style="padding-top:24px;padding-bottom:72px">
     <span class="sc-eyebrow">Support</span>
     <h2 class="sc-heading">Stuck? We answer within a day</h2>
     <p class="sc-step-desc" style="max-width:640px;margin-top:14px">
@@ -246,3 +325,40 @@ PUBLIC_GA4_ID=G-XXXXXXXXXX
 
   <PagesFooter />
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    var bar = document.getElementById('td-nav');
+    if (!bar || bar.dataset.init) return;
+    bar.dataset.init = '1';
+    var tabs = bar.querySelectorAll('[data-sec]');
+    var hint = document.getElementById('td-nav-hint');
+    function activate(id) {
+      tabs.forEach(function (t) {
+        var on = t.dataset.sec === id;
+        t.classList.toggle('active', on);
+        if (on && hint) hint.textContent = t.dataset.hint;
+      });
+    }
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        var el = document.getElementById(t.dataset.sec);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        activate(t.dataset.sec);
+      });
+    });
+    // scrollspy
+    var obs = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) activate(e.target.id);
+        });
+      },
+      { rootMargin: '-30% 0px -60% 0px' }
+    );
+    ['install', 'shopify', 'api', 'deploy', 'customize', 'support'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+  })();
+</script>

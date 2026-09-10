@@ -135,11 +135,30 @@ export function highlightShell(value) {
     .split('\n')
     .map((line) => {
       if (/^\s*#/.test(line)) return `<span class="c">${line}</span>`;
-      return line.replace(
-        /^(\s*)(\S+)(\s+)(\S+)(\s+)(\S+)(\s*)$/,
-        (_m, s1, cmd, s2, sub, s3, pkg, s4) =>
-          `${s1}<span class="k">${cmd}</span>${s2}<span class="v">${sub}</span>${s3}<span class="cn">${pkg}</span>${s4}`,
-      );
+      // inline comment tail
+      let comment = '';
+      const ci = line.indexOf(' #');
+      if (ci > -1) {
+        comment = `<span class="c">${line.slice(ci)}</span>`;
+        line = line.slice(0, ci);
+      }
+      // ENV assignment: KEY=value
+      const env = line.match(/^(\s*)([A-Z][A-Z0-9_]*)=(.*)$/);
+      if (env) return `${env[1]}<span class="cn">${env[2]}</span>=<span class="v">${env[3]}</span>` + comment;
+      // command + tokens: first word = command, flags, values
+      const m = line.match(/^(\s*)(\S+)([\s\S]*)$/);
+      if (!m) return line + comment;
+      const [, sp, cmd, rest] = m;
+      const restH = rest
+        .split(/(\s+)/)
+        .map((t) => {
+          if (!t.trim()) return t;
+          if (/^--?[\w-]/.test(t)) return `<span class="s">${t}</span>`;
+          if (/^(&amp;&amp;|\||&gt;|→)$/.test(t)) return `<span class="c">${t}</span>`;
+          return `<span class="v">${t}</span>`;
+        })
+        .join('');
+      return `${sp}<span class="k">${cmd}</span>${restH}` + comment;
     })
     .join('\n');
 }

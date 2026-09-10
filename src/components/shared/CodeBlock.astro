@@ -39,7 +39,7 @@ const highlight = (src: string, l: string) =>
           ? highlightCss(src)
           : l === 'js'
             ? highlightJs(src)
-            : l === 'sh'
+            : l === 'sh' || l === 'shell'
               ? highlightShell(src)
               : escapeHtml(src);
 
