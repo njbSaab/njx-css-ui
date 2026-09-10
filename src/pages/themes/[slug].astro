@@ -589,9 +589,35 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
     .tp-btn-primary {
         /* stay inside the primary family — mixing toward the accent goes muddy
            on complementary pairs (default blue + orange → grey-brown) */
-        background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 85%, #fff), color-mix(in srgb, var(--color-primary) 72%, #000));
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(180deg, color-mix(in srgb, var(--color-primary) 78%, #fff), var(--color-primary) 45%, color-mix(in srgb, var(--color-primary) 66%, #000));
         color: #fff;
-        box-shadow: 0 12px 30px color-mix(in srgb, var(--color-primary) 34%, transparent);
+        text-shadow: 0 1px 2px rgb(0 0 0 / 0.25);
+        box-shadow:
+            0 12px 30px color-mix(in srgb, var(--color-primary) 34%, transparent),
+            inset 0 1px 0 rgb(255 255 255 / 0.35),
+            inset 0 -2px 0 rgb(0 0 0 / 0.18);
+    }
+    .tp-btn-primary::after {
+        /* light streak that sweeps across on hover */
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -80%;
+        width: 55%;
+        background: linear-gradient(105deg, transparent, rgb(255 255 255 / 0.35), transparent);
+        transform: skewX(-20deg);
+        transition: left 0.45s ease;
+        pointer-events: none;
+    }
+    .tp-btn-primary:hover::after { left: 125%; }
+    .tp-btn-primary:hover {
+        box-shadow:
+            0 16px 42px color-mix(in srgb, var(--color-primary) 46%, transparent),
+            inset 0 1px 0 rgb(255 255 255 / 0.4),
+            inset 0 -2px 0 rgb(0 0 0 / 0.18);
     }
     .tp-btn-secondary {
         border: 1px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
