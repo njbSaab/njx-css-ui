@@ -325,10 +325,8 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
             if ('ResizeObserver' in window) {
                 new ResizeObserver(function () { scaleFrame(shot); }).observe(shot);
             }
-            setTimeout(function () {
-                shot.dataset.started = '1';
-                sync(shot);
-            }, 1000);
+            shot.dataset.started = '1';
+            sync(shot); /* mount immediately — the shot is the first thing on the page */
         }
         if (!window.__tpLiveBound) {
             window.__tpLiveBound = true;
