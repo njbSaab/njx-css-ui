@@ -1,0 +1,137 @@
+---
+// Post-checkout success page — Paddle redirects here with ?_ptxn=<transaction id>.
+// If the transaction id is present, the delivery worker can serve the archive instantly.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PagesTopbar from '../components/PagesTopbar.astro';
+import PagesFooter from '../components/PagesFooter.astro';
+
+const DL_BASE = 'https://njx-dl.sdr-expert.workers.dev';
+---
+
+<BaseLayout
+    title="Thank you for your purchase — njX UI"
+    description="Your njX theme purchase was successful."
+>
+    <Fragment slot="head">
+        <meta name="robots" content="noindex" />
+    </Fragment>
+    <PagesTopbar />
+
+    <main class="pv-page ty-page">
+        <span class="tag tag-success">Payment received</span>
+        <h1>Thank you! Your theme is on its way</h1>
+
+        <section data-ty-instant hidden>
+            <h2>Download now</h2>
+            <p>
+                Your payment is confirmed — grab the archive right here. The
+                same link is also being sent to your email.
+            </p>
+            <p>
+                <a data-ty-download class="btn btn-primary btn-lg" href="#">Download your theme ↓</a>
+            </p>
+            <p data-ty-error class="ty-error" hidden></p>
+        </section>
+
+        <section>
+            <h2>What happens next</h2>
+            <ul>
+                <li>A receipt from our payment partner lands in your inbox right away.</li>
+                <li>Your theme archive (zip) arrives by email <strong>within 12 hours</strong> — usually much faster.</li>
+                <li>Inside the zip: the full source, a <code>DIST-README.md</code> with setup steps, and mock data so it runs out of the box. Two env vars connect your live Shopify store.</li>
+                <li>Your license includes 12 months of updates — new versions are sent to the same email.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Didn't get the email?</h2>
+            <p>
+                Check spam first, then write to
+                <a href="mailto:support@njxui.dev">support@njxui.dev</a> or ping
+                <a href="https://t.me/njxui_bot" target="_blank" rel="noopener">@njxui_bot</a>
+                — we resend within a few hours. Refunds and license terms:
+                <a href="/terms">Terms &amp; Refunds</a>.
+            </p>
+        </section>
+    </main>
+
+    <PagesFooter />
+</BaseLayout>
+
+<script is:inline define:vars={{ DL_BASE }}>
+    // Paddle appends ?_ptxn=<txn id> to the success URL — enable instant download.
+    (function () {
+        var txn = new URLSearchParams(location.search).get('_ptxn');
+        if (!txn || !/^txn_[a-z0-9]+$/i.test(txn)) return;
+        var box = document.querySelector('[data-ty-instant]');
+        var btn = document.querySelector('[data-ty-download]');
+        var err = document.querySelector('[data-ty-error]');
+        if (!box || !btn) return;
+        box.hidden = false;
+        var claimUrl = DL_BASE + '/claim?txn=' + encodeURIComponent(txn);
+        btn.href = claimUrl;
+        btn.addEventListener('click', function () {
+            // if the worker answers with JSON (not ready / not paid yet), surface it
+            setTimeout(function () {
+                fetch(claimUrl, { method: 'GET', headers: { accept: 'application/json' } })
+                    .then(function (r) {
+                        if (r.ok || r.status === 0) return;
+                        return r.json().then(function (d) {
+                            err.textContent = (d && d.error ? d.error : 'Download not ready yet') + ' — the archive will still arrive by email.';
+                            err.hidden = false;
+                        });
+                    })
+                    .catch(function () {});
+            }, 400);
+        });
+    })();
+</script>
+
+<style is:global>
+    .pv-page {
+        width: min(760px, 100%);
+        margin-inline: auto;
+        padding: 48px 20px 96px;
+    }
+    .pv-page h1 {
+        margin-top: 14px;
+        font-family: 'Poppins', sans-serif;
+        font-size: clamp(28px, 4vw, 40px);
+        font-weight: 900;
+        color: var(--color-light);
+    }
+    .pv-page section {
+        margin-top: 34px;
+    }
+    .pv-page h2 {
+        font-size: 20px;
+        font-weight: 900;
+        color: var(--color-light);
+    }
+    .pv-page p,
+    .pv-page li {
+        margin-top: 10px;
+        color: var(--color-muted);
+        line-height: 1.7;
+        font-size: 15px;
+    }
+    .pv-page ul {
+        margin-top: 8px;
+        padding-left: 20px;
+        list-style: disc;
+    }
+    .pv-page a {
+        color: var(--color-primary);
+    }
+    .ty-page .btn {
+        margin-top: 6px;
+        display: inline-flex;
+    }
+    .pv-page a.btn-primary {
+        color: #fff;
+    }
+    .ty-error {
+        color: #f59e0b !important;
+        font-weight: 600;
+    }
+</style>
