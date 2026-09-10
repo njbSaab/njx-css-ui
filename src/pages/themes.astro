@@ -619,17 +619,50 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
     }
     .th-row-shot.is-live .th-live-dot { background: #f87171; box-shadow: 0 0 10px #f87171; }
     .th-row-shot.is-live .th-shot-hint { display: none; }
+    .th-live-btn { z-index: 4; }
+    .th-live-loading {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        background: rgb(0 0 0 / 0.5);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        animation: thFadeIn 0.2s ease both;
+    }
+    .th-live-spinner {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 3px solid rgb(255 255 255 / 0.22);
+        border-top-color: var(--color-primary);
+        animation: thSpin 0.7s linear infinite;
+    }
+    @keyframes thSpin { to { transform: rotate(360deg); } }
+    @keyframes thFadeIn { from { opacity: 0; } to { opacity: 1; } }
     .th-live-frame {
         position: absolute;
         top: 0;
         left: 0;
-        z-index: 2;
+        z-index: 3;
         width: 1280px;
         height: 720px;
         border: 0;
         transform-origin: 0 0;
         background: #0b0d12;
+        opacity: 0;
+        transition: opacity 0.35s ease;
     }
+    .th-live-frame.is-ready { opacity: 1; }
     .th-row-body {
         position: relative;
         z-index: 1;
@@ -1405,7 +1438,9 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         window.addEventListener('load', moveGlider);
     })();
 
-    // live in-card demo preview — swap the screenshot for a scaled iframe
+    // live in-card demo preview — hover mounts a scaled iframe with a loading
+    // state, mouse-out unmounts it; the button pins it open (and is the only
+    // control on touch devices)
     (function () {
         function scaleFrames() {
             document.querySelectorAll('.th-live-frame').forEach(function (f) {
@@ -1413,31 +1448,73 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                 if (shot) f.style.transform = 'scale(' + shot.clientWidth / 1280 + ')';
             });
         }
+        function setLabel(shot, text) {
+            var label = shot.querySelector('[data-th-live-label]');
+            if (label) label.textContent = text;
+        }
+        function mount(shot) {
+            if (!shot.dataset.demo || shot.classList.contains('is-live')) return;
+            var loading = document.createElement('span');
+            loading.className = 'th-live-loading';
+            loading.innerHTML = '<span class="th-live-spinner"></span>Loading live demo…';
+            shot.appendChild(loading);
+            var frame = document.createElement('iframe');
+            frame.className = 'th-live-frame';
+            frame.src = shot.dataset.demo;
+            frame.title = 'Live theme demo';
+            frame.addEventListener('load', function () {
+                frame.classList.add('is-ready');
+                setTimeout(function () { loading.remove(); }, 350);
+            });
+            shot.appendChild(frame);
+            shot.classList.add('is-live');
+            setLabel(shot, shot.dataset.pinned ? 'Close' : 'Pin');
+            scaleFrames();
+        }
+        function unmount(shot) {
+            shot.querySelectorAll('.th-live-frame, .th-live-loading').forEach(function (n) { n.remove(); });
+            shot.classList.remove('is-live');
+            delete shot.dataset.pinned;
+            setLabel(shot, 'Live');
+        }
         if (!window.__thLiveBound) {
             window.__thLiveBound = true;
+            var timers = new WeakMap();
             document.addEventListener('click', function (e) {
                 var btn = e.target.closest('[data-th-live]');
                 if (!btn) return;
                 e.preventDefault();
                 e.stopPropagation();
                 var shot = btn.closest('.th-row-shot');
-                var label = btn.querySelector('[data-th-live-label]');
-                var frame = shot.querySelector('.th-live-frame');
-                if (frame) {
-                    frame.remove();
-                    shot.classList.remove('is-live');
-                    if (label) label.textContent = 'Live';
-                    return;
+                if (!shot.classList.contains('is-live')) {
+                    shot.dataset.pinned = '1';
+                    mount(shot);
+                } else if (shot.dataset.pinned) {
+                    unmount(shot);
+                    shot.dataset.muted = '1'; /* don't re-mount until the pointer leaves */
+                } else {
+                    shot.dataset.pinned = '1';
+                    setLabel(shot, 'Close');
                 }
-                frame = document.createElement('iframe');
-                frame.className = 'th-live-frame';
-                frame.src = shot.dataset.demo;
-                frame.title = 'Live theme demo';
-                shot.appendChild(frame);
-                shot.classList.add('is-live');
-                if (label) label.textContent = 'Close';
-                scaleFrames();
             });
+            if (window.matchMedia('(hover: hover)').matches) {
+                document.addEventListener('mouseover', function (e) {
+                    var shot = e.target.closest('.th-row-shot');
+                    if (!shot || !shot.dataset.demo) return;
+                    clearTimeout(timers.get(shot));
+                    if (shot.classList.contains('is-live') || shot.dataset.muted) return;
+                    timers.set(shot, setTimeout(function () { mount(shot); }, 350));
+                });
+                document.addEventListener('mouseout', function (e) {
+                    var shot = e.target.closest('.th-row-shot');
+                    if (!shot) return;
+                    if (e.relatedTarget && shot.contains(e.relatedTarget)) return;
+                    clearTimeout(timers.get(shot));
+                    delete shot.dataset.muted;
+                    if (shot.dataset.pinned) return;
+                    timers.set(shot, setTimeout(function () { unmount(shot); }, 250));
+                });
+            }
             window.addEventListener('resize', scaleFrames);
         }
     })();
