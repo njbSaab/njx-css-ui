@@ -30,7 +30,21 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
     <PagesTopbar activePage="themes" />
 
     <main class="themes-page tp-page">
-        <!-- HERO: shell with auras, kicker, stats — same language as the njX UI home hero -->
+        <!-- LIVE DEMO: full-width stage above the hero card -->
+        <section class="tp-live-wide">
+            <a class="tp-shot" href={`/themes/${t.slug}/preview`} data-tp-shot data-demo={t.pro?.demo ?? t.demo}>
+                <img src={t.img} alt={`${t.name} home page`} width="1280" height="720" />
+                <span class="tp-shot-hint">Open live preview →</span>
+                {(t.pro?.demo ?? t.demo) && (
+                    <button type="button" class="tp-live-btn" data-tp-live>
+                        <span class="tp-live-dot" />
+                        <span data-tp-live-label>Live</span>
+                    </button>
+                )}
+            </a>
+        </section>
+
+        <!-- HERO: shell with auras and kicker — same language as the njX UI home hero -->
         <section class="tp-shell">
             <div class="tp-hero">
                 <div class="tp-hero-copy">
@@ -73,19 +87,6 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
                             <span class="tag tag-warning"><strong>MIT</strong>&nbsp;· Lite license</span>
                         )}
                     </div>
-                </div>
-
-                <div class="tp-hero-side">
-                    <a class="tp-shot" href={`/themes/${t.slug}/preview`} data-tp-shot data-demo={t.pro?.demo ?? t.demo}>
-                        <img src={t.img} alt={`${t.name} home page`} width="1280" height="720" />
-                        <span class="tp-shot-hint">Open live preview →</span>
-                        {(t.pro?.demo ?? t.demo) && (
-                            <button type="button" class="tp-live-btn" data-tp-live>
-                                <span class="tp-live-dot" />
-                                <span data-tp-live-label>Live</span>
-                            </button>
-                        )}
-                    </a>
                 </div>
             </div>
         </section>
@@ -496,9 +497,14 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
         left: -70px; bottom: -100px; width: 220px; height: 220px;
         background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 16%, transparent), transparent 72%);
     }
+    /* full-width live stage above the hero card */
+    .tp-live-wide {
+        width: min(1180px, 100%);
+        margin: 28px auto 0;
+    }
     .tp-hero {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-columns: 1fr;
         gap: clamp(24px, 3.5vw, 44px);
         padding: clamp(24px, 3.5vw, 40px);
         align-items: center;
@@ -611,7 +617,6 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
     }
     .tp-pill strong { color: var(--color-light); }
 
-    .tp-hero-side { display: grid; gap: 14px; align-content: center; min-width: 0; order: -1; }
     .tp-shot {
         position: relative;
         display: block;
@@ -683,7 +688,7 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
     /* textarea-style resize while the live demo is on — the shot column sits
        on the left, so the native right/down handle grows over the copy */
     .tp-shot.is-live {
-        resize: both;
+        resize: vertical;
         min-width: 320px;
         min-height: 220px;
         z-index: 5;
