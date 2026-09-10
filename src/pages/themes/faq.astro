@@ -196,22 +196,30 @@ const faqLd = JSON.stringify({
     padding: 58px 0 46px;
     position: relative;
   }
-  .faq-page .contact-hero::before {
+  .faq-page {
+    position: relative;
+  }
+  /* full-viewport aura behind the hero — breaks out of the 1080px column */
+  .faq-page::before {
     content: '';
     position: absolute;
-    inset: -40px -60px 0;
+    top: -60px;
+    left: calc(50% - 50vw);
+    width: 100vw;
+    height: 720px;
     background:
       radial-gradient(
-        ellipse 70% 60% at 30% 20%,
-        color-mix(in srgb, var(--color-primary) 22%, transparent),
+        ellipse 60% 55% at 28% 18%,
+        color-mix(in srgb, var(--color-primary) 20%, transparent),
         transparent
       ),
       radial-gradient(
-        ellipse 50% 50% at 80% 80%,
-        color-mix(in srgb, var(--color-accent) 12%, transparent),
+        ellipse 45% 50% at 78% 70%,
+        color-mix(in srgb, var(--color-accent) 11%, transparent),
         transparent
       );
     pointer-events: none;
+    z-index: 0;
   }
   .faq-page .contact-hero > * {
     position: relative;
