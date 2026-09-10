@@ -499,13 +499,19 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         border: 1px solid color-mix(in srgb, var(--color-light) 12%, transparent);
         border-radius: 18px;
         overflow: hidden;
-        background: color-mix(in srgb, var(--color-light) 3%, transparent);
+        background:
+            radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent 42%),
+            radial-gradient(circle at 30% 100%, color-mix(in srgb, var(--color-accent) 6%, transparent), transparent 36%),
+            linear-gradient(150deg, color-mix(in srgb, var(--color-light) 6%, transparent), color-mix(in srgb, var(--color-light) 2%, transparent) 60%);
+        box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-light) 7%, transparent);
         transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
     }
     .th-row:hover {
         border-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
         transform: translateY(-2px);
-        box-shadow: 0 18px 50px color-mix(in srgb, var(--color-primary) 12%, transparent);
+        box-shadow:
+            0 18px 50px color-mix(in srgb, var(--color-primary) 16%, transparent),
+            inset 0 1px 0 color-mix(in srgb, var(--color-light) 7%, transparent);
     }
     .th-row-shot {
         position: relative;
@@ -698,8 +704,8 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         min-height: 292px;
         padding: 22px;
         border-radius: var(--radius-lg);
-        border: 1px solid color-mix(in srgb, #fff 8%, transparent);
-        box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 8%, transparent);
+        border: 1px solid color-mix(in srgb, var(--color-light) 8%, transparent);
+        box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-light) 8%, transparent);
         transition:
             transform 0.18s ease,
             box-shadow 0.18s ease,
@@ -798,11 +804,11 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
     .th-card {
         display: flex;
         flex-direction: column;
-        border: 1px solid color-mix(in srgb, #fff 10%, transparent);
+        border: 1px solid color-mix(in srgb, var(--color-light) 10%, transparent);
         border-radius: 16px;
         overflow: hidden;
-        background: color-mix(in srgb, #fff 3%, transparent);
-        box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 6%, transparent);
+        background: color-mix(in srgb, var(--color-light) 3%, transparent);
+        box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-light) 6%, transparent);
         transition:
             transform 0.2s ease,
             border-color 0.2s ease,
@@ -820,7 +826,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         display: block;
         aspect-ratio: 16/9;
         overflow: hidden;
-        border-bottom: 1px solid color-mix(in srgb, #fff 8%, transparent);
+        border-bottom: 1px solid color-mix(in srgb, var(--color-light) 8%, transparent);
     }
     .th-shot-hint {
         position: absolute;
@@ -991,7 +997,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         text-transform: uppercase;
         padding: 3px 10px;
         border-radius: 999px;
-        border: 1px solid color-mix(in srgb, #fff 16%, transparent);
+        border: 1px solid color-mix(in srgb, var(--color-light) 16%, transparent);
         color: var(--color-muted);
     }
     .th-tags span.is-blue {
@@ -1015,7 +1021,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         margin-top: 16px;
     }
     .th-actions .btn-primary {
-        background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-accent) 55%, var(--color-primary)));
+        background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 85%, #fff), color-mix(in srgb, var(--color-primary) 72%, #000));
         border: 0;
         color: #fff;
         box-shadow: 0 10px 24px color-mix(in srgb, var(--color-primary) 26%, transparent);
@@ -1028,7 +1034,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
     .th-pro {
         margin-top: 16px;
         padding-top: 14px;
-        border-top: 1px dashed color-mix(in srgb, #fff 16%, transparent);
+        border-top: 1px dashed color-mix(in srgb, var(--color-light) 16%, transparent);
         display: flex;
         flex-wrap: wrap;
         align-items: baseline;
@@ -1040,7 +1046,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         font-weight: 800;
         white-space: nowrap;
         color: #fff;
-        background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-accent) 55%, var(--color-primary)));
+        background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 85%, #fff), color-mix(in srgb, var(--color-primary) 72%, #000));
         border-radius: 999px;
         padding: 3px 11px;
         font-size: 11px;
@@ -1122,7 +1128,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
             color-mix(in srgb, var(--color-neutral-600) 28%, transparent);
         border-radius: 22px;
         background: color-mix(in srgb, var(--сolor-dark) 74%, transparent);
-        box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 8%, transparent);
+        box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-light) 8%, transparent);
     }
     .contact-honey {
         position: absolute;
