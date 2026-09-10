@@ -1,59 +1,90 @@
 ---
 // FAQ — licensing, support, updates and customization questions for theme buyers.
+// Built in the main pages' language: contact-hero + library collapse-plus accordions.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PagesTopbar from '../../components/PagesTopbar.astro';
 import PagesFooter from '../../components/PagesFooter.astro';
 
-const faqs = [
+const groups = [
   {
-    q: 'What exactly do I get after purchase?',
-    a: `A zip archive with the complete, unminified source code of the theme (Astro + Tailwind + TypeScript), a DIST-README with setup steps, and the full demo catalog so it runs out of the box. Your license includes <strong>12 months of updates</strong> delivered to your purchase email. No encrypted files, no license keys, no phoning home — the code is fully yours to modify.`,
+    eyebrow: 'Buying & licenses',
+    title: 'What you buy',
+    faqs: [
+      {
+        q: 'What exactly do I get after purchase?',
+        a: `A zip archive with the complete, unminified source code of the theme (Astro + Tailwind + TypeScript), a DIST-README with setup steps, and the full demo catalog so it runs out of the box. Your license includes <strong>12 months of updates</strong> delivered to your purchase email. No encrypted files, no license keys, no phoning home — the code is fully yours to modify.`,
+      },
+      {
+        q: 'What is the difference between Single and Unlimited licenses?',
+        a: `<strong>Single site</strong> — one production website (yours or a client's). <strong>Unlimited</strong> — any number of your own or client projects, forever, plus lifetime updates and priority support. If you build sites for clients regularly, Unlimited pays for itself on the second project.`,
+      },
+      {
+        q: 'What is the difference between Lite and Pro storefronts?',
+        a: `Lite versions are free and open source (MIT) — a complete working storefront you can fork on GitHub. Pro adds the heavy machinery: customer accounts, reviews and Q&amp;A, advanced filters, comparison, journal/blog, richer catalogs, SEO packs and more. The Modern collection has no Lite tier — those are premium-only builds.`,
+      },
+      {
+        q: 'Can I resell or redistribute a theme?',
+        a: `No. Licenses cover building websites with the theme — for yourself or clients — but not reselling, redistributing or repackaging the theme itself (including as part of a site-builder or template collection). Your clients don't need their own license for a site you build them.`,
+      },
+    ],
   },
   {
-    q: 'What is the difference between Single and Unlimited licenses?',
-    a: `<strong>Single site</strong> — one production website (yours or a client's). <strong>Unlimited</strong> — any number of your own or client projects, forever, plus lifetime updates and priority support. If you build sites for clients regularly, Unlimited pays for itself on the second project.`,
+    eyebrow: 'Setup & tech',
+    title: 'Getting it running',
+    faqs: [
+      {
+        q: 'Do I need a Shopify store to use a theme?',
+        a: `No. Every theme ships with a bundled demo catalog and runs fully without any accounts or keys — you can replace the mock data with your own products and use it as a static catalog site. When you want live commerce, two env variables connect your Shopify store: your real products, prices, stock — and Shopify's hosted checkout handles payments, taxes and shipping. Step-by-step: <a href="/themes/docs">documentation</a>.`,
+      },
+      {
+        q: 'What are the technical requirements?',
+        a: `Node.js 18+ to build. The output is a fully static site — host it on Cloudflare Pages, Netlify, Vercel or any static hosting, including the free tiers. No server, no database, no runtime dependencies.`,
+      },
+      {
+        q: 'Which parts of a theme can I customize easily?',
+        a: `The themes are built for rebranding: one <code>@theme</code> block holds all colors, fonts and radii; all texts live in <code>src/constants/</code>; the catalog is a single JSON file; photos are plain files in <code>public/products/</code>. The <a href="/themes/docs">documentation</a> walks through each. Everything beyond that is regular Astro + Tailwind code — no framework lock-in, no black boxes.`,
+      },
+      {
+        q: 'Are the demo photos included?',
+        a: `The demo catalog (including photography sourced from Unsplash under their license) is included so the theme runs instantly. For production you'll replace catalog data and photos with your own products — the docs show where everything lives.`,
+      },
+    ],
   },
   {
-    q: 'What is the difference between Lite and Pro storefronts?',
-    a: `Lite versions are free and open source (MIT) — a complete working storefront you can fork on GitHub. Pro adds the heavy machinery: customer accounts, reviews and Q&amp;A, advanced filters, comparison, journal/blog, richer catalogs, SEO packs and more. The Modern collection has no Lite tier — those are premium-only builds.`,
-  },
-  {
-    q: 'Do I need a Shopify store to use a theme?',
-    a: `No. Every theme ships with a bundled demo catalog and runs fully without any accounts or keys — you can replace the mock data with your own products and use it as a static catalog site. When you want live commerce, two env variables connect your Shopify store: your real products, prices, stock — and Shopify's hosted checkout handles payments, taxes and shipping.`,
-  },
-  {
-    q: 'How do updates work?',
-    a: `When a theme gets fixes or new features, we send the new version to your purchase email with a short changelog. Updates within your license period are free (12 months on Single, lifetime on Unlimited). Because you own the source, updating is a diff-and-merge — the changelog highlights exactly which files changed.`,
-  },
-  {
-    q: 'What does support cover — and will you help me customize?',
-    a: `Support covers <strong>theme defects</strong> (bugs — fixed for everyone in an update) and <strong>setup questions</strong> per the documentation: installing, connecting Shopify, deploying, changing design tokens. We answer within a working day. We are also happy to point you to the right file or approach for a customization you're doing yourself. Custom feature development is not sold on this site.`,
-  },
-  {
-    q: 'Which parts of a theme can I customize easily?',
-    a: `The themes are built for rebranding: one <code>@theme</code> block holds all colors, fonts and radii; all texts live in <code>src/constants/</code>; the catalog is a single JSON file; photos are plain files in <code>public/products/</code>. The <a href="/themes/docs">documentation</a> walks through each. Everything beyond that is regular Astro + Tailwind code — no framework lock-in, no black boxes.`,
-  },
-  {
-    q: 'What are the technical requirements?',
-    a: `Node.js 18+ to build. The output is a fully static site — host it on Cloudflare Pages, Netlify, Vercel or any static hosting, including the free tiers. No server, no database, no runtime dependencies.`,
-  },
-  {
-    q: 'Can I get a refund?',
-    a: `Yes — within <strong>14 days</strong> if the theme has a defect we cannot fix or it does not work as described. Since this is source code that cannot be "returned", we don't refund change-of-mind purchases — please use the live demos and free Lite versions to evaluate before buying. Full policy: <a href="/terms">Terms &amp; Refunds</a>.`,
-  },
-  {
-    q: 'Can I resell or redistribute a theme?',
-    a: `No. Licenses cover building websites with the theme — for yourself or clients — but not reselling, redistributing or repackaging the theme itself (including as part of a site-builder or template collection). Your clients don't need their own license for a site you build them.`,
-  },
-  {
-    q: 'Who processes my payment? Will I get an invoice?',
-    a: `Orders are processed by our Merchant of Record, which handles payment security, VAT/sales tax and invoicing — you'll receive a proper tax invoice by email automatically. We never see your card details.`,
-  },
-  {
-    q: 'Are the demo photos included?',
-    a: `The demo catalog (including photography sourced from Unsplash under their license) is included so the theme runs instantly. For production you'll replace catalog data and photos with your own products — the docs show where everything lives.`,
+    eyebrow: 'Support & policies',
+    title: 'After the purchase',
+    faqs: [
+      {
+        q: 'What does support cover — and will you help me customize?',
+        a: `Support covers <strong>theme defects</strong> (bugs — fixed for everyone in an update) and <strong>setup questions</strong> per the documentation: installing, connecting Shopify, deploying, changing design tokens. We answer within a working day. We are also happy to point you to the right file or approach for a customization you're doing yourself. Custom feature development is not sold on this site.`,
+      },
+      {
+        q: 'How do updates work?',
+        a: `When a theme gets fixes or new features, we send the new version to your purchase email with a short changelog. Updates within your license period are free (12 months on Single, lifetime on Unlimited). Because you own the source, updating is a diff-and-merge — the changelog highlights exactly which files changed.`,
+      },
+      {
+        q: 'Can I get a refund?',
+        a: `Yes — within <strong>14 days</strong> if the theme has a defect we cannot fix or it does not work as described. Since this is source code that cannot be "returned", we don't refund change-of-mind purchases — please use the live demos and free Lite versions to evaluate before buying. Full policy: <a href="/terms">Terms &amp; Refunds</a>.`,
+      },
+      {
+        q: 'Who processes my payment? Will I get an invoice?',
+        a: `Orders are processed by our Merchant of Record, which handles payment security, VAT/sales tax and invoicing — you'll receive a proper tax invoice by email automatically. We never see your card details.`,
+      },
+    ],
   },
 ];
+
+const faqLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: groups.flatMap((g) =>
+    g.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
+    })),
+  ),
+});
 ---
 
 <BaseLayout
@@ -62,104 +93,279 @@ const faqs = [
 >
   <PagesTopbar activePage="faq" />
 
-  <main class="pv-page faq-page">
-    <span class="tag tag-primary">FAQ</span>
-    <h1>Questions, answered honestly</h1>
-    <p class="faq-sub">
-      Everything buyers ask before and after purchase. Not covered here? Write
-      via the <a href="/contact">contact page</a> — we reply within a working
-      day.
-    </p>
+  <main class="themes-page faq-page">
+    <!-- HERO: same language as /themes -->
+    <section class="contact-hero">
+      <div class="contact-hero-copy">
+        <span class="tag tag-primary">FAQ</span>
+        <h1>
+          Questions, <span class="text-main-gradient">answered honestly</span>
+        </h1>
+        <p>
+          Everything buyers ask before and after purchase — licenses, Shopify,
+          updates, support and refunds. Not covered here? We reply within a
+          working day.
+        </p>
+        <div class="contact-actions">
+          <a class="btn btn-primary btn-lg" href="/contact">Ask a question</a>
+          <a class="btn btn-outline btn-lg" href="/themes/docs">Read the docs</a>
+        </div>
+      </div>
 
-    <div class="faq-list">
-      {faqs.map((f) => (
-        <details class="faq-item">
-          <summary>
-            <span>{f.q}</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg>
-          </summary>
-          <div class="faq-a" set:html={f.a} />
-        </details>
-      ))}
-    </div>
+      <aside class="contact-hero-panel" aria-label="Fastest paths">
+        <span class="contact-panel-kicker">Fastest paths</span>
+        <a class="contact-path" href="/themes/docs">
+          <span class="contact-path-icon">📦</span>
+          <span>
+            <strong>Documentation</strong>
+            <small>Install, Shopify hookup, deploy</small>
+          </span>
+          <span class="contact-path-arrow">→</span>
+        </a>
+        <a class="contact-path" href="/themes">
+          <span class="contact-path-icon">◈</span>
+          <span>
+            <strong>Browse themes</strong>
+            <small>Live demos &amp; pricing</small>
+          </span>
+          <span class="contact-path-arrow">→</span>
+        </a>
+        <a class="contact-path" href="/terms">
+          <span class="contact-path-icon">§</span>
+          <span>
+            <strong>Terms &amp; Refunds</strong>
+            <small>The full legal version</small>
+          </span>
+          <span class="contact-path-arrow">→</span>
+        </a>
+      </aside>
+    </section>
+
+    {groups.map((g) => (
+      <section class="faq-group">
+        <span class="sc-eyebrow">{g.eyebrow}</span>
+        <h2 class="faq-group-title">{g.title}</h2>
+        <div class="faq-list">
+          {g.faqs.map((f) => (
+            <details class="collapse collapse-plus">
+              <summary class="collapse-header">
+                {f.q}
+                <span class="collapse-icon"></span>
+              </summary>
+              <div class="collapse-body" set:html={f.a} />
+            </details>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <!-- closing CTA -->
+    <section class="faq-cta card-aura card-aura-primary">
+      <div>
+        <h2>Still deciding?</h2>
+        <p>
+          Every theme has a full live demo — click everything, open the
+          account, run the filters. The storefronts also have free Lite
+          versions to try in your own editor.
+        </p>
+      </div>
+      <div class="faq-cta-actions">
+        <a class="btn btn-primary" href="/themes">Browse themes</a>
+        <a class="btn btn-outline" href="/contact">Contact us</a>
+      </div>
+    </section>
   </main>
 
   <PagesFooter />
+  <script type="application/ld+json" set:html={faqLd} />
 </BaseLayout>
 
 <style is:global>
-  .pv-page {
-    width: min(760px, 100%);
+  .faq-page {
+    width: min(1080px, 100%);
     margin-inline: auto;
-    padding: 48px 20px 96px;
+    padding: 0 20px 96px;
   }
-  .pv-page h1 {
-    margin-top: 14px;
-    font-family: 'Poppins', sans-serif;
-    font-size: clamp(28px, 4vw, 40px);
+
+  /* ── hero (contact-page pattern) ── */
+  .faq-page .contact-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+    padding: 58px 0 46px;
+  }
+  .faq-page .contact-hero-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 0;
+    position: relative;
+  }
+  .faq-page .contact-hero-copy::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -18px;
+    width: min(420px, 70%);
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      var(--color-primary),
+      color-mix(in srgb, var(--color-accent) 70%, transparent),
+      transparent
+    );
+    pointer-events: none;
+  }
+  .faq-page .contact-hero h1 {
+    margin: 20px 0 0;
+    max-width: 720px;
+    font-size: clamp(40px, 5.5vw, 64px);
+    line-height: 1.02;
+    font-weight: 950;
+  }
+  .faq-page .contact-hero p {
+    max-width: 560px;
+    margin: 22px 0 0;
+    color: var(--color-muted);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+  .faq-page .contact-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  .faq-page .contact-hero-panel {
+    display: grid;
+    gap: 12px;
+    padding: 8px 0 8px 18px;
+    border-left: 1px solid color-mix(in srgb, var(--color-primary) 24%, transparent);
+  }
+  .faq-page .contact-panel-kicker {
+    color: var(--color-primary);
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+  .faq-page .contact-path {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) 34px;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 0;
+    border: 1px solid color-mix(in srgb, var(--color-neutral-600) 20%, transparent);
+    border-width: 0 0 1px;
+    background: transparent;
+    color: var(--color-light);
+    text-decoration: none;
+    transition: transform 0.18s ease, color 0.18s ease;
+  }
+  .faq-page .contact-path:hover {
+    transform: translateX(4px);
+    color: var(--color-primary);
+  }
+  .faq-page .contact-path-icon,
+  .faq-page .contact-path-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--color-primary) 11%, transparent);
+    color: var(--color-primary);
+    font-size: 13px;
+    font-weight: 950;
+  }
+  .faq-page .contact-path-arrow {
+    justify-self: end;
+    background: transparent;
+    color: var(--color-muted);
+    font-size: 20px;
+  }
+  .faq-page .contact-path strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 900;
+  }
+  .faq-page .contact-path small {
+    display: block;
+    margin-top: 2px;
+    color: var(--color-muted);
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  /* ── grouped accordions on the library collapse component ── */
+  .faq-group {
+    margin-top: 44px;
+  }
+  .faq-group-title {
+    margin: 6px 0 18px;
+    font-size: clamp(24px, 3vw, 32px);
     font-weight: 900;
     color: var(--color-light);
   }
-  .faq-sub {
-    margin-top: 10px;
-    color: var(--color-muted);
-    font-size: 15px;
-    line-height: 1.7;
-  }
-  .faq-sub a,
-  .faq-a a {
-    color: var(--color-primary);
-  }
   .faq-list {
-    margin-top: 30px;
-    display: grid;
-    gap: 10px;
+    max-width: 860px;
   }
-  .faq-item {
-    border: 1px solid color-mix(in srgb, var(--color-light) 12%, transparent);
-    border-radius: 14px;
-    background: color-mix(in srgb, var(--color-light) 3%, transparent);
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-  .faq-item[open],
-  .faq-item:hover {
-    border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
-  }
-  .faq-item summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 16px 20px;
-    cursor: pointer;
-    font-weight: 700;
+  .faq-page details.collapse > summary.collapse-header {
     font-size: 15px;
-    color: var(--color-light);
-    list-style: none;
+    padding: 16px 20px;
   }
-  .faq-item summary::-webkit-details-marker {
-    display: none;
-  }
-  .faq-item summary svg {
-    flex: none;
-    color: var(--color-muted);
-    transition: transform 0.25s;
-  }
-  .faq-item[open] summary svg {
-    transform: rotate(180deg);
+  .faq-page .collapse-body a {
     color: var(--color-primary);
   }
-  .faq-a {
-    padding: 0 20px 18px;
-    color: var(--color-muted);
-    font-size: 14.5px;
-    line-height: 1.75;
-  }
-  .faq-a code {
+  .faq-page .collapse-body code {
     font-size: 13px;
     background: color-mix(in srgb, var(--color-light) 8%, transparent);
     border-radius: 5px;
     padding: 1px 6px;
+  }
+  .faq-page details.collapse[open] {
+    border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+    box-shadow: 0 12px 40px color-mix(in srgb, var(--color-primary) 10%, transparent);
+  }
+
+  /* ── closing CTA ── */
+  .faq-cta {
+    margin-top: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 30px 34px;
+    border-radius: 18px;
+  }
+  .faq-cta h2 {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--color-light);
+  }
+  .faq-cta p {
+    margin-top: 8px;
+    max-width: 560px;
+    color: var(--color-muted);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .faq-cta-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 900px) {
+    .faq-page .contact-hero {
+      grid-template-columns: 1fr;
+      padding-top: 40px;
+    }
+    .faq-page .contact-hero-panel {
+      border-left: 0;
+      padding-left: 0;
+    }
   }
 </style>
