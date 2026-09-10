@@ -127,12 +127,6 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                                         <span class="th-price-note">MIT · open source</span>
                                     </div>
                                 )}
-                            </div>
-                            <div class="th-row-stage">
-                                <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
-                                    <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
-                                    <span class="th-shot-hint">Open theme →</span>
-                                </a>
                                 <div class="th-row-actions">
                                     <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>{t.pro ? 'Get this theme →' : 'Open theme →'}</a>
                                     <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
@@ -141,6 +135,12 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                                         Free Lite on GitHub
                                     </a>
                                 </div>
+                            </div>
+                            <div class="th-row-stage">
+                                <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
+                                    <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
+                                    <span class="th-shot-hint">Open theme →</span>
+                                </a>
                             </div>
                         </article>
                     ))
@@ -645,6 +645,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         align-items: center;
         gap: 10px;
         flex-wrap: wrap;
+        margin-top: 12px;
     }
     .th-buy {
         display: inline-flex;
@@ -719,8 +720,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
             box-shadow: none;
         }
         .th-row:hover .th-row-shot { transform: none; box-shadow: none; }
-        .th-row-actions { padding: 0 20px; }
-        .th-row-body { padding: 0 20px; }
+        .th-row-body { padding: 0 20px 4px; }
         .th-buy { justify-content: center; }
     }
     /* ── service cards (contact-grid pattern) ── */
