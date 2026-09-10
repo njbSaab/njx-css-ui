@@ -76,9 +76,15 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
                 </div>
 
                 <div class="tp-hero-side">
-                    <a class="tp-shot" href={`/themes/${t.slug}/preview`}>
+                    <a class="tp-shot" href={`/themes/${t.slug}/preview`} data-tp-shot data-demo={t.pro?.demo ?? t.demo}>
                         <img src={t.img} alt={`${t.name} home page`} width="1280" height="720" />
                         <span class="tp-shot-hint">Open live preview →</span>
+                        {(t.pro?.demo ?? t.demo) && (
+                            <button type="button" class="tp-live-btn" data-tp-live>
+                                <span class="tp-live-dot" />
+                                <span data-tp-live-label>Live</span>
+                            </button>
+                        )}
                     </a>
                     {t.stats && (
                         <div class="tp-stats">
@@ -266,6 +272,94 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
 </BaseLayout>
 
 <script is:inline>
+    // Auto live demo in the hero shot: mounts ~1s after page load, unmounts
+    // whenever the user is "gone" — tab hidden or shot scrolled out of view —
+    // and comes back when they return. The button is a manual kill switch.
+    (function () {
+        function getShot() { return document.querySelector('[data-tp-shot]'); }
+        function setLabel(shot, text) {
+            var l = shot.querySelector('[data-tp-live-label]');
+            if (l) l.textContent = text;
+        }
+        function scaleFrame(shot) {
+            var f = shot.querySelector('.tp-live-frame');
+            if (f) f.style.transform = 'scale(' + shot.clientWidth / 1280 + ')';
+        }
+        function mount(shot) {
+            if (!shot.dataset.demo || shot.classList.contains('is-live')) return;
+            var loading = document.createElement('span');
+            loading.className = 'tp-live-loading';
+            loading.innerHTML = '<span class="tp-live-spinner"></span>Loading live demo…';
+            shot.appendChild(loading);
+            var frame = document.createElement('iframe');
+            frame.className = 'tp-live-frame';
+            frame.src = shot.dataset.demo;
+            frame.title = 'Live theme demo';
+            frame.addEventListener('load', function () {
+                frame.classList.add('is-ready');
+                setTimeout(function () { loading.remove(); }, 350);
+            });
+            shot.appendChild(frame);
+            shot.classList.add('is-live');
+            setLabel(shot, 'Close');
+            scaleFrame(shot);
+        }
+        function unmount(shot) {
+            shot.querySelectorAll('.tp-live-frame, .tp-live-loading').forEach(function (n) { n.remove(); });
+            shot.classList.remove('is-live');
+            setLabel(shot, 'Live');
+        }
+        function sync(shot) {
+            var wanted = !document.hidden && shot.dataset.inView === '1' && !shot.dataset.muted;
+            if (wanted) mount(shot);
+            else unmount(shot);
+        }
+        function setup() {
+            var shot = getShot();
+            if (!shot || !shot.dataset.demo || shot.dataset.liveInit) return;
+            shot.dataset.liveInit = '1';
+            shot.dataset.inView = '1';
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(function (entries) {
+                    shot.dataset.inView = entries[0].isIntersecting ? '1' : '';
+                    if (shot.dataset.started) sync(shot);
+                }, { threshold: 0.25 }).observe(shot);
+            }
+            setTimeout(function () {
+                shot.dataset.started = '1';
+                sync(shot);
+            }, 1000);
+        }
+        if (!window.__tpLiveBound) {
+            window.__tpLiveBound = true;
+            document.addEventListener('click', function (e) {
+                var btn = e.target.closest && e.target.closest('[data-tp-live]');
+                if (!btn) return;
+                e.preventDefault();
+                e.stopPropagation();
+                var shot = btn.closest('[data-tp-shot]');
+                if (shot.classList.contains('is-live')) {
+                    shot.dataset.muted = '1';
+                    unmount(shot);
+                } else {
+                    delete shot.dataset.muted;
+                    mount(shot);
+                }
+            });
+            document.addEventListener('visibilitychange', function () {
+                var shot = getShot();
+                if (shot && shot.dataset.started) sync(shot);
+            });
+            window.addEventListener('resize', function () {
+                var shot = getShot();
+                if (shot) scaleFrame(shot);
+            });
+            document.addEventListener('astro:page-load', setup);
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+        else setup();
+    })();
+
     // Delegated: survives View Transitions swaps (direct listeners are lost on client-side nav)
     if (!window.__tpMoreBound) {
         window.__tpMoreBound = true;
@@ -551,6 +645,85 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
         transition: opacity 0.2s ease;
     }
     .tp-shot:hover .tp-shot-hint { opacity: 1; }
+    /* auto live demo inside the hero shot */
+    .tp-live-btn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 4;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 8px 15px;
+        border: 1px solid rgb(255 255 255 / 0.25);
+        border-radius: 999px;
+        background: rgb(0 0 0 / 0.55);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color: #fff;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.4px;
+        cursor: pointer;
+        transition: background 0.2s, border-color 0.2s;
+    }
+    .tp-live-btn:hover {
+        background: color-mix(in srgb, var(--color-primary) 60%, rgb(0 0 0 / 0.6));
+        border-color: color-mix(in srgb, var(--color-primary) 70%, transparent);
+    }
+    .tp-live-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #22c55e;
+        box-shadow: 0 0 10px #22c55e;
+    }
+    .tp-shot.is-live .tp-live-dot { background: #f87171; box-shadow: 0 0 10px #f87171; }
+    .tp-shot.is-live .tp-shot-hint { display: none; }
+    .tp-live-loading {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        background: rgb(0 0 0 / 0.5);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        animation: tpFadeIn 0.2s ease both;
+    }
+    .tp-live-spinner {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 3px solid rgb(255 255 255 / 0.22);
+        border-top-color: var(--color-primary);
+        animation: tpSpin 0.7s linear infinite;
+    }
+    @keyframes tpSpin { to { transform: rotate(360deg); } }
+    @keyframes tpFadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .tp-live-frame {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        width: 1280px;
+        height: 720px;
+        border: 0;
+        transform-origin: 0 0;
+        background: #0b0d12;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+    }
+    .tp-live-frame.is-ready { opacity: 1; }
     .tp-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
     .tp-stat {
         padding: 14px 12px;
