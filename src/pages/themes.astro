@@ -139,9 +139,15 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                                 </div>
                             </div>
                             <div class="th-row-stage">
-                                <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
+                                <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`} data-demo={t.demo}>
                                     <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
                                     <span class="th-shot-hint">Open theme →</span>
+                                    {t.demo && (
+                                        <button type="button" class="th-live-btn" data-th-live>
+                                            <span class="th-live-dot" />
+                                            <span data-th-live-label>Live</span>
+                                        </button>
+                                    )}
                                 </a>
                             </div>
                         </article>
@@ -196,9 +202,15 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                                 </div>
                             </div>
                             <div class="th-row-stage">
-                                <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
+                                <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`} data-demo={t.demo}>
                                     <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
                                     <span class="th-shot-hint">Open theme →</span>
+                                    {t.demo && (
+                                        <button type="button" class="th-live-btn" data-th-live>
+                                            <span class="th-live-dot" />
+                                            <span data-th-live-label>Live</span>
+                                        </button>
+                                    )}
                                 </a>
                             </div>
                         </article>
@@ -254,9 +266,15 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                                 </div>
                             </div>
                             <div class="th-row-stage">
-                                <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`}>
+                                <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`} data-demo={t.demo}>
                                     <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
                                     <span class="th-shot-hint">Open theme →</span>
+                                    {t.demo && (
+                                        <button type="button" class="th-live-btn" data-th-live>
+                                            <span class="th-live-dot" />
+                                            <span data-th-live-label>Live</span>
+                                        </button>
+                                    )}
                                 </a>
                             </div>
                         </article>
@@ -564,6 +582,53 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         position: absolute;
         left: 14px;
         bottom: 12px;
+    }
+    /* live in-card preview: facade button + scaled-down real demo */
+    .th-live-btn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 3;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 8px 15px;
+        border: 1px solid rgb(255 255 255 / 0.25);
+        border-radius: 999px;
+        background: rgb(0 0 0 / 0.55);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color: #fff;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.4px;
+        cursor: pointer;
+        transition: background 0.2s, border-color 0.2s;
+    }
+    .th-live-btn:hover {
+        background: color-mix(in srgb, var(--color-primary) 60%, rgb(0 0 0 / 0.6));
+        border-color: color-mix(in srgb, var(--color-primary) 70%, transparent);
+    }
+    .th-live-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #22c55e;
+        box-shadow: 0 0 10px #22c55e;
+    }
+    .th-row-shot.is-live .th-live-dot { background: #f87171; box-shadow: 0 0 10px #f87171; }
+    .th-row-shot.is-live .th-shot-hint { display: none; }
+    .th-live-frame {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 1280px;
+        height: 720px;
+        border: 0;
+        transform-origin: 0 0;
+        background: #0b0d12;
     }
     .th-row-body {
         position: relative;
@@ -1338,5 +1403,42 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', moveGlider);
         else moveGlider();
         window.addEventListener('load', moveGlider);
+    })();
+
+    // live in-card demo preview — swap the screenshot for a scaled iframe
+    (function () {
+        function scaleFrames() {
+            document.querySelectorAll('.th-live-frame').forEach(function (f) {
+                var shot = f.closest('.th-row-shot');
+                if (shot) f.style.transform = 'scale(' + shot.clientWidth / 1280 + ')';
+            });
+        }
+        if (!window.__thLiveBound) {
+            window.__thLiveBound = true;
+            document.addEventListener('click', function (e) {
+                var btn = e.target.closest('[data-th-live]');
+                if (!btn) return;
+                e.preventDefault();
+                e.stopPropagation();
+                var shot = btn.closest('.th-row-shot');
+                var label = btn.querySelector('[data-th-live-label]');
+                var frame = shot.querySelector('.th-live-frame');
+                if (frame) {
+                    frame.remove();
+                    shot.classList.remove('is-live');
+                    if (label) label.textContent = 'Live';
+                    return;
+                }
+                frame = document.createElement('iframe');
+                frame.className = 'th-live-frame';
+                frame.src = shot.dataset.demo;
+                frame.title = 'Live theme demo';
+                shot.appendChild(frame);
+                shot.classList.add('is-live');
+                if (label) label.textContent = 'Close';
+                scaleFrames();
+            });
+            window.addEventListener('resize', scaleFrames);
+        }
     })();
 </script>
