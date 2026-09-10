@@ -39,7 +39,15 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
                     <h1 class="tp-title">
                         astro-njx-<strong>{nameTail}</strong>
                     </h1>
-                    <p class="tp-text">{t.longDesc}</p>
+                    <div class:list={['tp-hero-desc', t.longDesc.length > 380 && 'is-clamped']} data-hero-desc>
+                        <p class="tp-text">{t.longDesc}</p>
+                    </div>
+                    {t.longDesc.length > 380 && (
+                        <button type="button" class="tp-more" data-hero-more>
+                            <span data-more-label>Read the full tour</span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+                        </button>
+                    )}
                     <div class="tp-actions">
                         <a class="tp-btn tp-btn-primary" href={`/themes/${t.slug}/preview`}>
                             Live preview
@@ -269,6 +277,22 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
             if (!card || !label) return;
             if (!btn.dataset.fullLabel) btn.dataset.fullLabel = label.textContent;
             var open = card.classList.toggle('is-open');
+            label.textContent = open ? 'Show less' : btn.dataset.fullLabel;
+        });
+    }
+
+    // Hero long-copy toggle — delegated, same pattern as the price accordion
+    if (!window.__tpHeroMoreBound) {
+        window.__tpHeroMoreBound = true;
+        document.addEventListener('click', function (e) {
+            var btn = e.target.closest && e.target.closest('[data-hero-more]');
+            if (!btn) return;
+            var desc = document.querySelector('[data-hero-desc]');
+            var label = btn.querySelector('[data-more-label]');
+            if (!desc || !label) return;
+            if (!btn.dataset.fullLabel) btn.dataset.fullLabel = label.textContent;
+            var open = desc.classList.toggle('is-open');
+            btn.classList.toggle('is-open', open);
             label.textContent = open ? 'Show less' : btn.dataset.fullLabel;
         });
     }
@@ -635,6 +659,25 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
     }
     .tp-price-card li::before { content: '✓'; position: absolute; left: 0; color: var(--color-primary); font-weight: 900; }
     /* feature accordion: clamp + fade, chevron toggle */
+    /* hero long-copy: clamp + fade, same pattern as price features */
+    .tp-hero-desc.is-clamped {
+        position: relative;
+        max-height: 148px;
+        overflow: hidden;
+    }
+    .tp-hero-desc.is-clamped::after {
+        content: '';
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        height: 64px;
+        background: linear-gradient(transparent, var(--color-bg, #0b0d12));
+        pointer-events: none;
+    }
+    .tp-hero-desc.is-clamped.is-open { max-height: none; }
+    .tp-hero-desc.is-clamped.is-open::after { display: none; }
+    [data-hero-more].is-open svg { transform: rotate(180deg); }
+
     .tp-features.is-clamped {
         position: relative;
         max-height: 296px;
