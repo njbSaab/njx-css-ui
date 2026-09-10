@@ -125,7 +125,7 @@ const ogImageURL = new URL('/img/og-image.png', Astro.site);
                         window.njxTrack && njxTrack('theme_change', { theme: t });
                     };
                 }
-                // github_click / donate_click: делегирование на все внешние ссылки
+                // github_click: делегирование на все внешние ссылки
                 document.addEventListener(
                     'click',
                     function (e) {
@@ -134,8 +134,6 @@ const ogImageURL = new URL('/img/og-image.png', Astro.site);
                         var href = a.href || '';
                         if (href.indexOf('github.com/njbSaab') !== -1) {
                             njxTrack('github_click', { link_url: href });
-                        } else if (href.indexOf('ko-fi.com') !== -1) {
-                            njxTrack('donate_click', { link_url: href });
                         }
                     },
                     true
