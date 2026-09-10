@@ -7,8 +7,11 @@ interface Props {
     | 'examples'
     | 'overview'
     | 'themes'
+    | 'docs'
     | 'donate'
-    | 'contact';
+    | 'contact'
+    | 'terms'
+    | 'privacy';
 }
 import { LIB_VERSION } from '../lib/meta';
 const { activePage } = Astro.props;
@@ -231,10 +234,10 @@ const storeMode = !!import.meta.env.PUBLIC_STORE_MODE;
     {storeMode ? (
       <>
         <a href={`${base}themes`} class={activePage === 'themes' ? 'active' : ''}>Themes</a>
-        <a href={`${base}themes/docs`}>Docs</a>
+        <a href={`${base}themes/docs`} class={activePage === 'docs' ? 'active' : ''}>Docs</a>
         <a href={`${base}contact`} class={activePage === 'contact' ? 'active' : ''}>Contact</a>
-        <a href={`${base}terms`}>Terms &amp; Refunds</a>
-        <a href={`${base}privacy`}>Privacy</a>
+        <a href={`${base}terms`} class={activePage === 'terms' ? 'active' : ''}>Terms &amp; Refunds</a>
+        <a href={`${base}privacy`} class={activePage === 'privacy' ? 'active' : ''}>Privacy</a>
       </>
     ) : (
       <>

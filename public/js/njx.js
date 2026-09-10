@@ -280,6 +280,7 @@ function showToast(msg, type, duration) {
   var timer = setTimeout(function() {
     toast.classList.add('out');
     toast.addEventListener('animationend', function() { toast.remove(); }, { once: true });
+    setTimeout(function() { toast.remove(); }, 400); // fallback if the out-animation never fires
   }, duration);
 
   toast.addEventListener('click', function() {
