@@ -8,7 +8,7 @@ const base = import.meta.env.BASE_URL;
 
 <BaseLayout
     title="Astro Ecommerce Themes & Shopify Templates — Free & Pro | njX"
-    description="Free open-source Astro ecommerce themes and Shopify storefront templates: headless Shopify-ready storefronts plus landing page themes. Fork on GitHub, rebrand in two files, deploy free. Pro versions and setup service coming soon."
+    description="Free open-source Astro ecommerce themes and Shopify storefront templates: headless Shopify-ready storefronts plus landing page themes. Fork on GitHub, rebrand in two files, deploy free. Pro and premium licenses available."
 >
     <PagesTopbar activePage="themes" />
 
@@ -27,11 +27,11 @@ const base = import.meta.env.BASE_URL;
                     files, deploy for free.
                 </p>
                 <div class="contact-actions">
-                    <a class="btn btn-primary btn-lg" href="#brief">
-                        Start your project brief
+                    <a class="btn btn-primary btn-lg" href="#modern">
+                        Browse premium themes
                     </a>
                     <a class="btn btn-outline btn-lg" href="#storefronts">
-                        Browse themes
+                        Free storefronts
                     </a>
                 </div>
             </div>
@@ -62,82 +62,7 @@ const base = import.meta.env.BASE_URL;
                     </span>
                     <span class="contact-path-arrow">→</span>
                 </a>
-                <a class="contact-path" href="#brief">
-                    <span class="contact-path-icon">✉</span>
-                    <span>
-                        <strong>Project brief</strong>
-                        <small>Pro, setup or custom — get a quote</small>
-                    </span>
-                    <span class="contact-path-arrow">→</span>
-                </a>
             </aside>
-        </section>
-
-        <!-- SERVICE CARDS: what you can pay for -->
-        <section class="contact-grid" aria-label="Services">
-            <article class="contact-card card-aura card-aura-primary">
-                <div class="contact-icon">PRO</div>
-                <div>
-                    <h2>Pro versions</h2>
-                    <p>
-                        Reviews, customer accounts, richer catalog, SEO pack —
-                        everything the free themes leave for later. One
-                        license, lifetime demo parity.
-                    </p>
-                </div>
-                <div class="contact-card-actions">
-                    <a class="btn btn-primary btn-sm" href="#brief">Get notified</a>
-                    <span>from $59 · coming soon</span>
-                </div>
-            </article>
-
-            <article class="contact-card card-aura card-aura-aurora">
-                <div class="contact-icon">⚙</div>
-                <div>
-                    <h2>Setup service</h2>
-                    <p>
-                        We connect the theme to your live Shopify store:
-                        catalog, tokens, checkout, deploy to Cloudflare Pages —
-                        ready in one working day.
-                    </p>
-                </div>
-                <div class="contact-card-actions">
-                    <a class="btn btn-outline btn-sm" href="#brief">Request setup</a>
-                    <span>$99–149 · 1 day</span>
-                </div>
-            </article>
-
-            <article class="contact-card card-aura card-aura-cosmic">
-                <div class="contact-icon">🎨</div>
-                <div>
-                    <h2>Branding package</h2>
-                    <p>
-                        Your colors, fonts, logo and copy applied through the
-                        theme's design tokens and constants — a store that
-                        looks like yours, not like a template.
-                    </p>
-                </div>
-                <div class="contact-card-actions">
-                    <a class="btn btn-outline btn-sm" href="#brief">Request branding</a>
-                    <span>$199–249</span>
-                </div>
-            </article>
-
-            <article class="contact-card card-aura card-aura-ocean">
-                <div class="contact-icon">＋</div>
-                <div>
-                    <h2>Custom work</h2>
-                    <p>
-                        New sections, integrations, features beyond the theme —
-                        scoped and quoted from your brief before any work
-                        starts.
-                    </p>
-                </div>
-                <div class="contact-card-actions">
-                    <a class="btn btn-primary btn-sm" href="#brief">Describe the task</a>
-                    <span>from $80/hour</span>
-                </div>
-            </article>
         </section>
 
         <!-- CATEGORY TABS -->
@@ -309,85 +234,6 @@ const base = import.meta.env.BASE_URL;
         </section>
 
         <!-- BRIEF FORM (contact-form-card pattern) -->
-        <section class="contact-form-card" id="brief">
-            <div class="contact-form-copy">
-                <span class="tag tag-success">Project brief</span>
-                <h2>Tell us about your store</h2>
-                <p>
-                    Pro versions, Shopify setup, branding or custom work — the
-                    more you tell us, the more precise the first reply, usually
-                    within a day. If the service is unavailable, the form opens
-                    your mail app with a prepared draft.
-                </p>
-                <div class="contact-form-points">
-                    <span>Reply within a day</span>
-                    <span>No-obligation quote</span>
-                    <span>Private by default</span>
-                </div>
-            </div>
-
-            <form class="contact-form" id="briefForm">
-                <input id="briefCompany" name="company" type="text" autocomplete="off" tabindex="-1" aria-hidden="true" class="contact-honey" />
-                <label>
-                    What do you need
-                    <select id="briefNeed" name="need">
-                        <option value="Pro version">Pro version (when it ships)</option>
-                        <option value="Setup service">Setup — connect my Shopify store</option>
-                        <option value="Branding package">Branding — colors, fonts, logo, copy</option>
-                        <option value="Custom work">Custom work / new features</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </label>
-                <label>
-                    Theme
-                    <select id="briefTheme" name="theme">
-                        <option value="astro-njx-dark-lux">astro-njx-dark-lux</option>
-                        <option value="astro-njx-verdant">astro-njx-verdant</option>
-                        <option value="astro-njx-boutique">astro-njx-boutique</option>
-                        <option value="astro-njx-store">astro-njx-store</option>
-                        <option value="landing themes">Landing theme (saas / portfolio / launch)</option>
-                        <option value="not sure">Not sure yet — advise me</option>
-                    </select>
-                </label>
-                <label>
-                    Your email
-                    <input id="briefReply" name="reply" type="email" placeholder="you@example.com" />
-                </label>
-                <label>
-                    Store platform
-                    <select id="briefPlatform" name="platform">
-                        <option value="Shopify — live store">Shopify — live store</option>
-                        <option value="Shopify — starting now">Shopify — starting now</option>
-                        <option value="No store yet">No store yet</option>
-                        <option value="Other platform">Other platform</option>
-                    </select>
-                </label>
-                <label>
-                    Budget
-                    <select id="briefBudget" name="budget">
-                        <option value="$50–150">$50–150</option>
-                        <option value="$150–500">$150–500</option>
-                        <option value="$500–1500">$500–1500</option>
-                        <option value="$1500+">$1500+</option>
-                        <option value="Not sure">Not sure yet</option>
-                    </select>
-                </label>
-                <label>
-                    Timeline
-                    <select id="briefTimeline" name="timeline">
-                        <option value="ASAP">ASAP</option>
-                        <option value="2–4 weeks">2–4 weeks</option>
-                        <option value="Flexible">Flexible</option>
-                    </select>
-                </label>
-                <label class="full">
-                    About the project
-                    <textarea id="briefMessage" name="message" rows="6" placeholder="What do you sell? Links to your current store, references, must-have features…"></textarea>
-                </label>
-                <button class="btn btn-success btn-lg" type="submit">Send the brief</button>
-                <p class="contact-form-status" id="briefFormStatus" role="status"></p>
-            </form>
-        </section>
 
         <!-- Star tip -->
         <section class="contact-tips card-glass">
@@ -1161,86 +1007,5 @@ const base = import.meta.env.BASE_URL;
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', moveGlider);
         else moveGlider();
         window.addEventListener('load', moveGlider);
-    })();
-</script>
-<script is:inline>
-    (function () {
-        var form = document.getElementById('briefForm');
-        if (!form) return;
-        var statusEl = document.getElementById('briefFormStatus');
-        var email = 'support@njxui.dev';
-        function val(id) {
-            var el = document.getElementById(id);
-            return el ? el.value.trim() : '';
-        }
-        function setStatus(text, kind) {
-            statusEl.textContent = text;
-            statusEl.classList.toggle('is-success', kind === 'ok');
-            statusEl.classList.toggle('is-error', kind === 'error');
-        }
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            var need = val('briefNeed');
-            var summary = [
-                'Need: ' + need,
-                'Theme: ' + val('briefTheme'),
-                'Platform: ' + val('briefPlatform'),
-                'Budget: ' + val('briefBudget'),
-                'Timeline: ' + val('briefTimeline'),
-                '',
-                val('briefMessage') || '(no message)',
-            ].join('\n');
-            var reply = val('briefReply');
-            if (!reply) {
-                setStatus('Please add your email so we can reply.', 'error');
-                return;
-            }
-            var btn = form.querySelector('button[type=submit]');
-            if (btn) btn.disabled = true;
-            setStatus('Sending…', '');
-            fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    topic: 'Theme brief — ' + need,
-                    replyEmail: reply,
-                    message: summary,
-                    company: val('briefCompany'),
-                }),
-            })
-                .then(function (r) {
-                    return r
-                        .json()
-                        .catch(function () {
-                            return { ok: false };
-                        })
-                        .then(function (d) {
-                            if (!r.ok || !d.ok) throw new Error('send failed');
-                            setStatus(
-                                'Brief sent — we reply within a day ✓',
-                                'ok'
-                            );
-                            form.reset();
-                        });
-                })
-                .catch(function () {
-                    setStatus(
-                        'Service unavailable — opening your mail app…',
-                        'error'
-                    );
-                    window.location.href =
-                        'mailto:' +
-                        email +
-                        '?subject=' +
-                        encodeURIComponent('njX Themes — brief: ' + need) +
-                        '&body=' +
-                        encodeURIComponent(
-                            summary + '\n\nReply email: ' + reply
-                        );
-                })
-                .finally(function () {
-                    if (btn) btn.disabled = false;
-                });
-        });
     })();
 </script>

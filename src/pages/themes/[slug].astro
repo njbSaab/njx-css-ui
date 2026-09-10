@@ -2,20 +2,20 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PagesTopbar from '../../components/PagesTopbar.astro';
 import PagesFooter from '../../components/PagesFooter.astro';
-import { ALL_THEMES, SERVICES } from '../../data/themesCatalog';
+import { ALL_THEMES } from '../../data/themesCatalog';
 
 export function getStaticPaths() {
   return ALL_THEMES.map((t) => ({ params: { slug: t.slug }, props: { theme: t } }));
 }
 
 const { theme: t } = Astro.props;
-const briefHref = `/themes#brief`;
+const briefHref = 'mailto:support@njxui.dev?subject=Theme%20license%20question';
 const nameParts = t.name.split('-');
 const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
 
 // Payments: when Lemon Squeezy checkout URLs land in CF Pages env
 // (PUBLIC_LS_DARK_LUX_SINGLE / PUBLIC_LS_DARK_LUX_UNLIMITED etc.),
-// Buy buttons switch from the brief form to real checkout — no code changes.
+// Buy buttons switch from the contact fallback to real checkout — no code changes.
 const envKey = t.slug.toUpperCase().replace(/-/g, '_');
 const buySingleHref = import.meta.env[`PUBLIC_LS_${envKey}_SINGLE`] || briefHref;
 const buyUnlimitedHref = import.meta.env[`PUBLIC_LS_${envKey}_UNLIMITED`] || briefHref;
@@ -155,26 +155,8 @@ const checkoutLive = buySingleHref !== briefHref;
                 )}
             </div>
             <p class="tp-support-note">
-                Support covers theme defects and setup per the docs. Custom feature work is quoted separately — see services below.
+                Support covers theme defects and setup per the included docs.
             </p>
-        </section>
-
-        <!-- Services -->
-        <section class="tp-section">
-            <h2 class="tp-h2">Services</h2>
-            <div class="tp-services">
-                {SERVICES.map((s, i) => (
-                    <article class:list={['contact-card card-aura tp-service', ['card-aura-aurora', 'card-aura-cosmic', 'card-aura-ocean'][i % 3]]}>
-                        <div>
-                            <h3 class="tp-service-name">{s.name} <span>{s.price}</span></h3>
-                            <p class="tp-service-desc">{s.desc}</p>
-                        </div>
-                        <div class="contact-card-actions">
-                            <a href={briefHref} class="btn btn-outline btn-sm">Request</a>
-                        </div>
-                    </article>
-                ))}
-            </div>
         </section>
 
         <!-- CTA -->
@@ -183,14 +165,13 @@ const checkoutLive = buySingleHref !== briefHref;
                 <span class="tp-kicker">We reply within a day</span>
                 <h2>Questions before buying?</h2>
                 <p>
-                    Licensing, Shopify specifics, a feature you need — send a short
-                    brief and we reply within a day with honest answers and a quote
-                    if custom work is involved.
+                    Licensing or Shopify specifics — email us and we reply within
+                    a day with honest answers.
                 </p>
             </div>
             <div class="tp-cta-actions">
                 <a href={briefHref} class="tp-btn tp-btn-primary tp-btn-block">
-                    Ask / start a brief
+                    Email support@njxui.dev
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                 </a>
                 <a href={`/themes/${t.slug}/preview`} class="tp-btn tp-btn-ghost tp-btn-block">Open live preview</a>

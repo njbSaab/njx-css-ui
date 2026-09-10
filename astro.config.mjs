@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
+  redirects: { '/donate': '/' },
   site: 'https://njxui.dev',
   output: 'static',
   devToolbar: { enabled: false },

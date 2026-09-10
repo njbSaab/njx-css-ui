@@ -27,12 +27,6 @@ export type ThemeProduct = {
   };
 };
 
-export const SERVICES = [
-  { name: 'Setup service', price: '$99–149', desc: 'We connect the theme to your live Shopify store: catalog, tokens, checkout, deploy to Cloudflare Pages. Ready in one working day.' },
-  { name: 'Branding package', price: '$199–249', desc: 'Your colors, fonts, logo and copy applied through the design tokens and constants — a store that looks like yours, not a template.' },
-  { name: 'Custom work', price: 'from $80/hour', desc: 'New sections, integrations, features beyond the theme — scoped and quoted from your brief before any work starts.' },
-];
-
 export const MODERN: ThemeProduct[] = [
   {
     slug: 'prism',
