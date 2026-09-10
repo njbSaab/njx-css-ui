@@ -500,7 +500,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
     .th-row {
         position: relative;
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(380px, 720px);
+        grid-template-columns: minmax(0, 1fr) minmax(380px, 680px);
         align-items: center;
         gap: 32px;
         padding: 24px 0 40px 0;
@@ -530,7 +530,8 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         flex-direction: column;
         gap: 14px;
         min-width: 0;
-        margin-left: -76px; /* pull the top layer further onto the card */
+        margin-left: -56px; /* pull the top layer onto the card */
+        margin-right: -34px; /* and push it past the row's right edge */
     }
     .th-row-shot {
         position: relative;
@@ -570,7 +571,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         display: flex;
         flex-direction: column;
         gap: 8px;
-        padding: 118px 40px 24px 30px;
+        padding: 118px 28px 24px 30px;
         min-width: 0;
     }
     .th-row-head {
@@ -726,7 +727,7 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         /* collapse the layers into one plain card */
         .th-row { grid-template-columns: 1fr; gap: 16px; padding: 0 0 20px; }
         .th-row::before { inset: 0; }
-        .th-row-stage { order: -1; gap: 12px; margin-left: 0; }
+        .th-row-stage { order: -1; gap: 12px; margin-left: 0; margin-right: 0; }
         .th-row-shot {
             aspect-ratio: 16 / 9;
             border-radius: 18px 18px 0 0;
