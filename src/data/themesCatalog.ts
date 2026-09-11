@@ -242,7 +242,7 @@ export const CLASSIC: ThemeProduct[] = [
     pro: {
       single: 79,
       unlimited: 119,
-      ready: false,
+      ready: true,
       features: [
         'Reviews & ratings with schema.org stars, per-product review pages',
         'Full customer account: orders with timelines, addresses, profile preferences',
@@ -284,6 +284,12 @@ export const CLASSIC: ThemeProduct[] = [
         'Rotating announcement bar and full-width search overlay with category scopes',
         '45-piece demo catalogue with curated photography; Cormorant Garamond / Karla / IBM Plex Mono',
         'Static piece pages for SEO: Product + AggregateRating JSON-LD',
+        'Checkout page: printed order form that writes real orders into the account ledger',
+        'Client accounts: sign-in / register gate with demo clients and persistent sessions',
+        'The Journal: six atelier notes on content collections with boutique filter tabs',
+        'Compare: up to three pieces side by side — price, material, sizes, rating, availability',
+        'House pages: About, Contacts, FAQ, Delivery & returns on real boutique data',
+        'Single-boutique mode: pin any concept with one env var (PUBLIC_LOCK_EDITION)',
         'Mock JSON or Shopify Storefront API — two env vars',
       ],
     },
