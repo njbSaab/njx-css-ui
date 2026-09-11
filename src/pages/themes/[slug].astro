@@ -13,13 +13,16 @@ const briefHref = '/contact';
 const nameParts = t.name.split('-');
 const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
 
-// Payments: when Lemon Squeezy checkout URLs land in CF Pages env
-// (PUBLIC_LS_DARK_LUX_SINGLE / PUBLIC_LS_DARK_LUX_UNLIMITED etc.),
-// Buy buttons switch from the contact fallback to real checkout — no code changes.
-const envKey = t.slug.toUpperCase().replace(/-/g, '_');
-const buySingleHref = import.meta.env[`PUBLIC_LS_${envKey}_SINGLE`] || briefHref;
-const buyUnlimitedHref = import.meta.env[`PUBLIC_LS_${envKey}_UNLIMITED`] || briefHref;
-const checkoutLive = buySingleHref !== briefHref;
+// Payments: Paddle Billing. A theme is checkout-live when it carries Paddle
+// price IDs (t.pro.paddleSingle/…) AND the public client token is configured
+// (PUBLIC_PADDLE_TOKEN in the store build env). Buy buttons then open the
+// Paddle overlay; otherwise they fall back to the contact/brief form.
+const paddleToken = import.meta.env.PUBLIC_PADDLE_TOKEN || '';
+const buySinglePrice = t.pro?.paddleSingle || '';
+const buyUnlimitedPrice = t.pro?.paddleUnlimited || '';
+const checkoutLive = !!(paddleToken && buySinglePrice);
+const buySingleHref = briefHref;
+const buyUnlimitedHref = briefHref;
 const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
 ---
 
@@ -150,9 +153,11 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
                                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg>
                                 </button>
                             )}
-                            {t.pro.ready ? (
-                                <a class="tp-btn tp-btn-primary tp-btn-block" href={buySingleHref} {...(checkoutLive ? { target: '_blank', rel: 'noopener' } : {})}>{t.premium ? `Buy — $${t.pro.single}` : `Buy Pro — $${t.pro.single}`}</a>
+                            {t.pro.ready ? (checkoutLive ? (
+                                <button type="button" class="tp-btn tp-btn-primary tp-btn-block" data-paddle-buy={buySinglePrice}>{t.premium ? `Buy — $${t.pro.single}` : `Buy Pro — $${t.pro.single}`}</button>
                             ) : (
+                                <a class="tp-btn tp-btn-primary tp-btn-block" href={buySingleHref}>{t.premium ? `Buy — $${t.pro.single}` : `Buy Pro — $${t.pro.single}`}</a>
+                            )) : (
                                 <button type="button" class="tp-btn tp-btn-primary tp-btn-block" data-order-open data-license="single">Order this build — ${t.pro.single}</button>
                             )}
                             {t.pro.ready ? (checkoutLive ? (
@@ -175,9 +180,11 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
                                 <li>Lifetime updates — pay once</li>
                                 <li>Priority email support</li>
                             </ul>
-                            {t.pro.ready ? (
-                                <a class="tp-btn tp-btn-secondary tp-btn-block" href={buyUnlimitedHref} {...(buyUnlimitedHref !== briefHref ? { target: '_blank', rel: 'noopener' } : {})}>Buy Unlimited — ${t.pro.unlimited}</a>
+                            {t.pro.ready ? ((checkoutLive && buyUnlimitedPrice) ? (
+                                <button type="button" class="tp-btn tp-btn-secondary tp-btn-block" data-paddle-buy={buyUnlimitedPrice}>Buy Unlimited — ${t.pro.unlimited}</button>
                             ) : (
+                                <a class="tp-btn tp-btn-secondary tp-btn-block" href={buyUnlimitedHref}>Buy Unlimited — ${t.pro.unlimited}</a>
+                            )) : (
                                 <button type="button" class="tp-btn tp-btn-secondary tp-btn-block" data-order-open data-license="unlimited">Order Unlimited — ${t.pro.unlimited}</button>
                             )}
                         </article>
@@ -260,6 +267,31 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
     )}
 
     <PagesFooter />
+
+    {checkoutLive && (
+        <script is:inline src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+        <script is:inline define:vars={{ token: paddleToken }}>
+            (function () {
+                function boot() {
+                    if (!window.Paddle) { setTimeout(boot, 100); return; }
+                    // account is production; no Environment.set needed for live
+                    window.Paddle.Initialize({ token: token });
+                    if (window.__paddleBound) return;
+                    window.__paddleBound = true;
+                    document.addEventListener('click', function (e) {
+                        var b = e.target.closest && e.target.closest('[data-paddle-buy]');
+                        if (!b) return;
+                        e.preventDefault();
+                        window.Paddle.Checkout.open({
+                            items: [{ priceId: b.dataset.paddleBuy, quantity: 1 }],
+                            settings: { successUrl: 'https://njxui.dev/thanks' },
+                        });
+                    });
+                }
+                boot();
+            })();
+        </script>
+    )}
 </BaseLayout>
 
 <script is:inline>

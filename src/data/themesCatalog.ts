@@ -26,6 +26,9 @@ export type ThemeProduct = {
     unlimited: number;
     demo?: string;
     ready: boolean;
+    /** Paddle Billing price IDs (pri_...). When set + PUBLIC_PADDLE_TOKEN, Buy opens Paddle checkout. */
+    paddleSingle?: string;
+    paddleUnlimited?: string;
     features: string[];
   };
 };
@@ -232,6 +235,9 @@ export const CLASSIC: ThemeProduct[] = [
       single: 79,
       unlimited: 119,
       ready: true,
+      // TEST: both point at the $1 Test Delivery price for the live payment smoke test
+      paddleSingle: 'pri_01m25f65p7013e9ftegwx4msws',
+      paddleUnlimited: 'pri_01m25f65p7013e9ftegwx4msws',
       features: [
         'Three boutique concepts on one engine — fashion, jewellery, homeware — switched from the top bar',
         'Per-concept accent, hero layout (split / centered / mosaic), card ratio and currency',
