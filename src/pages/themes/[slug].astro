@@ -20,7 +20,9 @@ const nameTail = nameParts.slice(2).join('-'); // astro-njx-<tail>
 const paddleToken = import.meta.env.PUBLIC_PADDLE_TOKEN || '';
 const buySinglePrice = t.pro?.paddleSingle || '';
 const buyUnlimitedPrice = t.pro?.paddleUnlimited || '';
-const checkoutLive = !!(paddleToken && buySinglePrice);
+// Paddle checkout is enabled only in the store build (themes.njxui.dev — the
+// domain approved by Paddle); the main library site keeps the contact fallback.
+const checkoutLive = !!(paddleToken && buySinglePrice && import.meta.env.PUBLIC_STORE_MODE);
 const buySingleHref = briefHref;
 const buyUnlimitedHref = briefHref;
 const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
