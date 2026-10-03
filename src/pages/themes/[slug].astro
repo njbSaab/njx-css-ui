@@ -137,7 +137,7 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
                 </article>
                 )}
 
-                {t.pro && (
+                {t.pro && !t.free && (
                     <>
                         <!-- Pro single -->
                         <article class="tp-price-card tp-featured">
@@ -220,7 +220,7 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
 
     <!-- Order brief popup: no live checkout yet, so orders open a short form.
          POSTs to the same /api/contact worker (Resend + Telegram mirror). -->
-    {t.pro && !t.pro.ready && (
+    {t.pro && !t.pro.ready && !t.free && (
         <div class="tp-order-root" id="orderRoot" hidden>
             <div class="tp-order-dim" data-order-close></div>
             <div class="tp-order-card" role="dialog" aria-modal="true" aria-labelledby="orderTitle">
@@ -276,8 +276,21 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
             (function () {
                 function boot() {
                     if (!window.Paddle) { setTimeout(boot, 100); return; }
-                    // account is production; no Environment.set needed for live
-                    window.Paddle.Initialize({ token: token });
+                    // account is production; no Environment.set needed for live.
+                    // Own the post-payment redirect via eventCallback so the
+                    // transaction id always reaches /thanks (Paddle does not
+                    // reliably append ?_ptxn to successUrl on overlay checkout).
+                    window.Paddle.Initialize({
+                        token: token,
+                        eventCallback: function (ev) {
+                            if (!ev || ev.name !== 'checkout.completed') return;
+                            var d = ev.data || {};
+                            var txn = d.transaction_id || d.id || '';
+                            var dest = 'https://njxui.dev/thanks/';
+                            if (/^txn_[a-z0-9]+$/i.test(txn)) dest += '?_ptxn=' + encodeURIComponent(txn);
+                            window.location.href = dest;
+                        },
+                    });
                     if (window.__paddleBound) return;
                     window.__paddleBound = true;
                     document.addEventListener('click', function (e) {
@@ -285,8 +298,8 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
                         if (!b) return;
                         e.preventDefault();
                         window.Paddle.Checkout.open({
+                            settings: { displayMode: 'overlay', theme: 'dark' },
                             items: [{ priceId: b.dataset.paddleBuy, quantity: 1 }],
-                            settings: { successUrl: 'https://njxui.dev/thanks' },
                         });
                     });
                 }
@@ -608,6 +621,14 @@ const canonical = new URL(`/themes/${t.slug}/`, 'https://themes.njxui.dev');
     }
     .tp-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
     .tp-btn {
+        /* reset native <button> UA styles so a <button> matches an <a> */
+        appearance: none;
+        -webkit-appearance: none;
+        border: none;
+        background: none;
+        margin: 0;
+        font-family: inherit;
+        cursor: pointer;
         display: inline-flex;
         align-items: center;
         gap: 8px;

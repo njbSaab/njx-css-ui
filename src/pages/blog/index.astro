@@ -1,0 +1,186 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PagesTopbar from '../../components/PagesTopbar.astro';
+import PagesFooter from '../../components/PagesFooter.astro';
+import Bottombar from '../../components/Bottombar.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const fmt = (d) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+// Градиентные рамки карточек — цикл по фирменным вариантам njX
+const OG = ['primary', 'fire', 'ocean', 'sunset', 'aurora', 'cosmic'];
+// Цвета тегов — лёгкий цикл, чтобы список дышал
+const TAG = ['tag-primary', 'tag-accent', 'tag-success'];
+
+// Блог канонично живёт на njxui.dev (одна кодовая база деплоится и на themes.njxui.dev)
+const canonical = new URL('/blog', 'https://njxui.dev');
+---
+
+<BaseLayout
+  title="Blog — njX UI · Astro, Shopify & static storefronts"
+  description="Guides and notes on building fast static storefronts with Astro and Shopify — free themes, Storefront API how-tos, and build-in-public lessons."
+  canonical={canonical}
+>
+  <PagesTopbar activePage="blog" />
+
+  <!-- ══ HERO (soft radial glow, gentle drift) ══ -->
+  <header class="blog-hero">
+    <div class="blog-hero-inner">
+      <span class="blog-hero-eyebrow">njX Journal</span>
+      <h1 class="blog-hero-title">Building with Astro &amp; Shopify</h1>
+      <p class="blog-hero-sub">
+        Practical guides on static storefronts, the Shopify Storefront API, and the
+        free Astro themes behind them.
+      </p>
+    </div>
+  </header>
+
+  <section class="blog-list">
+    {posts.map((post, i) => (
+      <a class={`blog-card card-outline-gradient card-outline-gradient-${OG[i % OG.length]}`} href={`/blog/${post.id}/`}>
+        <div class="tags blog-card-tags">
+          {post.data.tags.slice(0, 3).map((t, j) => (
+            <span class={`tag ${TAG[j % TAG.length]}`}>{t}</span>
+          ))}
+        </div>
+        <h2 class="blog-card-title">{post.data.title}</h2>
+        <div class="blog-card-date">{fmt(post.data.pubDate)}</div>
+        <p class="blog-card-desc">{post.data.description}</p>
+        <span class="link link-arrow blog-card-more">Read more</span>
+      </a>
+    ))}
+  </section>
+
+  <PagesFooter />
+  <Bottombar />
+</BaseLayout>
+
+<style is:global>
+  /* ── Full-bleed gradient hero ── */
+  .blog-hero {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(72px, 12vw, 116px) 24px;
+    text-align: center;
+  }
+  /* Два мягких глоу-слоя, медленно дрейфуют с разной фазой — спокойное «дыхание» */
+  .blog-hero::before,
+  .blog-hero::after {
+    content: '';
+    position: absolute;
+    inset: -20%;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+  .blog-hero::before {
+    background: radial-gradient(
+      ellipse 70% 60% at 30% 20%,
+      color-mix(in srgb, var(--color-primary) 22%, transparent),
+      transparent 70%
+    );
+    animation: heroGlowA 22s ease-in-out infinite alternate;
+  }
+  .blog-hero::after {
+    background: radial-gradient(
+      ellipse 55% 55% at 80% 80%,
+      color-mix(in srgb, var(--color-accent) 14%, transparent),
+      transparent 70%
+    );
+    animation: heroGlowB 28s ease-in-out infinite alternate;
+  }
+  @keyframes heroGlowA {
+    from { transform: translate3d(0, 0, 0) scale(1);    opacity: 0.7; }
+    to   { transform: translate3d(3%, 2%, 0) scale(1.12); opacity: 1; }
+  }
+  @keyframes heroGlowB {
+    from { transform: translate3d(0, 0, 0) scale(1.08);  opacity: 0.9; }
+    to   { transform: translate3d(-3%, -2%, 0) scale(1);  opacity: 0.6; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .blog-hero::before,
+    .blog-hero::after { animation: none; }
+  }
+  .blog-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .blog-hero-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary);
+    margin-bottom: 14px;
+  }
+  .blog-hero-title {
+    font-size: clamp(32px, 6vw, 54px);
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1.08;
+    color: var(--color-light);
+    margin-bottom: 16px;
+  }
+  .blog-hero-sub {
+    font-size: clamp(15px, 2.2vw, 18px);
+    line-height: 1.65;
+    color: var(--color-muted);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ── Post grid ── */
+  .blog-list {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 56px 32px 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 22px;
+  }
+  /* .card-outline-gradient рисует рамку/фон/hover сам — тут только раскладка */
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 28px;
+    text-decoration: none;
+  }
+  .blog-card-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    color: var(--color-muted);
+    opacity: 0.7;
+  }
+  .blog-card-title {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--color-light);
+    letter-spacing: -0.5px;
+  }
+  .blog-card-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-muted);
+    flex: 1;
+  }
+  .blog-card-tags {
+    margin-bottom: 2px;
+  }
+  .blog-card-more {
+    font-size: 13px;
+    margin-top: 6px;
+  }
+  /* стрелка «уезжает» при наведении на всю карточку, не только на текст */
+  .blog-card:hover .link-arrow::after {
+    transform: translate(3px);
+  }
+</style>

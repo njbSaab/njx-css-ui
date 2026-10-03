@@ -40,19 +40,19 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
 
             <aside class="contact-hero-panel" aria-label="Fastest paths">
                 <span class="contact-panel-kicker">Fastest paths</span>
-                <a class="contact-path" href="#storefronts">
-                    <span class="contact-path-icon">EC</span>
-                    <span>
-                        <strong>Ecommerce storefronts</strong>
-                        <small>Pro ready today · 4 free Lite tiers</small>
-                    </span>
-                    <span class="contact-path-arrow">→</span>
-                </a>
                 <a class="contact-path" href="#classic">
                     <span class="contact-path-icon">❦</span>
                     <span>
                         <strong>Classic collection</strong>
                         <small>{CLASSIC.length === 1 ? 'the first light editorial theme' : `${CLASSIC.length} light editorial themes`}</small>
+                    </span>
+                    <span class="contact-path-arrow">→</span>
+                </a>
+                <a class="contact-path" href="#storefronts">
+                    <span class="contact-path-icon">EC</span>
+                    <span>
+                        <strong>Ecommerce storefronts</strong>
+                        <small>Pro ready today · 4 free Lite tiers</small>
                     </span>
                     <span class="contact-path-arrow">→</span>
                 </a>
@@ -80,11 +80,76 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
             <div class="th-tabs" role="tablist" aria-label="Theme categories">
                 <span class="th-tab-glider" aria-hidden="true"></span>
                 <button class="th-tab is-active" data-th-tab="all" role="tab">All</button>
-                <button class="th-tab" data-th-tab="storefronts" role="tab">Storefronts</button>
                 <button class="th-tab" data-th-tab="classic" role="tab">Classic</button>
+                <button class="th-tab" data-th-tab="storefronts" role="tab">Storefronts</button>
                 <button class="th-tab" data-th-tab="modern" role="tab">Modern</button>
             </div>
         </div>
+
+        <!-- CLASSIC PREMIUM THEMES -->
+        <section class="th-section" id="classic" data-th-cat="classic">
+            <div class="th-section-head">
+                <h2>Classic collection</h2>
+                <p>
+                    The calm side of the catalogue: light, editorial themes
+                    with serif typography, hairline rules and warm paper
+                    backgrounds — built for stores that sell craft, heritage
+                    and one-of-one pieces rather than gadgets and neon.
+                </p>
+            </div>
+            <div class="th-list">
+                {
+                    CLASSIC.map((t) => (
+                        <article class="th-row" id={t.slug}>
+                            <div class="th-row-body">
+                                <div class="th-row-head">
+                                    <h3><a href={`${storeBase}/themes/${t.slug}`}>{t.name}</a></h3>
+                                    {t.free ? <span class="th-free">Free · open source</span> : <span class="th-premium">Premium</span>}
+                                    {t.pro && !t.pro.ready && !t.free && <span class="th-soon">Made to order</span>}
+                                </div>
+                                <div class="th-tagline">{t.tagline}</div>
+                                <p class="th-row-desc">{t.desc}</p>
+                                {t.pro && (
+                                    <ul class="th-row-feats">
+                                        {t.pro.features.slice(0, 3).map((f) => (
+                                            <li>{f}</li>
+                                        ))}
+                                    </ul>
+                                )}
+                                {t.pro && !t.free && (
+                                    <div class="th-row-price">
+                                        <span class="th-price-big">${t.pro.single}</span>
+                                        <span class="th-price-note">Single site · ${t.pro.unlimited} Unlimited{!t.pro.ready && ' · launch pricing'}</span>
+                                    </div>
+                                )}
+                                <div class="th-row-actions">
+                                    {t.free ? (
+                                        <a class="th-buy" href={t.repo} target="_blank" rel="noopener">Get it free on GitHub →</a>
+                                    ) : t.pro?.ready ? (
+                                        <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
+                                    ) : (
+                                        <a class="th-notify" href={`${storeBase}/themes/${t.slug}`}>Order this build →</a>
+                                    )}
+                                    <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
+                                </div>
+                            </div>
+                            <div class="th-row-stage">
+                                <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`} data-demo={t.demo}>
+                                    <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
+                                    <span class="th-shot-hint">Open theme →</span>
+                                    {t.demo && (
+                                        <button type="button" class="th-live-btn" data-th-live>
+                                            <span class="th-live-dot" />
+                                            <span data-th-live-label>Live</span>
+                                        </button>
+                                    )}
+                                </a>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </section>
 
         <!-- ECOMMERCE THEMES -->
         <section class="th-section" id="storefronts" data-th-cat="storefronts">
@@ -156,69 +221,6 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
             </div>
         </section>
 
-        <!-- CLASSIC PREMIUM THEMES -->
-        <section class="th-section" id="classic" data-th-cat="classic">
-            <div class="th-section-head">
-                <h2>Classic collection</h2>
-                <p>
-                    The calm side of the catalogue: light, editorial themes
-                    with serif typography, hairline rules and warm paper
-                    backgrounds — built for stores that sell craft, heritage
-                    and one-of-one pieces rather than gadgets and neon.
-                </p>
-            </div>
-            <div class="th-list">
-                {
-                    CLASSIC.map((t) => (
-                        <article class="th-row" id={t.slug}>
-                            <div class="th-row-body">
-                                <div class="th-row-head">
-                                    <h3><a href={`${storeBase}/themes/${t.slug}`}>{t.name}</a></h3>
-                                    <span class="th-premium">Premium</span>
-                                    {t.pro && !t.pro.ready && <span class="th-soon">Made to order</span>}
-                                </div>
-                                <div class="th-tagline">{t.tagline}</div>
-                                <p class="th-row-desc">{t.desc}</p>
-                                {t.pro && (
-                                    <ul class="th-row-feats">
-                                        {t.pro.features.slice(0, 3).map((f) => (
-                                            <li>{f}</li>
-                                        ))}
-                                    </ul>
-                                )}
-                                {t.pro && (
-                                    <div class="th-row-price">
-                                        <span class="th-price-big">${t.pro.single}</span>
-                                        <span class="th-price-note">Single site · ${t.pro.unlimited} Unlimited{!t.pro.ready && ' · launch pricing'}</span>
-                                    </div>
-                                )}
-                                <div class="th-row-actions">
-                                    {t.pro?.ready ? (
-                                        <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
-                                    ) : (
-                                        <a class="th-notify" href={`${storeBase}/themes/${t.slug}`}>Order this build →</a>
-                                    )}
-                                    <a class="btn btn-outline btn-sm" href={`${storeBase}/themes/${t.slug}/preview`}>Live demo</a>
-                                </div>
-                            </div>
-                            <div class="th-row-stage">
-                                <a class="th-row-shot" href={`${storeBase}/themes/${t.slug}`} data-demo={t.demo}>
-                                    <img src={t.img} alt={`${t.name} home page`} loading="lazy" width="1280" height="720" />
-                                    <span class="th-shot-hint">Open theme →</span>
-                                    {t.demo && (
-                                        <button type="button" class="th-live-btn" data-th-live>
-                                            <span class="th-live-dot" />
-                                            <span data-th-live-label>Live</span>
-                                        </button>
-                                    )}
-                                </a>
-                            </div>
-                        </article>
-                    ))
-                }
-            </div>
-        </section>
-
         <!-- MODERN PREMIUM THEMES -->
         <section class="th-section" id="modern" data-th-cat="modern">
             <div class="th-section-head">
@@ -238,8 +240,8 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                             <div class="th-row-body">
                                 <div class="th-row-head">
                                     <h3><a href={`${storeBase}/themes/${t.slug}`}>{t.name}</a></h3>
-                                    <span class="th-premium">Premium</span>
-                                    {t.pro && !t.pro.ready && <span class="th-soon">Made to order</span>}
+                                    {t.free ? <span class="th-free">Free · open source</span> : <span class="th-premium">Premium</span>}
+                                    {t.pro && !t.pro.ready && !t.free && <span class="th-soon">Made to order</span>}
                                 </div>
                                 <div class="th-tagline">{t.tagline}</div>
                                 <p class="th-row-desc">{t.desc}</p>
@@ -250,14 +252,16 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
                                         ))}
                                     </ul>
                                 )}
-                                {t.pro && (
+                                {t.pro && !t.free && (
                                     <div class="th-row-price">
                                         <span class="th-price-big">${t.pro.single}</span>
                                         <span class="th-price-note">Single site · ${t.pro.unlimited} Unlimited{!t.pro.ready && ' · launch pricing'}</span>
                                     </div>
                                 )}
                                 <div class="th-row-actions">
-                                    {t.pro?.ready ? (
+                                    {t.free ? (
+                                        <a class="th-buy" href={t.repo} target="_blank" rel="noopener">Get it free on GitHub →</a>
+                                    ) : t.pro?.ready ? (
                                         <a class="th-buy" href={`${storeBase}/themes/${t.slug}`}>Buy this theme →</a>
                                     ) : (
                                         <a class="th-notify" href={`${storeBase}/themes/${t.slug}`}>Order this build →</a>
@@ -773,6 +777,16 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
         border-radius: 999px;
         padding: 2px 10px;
     }
+    .th-free {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: #34d399;
+        border: 1px solid color-mix(in srgb, #34d399 45%, transparent);
+        border-radius: 999px;
+        padding: 2px 10px;
+    }
     .th-notify {
         display: inline-flex;
         align-items: center;
@@ -1113,8 +1127,19 @@ const storeBase = import.meta.env.PUBLIC_STORE_MODE ? '' : 'https://themes.njxui
     }
     .th-section.th-anim-in { animation: thSectionIn 0.4s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
     @media (max-width: 640px) {
-        .th-tabs-wrap { position: static; }
-        .th-tab { padding: 8px 14px; font-size: 12px; }
+        /* tabs pill scrolls inside its wrap instead of overflowing the page */
+        .th-tabs-wrap { position: static; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+        .th-tabs-wrap::-webkit-scrollbar { display: none; }
+        .th-tabs { max-width: none; }
+        .th-tab { padding: 8px 12px; font-size: 12px; white-space: nowrap; }
+        /* halve the mobile vertical rhythm (padding / margin / gap) */
+        .contact-hero { padding: 26px 0 20px; gap: 22px; }
+        .th-section { margin-top: 26px; }
+        .th-section-head h2 { font-size: 21px; }
+        .th-section-head p { margin: 6px 0 12px; }
+        .th-tabs-wrap { margin: 18px 0 -6px; }
+        .th-row { gap: 8px; padding: 0 0 10px; }
+        .th-row-body { padding: 0 16px 6px; }
     }
     .th-tagline {
         margin-top: 4px;

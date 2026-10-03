@@ -1,0 +1,301 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PagesTopbar from '../../components/PagesTopbar.astro';
+import PagesFooter from '../../components/PagesFooter.astro';
+import Bottombar from '../../components/Bottombar.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+
+const fmt = (d) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const url = `https://njxui.dev/blog/${post.id}/`;
+const canonical = new URL(url);
+const iso = (d) => d.toISOString();
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BlogPosting',
+      headline: post.data.title,
+      description: post.data.description,
+      datePublished: iso(post.data.pubDate),
+      dateModified: iso(post.data.updatedDate ?? post.data.pubDate),
+      author: { '@type': 'Organization', name: post.data.author, url: 'https://njxui.dev' },
+      publisher: {
+        '@type': 'Organization',
+        name: 'njX UI',
+        url: 'https://njxui.dev',
+        logo: { '@type': 'ImageObject', url: 'https://njxui.dev/img/og-image.png' },
+      },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      keywords: post.data.tags.join(', '),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://njxui.dev/' },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://njxui.dev/blog' },
+        { '@type': 'ListItem', position: 3, name: post.data.title, item: url },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout title={`${post.data.title} — njX UI`} description={post.data.description} canonical={canonical}>
+  <Fragment slot="head">
+    <meta property="og:type" content="article" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <PagesTopbar activePage="blog" />
+
+  <div class="blog-layout">
+    <article class="blog-post">
+    <nav class="breadcrumb has-arrow-separator blog-crumbs">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li class="is-active"><span>{post.data.title}</span></li>
+    </nav>
+    <header class="blog-head">
+      <div class="blog-meta">
+        <time datetime={iso(post.data.pubDate)}>{fmt(post.data.pubDate)}</time>
+        {post.data.updatedDate && <span> · updated {fmt(post.data.updatedDate)}</span>}
+      </div>
+      <h1 class="blog-title">{post.data.title}</h1>
+      <p class="blog-lede">{post.data.description}</p>
+      <div class="tags blog-card-tags">
+        {post.data.tags.map((t, j) => (
+          <span class={`tag ${['tag-primary', 'tag-accent', 'tag-success'][j % 3]}`}>{t}</span>
+        ))}
+      </div>
+    </header>
+
+    <div class="blog-prose">
+      <Content />
+    </div>
+
+    <aside class="blog-cta">
+      <div class="blog-cta-title">Start from a working theme</div>
+      <p>Every njX Astro storefront ships with the Shopify provider layer done — free and MIT-licensed.</p>
+      <div class="blog-cta-btns">
+        <a class="sc-btn-primary" href="/themes">Browse themes</a>
+        <a class="sc-btn-ghost" href="/blog">More posts</a>
+      </div>
+    </aside>
+    </article>
+
+    {toc.length > 0 && (
+      <aside class="blog-toc">
+        <nav class="blog-toc-inner" aria-label="On this page">
+          <div class="blog-toc-title">On this page</div>
+          <ul>
+            {toc.map((h) => (
+              <li class={h.depth === 3 ? 'toc-sub' : ''}>
+                <a href={`#${h.slug}`} data-toc={h.slug}>{h.text}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+    )}
+  </div>
+
+  <PagesFooter />
+  <Bottombar />
+
+  <script is:inline>
+    (function () {
+      function initBlogToc() {
+        var links = Array.prototype.slice.call(
+          document.querySelectorAll('.blog-toc a[data-toc]')
+        );
+        if (!links.length) return;
+        var map = {};
+        links.forEach(function (a) { map[a.getAttribute('data-toc')] = a.parentElement; });
+        var heads = links
+          .map(function (a) { return document.getElementById(a.getAttribute('data-toc')); })
+          .filter(Boolean);
+        if (!heads.length) return;
+        var obs = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (!e.isIntersecting) return;
+              Object.keys(map).forEach(function (k) { map[k].classList.remove('active'); });
+              if (map[e.target.id]) map[e.target.id].classList.add('active');
+            });
+          },
+          { rootMargin: '-84px 0px -70% 0px', threshold: 0 }
+        );
+        heads.forEach(function (h) { obs.observe(h); });
+      }
+      document.addEventListener('astro:page-load', initBlogToc);
+    })();
+  </script>
+</BaseLayout>
+
+<style is:global>
+  .blog-layout {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 232px;
+    gap: 56px;
+    align-items: start;
+  }
+  .blog-post { min-width: 0; }
+  .blog-crumbs { margin-bottom: 4px; flex-wrap: wrap; }
+  .blog-head { margin: 24px 0 36px; }
+  .blog-meta {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    color: var(--color-muted);
+    opacity: 0.7;
+    margin-bottom: 12px;
+  }
+  .blog-title {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1.12;
+    color: var(--color-light);
+    margin-bottom: 14px;
+  }
+  .blog-lede {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--color-muted);
+    margin-bottom: 16px;
+  }
+
+  /* ── Rendered markdown ── */
+  .blog-prose { color: var(--color-light); font-size: 16px; line-height: 1.75; }
+  .blog-prose > * + * { margin-top: 20px; }
+  .blog-prose h2 {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-top: 44px;
+    color: var(--color-light);
+    scroll-margin-top: 84px;
+  }
+  .blog-prose h3 { font-size: 20px; font-weight: 700; margin-top: 32px; color: var(--color-light); scroll-margin-top: 84px; }
+  .blog-prose p, .blog-prose li { color: color-mix(in srgb, var(--color-light) 82%, var(--color-muted)); }
+  .blog-prose a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px; }
+  .blog-prose a:hover { opacity: 0.8; }
+  .blog-prose ul, .blog-prose ol { padding-left: 22px; }
+  .blog-prose li { margin-top: 8px; }
+  .blog-prose strong { color: var(--color-light); font-weight: 700; }
+  .blog-prose code {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.88em;
+    background: color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+    padding: 2px 6px;
+    border-radius: 5px;
+  }
+  .blog-prose pre {
+    background: color-mix(in srgb, var(--color-neutral-600) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-neutral-600) 24%, transparent);
+    border-radius: 12px;
+    padding: 18px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .blog-prose pre code { background: none; padding: 0; }
+  .blog-prose blockquote {
+    border-left: 3px solid var(--color-primary);
+    padding-left: 16px;
+    color: var(--color-muted);
+  }
+
+  .blog-cta {
+    margin-top: 56px;
+    padding: 32px;
+    border-radius: 16px;
+    text-align: center;
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+  }
+  .blog-cta-title { font-size: 20px; font-weight: 800; color: var(--color-light); margin-bottom: 6px; }
+  .blog-cta p { font-size: 14px; color: var(--color-muted); max-width: 460px; margin: 0 auto 18px; line-height: 1.6; }
+  .blog-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* ── Sidebar: on-this-page ── */
+  .blog-toc { position: sticky; top: 80px; align-self: start; }
+  .blog-toc-title {
+    position: relative;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-light);
+    padding-bottom: 16px;
+    margin-bottom: 12px;
+  }
+  .blog-toc-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: min(160px, 70%);
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      var(--color-primary),
+      color-mix(in srgb, var(--color-accent) 70%, transparent),
+      transparent
+    );
+    pointer-events: none;
+  }
+  .blog-toc ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1px; }
+  .blog-toc li.toc-sub { padding-left: 14px; }
+  .blog-toc a {
+    position: relative;
+    display: inline-block;
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: var(--color-muted);
+    text-decoration: none;
+    padding: 5px 0;
+    transition: color 0.2s;
+  }
+  .blog-toc a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      var(--color-primary),
+      color-mix(in srgb, var(--color-accent) 70%, transparent),
+      transparent
+    );
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.28s ease;
+    pointer-events: none;
+  }
+  .blog-toc a:hover { color: var(--color-light); }
+  .blog-toc a:hover::after,
+  .blog-toc li.active a::after { transform: scaleX(1); }
+  .blog-toc li.active a { color: var(--color-primary); }
+
+  @media (max-width: 1000px) {
+    .blog-layout { grid-template-columns: 1fr; }
+    .blog-toc { display: none; }
+  }
+</style>

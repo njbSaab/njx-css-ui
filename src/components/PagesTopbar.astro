@@ -7,6 +7,7 @@ interface Props {
     | 'examples'
     | 'overview'
     | 'themes'
+    | 'blog'
     | 'docs'
     | 'faq'
     | 'donate'
@@ -128,9 +129,44 @@ const storeMode = !!import.meta.env.PUBLIC_STORE_MODE;
     box-shadow: 0 8px 24px
       color-mix(in srgb, var(--color-primary) 50%, transparent);
   }
+  .sc-burger {
+    display: none;
+    width: 40px; height: 40px; flex-shrink: 0;
+    align-items: center; justify-content: center;
+    border-radius: 10px;
+    border: 1px solid color-mix(in srgb, var(--color-neutral-600) 26%, transparent);
+    background: transparent; color: var(--color-light);
+    font-size: 18px; line-height: 1; cursor: pointer;
+  }
+  .sc-burger:hover { color: var(--color-primary); border-color: var(--color-primary); }
   @media (max-width: 900px) {
+    /* nav links collapse into a burger dropdown under the bar */
+    .sc-burger { display: inline-flex; }
     .sc-nav-links {
       display: none;
+      position: absolute; left: 0; right: 0; top: calc(100% + 8px);
+      flex-direction: column; align-items: stretch; gap: 2px;
+      padding: 10px;
+      background: var(--color-dark, #0b0d12);
+      border: 1px solid color-mix(in srgb, var(--color-neutral-600) 22%, transparent);
+      border-radius: 14px;
+      box-shadow: 0 24px 48px -20px rgba(0, 0, 0, 0.6);
+    }
+    .sc-nav.open .sc-nav-links { display: flex; }
+    .sc-nav-links a { padding: 12px 14px; font-size: 15px; border-radius: 9px; }
+  }
+  /* Narrow phones: the palette dots + logo + GitHub button overflowed the bar
+     (horizontal scroll). Tighten padding, hide the non-essential palette dots. */
+  @media (max-width: 640px) {
+    .sc-nav {
+      padding: 0 14px;
+      gap: 12px;
+    }
+    .sc-nav-themes {
+      display: none;
+    }
+    .sc-nav-github {
+      padding: 8px 12px;
     }
   }
 
@@ -222,6 +258,32 @@ const storeMode = !!import.meta.env.PUBLIC_STORE_MODE;
   function setTheme(dot, theme) {
     njxApplyTheme(theme);
   }
+
+  // ── Burger dropdown (mobile) ──
+  // Delegated on document so it survives View Transitions without re-binding.
+  (function () {
+    if (window.__scBurgerBound) return;
+    window.__scBurgerBound = true;
+    function closeNav() {
+      var nav = document.querySelector('.sc-nav');
+      var b = document.getElementById('sc-burger');
+      if (nav) nav.classList.remove('open');
+      if (b) { b.setAttribute('aria-expanded', 'false'); b.textContent = '☰'; }
+    }
+    document.addEventListener('click', function (e) {
+      var burger = e.target.closest && e.target.closest('#sc-burger');
+      var nav = document.querySelector('.sc-nav');
+      if (burger && nav) {
+        var open = nav.classList.toggle('open');
+        burger.setAttribute('aria-expanded', String(open));
+        burger.textContent = open ? '✕' : '☰';
+        return;
+      }
+      if (e.target.closest && e.target.closest('.sc-nav-links a')) closeNav();
+    });
+    // close the menu on every navigation
+    document.addEventListener('astro:after-swap', closeNav);
+  })();
 </script>
 
 <nav class="sc-nav">
@@ -235,6 +297,7 @@ const storeMode = !!import.meta.env.PUBLIC_STORE_MODE;
     {storeMode ? (
       <>
         <a href={`${base}themes`} class={activePage === 'themes' ? 'active' : ''}>Themes</a>
+        <a href={`${base}blog`} class={activePage === 'blog' ? 'active' : ''}>Blog</a>
         <a href={`${base}themes/docs`} class={activePage === 'docs' ? 'active' : ''}>Docs</a>
         <a href={`${base}themes/faq`} class={activePage === 'faq' ? 'active' : ''}>FAQ</a>
         <a href={`${base}contact`} class={activePage === 'contact' ? 'active' : ''}>Contact</a>
@@ -264,6 +327,9 @@ const storeMode = !!import.meta.env.PUBLIC_STORE_MODE;
         >
         <a href={`${base}themes`} class={activePage === 'themes' ? 'active' : ''}
           >Themes</a
+        >
+        <a href={`${base}blog`} class={activePage === 'blog' ? 'active' : ''}
+          >Blog</a
         >
         <a href={`${base}contact`} class={activePage === 'contact' ? 'active' : ''}
           >Contact</a
@@ -349,4 +415,5 @@ const storeMode = !!import.meta.env.PUBLIC_STORE_MODE;
     </svg>
     GitHub
   </a>
+  <button class="sc-burger" id="sc-burger" aria-label="Menu" aria-expanded="false">☰</button>
 </nav>

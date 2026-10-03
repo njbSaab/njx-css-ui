@@ -1,0 +1,58 @@
+---
+// Paddle default payment link target. Paddle opens payment links / invoices at
+// this URL with ?_ptxn=<transaction id>; we load Paddle.js and re-open the
+// checkout for that transaction. Set as the "Default payment link" domain in
+// Paddle → Checkout settings (themes.njxui.dev). Also the safe landing when a
+// checkout needs a hosted page.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PagesTopbar from '../components/PagesTopbar.astro';
+
+const paddleToken = import.meta.env.PUBLIC_PADDLE_TOKEN || '';
+---
+
+<BaseLayout title="Checkout — njX UI" description="Complete your njX theme purchase.">
+    <Fragment slot="head">
+        <meta name="robots" content="noindex" />
+    </Fragment>
+    <PagesTopbar />
+
+    <main class="pv-page ty-page">
+        <span class="tag tag-primary">Secure checkout</span>
+        <h1>Completing your order…</h1>
+        <p data-co-msg>Opening the secure Paddle payment form. If nothing appears, refresh this page or return to the theme you were buying.</p>
+        <p><a class="btn btn-outline btn-sm" href="/themes">← Back to themes</a></p>
+    </main>
+
+    {paddleToken && (
+        <script is:inline src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+        <script is:inline define:vars={{ token: paddleToken }}>
+            (function () {
+                function boot() {
+                    if (!window.Paddle) { setTimeout(boot, 100); return; }
+                    window.Paddle.Initialize({
+                        token: token,
+                        eventCallback: function (ev) {
+                            if (!ev || ev.name !== 'checkout.completed') return;
+                            var d = ev.data || {};
+                            var t = d.transaction_id || d.id || '';
+                            var dest = 'https://njxui.dev/thanks/';
+                            if (/^txn_[a-z0-9]+$/i.test(t)) dest += '?_ptxn=' + encodeURIComponent(t);
+                            window.location.href = dest;
+                        },
+                    });
+                    var txn = new URLSearchParams(location.search).get('_ptxn');
+                    if (txn) {
+                        window.Paddle.Checkout.open({
+                            settings: { displayMode: 'overlay', theme: 'dark' },
+                            transactionId: txn,
+                        });
+                    } else {
+                        var m = document.querySelector('[data-co-msg]');
+                        if (m) m.textContent = 'No active checkout on this link. Head back to the themes and pick one to purchase.';
+                    }
+                }
+                boot();
+            })();
+        </script>
+    )}
+</BaseLayout>
