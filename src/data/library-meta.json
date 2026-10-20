@@ -2,7 +2,7 @@
   "name": "njX UI",
   "npmPackage": "njx-ui",
   "githubPackage": "njbSaab/njx-css-ui",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "files": {
     "full": "public/css/style.min.css",
     "classless": "public/css/classless.min.css"
