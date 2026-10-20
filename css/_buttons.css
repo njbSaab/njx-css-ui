@@ -260,6 +260,7 @@
   position: absolute;
   top: -5px; right: -5px; bottom: -5px; left: -5px;
   z-index: -1;
+  pointer-events: none; /* decorative glow must not extend the hover hit-box */
   background: linear-gradient(90deg, var(--btn-gradient-color-soft), var(--btn-gradient-color), var(--btn-gradient-color), var(--btn-gradient-color-soft));
   background-size: 400%;
   border-radius: var(--radius-xl);
@@ -327,17 +328,22 @@
   transition: box-shadow 0.25s ease, transform 0.25s ease, filter 0.25s ease;
 }
 .btn-shine::after {
+  /* Sweep lives inside the box (background-position, not a moving box),
+     so .btn-shine does not need overflow:hidden — see "Lift hit-pad". */
   content: "";
   position: absolute;
-  top: -50%; left: -75%;
-  width: 50%; height: 200%;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-image: linear-gradient(
+    110deg,
+    transparent 30%,
     color-mix(in srgb, #fff 28%, transparent) 50%,
-    transparent 100%
+    transparent 70%
   );
-  transform: skewX(-20deg);
+  background-size: 60% 100%;
+  background-repeat: no-repeat;
+  background-position: -100% 0;
   animation: shineSweep 3.5s ease-in-out infinite;
 }
 .btn-shine:hover {
@@ -361,9 +367,9 @@
   100% { background-position: 0% 50%; }
 }
 @keyframes shineSweep {
-  0%   { left: -75%; }
-  60%  { left: 125%; }
-  100% { left: 125%; }
+  0%   { background-position: -100% 0; }
+  60%  { background-position: 200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .btn-shine-primary {
@@ -415,6 +421,7 @@
   content: "";
   position: absolute;
   inset: -6px;
+  pointer-events: none; /* decorative glow must not extend the hover hit-box */
   border-radius: inherit;
   background: var(--aura-glow);
   filter: blur(18px);
@@ -1103,4 +1110,46 @@
   padding: 0 4px;
   line-height: 1;
   font-family: var(--font-sans);
+}
+
+/* ── Lift hit-pad (fixes hover flicker on lifted buttons, GH #2) ──
+   transform moves the hit-box together with the button, so a cursor parked
+   near the bottom edge keeps leaving/re-entering :hover → up/down flicker.
+   While hovered, a transparent pseudo-element fills the gap vacated by the
+   lift, keeping the hover area static. Needs overflow:visible on the host.
+   Only present on :hover so the idle hit-box is unchanged. */
+.btn-gradient-hover,
+.btn-shine,
+.btn-aura,
+.btn-outline-gradient,
+.btn-3d,
+.btn-3d-success,
+.btn-3d-error,
+.btn-3d-dark {
+  overflow: visible;
+}
+.btn-gradient-hover,
+.btn-shine,
+.btn-outline-gradient { --btn-lift: 4px; }
+.btn-aura             { --btn-lift: 3px; }
+.btn-3d,
+.btn-3d-success,
+.btn-3d-error,
+.btn-3d-dark          { --btn-lift: 2px; }
+
+.btn-gradient-hover:hover::after,
+.btn-aura:hover::after,
+.btn-outline-gradient:hover::after,
+.btn-3d:hover::after,
+.btn-3d-success:hover::after,
+.btn-3d-error:hover::after,
+.btn-3d-dark:hover::after,
+.btn-shine:hover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: var(--btn-lift);
+  background: transparent;
 }
